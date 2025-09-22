@@ -1,5 +1,5 @@
-from .agent import agent
+from .agent import scATACAgent
 
-__all__ = ['agent']
+__all__ = ['scATACAgent']
 
-__version__ = '0.0.1'
+__version__ = '0.0.2'

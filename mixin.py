@@ -225,17 +225,7 @@ class NODEMixin:
             ODE solution at the specified time points
         """
         options = self.get_step_size(step_size, t[0], t[-1], len(t))
-
-        # Move to CPU for ODE solving (some solvers may have GPU compatibility issues)
-        cpu_z0 = z0.to("cpu")
-        cpu_t = t.to("cpu")
-
-        # Solve the ODE
-        pred_z = odeint(ode_func, cpu_z0, cpu_t, method=method, options=options)
-
-        # Move result back to original device
-        pred_z = pred_z.to(z0.device)
-
+        pred_z = odeint(ode_func, z0, t, method=method, options=options)
         return pred_z
 
 

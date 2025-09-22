@@ -1,74 +1,56 @@
 
-from .environment import Env
-from .utils import quiver_autoscale, l2_norm
+import numpy as np
+import torch
 import scanpy as sc
 from anndata import AnnData
-import torch
-import tqdm
 from typing import Optional, Literal, Tuple
-import numpy as np
-from scipy.sparse import csr_matrix, coo_matrix
+from scipy.sparse import csr_matrix
 from scipy.stats import norm
 from sklearn.neighbors import NearestNeighbors
+import tqdm
+
+from .environment import scATACEnvironment
+from .utils import quiver_autoscale
 
 
-class agent(Env):
+class scATACAgent(scATACEnvironment):
     """
-    Agent class for single-cell RNA velocity analysis using iAODEVAE.
+    Agent for scATAC-seq velocity analysis using iAODEVAE.
     
-    This class extends the Env class to provide a complete framework for
-    single-cell RNA velocity analysis, including model fitting, latent
-    representation extraction, data imputation, and velocity field computation.
-    
-    The agent integrates variational autoencoders with ordinary differential
-    equations to model cellular dynamics and compute RNA velocity fields
-    for trajectory inference.
+    Extends scATACEnvironment to provide complete scATAC-seq velocity analysis including
+    model fitting, latent representations, data imputation, and velocity field computation.
     
     Parameters
     ----------
     adata : AnnData
-        Annotated data object containing single-cell expression data
-    layer : str, optional
-        Layer name in adata.layers to use for training data. Default is "counts".
-    percent : float, optional
-        Percentage of data to use in each batch (0.0 to 1.0). Default is 0.01.
-    recon : float, optional
-        Weight for reconstruction loss. Default is 1.0.
-    irecon : float, optional
-        Weight for information reconstruction loss. Default is 0.0.
-    beta : float, optional
-        Weight for KL divergence regularization. Default is 1.0.
-    dip : float, optional
-        Weight for disentangled information processing loss. Default is 0.0.
-    tc : float, optional
-        Weight for total correlation loss. Default is 0.0.
-    info : float, optional
-        Weight for information bottleneck loss (MMD). Default is 0.0.
-    hidden_dim : int, optional
-        Dimension of hidden layers in the network. Default is 128.
-    latent_dim : int, optional
-        Dimension of the latent representation space. Default is 10.
-    i_dim : int, optional
-        Dimension of the information bottleneck. Default is 2.
-    use_ode : bool, optional
-        Whether to enable ODE integration for temporal modeling. Default is False.
-    loss_mode : Literal["mse", "nb", "zinb"], optional
-        Type of loss function. Default is "nb".
-    lr : float, optional
-        Learning rate for the optimizer. Default is 1e-4.
-    vae_reg : float, optional
-        Regularization weight for VAE component. Default is 0.5.
-    ode_reg : float, optional
-        Regularization weight for ODE component. Default is 0.5.
+        scATAC-seq data with peak accessibility counts
+    layer : str, default="counts"
+        Data layer to use for training
+    batch_percent : float, default=0.01  
+        Fraction of data per training batch
+    hidden_dim : int, default=128
+        Hidden layer dimension
+    latent_dim : int, default=10
+        Latent space dimension
+    i_dim : int, default=2
+        Information bottleneck dimension
+    use_ode : bool, default=False
+        Enable ODE integration for temporal dynamics
+    loss_mode : {"mse", "nb", "zinb"}, default="nb"
+        Loss function type
+    lr : float, default=1e-4
+        Learning rate
     device : torch.device, optional
-        Device to run computations on. Default is CUDA if available, otherwise CPU.
+        Computing device
+    **kwargs
+        Additional parameters for loss weights and regularization
     """
     
     def __init__(
         self,
         adata: AnnData,
         layer: str = "counts",
-        percent: float = 0.01,
+        batch_percent: float = 0.01,
         recon: float = 1.0,
         irecon: float = 0.0,
         beta: float = 1.0,
@@ -83,13 +65,17 @@ class agent(Env):
         lr: float = 1e-4,
         vae_reg: float = 0.5,
         ode_reg: float = 0.5,
-        device: torch.device = torch.device("cuda") if torch.cuda.is_available() else torch.device("cpu"),
-    ):
-        # Initialize parent environment with all parameters
+        device: Optional[torch.device] = None,
+        **kwargs
+    ) -> None:
+        
+        if device is None:
+            device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
+            
         super().__init__(
             adata=adata,
             layer=layer,
-            percent=percent,
+            batch_percent=batch_percent,
             recon=recon,
             irecon=irecon,
             beta=beta,
@@ -105,590 +91,325 @@ class agent(Env):
             vae_reg=vae_reg,
             ode_reg=ode_reg,
             device=device,
+            **kwargs
         )
 
-    def fit(self, epochs: int = 1000) -> 'agent':
-        """
-        Train the iAODEVAE model for the specified number of epochs.
+    def fit(self, epochs: int = 1000, verbose: bool = True) -> 'scATACAgent':
+        """Train the model with progress monitoring."""
+        iterator = tqdm.tqdm(range(epochs), desc="Training", ncols=120) if verbose else range(epochs)
         
-        This method performs iterative training with progress monitoring,
-        displaying training loss and evaluation metrics including clustering
-        performance and representation quality measures.
-        
-        Parameters
-        ----------
-        epochs : int, optional
-            Number of training epochs. Default is 1000.
+        for epoch in iterator:
+            batch_data = self.sample_training_batch()
+            metrics = self.train_and_evaluate(batch_data)
             
-        Returns
-        -------
-        agent
-            Returns self for method chaining
-        """
-        with tqdm.tqdm(total=int(epochs), desc="Fitting", ncols=150) as pbar:
-            for i in range(int(epochs)):
-                # Load batch data and perform training step
-                data = self.load_data()
-                self.step(data)
-                
-                # Update progress bar with metrics every 10 epochs
-                if (i + 1) % 10 == 0:
-                    pbar.set_postfix(
-                        {
-                            "Loss": f"{self.loss[-1][0]:.2f}",
-                            "ARI": f"{(self.score[-1][0]):.2f}",
-                            "NMI": f"{(self.score[-1][1]):.2f}",
-                            "ASW": f"{(self.score[-1][2]):.2f}",
-                            "C_H": f"{(self.score[-1][3]):.2f}",
-                            "D_B": f"{(self.score[-1][4]):.2f}",
-                            "P_C": f"{(self.score[-1][5]):.2f}",
-                        }
-                    )
-                pbar.update(1)
+            if verbose and (epoch + 1) % 10 == 0:
+                iterator.set_postfix({
+                    "Loss": f"{metrics.get('total_loss', 0):.2f}",
+                    "Recon": f"{metrics.get('reconstruction', 0):.2f}",
+                    "KL": f"{metrics.get('kl_divergence', 0):.2f}",
+                    "Sil": f"{metrics.get('latent_silhouette', 0):.2f}"
+                })
+        
         return self
 
-    def get_iembed(self) -> np.ndarray:
-        """
-        Extract information bottleneck embeddings from all data.
-        
-        This method computes low-dimensional embeddings through the
-        information bottleneck layer, which provides compressed
-        representations suitable for visualization and downstream analysis.
-        
-        Returns
-        -------
-        np.ndarray
-            Information bottleneck embeddings of shape (n_cells, i_dim)
-        """
-        iembed = self.take_iembed(self.X)
-        return iembed
+    def get_representations(self) -> dict:
+        """Extract all learned representations."""
+        return {
+            'latent': self.extract_latent_representations(self.accessibility_matrix),
+            'interpretable': self.extract_interpretable_embeddings(self.accessibility_matrix),
+            'pseudotime': self.extract_pseudotime(self.accessibility_matrix) if self.use_ode else None
+        }
 
-    def get_latent(self) -> np.ndarray:
-        """
-        Extract full latent representations from all data.
-        
-        This method computes the complete latent space representations
-        learned by the variational autoencoder, capturing the full
-        dimensionality of the learned manifold.
-        
-        Returns
-        -------
-        np.ndarray
-            Latent representations of shape (n_cells, latent_dim)
-        """
-        latent = self.take_latent(self.X)
-        return latent
+    def get_velocity_gradients(self) -> np.ndarray:
+        """Extract velocity gradients from ODE solver."""
+        if not self.use_ode:
+            raise ValueError("Velocity gradients require ODE mode")
+        return self.extract_velocity_gradients(self.accessibility_matrix)
 
-    def get_time(self) -> np.ndarray:
-        """
-        Extract predicted pseudotime values from all data.
-        
-        This method computes pseudotime estimates when ODE mode is enabled,
-        providing temporal ordering of cells along developmental trajectories.
-        
-        Returns
-        -------
-        np.ndarray
-            Pseudotime values of shape (n_cells,)
-            
-        Notes
-        -----
-        This method requires use_ode=True during initialization.
-        """
-        time = self.take_time(self.X)
-        return time
-
-    def get_impute(
+    def impute_data(
         self, 
         top_k: int = 30, 
         alpha: float = 0.9, 
-        steps: int = 3, 
+        n_steps: int = 3, 
         decay: float = 0.99
     ) -> np.ndarray:
         """
-        Perform data imputation using transition-based smoothing.
-        
-        This method computes imputed expression values by leveraging
-        learned transition probabilities to smooth expression across
-        similar cells in the latent space.
+        Impute data using transition-based smoothing.
         
         Parameters
         ----------
-        top_k : int, optional
-            Number of top transitions to keep for sparsification. Default is 30.
-        alpha : float, optional
-            Blending weight between original and imputed data. Default is 0.9.
-        steps : int, optional
-            Number of diffusion steps for multi-step imputation. Default is 3.
-        decay : float, optional
-            Decay factor for multi-step contributions. Default is 0.99.
-            
-        Returns
-        -------
-        np.ndarray
-            Imputed expression data of shape (n_cells, n_genes)
+        top_k : int
+            Number of top transitions for sparsification
+        alpha : float
+            Blending weight (0=original, 1=fully imputed)
+        n_steps : int
+            Number of diffusion steps
+        decay : float
+            Decay factor for multi-step contributions
         """
-        # Compute transition probability matrix
-        T = self.take_transition(self.X, top_k)
-
-        def multi_step_impute(T: np.ndarray, X: np.ndarray, steps: int, decay: float) -> np.ndarray:
-            """
-            Perform multi-step imputation using iterative diffusion.
+        T = self.compute_transition_probabilities(self.accessibility_matrix, top_k)
+        
+        # Multi-step diffusion
+        X_current = self.accessibility_matrix.copy()
+        X_imputed = self.accessibility_matrix.copy()
+        
+        for i in range(n_steps):
+            X_current = T @ X_current
+            X_imputed += (decay ** i) * X_current
             
-            Parameters
-            ----------
-            T : np.ndarray
-                Transition probability matrix
-            X : np.ndarray
-                Original expression data
-            steps : int
-                Number of diffusion steps
-            decay : float
-                Decay factor for step contributions
-                
-            Returns
-            -------
-            np.ndarray
-                Multi-step imputed data
-            """
-            X_current = X.copy()
-            X_imputed = X.copy()
-            
-            # Iteratively apply transition matrix with decay
-            for i in range(steps):
-                X_current = T @ X_current
-                X_imputed = X_imputed + decay**i * X_current
-                
-            # Normalize by total weight
-            X_imputed = X_imputed / (1 + sum(decay**i for i in range(steps)))
-            return X_imputed
+        # Normalize and blend
+        total_weight = 1 + sum(decay ** i for i in range(n_steps))
+        X_imputed = X_imputed / total_weight
+        
+        return (1 - alpha) * self.accessibility_matrix + alpha * X_imputed
 
-        def balanced_impute(
-            T: np.ndarray, 
-            X: np.ndarray, 
-            alpha: float = 0.5, 
-            steps: int = 3, 
-            decay: float = 0.9
-        ) -> np.ndarray:
-            """
-            Create balanced imputation combining original and smoothed data.
-            
-            Parameters
-            ----------
-            T : np.ndarray
-                Transition probability matrix
-            X : np.ndarray
-                Original expression data
-            alpha : float
-                Blending weight (0=original, 1=fully imputed)
-            steps : int
-                Number of diffusion steps
-            decay : float
-                Decay factor for step contributions
-                
-            Returns
-            -------
-            np.ndarray
-                Balanced imputed data
-            """
-            X_imputed = multi_step_impute(T, X, steps, decay)
-            X_balanced = (1 - alpha) * X + alpha * X_imputed
-            return X_balanced
-
-        return balanced_impute(T, self.X, alpha, steps, decay)
-
-    def get_vfres(
+    def compute_velocity_field(
         self,
         adata: AnnData,
-        zs_key: str,
-        E_key: str,
-        vf_key: str = "X_vf",
-        T_key: str = "cosine_similarity",
-        dv_key: str = "X_dv",
-        reverse: bool = False,
-        run_neigh: bool = True,
-        use_rep_neigh: Optional[str] = None,
-        t_key: Optional[str] = None,
-        n_neigh: int = 20,
-        var_stabilize_transform: bool = False,
-        scale: int = 10,
-        self_transition: bool = False,
-        smooth: float = 0.5,
-        stream: bool = True,
-        density: float = 1.0,
+        latent_key: str,
+        embedding_key: str,
+        velocity_key: str = "velocity",
+        n_neighbors: int = 20,
+        scale_factor: int = 10,
+        grid_density: float = 1.0,
+        smoothing: float = 0.5
     ) -> Tuple[np.ndarray, np.ndarray]:
         """
-        Compute complete velocity field results including grid representation.
-        
-        This method performs the full velocity field computation pipeline:
-        1. Computes gradients from the ODE solver
-        2. Calculates similarity matrix based on gradient-embedding alignment
-        3. Derives velocity field from transition probabilities
-        4. Creates grid-based representation for visualization
+        Compute complete velocity field for visualization.
         
         Parameters
         ----------
         adata : AnnData
-            Annotated data object to store results
-        zs_key : str
-            Key for latent space embeddings in adata.obsm
-        E_key : str
-            Key for 2D embeddings (e.g., UMAP) in adata.obsm
-        vf_key : str, optional
-            Key to store velocity field in adata.obsm. Default is "X_vf".
-        T_key : str, optional
-            Key to store transition matrix in adata.obsp. Default is "cosine_similarity".
-        dv_key : str, optional
-            Key to store derived velocity in adata.obsm. Default is "X_dv".
-        reverse : bool, optional
-            Whether to reverse velocity direction. Default is False.
-        run_neigh : bool, optional
-            Whether to recompute neighborhood graph. Default is True.
-        use_rep_neigh : Optional[str], optional
-            Representation to use for neighborhood computation. Default is None.
-        t_key : Optional[str], optional
-            Key for pseudotime in adata.obs. Default is None.
-        n_neigh : int, optional
-            Number of neighbors for graph construction. Default is 20.
-        var_stabilize_transform : bool, optional
-            Whether to apply variance stabilizing transform. Default is False.
-        scale : int, optional
-            Scaling factor for transition probabilities. Default is 10.
-        self_transition : bool, optional
-            Whether to include self-transitions. Default is False.
-        smooth : float, optional
-            Smoothing parameter for grid interpolation. Default is 0.5.
-        stream : bool, optional
-            Whether to create streamplot-compatible output. Default is True.
-        density : float, optional
-            Grid density factor. Default is 1.0.
-            
-        Returns
-        -------
-        Tuple[np.ndarray, np.ndarray]
-            - E_grid: Grid coordinates for visualization
-            - V_grid: Velocity field on the grid
+            Data object to store results
+        latent_key : str
+            Key for latent embeddings in adata.obsm
+        embedding_key : str  
+            Key for 2D embeddings in adata.obsm
+        velocity_key : str
+            Key to store velocity results
+        n_neighbors : int
+            Number of neighbors for graph construction
+        scale_factor : int
+            Scaling factor for transition probabilities
+        grid_density : float
+            Grid density for visualization
+        smoothing : float
+            Smoothing parameter for grid interpolation
         """
-        # Compute gradients from ODE solver
-        grads = self.take_grad(self.X)
-        adata.obsm[vf_key] = grads
+        if not self.use_ode:
+            raise ValueError("Velocity field computation requires ODE mode")
+            
+        # Store velocity gradients
+        gradients = self.get_velocity_gradients()
+        adata.obsm[f"{velocity_key}_gradients"] = gradients
         
         # Compute similarity matrix
-        adata.obsp[T_key] = self.get_similarity(
-            adata,
-            zs_key=zs_key,
-            vf_key=vf_key,
-            reverse=reverse,
-            run_neigh=run_neigh,
-            use_rep_neigh=use_rep_neigh,
-            t_key=t_key,
-            n_neigh=n_neigh,
-            var_stabilize_transform=var_stabilize_transform,
+        similarity_matrix = self._compute_similarity_matrix(
+            adata, latent_key, f"{velocity_key}_gradients", n_neighbors
         )
+        adata.obsp["similarities"] = similarity_matrix
         
         # Derive velocity field
-        adata.obsm[dv_key] = self.get_vf(
-            adata,
-            T_key=T_key,
-            E_key=E_key,
-            scale=scale,
-            self_transition=self_transition,
+        velocity_field = self._derive_velocity_field(
+            adata, "similarities", embedding_key, scale_factor
         )
+        adata.obsm[velocity_key] = velocity_field
         
         # Create grid representation
-        E = np.array(adata.obsm[E_key])
-        V = adata.obsm[dv_key]
-        E_grid, V_grid = self.get_vfgrid(
-            E=E,
-            V=V,
-            smooth=smooth,
-            stream=stream,
-            density=density,
-        )
+        E = np.array(adata.obsm[embedding_key])
+        V = velocity_field
+        E_grid, V_grid = self._create_velocity_grid(E, V, grid_density, smoothing)
         
         return E_grid, V_grid
 
-    def get_similarity(
+    def _compute_similarity_matrix(
         self,
         adata: AnnData,
-        zs_key: str,
-        vf_key: str = "X_vf",
-        reverse: bool = False,
-        run_neigh: bool = True,
-        use_rep_neigh: Optional[str] = None,
-        t_key: Optional[str] = None,
-        n_neigh: int = 20,
-        var_stabilize_transform: bool = False,
+        latent_key: str,
+        gradient_key: str,
+        n_neighbors: int
     ) -> csr_matrix:
-        """
-        Compute cosine similarity matrix between cell embeddings and velocity directions.
+        """Compute cosine similarity between embeddings and gradients."""
         
-        This method calculates the alignment between local embedding differences
-        and predicted velocity directions to construct a transition probability matrix.
+        # Set up neighborhood graph
+        sc.pp.neighbors(adata, use_rep=latent_key, n_neighbors=n_neighbors)
         
-        Parameters
-        ----------
-        adata : AnnData
-            Annotated data object
-        zs_key : str
-            Key for latent space embeddings in adata.obsm
-        vf_key : str, optional
-            Key for velocity field in adata.obsm. Default is "X_vf".
-        reverse : bool, optional
-            Whether to reverse velocity direction. Default is False.
-        run_neigh : bool, optional
-            Whether to recompute neighborhood graph. Default is True.
-        use_rep_neigh : Optional[str], optional
-            Representation to use for neighborhood computation. Default is None.
-        t_key : Optional[str], optional
-            Key for pseudotime-based neighbor selection. Default is None.
-        n_neigh : int, optional
-            Number of neighbors for graph construction. Default is 20.
-        var_stabilize_transform : bool, optional
-            Whether to apply variance stabilizing transform. Default is False.
-            
-        Returns
-        -------
-        csr_matrix
-            Cosine similarity matrix of shape (n_cells, n_cells)
-        """
-        Z = np.array(adata.obsm[zs_key])
-        V = np.array(adata.obsm[vf_key])
+        Z = np.array(adata.obsm[latent_key])
+        V = np.array(adata.obsm[gradient_key])
+        n_cells = adata.n_obs
         
-        # Apply optional transformations
-        if reverse:
-            V = -V
-        if var_stabilize_transform:
-            V = np.sqrt(np.abs(V)) * np.sign(V)
-
-        ncells = adata.n_obs
-
-        # Setup neighborhood graph
-        if run_neigh or ("neighbors" not in adata.uns):
-            if use_rep_neigh is None:
-                use_rep_neigh = zs_key
-            else:
-                if use_rep_neigh not in adata.obsm:
-                    raise KeyError(
-                        f"`{use_rep_neigh}` not found in `.obsm` of the AnnData. "
-                        f"Please provide valid `use_rep_neigh` for neighbor detection."
-                    )
-            sc.pp.neighbors(adata, use_rep=use_rep_neigh, n_neighbors=n_neigh)
-            
-        n_neigh = adata.uns["neighbors"]["params"]["n_neighbors"] - 1
-
-        # Setup pseudotime-based neighbors if specified
-        if t_key is not None:
-            if t_key not in adata.obs:
-                raise KeyError(
-                    f"`{t_key}` not found in `.obs` of the AnnData. "
-                    f"Please provide valid `t_key` for estimated pseudotime."
-                )
-            ts = adata.obs[t_key].values
-            indices_matrix2 = np.zeros((ncells, n_neigh), dtype=int)
-            
-            for i in range(ncells):
-                idx = np.abs(ts - ts[i]).argsort()[: (n_neigh + 1)]
-                idx = np.setdiff1d(idx, i) if i in idx else idx[:-1]
-                indices_matrix2[i] = idx
-
-        # Compute cosine similarities
-        vals, rows, cols = [], [], []
+        # Compute similarities efficiently
+        similarities = []
+        indices = []
+        indptr = [0]
         
-        for i in range(ncells):
-            # Get primary neighbors
-            idx = adata.obsp["distances"][i].indices
-            
-            # Get secondary neighbors (neighbors of neighbors)
-            idx2 = adata.obsp["distances"][idx].indices
-            idx2 = np.setdiff1d(idx2, i)
-            
-            # Combine neighbor sets
-            idx = (
-                np.unique(np.concatenate([idx, idx2]))
-                if t_key is None
-                else np.unique(np.concatenate([idx, idx2, indices_matrix2[i]]))
-            )
+        for i in range(n_cells):
+            # Get neighbors
+            neighbor_idx = adata.obsp["distances"][i].indices
             
             # Compute embedding differences
-            dZ = Z[idx] - Z[i, None]
-            if var_stabilize_transform:
-                dZ = np.sqrt(np.abs(dZ)) * np.sign(dZ)
-                
-            # Compute cosine similarity with velocity
-            cos_sim = np.einsum("ij, j", dZ, V[i]) / (
-                l2_norm(dZ, axis=1) * l2_norm(V[i])
-            )
+            dZ = Z[neighbor_idx] - Z[i]
+            
+            # Compute cosine similarities
+            cos_sim = np.einsum("ij,j->i", dZ, V[i])
+            cos_sim /= (np.linalg.norm(dZ, axis=1) * np.linalg.norm(V[i]) + 1e-12)
+            cos_sim = np.clip(cos_sim, -1, 1)
             cos_sim[np.isnan(cos_sim)] = 0
             
-            # Store results
-            vals.extend(cos_sim)
-            rows.extend(np.repeat(i, len(idx)))
-            cols.extend(idx)
+            similarities.extend(cos_sim)
+            indices.extend(neighbor_idx)
+            indptr.append(len(similarities))
+        
+        return csr_matrix(
+            (similarities, indices, indptr), 
+            shape=(n_cells, n_cells)
+        )
 
-        # Create sparse matrix
-        res = coo_matrix((vals, (rows, cols)), shape=(ncells, ncells))
-        res.data = np.clip(res.data, -1, 1)
-        return res.tocsr()
-
-    def get_vf(
+    def _derive_velocity_field(
         self,
         adata: AnnData,
-        T_key: str,
-        E_key: str,
-        scale: int = 10,
-        self_transition: bool = False,
+        similarity_key: str,
+        embedding_key: str,
+        scale_factor: int
     ) -> np.ndarray:
-        """
-        Derive velocity field from transition probabilities and embeddings.
+        """Derive velocity field from similarities and embeddings."""
         
-        This method computes cell-specific velocity vectors by analyzing
-        the expected movement in embedding space based on transition probabilities.
+        T = adata.obsp[similarity_key].copy()
+        E = np.array(adata.obsm[embedding_key])
+        
+        # Apply exponential scaling and normalization
+        T.data = np.sign(T.data) * np.expm1(np.abs(T.data) * scale_factor)
+        T = T.multiply(csr_matrix(1.0 / (np.abs(T).sum(1) + 1e-12)))
+        
+        # Compute velocity for each cell
+        V = np.zeros_like(E)
+        for i in range(adata.n_obs):
+            if T[i].nnz > 0:
+                neighbor_idx = T[i].indices
+                weights = T[i].data
+                
+                # Compute weighted displacement
+                dE = E[neighbor_idx] - E[i]
+                dE_norm = dE / (np.linalg.norm(dE, axis=1, keepdims=True) + 1e-12)
+                
+                V[i] = weights @ dE_norm - weights.mean() * dE_norm.sum(0)
+        
+        # Normalize velocity magnitude
+        V /= (3 * quiver_autoscale(E, V) + 1e-12)
+        
+        return V
+
+    def _create_velocity_grid(
+        self,
+        embeddings: np.ndarray,
+        velocities: np.ndarray,
+        density: float,
+        smoothing: float,
+        streamplot_format: bool = True
+    ) -> Tuple[np.ndarray, np.ndarray]:
+        """Create grid representation for velocity visualization."""
+        
+        # Create coordinate grids
+        grid_points = int(50 * density)
+        grids = []
+        
+        for dim in range(embeddings.shape[1]):
+            min_val, max_val = embeddings[:, dim].min(), embeddings[:, dim].max()
+            margin = 0.01 * (max_val - min_val)
+            grid = np.linspace(min_val - margin, max_val + margin, grid_points)
+            grids.append(grid)
+        
+        # Create meshgrid
+        if streamplot_format and len(grids) == 2:
+            E_grid = np.stack(grids)
+            mesh_coords = np.stack(np.meshgrid(*grids), axis=-1)
+            grid_flat = mesh_coords.reshape(-1, 2)
+        else:
+            mesh_coords = np.meshgrid(*grids)
+            grid_flat = np.column_stack([m.flat for m in mesh_coords])
+            E_grid = grid_flat
+        
+        # Interpolate velocities using k-NN
+        n_neighbors = min(embeddings.shape[0] // 50, 50)
+        nn = NearestNeighbors(n_neighbors=n_neighbors)
+        nn.fit(embeddings)
+        
+        distances, neighbor_indices = nn.kneighbors(grid_flat)
+        
+        # Gaussian weighting
+        scale = np.mean([g[1] - g[0] for g in grids]) * smoothing
+        weights = norm.pdf(distances, scale=scale)
+        weight_sums = weights.sum(axis=1)
+        
+        # Weighted interpolation
+        V_grid = np.zeros((grid_flat.shape[0], velocities.shape[1]))
+        for i, (neighs, ws) in enumerate(zip(neighbor_indices, weights)):
+            if weight_sums[i] > 0:
+                V_grid[i] = (velocities[neighs] * ws[:, np.newaxis]).sum(0) / weight_sums[i]
+        
+        if streamplot_format and len(grids) == 2:
+            # Format for matplotlib streamplot
+            V_grid = V_grid.T.reshape(2, grid_points, grid_points)
+            
+            # Apply quality filtering
+            magnitude = np.sqrt((V_grid ** 2).sum(0))
+            low_quality = magnitude < np.percentile(magnitude, 5)
+            V_grid[:, low_quality] = np.nan
+        
+        return E_grid, V_grid
+
+    def analyze_trajectory(
+        self,
+        adata: AnnData,
+        latent_key: str = "X_latent",
+        embedding_key: str = "X_umap", 
+        velocity_key: str = "velocity",
+        save_results: bool = True
+    ) -> dict:
+        """
+        Complete trajectory analysis pipeline.
         
         Parameters
         ----------
         adata : AnnData
-            Annotated data object
-        T_key : str
-            Key for transition matrix in adata.obsp
-        E_key : str
-            Key for 2D embeddings in adata.obsm
-        scale : int, optional
-            Scaling factor for transition probabilities. Default is 10.
-        self_transition : bool, optional
-            Whether to include self-transitions. Default is False.
+            Data object for analysis
+        latent_key : str
+            Key for latent representations
+        embedding_key : str
+            Key for 2D embeddings  
+        velocity_key : str
+            Key for velocity results
+        save_results : bool
+            Whether to save results to adata
             
         Returns
         -------
-        np.ndarray
-            Velocity field vectors of shape (n_cells, n_embedding_dims)
+        dict
+            Analysis results including representations and velocity field
         """
-        T = adata.obsp[T_key].copy()
-
-        # Handle self-transitions
-        if self_transition:
-            max_t = T.max(1).A.flatten()
-            ub = np.percentile(max_t, 98)
-            self_t = np.clip(ub - max_t, 0, 1)
-            T.setdiag(self_t)
-
-        # Apply exponential scaling and normalization
-        T = T.sign().multiply(np.expm1(abs(T * scale)))
-        T = T.multiply(csr_matrix(1.0 / abs(T).sum(1)))
+        # Extract representations
+        representations = self.get_representations()
         
-        if self_transition:
-            T.setdiag(0)
-            T.eliminate_zeros()
-
-        # Extract embeddings and initialize velocity
-        E = np.array(adata.obsm[E_key])
-        V = np.zeros(E.shape)
-
-        # Compute velocity for each cell
-        for i in range(adata.n_obs):
-            idx = T[i].indices
-            
-            # Compute embedding differences
-            dE = E[idx] - E[i, None]
-            dE /= l2_norm(dE)[:, None]
-            dE[np.isnan(dE)] = 0
-            
-            # Weight by transition probabilities
-            prob = T[i].data
-            V[i] = prob.dot(dE) - prob.mean() * dE.sum(0)
-
-        # Normalize velocity magnitude
-        V /= 3 * quiver_autoscale(E, V)
-        return V
-
-    def get_vfgrid(
-        self,
-        E: np.ndarray,
-        V: np.ndarray,
-        smooth: float = 0.5,
-        stream: bool = True,
-        density: float = 1.0,
-    ) -> Tuple[np.ndarray, np.ndarray]:
-        """
-        Create grid-based representation of velocity field for visualization.
+        if save_results:
+            adata.obsm[latent_key] = representations['latent']
+            adata.obsm[f"{latent_key}_interpretable"] = representations['interpretable']
+            if representations['pseudotime'] is not None:
+                adata.obs['pseudotime'] = representations['pseudotime']
         
-        This method interpolates the discrete velocity field onto a regular
-        grid suitable for streamplot visualization or quiver plots.
-        
-        Parameters
-        ----------
-        E : np.ndarray
-            Cell embeddings of shape (n_cells, n_dims)
-        V : np.ndarray
-            Velocity vectors of shape (n_cells, n_dims)
-        smooth : float, optional
-            Smoothing parameter for interpolation. Default is 0.5.
-        stream : bool, optional
-            Whether to format output for streamplot. Default is True.
-        density : float, optional
-            Grid density factor. Default is 1.0.
-            
-        Returns
-        -------
-        Tuple[np.ndarray, np.ndarray]
-            - E_grid: Grid coordinates
-            - V_grid: Velocity field on the grid
-        """
-        # Create coordinate grids for each dimension
-        grs = []
-        for i in range(E.shape[1]):
-            m, M = np.min(E[:, i]), np.max(E[:, i])
-            diff = M - m
-            m = m - 0.01 * diff
-            M = M + 0.01 * diff
-            gr = np.linspace(m, M, int(50 * density))
-            grs.append(gr)
-
-        # Create meshgrid and flatten
-        meshes = np.meshgrid(*grs)
-        E_grid = np.vstack([i.flat for i in meshes]).T
-
-        # Setup nearest neighbor interpolation
-        n_neigh = int(E.shape[0] / 50)
-        nn = NearestNeighbors(n_neighbors=n_neigh, n_jobs=-1)
-        nn.fit(E)
-        dists, neighs = nn.kneighbors(E_grid)
-
-        # Compute interpolation weights
-        scale = np.mean([g[1] - g[0] for g in grs]) * smooth
-        weight = norm.pdf(x=dists, scale=scale)
-        weight_sum = weight.sum(1)
-
-        # Interpolate velocity field
-        V_grid = (V[neighs] * weight[:, :, None]).sum(1)
-        V_grid /= np.maximum(1, weight_sum)[:, None]
-
-        if stream:
-            # Format for streamplot
-            E_grid = np.stack(grs)
-            ns = E_grid.shape[1]
-            V_grid = V_grid.T.reshape(2, ns, ns)
-
-            # Apply quality filters
-            mass = np.sqrt((V_grid * V_grid).sum(0))
-            min_mass = 1e-5
-            min_mass = np.clip(min_mass, None, np.percentile(mass, 99) * 0.01)
-            cutoff1 = mass < min_mass
-
-            length = np.sum(np.mean(np.abs(V[neighs]), axis=1), axis=1).reshape(ns, ns)
-            cutoff2 = length < np.percentile(length, 5)
-
-            # Mask low-quality regions
-            cutoff = cutoff1 | cutoff2
-            V_grid[0][cutoff] = np.nan
-        else:
-            # Filter by interpolation quality
-            min_weight = np.percentile(weight_sum, 99) * 0.01
-            E_grid, V_grid = (
-                E_grid[weight_sum > min_weight],
-                V_grid[weight_sum > min_weight],
+        # Compute velocity field
+        if self.use_ode:
+            E_grid, V_grid = self.compute_velocity_field(
+                adata, latent_key, embedding_key, velocity_key
             )
-            V_grid /= 3 * quiver_autoscale(E_grid, V_grid)
-
-        return E_grid, V_grid
+            
+            return {
+                'representations': representations,
+                'velocity_grid': (E_grid, V_grid),
+                'imputed_data': self.impute_data() if save_results else None
+            }
+        else:
+            return {
+                'representations': representations,
+                'imputed_data': self.impute_data() if save_results else None
+            }
 
