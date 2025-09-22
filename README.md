@@ -1,4 +1,4 @@
-# iAODEVAE: Interpretable ATAC-seq Ordinary Differential Equation Variational Autoencoder
+# iAODEVAE: Interpretable Accessibility Ordinary Differential Equation Variational Autoencoder
 
 iAODEVAE is a deep learning framework for single-cell ATAC-seq (scATAC-seq) analysis that combines Variational Autoencoders with Neural Ordinary Differential Equations to model chromatin accessibility dynamics and infer cellular trajectories.
 
@@ -33,14 +33,13 @@ The framework consists of modular components:
 
 ## Installation
 
-**Dependencies:**
-- PyTorch
-- scanpy
-- anndata
-- torchdiffeq
-- scikit-learn
-- scipy
-- numpy
+```bash
+git clone https://github.com/PeterPonyu/iAODE
+
+cd iAODE
+
+pip install -r requirements.txt
+```
 
 ## Parameters
 
