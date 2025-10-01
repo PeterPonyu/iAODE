@@ -1,20 +1,13 @@
 
 import numpy as np
 import torch
-from typing import Tuple, List, Any, Optional, Union
+from typing import Optional
 from sklearn.cluster import KMeans
 
 from scipy import sparse
 import warnings
-from pathlib import Path
 
-try:
-    import scanpy as sc
-    from anndata import AnnData
-    SCANPY_AVAILABLE = True
-except ImportError:
-    SCANPY_AVAILABLE = False
-    AnnData = Any  # Fallback type hint
+from anndata import AnnData
 
 from .model import iAODEVAE
 from .mixin import envMixin
@@ -143,9 +136,6 @@ class scATACEnvironment(iAODEVAE, envMixin):
         **kwargs,
     ) -> None:
         
-        # Validate inputs
-        self._validate_inputs(adata, layer, batch_percent, reference_clusters or latent_dim)
-        
         # Set random seed for reproducibility
         np.random.seed(random_seed)
         torch.manual_seed(random_seed)
@@ -185,28 +175,6 @@ class scATACEnvironment(iAODEVAE, envMixin):
         self.training_scores = []
         self.current_batch_indices = None
         
-        # Log initialization summary
-        self._log_initialization_summary()
-    
-    def _validate_inputs(
-        self, adata: AnnData, layer: str, batch_percent: float, n_clusters: int
-    ) -> None:
-        """Validate input parameters and data compatibility."""
-        if not SCANPY_AVAILABLE:
-            raise ImportError("scanpy and anndata are required but not installed")
-        
-        if not hasattr(adata, 'layers') or layer not in adata.layers:
-            available_layers = list(adata.layers.keys()) if hasattr(adata, 'layers') else []
-            raise ValueError(f"Layer '{layer}' not found. Available layers: {available_layers}")
-        
-        if not (0.0 < batch_percent <= 1.0):
-            raise ValueError(f"batch_percent must be in (0, 1], got {batch_percent}")
-        
-        if n_clusters <= 1:
-            raise ValueError(f"Number of clusters must be > 1, got {n_clusters}")
-        
-        if adata.shape[0] < 10:
-            raise ValueError(f"Dataset too small for training: {adata.shape[0]} cells")
     
     def _preprocess_scatac_data(
         self, adata: AnnData, layer: str, n_reference_clusters: int
@@ -224,6 +192,8 @@ class scATACEnvironment(iAODEVAE, envMixin):
             Number of reference clusters for evaluation
         """
         # Extract accessibility data
+        if layer not in adata.layers:
+            adata.layers[layer] = adata.X.copy()
         if sparse.issparse(adata.layers[layer]):
             accessibility_data = adata.layers[layer].toarray()
         else:
@@ -394,29 +364,22 @@ class scATACEnvironment(iAODEVAE, envMixin):
         if compute_full_metrics:
             # Evaluate on full dataset (expensive but comprehensive)
             latent_repr = self.extract_latent_representations(self.accessibility_matrix)
-            interpretable_repr = self.extract_interpretable_embeddings(self.accessibility_matrix)
-            evaluation_labels = self.reference_labels
         else:
             # Evaluate on current batch only (faster)
             latent_repr = self.extract_latent_representations(batch_data)
-            interpretable_repr = self.extract_interpretable_embeddings(batch_data)
-            evaluation_labels = self.reference_labels[self.current_batch_indices]
         
         # Compute evaluation metrics
         evaluation_scores = self._compute_evaluation_metrics(
-            latent_repr, interpretable_repr, evaluation_labels
+            latent_repr
         )
         
-        # Combine results
-        step_results = {**training_losses, **evaluation_scores}
-        
         # Store for history tracking
-        self.training_scores.append(step_results)
+        self.training_scores.append(evaluation_scores)
         
-        return step_results
+        return evaluation_scores
     
     def _compute_evaluation_metrics(
-        self, latent_repr: np.ndarray, interpretable_repr: np.ndarray, labels: np.ndarray
+        self, latent_repr: np.ndarray
     ) -> dict:
         """
         Compute comprehensive evaluation metrics for learned representations.
@@ -437,110 +400,21 @@ class scATACEnvironment(iAODEVAE, envMixin):
         """
         try:
             # Compute clustering and correlation scores from envMixin
-            latent_scores = self._calc_score(latent_repr, labels)
-            interpretable_scores = self._calc_score(interpretable_repr, labels)
-            
+            ARI, NMI, ASW, CAL, DAV, COR = self._calc_score(latent_repr)
             return {
-                'latent_silhouette': latent_scores.get('silhouette_score', 0.0),
-                'latent_ari': latent_scores.get('adjusted_rand_index', 0.0),
-                'latent_nmi': latent_scores.get('normalized_mutual_info', 0.0),
-                'interpretable_silhouette': interpretable_scores.get('silhouette_score', 0.0),
-                'interpretable_ari': interpretable_scores.get('adjusted_rand_index', 0.0),
-                'interpretable_nmi': interpretable_scores.get('normalized_mutual_info', 0.0),
+                'ARI': ARI,
+                'NMI': NMI,
+                'ASW': ASW,
+                'CAL': CAL,
+                'DAV': DAV,
+                'COR': COR,
             }
         except Exception as e:
             warnings.warn(f"Evaluation metrics computation failed: {e}")
             return {
-                'latent_silhouette': 0.0, 'latent_ari': 0.0, 'latent_nmi': 0.0,
-                'interpretable_silhouette': 0.0, 'interpretable_ari': 0.0, 'interpretable_nmi': 0.0,
+                'ARI': 0.0, 'NMI': 0.0, 'ASW': 0.0,
+                'CAL': 0.0, 'DAV': 0.0, 'COR': 0.0,
             }
-    
-    def get_training_summary(self) -> dict:
-        """
-        Get comprehensive training summary and statistics.
-        
-        Returns
-        -------
-        dict
-            Training summary including data info, model config, and performance
-        """
-        if not self.training_scores:
-            return {"message": "No training steps completed yet"}
-        
-        # Extract metric histories
-        losses = {key: [step[key] for step in self.training_scores if key in step] 
-                 for key in ['total_loss', 'reconstruction', 'kl_divergence']}
-        
-        scores = {key: [step[key] for step in self.training_scores if key in step]
-                 for key in ['latent_silhouette', 'interpretable_silhouette']}
-        
-        return {
-            'data_info': {
-                'n_cells': self.n_cells,
-                'n_peaks': self.n_peaks,
-                'batch_size': self.batch_size,
-            },
-            'model_config': {
-                'latent_dim': self.nn.encoder.latent_params.out_features // 2,
-                'use_ode': self.use_ode,
-                'loss_mode': self.loss_mode,
-            },
-            'training_progress': {
-                'total_steps': len(self.training_scores),
-                'final_loss': losses['total_loss'][-1] if losses['total_loss'] else None,
-                'best_silhouette': max(scores['latent_silhouette']) if scores['latent_silhouette'] else None,
-            },
-            'loss_trends': {key: {'mean': np.mean(vals), 'std': np.std(vals), 'trend': vals[-10:]} 
-                           for key, vals in losses.items() if vals},
-            'score_trends': {key: {'mean': np.mean(vals), 'std': np.std(vals), 'trend': vals[-10:]}
-                            for key, vals in scores.items() if vals}
-        }
-    
-    def save_checkpoint(self, filepath: Union[str, Path]) -> None:
-        """
-        Save model checkpoint and training state.
-        
-        Parameters
-        ----------
-        filepath : Union[str, Path]
-            Path to save checkpoint file
-        """
-        checkpoint = {
-            'model_state_dict': self.nn.state_dict(),
-            'optimizer_state_dict': self.nn_optimizer.state_dict(),
-            'training_scores': self.training_scores,
-            'config': self.get_training_summary()['model_config'],
-            'random_seed': self.random_seed,
-        }
-        torch.save(checkpoint, filepath)
-        print(f"Checkpoint saved to {filepath}")
-    
-    def load_checkpoint(self, filepath: Union[str, Path]) -> None:
-        """
-        Load model checkpoint and restore training state.
-        
-        Parameters
-        ----------
-        filepath : Union[str, Path]
-            Path to checkpoint file
-        """
-        checkpoint = torch.load(filepath, map_location=self.device)
-        self.nn.load_state_dict(checkpoint['model_state_dict'])
-        self.nn_optimizer.load_state_dict(checkpoint['optimizer_state_dict'])
-        self.training_scores = checkpoint.get('training_scores', [])
-        print(f"Checkpoint loaded from {filepath}")
-    
-    def _log_initialization_summary(self) -> None:
-        """Log model initialization summary."""
-        print(f"\n{'='*60}")
-        print(f"scATAC Environment Initialized")
-        print(f"{'='*60}")
-        print(f"Data: {self.n_cells} cells × {self.n_peaks} peaks")
-        print(f"Batch size: {self.batch_size} ({self.batch_size/self.n_cells*100:.1f}%)")
-        print(f"Model: {'ODE' if self.use_ode else 'Standard'} VAE, {self.loss_mode.upper()} loss")
-        print(f"Architecture: {self.n_peaks} → {self.nn.encoder.base_network[0].out_features} → {self.nn.encoder.latent_params.out_features//2} → {self.nn.latent_encoder.out_features}")
-        print(f"Device: {self.device}")
-        print(f"{'='*60}\n")
 
     # Legacy API compatibility methods
     def load_data(self) -> np.ndarray:

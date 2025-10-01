@@ -540,7 +540,6 @@ class envMixin:
         Tuple[float, ...]
             Tuple of evaluation metrics (ARI, NMI, ASW, C_H, D_B, P_C)
         """
-        n = latent.shape[1]
         labels = self._calc_label(latent)
         scores = self._metrics(latent, labels)
         return scores
@@ -608,8 +607,8 @@ class envMixin:
             - D_B: Davies-Bouldin Index
             - P_C: Pearson Correlation (average absolute)
         """
-        ARI = adjusted_mutual_info_score(self.labels[self.idx], labels)
-        NMI = normalized_mutual_info_score(self.labels[self.idx], labels)
+        ARI = adjusted_mutual_info_score(self.reference_labels[self.current_batch_indices], labels)
+        NMI = normalized_mutual_info_score(self.reference_labels[self.current_batch_indices], labels)
         ASW = silhouette_score(latent, labels)
         C_H = calinski_harabasz_score(latent, labels)
         D_B = davies_bouldin_score(latent, labels)
