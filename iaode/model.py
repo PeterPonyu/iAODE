@@ -513,11 +513,7 @@ class iAODEVAE(scviMixin, dipMixin, betatcMixin, infoMixin):
         loss_tuple = (
             loss_values['total_loss'],
             loss_values['reconstruction'], 
-            loss_values['info_reconstruction'],
             loss_values['kl_divergence'],
-            loss_values['dip_loss'],
-            loss_values['tc_loss'], 
-            loss_values['mmd_loss']
         )
         if 'ode_consistency' in loss_values:
             loss_tuple += (loss_values['ode_consistency'],)
