@@ -39,14 +39,14 @@ export default function DownloadButtons({
             <button
             onClick={() => handleDownload("latent")}
             disabled={disabled || status === "downloading"}
-            className="inline-flex items-center rounded-md bg-slate-800 px-3 py-2 text-white disabled:opacity-50"
+            className="inline-flex items-center rounded-md bg-slate-600 px-3 py-2 text-white disabled:opacity-50 hover:bg-slate-800 focus:outline-none focus:ring-2 focus:ring-slate-900 focus:ring-offset-2"
             >
             {status === "downloading" ? "Downloading…" : "Download Latent"}
             </button>
             <button
             onClick={() => handleDownload("interpretable")}
             disabled={disabled || status === "downloading"}
-            className="inline-flex items-center rounded-md bg-slate-600 px-3 py-2 text-white disabled:opacity-50"
+            className="inline-flex items-center rounded-md bg-slate-600 px-3 py-2 text-white disabled:opacity-50 hover:bg-slate-800 focus:outline-none focus:ring-2 focus:ring-slate-900 focus:ring-offset-2"
             >
             {status === "downloading" ? "Downloading…" : "Download Interpretable"}
             </button>

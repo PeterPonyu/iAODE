@@ -1,3 +1,4 @@
+
 "use client";
 
 import React, { useMemo, useState, useRef } from "react";
@@ -46,7 +47,8 @@ export default function FileUpload() {
     setStatus("idle");
     setCells(undefined);
     setGenes(undefined);
-    console.log(inputRef.current);
+    
+    // Clear the file input
     if (inputRef.current) {
       inputRef.current.value = "";
     }
@@ -71,7 +73,7 @@ export default function FileUpload() {
         htmlFor="file"
         className="flex cursor-pointer items-center justify-between rounded-md border border-dashed border-gray-300 bg-gray-50 px-4 py-3 hover:border-gray-400"
       >
-        <div className="min-w-0">
+        <div className="min-w-0 flex-1">
           <p className="text-sm font-medium text-gray-800">
             {file ? file.name : "Choose a .h5ad file"}
           </p>
@@ -79,7 +81,7 @@ export default function FileUpload() {
             {file ? `Size: ${fileSize}` : "Click to browse"}
           </p>
         </div>
-        <span className="rounded-md bg-gray-900 px-3 py-1.5 text-xs font-medium text-white">
+        <span className="ml-3 rounded-md bg-gray-900 hover:bg-gray-800 px-3 py-1.5 text-xs font-medium text-white transition-colors">
           Browse
         </span>
         <input
@@ -89,6 +91,7 @@ export default function FileUpload() {
           onChange={onSelect}
           disabled={isUploading}
           className="sr-only"
+          ref={inputRef}
         />
       </label>
 
@@ -98,7 +101,7 @@ export default function FileUpload() {
           type="button"
           onClick={onUpload}
           disabled={!canUpload}
-          className={`inline-flex items-center rounded-md px-4 py-2 text-sm font-medium shadow-sm focus:outline-none focus:ring-2 focus:ring-gray-300 focus:ring-offset-2 ${
+          className={`inline-flex items-center rounded-md px-4 py-2 text-sm font-medium shadow-sm transition-colors focus:outline-none focus:ring-2 focus:ring-gray-300 focus:ring-offset-2 ${
             canUpload ? "bg-gray-900 text-white hover:bg-gray-800" : "cursor-not-allowed bg-gray-200 text-gray-500"
           }`}
         >
@@ -109,7 +112,7 @@ export default function FileUpload() {
           type="button"
           onClick={reset}
           disabled={isUploading || (!file && !message && !ncells && !ngenes)}
-          className={`inline-flex items-center rounded-md border px-4 py-2 text-sm font-medium focus:outline-none focus:ring-2 focus:ring-gray-200 focus:ring-offset-2 ${
+          className={`inline-flex items-center rounded-md border px-4 py-2 text-sm font-medium transition-colors focus:outline-none focus:ring-2 focus:ring-gray-200 focus:ring-offset-2 ${
             isUploading || (!file && !message && !ncells && !ngenes)
               ? "cursor-not-allowed border-gray-200 bg-gray-100 text-gray-400"
               : "border-gray-300 bg-white text-gray-700 hover:bg-gray-50"

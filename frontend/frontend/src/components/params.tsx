@@ -97,7 +97,7 @@ export default function TrainingParamsForm({
     >
       {/* AgentParams */}
       <section>
-        <h3 className="mb-4 text-lg font-medium text-gray-800">Agent Parameters</h3>
+        <h3 className="mb-4 text-lg font-semibold text-gray-900">Agent Parameters</h3>
         <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
           {/* later */}
           <FieldText
