@@ -42,7 +42,7 @@ export default function Training() {
         <button
           onClick={handleStart}
           disabled={!agent || !training || status === "starting"}
-          className="inline-flex items-center rounded-md bg-indigo-600 px-4 py-2 text-white disabled:opacity-50"
+          className="inline-flex items-center rounded-md bg-indigo-600 hover:bg-indigo-800 px-4 py-2 text-white disabled:opacity-50"
         >
           {status === "starting" ? "Starting..." : "Start Training"}
         </button>
