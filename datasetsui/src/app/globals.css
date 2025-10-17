@@ -1,0 +1,185 @@
+/* app/globals.css */
+
+@import "tailwindcss";
+
+:root {
+  --background: #ffffff;
+  --foreground: #171717;
+  
+  /* Light mode colors */
+  --primary: #2563eb;
+  --primary-foreground: #ffffff;
+  --secondary: #f3f4f6;
+  --secondary-foreground: #1f2937;
+  --muted: #f9fafb;
+  --muted-foreground: #6b7280;
+  --accent: #dbeafe;
+  --accent-foreground: #1e40af;
+  --border: #e5e7eb;
+  --card: #ffffff;
+  --card-foreground: #171717;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-border: var(--border);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  
+  --font-sans: var(--font-geist-sans);
+  --font-mono: var(--font-geist-mono);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --background: #0a0a0a;
+    --foreground: #ededed;
+    
+    /* Dark mode colors */
+    --primary: #3b82f6;
+    --primary-foreground: #ffffff;
+    --secondary: #1f2937;
+    --secondary-foreground: #f3f4f6;
+    --muted: #111827;
+    --muted-foreground: #9ca3af;
+    --accent: #1e3a8a;
+    --accent-foreground: #dbeafe;
+    --border: #374151;
+    --card: #111827;
+    --card-foreground: #ededed;
+  }
+}
+
+/* Dark mode override when class is applied */
+html.dark {
+  --background: #0a0a0a;
+  --foreground: #ededed;
+  --primary: #3b82f6;
+  --primary-foreground: #ffffff;
+  --secondary: #1f2937;
+  --secondary-foreground: #f3f4f6;
+  --muted: #111827;
+  --muted-foreground: #9ca3af;
+  --accent: #1e3a8a;
+  --accent-foreground: #dbeafe;
+  --border: #374151;
+  --card: #111827;
+  --card-foreground: #ededed;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-sans), Arial, Helvetica, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Custom utility classes */
+.btn-primary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 0.5rem 1rem;
+  font-weight: 500;
+  border-radius: 0.5rem;
+  background-color: var(--primary);
+  color: var(--primary-foreground);
+  transition: background-color 0.2s;
+}
+
+.btn-primary:hover {
+  background-color: #1d4ed8; /* blue-700 */
+}
+
+html.dark .btn-primary:hover {
+  background-color: #2563eb; /* blue-600 */
+}
+
+.btn-secondary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 0.5rem 1rem;
+  font-weight: 500;
+  border-radius: 0.5rem;
+  background-color: var(--secondary);
+  color: var(--secondary-foreground);
+  transition: background-color 0.2s;
+}
+
+.btn-secondary:hover {
+  background-color: #e5e7eb; /* gray-200 */
+}
+
+html.dark .btn-secondary:hover {
+  background-color: #374151; /* gray-700 */
+}
+
+.card {
+  background-color: var(--card);
+  color: var(--card-foreground);
+  border: 1px solid var(--border);
+  border-radius: 0.5rem;
+  padding: 1.5rem;
+  box-shadow: 0 1px 3px 0 rgb(0 0 0 / 0.1), 0 1px 2px -1px rgb(0 0 0 / 0.1);
+}
+
+.input {
+  width: 100%;
+  padding: 0.5rem 1rem;
+  border: 1px solid var(--border);
+  border-radius: 0.5rem;
+  background-color: var(--background);
+  color: var(--foreground);
+  outline: none;
+  transition: all 0.2s;
+}
+
+.input:focus {
+  border-color: var(--primary);
+  box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+}
+
+html.dark .input:focus {
+  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.2);
+}
+
+.label {
+  display: block;
+  margin-bottom: 0.5rem;
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: var(--muted-foreground);
+}
+
+/* Smooth transitions for dark mode */
+* {
+  transition-property: background-color, border-color, color;
+  transition-duration: 0.2s;
+  transition-timing-function: ease-in-out;
+}
+
+/* Prevent transition on page load */
+.no-transition * {
+  transition: none !important;
+}
