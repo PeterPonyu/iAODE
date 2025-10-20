@@ -7,6 +7,7 @@ import DatasetSearch from './DatasetSearch';
 import DatasetGrid from './DatasetGrid';
 import DatasetTable from './DatasetTable';
 import ViewToggle from './ViewToggle';
+import CategoryLegend from '@/components/ui/CategoryLegend';
 import { applyFilters } from '@/lib/filterUtils';
 import { searchGSE } from '@/lib/searchUtils';
 
@@ -37,7 +38,7 @@ export default function DatasetBrowser({ initialData }: DatasetBrowserProps) {
         ...gse,
         datasets: applyFilters(gse.datasets, filters)
       }))
-      .filter(gse => gse.datasets.length > 0); // Remove GSEs with no matching datasets
+      .filter(gse => gse.datasets.length > 0);
   }, [searchedGSEGroups, filters]);
 
   const totalDatasets = filteredGSEGroups.reduce(
@@ -47,14 +48,18 @@ export default function DatasetBrowser({ initialData }: DatasetBrowserProps) {
 
   return (
     <div className="flex flex-col lg:flex-row gap-6">
-      {/* Filters Sidebar - Hidden on mobile, shown as drawer */}
+      {/* Filters Sidebar */}
       <aside className="lg:w-64 flex-shrink-0">
-        <div className="lg:sticky lg:top-4">
+        <div className="lg:sticky lg:top-4 space-y-4">
           <DatasetFilters
             filters={filters}
             onFiltersChange={setFilters}
             allDatasets={initialData.flatMap(g => g.datasets)}
           />
+          {/* Legend in sidebar for desktop */}
+          <div className="hidden lg:block">
+            <CategoryLegend compact={false} />
+          </div>
         </div>
       </aside>
 
@@ -68,9 +73,14 @@ export default function DatasetBrowser({ initialData }: DatasetBrowserProps) {
             placeholder="Search by GSE ID, title, authors, or organism..."
           />
           
+          {/* Compact Legend for mobile/tablet */}
+          <div className="lg:hidden">
+            <CategoryLegend compact showTitle />
+          </div>
+          
           <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
-            <p className="text-sm text-gray-600 dark:text-gray-400">
-              Showing <span className="font-semibold">{filteredGSEGroups.length}</span> studies 
+            <p className="text-sm text-gray-700 dark:text-gray-300">
+              Showing <span className="font-semibold text-gray-900 dark:text-gray-100">{filteredGSEGroups.length}</span> studies 
               ({totalDatasets} datasets) of {initialData.length} total
             </p>
             <ViewToggle mode={viewMode} onChange={setViewMode} />
@@ -80,7 +90,7 @@ export default function DatasetBrowser({ initialData }: DatasetBrowserProps) {
         {/* Results */}
         {filteredGSEGroups.length === 0 ? (
           <div className="text-center py-12">
-            <div className="text-gray-400 dark:text-gray-600 mb-4">
+            <div className="text-gray-400 dark:text-gray-500 mb-4">
               <svg className="mx-auto h-12 w-12" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9.172 16.172a4 4 0 015.656 0M9 10h.01M15 10h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
               </svg>

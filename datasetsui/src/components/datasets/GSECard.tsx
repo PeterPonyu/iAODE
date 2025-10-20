@@ -1,7 +1,7 @@
 import Link from 'next/link';
 import { GSEGroup } from '@/types/datasets';
 import { Badge } from '@/components/ui/Badge';
-import { formatNumber, formatFileSize } from '@/lib/formatters';
+import { formatNumber, formatFileSize, getCategoryInfo } from '@/lib/formatters';
 import { Database, Microscope, Dna, FileText } from 'lucide-react';
 
 interface GSECardProps {
@@ -20,11 +20,16 @@ export default function GSECard({ gseGroup }: GSECardProps) {
     organism,
   } = gseGroup;
 
-  // Get category distribution
+  // Get category distribution (sorted by category order)
+  const categoryOrder = ['tiny', 'small', 'medium', 'large'];
   const categoryCount = datasets.reduce((acc, d) => {
     acc[d.category] = (acc[d.category] || 0) + 1;
     return acc;
   }, {} as Record<string, number>);
+
+  // Sort categories
+  const sortedCategories = Object.entries(categoryCount)
+    .sort(([a], [b]) => categoryOrder.indexOf(a) - categoryOrder.indexOf(b));
 
   return (
     <Link
@@ -37,30 +42,33 @@ export default function GSECard({ gseGroup }: GSECardProps) {
           <h3 className="font-semibold text-lg text-blue-600 dark:text-blue-400 group-hover:text-blue-700 dark:group-hover:text-blue-300">
             {gseAccession}
           </h3>
-          <div className="flex flex-wrap gap-1">
-            {Object.entries(categoryCount).map(([cat, count]) => (
-              <Badge key={cat} variant={cat as any}>
-                {count}
-              </Badge>
-            ))}
+          <div className="flex flex-wrap gap-1.5 justify-end">
+            {sortedCategories.map(([cat, count]) => {
+              const info = getCategoryInfo(cat);
+              return (
+                <Badge key={cat} variant={cat as any} showLabel>
+                  {count}
+                </Badge>
+              );
+            })}
           </div>
         </div>
-        <p className="text-sm text-gray-600 dark:text-gray-400 mb-1">
+        <p className="text-sm text-gray-700 dark:text-gray-300 mb-1">
           {authors}
         </p>
       </div>
 
       {/* Title */}
-      <p className="text-sm text-gray-900 dark:text-gray-100 mb-4 line-clamp-2 flex-grow">
+      <p className="text-sm text-gray-800 dark:text-gray-200 mb-4 line-clamp-2 flex-grow">
         {title}
       </p>
 
       {/* Stats Grid */}
       <div className="grid grid-cols-2 gap-3 pt-4 border-t border-gray-200 dark:border-gray-700">
         <div className="flex items-center gap-2">
-          <Database className="h-4 w-4 text-gray-400" />
+          <Database className="h-4 w-4 text-gray-500 dark:text-gray-400" />
           <div>
-            <p className="text-xs text-gray-500 dark:text-gray-400">Datasets</p>
+            <p className="text-xs text-gray-600 dark:text-gray-400">Datasets</p>
             <p className="text-sm font-semibold text-gray-900 dark:text-gray-100">
               {datasets.length}
             </p>
@@ -68,9 +76,9 @@ export default function GSECard({ gseGroup }: GSECardProps) {
         </div>
 
         <div className="flex items-center gap-2">
-          <Microscope className="h-4 w-4 text-gray-400" />
+          <Microscope className="h-4 w-4 text-gray-500 dark:text-gray-400" />
           <div>
-            <p className="text-xs text-gray-500 dark:text-gray-400">Cells</p>
+            <p className="text-xs text-gray-600 dark:text-gray-400">Cells</p>
             <p className="text-sm font-semibold text-gray-900 dark:text-gray-100">
               {formatNumber(totalCells, true)}
             </p>
@@ -78,9 +86,9 @@ export default function GSECard({ gseGroup }: GSECardProps) {
         </div>
 
         <div className="flex items-center gap-2">
-          <Dna className="h-4 w-4 text-gray-400" />
+          <Dna className="h-4 w-4 text-gray-500 dark:text-gray-400" />
           <div>
-            <p className="text-xs text-gray-500 dark:text-gray-400">Organism</p>
+            <p className="text-xs text-gray-600 dark:text-gray-400">Organism</p>
             <p className="text-sm font-semibold text-gray-900 dark:text-gray-100 truncate">
               {organism}
             </p>
@@ -88,9 +96,9 @@ export default function GSECard({ gseGroup }: GSECardProps) {
         </div>
 
         <div className="flex items-center gap-2">
-          <FileText className="h-4 w-4 text-gray-400" />
+          <FileText className="h-4 w-4 text-gray-500 dark:text-gray-400" />
           <div>
-            <p className="text-xs text-gray-500 dark:text-gray-400">Size</p>
+            <p className="text-xs text-gray-600 dark:text-gray-400">Size</p>
             <p className="text-sm font-semibold text-gray-900 dark:text-gray-100">
               {formatFileSize(totalSize)}
             </p>
