@@ -1,6 +1,5 @@
 import Link from 'next/link';
 import { GSEGroup } from '@/types/datasets';
-import { Badge } from '@/components/ui/Badge';
 import { formatNumber, formatFileSize } from '@/lib/formatters';
 import { ExternalLink } from 'lucide-react';
 

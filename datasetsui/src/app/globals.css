@@ -5,37 +5,37 @@
 @layer base {
   :root {
     --background: #ffffff;
-    --foreground: #171717;
+    --foreground: #1f2937;
     
-    /* Light mode colors */
+    /* Light mode colors - improved contrast */
     --primary: #2563eb;
     --primary-foreground: #ffffff;
     --secondary: #f3f4f6;
-    --secondary-foreground: #1f2937;
+    --secondary-foreground: #111827;
     --muted: #f9fafb;
-    --muted-foreground: #6b7280;
+    --muted-foreground: #4b5563;
     --accent: #dbeafe;
     --accent-foreground: #1e40af;
-    --border: #e5e7eb;
+    --border: #d1d5db;
     --card: #ffffff;
-    --card-foreground: #171717;
+    --card-foreground: #1f2937;
   }
 
-  /* Dark mode - triggered by .dark class */
+  /* Dark mode - better contrast */
   .dark {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+    --background: #0f172a;
+    --foreground: #f1f5f9;
     --primary: #3b82f6;
     --primary-foreground: #ffffff;
-    --secondary: #1f2937;
-    --secondary-foreground: #f3f4f6;
-    --muted: #111827;
-    --muted-foreground: #9ca3af;
+    --secondary: #1e293b;
+    --secondary-foreground: #e2e8f0;
+    --muted: #1e293b;
+    --muted-foreground: #94a3b8;
     --accent: #1e3a8a;
     --accent-foreground: #dbeafe;
-    --border: #374151;
-    --card: #111827;
-    --card-foreground: #ededed;
+    --border: #334155;
+    --card: #1e293b;
+    --card-foreground: #f1f5f9;
   }
 
   html {
@@ -52,22 +52,28 @@
 }
 
 @layer components {
-  /* Custom button classes */
+  /* Custom button classes - improved contrast */
   .btn-primary {
     display: inline-flex;
     align-items: center;
     justify-content: center;
     gap: 0.5rem;
-    padding: 0.5rem 1rem;
-    font-weight: 500;
+    padding: 0.625rem 1.25rem;
+    font-weight: 600;
     border-radius: 0.5rem;
     background-color: var(--primary);
     color: var(--primary-foreground);
-    transition: opacity 0.2s;
+    transition: all 0.2s;
+    box-shadow: 0 1px 2px 0 rgb(0 0 0 / 0.05);
   }
 
   .btn-primary:hover {
     opacity: 0.9;
+    box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1);
+  }
+
+  .btn-primary:active {
+    transform: translateY(1px);
   }
 
   .btn-secondary {
@@ -75,55 +81,71 @@
     align-items: center;
     justify-content: center;
     gap: 0.5rem;
-    padding: 0.5rem 1rem;
-    font-weight: 500;
+    padding: 0.625rem 1.25rem;
+    font-weight: 600;
     border-radius: 0.5rem;
     background-color: var(--secondary);
     color: var(--secondary-foreground);
-    transition: opacity 0.2s;
+    border: 1px solid var(--border);
+    transition: all 0.2s;
+    box-shadow: 0 1px 2px 0 rgb(0 0 0 / 0.05);
   }
 
   .btn-secondary:hover {
-    opacity: 0.9;
+    background-color: var(--muted);
+    box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1);
   }
 
-  /* Card component */
+  .btn-secondary:active {
+    transform: translateY(1px);
+  }
+
+  /* Card component - improved shadows */
   .card {
     background-color: var(--card);
     color: var(--card-foreground);
     border: 1px solid var(--border);
-    border-radius: 0.5rem;
-    padding: 1.5rem;
-    box-shadow: 0 1px 3px 0 rgb(0 0 0 / 0.1);
+    border-radius: 0.75rem;
+    box-shadow: 0 1px 3px 0 rgb(0 0 0 / 0.1), 0 1px 2px 0 rgb(0 0 0 / 0.06);
   }
 
-  /* Input component */
+  .dark .card {
+    box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.3), 0 2px 4px -1px rgb(0 0 0 / 0.2);
+  }
+
+  /* Input component - better contrast */
   .input {
     width: 100%;
-    padding: 0.5rem 1rem;
-    border: 1px solid var(--border);
+    padding: 0.625rem 1rem;
+    border: 1.5px solid var(--border);
     border-radius: 0.5rem;
     background-color: var(--background);
     color: var(--foreground);
     outline: none;
     transition: all 0.2s;
+    font-size: 0.875rem;
   }
 
   .input:focus {
     border-color: var(--primary);
-    box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+    box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.15);
   }
 
   .dark .input:focus {
-    box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.2);
+    box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.25);
   }
 
-  /* Label component */
+  .input::placeholder {
+    color: var(--muted-foreground);
+    opacity: 0.7;
+  }
+
+  /* Label component - better visibility */
   .label {
     display: block;
     margin-bottom: 0.5rem;
     font-size: 0.875rem;
-    font-weight: 500;
-    color: var(--muted-foreground);
+    font-weight: 600;
+    color: var(--foreground);
   }
 }
