@@ -4,7 +4,6 @@ import { useState, useMemo } from 'react';
 import Link from 'next/link';
 import { GSEGroup } from '@/types/datasets';
 import { generateGeoUrl } from '@/lib/geoUtils';
-import { formatNumber, formatFileSize } from '@/lib/formatters';
 import GSEHeader from './GSEHeader';
 import GSEStats from './GSEStats';
 import DatasetList from './DatasetList';
@@ -68,7 +67,7 @@ export default function GSEDetail({ gseGroup }: GSEDetailProps) {
       {/* Back Button */}
       <Link
         href="/datasets"
-        className="inline-flex items-center gap-2 text-sm text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-100 transition-colors"
+        className="inline-flex items-center gap-2 text-sm text-[rgb(var(--muted-foreground))] hover:text-[rgb(var(--foreground))] transition-colors"
       >
         <ArrowLeft className="h-4 w-4" />
         Back to Browse
@@ -85,10 +84,10 @@ export default function GSEDetail({ gseGroup }: GSEDetailProps) {
         {/* Section Header */}
         <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 mb-6">
           <div>
-            <h2 className="text-xl font-bold text-gray-900 dark:text-gray-100 mb-1">
+            <h2 className="text-xl font-bold text-[rgb(var(--foreground))] mb-1 transition-colors">
               Datasets in this Study
             </h2>
-            <p className="text-sm text-gray-600 dark:text-gray-400">
+            <p className="text-sm text-[rgb(var(--muted-foreground))] transition-colors">
               {gseGroup.datasets.length} dataset{gseGroup.datasets.length !== 1 ? 's' : ''} available
             </p>
           </div>
@@ -99,14 +98,7 @@ export default function GSEDetail({ gseGroup }: GSEDetailProps) {
             <select
               value={sortBy}
               onChange={(e) => setSortBy(e.target.value as typeof sortBy)}
-              className="
-                px-3 py-2 text-sm
-                border border-gray-300 dark:border-gray-600
-                rounded-lg
-                bg-white dark:bg-gray-800
-                text-gray-900 dark:text-gray-100
-                focus:outline-none focus:ring-2 focus:ring-blue-500
-              "
+              className="px-3 py-2 text-sm border border-[rgb(var(--border))] rounded-lg bg-[rgb(var(--card))] text-[rgb(var(--foreground))] focus:outline-none focus:ring-2 focus:ring-[rgb(var(--primary))] transition-colors"
             >
               <option value="cells">Sort by Cells</option>
               <option value="peaks">Sort by Peaks</option>
@@ -115,14 +107,14 @@ export default function GSEDetail({ gseGroup }: GSEDetailProps) {
             </select>
 
             {/* View Toggle */}
-            <div className="inline-flex rounded-lg border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-800 p-1">
+            <div className="inline-flex rounded-lg border border-[rgb(var(--border))] bg-[rgb(var(--card))] p-1 transition-colors">
               <button
                 onClick={() => setViewMode('card')}
                 className={cn(
                   'inline-flex items-center gap-1.5 px-3 py-1.5 rounded-md text-sm font-medium transition-colors',
                   viewMode === 'card'
-                    ? 'bg-blue-600 text-white'
-                    : 'text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700'
+                    ? 'bg-[rgb(var(--primary))] text-white'
+                    : 'text-[rgb(var(--text-secondary))] hover:bg-[rgb(var(--muted))]'
                 )}
                 aria-label="Card view"
               >
@@ -134,8 +126,8 @@ export default function GSEDetail({ gseGroup }: GSEDetailProps) {
                 className={cn(
                   'inline-flex items-center gap-1.5 px-3 py-1.5 rounded-md text-sm font-medium transition-colors',
                   viewMode === 'table'
-                    ? 'bg-blue-600 text-white'
-                    : 'text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700'
+                    ? 'bg-[rgb(var(--primary))] text-white'
+                    : 'text-[rgb(var(--text-secondary))] hover:bg-[rgb(var(--muted))]'
                 )}
                 aria-label="Table view"
               >
@@ -160,15 +152,15 @@ export default function GSEDetail({ gseGroup }: GSEDetailProps) {
       </div>
 
       {/* Info Note */}
-      <div className="card p-4 bg-blue-50 dark:bg-blue-900/20 border-blue-200 dark:border-blue-800">
-        <p className="text-sm text-blue-800 dark:text-blue-200">
+      <div className="card p-4 bg-[rgb(var(--info-bg))] border-[rgb(var(--info-border))] transition-colors">
+        <p className="text-sm text-[rgb(var(--info-text))] transition-colors">
           ℹ️ For detailed study information, experimental protocols, and publication details, 
           please visit the{' '}
           <a
             href={generateGeoUrl(gseGroup.gseAccession)}
             target="_blank"
             rel="noopener noreferrer"
-            className="font-medium underline hover:text-blue-900 dark:hover:text-blue-100"
+            className="font-medium underline hover:text-[rgb(var(--info-text-strong))] transition-colors"
           >
             NCBI GEO page
           </a>

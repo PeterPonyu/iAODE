@@ -26,10 +26,10 @@ export default function PlatformDistribution({ stats }: PlatformDistributionProp
       const data = payload[0].payload;
       return (
         <div className="card p-3 shadow-lg max-w-xs">
-          <p className="font-medium text-gray-900 dark:text-gray-100 mb-1 text-sm">
+          <p className="font-medium text-[rgb(var(--foreground))] mb-1 text-sm transition-colors">
             {data.fullPlatform}
           </p>
-          <p className="text-sm text-gray-600 dark:text-gray-400">
+          <p className="text-sm text-[rgb(var(--muted-foreground))] transition-colors">
             {data.count} datasets ({data.percentage}%)
           </p>
         </div>
@@ -40,10 +40,10 @@ export default function PlatformDistribution({ stats }: PlatformDistributionProp
 
   return (
     <div className="card p-6">
-      <h2 className="text-xl font-bold text-gray-900 dark:text-gray-100 mb-4">
+      <h2 className="text-xl font-bold text-[rgb(var(--foreground))] mb-4 transition-colors">
         Top Sequencing Platforms
       </h2>
-      <p className="text-sm text-gray-600 dark:text-gray-400 mb-4">
+      <p className="text-sm text-[rgb(var(--muted-foreground))] mb-4 transition-colors">
         Showing top 10 platforms by dataset count
       </p>
       <div className="h-80">

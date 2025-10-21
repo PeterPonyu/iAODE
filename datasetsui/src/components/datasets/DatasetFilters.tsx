@@ -50,13 +50,13 @@ export default function DatasetFilters({
     <div className="card p-4 space-y-6">
       {/* Header */}
       <div className="flex items-center justify-between">
-        <h2 className="font-semibold text-lg text-gray-900 dark:text-gray-100">
+        <h2 className="font-semibold text-lg text-[rgb(var(--foreground))]">
           Filters
         </h2>
         {activeFilterCount > 0 && (
           <button
             onClick={resetFilters}
-            className="text-sm text-blue-600 dark:text-blue-400 hover:text-blue-700 dark:hover:text-blue-300 flex items-center gap-1"
+            className="text-sm text-[rgb(var(--primary))] transition-colors hover:text-[rgb(var(--primary-hover))] flex items-center gap-1 font-medium"
           >
             <X className="h-4 w-4" />
             Reset ({activeFilterCount})
@@ -66,7 +66,7 @@ export default function DatasetFilters({
 
       {/* Category Filter */}
       <div>
-        <h3 className="font-medium text-sm text-gray-700 dark:text-gray-300 mb-3">
+        <h3 className="font-semibold text-sm text-[rgb(var(--foreground))] mb-3">
           🔖 Dataset Size
         </h3>
         <div className="space-y-2">
@@ -81,16 +81,12 @@ export default function DatasetFilters({
                   type="checkbox"
                   checked={filters.categories.includes(cat)}
                   onChange={() => toggleCategory(cat)}
-                  className="
-                    rounded border-gray-300 dark:border-gray-600
-                    text-blue-600 focus:ring-blue-500
-                    cursor-pointer
-                  "
+                  className="rounded border-[rgb(var(--border))] cursor-pointer transition-all checked:bg-[rgb(var(--primary))] checked:border-[rgb(var(--primary))] focus:outline-none focus:ring-3 focus:ring-[rgb(var(--primary))] focus:ring-opacity-20"
                 />
-                <span className="text-sm text-gray-700 dark:text-gray-300 capitalize group-hover:text-gray-900 dark:group-hover:text-gray-100">
+                <span className="text-sm text-[rgb(var(--text-secondary))] transition-colors group-hover:text-[rgb(var(--muted-foreground))] capitalize">
                   {cat}
                 </span>
-                <span className="text-xs text-gray-500 dark:text-gray-400 ml-auto">
+                <span className="text-xs text-[rgb(var(--muted-foreground))] ml-auto font-medium">
                   {count}
                 </span>
               </label>
@@ -101,7 +97,7 @@ export default function DatasetFilters({
 
       {/* Organism Filter */}
       <div>
-        <h3 className="font-medium text-sm text-gray-700 dark:text-gray-300 mb-3">
+        <h3 className="font-semibold text-sm text-[rgb(var(--foreground))] mb-3">
           🧬 Organism
         </h3>
         <div className="space-y-2 max-h-64 overflow-y-auto">
@@ -116,16 +112,12 @@ export default function DatasetFilters({
                   type="checkbox"
                   checked={filters.organisms.includes(org)}
                   onChange={() => toggleOrganism(org)}
-                  className="
-                    rounded border-gray-300 dark:border-gray-600
-                    text-blue-600 focus:ring-blue-500
-                    cursor-pointer
-                  "
+                  className="rounded border-[rgb(var(--border))] cursor-pointer transition-all checked:bg-[rgb(var(--primary))] checked:border-[rgb(var(--primary))] focus:outline-none focus:ring-3 focus:ring-[rgb(var(--primary))] focus:ring-opacity-20"
                 />
-                <span className="text-sm text-gray-700 dark:text-gray-300 group-hover:text-gray-900 dark:group-hover:text-gray-100">
+                <span className="text-sm text-[rgb(var(--text-secondary))] transition-colors group-hover:text-[rgb(var(--muted-foreground))]">
                   {org}
                 </span>
-                <span className="text-xs text-gray-500 dark:text-gray-400 ml-auto">
+                <span className="text-xs text-[rgb(var(--muted-foreground))] ml-auto font-medium">
                   {count}
                 </span>
               </label>
@@ -133,19 +125,6 @@ export default function DatasetFilters({
           })}
         </div>
       </div>
-
-      {/* Cell Range Filter - Can add later with a slider component */}
-      {/* <div>
-        <h3 className="font-medium text-sm text-gray-700 dark:text-gray-300 mb-3">
-          🔢 Cell Count Range
-        </h3>
-        <RangeSlider 
-          min={options.cellRange.min}
-          max={options.cellRange.max}
-          value={filters.cellRange}
-          onChange={(range) => onFiltersChange({ ...filters, cellRange: range })}
-        />
-      </div> */}
     </div>
   );
 }

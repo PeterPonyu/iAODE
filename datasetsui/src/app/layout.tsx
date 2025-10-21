@@ -1,3 +1,4 @@
+
 // app/layout.tsx
 
 import type { Metadata } from 'next';
@@ -28,20 +29,37 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <head>
+        {/* 🔥 Blocking script - runs BEFORE any React hydration */}
         <script
           dangerouslySetInnerHTML={{
             __html: `
-              try {
-                const theme = localStorage.getItem('theme') || 
-                  (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
-                document.documentElement.classList.toggle('dark', theme === 'dark');
-              } catch (e) {}
+              (function() {
+                try {
+                  // Get stored theme or system preference
+                  const storedTheme = localStorage.getItem('theme');
+                  const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+                  const theme = storedTheme || (prefersDark ? 'dark' : 'light');
+                  
+                  // Apply theme class immediately
+                  if (theme === 'dark') {
+                    document.documentElement.classList.add('dark');
+                  } else {
+                    document.documentElement.classList.remove('dark');
+                  }
+                  
+                  // Store for ThemeContext to read (avoid duplicate logic)
+                  window.__INITIAL_THEME__ = theme;
+                } catch (e) {
+                  console.error('Theme initialization error:', e);
+                }
+              })();
             `,
           }}
         />
       </head>
       <body 
         className={`${geistSans.variable} ${geistMono.variable} antialiased min-h-screen flex flex-col`}
+        suppressHydrationWarning
       >
         <ClientLayout>{children}</ClientLayout>
       </body>
