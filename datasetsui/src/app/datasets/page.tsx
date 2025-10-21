@@ -14,10 +14,10 @@ export default function DatasetsPage() {
     <div className="space-y-6">
       {/* Page Header */}
       <div>
-        <h1 className="text-3xl font-bold text-gray-900 dark:text-gray-100 mb-2">
+        <h1 className="text-3xl font-bold text-[rgb(var(--foreground))] mb-2 transition-colors">
           Browse Datasets
         </h1>
-        <p className="text-gray-600 dark:text-gray-400">
+        <p className="text-[rgb(var(--muted-foreground))] transition-colors">
           Explore {gseGroups.length} studies with {totalDatasets} datasets from NCBI GEO
         </p>
       </div>

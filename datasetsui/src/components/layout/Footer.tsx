@@ -1,41 +1,47 @@
-// components/layout/Footer.tsx
-
 import Link from 'next/link';
-import { Github, Mail } from 'lucide-react';
 
 export default function Footer() {
   const currentYear = new Date().getFullYear();
 
   return (
-    <footer className="border-t border-gray-200 dark:border-gray-800 bg-white dark:bg-gray-900 mt-auto">
+    <footer className="border-t border-[rgb(var(--border))] bg-[rgb(var(--background))] mt-auto">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-8">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
           {/* About */}
           <div>
-            <h3 className="font-semibold text-gray-900 dark:text-gray-100 mb-3">
+            <h3 className="font-semibold text-[rgb(var(--foreground))] mb-3">
               scATAC-seq Dataset Browser
             </h3>
-            <p className="text-sm text-gray-600 dark:text-gray-400">
+            <p className="text-sm text-[rgb(var(--muted-foreground))]">
               A comprehensive collection of single-cell ATAC-seq datasets for research and analysis.
             </p>
           </div>
 
           {/* Quick Links */}
           <div>
-            <h3 className="font-semibold text-gray-900 dark:text-gray-100 mb-3">Quick Links</h3>
+            <h3 className="font-semibold text-[rgb(var(--foreground))] mb-3">Quick Links</h3>
             <ul className="space-y-2 text-sm">
               <li>
-                <Link href="/datasets" className="text-gray-600 dark:text-gray-400 hover:text-blue-600 dark:hover:text-blue-400 transition-colors">
+                <Link 
+                  href="/datasets" 
+                  className="text-[rgb(var(--muted-foreground))] hover:text-[rgb(var(--primary-hover))] transition-colors"
+                >
                   Browse Datasets
                 </Link>
               </li>
               <li>
-                <Link href="/statistics" className="text-gray-600 dark:text-gray-400 hover:text-blue-600 dark:hover:text-blue-400 transition-colors">
+                <Link 
+                  href="/statistics" 
+                  className="text-[rgb(var(--muted-foreground))] hover:text-[rgb(var(--primary-hover))] transition-colors"
+                >
                   Statistics
                 </Link>
               </li>
               <li>
-                <Link href="/about" className="text-gray-600 dark:text-gray-400 hover:text-blue-600 dark:hover:text-blue-400 transition-colors">
+                <Link 
+                  href="/about" 
+                  className="text-[rgb(var(--muted-foreground))] hover:text-[rgb(var(--primary-hover))] transition-colors"
+                >
                   About
                 </Link>
               </li>
@@ -44,14 +50,14 @@ export default function Footer() {
 
           {/* Resources */}
           <div>
-            <h3 className="font-semibold text-gray-900 dark:text-gray-100 mb-3">Resources</h3>
+            <h3 className="font-semibold text-[rgb(var(--foreground))] mb-3">Resources</h3>
             <ul className="space-y-2 text-sm">
               <li>
                 <a
                   href="https://www.ncbi.nlm.nih.gov/geo/"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="text-gray-600 dark:text-gray-400 hover:text-blue-600 dark:hover:text-blue-400 transition-colors inline-flex items-center"
+                  className="text-[rgb(var(--muted-foreground))] hover:text-[rgb(var(--primary-hover))] transition-colors inline-flex items-center"
                 >
                   NCBI GEO
                   <svg className="w-3 h-3 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -63,8 +69,8 @@ export default function Footer() {
           </div>
         </div>
 
-        <div className="mt-8 pt-8 border-t border-gray-200 dark:border-gray-800 flex flex-col md:flex-row justify-between items-center">
-          <p className="text-sm text-gray-600 dark:text-gray-400">
+        <div className="mt-8 pt-8 border-t border-[rgb(var(--border))] flex flex-col md:flex-row justify-between items-center">
+          <p className="text-sm text-[rgb(var(--muted-foreground))]">
             © {currentYear} scATAC-seq Dataset Browser. All rights reserved.
           </p>
           <div className="flex space-x-4 mt-4 md:mt-0">

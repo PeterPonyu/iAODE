@@ -1,4 +1,6 @@
+
 import { getCategoryColor, getCategoryInfo } from '@/lib/formatters';
+import { cn } from '@/lib/utils';
 import { Info } from 'lucide-react';
 
 interface CategoryLegendProps {
@@ -16,7 +18,7 @@ export default function CategoryLegend({
     return (
       <div className="flex flex-wrap items-center gap-3">
         {showTitle && (
-          <span className="text-xs font-medium text-gray-600 dark:text-gray-400 flex items-center gap-1">
+          <span className="flex items-center gap-1 text-xs font-semibold text-[rgb(var(--text-secondary))] transition-colors">
             <Info className="h-3 w-3" />
             Dataset Sizes:
           </span>
@@ -31,12 +33,13 @@ export default function CategoryLegend({
               title={info.description}
             >
               <span
-                className={`
-                  inline-block w-3 h-3 rounded-full border
-                  ${colors.bg} ${colors.border}
-                `}
+                className={cn(
+                  'inline-block w-3 h-3 rounded-full border',
+                  colors.bg,
+                  colors.border
+                )}
               />
-              <span className="text-xs text-gray-700 dark:text-gray-300 capitalize">
+              <span className="text-xs font-medium capitalize text-[rgb(var(--text-secondary))] transition-colors">
                 {info.label}
               </span>
             </div>
@@ -47,42 +50,44 @@ export default function CategoryLegend({
   }
 
   return (
-    <div className="card p-4 bg-blue-50 dark:bg-blue-950/30 border-blue-200 dark:border-blue-800">
-      <div className="flex items-start gap-2 mb-3">
-        <Info className="h-5 w-5 text-blue-600 dark:text-blue-400 mt-0.5 flex-shrink-0" />
+    <div className="p-4 bg-[rgb(var(--info-bg))] border border-[rgb(var(--info-border))] rounded-xl shadow-sm transition-all">
+      <div className="flex items-start gap-2 mb-4">
+        <Info className="w-5 h-5 mt-0.5 flex-shrink-0 text-[rgb(var(--primary))] transition-colors" />
         <div>
-          <h3 className="font-semibold text-sm text-blue-900 dark:text-blue-200 mb-1">
+          <h3 className="text-sm font-semibold text-[rgb(var(--info-text-strong))] mb-1 transition-colors">
             Dataset Size Categories
           </h3>
-          <p className="text-xs text-blue-700 dark:text-blue-300">
+          <p className="text-xs text-[rgb(var(--info-text))] transition-colors">
             Datasets are categorized by their cell count
           </p>
         </div>
       </div>
       
-      <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
+      {/* Vertical layout to prevent overlapping */}
+      <div className="space-y-3">
         {categories.map((cat) => {
           const colors = getCategoryColor(cat);
           const info = getCategoryInfo(cat);
           return (
             <div
               key={cat}
-              className="flex items-center gap-2"
+              className="flex items-center gap-3"
             >
               <span
-                className={`
-                  inline-flex items-center justify-center
-                  w-8 h-8 rounded-lg border-2 font-bold
-                  ${colors.bg} ${colors.text} ${colors.border}
-                `}
+                className={cn(
+                  'inline-flex items-center justify-center w-10 h-10 rounded-lg border-2 text-base font-bold flex-shrink-0',
+                  colors.bg,
+                  colors.text,
+                  colors.border
+                )}
               >
                 {info.icon}
               </span>
-              <div>
-                <p className="text-sm font-medium text-gray-900 dark:text-gray-100 capitalize">
+              <div className="flex-1 min-w-0">
+                <p className="text-sm font-semibold capitalize text-[rgb(var(--text-primary))] transition-colors">
                   {info.label}
                 </p>
-                <p className="text-xs text-gray-600 dark:text-gray-400">
+                <p className="text-xs text-[rgb(var(--text-secondary))] transition-colors">
                   {info.description}
                 </p>
               </div>

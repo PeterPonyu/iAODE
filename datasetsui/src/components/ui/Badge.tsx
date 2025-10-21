@@ -16,21 +16,17 @@ export function Badge({
 }: BadgeProps) {
   const colors = variant !== 'default' 
     ? getCategoryColor(variant)
-    : {
-        bg: 'bg-gray-200 dark:bg-gray-700',
-        text: 'text-gray-800 dark:text-gray-200',
-        border: 'border-gray-400 dark:border-gray-500'
-      };
+    : { bg: '', text: '', border: '' };
 
   const info = variant !== 'default' ? getCategoryInfo(variant) : null;
-
+  
   return (
     <span
       className={cn(
-        'inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full text-xs font-semibold border-2',
-        colors.bg,
-        colors.text,
-        colors.border,
+        'inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full border-2 text-xs font-semibold transition-all',
+        variant === 'default' 
+          ? 'bg-[rgb(var(--border-light))] text-[rgb(var(--card-foreground))] border-[rgb(var(--text-muted))]'
+          : [colors.bg, colors.text, colors.border],
         className
       )}
       title={info?.description}

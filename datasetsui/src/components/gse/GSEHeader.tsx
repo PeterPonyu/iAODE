@@ -1,3 +1,4 @@
+
 import { GSEGroup } from '@/types/datasets';
 import { generateGeoUrl } from '@/lib/geoUtils';
 import { ExternalLink, User, Dna, Cpu } from 'lucide-react';
@@ -14,10 +15,10 @@ export default function GSEHeader({ gseGroup }: GSEHeaderProps) {
       {/* Title Row */}
       <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-4 mb-4">
         <div className="flex-1">
-          <h1 className="text-3xl font-bold text-gray-900 dark:text-gray-100 mb-2">
+          <h1 className="text-3xl font-bold text-[rgb(var(--foreground))] mb-2">
             {gseAccession}
           </h1>
-          <p className="text-lg text-gray-700 dark:text-gray-300">
+          <p className="text-lg text-[rgb(var(--text-secondary))]">
             {title}
           </p>
         </div>
@@ -35,17 +36,17 @@ export default function GSEHeader({ gseGroup }: GSEHeaderProps) {
       </div>
 
       {/* Metadata Grid */}
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-4 pt-4 border-t border-gray-200 dark:border-gray-700">
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-4 pt-4 border-t border-[rgb(var(--border-light))]">
         {/* Authors */}
         <div className="flex items-start gap-3">
           <div className="mt-1">
-            <User className="h-5 w-5 text-gray-400" />
+            <User className="h-5 w-5 text-[rgb(var(--text-muted))]" />
           </div>
           <div>
-            <p className="text-xs text-gray-500 dark:text-gray-400 uppercase tracking-wide mb-1">
+            <p className="text-xs text-[rgb(var(--meta-label))] uppercase tracking-wide mb-1">
               Authors
             </p>
-            <p className="text-sm text-gray-900 dark:text-gray-100">
+            <p className="text-sm text-[rgb(var(--foreground))]">
               {authors}
             </p>
           </div>
@@ -54,13 +55,13 @@ export default function GSEHeader({ gseGroup }: GSEHeaderProps) {
         {/* Organism */}
         <div className="flex items-start gap-3">
           <div className="mt-1">
-            <Dna className="h-5 w-5 text-gray-400" />
+            <Dna className="h-5 w-5 text-[rgb(var(--text-muted))]" />
           </div>
           <div>
-            <p className="text-xs text-gray-500 dark:text-gray-400 uppercase tracking-wide mb-1">
+            <p className="text-xs text-[rgb(var(--meta-label))] uppercase tracking-wide mb-1">
               Organism
             </p>
-            <p className="text-sm text-gray-900 dark:text-gray-100">
+            <p className="text-sm text-[rgb(var(--foreground))]">
               {organism}
             </p>
           </div>
@@ -69,13 +70,13 @@ export default function GSEHeader({ gseGroup }: GSEHeaderProps) {
         {/* Platforms */}
         <div className="flex items-start gap-3">
           <div className="mt-1">
-            <Cpu className="h-5 w-5 text-gray-400" />
+            <Cpu className="h-5 w-5 text-[rgb(var(--text-muted))]" />
           </div>
           <div>
-            <p className="text-xs text-gray-500 dark:text-gray-400 uppercase tracking-wide mb-1">
+            <p className="text-xs text-[rgb(var(--meta-label))] uppercase tracking-wide mb-1">
               Platform{platforms.length !== 1 ? 's' : ''}
             </p>
-            <p className="text-sm text-gray-900 dark:text-gray-100">
+            <p className="text-sm text-[rgb(var(--foreground))]">
               {platforms.length > 0 ? platforms.join(', ') : 'Not specified'}
             </p>
           </div>

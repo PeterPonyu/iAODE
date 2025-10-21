@@ -12,46 +12,46 @@ export default function StatisticsOverview({ stats }: StatisticsOverviewProps) {
       label: 'Total Studies',
       value: stats.totalGSE.toString(),
       icon: Beaker,
-      color: 'text-blue-600 dark:text-blue-400',
-      bgColor: 'bg-blue-50 dark:bg-blue-900/20',
+      iconColor: 'text-[rgb(var(--stat-blue))]',
+      bgColor: 'bg-[rgb(var(--stat-bg-blue))]',
     },
     {
       label: 'Total Datasets',
       value: stats.totalDatasets.toString(),
       icon: Database,
-      color: 'text-purple-600 dark:text-purple-400',
-      bgColor: 'bg-purple-50 dark:bg-purple-900/20',
+      iconColor: 'text-[rgb(var(--stat-purple))]',
+      bgColor: 'bg-[rgb(var(--stat-bg-purple))]',
     },
     {
       label: 'Total Cells',
       value: formatNumber(stats.totalCells, true),
       icon: Microscope,
-      color: 'text-green-600 dark:text-green-400',
-      bgColor: 'bg-green-50 dark:bg-green-900/20',
+      iconColor: 'text-[rgb(var(--stat-green))]',
+      bgColor: 'bg-[rgb(var(--stat-bg-green))]',
       subtitle: `Avg: ${formatNumber(stats.averageCells, true)}/dataset`,
     },
     {
       label: 'Total Peaks',
       value: formatNumber(stats.totalPeaks, true),
       icon: BarChart3,
-      color: 'text-orange-600 dark:text-orange-400',
-      bgColor: 'bg-orange-50 dark:bg-orange-900/20',
+      iconColor: 'text-[rgb(var(--stat-orange))]',
+      bgColor: 'bg-[rgb(var(--stat-bg-orange))]',
       subtitle: `Avg: ${formatNumber(stats.averagePeaks, true)}/dataset`,
     },
     {
       label: 'Total Data Size',
       value: formatFileSize(stats.totalSize),
       icon: HardDrive,
-      color: 'text-red-600 dark:text-red-400',
-      bgColor: 'bg-red-50 dark:bg-red-900/20',
+      iconColor: 'text-[rgb(var(--stat-red))]',
+      bgColor: 'bg-[rgb(var(--stat-bg-red))]',
       subtitle: `Avg: ${formatFileSize(stats.averageSize)}/dataset`,
     },
     {
       label: 'Median Cells',
       value: formatNumber(stats.medianCells, true),
       icon: TrendingUp,
-      color: 'text-indigo-600 dark:text-indigo-400',
-      bgColor: 'bg-indigo-50 dark:bg-indigo-900/20',
+      iconColor: 'text-[rgb(var(--stat-indigo))]',
+      bgColor: 'bg-[rgb(var(--stat-bg-indigo))]',
       subtitle: 'Per dataset',
     },
   ];
@@ -64,20 +64,20 @@ export default function StatisticsOverview({ stats }: StatisticsOverviewProps) {
           <div key={card.label} className="card p-6">
             <div className="flex items-start justify-between">
               <div className="flex-1">
-                <p className="text-sm text-gray-600 dark:text-gray-400 mb-1">
+                <p className="text-sm text-[rgb(var(--muted-foreground))] mb-1 transition-colors">
                   {card.label}
                 </p>
-                <p className="text-2xl font-bold text-gray-900 dark:text-gray-100 mb-1">
+                <p className="text-2xl font-bold text-[rgb(var(--foreground))] mb-1 transition-colors">
                   {card.value}
                 </p>
                 {card.subtitle && (
-                  <p className="text-xs text-gray-500 dark:text-gray-400">
+                  <p className="text-xs text-[rgb(var(--muted-foreground))] transition-colors">
                     {card.subtitle}
                   </p>
                 )}
               </div>
-              <div className={`p-3 rounded-lg ${card.bgColor}`}>
-                <Icon className={`h-6 w-6 ${card.color}`} />
+              <div className={`p-3 rounded-lg ${card.bgColor} transition-colors`}>
+                <Icon className={`h-6 w-6 ${card.iconColor} transition-colors`} />
               </div>
             </div>
           </div>

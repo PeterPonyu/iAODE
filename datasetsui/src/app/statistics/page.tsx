@@ -20,10 +20,10 @@ export default function StatisticsPage() {
     <div className="space-y-8">
       {/* Page Header */}
       <div>
-        <h1 className="text-3xl font-bold text-gray-900 dark:text-gray-100 mb-2">
+        <h1 className="text-3xl font-bold text-[rgb(var(--foreground))] mb-2 transition-colors">
           Dataset Statistics
         </h1>
-        <p className="text-gray-600 dark:text-gray-400">
+        <p className="text-[rgb(var(--muted-foreground))] transition-colors">
           Comprehensive analysis and visualizations of {stats.totalGSE} studies 
           with {stats.totalDatasets} datasets
         </p>
