@@ -43,9 +43,11 @@ export interface GSEGroup {
 
 export interface FilterState {
   search: string;
-  categories: ('tiny' | 'small' | 'medium' | 'large')[];
+  categories: ('tiny' | 'small' | 'medium' | 'large' | 'error')[];
   organisms: string[];
+  platforms?: string[];
   cellRange: [number, number] | null;
+  peakRange?: [number, number] | null;
 }
 
 export interface DatasetStats {
@@ -53,10 +55,13 @@ export interface DatasetStats {
   totalGSE: number;
   totalCells: number;
   totalPeaks: number;
+  totalSize: number;
   categoryDistribution: Record<string, number>;
   organismDistribution: Record<string, number>;
   platformDistribution: Record<string, number>;
   averageCells: number;
   averagePeaks: number;
   averageSize: number;
+  medianCells: number;
+  medianPeaks: number;
 }

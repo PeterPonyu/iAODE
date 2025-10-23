@@ -1,5 +1,49 @@
+
 import re
 import json
+
+def truncate_authors(authors_str, max_authors=6):
+    """
+    Truncate author list to use 'et al.' if more than max_authors.
+    
+    Args:
+        authors_str: String of authors (comma or 'and' separated)
+        max_authors: Maximum number of authors before using et al.
+    
+    Returns:
+        Truncated author string
+    """
+    # Split by comma or 'and' (with various spacing)
+    author_list = re.split(r',\s*|\s+and\s+', authors_str)
+    
+    # Clean up each author name
+    author_list = [a.strip() for a in author_list if a.strip()]
+    
+    if len(author_list) > max_authors:
+        # Keep first 6 authors and add et al.
+        first_authors = ', '.join(author_list[:max_authors])
+        return f"{first_authors} et al."
+    else:
+        return authors_str
+
+def get_organism_name(code):
+    """
+    Map organism code to full name.
+    
+    Args:
+        code: Organism code (Hm, Mm, Dr, Dj, Dm)
+    
+    Returns:
+        Full organism name
+    """
+    organism_map = {
+        'Hm': 'Human',
+        'Mm': 'Mouse',
+        'Dr': 'Zebrafish',
+        'Dj': 'Planarian',
+        'Dm': 'Drosophila'
+    }
+    return organism_map.get(code, f"Unknown ({code})")
 
 def parse_markdown_to_json(md_file_path, output_json_path):
     with open(md_file_path, 'r', encoding='utf-8') as f:
@@ -7,17 +51,26 @@ def parse_markdown_to_json(md_file_path, output_json_path):
     
     datasets = []
     skipped = []
+    commented_entries = []
+    
+    # First, remove all HTML comment blocks entirely to prevent pollution
+    # This handles multi-line comments
+    content_cleaned = re.sub(r'<!--.*?-->', '', content, flags=re.DOTALL)
     
     # Split by numbered entries
-    entries = re.split(r'\n(?=\d+\.)', content.strip())
+    entries = re.split(r'\n(?=\d+\.)', content_cleaned.strip())
     
     for entry in entries:
         entry = entry.strip()
         if not entry:
             continue
         
-        # Skip commented lines (markdown comments or HTML comments)
-        if re.match(r'^<!--', entry) or re.match(r'^\[//\]:', entry):
+        # Double-check: skip any remaining comment fragments
+        if entry.startswith('<!--') or entry.startswith('[//]:'):
+            entry_num_match = re.match(r'^<!--\s*(\d+)\.', entry)
+            entry_num = entry_num_match.group(1) if entry_num_match else "unknown"
+            print(f"⏭️  Skipping commented entry {entry_num}")
+            commented_entries.append(entry_num)
             continue
         
         # Extract entry number first to track it
@@ -37,13 +90,16 @@ def parse_markdown_to_json(md_file_path, output_json_path):
         
         # Clean up authors and title
         authors = authors_str.strip()
+        # Truncate authors if more than 6
+        authors = truncate_authors(authors, max_authors=6)
         title = title.strip()
         
         # Remove GSE accession from title if it was captured there
         title = re.sub(r',?\s*GSE\d+\s*,?', '', title).strip()
         
         # Extract all data files with organism markers
-        file_pattern = r'\*\*([^\*]+)\*\*\s*\(([HM]m)\)'
+        # Updated pattern to include Hm, Mm, Dr, Dj, Dm
+        file_pattern = r'\*\*([^\*]+)\*\*\s*\((Hm|Mm|Dr|Dj|Dm)\)'
         file_matches = list(re.finditer(file_pattern, rest))
         
         if not file_matches:
@@ -56,7 +112,7 @@ def parse_markdown_to_json(md_file_path, output_json_path):
         for idx, file_match in enumerate(file_matches):
             data_file_name = file_match.group(1).strip()
             organism_code = file_match.group(2)
-            organism = "Human" if organism_code == "Hm" else "Mouse"
+            organism = get_organism_name(organism_code)
             
             # Extract metadata for this specific file
             # Get text between this file and the next file (or end of string)
@@ -70,9 +126,9 @@ def parse_markdown_to_json(md_file_path, output_json_path):
             
             # Remove leading comma if present
             file_metadata = re.sub(r'^,\s*', '', file_metadata)
-            # Element AVITI, MGISEQ-2000RS, Illumina NovaSeq X
-            # Enhanced platform pattern to catch more variations
-            platform_pattern = r'(Illumina\s+NovaSeq\s+\d+|Illumina\s+HiSeq\s+X\s+Ten|Illumina\s+HiSeq\s+\d+|Illumina\s+NextSeq\s+\d+|Illumina\s+MiSeq|NextSeq\s+\d+|NovaSeq\s+\d+|HiSeq\s+X\s+Ten|HiSeq\s+\d+|MiSeq)'
+            
+            # Enhanced platform pattern to include various sequencing platforms
+            platform_pattern = r'(Element\s+AVITI|MGISEQ[-\s]?\d+\w*|Illumina\s+NovaSeq\s+X(?:\s+Plus)?|Illumina\s+NovaSeq\s+\d+|Illumina\s+HiSeq\s+X\s+Ten|Illumina\s+HiSeq\s+\d+|Illumina\s+NextSeq\s+\d+|Illumina\s+MiSeq|NextSeq\s+\d+|NovaSeq\s+X(?:\s+Plus)?|NovaSeq\s+\d+|HiSeq\s+X\s+Ten|HiSeq\s+\d+|MiSeq)'
             platform_match = re.search(platform_pattern, file_metadata, re.IGNORECASE)
             
             if platform_match:
@@ -126,8 +182,11 @@ def parse_markdown_to_json(md_file_path, output_json_path):
     print(f"✅ Successfully parsed {len(datasets)} datasets")
     print(f"📁 Output saved to: {output_json_path}")
     
+    if commented_entries:
+        print(f"\n💬 Skipped {len(commented_entries)} commented entries: {', '.join(commented_entries)}")
+    
     if skipped:
-        print(f"\n⚠️  Skipped {len(skipped)} entries: {', '.join(skipped)}")
+        print(f"\n⚠️  Skipped {len(skipped)} unparseable entries: {', '.join(skipped)}")
     
     # Print detailed summary
     print("\n📊 Summary:")
@@ -154,6 +213,15 @@ def parse_markdown_to_json(md_file_path, output_json_path):
     
     print(f"\nUnique GSE accessions: {len(gse_counts)}")
     print(f"Unique sources: {len(sources)}")
+    
+    # Show some example entries for verification
+    if datasets:
+        print("\n🔍 Sample entries (first 3):")
+        for i, d in enumerate(datasets[:3], 1):
+            print(f"\n  {i}. [{d['id']}]")
+            print(f"     Title: {d['title'][:60]}...")
+            print(f"     File: {d['dataFileName']}")
+            print(f"     Organism: {d['organism']}, Platform: {d['platform']}")
     
     return datasets
 
