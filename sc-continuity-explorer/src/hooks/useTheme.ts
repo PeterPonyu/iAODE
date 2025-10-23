@@ -1,5 +1,6 @@
 /**
  * Theme management hook for light/dark mode
+ * Fixed for SSR hydration
  */
 
 'use client';
@@ -13,6 +14,7 @@ interface UseThemeReturn {
   effectiveTheme: 'light' | 'dark';
   setTheme: (theme: Theme) => void;
   toggleTheme: () => void;
+  mounted: boolean; // ✅ NEW: Flag to check if client-side mounted
 }
 
 const STORAGE_KEY = 'sc-explorer-theme';
@@ -39,11 +41,14 @@ function getEffectiveTheme(theme: Theme): 'light' | 'dark' {
 }
 
 /**
- * Hook for managing light/dark theme
+ * Hook for managing light/dark theme with SSR support
  * 
  * @example
  * function Header() {
- *   const { theme, effectiveTheme, setTheme, toggleTheme } = useTheme();
+ *   const { effectiveTheme, toggleTheme, mounted } = useTheme();
+ *   
+ *   // Don't render theme-specific content until mounted
+ *   if (!mounted) return <div className="w-6 h-6" />;
  *   
  *   return (
  *     <button onClick={toggleTheme}>
@@ -53,23 +58,28 @@ function getEffectiveTheme(theme: Theme): 'light' | 'dark' {
  * }
  */
 export function useTheme(): UseThemeReturn {
-  // Initialize from localStorage or default to system
-  const [theme, setThemeState] = useState<Theme>(() => {
-    if (typeof window === 'undefined') return 'system';
-    
+  // ✅ Track if component is mounted (client-side only)
+  const [mounted, setMounted] = useState(false);
+
+  // Initialize with safe default for SSR
+  const [theme, setThemeState] = useState<Theme>('system');
+  const [effectiveTheme, setEffectiveTheme] = useState<'light' | 'dark'>('light');
+
+  // ✅ Set mounted flag after first render (client-side only)
+  useEffect(() => {
+    setMounted(true);
+
+    // Load theme from localStorage (only runs on client)
     const stored = localStorage.getItem(STORAGE_KEY);
     if (stored === 'light' || stored === 'dark' || stored === 'system') {
-      return stored;
+      setThemeState(stored);
     }
-    return 'system';
-  });
+  }, []);
 
-  const [effectiveTheme, setEffectiveTheme] = useState<'light' | 'dark'>(() =>
-    getEffectiveTheme(theme)
-  );
-
-  // Update effective theme when theme or system preference changes
+  // Update effective theme when theme changes
   useEffect(() => {
+    if (!mounted) return;
+
     const newEffectiveTheme = getEffectiveTheme(theme);
     setEffectiveTheme(newEffectiveTheme);
 
@@ -80,11 +90,11 @@ export function useTheme(): UseThemeReturn {
 
     // Update color-scheme for native elements
     root.style.colorScheme = newEffectiveTheme;
-  }, [theme]);
+  }, [theme, mounted]);
 
   // Listen to system theme changes when theme is 'system'
   useEffect(() => {
-    if (theme !== 'system') return;
+    if (!mounted || theme !== 'system') return;
 
     const mediaQuery = window.matchMedia('(prefers-color-scheme: dark)');
     
@@ -100,12 +110,14 @@ export function useTheme(): UseThemeReturn {
 
     mediaQuery.addEventListener('change', handleChange);
     return () => mediaQuery.removeEventListener('change', handleChange);
-  }, [theme]);
+  }, [theme, mounted]);
 
   // Set theme and persist to localStorage
   const setTheme = (newTheme: Theme) => {
     setThemeState(newTheme);
-    localStorage.setItem(STORAGE_KEY, newTheme);
+    if (mounted) {
+      localStorage.setItem(STORAGE_KEY, newTheme);
+    }
   };
 
   // Toggle between light and dark (ignores system)
@@ -118,5 +130,6 @@ export function useTheme(): UseThemeReturn {
     effectiveTheme,
     setTheme,
     toggleTheme,
+    mounted, // ✅ Export mounted flag
   };
 }
