@@ -2,7 +2,6 @@
 
 import { DatasetStats } from '@/types/datasets';
 import { PieChart, Pie, Cell, ResponsiveContainer, Legend, Tooltip } from 'recharts';
-import { getCategoryColor } from '@/lib/formatters';
 
 interface CategoryDistributionProps {
   stats: DatasetStats;
@@ -38,10 +37,10 @@ export default function CategoryDistribution({ stats }: CategoryDistributionProp
       const data = payload[0].payload;
       return (
         <div className="card p-3 shadow-lg">
-          <p className="font-medium text-gray-900 dark:text-gray-100 mb-1">
+          <p className="font-medium text-[rgb(var(--foreground))] mb-1 transition-colors">
             {data.name}
           </p>
-          <p className="text-sm text-gray-600 dark:text-gray-400">
+          <p className="text-sm text-[rgb(var(--muted-foreground))] transition-colors">
             {data.value} datasets ({data.percentage}%)
           </p>
         </div>
@@ -50,9 +49,27 @@ export default function CategoryDistribution({ stats }: CategoryDistributionProp
     return null;
   };
 
+  const CustomLegend = ({ payload }: any) => {
+    return (
+      <ul className="flex flex-wrap justify-center gap-4 mt-4">
+        {payload.map((entry: any, index: number) => (
+          <li key={`legend-${index}`} className="flex items-center gap-2">
+            <span 
+              className="w-3 h-3 rounded-sm" 
+              style={{ backgroundColor: entry.color }}
+            />
+            <span className="text-sm text-[rgb(var(--text-secondary))] transition-colors">
+              {entry.value} ({entry.payload.value})
+            </span>
+          </li>
+        ))}
+      </ul>
+    );
+  };
+
   return (
     <div className="card p-6">
-      <h2 className="text-xl font-bold text-gray-900 dark:text-gray-100 mb-4">
+      <h2 className="text-xl font-bold text-[rgb(var(--foreground))] mb-4 transition-colors">
         Dataset Size Distribution
       </h2>
       <div className="h-80">
@@ -61,7 +78,7 @@ export default function CategoryDistribution({ stats }: CategoryDistributionProp
             <Pie
               data={data}
               cx="50%"
-              cy="50%"
+              cy="55%"
               labelLine={false}
               label={({ percentage }) => `${percentage}%`}
               outerRadius={100}
@@ -73,15 +90,7 @@ export default function CategoryDistribution({ stats }: CategoryDistributionProp
               ))}
             </Pie>
             <Tooltip content={<CustomTooltip />} />
-            <Legend 
-              verticalAlign="bottom" 
-              height={36}
-              formatter={(value, entry: any) => (
-                <span className="text-sm text-gray-700 dark:text-gray-300">
-                  {value} ({entry.payload.value})
-                </span>
-              )}
-            />
+            <Legend content={<CustomLegend />} />
           </PieChart>
         </ResponsiveContainer>
       </div>

@@ -22,7 +22,7 @@ export default function DatasetListTable({
   const SortButton = ({ field, children }: { field: typeof sortBy; children: React.ReactNode }) => (
     <button
       onClick={() => onSort(field)}
-      className="inline-flex items-center gap-1 hover:text-gray-900 dark:hover:text-gray-100 transition-colors"
+      className="inline-flex items-center gap-1 hover:text-[rgb(var(--foreground))] transition-colors"
     >
       {children}
       {sortBy === field && <SortIcon className="h-4 w-4" />}
@@ -32,41 +32,41 @@ export default function DatasetListTable({
   return (
     <div className="overflow-x-auto -mx-6 px-6">
       <table className="w-full">
-        <thead className="border-b border-gray-200 dark:border-gray-700">
+        <thead className="border-b border-[rgb(var(--border))]">
           <tr>
-            <th className="pb-3 text-left text-xs font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wider">
+            <th className="pb-3 text-left text-xs font-medium text-[rgb(var(--text-muted))] uppercase tracking-wider">
               <SortButton field="filename">Filename</SortButton>
             </th>
-            <th className="pb-3 text-left text-xs font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wider">
+            <th className="pb-3 text-left text-xs font-medium text-[rgb(var(--text-muted))] uppercase tracking-wider">
               Category
             </th>
-            <th className="pb-3 text-right text-xs font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wider">
+            <th className="pb-3 text-right text-xs font-medium text-[rgb(var(--text-muted))] uppercase tracking-wider">
               <SortButton field="cells">Cells</SortButton>
             </th>
-            <th className="pb-3 text-right text-xs font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wider">
+            <th className="pb-3 text-right text-xs font-medium text-[rgb(var(--text-muted))] uppercase tracking-wider">
               <SortButton field="peaks">Peaks</SortButton>
             </th>
-            <th className="pb-3 text-right text-xs font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wider">
+            <th className="pb-3 text-right text-xs font-medium text-[rgb(var(--text-muted))] uppercase tracking-wider">
               <SortButton field="size">Size</SortButton>
             </th>
-            <th className="pb-3 text-left text-xs font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wider">
+            <th className="pb-3 text-left text-xs font-medium text-[rgb(var(--text-muted))] uppercase tracking-wider">
               Source
             </th>
-            <th className="pb-3 text-right text-xs font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wider">
+            <th className="pb-3 text-right text-xs font-medium text-[rgb(var(--text-muted))] uppercase tracking-wider">
               Actions
             </th>
           </tr>
         </thead>
-        <tbody className="divide-y divide-gray-200 dark:divide-gray-700">
+        <tbody className="divide-y divide-[rgb(var(--border))]">
           {datasets.map((dataset) => (
-            <tr key={dataset.id} className="hover:bg-gray-50 dark:hover:bg-gray-800/50 transition-colors">
+            <tr key={dataset.id} className="hover:bg-[rgb(var(--muted))] transition-colors">
               <td className="py-4 pr-4">
                 <div className="max-w-md">
-                  <p className="text-sm font-medium text-gray-900 dark:text-gray-100 truncate">
+                  <p className="text-sm font-medium text-[rgb(var(--foreground))] truncate">
                     {dataset.dataFileName}
                   </p>
                   {dataset.gsmId && (
-                    <p className="text-xs text-gray-500 dark:text-gray-400">
+                    <p className="text-xs text-[rgb(var(--muted-foreground))]">
                       {dataset.gsmId}
                     </p>
                   )}
@@ -77,17 +77,17 @@ export default function DatasetListTable({
                   {dataset.category}
                 </Badge>
               </td>
-              <td className="py-4 pr-4 text-right text-sm text-gray-900 dark:text-gray-100">
+              <td className="py-4 pr-4 text-right text-sm text-[rgb(var(--foreground))]">
                 {formatNumber(dataset.nCells)}
               </td>
-              <td className="py-4 pr-4 text-right text-sm text-gray-900 dark:text-gray-100">
+              <td className="py-4 pr-4 text-right text-sm text-[rgb(var(--foreground))]">
                 {formatNumber(dataset.nPeaks)}
               </td>
-              <td className="py-4 pr-4 text-right text-sm text-gray-900 dark:text-gray-100">
+              <td className="py-4 pr-4 text-right text-sm text-[rgb(var(--foreground))]">
                 {formatFileSize(dataset.dataFileSize)}
               </td>
               <td className="py-4 pr-4">
-                <p className="text-sm text-gray-900 dark:text-gray-100 max-w-xs truncate">
+                <p className="text-sm text-[rgb(var(--foreground))] max-w-xs truncate">
                   {dataset.source !== 'Unknown' ? dataset.source : '-'}
                 </p>
               </td>
@@ -96,7 +96,7 @@ export default function DatasetListTable({
                   href={dataset.downloadUrl}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex items-center gap-1.5 text-sm text-blue-600 dark:text-blue-400 hover:text-blue-700 dark:hover:text-blue-300"
+                  className="inline-flex items-center gap-1.5 text-sm text-[rgb(var(--primary))] hover:text-[rgb(var(--primary-hover))] transition-colors"
                 >
                   <Download className="h-4 w-4" />
                   <span className="hidden sm:inline">Download</span>
