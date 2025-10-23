@@ -1,3 +1,4 @@
+
 'use client';
 
 // contexts/ThemeContext.tsx
@@ -12,26 +13,36 @@ interface ThemeContextType {
   mounted: boolean;
 }
 
+// Extend Window interface for TypeScript
+declare global {
+  interface Window {
+    __INITIAL_THEME__?: Theme;
+  }
+}
+
 const ThemeContext = createContext<ThemeContextType | undefined>(undefined);
 
 export function ThemeProvider({ children }: { children: ReactNode }) {
-  const [theme, setTheme] = useState<Theme>('light');
+  // 🔥 KEY FIX: Initialize with the theme set by blocking script
+  const [theme, setTheme] = useState<Theme>(() => {
+    // This runs on client, reads the value set by blocking script
+    if (typeof window !== 'undefined' && window.__INITIAL_THEME__) {
+      return window.__INITIAL_THEME__;
+    }
+    return 'light'; // Fallback (should never happen)
+  });
+  
   const [mounted, setMounted] = useState(false);
 
-  // Initialize theme on mount - runs only once
+  // Mark as mounted (for conditional rendering if needed)
   useEffect(() => {
-    const storedTheme = localStorage.getItem('theme') as Theme | null;
-    const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-    const initialTheme = storedTheme || (prefersDark ? 'dark' : 'light');
-    
-    console.log('Initializing theme:', initialTheme);
-    setTheme(initialTheme);
     setMounted(true);
-  }, []); // ✅ Empty dependency array - runs once
+  }, []);
 
-  // Apply theme whenever it changes
+  // Apply theme changes (after initial load)
   useEffect(() => {
-    console.log('Applying theme to DOM:', theme);
+    if (!mounted) return; // Skip on first render (already set by blocking script)
+    
     const root = document.documentElement;
     
     if (theme === 'dark') {
@@ -39,21 +50,47 @@ export function ThemeProvider({ children }: { children: ReactNode }) {
     } else {
       root.classList.remove('dark');
     }
-  }, [theme]); // ✅ Only runs when theme changes
+    
+    // Save to localStorage
+    try {
+      localStorage.setItem('theme', theme);
+    } catch (error) {
+      console.error('Error saving theme:', error);
+    }
+  }, [theme, mounted]);
+
+  // Listen for system preference changes
+  useEffect(() => {
+    const mediaQuery = window.matchMedia('(prefers-color-scheme: dark)');
+    
+    const handleChange = (e: MediaQueryListEvent) => {
+      // Only auto-switch if user hasn't manually set a preference
+      const hasStoredTheme = localStorage.getItem('theme');
+      if (!hasStoredTheme) {
+        setTheme(e.matches ? 'dark' : 'light');
+      }
+    };
+    
+    mediaQuery.addEventListener('change', handleChange);
+    return () => mediaQuery.removeEventListener('change', handleChange);
+  }, []);
+
+  // Listen for changes in other tabs/windows
+  useEffect(() => {
+    const handleStorageChange = (e: StorageEvent) => {
+      if (e.key === 'theme' && e.newValue) {
+        setTheme(e.newValue as Theme);
+      }
+    };
+    
+    window.addEventListener('storage', handleStorageChange);
+    return () => window.removeEventListener('storage', handleStorageChange);
+  }, []);
 
   // Toggle theme function
   const toggleTheme = () => {
     setTheme(prevTheme => {
       const newTheme = prevTheme === 'light' ? 'dark' : 'light';
-      console.log(`Toggling: ${prevTheme} → ${newTheme}`);
-      
-      // Save to localStorage
-      try {
-        localStorage.setItem('theme', newTheme);
-      } catch (error) {
-        console.error('Error saving theme:', error);
-      }
-      
       return newTheme;
     });
   };
@@ -64,7 +101,7 @@ export function ThemeProvider({ children }: { children: ReactNode }) {
     mounted
   };
 
-  // ✅ ALWAYS render with Provider wrapper
+  // ✅ No conditional rendering needed - theme is synced from blocking script
   return (
     <ThemeContext.Provider value={value}>
       {children}

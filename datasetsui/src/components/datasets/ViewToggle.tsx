@@ -10,14 +10,15 @@ interface ViewToggleProps {
 
 export default function ViewToggle({ mode, onChange }: ViewToggleProps) {
   return (
-    <div className="inline-flex rounded-lg border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-800 p-1">
+    <div className="inline-flex rounded-lg border border-[rgb(var(--border))] bg-[rgb(var(--card))] p-1 transition-all">
       <button
         onClick={() => onChange('grid')}
         className={cn(
-          'inline-flex items-center gap-2 px-3 py-1.5 rounded-md text-sm font-medium transition-colors',
+          'inline-flex items-center gap-2 rounded-md px-3 py-1.5 text-sm font-medium transition-all cursor-pointer border-none outline-none',
+          'focus-visible:outline-2 focus-visible:outline-[rgb(var(--primary))] focus-visible:outline-offset-2',
           mode === 'grid'
-            ? 'bg-blue-600 text-white'
-            : 'text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700'
+            ? 'bg-[rgb(var(--primary))] text-[rgb(var(--primary-foreground))] shadow-sm'
+            : 'bg-transparent text-[rgb(var(--text-secondary))] hover:bg-[rgb(var(--muted))]'
         )}
         aria-label="Grid view"
       >
@@ -27,10 +28,11 @@ export default function ViewToggle({ mode, onChange }: ViewToggleProps) {
       <button
         onClick={() => onChange('table')}
         className={cn(
-          'inline-flex items-center gap-2 px-3 py-1.5 rounded-md text-sm font-medium transition-colors',
+          'inline-flex items-center gap-2 rounded-md px-3 py-1.5 text-sm font-medium transition-all cursor-pointer border-none outline-none',
+          'focus-visible:outline-2 focus-visible:outline-[rgb(var(--primary))] focus-visible:outline-offset-2',
           mode === 'table'
-            ? 'bg-blue-600 text-white'
-            : 'text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700'
+            ? 'bg-[rgb(var(--primary))] text-[rgb(var(--primary-foreground))] shadow-sm'
+            : 'bg-transparent text-[rgb(var(--text-secondary))] hover:bg-[rgb(var(--muted))]'
         )}
         aria-label="Table view"
       >
