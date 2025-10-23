@@ -9,6 +9,7 @@ type Theme = 'light' | 'dark';
 interface ThemeContextType {
   theme: Theme;
   toggleTheme: () => void;
+  mounted: boolean;
 }
 
 const ThemeContext = createContext<ThemeContextType | undefined>(undefined);
@@ -17,45 +18,55 @@ export function ThemeProvider({ children }: { children: ReactNode }) {
   const [theme, setTheme] = useState<Theme>('light');
   const [mounted, setMounted] = useState(false);
 
+  // Initialize theme on mount - runs only once
   useEffect(() => {
-    setMounted(true);
+    const storedTheme = localStorage.getItem('theme') as Theme | null;
+    const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+    const initialTheme = storedTheme || (prefersDark ? 'dark' : 'light');
     
-    // Load theme from localStorage or system preference
-    try {
-      const savedTheme = localStorage.getItem('theme') as Theme | null;
-      if (savedTheme && (savedTheme === 'light' || savedTheme === 'dark')) {
-        setTheme(savedTheme);
-        document.documentElement.classList.toggle('dark', savedTheme === 'dark');
-      } else {
-        // Check system preference
-        const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-        const initialTheme = prefersDark ? 'dark' : 'light';
-        setTheme(initialTheme);
-        document.documentElement.classList.toggle('dark', prefersDark);
-      }
-    } catch (error) {
-      console.error('Error loading theme:', error);
-    }
-  }, []);
+    console.log('Initializing theme:', initialTheme);
+    setTheme(initialTheme);
+    setMounted(true);
+  }, []); // ✅ Empty dependency array - runs once
 
-  const toggleTheme = () => {
-    const newTheme = theme === 'light' ? 'dark' : 'light';
-    setTheme(newTheme);
-    try {
-      localStorage.setItem('theme', newTheme);
-      document.documentElement.classList.toggle('dark', newTheme === 'dark');
-    } catch (error) {
-      console.error('Error saving theme:', error);
+  // Apply theme whenever it changes
+  useEffect(() => {
+    console.log('Applying theme to DOM:', theme);
+    const root = document.documentElement;
+    
+    if (theme === 'dark') {
+      root.classList.add('dark');
+    } else {
+      root.classList.remove('dark');
     }
+  }, [theme]); // ✅ Only runs when theme changes
+
+  // Toggle theme function
+  const toggleTheme = () => {
+    setTheme(prevTheme => {
+      const newTheme = prevTheme === 'light' ? 'dark' : 'light';
+      console.log(`Toggling: ${prevTheme} → ${newTheme}`);
+      
+      // Save to localStorage
+      try {
+        localStorage.setItem('theme', newTheme);
+      } catch (error) {
+        console.error('Error saving theme:', error);
+      }
+      
+      return newTheme;
+    });
   };
 
-  // Don't render children until mounted to prevent hydration mismatch
-  if (!mounted) {
-    return null;
-  }
+  const value = {
+    theme,
+    toggleTheme,
+    mounted
+  };
 
+  // ✅ ALWAYS render with Provider wrapper
   return (
-    <ThemeContext.Provider value={{ theme, toggleTheme }}>
+    <ThemeContext.Provider value={value}>
       {children}
     </ThemeContext.Provider>
   );
