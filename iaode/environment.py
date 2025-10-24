@@ -1,155 +1,51 @@
+#environment.py
 
-import numpy as np
-import torch
-from typing import Optional
-from sklearn.cluster import KMeans
-
-from scipy import sparse
-import warnings
-
-from anndata import AnnData
-
-from .model import iAODEVAE
+from .model import iVAE
 from .mixin import envMixin
+import numpy as np
+from sklearn.cluster import KMeans
+import torch
+from torch.utils.data import DataLoader, TensorDataset
 
 
-class scATACEnvironment(iAODEVAE, envMixin):
-    """
-    Comprehensive training and evaluation environment for scATAC-seq analysis using iAODEVAE.
-    
-    This environment wrapper provides an integrated framework for training the iAODEVAE model
-    on single-cell ATAC-seq (chromatin accessibility) data with automatic evaluation metrics,
-    batch sampling strategies, and performance tracking capabilities.
-    
-    Key Features:
-    - Flexible batch sampling with stratified and random strategies  
-    - Real-time performance evaluation using clustering and correlation metrics
-    - Integration with scanpy ecosystem for single-cell analysis
-    - Support for sparse matrices and large-scale datasets
-    - Comprehensive logging and checkpointing capabilities
-    
-    Parameters
-    ----------
-    adata : AnnData
-        Annotated data object containing scATAC-seq accessibility data.
-        Expected to have peak accessibility counts in specified layer.
-    layer : str
-        Layer name in adata.layers containing the accessibility count matrix.
-        Common choices: 'X', 'counts', 'raw', 'tfidf'
-    batch_percent : float
-        Percentage of total cells to use in each training batch (0.0 to 1.0).
-        Smaller values provide more stochastic training but faster iterations.
-    recon : float
-        Weight coefficient for primary reconstruction loss
-    irecon : float  
-        Weight coefficient for information bottleneck reconstruction loss
-    beta : float
-        Weight coefficient for KL divergence regularization (β-VAE)
-    dip : float
-        Weight coefficient for Disentangled Information Processing loss
-    tc : float
-        Weight coefficient for Total Correlation loss (β-TC-VAE)
-    info : float
-        Weight coefficient for information bottleneck regularization (MMD)
-    hidden_dim : int
-        Dimension of hidden layers in encoder/decoder networks
-    latent_dim : int
-        Dimension of the primary latent representation space
-    i_dim : int
-        Dimension of the interpretable information bottleneck layer
-    use_ode : bool
-        Whether to enable Neural ODE integration for temporal dynamics
-    loss_mode : Literal["mse", "nb", "zinb"]
-        Probabilistic distribution for scATAC-seq data modeling
-    lr : float
-        Learning rate for Adam optimizer
-    vae_reg : float
-        Regularization weight for standard VAE latent representations
-    ode_reg : float  
-        Regularization weight for ODE-integrated latent representations
-    device : torch.device
-        Computing device (CPU/CUDA)
-    reference_clusters : int, optional
-        Number of reference clusters for evaluation. If None, uses latent_dim.
-    random_seed : int, optional
-        Random seed for reproducibility. Default is 42.
-        
-    Attributes
-    ----------
-    accessibility_matrix : np.ndarray
-        Preprocessed scATAC-seq accessibility matrix
-    batch_size : int
-        Computed batch size based on batch_percent
-    reference_labels : np.ndarray
-        Reference cluster labels for evaluation
-    training_scores : list
-        History of evaluation scores during training
-    current_batch_indices : np.ndarray
-        Indices of cells in current training batch
-    
-    Examples
-    --------
-    >>> import scanpy as sc
-    >>> import torch
-    >>> 
-    >>> # Load scATAC-seq data
-    >>> adata = sc.read_h5ad("scatac_data.h5ad")
-    >>> 
-    >>> # Initialize environment
-    >>> env = scATACEnvironment(
-    ...     adata=adata, layer="counts", batch_percent=0.1,
-    ...     recon=1.0, irecon=0.5, beta=1.0, dip=0.1, tc=0.1, info=0.1,
-    ...     hidden_dim=512, latent_dim=64, i_dim=16, use_ode=True,
-    ...     loss_mode="zinb", lr=1e-3, vae_reg=0.7, ode_reg=0.3,
-    ...     device=torch.device("cuda")
-    ... )
-    >>> 
-    >>> # Training loop
-    >>> for epoch in range(100):
-    ...     batch_data = env.sample_training_batch()
-    ...     env.train_and_evaluate(batch_data)
-    """
-    
+class Env(iVAE, envMixin):
     def __init__(
         self,
-        adata: AnnData,
-        layer: str,
-        batch_percent: float,
-        recon: float,
-        irecon: float,
-        beta: float,
-        dip: float,
-        tc: float,
-        info: float,
-        hidden_dim: int,
-        latent_dim: int,
-        i_dim: int,
-        use_ode: bool,
-        loss_mode: str,
-        lr: float,
-        vae_reg: float,
-        ode_reg: float,
-        device: torch.device,
-        reference_clusters: Optional[int] = None,
-        random_seed: int = 42,
+        adata,
+        layer,
+        recon,
+        irecon,
+        beta,
+        dip,
+        tc,
+        info,
+        hidden_dim,
+        latent_dim,
+        i_dim,
+        use_ode,
+        loss_mode,
+        lr,
+        vae_reg,
+        ode_reg,
+        device,
+        train_size=0.7,        # NEW: train split ratio
+        val_size=0.15,         # NEW: validation split ratio
+        test_size=0.15,        # NEW: test split ratio
+        batch_size=128,        # NEW: explicit batch size
+        random_seed=42,        # NEW: for reproducibility
         *args,
         **kwargs,
-    ) -> None:
-        
-        # Set random seed for reproducibility
-        np.random.seed(random_seed)
-        torch.manual_seed(random_seed)
-        
-        # Store configuration
+    ):
+        # NEW: Store split parameters
+        self.train_size = train_size
+        self.val_size = val_size
+        self.test_size = test_size
+        self.batch_size_fixed = batch_size  # Renamed to avoid confusion
         self.random_seed = random_seed
         
-        # Process and register scATAC-seq data
-        self._preprocess_scatac_data(adata, layer, reference_clusters or latent_dim)
+        # Register data with splits
+        self._register_anndata(adata, layer, latent_dim, loss_mode)
         
-        # Calculate batch size
-        self.batch_size = max(1, int(batch_percent * self.n_cells))
-        
-        # Initialize parent iAODEVAE model
         super().__init__(
             recon=recon,
             irecon=irecon,
@@ -157,7 +53,7 @@ class scATACEnvironment(iAODEVAE, envMixin):
             dip=dip,
             tc=tc,
             info=info,
-            state_dim=self.n_peaks,
+            state_dim=self.n_var,
             hidden_dim=hidden_dim,
             latent_dim=latent_dim,
             i_dim=i_dim,
@@ -167,261 +63,210 @@ class scATACEnvironment(iAODEVAE, envMixin):
             vae_reg=vae_reg,
             ode_reg=ode_reg,
             device=device,
-            *args,
-            **kwargs
         )
         
-        # Initialize evaluation tracking
-        self.training_scores = []
-        self.current_batch_indices = None
+        # NEW: Initialize tracking
+        self.score = []
+        self.train_losses = []
+        self.val_losses = []
+        self.val_scores = []
         
-    
-    def _preprocess_scatac_data(
-        self, adata: AnnData, layer: str, n_reference_clusters: int
-    ) -> None:
-        """
-        Preprocess scATAC-seq data.
+        # NEW: Early stopping parameters
+        self.best_val_loss = float('inf')
+        self.best_model_state = None
+        self.patience_counter = 0
+
+    def _register_anndata(self, adata, layer: str, latent_dim: int, loss_mode: str):
+        """Register AnnData and create train/val/test splits"""
         
-        Parameters
-        ----------
-        adata : AnnData
-            Input annotated data object
-        layer : str
-            Data layer to extract
-        n_reference_clusters : int
-            Number of reference clusters for evaluation
-        """
-        # Extract accessibility data
-        if layer not in adata.layers:
-            adata.layers[layer] = adata.X.copy()
-        if sparse.issparse(adata.layers[layer]):
-            accessibility_data = adata.layers[layer].toarray()
+        # Load data based on layer specification
+        if layer == 'X':
+            data = adata.X
         else:
-            accessibility_data = adata.layers[layer].copy()
+            if layer not in adata.layers:
+                raise ValueError(f"Layer '{layer}' not found in adata.layers. Available layers: {list(adata.layers.keys())}")
+            data = adata.layers[layer]
         
-        # Store original data info
-        original_shape = accessibility_data.shape
+        # Convert to dense array if sparse
+        if hasattr(data, 'toarray'):
+            data = data.toarray()
         
-        # Log transformation for count data stabilization
-        self.accessibility_matrix = np.log1p(accessibility_data)
+        # Check if data appears to be raw counts
+        max_val = data.max()
+        has_decimals = np.any((data % 1) != 0)
         
-        # Store dimensions
-        self.n_cells, self.n_peaks = self.accessibility_matrix.shape
+        if has_decimals or max_val < 10:
+            print(f"\n⚠️  Warning: Layer '{layer}' may not contain raw counts.")
+            print(f"   Max value: {max_val:.2f}, Contains decimals: {has_decimals}")
+            print(f"   Consider using raw count data for better results.\n")
         
-        # Generate reference clusters for evaluation
-        self.reference_labels = self._generate_reference_clusters(n_reference_clusters)
+        # Apply log1p transformation
+        self.X = np.log1p(data) if loss_mode == 'mse' else data
         
-        # Log preprocessing summary
-        print(f"Data preprocessing complete:")
-        print(f"  Original shape: {original_shape}")
-        print(f"  Final shape: {self.accessibility_matrix.shape}")
-        print(f"  Generated {n_reference_clusters} reference clusters")
-    
-    def _generate_reference_clusters(self, n_clusters: int) -> np.ndarray:
-        """
-        Generate reference cluster labels for evaluation metrics.
+        self.n_obs = adata.shape[0]
+        self.n_var = adata.shape[1]
         
-        Parameters
-        ----------
-        n_clusters : int
-            Number of clusters to generate
-            
-        Returns
-        -------
-        np.ndarray
-            Cluster labels for each cell
-        """
-        try:
-            # Use subset of data for faster clustering if dataset is large
-            if self.n_cells > 10000:
-                subset_size = min(5000, self.n_cells)
-                subset_indices = np.random.choice(self.n_cells, subset_size, replace=False)
-                subset_data = self.accessibility_matrix[subset_indices, :]
-                
-                # Cluster subset
-                kmeans = KMeans(n_clusters=n_clusters, random_state=self.random_seed, n_init=10)
-                subset_labels = kmeans.fit_predict(subset_data)
-                
-                # Assign labels to full dataset
-                full_labels = kmeans.predict(self.accessibility_matrix)
-            else:
-                # Direct clustering for smaller datasets
-                kmeans = KMeans(n_clusters=n_clusters, random_state=self.random_seed, n_init=10)
-                full_labels = kmeans.fit_predict(self.accessibility_matrix)
-            
-            return full_labels
-        except Exception as e:
-            warnings.warn(f"Reference clustering failed: {e}. Using random labels.")
-            return np.random.randint(0, n_clusters, self.n_cells)
-    
-    def sample_training_batch(self, strategy: str = "random") -> np.ndarray:
-        """
-        Sample a batch of cells for training with different sampling strategies.
-        
-        Parameters
-        ----------
-        strategy : str, optional
-            Sampling strategy: "random", "stratified", or "balanced". Default is "random".
-            
-        Returns
-        -------
-        np.ndarray
-            Batch of accessibility data of shape (batch_size, n_peaks)
-            
-        Notes
-        -----
-        - "random": Uniform random sampling
-        - "stratified": Sample proportionally from reference clusters  
-        - "balanced": Equal sampling from each reference cluster
-        """
-        if strategy == "stratified":
-            batch_indices = self._stratified_sampling()
-        elif strategy == "balanced":
-            batch_indices = self._balanced_sampling()
-        else:  # random
-            batch_indices = self._random_sampling()
-        
-        self.current_batch_indices = batch_indices
-        return self.accessibility_matrix[batch_indices, :]
-    
-    def _random_sampling(self) -> np.ndarray:
-        """Random uniform sampling of cells."""
-        return np.random.choice(self.n_cells, size=self.batch_size, replace=False)
-    
-    def _stratified_sampling(self) -> np.ndarray:
-        """Stratified sampling proportional to cluster sizes."""
-        unique_labels, label_counts = np.unique(self.reference_labels, return_counts=True)
-        proportions = label_counts / len(self.reference_labels)
-        
-        batch_indices = []
-        for label, prop in zip(unique_labels, proportions):
-            n_samples = max(1, int(prop * self.batch_size))
-            label_indices = np.where(self.reference_labels == label)[0]
-            
-            if len(label_indices) >= n_samples:
-                sampled = np.random.choice(label_indices, n_samples, replace=False)
-            else:
-                sampled = np.random.choice(label_indices, n_samples, replace=True)
-            
-            batch_indices.extend(sampled)
-        
-        # Adjust to exact batch size
-        if len(batch_indices) > self.batch_size:
-            batch_indices = np.random.choice(batch_indices, self.batch_size, replace=False)
-        elif len(batch_indices) < self.batch_size:
-            remaining = self.batch_size - len(batch_indices)
-            extra_indices = np.random.choice(self.n_cells, remaining, replace=False)
-            batch_indices.extend(extra_indices)
-        
-        return np.array(batch_indices)
-    
-    def _balanced_sampling(self) -> np.ndarray:
-        """Balanced sampling with equal representation from each cluster."""
-        unique_labels = np.unique(self.reference_labels)
-        samples_per_cluster = self.batch_size // len(unique_labels)
-        
-        batch_indices = []
-        for label in unique_labels:
-            label_indices = np.where(self.reference_labels == label)[0]
-            
-            if len(label_indices) >= samples_per_cluster:
-                sampled = np.random.choice(label_indices, samples_per_cluster, replace=False)
-            else:
-                sampled = np.random.choice(label_indices, samples_per_cluster, replace=True)
-            
-            batch_indices.extend(sampled)
-        
-        # Handle remainder
-        remaining = self.batch_size - len(batch_indices)
-        if remaining > 0:
-            extra_indices = np.random.choice(self.n_cells, remaining, replace=False)
-            batch_indices.extend(extra_indices)
-        
-        return np.array(batch_indices[:self.batch_size])
-    
-    def train_and_evaluate(
-        self, batch_data: np.ndarray, compute_full_metrics: bool = False
-    ) -> dict:
-        """
-        Perform one training step and evaluate model performance.
-        
-        Parameters
-        ----------
-        batch_data : np.ndarray
-            Training batch of shape (batch_size, n_peaks)
-        compute_full_metrics : bool, optional
-            Whether to compute metrics on full dataset. Default is False (batch only).
-            
-        Returns
-        -------
-        dict
-            Dictionary containing training losses and evaluation metrics
-        """
-        # Perform training step
-        training_losses = self.train_step(batch_data)
-        
-        # Extract learned representations
-        if compute_full_metrics:
-            # Evaluate on full dataset (expensive but comprehensive)
-            latent_repr = self.extract_latent_representations(self.accessibility_matrix)
+        # Generate labels for evaluation
+        if 'cell_type' in adata.obs.columns:
+            from sklearn.preprocessing import LabelEncoder
+            self.labels = LabelEncoder().fit_transform(adata.obs['cell_type'])
         else:
-            # Evaluate on current batch only (faster)
-            latent_repr = self.extract_latent_representations(batch_data)
+            self.labels = KMeans(latent_dim, random_state=self.random_seed).fit_predict(self.X)
         
-        # Compute evaluation metrics
-        evaluation_scores = self._compute_evaluation_metrics(
-            latent_repr
+        # Create train/val/test splits
+        np.random.seed(self.random_seed)
+        indices = np.random.permutation(self.n_obs)
+        
+        n_train = int(self.train_size * self.n_obs)
+        n_val = int(self.val_size * self.n_obs)
+        
+        self.train_idx = indices[:n_train]
+        self.val_idx = indices[n_train:n_train + n_val]
+        self.test_idx = indices[n_train + n_val:]
+        
+        # Split data
+        self.X_train = self.X[self.train_idx]
+        self.X_val = self.X[self.val_idx]
+        self.X_test = self.X[self.test_idx]
+        
+        self.labels_train = self.labels[self.train_idx]
+        self.labels_val = self.labels[self.val_idx]
+        self.labels_test = self.labels[self.test_idx]
+        
+        print("\nData split:")
+        print(f"  Train: {len(self.train_idx):,} cells ({len(self.train_idx)/self.n_obs*100:.1f}%)")
+        print(f"  Val:   {len(self.val_idx):,} cells ({len(self.val_idx)/self.n_obs*100:.1f}%)")
+        print(f"  Test:  {len(self.test_idx):,} cells ({len(self.test_idx)/self.n_obs*100:.1f}%)")
+        
+        # Create PyTorch DataLoaders
+        self._create_dataloaders()
+        
+        return
+
+    # NEW: Create DataLoaders
+    def _create_dataloaders(self):
+        """Create PyTorch DataLoaders for train/val/test sets"""
+        
+        # Convert to tensors
+        X_train_tensor = torch.FloatTensor(self.X_train)
+        X_val_tensor = torch.FloatTensor(self.X_val)
+        X_test_tensor = torch.FloatTensor(self.X_test)
+        
+        # Create datasets
+        train_dataset = TensorDataset(X_train_tensor)
+        val_dataset = TensorDataset(X_val_tensor)
+        test_dataset = TensorDataset(X_test_tensor)
+        
+        # Create dataloaders
+        self.train_loader = DataLoader(
+            train_dataset,
+            batch_size=self.batch_size_fixed,
+            shuffle=True,
+            drop_last=True  # Drop last incomplete batch
         )
         
-        # Store for history tracking
-        self.training_scores.append(evaluation_scores)
+        self.val_loader = DataLoader(
+            val_dataset,
+            batch_size=self.batch_size_fixed,
+            shuffle=False,
+            drop_last=False
+        )
         
-        return evaluation_scores
-    
-    def _compute_evaluation_metrics(
-        self, latent_repr: np.ndarray
-    ) -> dict:
+        self.test_loader = DataLoader(
+            test_dataset,
+            batch_size=self.batch_size_fixed,
+            shuffle=False,
+            drop_last=False
+        )
+        
+        print(f"  Batches per epoch: {len(self.train_loader)}")
+
+    # NEW: Training for one full epoch
+    def train_epoch(self):
+        """Train for one complete epoch through training data"""
+        
+        self.train()  # Set model to training mode
+        epoch_losses = []
+        
+        for batch_data, in self.train_loader:
+            batch_data = batch_data.to(self.device)
+            self.update(batch_data)
+            epoch_losses.append(self.loss[-1][0])  # Get last loss
+        
+        avg_train_loss = np.mean(epoch_losses)
+        self.train_losses.append(avg_train_loss)
+        
+        return avg_train_loss
+
+    # NEW: Validation evaluation
+    def validate(self):
+        """Evaluate on validation set"""
+        
+        self.eval()  # Set model to evaluation mode
+        val_losses = []
+        all_latents = []
+        
+        with torch.no_grad():
+            for batch_data, in self.val_loader:
+                batch_data = batch_data.to(self.device)
+                
+                # Forward pass (compute loss without updating)
+                loss_value = self._compute_loss_only(batch_data)
+                val_losses.append(loss_value)
+                
+                # Get latent representations
+                latent = self.take_latent(batch_data)
+                all_latents.append(latent)
+        
+        # Average validation loss
+        avg_val_loss = np.mean(val_losses)
+        self.val_losses.append(avg_val_loss)
+        
+        # Compute metrics on validation latents
+        all_latents = np.concatenate(all_latents, axis=0)
+        val_score = self._calc_score_with_labels(all_latents, self.labels_val)
+        self.val_scores.append(val_score)
+        
+        return avg_val_loss, val_score
+
+    # NEW: Check early stopping
+    def check_early_stopping(self, val_loss, patience=20):
         """
-        Compute comprehensive evaluation metrics for learned representations.
+        Check if training should stop early
         
-        Parameters
-        ----------
-        latent_repr : np.ndarray
-            Latent representations of shape (n_cells, latent_dim)
-        interpretable_repr : np.ndarray
-            Interpretable embeddings of shape (n_cells, i_dim)
-        labels : np.ndarray
-            Reference cluster labels
+        Args:
+            val_loss: Current validation loss
+            patience: Number of epochs to wait before stopping
             
-        Returns
-        -------
-        dict
-            Dictionary of evaluation metrics
+        Returns:
+            should_stop: Boolean indicating if training should stop
         """
-        try:
-            # Compute clustering and correlation scores from envMixin
-            ARI, NMI, ASW, CAL, DAV, COR = self._calc_score(latent_repr)
-            return {
-                'ARI': ARI,
-                'NMI': NMI,
-                'ASW': ASW,
-                'CAL': CAL,
-                'DAV': DAV,
-                'COR': COR,
+        
+        if val_loss < self.best_val_loss:
+            # Improvement
+            self.best_val_loss = val_loss
+            self.best_model_state = {
+                k: v.cpu().clone() for k, v in self.state_dict().items()
             }
-        except Exception as e:
-            warnings.warn(f"Evaluation metrics computation failed: {e}")
-            return {
-                'ARI': 0.0, 'NMI': 0.0, 'ASW': 0.0,
-                'CAL': 0.0, 'DAV': 0.0, 'COR': 0.0,
-            }
+            self.patience_counter = 0
+            return False, True  # Continue training, improved
+        else:
+            # No improvement
+            self.patience_counter += 1
+            
+            if self.patience_counter >= patience:
+                return True, False  # Stop training, not improved
+            else:
+                return False, False  # Continue training, not improved
 
-    # Legacy API compatibility methods
-    def load_data(self) -> np.ndarray:
-        """Legacy method - use sample_training_batch() instead."""
-        return self.sample_training_batch()
-    
-    def step(self, data: np.ndarray) -> None:
-        """Legacy method - use train_and_evaluate() instead."""
-        self.train_and_evaluate(data)
+    # NEW: Load best model
+    def load_best_model(self):
+        """Load the best model from early stopping checkpoint"""
+        if self.best_model_state is not None:
+            self.load_state_dict(self.best_model_state)
+            print(f"\nLoaded best model with validation loss: {self.best_val_loss:.4f}")
+        else:
+            print("\nWarning: No best model state found!")
 
+
+        
