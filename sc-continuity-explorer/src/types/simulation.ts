@@ -18,6 +18,12 @@ export interface SimulationResult {
   metrics: MetricsData;
 }
 
+/**
+ * Alias for SimulationResult - used in UI components
+ * Provides semantic clarity for data consumption
+ */
+export type SimulationData = SimulationResult;
+
 export interface SimulationParameters {
   trajectory_type: TrajectoryType;
   continuity: number;
@@ -31,10 +37,14 @@ export type TrajectoryType = 'linear' | 'branching' | 'cyclic' | 'discrete';
 
 export type Point2D = [number, number];
 
+// Support both old format (array) and new format (object with shape)
+export type EmbeddingArray = Point2D[];
+
 export interface EmbeddingData {
-  pca?: Point2D[];
-  tsne?: Point2D[];
-  umap?: Point2D[];
+  pca?: EmbeddingArray;
+  tsne?: EmbeddingArray;
+  umap?: EmbeddingArray;
+  [key: string]: EmbeddingArray | undefined;
 }
 
 export interface SimulationMetadata {
@@ -42,6 +52,7 @@ export interface SimulationMetadata {
   cell_types: string[];
   n_cells: number;
   n_dims: number;
+  n_timepoints?: number;
   trajectory_type: TrajectoryType;
   branch_id?: number[];
   cycle_phase?: number[];
@@ -49,15 +60,28 @@ export interface SimulationMetadata {
 }
 
 export interface MetricsData {
-  spectral_decay: number;
-  anisotropy: number;
-  participation_ratio: number;
-  trajectory_directionality: number;
-  manifold_dimensionality: number;
-  noise_resilience: number;
+  // Core trajectory metrics
+  mean_branch_length?: number;
+  n_branch_points?: number;
+  n_end_points?: number;
+  global_continuity?: number;
+  local_continuity?: number;
+  trajectory_coverage?: number;
+  
+  // Spectral and structure metrics
+  spectral_decay?: number;
+  anisotropy?: number;
+  participation_ratio?: number;
+  trajectory_directionality?: number;
+  manifold_dimensionality?: number;
+  noise_resilience?: number;
+  
+  // Embedding-specific variance (optional)
   variance_pca?: number;
   variance_tsne?: number;
   variance_umap?: number;
+  
+  // Allow additional metrics
   [key: string]: number | undefined;
 }
 
@@ -78,7 +102,7 @@ export interface DataManifest {
     n_dims: number[];
     replicates: number[];
   };
-  embedding_methods: string[];
+  embedding_methods?: string[];
 }
 
 export interface MetricsSummary {
