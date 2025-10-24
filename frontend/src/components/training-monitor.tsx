@@ -31,11 +31,18 @@ export function TrainingMonitor() {
     // Initial fetch
     fetchState();
 
-    // Poll every 2 seconds
-    const interval = setInterval(fetchState, 2000);
+    // Dynamic polling interval based on training status
+    const getPollingInterval = () => {
+      if (!state) return 5000; // 5s when initializing
+      if (state.status === 'training' || state.status === 'initializing') return 3000; // 3s during training
+      if (state.status === 'completed' || state.status === 'error') return 10000; // 10s when done
+      return 5000; // 5s for idle
+    };
+
+    const interval = setInterval(fetchState, getPollingInterval());
 
     return () => clearInterval(interval);
-  }, [state]);
+  }, [state?.status]); // Re-create interval when status changes
 
   const handleDownload = async (type: 'latent' | 'interpretable') => {
     setDownloading(type);
@@ -68,10 +75,10 @@ export function TrainingMonitor() {
         <div className="flex items-center justify-between">
           <span className="text-sm font-medium">Status:</span>
           <span className={`px-3 py-1 rounded-full text-sm font-medium ${
-            isCompleted ? 'badge-status-success' :
-            isTraining ? 'badge-status-info' :
-            state.status === 'error' ? 'badge-status-error' :
-            'badge-status-idle'
+            isCompleted ? 'badge-success' :
+            isTraining ? 'badge-info' :
+            state.status === 'error' ? 'badge-error' :
+            'badge-idle'
           }`}>
             {state.status}
           </span>
@@ -85,25 +92,19 @@ export function TrainingMonitor() {
         )}
 
         {state.message && (
-          <div className="p-3 rounded-lg" style={{
-            backgroundColor: 'var(--color-card)',
-            border: '1px solid var(--color-border)'
-          }}>
+          <div className="p-3 rounded-lg card-inner">
             <p className="text-sm">{state.message}</p>
           </div>
         )}
 
         {isTraining && (
-          <div className="w-full rounded-full h-2 overflow-hidden" style={{ backgroundColor: 'var(--color-secondary)' }}>
-            <div className="h-full animate-pulse" style={{ 
-              backgroundColor: 'var(--color-primary)',
-              width: '100%'
-            }} />
+          <div className="w-full rounded-full h-2 overflow-hidden progress-bar">
+            <div className="h-full animate-pulse progress-fill" />
           </div>
         )}
 
         {isCompleted && (
-          <div className="space-y-2 pt-4" style={{ borderTop: '1px solid var(--color-border)' }}>
+          <div className="space-y-2 pt-4 border-t-divider">
             <h3 className="text-sm font-medium mb-2">Download Embeddings</h3>
             <div className="grid grid-cols-2 gap-3">
               <button
@@ -116,11 +117,7 @@ export function TrainingMonitor() {
               <button
                 onClick={() => handleDownload('interpretable')}
                 disabled={downloading !== null}
-                className="px-4 py-2 rounded-lg text-sm font-medium transition-colors disabled:opacity-50"
-                style={{
-                  backgroundColor: 'var(--color-purple-text)',
-                  color: 'white'
-                }}
+                className="px-4 py-2 rounded-lg text-sm font-medium transition-colors disabled:opacity-50 btn-purple"
               >
                 {downloading === 'interpretable' ? 'Downloading...' : 'Interpretable'}
               </button>
