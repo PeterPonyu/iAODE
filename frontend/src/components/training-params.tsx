@@ -46,12 +46,12 @@ export function TrainingParams({ onSubmit, disabled }: TrainingParamsProps) {
   };
 
   return (
-    <form onSubmit={handleSubmit} className="space-y-6 p-6 bg-white dark:bg-gray-800 rounded-lg border border-gray-200 dark:border-gray-700">
+    <form onSubmit={handleSubmit} className="space-y-6 p-6 rounded-lg card">
       <h2 className="text-xl font-semibold">Training Configuration</h2>
 
       {/* Model Architecture */}
       <div className="space-y-4">
-        <h3 className="font-medium text-sm text-gray-700 dark:text-gray-300">Model Architecture</h3>
+        <h3 className="font-medium text-sm text-muted">Model Architecture</h3>
         
         <div className="grid grid-cols-2 gap-4">
           <div>
@@ -60,9 +60,9 @@ export function TrainingParams({ onSubmit, disabled }: TrainingParamsProps) {
               type="number"
               value={agentParams.hidden_dim}
               onChange={(e) => setAgentParams({...agentParams, hidden_dim: Number(e.target.value)})}
-              className="w-full px-3 py-2 bg-white dark:bg-gray-900 border border-gray-300 dark:border-gray-600 rounded-lg"
+              className="w-full px-3 py-2 rounded-lg"
             />
-            <p className="text-xs text-gray-500 mt-1">Size of hidden layers in encoder/decoder</p>
+            <p className="text-xs text-muted mt-1">Size of hidden layers in encoder/decoder</p>
           </div>
 
           <div>
@@ -71,9 +71,9 @@ export function TrainingParams({ onSubmit, disabled }: TrainingParamsProps) {
               type="number"
               value={agentParams.latent_dim}
               onChange={(e) => setAgentParams({...agentParams, latent_dim: Number(e.target.value)})}
-              className="w-full px-3 py-2 bg-white dark:bg-gray-900 border border-gray-300 dark:border-gray-600 rounded-lg"
+              className="w-full px-3 py-2 rounded-lg"
             />
-            <p className="text-xs text-gray-500 mt-1">Dimension of latent space</p>
+            <p className="text-xs text-muted mt-1">Dimension of latent space</p>
           </div>
 
           <div>
@@ -82,9 +82,9 @@ export function TrainingParams({ onSubmit, disabled }: TrainingParamsProps) {
               type="number"
               value={agentParams.i_dim}
               onChange={(e) => setAgentParams({...agentParams, i_dim: Number(e.target.value)})}
-              className="w-full px-3 py-2 bg-white dark:bg-gray-900 border border-gray-300 dark:border-gray-600 rounded-lg"
+              className="w-full px-3 py-2 rounded-lg"
             />
-            <p className="text-xs text-gray-500 mt-1">Dimension of interpretable embedding</p>
+            <p className="text-xs text-muted mt-1">Dimension of interpretable embedding</p>
           </div>
 
           <div>
@@ -93,17 +93,17 @@ export function TrainingParams({ onSubmit, disabled }: TrainingParamsProps) {
               type="text"
               value={agentParams.layer}
               onChange={(e) => setAgentParams({...agentParams, layer: e.target.value})}
-              className="w-full px-3 py-2 bg-white dark:bg-gray-900 border border-gray-300 dark:border-gray-600 rounded-lg"
+              className="w-full px-3 py-2 rounded-lg"
               placeholder="X or counts"
             />
-            <p className="text-xs text-gray-500 mt-1">AnnData layer to use (X for .X)</p>
+            <p className="text-xs text-muted mt-1">AnnData layer to use (X for .X)</p>
           </div>
         </div>
       </div>
 
       {/* Loss Configuration */}
       <div className="space-y-4">
-        <h3 className="font-medium text-sm text-gray-700 dark:text-gray-300">Loss Configuration</h3>
+        <h3 className="font-medium text-sm text-muted">Loss Configuration</h3>
         
         <div className="grid grid-cols-2 gap-4">
           <div>
@@ -111,13 +111,13 @@ export function TrainingParams({ onSubmit, disabled }: TrainingParamsProps) {
             <select
               value={agentParams.loss_mode}
               onChange={(e) => setAgentParams({...agentParams, loss_mode: e.target.value as 'mse' | 'nb' | 'zinb'})}
-              className="w-full px-3 py-2 bg-white dark:bg-gray-900 border border-gray-300 dark:border-gray-600 rounded-lg"
+              className="w-full px-3 py-2 rounded-lg"
             >
               <option value="mse">MSE (Mean Squared Error)</option>
               <option value="nb">NB (Negative Binomial)</option>
               <option value="zinb">ZINB (Zero-Inflated NB)</option>
             </select>
-            <p className="text-xs text-gray-500 mt-1">Reconstruction loss type</p>
+            <p className="text-xs text-muted mt-1">Reconstruction loss type</p>
           </div>
 
           <div>
@@ -127,9 +127,9 @@ export function TrainingParams({ onSubmit, disabled }: TrainingParamsProps) {
               step="0.1"
               value={agentParams.recon}
               onChange={(e) => setAgentParams({...agentParams, recon: Number(e.target.value)})}
-              className="w-full px-3 py-2 bg-white dark:bg-gray-900 border border-gray-300 dark:border-gray-600 rounded-lg"
+              className="w-full px-3 py-2 rounded-lg"
             />
-            <p className="text-xs text-gray-500 mt-1">Weight for reconstruction loss</p>
+            <p className="text-xs text-muted mt-1">Weight for reconstruction loss</p>
           </div>
 
           <div>
@@ -139,9 +139,9 @@ export function TrainingParams({ onSubmit, disabled }: TrainingParamsProps) {
               step="0.1"
               value={agentParams.beta}
               onChange={(e) => setAgentParams({...agentParams, beta: Number(e.target.value)})}
-              className="w-full px-3 py-2 bg-white dark:bg-gray-900 border border-gray-300 dark:border-gray-600 rounded-lg"
+              className="w-full px-3 py-2 rounded-lg"
             />
-            <p className="text-xs text-gray-500 mt-1">Beta-VAE regularization weight</p>
+            <p className="text-xs text-muted mt-1">Beta-VAE regularization weight</p>
           </div>
 
           <div>
@@ -151,16 +151,16 @@ export function TrainingParams({ onSubmit, disabled }: TrainingParamsProps) {
               step="0.1"
               value={agentParams.irecon}
               onChange={(e) => setAgentParams({...agentParams, irecon: Number(e.target.value)})}
-              className="w-full px-3 py-2 bg-white dark:bg-gray-900 border border-gray-300 dark:border-gray-600 rounded-lg"
+              className="w-full px-3 py-2 rounded-lg"
             />
-            <p className="text-xs text-gray-500 mt-1">Weight for interpretable reconstruction</p>
+            <p className="text-xs text-muted mt-1">Weight for interpretable reconstruction</p>
           </div>
         </div>
       </div>
 
       {/* Training Settings */}
       <div className="space-y-4">
-        <h3 className="font-medium text-sm text-gray-700 dark:text-gray-300">Training Settings</h3>
+        <h3 className="font-medium text-sm text-muted">Training Settings</h3>
         
         <div className="grid grid-cols-2 gap-4">
           <div>
@@ -170,9 +170,9 @@ export function TrainingParams({ onSubmit, disabled }: TrainingParamsProps) {
               step="0.0001"
               value={agentParams.lr}
               onChange={(e) => setAgentParams({...agentParams, lr: Number(e.target.value)})}
-              className="w-full px-3 py-2 bg-white dark:bg-gray-900 border border-gray-300 dark:border-gray-600 rounded-lg"
+              className="w-full px-3 py-2 rounded-lg"
             />
-            <p className="text-xs text-gray-500 mt-1">Optimizer learning rate</p>
+            <p className="text-xs text-muted mt-1">Optimizer learning rate</p>
           </div>
 
           <div>
@@ -181,9 +181,9 @@ export function TrainingParams({ onSubmit, disabled }: TrainingParamsProps) {
               type="number"
               value={agentParams.batch_size}
               onChange={(e) => setAgentParams({...agentParams, batch_size: Number(e.target.value)})}
-              className="w-full px-3 py-2 bg-white dark:bg-gray-900 border border-gray-300 dark:border-gray-600 rounded-lg"
+              className="w-full px-3 py-2 rounded-lg"
             />
-            <p className="text-xs text-gray-500 mt-1">Training batch size</p>
+            <p className="text-xs text-muted mt-1">Training batch size</p>
           </div>
 
           <div>
@@ -192,9 +192,9 @@ export function TrainingParams({ onSubmit, disabled }: TrainingParamsProps) {
               type="number"
               value={trainParams.epochs}
               onChange={(e) => setTrainParams({...trainParams, epochs: Number(e.target.value)})}
-              className="w-full px-3 py-2 bg-white dark:bg-gray-900 border border-gray-300 dark:border-gray-600 rounded-lg"
+              className="w-full px-3 py-2 rounded-lg"
             />
-            <p className="text-xs text-gray-500 mt-1">Maximum training epochs</p>
+            <p className="text-xs text-muted mt-1">Maximum training epochs</p>
           </div>
 
           <div>
@@ -203,9 +203,9 @@ export function TrainingParams({ onSubmit, disabled }: TrainingParamsProps) {
               type="number"
               value={trainParams.patience}
               onChange={(e) => setTrainParams({...trainParams, patience: Number(e.target.value)})}
-              className="w-full px-3 py-2 bg-white dark:bg-gray-900 border border-gray-300 dark:border-gray-600 rounded-lg"
+              className="w-full px-3 py-2 rounded-lg"
             />
-            <p className="text-xs text-gray-500 mt-1">Epochs to wait before stopping</p>
+            <p className="text-xs text-muted mt-1">Epochs to wait before stopping</p>
           </div>
 
           <div className="col-span-2">
@@ -218,7 +218,7 @@ export function TrainingParams({ onSubmit, disabled }: TrainingParamsProps) {
               />
               <span className="text-sm">Use ODE (Ordinary Differential Equations)</span>
             </label>
-            <p className="text-xs text-gray-500 mt-1 ml-6">Enable ODE-based trajectory modeling</p>
+            <p className="text-xs text-muted mt-1 ml-6">Enable ODE-based trajectory modeling</p>
           </div>
         </div>
       </div>
@@ -226,7 +226,7 @@ export function TrainingParams({ onSubmit, disabled }: TrainingParamsProps) {
       <button
         type="submit"
         disabled={disabled}
-        className="w-full px-4 py-3 bg-blue-600 hover:bg-blue-700 disabled:bg-gray-400 text-white rounded-lg font-medium transition-colors"
+        className="w-full px-4 py-3 rounded-lg font-medium transition-colors disabled:opacity-50 btn-primary"
       >
         Start Training
       </button>
