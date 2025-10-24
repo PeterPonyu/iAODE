@@ -1,74 +1,98 @@
+
 /**
- * Essential Type Definitions for Single-Cell Continuity Data
- * Matches Python precomputation output structure
+ * TypeScript Type Definitions for Single-Cell Continuity Data
+ * Matches Python ContinuityDataPrecomputer output structure exactly
+ * 
+ * Best Practice: Using 'type' for JSON data structures (not extendable)
+ * Using 'interface' only when needed for declaration merging or extension
  */
 
 // ============================================================================
-// CORE DATA STRUCTURES
+// STEP 1: Basic Building Blocks
 // ============================================================================
 
 /**
- * Main simulation result (matches Python output exactly)
+ * Trajectory types supported by the simulator
+ * Matches Python: ['linear', 'branching', 'cyclic', 'discrete']
  */
-export interface SimulationResult {
-  id: string;
-  parameters: SimulationParameters;
-  embeddings: EmbeddingData;
-  metadata: SimulationMetadata;
-  metrics: MetricsData;
-}
+export type TrajectoryType = 'linear' | 'branching' | 'cyclic' | 'discrete';
 
 /**
- * Alias for SimulationResult - used in UI components
- * Provides semantic clarity for data consumption
+ * 2D point representation for embeddings
+ * Python outputs: [[x1, y1], [x2, y2], ...]
  */
-export type SimulationData = SimulationResult;
+export type Point2D = [number, number];
 
-export interface SimulationParameters {
+/**
+ * Array of 2D points for a complete embedding
+ */
+export type EmbeddingArray = Point2D[];
+
+// ============================================================================
+// STEP 2: Simulation Parameters (Input Configuration)
+// ============================================================================
+
+/**
+ * Parameters used to generate a simulation
+ * Directly matches Python params dict
+ */
+export type SimulationParameters = {
   trajectory_type: TrajectoryType;
   continuity: number;
   n_cells: number;
   n_dims: number;
   replicate: number;
-  global_id?: number;
-}
+  global_id?: number; // Added for reproducible seeding
+};
 
-export type TrajectoryType = 'linear' | 'branching' | 'cyclic' | 'discrete';
+// ============================================================================
+// STEP 3: Embeddings Data
+// ============================================================================
 
-export type Point2D = [number, number];
-
-// Support both old format (array) and new format (object with shape)
-export type EmbeddingArray = Point2D[];
-
-export interface EmbeddingData {
+/**
+ * Computed embeddings for visualization
+ * Keys depend on embedding_methods parameter in Python
+ * Common: 'pca', 'tsne', 'umap'
+ */
+export type EmbeddingData = {
   pca?: EmbeddingArray;
   tsne?: EmbeddingArray;
   umap?: EmbeddingArray;
-  [key: string]: EmbeddingArray | undefined;
-}
+};
 
-export interface SimulationMetadata {
+// ============================================================================
+// STEP 4: Simulation Metadata
+// ============================================================================
+
+/**
+ * Metadata generated during simulation
+ * Content varies by trajectory_type
+ */
+export type SimulationMetadata = {
+  // Core metadata (always present)
   pseudotime: number[];
   cell_types: string[];
   n_cells: number;
   n_dims: number;
-  n_timepoints?: number;
   trajectory_type: TrajectoryType;
-  branch_id?: number[];
-  cycle_phase?: number[];
-  cluster_labels?: number[];
-}
-
-export interface MetricsData {
-  // Core trajectory metrics
-  mean_branch_length?: number;
-  n_branch_points?: number;
-  n_end_points?: number;
-  global_continuity?: number;
-  local_continuity?: number;
-  trajectory_coverage?: number;
   
-  // Spectral and structure metrics
+  // Trajectory-specific metadata (conditional)
+  branch_id?: number[];      // Present for 'branching'
+  cycle_phase?: number[];    // Present for 'cyclic'
+  cluster_labels?: number[]; // Present for 'discrete'
+  n_timepoints?: number;
+};
+
+// ============================================================================
+// STEP 5: Metrics Data
+// ============================================================================
+
+/**
+ * Computed continuity and structural metrics
+ * Python computes from self.metrics_to_compute
+ */
+export type MetricsData = {
+  // Core metrics (from evaluator)
   spectral_decay?: number;
   anisotropy?: number;
   participation_ratio?: number;
@@ -76,22 +100,57 @@ export interface MetricsData {
   manifold_dimensionality?: number;
   noise_resilience?: number;
   
-  // Embedding-specific variance (optional)
+  // Embedding-derived metrics (computed per embedding method)
   variance_pca?: number;
   variance_tsne?: number;
   variance_umap?: number;
   
-  // Allow additional metrics
-  [key: string]: number | undefined;
-}
+  // Trajectory-specific metrics (optional)
+  mean_branch_length?: number;
+  n_branch_points?: number;
+  n_end_points?: number;
+  global_continuity?: number;
+  local_continuity?: number;
+  trajectory_coverage?: number;
+};
 
 // ============================================================================
-// METADATA FILES
+// STEP 6: Complete Simulation Result
 // ============================================================================
 
-export interface DataManifest {
+/**
+ * Complete simulation data package
+ * Matches Python result dict structure exactly
+ * 
+ * Python generates:
+ * {
+ *   'id': str,
+ *   'parameters': dict,
+ *   'embeddings': dict,
+ *   'metadata': dict,
+ *   'metrics': dict
+ * }
+ */
+export type SimulationResult = {
+  id: string;
+  parameters: SimulationParameters;
+  embeddings: EmbeddingData;
+  metadata: SimulationMetadata;
+  metrics: MetricsData;
+};
+
+// ============================================================================
+// STEP 7: Metadata Files (Generated by Python)
+// ============================================================================
+
+/**
+ * Main manifest.json structure
+ * Generated by _generate_metadata()
+ */
+export type DataManifest = {
   version: string;
   generation_timestamp: string;
+  computation_duration_seconds: number;
   total_simulations: number;
   chunk_size: number;
   total_chunks: number;
@@ -102,38 +161,76 @@ export interface DataManifest {
     n_dims: number[];
     replicates: number[];
   };
-  embedding_methods?: string[];
-}
+  random_seed: number;
+  metrics_computed: string[];
+  embedding_methods: string[];
+};
 
-export interface MetricsSummary {
-  [metricName: string]: {
-    min: number;
-    max: number;
-    mean: number;
-    std: number;
-    median: number;
-    q25: number;
-    q75: number;
-  };
-}
+/**
+ * Metrics summary statistics
+ * Generated by _compute_metrics_summary()
+ */
+export type MetricsSummary = Record<string, {
+  min: number;
+  max: number;
+  mean: number;
+  std: number;
+  median: number;
+  q25: number;
+  q75: number;
+}>;
 
-export interface ParameterLookup {
-  [key: string]: {
-    chunk_id: number;
-    index_in_chunk: number;
-    simulation_id: string;
-  };
-}
+/**
+ * Parameter lookup for fast retrieval
+ * Generated by _generate_metadata()
+ * Key format: "{trajectory_type}_{continuity:.3f}_{n_cells}_{replicate}"
+ */
+export type ParameterLookup = Record<string, {
+  chunk_id: number;
+  index_in_chunk: number;
+  simulation_id: string;
+}>;
+
+/**
+ * Continuity index for filtered queries
+ * Generated by _generate_continuity_index()
+ * Key format: "{trajectory_type}_{continuity:.3f}"
+ */
+export type ContinuityIndex = Record<string, Array<{
+  simulation_id: string;
+  replicate: number;
+  n_cells: number;
+}>>;
 
 // ============================================================================
-// UI STATE
+// STEP 8: UI State Types (Frontend Only)
 // ============================================================================
 
+/**
+ * Available embedding methods for visualization
+ */
 export type EmbeddingMethod = 'pca' | 'tsne' | 'umap';
-export type ColorByOption = 'pseudotime' | 'cell_types' | 'branch_id' | 'cycle_phase' | 'cluster_labels';
+
+/**
+ * Color mapping options based on metadata fields
+ */
+export type ColorByOption = 
+  | 'pseudotime' 
+  | 'cell_types' 
+  | 'branch_id' 
+  | 'cycle_phase' 
+  | 'cluster_labels';
+
+/**
+ * Visualization modes
+ */
 export type ViewMode = 'single' | 'comparison' | 'grid';
 
-export interface ExplorerState {
+/**
+ * Frontend explorer state
+ * NOT present in Python output - UI state only
+ */
+export type ExplorerState = {
   continuity: number;
   trajectoryType: TrajectoryType;
   embeddingMethod: EmbeddingMethod;
@@ -143,23 +240,34 @@ export interface ExplorerState {
   showMetrics: boolean;
   isLoading: boolean;
   error: string | null;
-}
+};
 
 // ============================================================================
-// VISUALIZATION
+// STEP 9: Visualization Configuration (Frontend Only)
 // ============================================================================
 
-export interface ChartConfig {
+/**
+ * Chart configuration for D3/Canvas rendering
+ */
+export type ChartConfig = {
   width: number;
   height: number;
-  margin: { top: number; right: number; bottom: number; left: number };
+  margin: {
+    top: number;
+    right: number;
+    bottom: number;
+    left: number;
+  };
   pointSize: number;
   pointOpacity: number;
-}
+};
 
-export interface Bounds {
+/**
+ * Computed bounds for embedding visualization
+ */
+export type Bounds = {
   minX: number;
   maxX: number;
   minY: number;
   maxY: number;
-}
+};
