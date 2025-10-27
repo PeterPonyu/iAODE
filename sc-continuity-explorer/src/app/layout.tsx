@@ -1,9 +1,11 @@
+
 // ============================================================================
 // FILE: app/layout.tsx
-// Root layout with theme support
+// Root layout with theme support and navigation
 // ============================================================================
 
 import type { Metadata } from 'next';
+import Link from 'next/link';
 import { ThemeToggle } from '@/components/ThemeToggle';
 import './globals.css';
 
@@ -22,14 +24,16 @@ export default function RootLayout({
       <body>
         <div className="min-h-screen flex flex-col">
           {/* Header */}
-          <header className="border-b border-[var(--color-border)] bg-[var(--color-background)]">
-            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 flex items-center justify-between">
-              <div>
-                <h1 className="text-xl font-semibold">Single-Cell Continuity Explorer</h1>
-                <p className="text-sm text-[var(--color-muted-foreground)]">
+          <header className="border-b border-[var(--color-border)] bg-[var(--color-background)] sticky top-0 z-50">
+            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 flex items-center justify-between gap-4">
+              <Link href="/" className="hover:opacity-80 transition-opacity">
+                <h1 className="text-lg sm:text-xl font-semibold leading-tight">
+                  Single-Cell Continuity Explorer
+                </h1>
+                <p className="text-xs sm:text-sm text-[var(--color-muted-foreground)] mt-0.5">
                   Explore trajectory structures across embedding methods
                 </p>
-              </div>
+              </Link>
               <ThemeToggle />
             </div>
           </header>
@@ -40,7 +44,7 @@ export default function RootLayout({
           </main>
 
           {/* Footer */}
-          <footer className="border-t border-[var(--color-border)] bg-[var(--color-muted)] py-6">
+          <footer className="border-t border-[var(--color-border)] bg-[var(--color-muted)] py-6 mt-auto">
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center text-sm text-[var(--color-muted-foreground)]">
               Single-Cell Continuity Explorer © {new Date().getFullYear()}
             </div>
