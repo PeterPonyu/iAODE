@@ -8,7 +8,13 @@
 
 import { useState, useEffect, useCallback, useMemo } from 'react';
 import { SimulationResult, TrajectoryType, EmbeddingMethod, ColorByOption } from '@/types/simulation';
-import { loadSimulation, getAvailableContinuityValues } from '@/lib/dataLoader';
+import { 
+  loadSimulation, 
+  getAvailableContinuityValues,
+  getAvailableTrajectoryTypes,
+  getAvailableReplicates
+} from '@/lib/dataLoader';
+import { getAvailableEmbeddings } from '@/lib/dataUtils';
 import { EmbeddingPlot } from './EmbeddingPlot';
 import { MetricsPanel } from './MetricsPanel';
 import { ControlPanel } from './ControlPanel';
@@ -26,35 +32,35 @@ export function ExplorerView() {
   const [showMetrics, setShowMetrics] = useState(true);
   
   const [availableContinuities, setAvailableContinuities] = useState<number[]>([]);
+  const [availableTrajectories, setAvailableTrajectories] = useState<TrajectoryType[]>(['linear']);
+  const [availableReplicates, setAvailableReplicates] = useState<number[]>([0, 1, 2]);
 
-  // Available trajectory types (modify based on your actual data)
-  const availableTrajectories: TrajectoryType[] = useMemo(() => {
-    // You can make this dynamic by checking manifest or metadata
-    return ['linear', 'branching', 'cyclic'];
+  // Load available options from manifest
+  useEffect(() => {
+    Promise.all([
+      getAvailableContinuityValues(),
+      getAvailableTrajectoryTypes(),
+      getAvailableReplicates(),
+    ]).then(([continuities, trajectories, replicates]) => {
+      setAvailableContinuities(continuities);
+      setAvailableTrajectories(trajectories);
+      setAvailableReplicates(replicates);
+    }).catch(err => {
+      console.error('Failed to load available options:', err);
+    });
   }, []);
 
   // Get available embedding methods from loaded simulation
   const availableEmbeddings = useMemo((): EmbeddingMethod[] => {
-    if (!simulation?.embeddings) return ['pca'];
-    
-    const methods: EmbeddingMethod[] = [];
-    if (simulation.embeddings.pca) methods.push('pca');
-    if (simulation.embeddings.umap) methods.push('umap');
-    if (simulation.embeddings.tsne) methods.push('tsne');
-    
-    return methods.length > 0 ? methods : ['pca'];
+    return getAvailableEmbeddings(simulation);
   }, [simulation]);
 
   // Auto-adjust embedding method if current one is not available
   useEffect(() => {
-    if (!availableEmbeddings.includes(embeddingMethod)) {
+    if (availableEmbeddings.length > 0 && !availableEmbeddings.includes(embeddingMethod)) {
       setEmbeddingMethod(availableEmbeddings[0]);
     }
   }, [availableEmbeddings, embeddingMethod]);
-
-  useEffect(() => {
-    getAvailableContinuityValues().then(setAvailableContinuities).catch(console.error);
-  }, []);
 
   const loadData = useCallback(async () => {
     setIsLoading(true);
@@ -77,7 +83,7 @@ export function ExplorerView() {
   }, [loadData]);
 
   return (
-    <div className="min-h-screen bg-[var(--color-background)]">
+    <div className="w-full min-h-full bg-[var(--color-background)]">
       <div className="max-w-[1600px] mx-auto px-4 sm:px-6 py-6">
         <div className="flex flex-col lg:flex-row gap-6">
           {/* Sidebar */}
@@ -91,6 +97,7 @@ export function ExplorerView() {
               showMetrics={showMetrics}
               availableContinuities={availableContinuities}
               availableTrajectories={availableTrajectories}
+              availableReplicates={availableReplicates}
               availableEmbeddings={availableEmbeddings}
               onTrajectoryTypeChange={setTrajectoryType}
               onContinuityChange={setContinuity}

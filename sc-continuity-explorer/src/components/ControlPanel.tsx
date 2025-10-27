@@ -17,6 +17,7 @@ type ControlPanelProps = {
   showMetrics: boolean;
   availableContinuities: number[];
   availableTrajectories: TrajectoryType[];
+  availableReplicates: number[];
   availableEmbeddings: EmbeddingMethod[];
   onTrajectoryTypeChange: (value: TrajectoryType) => void;
   onContinuityChange: (value: number) => void;
@@ -64,7 +65,7 @@ export function ControlPanel(props: ControlPanelProps) {
     <div className="bg-[var(--color-background)] border border-[var(--color-border)] rounded-xl p-6 space-y-6 shadow-sm">
       <h2 className="text-lg font-semibold tracking-tight">Controls</h2>
 
-      {/* Trajectory Type - Dynamic */}
+      {/* Trajectory Type */}
       <div className="space-y-2">
         <label className="block text-sm font-medium">Trajectory Type</label>
         <select
@@ -104,7 +105,7 @@ export function ControlPanel(props: ControlPanelProps) {
         </div>
       </div>
 
-      {/* Replicate */}
+      {/* Replicate - Dynamic */}
       <div className="space-y-2">
         <label className="block text-sm font-medium">Replicate</label>
         <select
@@ -113,7 +114,7 @@ export function ControlPanel(props: ControlPanelProps) {
           disabled={props.isLoading}
           className="w-full px-3 py-2 text-sm border border-[var(--color-border)] rounded-lg bg-[var(--color-background)] focus:outline-none focus:ring-2 focus:ring-[var(--color-primary)] disabled:opacity-50 disabled:cursor-not-allowed transition-all"
         >
-          {[0, 1, 2].map((rep) => (
+          {props.availableReplicates.map((rep) => (
             <option key={rep} value={rep}>
               Replicate {rep + 1}
             </option>
@@ -123,7 +124,7 @@ export function ControlPanel(props: ControlPanelProps) {
 
       <hr className="border-[var(--color-border)]" />
 
-      {/* Embedding Method - Dynamic */}
+      {/* Embedding Method */}
       <div className="space-y-2">
         <label className="block text-sm font-medium">Embedding Method</label>
         <select
@@ -140,7 +141,7 @@ export function ControlPanel(props: ControlPanelProps) {
         </select>
       </div>
 
-      {/* Color By - Dynamic */}
+      {/* Color By */}
       <div className="space-y-2">
         <label className="block text-sm font-medium">Color By</label>
         <select
