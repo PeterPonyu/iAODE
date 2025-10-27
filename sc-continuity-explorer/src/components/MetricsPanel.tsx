@@ -1,6 +1,7 @@
+
 // ============================================================================
 // FILE: components/MetricsPanel.tsx
-// Metrics display with Tailwind v4
+// Enhanced metrics display
 // ============================================================================
 
 'use client';
@@ -33,42 +34,71 @@ export function MetricsPanel({ metrics, parameters }: MetricsPanelProps) {
   };
 
   return (
-    <div className="bg-[var(--color-background)] border border-[var(--color-border)] rounded-lg p-6 space-y-6">
-      <h2 className="text-lg font-semibold">Metrics</h2>
+    <div className="bg-[var(--color-background)] border border-[var(--color-border)] rounded-xl p-6 sm:p-8 space-y-8 shadow-sm">
+      <h2 className="text-xl font-semibold tracking-tight">Metrics</h2>
       
-      <div className="flex gap-6 p-4 bg-[var(--color-muted)] rounded-lg">
+      {/* Parameters Summary */}
+      <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 p-5 bg-[var(--color-muted)] rounded-xl">
         <div>
-          <div className="text-xs text-[var(--color-muted-foreground)]">Cells</div>
-          <div className="text-base font-semibold">{parameters.n_cells}</div>
+          <div className="text-xs text-[var(--color-muted-foreground)] mb-1 font-medium uppercase tracking-wide">
+            Cells
+          </div>
+          <div className="text-lg font-semibold">{parameters.n_cells.toLocaleString()}</div>
         </div>
         <div>
-          <div className="text-xs text-[var(--color-muted-foreground)]">Dimensions</div>
-          <div className="text-base font-semibold">{parameters.n_dims}</div>
+          <div className="text-xs text-[var(--color-muted-foreground)] mb-1 font-medium uppercase tracking-wide">
+            Dimensions
+          </div>
+          <div className="text-lg font-semibold">{parameters.n_dims}</div>
         </div>
         <div>
-          <div className="text-xs text-[var(--color-muted-foreground)]">Continuity</div>
-          <div className="text-base font-semibold">{formatNumber(parameters.continuity, 3)}</div>
+          <div className="text-xs text-[var(--color-muted-foreground)] mb-1 font-medium uppercase tracking-wide">
+            Continuity
+          </div>
+          <div className="text-lg font-semibold">{formatNumber(parameters.continuity, 3)}</div>
+        </div>
+        <div>
+          <div className="text-xs text-[var(--color-muted-foreground)] mb-1 font-medium uppercase tracking-wide">
+            Replicate
+          </div>
+          <div className="text-lg font-semibold">{parameters.replicate + 1}</div>
         </div>
       </div>
 
-      {Object.entries(metricGroups).map(([groupName, groupMetrics]) => (
-        <div key={groupName}>
-          <h3 className="text-xs font-semibold text-[var(--color-muted-foreground)] uppercase tracking-wider mb-3">
-            {groupName}
-          </h3>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
-            {groupMetrics.map(({ key, label }) => {
-              const value = metrics[key as keyof MetricsData];
-              return value !== undefined ? (
-                <div key={key} className="flex justify-between items-center px-3 py-2 bg-[var(--color-muted)] rounded">
-                  <span className="text-sm text-[var(--color-muted-foreground)]">{label}</span>
-                  <span className="text-sm font-semibold font-mono">{formatNumber(value, 4)}</span>
-                </div>
-              ) : null;
-            })}
+      {/* Metrics Groups */}
+      {Object.entries(metricGroups).map(([groupName, groupMetrics]) => {
+        const availableMetrics = groupMetrics.filter(
+          ({ key }) => metrics[key as keyof MetricsData] !== undefined
+        );
+
+        if (availableMetrics.length === 0) return null;
+
+        return (
+          <div key={groupName}>
+            <h3 className="text-xs font-semibold text-[var(--color-muted-foreground)] uppercase tracking-wider mb-4">
+              {groupName}
+            </h3>
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
+              {availableMetrics.map(({ key, label }) => {
+                const value = metrics[key as keyof MetricsData];
+                return (
+                  <div 
+                    key={key} 
+                    className="flex justify-between items-center px-4 py-3 bg-[var(--color-muted)] rounded-lg hover:bg-[var(--color-border)] transition-colors"
+                  >
+                    <span className="text-sm text-[var(--color-foreground)] font-medium">
+                      {label}
+                    </span>
+                    <span className="text-sm font-semibold font-mono text-[var(--color-primary)]">
+                      {formatNumber(value as number, 4)}
+                    </span>
+                  </div>
+                );
+              })}
+            </div>
           </div>
-        </div>
-      ))}
+        );
+      })}
     </div>
   );
 }

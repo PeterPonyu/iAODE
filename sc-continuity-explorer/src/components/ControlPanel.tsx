@@ -1,5 +1,7 @@
+
 // ============================================================================
-// FILE: components/ControlPanel.tsx (FIXED - Conditional Color Options)
+// FILE: components/ControlPanel.tsx
+// Control panel with all dynamic options
 // ============================================================================
 
 'use client';
@@ -14,6 +16,8 @@ type ControlPanelProps = {
   colorBy: ColorByOption;
   showMetrics: boolean;
   availableContinuities: number[];
+  availableTrajectories: TrajectoryType[];
+  availableEmbeddings: EmbeddingMethod[];
   onTrajectoryTypeChange: (value: TrajectoryType) => void;
   onContinuityChange: (value: number) => void;
   onReplicateChange: (value: number) => void;
@@ -25,84 +29,74 @@ type ControlPanelProps = {
 };
 
 export function ControlPanel(props: ControlPanelProps) {
-  const trajectoryTypes: TrajectoryType[] = ['linear', 'branching', 'cyclic', 'discrete'];
-  const embeddingMethods: EmbeddingMethod[] = ['pca', 'umap', 'tsne'];
-  
-  // ✅ FIX: Dynamic color options based on trajectory type
-  const getAvailableColorOptions = (): { value: ColorByOption; label: string }[] => {
-    const baseOptions = [
+  // Get color options based on trajectory type
+  const getColorOptions = (): { value: ColorByOption; label: string }[] => {
+    const options = [
       { value: 'pseudotime' as ColorByOption, label: 'Pseudotime' },
       { value: 'cell_types' as ColorByOption, label: 'Cell Types' },
     ];
 
-    // Add trajectory-specific options
-    switch (props.trajectoryType) {
-      case 'branching':
-        baseOptions.push({ value: 'branch_id' as ColorByOption, label: 'Branch ID' });
-        break;
-      case 'cyclic':
-        baseOptions.push({ value: 'cycle_phase' as ColorByOption, label: 'Cycle Phase' });
-        break;
-      case 'discrete':
-        baseOptions.push({ value: 'cluster_labels' as ColorByOption, label: 'Cluster Labels' });
-        break;
+    if (props.trajectoryType === 'branching') {
+      options.push({ value: 'branch_id' as ColorByOption, label: 'Branch ID' });
+    } else if (props.trajectoryType === 'cyclic') {
+      options.push({ value: 'cycle_phase' as ColorByOption, label: 'Cycle Phase' });
     }
 
-    return baseOptions;
+    return options;
   };
 
-  const colorOptions = getAvailableColorOptions();
+  const colorOptions = getColorOptions();
 
-  // ✅ FIX: Reset colorBy if current option is not available for new trajectory
-  const handleTrajectoryTypeChange = (newType: TrajectoryType) => {
+  // Handle trajectory change with color reset if needed
+  const handleTrajectoryChange = (newType: TrajectoryType) => {
     props.onTrajectoryTypeChange(newType);
     
-    // Check if current colorBy is valid for new trajectory type
-    const availableOptions = getAvailableColorOptions();
-    const isCurrentValid = availableOptions.some(opt => opt.value === props.colorBy);
-    
-    if (!isCurrentValid) {
-      props.onColorByChange('pseudotime'); // Reset to default
+    const isValid = getColorOptions().some(opt => opt.value === props.colorBy);
+    if (!isValid) {
+      props.onColorByChange('pseudotime');
     }
   };
 
-  return (
-    <div className="bg-[var(--color-background)] border border-[var(--color-border)] rounded-lg p-6 space-y-6">
-      <h2 className="text-lg font-semibold">Controls</h2>
+  const formatLabel = (str: string) => 
+    str.charAt(0).toUpperCase() + str.slice(1);
 
-      {/* Trajectory Type */}
+  return (
+    <div className="bg-[var(--color-background)] border border-[var(--color-border)] rounded-xl p-6 space-y-6 shadow-sm">
+      <h2 className="text-lg font-semibold tracking-tight">Controls</h2>
+
+      {/* Trajectory Type - Dynamic */}
       <div className="space-y-2">
         <label className="block text-sm font-medium">Trajectory Type</label>
         <select
           value={props.trajectoryType}
-          onChange={(e) => handleTrajectoryTypeChange(e.target.value as TrajectoryType)}
+          onChange={(e) => handleTrajectoryChange(e.target.value as TrajectoryType)}
           disabled={props.isLoading}
-          className="w-full px-3 py-2 border border-[var(--color-border)] rounded-lg bg-[var(--color-background)] disabled:opacity-50"
+          className="w-full px-3 py-2 text-sm border border-[var(--color-border)] rounded-lg bg-[var(--color-background)] focus:outline-none focus:ring-2 focus:ring-[var(--color-primary)] disabled:opacity-50 disabled:cursor-not-allowed transition-all"
         >
-          {trajectoryTypes.map((type) => (
+          {props.availableTrajectories.map((type) => (
             <option key={type} value={type}>
-              {type.charAt(0).toUpperCase() + type.slice(1)}
+              {formatLabel(type)}
             </option>
           ))}
         </select>
       </div>
 
       {/* Continuity Slider */}
-      <div className="space-y-2">
+      <div className="space-y-3">
         <label className="block text-sm font-medium">
-          Continuity: <strong>{props.continuity.toFixed(3)}</strong>
+          Continuity: <span className="font-semibold text-[var(--color-primary)]">{props.continuity.toFixed(3)}</span>
         </label>
         <input
           type="range"
           min="0"
-          max={props.availableContinuities.length - 1}
+          max={Math.max(0, props.availableContinuities.length - 1)}
           step="1"
           value={props.availableContinuities.indexOf(
             props.availableContinuities.find((c) => Math.abs(c - props.continuity) < 0.001) || props.continuity
           )}
           onChange={(e) => props.onContinuityChange(props.availableContinuities[parseInt(e.target.value)])}
           disabled={props.isLoading || props.availableContinuities.length === 0}
-          className="w-full"
+          className="w-full h-2 bg-[var(--color-muted)] rounded-lg appearance-none cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed"
         />
         <div className="flex justify-between text-xs text-[var(--color-muted-foreground)]">
           <span>{props.availableContinuities[0]?.toFixed(2) || '0.85'}</span>
@@ -117,7 +111,7 @@ export function ControlPanel(props: ControlPanelProps) {
           value={props.replicate}
           onChange={(e) => props.onReplicateChange(parseInt(e.target.value))}
           disabled={props.isLoading}
-          className="w-full px-3 py-2 border border-[var(--color-border)] rounded-lg bg-[var(--color-background)] disabled:opacity-50"
+          className="w-full px-3 py-2 text-sm border border-[var(--color-border)] rounded-lg bg-[var(--color-background)] focus:outline-none focus:ring-2 focus:ring-[var(--color-primary)] disabled:opacity-50 disabled:cursor-not-allowed transition-all"
         >
           {[0, 1, 2].map((rep) => (
             <option key={rep} value={rep}>
@@ -129,16 +123,16 @@ export function ControlPanel(props: ControlPanelProps) {
 
       <hr className="border-[var(--color-border)]" />
 
-      {/* Embedding Method */}
+      {/* Embedding Method - Dynamic */}
       <div className="space-y-2">
         <label className="block text-sm font-medium">Embedding Method</label>
         <select
           value={props.embeddingMethod}
           onChange={(e) => props.onEmbeddingMethodChange(e.target.value as EmbeddingMethod)}
           disabled={props.isLoading}
-          className="w-full px-3 py-2 border border-[var(--color-border)] rounded-lg bg-[var(--color-background)] disabled:opacity-50"
+          className="w-full px-3 py-2 text-sm border border-[var(--color-border)] rounded-lg bg-[var(--color-background)] focus:outline-none focus:ring-2 focus:ring-[var(--color-primary)] disabled:opacity-50 disabled:cursor-not-allowed transition-all"
         >
-          {embeddingMethods.map((method) => (
+          {props.availableEmbeddings.map((method) => (
             <option key={method} value={method}>
               {method.toUpperCase()}
             </option>
@@ -146,14 +140,14 @@ export function ControlPanel(props: ControlPanelProps) {
         </select>
       </div>
 
-      {/* Color By - ✅ FIXED: Now shows only available options */}
+      {/* Color By - Dynamic */}
       <div className="space-y-2">
         <label className="block text-sm font-medium">Color By</label>
         <select
           value={props.colorBy}
           onChange={(e) => props.onColorByChange(e.target.value as ColorByOption)}
           disabled={props.isLoading}
-          className="w-full px-3 py-2 border border-[var(--color-border)] rounded-lg bg-[var(--color-background)] disabled:opacity-50"
+          className="w-full px-3 py-2 text-sm border border-[var(--color-border)] rounded-lg bg-[var(--color-background)] focus:outline-none focus:ring-2 focus:ring-[var(--color-primary)] disabled:opacity-50 disabled:cursor-not-allowed transition-all"
         >
           {colorOptions.map((option) => (
             <option key={option.value} value={option.value}>
@@ -166,21 +160,23 @@ export function ControlPanel(props: ControlPanelProps) {
       <hr className="border-[var(--color-border)]" />
 
       {/* Show Metrics */}
-      <label className="flex items-center gap-2 cursor-pointer">
+      <label className="flex items-center gap-3 cursor-pointer group">
         <input
           type="checkbox"
           checked={props.showMetrics}
           onChange={(e) => props.onShowMetricsChange(e.target.checked)}
-          className="w-4 h-4"
+          className="w-4 h-4 rounded border-[var(--color-border)] text-[var(--color-primary)] cursor-pointer"
         />
-        <span className="text-sm font-medium">Show Metrics</span>
+        <span className="text-sm font-medium group-hover:text-[var(--color-primary)] transition-colors">
+          Show Metrics
+        </span>
       </label>
 
       {/* Refresh Button */}
       <button
         onClick={props.onRefresh}
         disabled={props.isLoading}
-        className="w-full px-4 py-2 bg-[var(--color-primary)] text-[var(--color-primary-foreground)] rounded-lg font-medium hover:opacity-90 disabled:opacity-50 transition-opacity"
+        className="w-full px-4 py-2.5 bg-[var(--color-primary)] text-[var(--color-primary-foreground)] rounded-lg font-medium text-sm hover:opacity-90 disabled:opacity-50 disabled:cursor-not-allowed transition-opacity shadow-sm"
       >
         {props.isLoading ? 'Loading...' : 'Refresh Data'}
       </button>

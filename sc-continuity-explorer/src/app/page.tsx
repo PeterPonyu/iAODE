@@ -1,7 +1,7 @@
 
 // ============================================================================
 // FILE: app/page.tsx
-// Home page with navigation
+// Home page with proper centering
 // ============================================================================
 
 import Link from 'next/link';
