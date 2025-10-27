@@ -1,6 +1,10 @@
+"""
+scATAC-seq Preprocessing Utilities and FastAPI Endpoints
+"""
+
 import numpy as np
 from scipy.sparse import issparse, csr_matrix
-from typing import Literal, Tuple
+from typing import Literal, Tuple, Optional
 import warnings
 
 # ============================================================================
@@ -305,22 +309,73 @@ def select_highly_variable_peaks(
     return adata if not inplace else None
 
 
+# ============================================================================
+# UTILITY FUNCTION: Subsampling
+# ============================================================================
 
-def get_dataset_category(n_cells: int) -> Tuple[str, int, int]:
+def subsample_cells_and_peaks(
+    adata,
+    n_cells: Optional[int] = None,
+    frac_cells: Optional[float] = None,
+    use_hvp: bool = True,
+    hvp_column: str = 'highly_variable',
+    seed: int = 42,
+    inplace: bool = False
+):
     """
-    Categorize dataset by size and return configuration
+    Subsample cells and optionally filter to highly variable peaks
     
     Args:
-        n_cells: Number of cells in dataset
-        
+        adata: AnnData object
+        n_cells: Number of cells to sample (if None, use frac_cells)
+        frac_cells: Fraction of cells to sample (if n_cells is None)
+        use_hvp: Whether to filter to highly variable peaks
+        hvp_column: Column name in adata.var for highly variable peaks
+        seed: Random seed for reproducibility
+        inplace: Modify adata in place
+    
     Returns:
-        Tuple of (category_name, subsample_size, n_hvp)
+        Subsampled AnnData (or None if inplace=True)
     """
-    if n_cells < 5000:
-        return 'tiny', None, None  # Skip processing
-    elif n_cells < 10000:
-        return 'small', 5000, 20000
-    elif n_cells < 20000:
-        return 'medium', 10000, 20000
+    
+    if not inplace:
+        adata = adata.copy()
+    
+    # Determine number of cells to sample
+    if n_cells is None and frac_cells is None:
+        raise ValueError("Must specify either n_cells or frac_cells")
+    
+    if n_cells is None:
+        n_cells = int(adata.n_obs * frac_cells)
+    
+    n_cells = min(n_cells, adata.n_obs)
+    
+    print(f"\nSubsampling to {n_cells:,} cells...")
+    
+    # Random cell selection
+    np.random.seed(seed)
+    cell_idxs = np.random.choice(adata.n_obs, n_cells, replace=False)
+    
+    # Peak filtering
+    if use_hvp:
+        if hvp_column not in adata.var.columns:
+            raise ValueError(f"Column '{hvp_column}' not found in adata.var")
+        
+        peak_mask = adata.var[hvp_column].values
+        n_peaks = peak_mask.sum()
+        print(f"Filtering to {n_peaks:,} highly variable peaks...")
+        
+        result = adata[cell_idxs, peak_mask]
     else:
-        return 'large', 20000, 20000
+        result = adata[cell_idxs, :]
+    
+    print(f"Final shape: {result.n_obs} cells × {result.n_vars} peaks")
+    
+    if inplace:
+        # Update adata in place
+        adata._inplace_subset_obs(cell_idxs)
+        if use_hvp:
+            adata._inplace_subset_var(peak_mask)
+        return None
+    else:
+        return result.copy()

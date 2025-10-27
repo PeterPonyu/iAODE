@@ -2,7 +2,8 @@
 from fastapi import FastAPI, File, UploadFile, Query, BackgroundTasks
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import FileResponse
-from .model import DataInfo, AgentParams, TrainParams, TrainingState
+from .model import DataInfo, AgentParams, TrainParams, TrainingState, TFIDFParams, HVPParams, SubsampleParams, PreprocessInfo
+from iaode.utils import tfidf_normalization, select_highly_variable_peaks, subsample_cells_and_peaks
 from iaode.agent import agent
 from anndata import AnnData
 import tempfile
@@ -12,7 +13,7 @@ from datetime import datetime
 import scanpy as sc
 import pandas as pd
 
-VERSION = "0.2.0"
+VERSION = "0.3.0"
 
 app = FastAPI(title="iAODE API", version=VERSION)
 
@@ -70,6 +71,9 @@ async def upload_data(
             gex_only = (data_type == "scrna")
             state.adata = sc.read_10x_h5(temp_file_path, gex_only=gex_only)
         
+        if 'counts' not in state.adata.layers:
+            state.adata.layers['counts'] = state.adata.X.copy()
+
         os.unlink(temp_file_path)  # Clean up temp file
         
         n_cells, n_genes = state.adata.shape
@@ -209,3 +213,118 @@ async def reset_state():
     state.message = ""
     
     return {"message": "State reset successfully"}
+
+
+@app.post("/preprocess/tfidf", response_model=PreprocessInfo)
+async def normalize_tfidf(params: TFIDFParams):
+    """Apply TF-IDF normalization to scATAC-seq data"""
+    if state.adata is None:
+        return {"error": "No data uploaded. Please upload data first."}
+    
+    try:
+        state.status = "processing"
+        state.message = "Applying TF-IDF normalization..."
+        
+        # Apply TF-IDF (modifies in place)
+        tfidf_normalization(
+            state.adata,
+            scale_factor=params.scale_factor,
+            log_tf=params.log_tf,
+            log_idf=params.log_idf,
+            inplace=True
+        )
+        
+        state.status = "data_loaded"
+        state.message = f"TF-IDF normalization completed"
+        
+        return PreprocessInfo(
+            n_cells=state.adata.n_obs,
+            n_peaks=state.adata.n_vars,
+            message=f"TF-IDF applied (scale={params.scale_factor:.0e})"
+        )
+    
+    except Exception as e:
+        state.status = "error"
+        state.message = f"TF-IDF failed: {str(e)}"
+        raise
+
+
+@app.post("/preprocess/select-hvp", response_model=PreprocessInfo)
+async def select_hvp(params: HVPParams):
+    """Select highly variable peaks from scATAC-seq data"""
+    if state.adata is None:
+        return {"error": "No data uploaded. Please upload data first."}
+    
+    try:
+        state.status = "processing"
+        state.message = "Selecting highly variable peaks..."
+        
+        # Select HVP (adds 'highly_variable' column to adata.var)
+        select_highly_variable_peaks(
+            state.adata,
+            n_top_peaks=params.n_top_peaks,
+            min_accessibility=params.min_accessibility,
+            max_accessibility=params.max_accessibility,
+            method=params.method,
+            use_raw_counts=params.use_raw_counts,
+            inplace=True
+        )
+        
+        n_hvp = state.adata.var['highly_variable'].sum()
+        
+        state.status = "data_loaded"
+        state.message = f"Selected {n_hvp} highly variable peaks"
+        
+        return PreprocessInfo(
+            n_cells=state.adata.n_obs,
+            n_peaks=state.adata.n_vars,
+            message=f"Selected {n_hvp}/{state.adata.n_vars} peaks using {params.method}"
+        )
+    
+    except Exception as e:
+        state.status = "error"
+        state.message = f"HVP selection failed: {str(e)}"
+        raise
+
+
+@app.post("/preprocess/subsample", response_model=PreprocessInfo)
+async def subsample_data(params: SubsampleParams):
+    """Subsample cells and optionally filter to highly variable peaks"""
+    if state.adata is None:
+        return {"error": "No data uploaded. Please upload data first."}
+    
+    # Validate params
+    if params.n_cells is None and params.frac_cells is None:
+        return {"error": "Must specify either n_cells or frac_cells"}
+    
+    if params.n_cells is not None and params.frac_cells is not None:
+        return {"error": "Specify only one of n_cells or frac_cells"}
+    
+    try:
+        state.status = "processing"
+        state.message = "Subsampling data..."
+        
+        # Subsample (returns new AnnData)
+        state.adata = subsample_cells_and_peaks(
+            state.adata,
+            n_cells=params.n_cells,
+            frac_cells=params.frac_cells,
+            use_hvp=params.use_hvp,
+            hvp_column=params.hvp_column,
+            seed=params.seed,
+            inplace=False
+        )
+        
+        state.status = "data_loaded"
+        state.message = f"Subsampled to {state.adata.n_obs} cells"
+        
+        return PreprocessInfo(
+            n_cells=state.adata.n_obs,
+            n_peaks=state.adata.n_vars,
+            message=f"Subsampled to {state.adata.n_obs} cells × {state.adata.n_vars} peaks"
+        )
+    
+    except Exception as e:
+        state.status = "error"
+        state.message = f"Subsampling failed: {str(e)}"
+        raise

@@ -1,3 +1,6 @@
+// ============================================================================
+// components/upload-data.tsx - REFINED
+// ============================================================================
 
 'use client';
 
@@ -6,7 +9,7 @@ import { uploadData } from '@/lib/api';
 import { DataInfo, DataType } from '@/lib/types';
 
 type UploadDataProps = {
-  onUploadSuccess: (info: DataInfo) => void;
+  onUploadSuccess: (info: DataInfo, dataType: DataType) => void;
 };
 
 export function UploadData({ onUploadSuccess }: UploadDataProps) {
@@ -34,7 +37,7 @@ export function UploadData({ onUploadSuccess }: UploadDataProps) {
 
     try {
       const info = await uploadData(file, dataType);
-      onUploadSuccess(info);
+      onUploadSuccess(info, dataType);
     } catch (err) {
       setError(err instanceof Error ? err.message : 'Upload failed');
     } finally {
@@ -43,18 +46,19 @@ export function UploadData({ onUploadSuccess }: UploadDataProps) {
   };
 
   return (
-    <div className="space-y-4 p-6 rounded-lg card">
-      <h2 className="text-xl font-semibold">Upload Data</h2>
+    <div className="card rounded-lg p-6">
+      <h2 className="text-xl font-semibold mb-4">Upload Data</h2>
       
-      <div className="space-y-3">
+      <div className="space-y-4">
         <div>
-          <label className="block text-sm font-medium mb-2">
+          <label className="block text-sm font-medium mb-2 text-muted">
             Data Type
           </label>
           <select
             value={dataType}
             onChange={(e) => setDataType(e.target.value as DataType)}
-            className="w-full px-3 py-2 rounded-lg"
+            className="w-full px-3 py-2 rounded-lg border text-sm"
+            disabled={uploading}
           >
             <option value="scrna">scRNA-seq</option>
             <option value="scatac">scATAC-seq</option>
@@ -62,33 +66,36 @@ export function UploadData({ onUploadSuccess }: UploadDataProps) {
         </div>
 
         <div>
-          <label className="block text-sm font-medium mb-2">
-            Select File (.h5ad or .h5)
+          <label className="block text-sm font-medium mb-2 text-muted">
+            Select File
           </label>
           <input
             type="file"
             accept=".h5ad,.h5"
             onChange={handleFileChange}
-            className="w-full px-3 py-2 rounded-lg"
+            disabled={uploading}
+            className="w-full px-3 py-2 rounded-lg border text-sm file:mr-4 file:py-1 file:px-3 file:rounded file:border-0 file:text-sm file:font-medium file:btn-secondary"
           />
           {file && (
             <p className="mt-2 text-sm text-muted">
-              Selected: {file.name}
+              Selected: <span className="font-medium">{file.name}</span>
             </p>
           )}
         </div>
 
+        {error && (
+          <div className="p-3 rounded-lg badge-error">
+            <p className="text-sm font-medium">{error}</p>
+          </div>
+        )}
+
         <button
           onClick={handleUpload}
           disabled={!file || uploading}
-          className="w-full px-4 py-2 rounded-lg font-medium transition-colors disabled:opacity-50 btn-primary"
+          className="w-full px-4 py-2 rounded-lg font-medium transition-colors disabled:opacity-50 disabled:cursor-not-allowed btn-primary"
         >
-          {uploading ? 'Uploading...' : 'Upload'}
+          {uploading ? 'Uploading...' : 'Upload Data'}
         </button>
-
-        {error && (
-          <p className="text-sm" style={{ color: 'var(--color-error-text)' }}>{error}</p>
-        )}
       </div>
     </div>
   );
