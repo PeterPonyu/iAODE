@@ -1,6 +1,5 @@
-#model.py
-
 import torch
+import torch.nn as nn  # ADD THIS IMPORT
 import torch.optim as optim
 import torch.nn.functional as F
 import numpy as np
@@ -10,7 +9,7 @@ from .mixin import scviMixin, dipMixin, betatcMixin, infoMixin
 from .module import VAE
 
 
-class iVAE(scviMixin, dipMixin, betatcMixin, infoMixin):
+class iVAE(nn.Module, scviMixin, dipMixin, betatcMixin, infoMixin):  # MODIFIED: inherit from nn.Module
     def __init__(
         self,
         recon,
@@ -32,6 +31,8 @@ class iVAE(scviMixin, dipMixin, betatcMixin, infoMixin):
         *args,
         **kwargs,
     ):
+        super().__init__()  # ADDED: Initialize nn.Module
+        
         self.use_ode = use_ode
         self.loss_mode = loss_mode
         self.recon = recon
@@ -48,10 +49,248 @@ class iVAE(scviMixin, dipMixin, betatcMixin, infoMixin):
         self.ode_reg = ode_reg
         self.device = device
         self.loss = []
+        self.lr = lr  # ADDED: Store lr for later reference
+
+    # ADDED: Helper method to compute loss without updating
+    def _compute_loss_only(self, states):
+        """
+        Compute loss without parameter update (for validation)
+        
+        Args:
+            states: Input tensor
+            
+        Returns:
+            float: Total loss value
+        """
+        states = states.to(self.device)  # Ensure on correct device
+        
+        with torch.no_grad():
+            if self.use_ode:
+                if self.loss_mode == "zinb":
+                    (
+                        q_z,
+                        q_m,
+                        q_s,
+                        x,
+                        pred_x,
+                        dropout_logits,
+                        le,
+                        le_ode,
+                        pred_xl,
+                        dropout_logitsl,
+                        q_z_ode,
+                        pred_x_ode,
+                        dropout_logits_ode,
+                        pred_xl_ode,
+                        dropout_logitsl_ode,
+                    ) = self.nn(states)
+                    
+                    l = x.sum(-1).view(-1, 1)
+                    pred_x = pred_x * l
+                    pred_x_ode = pred_x_ode * l
+                    disp = torch.exp(self.nn.decoder.disp)
+                    recon_loss = (
+                        -self._log_zinb(x, pred_x, disp, dropout_logits).sum(-1).mean()
+                    )
+                    recon_loss += (
+                        -self._log_zinb(x, pred_x_ode, disp, dropout_logits_ode)
+                        .sum(-1)
+                        .mean()
+                    )
+
+                    if self.irecon:
+                        pred_xl = pred_xl * l
+                        pred_xl_ode = pred_xl_ode * l
+                        irecon_loss = (
+                            -self.irecon
+                            * self._log_zinb(x, pred_xl, disp, dropout_logitsl)
+                            .sum(-1)
+                            .mean()
+                        )
+                        irecon_loss += (
+                            -self.irecon
+                            * self._log_zinb(x, pred_xl_ode, disp, dropout_logitsl_ode)
+                            .sum(-1)
+                            .mean()
+                        )
+                    else:
+                        irecon_loss = torch.zeros(1).to(self.device)
+
+                else:
+                    (
+                        q_z,
+                        q_m,
+                        q_s,
+                        x,
+                        pred_x,
+                        le,
+                        le_ode,
+                        pred_xl,
+                        q_z_ode,
+                        pred_x_ode,
+                        pred_xl_ode,
+                    ) = self.nn(states)
+
+                    if self.loss_mode == "nb":
+                        l = x.sum(-1).view(-1, 1)
+                        pred_x = pred_x * l
+                        pred_x_ode = pred_x_ode * l
+                        disp = torch.exp(self.nn.decoder.disp)
+                        recon_loss = -self._log_nb(x, pred_x, disp).sum(-1).mean()
+                        recon_loss += -self._log_nb(x, pred_x_ode, disp).sum(-1).mean()
+
+                        if self.irecon:
+                            pred_xl = pred_xl * l
+                            pred_xl_ode = pred_xl_ode * l
+                            irecon_loss = (
+                                -self.irecon * self._log_nb(x, pred_xl, disp).sum(-1).mean()
+                            )
+                            irecon_loss += (
+                                -self.irecon
+                                * self._log_nb(x, pred_xl_ode, disp).sum(-1).mean()
+                            )
+                        else:
+                            irecon_loss = torch.zeros(1).to(self.device)
+
+                    else:
+                        recon_loss = F.mse_loss(x, pred_x, reduction="none").sum(-1).mean()
+                        recon_loss += (
+                            F.mse_loss(x, pred_x_ode, reduction="none").sum(-1).mean()
+                        )
+                        irecon_loss = (
+                            F.mse_loss(x, pred_xl, reduction="none").sum(-1).mean()
+                        )
+                        irecon_loss += (
+                            F.mse_loss(x, pred_xl_ode, reduction="none").sum(-1).mean()
+                        )
+
+                p_m = torch.zeros_like(q_m)
+                p_s = torch.zeros_like(q_s)
+
+                kl_div = self.beta * self._normal_kl(q_m, q_s, p_m, p_s).sum(-1).mean()
+
+                if self.dip:
+                    dip_loss = self.dip * self._dip_loss(q_m, q_s)
+                else:
+                    dip_loss = torch.zeros(1).to(self.device)
+
+                if self.tc:
+                    tc_loss = self.tc * self._betatc_compute_total_correlation(
+                        q_z, q_m, q_s
+                    )
+                else:
+                    tc_loss = torch.zeros(1).to(self.device)
+
+                if self.info:
+                    mmd_loss = self.info * self._compute_mmd(q_z, torch.randn_like(q_z))
+                else:
+                    mmd_loss = torch.zeros(1).to(self.device)
+
+                qz_div = F.mse_loss(q_z, q_z_ode, reduction="none").sum(-1).mean()
+                
+                total_loss = (
+                    self.recon * recon_loss
+                    + irecon_loss
+                    + qz_div
+                    + kl_div
+                    + dip_loss
+                    + tc_loss
+                    + mmd_loss
+                )
+
+            else:
+                if self.loss_mode == "zinb":
+                    q_z, q_m, q_s, pred_x, dropout_logits, le, pred_xl, dropout_logitsl = (
+                        self.nn(states)
+                    )
+
+                    l = states.sum(-1).view(-1, 1)
+                    pred_x = pred_x * l
+
+                    disp = torch.exp(self.nn.decoder.disp)
+                    recon_loss = (
+                        -self._log_zinb(states, pred_x, disp, dropout_logits).sum(-1).mean()
+                    )
+
+                    if self.irecon:
+                        pred_xl = pred_xl * l
+                        irecon_loss = (
+                            -self.irecon
+                            * self._log_zinb(states, pred_xl, disp, dropout_logitsl)
+                            .sum(-1)
+                            .mean()
+                        )
+                    else:
+                        irecon_loss = torch.zeros(1).to(self.device)
+
+                else:
+                    q_z, q_m, q_s, pred_x, le, pred_xl = self.nn(states)
+
+                    if self.loss_mode == "nb":
+                        l = states.sum(-1).view(-1, 1)
+                        pred_x = pred_x * l
+
+                        disp = torch.exp(self.nn.decoder.disp)
+                        recon_loss = -self._log_nb(states, pred_x, disp).sum(-1).mean()
+
+                        if self.irecon:
+                            pred_xl = pred_xl * l
+                            irecon_loss = (
+                                -self.irecon
+                                * self._log_nb(states, pred_xl, disp).sum(-1).mean()
+                            )
+                        else:
+                            irecon_loss = torch.zeros(1).to(self.device)
+
+                    else:
+                        recon_loss = (
+                            F.mse_loss(states, pred_x, reduction="none").sum(-1).mean()
+                        )
+                        irecon_loss = (
+                            F.mse_loss(states, pred_xl, reduction="none").sum(-1).mean()
+                        )
+
+                p_m = torch.zeros_like(q_m)
+                p_s = torch.zeros_like(q_s)
+
+                kl_div = self.beta * self._normal_kl(q_m, q_s, p_m, p_s).sum(-1).mean()
+
+                if self.dip:
+                    dip_loss = self.dip * self._dip_loss(q_m, q_s)
+                else:
+                    dip_loss = torch.zeros(1).to(self.device)
+
+                if self.tc:
+                    tc_loss = self.tc * self._betatc_compute_total_correlation(
+                        q_z, q_m, q_s
+                    )
+                else:
+                    tc_loss = torch.zeros(1).to(self.device)
+
+                if self.info:
+                    mmd_loss = self.info * self._compute_mmd(q_z, torch.randn_like(q_z))
+                else:
+                    mmd_loss = torch.zeros(1).to(self.device)
+
+                total_loss = (
+                    self.recon * recon_loss
+                    + irecon_loss
+                    + kl_div
+                    + dip_loss
+                    + tc_loss
+                    + mmd_loss
+                )
+        
+        return total_loss.item()
 
     @torch.no_grad()
     def take_latent(self, state):
-        state = torch.tensor(state, dtype=torch.float).to(self.device)
+        # Handle both numpy arrays and tensors
+        if not isinstance(state, torch.Tensor):
+            state = torch.tensor(state, dtype=torch.float).to(self.device)
+        else:
+            state = state.to(self.device)
+            
         if self.use_ode:
             q_z, q_m, q_s, t = self.nn.encoder(state)
             t = t.cpu()
@@ -70,7 +309,12 @@ class iVAE(scviMixin, dipMixin, betatcMixin, infoMixin):
 
     @torch.no_grad()
     def take_iembed(self, state):
-        states = torch.tensor(state, dtype=torch.float).to(self.device)
+        # Handle both numpy arrays and tensors
+        if not isinstance(state, torch.Tensor):
+            states = torch.tensor(state, dtype=torch.float).to(self.device)
+        else:
+            states = state.to(self.device)
+            
         if self.use_ode:
             q_z, q_m, q_s, t = self.nn.encoder(states)
             t = t.cpu()
@@ -135,7 +379,11 @@ class iVAE(scviMixin, dipMixin, betatcMixin, infoMixin):
         return transition_matrix
 
     def update(self, states):
-        states = torch.tensor(states, dtype=torch.float).to(self.device)
+        # MODIFIED: Handle both numpy arrays and tensors
+        if not isinstance(states, torch.Tensor):
+            states = torch.tensor(states, dtype=torch.float).to(self.device)
+        else:
+            states = states.to(self.device)
 
         if self.use_ode:
             if self.loss_mode == "zinb":

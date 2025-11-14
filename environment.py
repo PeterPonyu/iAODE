@@ -13,7 +13,6 @@ class Env(iVAE, envMixin):
         self,
         adata,
         layer,
-        percent,
         recon,
         irecon,
         beta,
@@ -46,9 +45,6 @@ class Env(iVAE, envMixin):
         
         # Register data with splits
         self._register_anndata(adata, layer, latent_dim)
-        
-        # OLD: Remove this line
-        # self.batch_size = int(percent * self.n_obs)
         
         super().__init__(
             recon=recon,
@@ -122,7 +118,7 @@ class Env(iVAE, envMixin):
         self.labels_val = self.labels[self.val_idx]
         self.labels_test = self.labels[self.test_idx]
         
-        print(f"\nData split:")
+        print("\nData split:")
         print(f"  Train: {len(self.train_idx):,} cells ({len(self.train_idx)/self.n_obs*100:.1f}%)")
         print(f"  Val:   {len(self.val_idx):,} cells ({len(self.val_idx)/self.n_obs*100:.1f}%)")
         print(f"  Test:  {len(self.test_idx):,} cells ({len(self.test_idx)/self.n_obs*100:.1f}%)")
@@ -169,16 +165,6 @@ class Env(iVAE, envMixin):
         )
         
         print(f"  Batches per epoch: {len(self.train_loader)}")
-
-    # MODIFIED: Load data returns train loader (epoch-based)
-    def load_data(self):
-        """Return train loader for epoch-based training"""
-        return self.train_loader
-
-    # NEW: Training step for one batch
-    def step(self, data):
-        """Single training step on one batch"""
-        self.update(data)
 
     # NEW: Training for one full epoch
     def train_epoch(self):
@@ -228,54 +214,34 @@ class Env(iVAE, envMixin):
         
         return avg_val_loss, val_score
 
-    # NEW: Test evaluation
-    def evaluate_test(self):
-        """Final evaluation on test set (call only once after training)"""
+    # # NEW: Test evaluation
+    # def evaluate_test(self):
+    #     """Final evaluation on test set (call only once after training)"""
         
-        self.eval()  # Set model to evaluation mode
-        test_losses = []
-        all_latents = []
+    #     self.eval()  # Set model to evaluation mode
+    #     test_losses = []
+    #     all_latents = []
         
-        with torch.no_grad():
-            for batch_data, in self.test_loader:
-                batch_data = batch_data.to(self.device)
+    #     with torch.no_grad():
+    #         for batch_data, in self.test_loader:
+    #             batch_data = batch_data.to(self.device)
                 
-                # Forward pass
-                loss_value = self._compute_loss_only(batch_data)
-                test_losses.append(loss_value)
+    #             # Forward pass
+    #             loss_value = self._compute_loss_only(batch_data)
+    #             test_losses.append(loss_value)
                 
-                # Get latent representations
-                latent = self.take_latent(batch_data)
-                all_latents.append(latent)
+    #             # Get latent representations
+    #             latent = self.take_latent(batch_data)
+    #             all_latents.append(latent)
         
-        # Average test loss
-        avg_test_loss = np.mean(test_losses)
+    #     # Average test loss
+    #     avg_test_loss = np.mean(test_losses)
         
-        # Compute metrics on test latents
-        all_latents = np.concatenate(all_latents, axis=0)
-        test_score = self._calc_score_with_labels(all_latents, self.labels_test)
+    #     # Compute metrics on test latents
+    #     all_latents = np.concatenate(all_latents, axis=0)
+    #     test_score = self._calc_score_with_labels(all_latents, self.labels_test)
         
-        return avg_test_loss, test_score, all_latents
-
-    # NEW: Helper to compute loss without updating
-    def _compute_loss_only(self, data):
-        """Compute loss without parameter update"""
-        
-        # Forward pass through model
-        if hasattr(self, 'forward'):
-            outputs = self.forward(data)
-        else:
-            # Fallback: call the loss computation
-            # This depends on your model implementation
-            # You may need to adjust this based on your model's forward method
-            return 0.0  # Placeholder
-        
-        # Compute total loss
-        total_loss = 0.0
-        if hasattr(self, 'compute_total_loss'):
-            total_loss = self.compute_total_loss(data, outputs)
-        
-        return total_loss
+    #     return avg_test_loss, test_score, all_latents
 
     # NEW: Check early stopping
     def check_early_stopping(self, val_loss, patience=20):
@@ -316,15 +282,5 @@ class Env(iVAE, envMixin):
         else:
             print("\nWarning: No best model state found!")
 
-    # REMOVED: Old sampling method (no longer needed)
-    # def _sample_data(self):
-    #     ...
 
-    # MODIFIED: Scoring with provided labels
-    def _calc_score_with_labels(self, latent, labels):
-        """Calculate metrics with provided labels"""
-        n = latent.shape[1]
-        predicted_labels = self._calc_label(latent)
-        scores = self._metrics(latent, predicted_labels, labels)
-        return scores
         

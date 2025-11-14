@@ -4,8 +4,8 @@ import torch
 import torch.nn.functional as F
 from torchdiffeq import odeint
 import numpy as np
+import math
 from sklearn.cluster import KMeans
-from sklearn.preprocessing import minmax_scale
 from sklearn.metrics import (
     adjusted_mutual_info_score,
     normalized_mutual_info_score,
@@ -155,27 +155,40 @@ class NODEMixin:
 
         return pred_z
 
-
 class betatcMixin:
     def _betatc_compute_gaussian_log_density(self, samples, mean, log_var):
         import math
-
-        pi = torch.tensor(math.pi, requires_grad=False)
+        
+        pi = torch.tensor(math.pi, device=samples.device)
         normalization = torch.log(2 * pi)
         inv_sigma = torch.exp(-log_var)
         tmp = samples - mean
         return -0.5 * (tmp * tmp * inv_sigma + log_var + normalization)
 
     def _betatc_compute_total_correlation(self, z_sampled, z_mean, z_logvar):
+        batch_size = z_sampled.size(0)
+        
+        # Compute log density: [B, B, D]
         log_qz_prob = self._betatc_compute_gaussian_log_density(
-            z_sampled.unsqueeze(dim=1),
-            z_mean.unsqueeze(dim=0),
-            z_logvar.unsqueeze(dim=0),
+            z_sampled.unsqueeze(dim=1),   # [B, 1, D]
+            z_mean.unsqueeze(dim=0),       # [1, B, D]
+            z_logvar.unsqueeze(dim=0),     # [1, B, D]
         )
-        log_qz_product = log_qz_prob.exp().sum(dim=1).log().sum(dim=1)
-        log_qz = log_qz_prob.sum(dim=2).exp().sum(dim=1).log()
-        return (log_qz - log_qz_product).mean()
-
+        
+        # Add batch size normalization and clamp for stability
+        log_qz_prob = torch.clamp(log_qz_prob, min=-1000, max=1000)
+        
+        # log q(z) = logsumexp over batch of sum over dims - log(batch_size)
+        log_qz = torch.logsumexp(log_qz_prob.sum(dim=2), dim=1) - math.log(batch_size)
+        
+        # log prod_j q(z_j) = sum over dims of (logsumexp over batch - log(batch_size))
+        log_qz_product = (torch.logsumexp(log_qz_prob, dim=1) - math.log(batch_size)).sum(dim=1)
+        
+        # Total correlation
+        tc = (log_qz - log_qz_product).mean()
+        
+        return tc
+    
 
 class infoMixin:
     def _compute_mmd(self, z_posterior_samples, z_prior_samples):
@@ -241,7 +254,6 @@ class dipMixin:
 class envMixin:
     def _calc_score(self, latent):
         """Calculate score using stored indices (for old compatibility)"""
-        n = latent.shape[1]
         labels = self._calc_label(latent)
         scores = self._metrics(latent, labels, self.labels[self.idx])
         return scores
@@ -267,7 +279,7 @@ class envMixin:
         ARI = adjusted_mutual_info_score(true_labels, predicted_labels)
         NMI = normalized_mutual_info_score(true_labels, predicted_labels)
         ASW = silhouette_score(latent, predicted_labels)
-        C_H = calinski_harabasz_score(latent, predicted_labels)
-        D_B = davies_bouldin_score(latent, predicted_labels)
-        P_C = self._calc_corr(latent)
-        return ARI, NMI, ASW, C_H, D_B, P_C
+        CAL = calinski_harabasz_score(latent, predicted_labels)
+        DAV = davies_bouldin_score(latent, predicted_labels)
+        COR = self._calc_corr(latent)
+        return ARI, NMI, ASW, CAL, DAV, COR
