@@ -5,17 +5,22 @@ import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContaine
 import { createHistogramBins } from '@/lib/statsCalculator';
 import { parseNumeric, formatNumber } from '@/lib/formatters';
 
-interface PeaksDistributionProps {
+interface FeaturesDistributionProps {
   gseGroups: GSEGroup[];
+  dataType: 'ATAC' | 'RNA';
 }
 
-export default function PeaksDistribution({ gseGroups }: PeaksDistributionProps) {
+export default function FeaturesDistribution({ gseGroups, dataType }: FeaturesDistributionProps) {
   const allDatasets = gseGroups.flatMap(g => g.datasets);
-  const peakCounts = allDatasets
-    .map(d => parseNumeric(d.nPeaks))
+  const featureCounts = allDatasets
+    .map(d => parseNumeric(d.nFeatures))
     .filter(n => n > 0);
 
-  const bins = createHistogramBins(peakCounts, 15);
+  const bins = createHistogramBins(featureCounts, 15);
+
+  const featureLabel = dataType === 'ATAC' ? 'peaks' : 'genes';
+  const featureLabelCap = dataType === 'ATAC' ? 'Peak' : 'Gene';
+  const barColor = dataType === 'ATAC' ? '#06B6D4' : '#A855F7'; // cyan-500 for ATAC, purple-500 for RNA
 
   const CustomTooltip = ({ active, payload }: any) => {
     if (active && payload && payload.length) {
@@ -23,7 +28,7 @@ export default function PeaksDistribution({ gseGroups }: PeaksDistributionProps)
       return (
         <div className="card p-3 shadow-lg">
           <p className="font-medium text-[rgb(var(--foreground))] mb-1 transition-colors">
-            {formatNumber(data.min)} - {formatNumber(data.max)} peaks
+            {formatNumber(data.min)} - {formatNumber(data.max)} {featureLabel}
           </p>
           <p className="text-sm text-[rgb(var(--muted-foreground))] transition-colors">
             {data.count} datasets
@@ -37,10 +42,10 @@ export default function PeaksDistribution({ gseGroups }: PeaksDistributionProps)
   return (
     <div className="card p-6">
       <h2 className="text-xl font-bold text-[rgb(var(--foreground))] mb-4 transition-colors">
-        Peak Count Distribution
+        {featureLabelCap} Count Distribution
       </h2>
       <p className="text-sm text-[rgb(var(--muted-foreground))] mb-4 transition-colors">
-        Distribution of peak counts across all {allDatasets.length} datasets
+        Distribution of {featureLabel} counts across all {allDatasets.length} datasets
       </p>
       <div className="h-80">
         <ResponsiveContainer width="100%" height="100%">
@@ -50,7 +55,7 @@ export default function PeaksDistribution({ gseGroups }: PeaksDistributionProps)
               dataKey="bin" 
               className="text-xs fill-gray-600 dark:fill-gray-400"
               label={{ 
-                value: 'Peak Count', 
+                value: `${featureLabelCap} Count`, 
                 position: 'insideBottom', 
                 offset: -10,
                 className: 'fill-gray-600 dark:fill-gray-400'
@@ -66,7 +71,7 @@ export default function PeaksDistribution({ gseGroups }: PeaksDistributionProps)
               }}
             />
             <Tooltip content={<CustomTooltip />} />
-            <Bar dataKey="count" fill="#10B981" radius={[8, 8, 0, 0]} />
+            <Bar dataKey="count" fill={barColor} radius={[8, 8, 0, 0]} />
           </BarChart>
         </ResponsiveContainer>
       </div>

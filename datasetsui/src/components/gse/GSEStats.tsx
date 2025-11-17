@@ -1,13 +1,20 @@
 import { GSEGroup } from '@/types/datasets';
 import { formatNumber, formatFileSize } from '@/lib/formatters';
-import { Database, Microscope, BarChart3, HardDrive } from 'lucide-react';
+import { Database, Microscope, Activity, Dna, HardDrive } from 'lucide-react';
 
 interface GSEStatsProps {
   gseGroup: GSEGroup;
+  dataType: 'ATAC' | 'RNA';
 }
 
-export default function GSEStats({ gseGroup }: GSEStatsProps) {
-  const { datasets, totalCells, totalPeaks, totalSize } = gseGroup;
+export default function GSEStats({ gseGroup, dataType }: GSEStatsProps) {
+  const { datasets, totalCells, totalFeatures, totalSize } = gseGroup;
+
+  const featureLabel = dataType === 'ATAC' ? 'Total Peaks' : 'Total Genes';
+  const FeatureIcon = dataType === 'ATAC' ? Activity : Dna;
+  const featureColorClass = dataType === 'ATAC' 
+    ? 'text-[rgb(var(--atac-primary))]' 
+    : 'text-[rgb(var(--rna-primary))]';
 
   const stats = [
     {
@@ -23,10 +30,10 @@ export default function GSEStats({ gseGroup }: GSEStatsProps) {
       colorClass: 'text-[rgb(var(--stat-green))]',
     },
     {
-      label: 'Total Peaks',
-      value: formatNumber(totalPeaks),
-      icon: BarChart3,
-      colorClass: 'text-[rgb(var(--stat-purple))]',
+      label: featureLabel,
+      value: formatNumber(totalFeatures),
+      icon: FeatureIcon,
+      colorClass: featureColorClass,
     },
     {
       label: 'Total Size',
@@ -46,12 +53,12 @@ export default function GSEStats({ gseGroup }: GSEStatsProps) {
             className="card p-6 text-center"
           >
             <div className="flex justify-center mb-3">
-              <Icon className={`h-8 w-8 ${stat.colorClass}`} />
+              <Icon className={`h-8 w-8 ${stat.colorClass} transition-colors`} />
             </div>
-            <div className="text-2xl font-bold text-[rgb(var(--stat-value))] mb-1">
+            <div className="text-2xl font-bold text-[rgb(var(--stat-value))] transition-colors mb-1">
               {stat.value}
             </div>
-            <div className="text-sm text-[rgb(var(--stat-label))]">
+            <div className="text-sm text-[rgb(var(--stat-label))] transition-colors">
               {stat.label}
             </div>
           </div>

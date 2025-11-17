@@ -9,14 +9,19 @@ interface DatasetFiltersProps {
   filters: FilterState;
   onFiltersChange: (filters: FilterState) => void;
   allDatasets: MergedDataset[];
+  dataType: 'ATAC' | 'RNA';
 }
 
 export default function DatasetFilters({
   filters,
   onFiltersChange,
-  allDatasets
+  allDatasets,
+  dataType
 }: DatasetFiltersProps) {
   const options = useMemo(() => getFilterOptions(allDatasets), [allDatasets]);
+
+  const featureLabel = dataType === 'ATAC' ? 'peaks' : 'genes';
+  const featureIcon = dataType === 'ATAC' ? '⚡' : '🧬';
 
   const toggleCategory = (cat: FilterState['categories'][number]) => {
     const newCategories = filters.categories.includes(cat)
@@ -38,19 +43,21 @@ export default function DatasetFilters({
       categories: [],
       organisms: [],
       cellRange: null,
+      featureRange: null,
     });
   };
 
   const activeFilterCount = 
     filters.categories.length + 
     filters.organisms.length + 
-    (filters.cellRange ? 1 : 0);
+    (filters.cellRange ? 1 : 0) +
+    (filters.featureRange ? 1 : 0);
 
   return (
     <div className="card p-4 space-y-6">
       {/* Header */}
       <div className="flex items-center justify-between">
-        <h2 className="font-semibold text-lg text-[rgb(var(--foreground))]">
+        <h2 className="font-semibold text-lg text-[rgb(var(--foreground))] transition-colors">
           Filters
         </h2>
         {activeFilterCount > 0 && (
@@ -64,9 +71,20 @@ export default function DatasetFilters({
         )}
       </div>
 
+      {/* Data Type Badge */}
+      <div className={`
+        px-3 py-2 rounded-lg border text-sm font-medium text-center
+        ${dataType === 'ATAC' 
+          ? 'bg-[rgb(var(--atac-bg-subtle))] border-[rgb(var(--atac-border))] text-[rgb(var(--atac-text))]'
+          : 'bg-[rgb(var(--rna-bg-subtle))] border-[rgb(var(--rna-border))] text-[rgb(var(--rna-text))]'
+        } transition-colors
+      `}>
+        {dataType === 'ATAC' ? '⚡ scATAC-seq Data' : '🧬 scRNA-seq Data'}
+      </div>
+
       {/* Category Filter */}
       <div>
-        <h3 className="font-semibold text-sm text-[rgb(var(--foreground))] mb-3">
+        <h3 className="font-semibold text-sm text-[rgb(var(--foreground))] mb-3 transition-colors">
           🔖 Dataset Size
         </h3>
         <div className="space-y-2">
@@ -97,8 +115,8 @@ export default function DatasetFilters({
 
       {/* Organism Filter */}
       <div>
-        <h3 className="font-semibold text-sm text-[rgb(var(--foreground))] mb-3">
-          🧬 Organism
+        <h3 className="font-semibold text-sm text-[rgb(var(--foreground))] mb-3 transition-colors">
+          🦠 Organism
         </h3>
         <div className="space-y-2 max-h-64 overflow-y-auto">
           {options.organisms.map(org => {
@@ -124,6 +142,11 @@ export default function DatasetFilters({
             );
           })}
         </div>
+      </div>
+
+      {/* Feature Count Info */}
+      <div className="text-xs text-[rgb(var(--text-tertiary))] pt-2 border-t border-[rgb(var(--border))] transition-colors">
+        {featureIcon} Filtering by {featureLabel} count
       </div>
     </div>
   );

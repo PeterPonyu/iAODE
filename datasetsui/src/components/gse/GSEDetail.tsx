@@ -13,12 +13,15 @@ import { cn } from '@/lib/utils';
 
 interface GSEDetailProps {
   gseGroup: GSEGroup;
+  dataType: 'ATAC' | 'RNA';
 }
 
-export default function GSEDetail({ gseGroup }: GSEDetailProps) {
+export default function GSEDetail({ gseGroup, dataType }: GSEDetailProps) {
   const [viewMode, setViewMode] = useState<'card' | 'table'>('card');
-  const [sortBy, setSortBy] = useState<'cells' | 'peaks' | 'size' | 'filename'>('cells');
+  const [sortBy, setSortBy] = useState<'cells' | 'features' | 'size' | 'filename'>('cells');
   const [sortOrder, setSortOrder] = useState<'asc' | 'desc'>('desc');
+
+  const featureLabel = dataType === 'ATAC' ? 'Peaks' : 'Genes';
 
   // Sort datasets
   const sortedDatasets = useMemo(() => {
@@ -27,16 +30,16 @@ export default function GSEDetail({ gseGroup }: GSEDetailProps) {
 
       switch (sortBy) {
         case 'cells':
-          aVal = parseInt(a.nCells) || 0;
-          bVal = parseInt(b.nCells) || 0;
+          aVal = parseInt(a.nCells.toString()) || 0;
+          bVal = parseInt(b.nCells.toString()) || 0;
           break;
-        case 'peaks':
-          aVal = parseInt(a.nPeaks) || 0;
-          bVal = parseInt(b.nPeaks) || 0;
+        case 'features':
+          aVal = parseInt(a.nFeatures.toString()) || 0;
+          bVal = parseInt(b.nFeatures.toString()) || 0;
           break;
         case 'size':
-          aVal = parseFloat(a.dataFileSize) || 0;
-          bVal = parseFloat(b.dataFileSize) || 0;
+          aVal = parseFloat(a.dataFileSize.toString()) || 0;
+          bVal = parseFloat(b.dataFileSize.toString()) || 0;
           break;
         case 'filename':
           return sortOrder === 'asc'
@@ -66,7 +69,7 @@ export default function GSEDetail({ gseGroup }: GSEDetailProps) {
     <div className="space-y-6">
       {/* Back Button */}
       <Link
-        href="/datasets"
+        href={`/datasets?type=${dataType}`}
         className="inline-flex items-center gap-2 text-sm text-[rgb(var(--muted-foreground))] hover:text-[rgb(var(--foreground))] transition-colors"
       >
         <ArrowLeft className="h-4 w-4" />
@@ -74,10 +77,10 @@ export default function GSEDetail({ gseGroup }: GSEDetailProps) {
       </Link>
 
       {/* Header Section */}
-      <GSEHeader gseGroup={gseGroup} />
+      <GSEHeader gseGroup={gseGroup} dataType={dataType} />
 
       {/* Stats Cards */}
-      <GSEStats gseGroup={gseGroup} />
+      <GSEStats gseGroup={gseGroup} dataType={dataType} />
 
       {/* Datasets Section */}
       <div className="card p-6">
@@ -88,7 +91,7 @@ export default function GSEDetail({ gseGroup }: GSEDetailProps) {
               Datasets in this Study
             </h2>
             <p className="text-sm text-[rgb(var(--muted-foreground))] transition-colors">
-              {gseGroup.datasets.length} dataset{gseGroup.datasets.length !== 1 ? 's' : ''} available
+              {gseGroup.datasets.length} dataset{gseGroup.datasets.length !== 1 ? 's' : ''} available in 10X h5 format
             </p>
           </div>
 
@@ -101,7 +104,7 @@ export default function GSEDetail({ gseGroup }: GSEDetailProps) {
               className="px-3 py-2 text-sm border border-[rgb(var(--border))] rounded-lg bg-[rgb(var(--card))] text-[rgb(var(--foreground))] focus:outline-none focus:ring-2 focus:ring-[rgb(var(--primary))] transition-colors"
             >
               <option value="cells">Sort by Cells</option>
-              <option value="peaks">Sort by Peaks</option>
+              <option value="features">Sort by {featureLabel}</option>
               <option value="size">Sort by Size</option>
               <option value="filename">Sort by Filename</option>
             </select>
@@ -140,10 +143,11 @@ export default function GSEDetail({ gseGroup }: GSEDetailProps) {
 
         {/* Dataset List */}
         {viewMode === 'card' ? (
-          <DatasetList datasets={sortedDatasets} />
+          <DatasetList datasets={sortedDatasets} dataType={dataType} />
         ) : (
           <DatasetListTable 
             datasets={sortedDatasets} 
+            dataType={dataType}
             sortBy={sortBy}
             sortOrder={sortOrder}
             onSort={handleSort}
@@ -154,7 +158,8 @@ export default function GSEDetail({ gseGroup }: GSEDetailProps) {
       {/* Info Note */}
       <div className="card p-4 bg-[rgb(var(--info-bg))] border-[rgb(var(--info-border))] transition-colors">
         <p className="text-sm text-[rgb(var(--info-text))] transition-colors">
-          ℹ️ For detailed study information, experimental protocols, and publication details, 
+          ℹ️ All datasets are provided in standardized 10X Genomics HDF5 filtered matrix format. 
+          For detailed study information, experimental protocols, and publication details, 
           please visit the{' '}
           <a
             href={generateGeoUrl(gseGroup.gseAccession)}

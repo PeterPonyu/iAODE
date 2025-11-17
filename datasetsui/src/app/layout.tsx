@@ -17,8 +17,8 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: 'scATAC-seq Dataset Browser',
-  description: 'Browse and explore single-cell ATAC-seq datasets from NCBI GEO',
+  title: 'iAODE Dataset Browser',
+  description: 'Browse and explore datasets for iAODE from NCBI GEO',
 };
 
 export default function RootLayout({

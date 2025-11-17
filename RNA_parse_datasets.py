@@ -26,12 +26,12 @@ def truncate_authors(authors_str, max_authors=6):
     else:
         return authors_str
 
-def get_organism_name(code):
+def get_organism_name(code_or_name):
     """
-    Map organism code to full name.
+    Map organism code to full name, or return the name if already full.
     
     Args:
-        code: Organism code (Hm, Mm, Dr, Dj, Dm)
+        code_or_name: Organism code (Hm, Mm, Dr, Dj, Dm) or full name
     
     Returns:
         Full organism name
@@ -41,9 +41,26 @@ def get_organism_name(code):
         'Mm': 'Mouse',
         'Dr': 'Zebrafish',
         'Dj': 'Planarian',
-        'Dm': 'Drosophila'
+        'Dm': 'Drosophila',
+        'Gg': 'Chicken',
+        'Gallus gallus': 'Chicken',
+        'Chicken': 'Chicken',
+        'Xenopus laevis': 'African clawed frog',
+        'Xl': 'African clawed frog',
+        'Danio rerio': 'Zebrafish',
+        'Mus musculus': 'Mouse',
+        'Homo sapiens': 'Human',
+        'Drosophila melanogaster': 'Drosophila'
     }
-    return organism_map.get(code, f"Unknown ({code})")
+    
+    # Return mapped value or the input if it's already a full name
+    result = organism_map.get(code_or_name, code_or_name)
+    
+    # If still not found and looks like a scientific name, return it as-is with proper capitalization
+    if result == code_or_name and ' ' in code_or_name:
+        return code_or_name.strip()
+    
+    return result
 
 def parse_markdown_to_json(md_file_path, output_json_path):
     with open(md_file_path, 'r', encoding='utf-8') as f:
@@ -77,9 +94,10 @@ def parse_markdown_to_json(md_file_path, output_json_path):
         entry_num_match = re.match(r'^(\d+)\.', entry)
         entry_num = entry_num_match.group(1) if entry_num_match else "unknown"
         
-        # Parse the entry structure with semicolon separator
-        # Format: Number. Authors; Title, GSE, **files** info platform
-        match = re.match(r'^(\d+)\.\s+(.+?);\s+(.+?),\s*(GSE\d+)\s*,?\s*(.+)$', entry, re.DOTALL)
+        # Parse the entry structure with semicolon as primary separator
+        # Format: Number. Authors; Title; GSE; **files** info
+        # Use semicolon as the main delimiter, commas within fields are preserved
+        match = re.match(r'^(\d+)\.\s+(.+?);\s+(.+?);\s*(GSE\d+);\s*(.+)$', entry, re.DOTALL)
         
         if not match:
             print(f"⚠️  Warning: Could not parse entry {entry_num}: {entry[:80]}...")
@@ -98,8 +116,8 @@ def parse_markdown_to_json(md_file_path, output_json_path):
         title = re.sub(r',?\s*GSE\d+\s*,?', '', title).strip()
         
         # Extract all data files with organism markers
-        # Updated pattern to include Hm, Mm, Dr, Dj, Dm
-        file_pattern = r'\*\*([^\*]+)\*\*\s*\((Hm|Mm|Dr|Dj|Dm)\)'
+        # Updated pattern to include codes AND full species names in parentheses
+        file_pattern = r'\*\*([^\*]+)\*\*\s*\(([^)]+)\)'
         file_matches = list(re.finditer(file_pattern, rest))
         
         if not file_matches:
@@ -111,8 +129,8 @@ def parse_markdown_to_json(md_file_path, output_json_path):
         # Each file may have its own source and platform
         for idx, file_match in enumerate(file_matches):
             data_file_name = file_match.group(1).strip()
-            organism_code = file_match.group(2)
-            organism = get_organism_name(organism_code)
+            organism_raw = file_match.group(2).strip()
+            organism = get_organism_name(organism_raw)
             
             # Extract metadata for this specific file
             # Get text between this file and the next file (or end of string)
@@ -124,11 +142,11 @@ def parse_markdown_to_json(md_file_path, output_json_path):
             
             file_metadata = rest[start_pos:end_pos].strip()
             
-            # Remove leading comma if present
-            file_metadata = re.sub(r'^,\s*', '', file_metadata)
+            # Remove leading comma or semicolon if present
+            file_metadata = re.sub(r'^[,;]\s*', '', file_metadata)
             
             # Enhanced platform pattern to include various sequencing platforms
-            platform_pattern = r'(Element\s+AVITI|MGISEQ[-\s]?\d+\w*|Illumina\s+NovaSeq\s+X(?:\s+Plus)?|Illumina\s+NovaSeq\s+\d+|Illumina\s+HiSeq\s+X\s+Ten|Illumina\s+HiSeq\s+\d+|Illumina\s+NextSeq\s+\d+|Illumina\s+MiSeq|NextSeq\s+\d+|NovaSeq\s+X(?:\s+Plus)?|NovaSeq\s+\d+|HiSeq\s+X\s+Ten|HiSeq\s+\d+|MiSeq)'
+            platform_pattern = r'(DNBSEQ[-\s]?T7|Element\s+AVITI|MGISEQ[-\s]?\d+\w*|Illumina\s+NovaSeq\s+X(?:\s+Plus)?|Illumina\s+NovaSeq\s+\d+|Illumina\s+HiSeq\s+X\s+Ten|Illumina\s+HiSeq\s+\d+|Illumina\s+NextSeq\s+\d+|Illumina\s+MiSeq|NextSeq\s+\d+|NovaSeq\s+X(?:\s+Plus)?|NovaSeq\s+\d+|HiSeq\s+X\s+Ten|HiSeq\s+\d+|MiSeq)'
             platform_match = re.search(platform_pattern, file_metadata, re.IGNORECASE)
             
             if platform_match:
@@ -146,17 +164,11 @@ def parse_markdown_to_json(md_file_path, output_json_path):
             if not source:
                 source = "Unknown"
             
-            # Generate a unique ID from GSE and filename
-            file_id_match = re.search(r'(GSM\d+)', data_file_name)
-            if file_id_match:
-                file_identifier = file_id_match.group(1).lower()
-            else:
-                # Try to extract other meaningful identifiers
-                alt_match = re.search(r'^([^_]+)', data_file_name)
-                if alt_match:
-                    file_identifier = alt_match.group(1).lower()
-                else:
-                    file_identifier = f"file{idx+1}"
+            # Generate a unique ID from GSE and full filename to avoid collisions
+            # Use the full filename base (before extension) to ensure uniqueness
+            filename_base = re.sub(r'\.(h5|csv|txt|gz)$', '', data_file_name, flags=re.IGNORECASE)
+            # Create a clean identifier from the filename
+            file_identifier = re.sub(r'[^a-z0-9]+', '-', filename_base.lower()).strip('-')
             
             dataset_id = f"{gse_accession.lower()}-{file_identifier}"
             # Clean ID: only keep alphanumeric and hyphens
@@ -227,8 +239,8 @@ def parse_markdown_to_json(md_file_path, output_json_path):
 
 if __name__ == "__main__":
     # Usage
-    md_file = "./scATAC25100-info.md"
-    json_file = "./datasets.json"
+    md_file = "./scRNA25100-info.md"
+    json_file = "./RNAdatasets.json"
     
     try:
         datasets = parse_markdown_to_json(md_file, json_file)

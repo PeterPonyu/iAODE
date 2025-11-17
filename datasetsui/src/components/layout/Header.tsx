@@ -39,7 +39,7 @@ export default function Header() {
           >
             <Database className="w-6 h-6 text-[rgb(var(--primary))]" />
             <span className="font-bold text-lg text-[rgb(var(--foreground))] whitespace-nowrap">
-              scATAC-seq Browser
+              iAODE-VAE Benchmark Datasets
             </span>
           </Link>
 

@@ -58,6 +58,31 @@
     /* Metadata label color */
     --meta-label: 107 114 128;
 
+    /* ============================================
+       OMICS-SPECIFIC COLORS (scATAC - Cyan theme)
+       ============================================ */
+    --atac-primary: 8 145 178;        /* cyan-600 */
+    --atac-primary-hover: 14 116 144; /* cyan-700 */
+    --atac-bg: 207 250 254;           /* cyan-100 */
+    --atac-bg-subtle: 236 254 255;    /* cyan-50 */
+    --atac-border: 165 243 252;       /* cyan-200 */
+    --atac-text: 21 94 117;           /* cyan-900 */
+    --atac-text-bright: 14 116 144;   /* cyan-700 */
+    --atac-icon-bg: 207 250 254;      /* cyan-100 */
+    --atac-icon: 8 145 178;           /* cyan-600 */
+
+    /* ============================================
+       OMICS-SPECIFIC COLORS (scRNA - Purple theme)
+       ============================================ */
+    --rna-primary: 147 51 234;        /* purple-600 */
+    --rna-primary-hover: 126 34 206;  /* purple-700 */
+    --rna-bg: 243 232 255;            /* purple-100 */
+    --rna-bg-subtle: 250 245 255;     /* purple-50 */
+    --rna-border: 233 213 255;        /* purple-200 */
+    --rna-text: 88 28 135;            /* purple-900 */
+    --rna-text-bright: 126 34 206;    /* purple-700 */
+    --rna-icon-bg: 243 232 255;       /* purple-100 */
+    --rna-icon: 147 51 234;           /* purple-600 */
   }
 
   /* Dark mode */
@@ -106,6 +131,30 @@
     /* Metadata label color - dark mode */
     --meta-label: 156 163 175;
 
+    /* ============================================
+       OMICS-SPECIFIC COLORS - DARK MODE
+       ============================================ */
+    /* scATAC - Cyan (dark mode) */
+    --atac-primary: 34 211 238;        /* cyan-400 */
+    --atac-primary-hover: 103 232 249; /* cyan-300 */
+    --atac-bg: 21 94 117 / 0.3;        /* cyan-900/30 */
+    --atac-bg-subtle: 21 94 117 / 0.15;/* cyan-900/15 */
+    --atac-border: 14 116 144;         /* cyan-700 */
+    --atac-text: 165 243 252;          /* cyan-200 */
+    --atac-text-bright: 103 232 249;   /* cyan-300 */
+    --atac-icon-bg: 21 94 117 / 0.3;   /* cyan-900/30 */
+    --atac-icon: 34 211 238;           /* cyan-400 */
+
+    /* scRNA - Purple (dark mode) */
+    --rna-primary: 192 132 252;        /* purple-400 */
+    --rna-primary-hover: 216 180 254;  /* purple-300 */
+    --rna-bg: 88 28 135 / 0.3;         /* purple-900/30 */
+    --rna-bg-subtle: 88 28 135 / 0.15; /* purple-900/15 */
+    --rna-border: 126 34 206;          /* purple-700 */
+    --rna-text: 233 213 255;           /* purple-200 */
+    --rna-text-bright: 216 180 254;    /* purple-300 */
+    --rna-icon-bg: 88 28 135 / 0.3;    /* purple-900/30 */
+    --rna-icon: 192 132 252;           /* purple-400 */
   }
 
   html {
@@ -121,18 +170,6 @@
     -moz-osx-font-smoothing: grayscale;
     transition: background-color 0.2s ease-in-out, color 0.2s ease-in-out;
   }
-
-  /* html {
-    scroll-behavior: smooth;
-  }
-
-  body {
-    background-color: var(--background);
-    color: var(--foreground);
-    font-family: var(--font-geist-sans), system-ui, sans-serif;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
-  } */
 }
 
 @layer components {
@@ -187,6 +224,47 @@
   }
 
   /* ============================================
+     OMICS-SPECIFIC BUTTON VARIANTS
+     ============================================ */
+  .btn-atac {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    padding: 0.625rem 1.25rem;
+    font-weight: 600;
+    border-radius: 0.5rem;
+    background-color: rgb(var(--atac-primary));
+    color: white;
+    transition: all 0.2s;
+    box-shadow: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+  }
+
+  .btn-atac:hover {
+    background-color: rgb(var(--atac-primary-hover));
+    box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1);
+  }
+
+  .btn-rna {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    padding: 0.625rem 1.25rem;
+    font-weight: 600;
+    border-radius: 0.5rem;
+    background-color: rgb(var(--rna-primary));
+    color: white;
+    transition: all 0.2s;
+    box-shadow: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+  }
+
+  .btn-rna:hover {
+    background-color: rgb(var(--rna-primary-hover));
+    box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1);
+  }
+
+  /* ============================================
      CARD & SURFACE COMPONENTS
      ============================================ */
   .card {
@@ -201,6 +279,35 @@
 
   .dark .card {
     box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.3), 0 2px 4px -1px rgb(0 0 0 / 0.2);
+  }
+
+  /* ============================================
+     OMICS-SPECIFIC CARD VARIANTS
+     ============================================ */
+  .card-atac {
+    background-color: rgb(var(--card));
+    color: rgb(var(--card-foreground));
+    border: 1px solid rgb(var(--atac-border));
+    border-radius: 0.75rem;
+    padding: 1.5rem;
+    transition: all 0.2s ease-in-out;
+  }
+
+  .card-atac:hover {
+    box-shadow: 0 4px 12px 0 rgb(var(--atac-primary) / 0.15);
+  }
+
+  .card-rna {
+    background-color: rgb(var(--card));
+    color: rgb(var(--card-foreground));
+    border: 1px solid rgb(var(--rna-border));
+    border-radius: 0.75rem;
+    padding: 1.5rem;
+    transition: all 0.2s ease-in-out;
+  }
+
+  .card-rna:hover {
+    box-shadow: 0 4px 12px 0 rgb(var(--rna-primary) / 0.15);
   }
 
   /* ============================================
@@ -239,7 +346,4 @@
     font-weight: 600;
     color: rgb(var(--foreground));
   }
-
-
 }
-

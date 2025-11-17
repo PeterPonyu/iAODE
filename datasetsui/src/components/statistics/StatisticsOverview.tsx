@@ -1,12 +1,17 @@
 import { DatasetStats } from '@/types/datasets';
 import { formatNumber, formatFileSize } from '@/lib/formatters';
-import { Database, Beaker, Microscope, BarChart3, HardDrive, TrendingUp } from 'lucide-react';
+import { Database, Beaker, Microscope, Activity, Dna, HardDrive, TrendingUp } from 'lucide-react';
 
 interface StatisticsOverviewProps {
   stats: DatasetStats;
+  dataType: 'ATAC' | 'RNA';
 }
 
-export default function StatisticsOverview({ stats }: StatisticsOverviewProps) {
+export default function StatisticsOverview({ stats, dataType }: StatisticsOverviewProps) {
+  const featureLabel = dataType === 'ATAC' ? 'Peaks' : 'Genes';
+  const FeatureIcon = dataType === 'ATAC' ? Activity : Dna;
+  const featureColor = dataType === 'ATAC' ? 'atac-primary' : 'rna-primary';
+
   const cards = [
     {
       label: 'Total Studies',
@@ -19,8 +24,8 @@ export default function StatisticsOverview({ stats }: StatisticsOverviewProps) {
       label: 'Total Datasets',
       value: stats.totalDatasets.toString(),
       icon: Database,
-      iconColor: 'text-[rgb(var(--stat-purple))]',
-      bgColor: 'bg-[rgb(var(--stat-bg-purple))]',
+      iconColor: 'text-[rgb(var(--stat-indigo))]',
+      bgColor: 'bg-[rgb(var(--stat-bg-indigo))]',
     },
     {
       label: 'Total Cells',
@@ -31,27 +36,27 @@ export default function StatisticsOverview({ stats }: StatisticsOverviewProps) {
       subtitle: `Avg: ${formatNumber(stats.averageCells, true)}/dataset`,
     },
     {
-      label: 'Total Peaks',
-      value: formatNumber(stats.totalPeaks, true),
-      icon: BarChart3,
-      iconColor: 'text-[rgb(var(--stat-orange))]',
-      bgColor: 'bg-[rgb(var(--stat-bg-orange))]',
-      subtitle: `Avg: ${formatNumber(stats.averagePeaks, true)}/dataset`,
+      label: `Total ${featureLabel}`,
+      value: formatNumber(stats.totalFeatures, true),
+      icon: FeatureIcon,
+      iconColor: `text-[rgb(var(--${featureColor}))]`,
+      bgColor: `bg-[rgb(var(--${dataType === 'ATAC' ? 'atac-bg-subtle' : 'rna-bg-subtle'}))]`,
+      subtitle: `Avg: ${formatNumber(stats.averageFeatures, true)}/dataset`,
     },
     {
       label: 'Total Data Size',
       value: formatFileSize(stats.totalSize),
       icon: HardDrive,
-      iconColor: 'text-[rgb(var(--stat-red))]',
-      bgColor: 'bg-[rgb(var(--stat-bg-red))]',
+      iconColor: 'text-[rgb(var(--stat-orange))]',
+      bgColor: 'bg-[rgb(var(--stat-bg-orange))]',
       subtitle: `Avg: ${formatFileSize(stats.averageSize)}/dataset`,
     },
     {
       label: 'Median Cells',
       value: formatNumber(stats.medianCells, true),
       icon: TrendingUp,
-      iconColor: 'text-[rgb(var(--stat-indigo))]',
-      bgColor: 'bg-[rgb(var(--stat-bg-indigo))]',
+      iconColor: 'text-[rgb(var(--stat-purple))]',
+      bgColor: 'bg-[rgb(var(--stat-bg-purple))]',
       subtitle: 'Per dataset',
     },
   ];

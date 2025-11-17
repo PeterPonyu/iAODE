@@ -1,14 +1,6 @@
 // types/datasets.ts
 
-export interface DatasetBrief {
-  gseAccession: string;
-  dataFileName: string;
-  dataFileSize: string;
-  nCells: string;
-  nPeaks: string;
-  category: 'tiny' | 'small' | 'medium' | 'large' | 'error';
-}
-
+// General dataset interface
 export interface Dataset {
   id: string;
   authors: string;
@@ -20,10 +12,19 @@ export interface Dataset {
   platform: string;
 }
 
+export interface DatasetBrief {
+  gseAccession: string;
+  dataFileName: string;
+  dataFileSize: number;
+  nCells: number;
+  nFeatures: number;
+  category: 'tiny' | 'small' | 'medium' | 'large' | 'error';
+}
+
 export interface MergedDataset extends Dataset {
-  dataFileSize: string;
-  nCells: string;
-  nPeaks: string;
+  dataFileSize: number;
+  nCells: number;
+  nFeatures: number;
   category: 'tiny' | 'small' | 'medium' | 'large' | 'error';
   gsmId: string;
   downloadUrl: string;
@@ -35,7 +36,7 @@ export interface GSEGroup {
   authors: string;
   datasets: MergedDataset[];
   totalCells: number;
-  totalPeaks: number;
+  totalFeatures: number;
   totalSize: number;
   organism: string;
   platforms: string[];
@@ -47,21 +48,21 @@ export interface FilterState {
   organisms: string[];
   platforms?: string[];
   cellRange: [number, number] | null;
-  peakRange?: [number, number] | null;
+  featureRange: [number, number] | null;
 }
 
 export interface DatasetStats {
   totalDatasets: number;
   totalGSE: number;
   totalCells: number;
-  totalPeaks: number;
+  totalFeatures: number;
   totalSize: number;
   categoryDistribution: Record<string, number>;
   organismDistribution: Record<string, number>;
   platformDistribution: Record<string, number>;
   averageCells: number;
-  averagePeaks: number;
+  averageFeatures: number;
   averageSize: number;
   medianCells: number;
-  medianPeaks: number;
+  medianFeatures: number;
 }
