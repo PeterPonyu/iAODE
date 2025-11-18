@@ -1,5 +1,6 @@
 import gc
 import os
+import time
 import numpy as np
 import pandas as pd
 import scanpy as sc
@@ -180,6 +181,7 @@ def train_scvi_models(adata, splitter, n_latent=10, n_epochs=400, batch_size=128
         Dictionary containing trained models and their test data
     """
     results = {}
+    use_cuda = torch.cuda.is_available()
     
     # Prepare data: scVI sees only train+val (85%)
     adata_trainval = adata[splitter.train_val_idx].copy()
@@ -193,6 +195,11 @@ def train_scvi_models(adata, splitter, n_latent=10, n_epochs=400, batch_size=128
     print(f"{'='*70}")
     
     try:
+        # Reset GPU memory stats and start timer
+        if use_cuda:
+            torch.cuda.reset_peak_memory_stats()
+        start_time = time.time()
+        
         # Setup for SCVI (uses raw counts from layers)
         SCVI.setup_anndata(
             adata_trainval,
@@ -206,7 +213,7 @@ def train_scvi_models(adata, splitter, n_latent=10, n_epochs=400, batch_size=128
             n_hidden=128,
             n_layers=2,
             dropout_rate=0.1,
-            gene_likelihood="nb"  # negative binomial for count data
+            gene_likelihood="nb"
         )
         
         scvi_model.train(
@@ -220,16 +227,25 @@ def train_scvi_models(adata, splitter, n_latent=10, n_epochs=400, batch_size=128
             plan_kwargs={'lr': 1e-4}
         )
         
+        # Record time and GPU memory
+        train_time = time.time() - start_time
+        peak_memory = torch.cuda.max_memory_allocated() / 1e9 if use_cuda else 0
+        actual_epochs = len(scvi_model.history['elbo_train'])  # Actual epochs trained
+        
         # Setup test data
         SCVI.setup_anndata(adata_test, layer="counts", batch_key=None)
         
         results['scvi'] = {
             'model': scvi_model,
             'adata_test': adata_test.copy(),
-            'history': scvi_model.history
+            'history': scvi_model.history,
+            'train_time': train_time,
+            'peak_memory_gb': peak_memory,
+            'actual_epochs': actual_epochs
         }
         
         print(f"✓ SCVI training completed")
+        print(f"  Epochs: {actual_epochs}/{n_epochs}, Time: {train_time:.2f}s, Peak GPU Memory: {peak_memory:.3f} GB")
         
     except Exception as e:
         print(f"✗ SCVI training failed: {str(e)}")
@@ -241,6 +257,11 @@ def train_scvi_models(adata, splitter, n_latent=10, n_epochs=400, batch_size=128
     print(f"{'='*70}")
     
     try:
+        # Reset GPU memory stats and start timer
+        if use_cuda:
+            torch.cuda.reset_peak_memory_stats()
+        start_time = time.time()
+        
         # Reset adata for PEAKVI
         adata_trainval = adata[splitter.train_val_idx].copy()
         
@@ -267,6 +288,11 @@ def train_scvi_models(adata, splitter, n_latent=10, n_epochs=400, batch_size=128
             plan_kwargs={'lr': 1e-4}
         )
         
+        # Record time and GPU memory
+        train_time = time.time() - start_time
+        peak_memory = torch.cuda.max_memory_allocated() / 1e9 if use_cuda else 0
+        actual_epochs = len(peakvi_model.history['elbo_train'])
+        
         # Setup test data
         adata_test_peakvi = adata[splitter.test_idx].copy()
         PEAKVI.setup_anndata(adata_test_peakvi, layer="counts", batch_key=None)
@@ -274,10 +300,14 @@ def train_scvi_models(adata, splitter, n_latent=10, n_epochs=400, batch_size=128
         results['peakvi'] = {
             'model': peakvi_model,
             'adata_test': adata_test_peakvi,
-            'history': peakvi_model.history
+            'history': peakvi_model.history,
+            'train_time': train_time,
+            'peak_memory_gb': peak_memory,
+            'actual_epochs': actual_epochs
         }
         
         print(f"✓ PEAKVI training completed")
+        print(f"  Epochs: {actual_epochs}/{n_epochs}, Time: {train_time:.2f}s, Peak GPU Memory: {peak_memory:.3f} GB")
         
     except Exception as e:
         print(f"✗ PEAKVI training failed: {str(e)}")
@@ -289,6 +319,11 @@ def train_scvi_models(adata, splitter, n_latent=10, n_epochs=400, batch_size=128
     print(f"{'='*70}")
     
     try:
+        # Reset GPU memory stats and start timer
+        if use_cuda:
+            torch.cuda.reset_peak_memory_stats()
+        start_time = time.time()
+        
         # Reset adata for POISSONVI
         adata_trainval = adata[splitter.train_val_idx].copy()
         
@@ -315,6 +350,11 @@ def train_scvi_models(adata, splitter, n_latent=10, n_epochs=400, batch_size=128
             plan_kwargs={'lr': 1e-4}
         )
         
+        # Record time and GPU memory
+        train_time = time.time() - start_time
+        peak_memory = torch.cuda.max_memory_allocated() / 1e9 if use_cuda else 0
+        actual_epochs = len(poissonvi_model.history['elbo_train'])
+        
         # Setup test data
         adata_test_poissonvi = adata[splitter.test_idx].copy()
         POISSONVI.setup_anndata(adata_test_poissonvi, layer="counts", batch_key=None)
@@ -322,10 +362,14 @@ def train_scvi_models(adata, splitter, n_latent=10, n_epochs=400, batch_size=128
         results['poissonvi'] = {
             'model': poissonvi_model,
             'adata_test': adata_test_poissonvi,
-            'history': poissonvi_model.history
+            'history': poissonvi_model.history,
+            'train_time': train_time,
+            'peak_memory_gb': peak_memory,
+            'actual_epochs': actual_epochs
         }
         
         print(f"✓ POISSONVI training completed")
+        print(f"  Epochs: {actual_epochs}/{n_epochs}, Time: {train_time:.2f}s, Peak GPU Memory: {peak_memory:.3f} GB")
         
     except Exception as e:
         print(f"✗ POISSONVI training failed: {str(e)}")

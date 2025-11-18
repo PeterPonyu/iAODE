@@ -4,7 +4,7 @@ import torch
 import torch.nn as nn
 import torch.nn.functional as F
 from torch.distributions import Normal
-from typing import Tuple, Union, Literal
+from typing import Tuple, Union, Literal, Optional
 from .mixin import NODEMixin
 
 
@@ -12,50 +12,138 @@ class Encoder(nn.Module):
     """
     变分编码器网络，将输入状态映射到潜在分布。
 
-    参数
-    ----------
-    state_dim : int
-        输入状态的维度
-    hidden_dim : int
-        隐藏层的维度
-    action_dim : int
-        潜在空间的维度
-    use_ode : bool
-        是否使用ODE模式，若为True则会额外输出时间参数
+    支持多种编码器结构:
+    - 'mlp': 两层全连接网络（默认）
+    - 'mlp_residual': 多层残差 MLP
+    - 'linear': 单层线性编码
+    - 'transformer': 使用 TransformerEncoder 作为特征提取 backbone
+
+    输入:
+        x: 一般为 (batch_size, state_dim) 的张量。
+            若为 (state_dim,), 会自动视为 batch_size=1。
     """
 
     def __init__(
-        self, state_dim: int, hidden_dim: int, action_dim: int, use_ode: bool = False
+        self,
+        state_dim: int,
+        hidden_dim: int,
+        action_dim: int,
+        use_ode: bool = False,
+        encoder_type: Literal["mlp", "mlp_residual", "linear", "transformer"] = "mlp",
+        encoder_num_layers: int = 2,
+        encoder_n_heads: int = 4,
+        encoder_d_model: Optional[int] = None,
     ):
         super().__init__()
         self.use_ode = use_ode
+        self.encoder_type = encoder_type
 
-        # 基础网络部分
-        self.base_network = nn.Sequential(
-            nn.Linear(state_dim, hidden_dim),
-            nn.ReLU(),
-            nn.Linear(hidden_dim, hidden_dim),
-            nn.ReLU(),
-        )
+        # ---------- choose backbone ----------
+        if encoder_type == "mlp":
+            layers = []
+            in_dim = state_dim
+            for _ in range(encoder_num_layers):
+                layers.append(nn.Linear(in_dim, hidden_dim))
+                layers.append(nn.ReLU())
+                in_dim = hidden_dim
+            self.base_network = nn.Sequential(*layers)
+            self.out_dim = hidden_dim
 
-        # 潜在空间参数（均值和对数方差）
-        self.latent_params = nn.Linear(hidden_dim, action_dim * 2)
+        elif encoder_type == "mlp_residual":
+            self.input_proj = nn.Linear(state_dim, hidden_dim)
+            blocks = []
+            for _ in range(encoder_num_layers):
+                blocks.append(
+                    nn.Sequential(
+                        nn.Linear(hidden_dim, hidden_dim),
+                        nn.ReLU(),
+                    )
+                )
+            self.res_blocks = nn.ModuleList(blocks)
+            self.out_dim = hidden_dim
 
-        # 时间编码器（仅在ODE模式下使用）
+        elif encoder_type == "linear":
+            self.base_network = nn.Sequential(
+                nn.Linear(state_dim, hidden_dim),
+                nn.ReLU(),
+            )
+            self.out_dim = hidden_dim
+
+        elif encoder_type == "transformer":
+            if encoder_d_model is None:
+                encoder_d_model = hidden_dim
+            self.d_model = encoder_d_model
+
+            self.input_proj = nn.Linear(state_dim, encoder_d_model)
+            encoder_layer = nn.TransformerEncoderLayer(
+                d_model=encoder_d_model,
+                nhead=encoder_n_heads,
+                dim_feedforward=hidden_dim * 4,
+                batch_first=True,  # (batch, seq_len, d_model)
+            )
+            self.transformer = nn.TransformerEncoder(
+                encoder_layer, num_layers=encoder_num_layers
+            )
+            self.pool = nn.AdaptiveAvgPool1d(1)
+            self.out_dim = encoder_d_model
+
+        else:
+            raise ValueError(f"Unknown encoder_type: {encoder_type}")
+
+        # ---------- latent parameters ----------
+        self.latent_params = nn.Linear(self.out_dim, action_dim * 2)
+
+        # time head for ODE mode
         if use_ode:
             self.time_encoder = nn.Sequential(
-                nn.Linear(hidden_dim, 1),
-                nn.Sigmoid(),  # 使用Sigmoid确保时间值在0-1范围内
+                nn.Linear(self.out_dim, 1),
+                nn.Sigmoid(),
             )
 
         self.apply(self._init_weights)
 
     @staticmethod
     def _init_weights(m: nn.Module) -> None:
-        """初始化网络权重"""
         if isinstance(m, nn.Linear):
             nn.init.xavier_normal_(m.weight)
             nn.init.constant_(m.bias, 0.01)
+
+    def _encode_features(self, x: torch.Tensor) -> torch.Tensor:
+        """
+        将输入 x 编码为 hidden 表示。
+        输入:
+            x: 至少 2 维, (batch_size, state_dim)
+        输出:
+            hidden: (batch_size, out_dim)
+        """
+        # 确保存在 batch 维度 (batch_size, state_dim)
+        if x.dim() == 1:
+            x = x.unsqueeze(0)
+
+        if self.encoder_type in ["mlp", "linear"]:
+            hidden = self.base_network(x)  # (batch, out_dim)
+
+        elif self.encoder_type == "mlp_residual":
+            h = self.input_proj(x)  # (batch, hidden_dim)
+            for block in self.res_blocks:
+                h = h + block(h)     # residual
+            hidden = h              # (batch, hidden_dim)
+
+        elif self.encoder_type == "transformer":
+            # (batch, state_dim) -> (batch, 1, state_dim)
+            if x.dim() == 2:
+                x = x.unsqueeze(1)
+            # 若未来你改成真正的序列输入，x 可以是 (batch, seq_len, state_dim)
+            x_emb = self.input_proj(x)        # (batch, seq_len, d_model)
+            h = self.transformer(x_emb)       # (batch, seq_len, d_model)
+            # pool over seq_len -> (batch, d_model)
+            h = h.transpose(1, 2)             # (batch, d_model, seq_len)
+            hidden = self.pool(h).squeeze(-1) # (batch, d_model)
+
+        else:
+            raise RuntimeError("Unsupported encoder_type")
+
+        return hidden
 
     def forward(
         self, x: torch.Tensor
@@ -63,48 +151,20 @@ class Encoder(nn.Module):
         Tuple[torch.Tensor, torch.Tensor, torch.Tensor],
         Tuple[torch.Tensor, torch.Tensor, torch.Tensor, torch.Tensor],
     ]:
-        """
-        编码器的前向传播
+        # 1) 提取特征 (batch, out_dim)
+        hidden = self._encode_features(x)
 
-        参数
-        ----------
-        x : torch.Tensor
-            形状为(batch_size, state_dim)的输入张量
-
-        返回
-        -------
-        如果use_ode=False:
-            Tuple[torch.Tensor, torch.Tensor, torch.Tensor]
-                - 采样的潜在向量
-                - 潜在分布的均值
-                - 潜在分布的对数方差
-
-        如果use_ode=True:
-            Tuple[torch.Tensor, torch.Tensor, torch.Tensor, torch.Tensor]
-                - 采样的潜在向量
-                - 潜在分布的均值
-                - 潜在分布的对数方差
-                - 预测的时间参数 (0-1范围内)
-        """
-        # 通过基础网络获取特征
-        hidden = self.base_network(x)
-
-        # 计算潜在空间参数
-        latent_output = self.latent_params(hidden)
+        # 2) 计算潜在分布参数
+        latent_output = self.latent_params(hidden)   # (batch, 2 * action_dim)
         q_m, q_s = torch.split(latent_output, latent_output.size(-1) // 2, dim=-1)
 
-        # 使用softplus确保方差为正
         std = F.softplus(q_s) + 1e-6
-
-        # 从分布中采样
         dist = Normal(q_m, std)
-        q_z = dist.rsample()
+        q_z = dist.rsample()                         # (batch, action_dim)
 
-        # 如果使用ODE模式，额外输出时间参数
+        # 3) ODE 模式下输出时间 t
         if self.use_ode:
-            t = self.time_encoder(hidden).squeeze(
-                -1
-            )  # 移除最后一个维度使t为(batch_size,)
+            t = self.time_encoder(hidden).squeeze(-1)  # (batch,)
             return q_z, q_m, q_s, t
 
         return q_z, q_m, q_s
@@ -267,6 +327,10 @@ class VAE(nn.Module, NODEMixin):
         i_dim: int,
         use_ode: bool,
         loss_mode: Literal["mse", "nb", "zinb"] = "nb",
+        encoder_type: Literal["mlp", "mlp_residual", "linear", "transformer"] = "mlp",
+        encoder_num_layers: int = 2,
+        encoder_n_heads: int = 4,
+        encoder_d_model: Optional[int] = None,
         device=torch.device("cuda")
         if torch.cuda.is_available()
         else torch.device("cpu"),
@@ -274,7 +338,17 @@ class VAE(nn.Module, NODEMixin):
         super().__init__()
 
         # Initialize encoder
-        self.encoder = Encoder(state_dim, hidden_dim, action_dim, use_ode).to(device)
+        self.encoder = Encoder(
+            state_dim=state_dim,
+            hidden_dim=hidden_dim,
+            action_dim=action_dim,
+            use_ode=use_ode,
+            encoder_type=encoder_type,
+            encoder_num_layers=encoder_num_layers,
+            encoder_n_heads=encoder_n_heads,
+            encoder_d_model=encoder_d_model,
+        ).to(device)        
+        
         self.decoder = Decoder(state_dim, hidden_dim, action_dim, loss_mode).to(device)
 
         if use_ode:

@@ -28,19 +28,23 @@ class Env(iVAE, envMixin):
         vae_reg,
         ode_reg,
         device,
-        train_size=0.7,        # NEW: train split ratio
-        val_size=0.15,         # NEW: validation split ratio
-        test_size=0.15,        # NEW: test split ratio
-        batch_size=128,        # NEW: explicit batch size
-        random_seed=42,        # NEW: for reproducibility
+        train_size,        
+        val_size,         
+        test_size,        
+        batch_size,        
+        random_seed,        
+        encoder_type,
+        encoder_num_layers,
+        encoder_n_heads,
+        encoder_d_model,        
         *args,
         **kwargs,
     ):
-        # NEW: Store split parameters
+        # Store split parameters
         self.train_size = train_size
         self.val_size = val_size
         self.test_size = test_size
-        self.batch_size_fixed = batch_size  # Renamed to avoid confusion
+        self.batch_size_fixed = batch_size  
         self.random_seed = random_seed
         
         # Register data with splits
@@ -63,20 +67,26 @@ class Env(iVAE, envMixin):
             vae_reg=vae_reg,
             ode_reg=ode_reg,
             device=device,
+            encoder_type=encoder_type,
+            encoder_num_layers=encoder_num_layers,
+            encoder_n_heads=encoder_n_heads,
+            encoder_d_model=encoder_d_model,
+            *args,
+            **kwargs,            
         )
         
-        # NEW: Initialize tracking
+        # Initialize tracking
         self.score = []
         self.train_losses = []
         self.val_losses = []
         self.val_scores = []
         
-        # NEW: Early stopping parameters
+        # Early stopping parameters
         self.best_val_loss = float('inf')
         self.best_model_state = None
         self.patience_counter = 0
 
-    # MODIFIED: Register data with train/val/test splits
+    # Register data with train/val/test splits
     def _register_anndata(self, adata, layer: str, latent_dim):
         """Register AnnData and create train/val/test splits"""
         
@@ -147,21 +157,21 @@ class Env(iVAE, envMixin):
             train_dataset,
             batch_size=self.batch_size_fixed,
             shuffle=True,
-            drop_last=True  # Drop last incomplete batch
+            drop_last=True 
         )
         
         self.val_loader = DataLoader(
             val_dataset,
             batch_size=self.batch_size_fixed,
             shuffle=False,
-            drop_last=False
+            drop_last=False  
         )
         
         self.test_loader = DataLoader(
             test_dataset,
             batch_size=self.batch_size_fixed,
             shuffle=False,
-            drop_last=False
+            drop_last=False 
         )
         
         print(f"  Batches per epoch: {len(self.train_loader)}")

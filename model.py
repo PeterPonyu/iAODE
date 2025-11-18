@@ -28,6 +28,10 @@ class iVAE(nn.Module, scviMixin, dipMixin, betatcMixin, infoMixin):  # MODIFIED:
         vae_reg,
         ode_reg,
         device,
+        encoder_type,
+        encoder_num_layers,
+        encoder_n_heads,
+        encoder_d_model,        
         *args,
         **kwargs,
     ):
@@ -41,9 +45,21 @@ class iVAE(nn.Module, scviMixin, dipMixin, betatcMixin, infoMixin):  # MODIFIED:
         self.dip = dip
         self.tc = tc
         self.info = info
+
         self.nn = VAE(
-            state_dim, hidden_dim, latent_dim, i_dim, use_ode, loss_mode, device
+            state_dim=state_dim,
+            hidden_dim=hidden_dim,
+            action_dim=latent_dim,
+            i_dim=i_dim,
+            use_ode=use_ode,
+            loss_mode=loss_mode,
+            encoder_type=encoder_type,
+            encoder_num_layers=encoder_num_layers,
+            encoder_n_heads=encoder_n_heads,
+            encoder_d_model=encoder_d_model,
+            device=device,
         )
+        
         self.nn_optimizer = optim.Adam(self.nn.parameters(), lr=lr)
         self.vae_reg = vae_reg
         self.ode_reg = ode_reg
