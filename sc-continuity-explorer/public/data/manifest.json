@@ -1,0 +1,56 @@
+{
+  "version": "1.0",
+  "generation_timestamp": "2025-10-22T15:07:35.961958",
+  "computation_duration_seconds": 53.362059,
+  "total_simulations": 135,
+  "chunk_size": 50,
+  "total_chunks": 3,
+  "parameter_grid": {
+    "continuity": [
+      0.85,
+      0.86,
+      0.87,
+      0.88,
+      0.89,
+      0.9,
+      0.9099999999999999,
+      0.9199999999999999,
+      0.9299999999999999,
+      0.94,
+      0.95,
+      0.96,
+      0.97,
+      0.98,
+      0.99
+    ],
+    "trajectory_types": [
+      "linear",
+      "branching",
+      "cyclic"
+    ],
+    "n_cells": [
+      500
+    ],
+    "n_dims": [
+      50
+    ],
+    "replicates": [
+      0,
+      1,
+      2
+    ]
+  },
+  "random_seed": 42,
+  "metrics_computed": [
+    "spectral_decay",
+    "anisotropy",
+    "participation_ratio",
+    "trajectory_directionality",
+    "manifold_dimensionality",
+    "noise_resilience"
+  ],
+  "embedding_methods": [
+    "pca",
+    "umap"
+  ]
+}
