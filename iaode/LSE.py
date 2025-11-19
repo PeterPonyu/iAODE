@@ -24,9 +24,9 @@ class SingleCellLatentSpaceEvaluator:
     
     def __init__(self, data_type="trajectory", verbose=True):
         """
-        初始化评估器
+        Initialize评估器
         
-        参数:
+        Args:
             data_type: "trajectory" 或 "steady_state"
             verbose: 是否输出详细信息
         """
@@ -54,12 +54,12 @@ class SingleCellLatentSpaceEvaluator:
         修正版流形维度一致性评估
         解决了原版本所有方法得分相同的问题
         
-        参数:
+        Args:
             latent_space: 潜在空间坐标
             variance_thresholds: 多个方差阈值
             use_multiple_methods: 是否使用多种方法
             
-        返回:
+        Returns:
             float: 维度效率分数 (0-1)
         """
         try:
@@ -358,10 +358,10 @@ class SingleCellLatentSpaceEvaluator:
         """
         单细胞数据的综合潜在空间评估
         
-        参数:
+        Args:
             latent_space: 潜在空间坐标
             
-        返回:
+        Returns:
             dict: 完整的评估结果
         """
         
@@ -484,7 +484,7 @@ class SingleCellLatentSpaceEvaluator:
         
         # 建议
         if overall < 0.6:
-            interpretation['recommendations'].append("考虑调整降维参数")
+            interpretation['recommendations'].append("考虑调整降维Args")
             interpretation['recommendations'].append("增加数据预处理步骤")
             
         if results['noise_resilience'] < 0.4:
@@ -542,10 +542,10 @@ class SingleCellLatentSpaceEvaluator:
         """
         比较不同降维方法的效果
         
-        参数:
+        Args:
             method_results_dict: {method_name: latent_space} 字典
             
-        返回:
+        Returns:
             DataFrame: 比较结果表格
         """
         
@@ -611,12 +611,12 @@ def evaluate_single_cell_latent_space(latent_space, data_type="trajectory", verb
     """
     便捷函数：评估单细胞潜在空间质量
     
-    参数:
+    Args:
         latent_space: 潜在空间坐标
         data_type: "trajectory" 或 "steady_state"  
         verbose: 是否详细输出
         
-    返回:
+    Returns:
         dict: 评估结果
     """
     
@@ -627,12 +627,12 @@ def compare_single_cell_methods(method_results_dict, data_type="trajectory", ver
     """
     便捷函数：比较不同单细胞降维方法
     
-    参数:
+    Args:
         method_results_dict: {method_name: latent_space} 字典
         data_type: "trajectory" 或 "steady_state"
         verbose: 是否详细输出
         
-    返回:
+    Returns:
         DataFrame: 比较结果
     """
     

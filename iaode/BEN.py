@@ -19,8 +19,8 @@ from sklearn.model_selection import train_test_split
 # scVI imports
 from scvi.model import SCVI, PEAKVI
 from scvi.external import POISSONVI
-from DRE import evaluate_dimensionality_reduction
-from LSE import evaluate_single_cell_latent_space
+from .DRE import evaluate_dimensionality_reduction
+from .LSE import evaluate_single_cell_latent_space
 
 class DataSplitter:
     """

@@ -9,25 +9,25 @@ from typing import Dict, Tuple
 
 class DimensionalityReductionEvaluator:
     """
-    精炼版降维质量评估器
+    Dimensionality Reduction Quality Evaluator
     
-    专注于三个核心指标：
-    - distance_correlation: 距离相关性 (全局结构保留)
-    - Q_global: 全局质量指标
-    - Q_local: 局部质量指标
+    Focuses on three core metrics:
+    - distance_correlation: Distance correlation (global structure preservation)
+    - Q_global: Global quality metric
+    - Q_local: Local quality metric
     
-    特点：
-    - 高效的矢量化计算
-    - 专注于最重要的评估指标
-    - 与单细胞评估框架互补
+    Features:
+    - Efficient vectorized computation
+    - Focus on most important evaluation metrics
+    - Complementary to single-cell evaluation framework
     """
     
     def __init__(self, verbose=True):
         """
-        初始化评估器
+        Initialize evaluator
         
-        参数:
-            verbose: 是否输出详细信息
+        Args:
+            verbose: Whether to print detailed information
         """
         self.verbose = verbose
         
@@ -36,18 +36,18 @@ class DimensionalityReductionEvaluator:
             print(message)
     
     def _validate_inputs(self, X_high, X_low, k):
-        """验证输入参数"""
+        """Validate input parameters"""
         if not isinstance(X_high, np.ndarray) or not isinstance(X_low, np.ndarray):
-            raise TypeError("输入数据必须是numpy数组")
+            raise TypeError("Input data must be numpy arrays")
         
         if X_high.shape[0] != X_low.shape[0]:
-            raise ValueError(f"高维和低维数据样本数必须相同: {X_high.shape[0]} vs {X_low.shape[0]}")
+            raise ValueError(f"High-dim and low-dim must have same samples: {X_high.shape[0]} vs {X_low.shape[0]}")
         
         if k >= X_high.shape[0]:
-            raise ValueError(f"k值({k})不能大于或等于样本数({X_high.shape[0]})")
+            raise ValueError(f"k ({k}) cannot be >= number of samples ({X_high.shape[0]})")
             
         if X_high.ndim != 2 or X_low.ndim != 2:
-            raise ValueError("输入数据必须是二维数组")
+            raise ValueError("Input data must be 2D arrays")
     
     # ==================== 1. 距离相关性计算 ====================
     
@@ -56,11 +56,11 @@ class DimensionalityReductionEvaluator:
         计算距离相关性 (Spearman相关)
         评估高维和低维空间中距离的单调关系
         
-        参数:
+        Args:
             X_high: 高维空间数据
             X_low: 低维空间数据
             
-        返回:
+        Returns:
             float: 距离相关性分数 (接近1表示全局结构保留良好)
         """
         try:
@@ -85,10 +85,10 @@ class DimensionalityReductionEvaluator:
         """
         计算排名矩阵（优化版本）
         
-        参数:
+        Args:
             distance_matrix: 距离矩阵
             
-        返回:
+        Returns:
             ranking_matrix: 排名矩阵
         """
         try:
@@ -121,11 +121,11 @@ class DimensionalityReductionEvaluator:
         """
         计算共排名矩阵（优化版本）
         
-        参数:
+        Args:
             rank_high: 高维空间排名矩阵
             rank_low: 低维空间排名矩阵
             
-        返回:
+        Returns:
             coranking_matrix: 共排名矩阵
         """
         try:
@@ -158,10 +158,10 @@ class DimensionalityReductionEvaluator:
         """
         计算Q_NX序列
         
-        参数:
+        Args:
             corank: 共排名矩阵
             
-        返回:
+        Returns:
             np.ndarray: Q_NX值序列
         """
         try:
@@ -194,10 +194,10 @@ class DimensionalityReductionEvaluator:
         """
         计算局部和全局质量标量
         
-        参数:
+        Args:
             qnx_values: Q_NX值序列
             
-        返回:
+        Returns:
             tuple: (Q_local, Q_global, K_max)
         """
         try:
@@ -236,12 +236,12 @@ class DimensionalityReductionEvaluator:
         """
         综合降维质量评估
         
-        参数:
+        Args:
             X_high: 高维空间数据, shape=(n_samples, n_features_high)
             X_low: 低维空间数据, shape=(n_samples, n_features_low)
             k: 考虑的近邻数量
             
-        返回:
+        Returns:
             dict: 包含核心评估指标的字典
         """        
         # 输入验证
@@ -332,11 +332,11 @@ class DimensionalityReductionEvaluator:
         """
         比较不同降维方法的效果
         
-        参数:
+        Args:
             method_results_dict: {method_name: (X_high, X_low)} 字典
             k: 考虑的近邻数量
             
-        返回:
+        Returns:
             DataFrame: 比较结果表格
         """
         
@@ -405,13 +405,13 @@ def evaluate_dimensionality_reduction(X_high, X_low, k=10, verbose=True):
     """
     便捷函数：评估降维质量
     
-    参数:
+    Args:
         X_high: 高维空间数据
         X_low: 低维空间数据
         k: 考虑的近邻数量
         verbose: 是否详细输出
         
-    返回:
+    Returns:
         dict: 评估结果
     """
     
@@ -422,12 +422,12 @@ def compare_dimensionality_reduction_methods(method_results_dict, k=10, verbose=
     """
     便捷函数：比较不同降维方法
     
-    参数:
+    Args:
         method_results_dict: {method_name: (X_high, X_low)} 字典
         k: 考虑的近邻数量
         verbose: 是否详细输出
         
-    返回:
+    Returns:
         DataFrame: 比较结果
     """
     
