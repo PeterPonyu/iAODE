@@ -1,0 +1,4392 @@
+[
+  {
+    "id": "gse168026-gsm5124060",
+    "authors": "Qiu X, Li Y, Brown M",
+    "title": "Enhancer reactivation mediates adaptive resistance to FGFR inhibitors in triple-negative breast cancer [scATAC_seq]",
+    "gseAccession": "GSE168026",
+    "dataFileName": "GSM5124060_PDX_360_Infigratinib_peak_bc_matrix.h5",
+    "organism": "Human",
+    "source": "breast cancer",
+    "platform": "Illumina NovaSeq 6000"
+  },
+  {
+    "id": "gse168026-gsm5124061",
+    "authors": "Qiu X, Li Y, Brown M",
+    "title": "Enhancer reactivation mediates adaptive resistance to FGFR inhibitors in triple-negative breast cancer [scATAC_seq]",
+    "gseAccession": "GSE168026",
+    "dataFileName": "GSM5124061_PDX_390_vehicle_peak_bc_matrix.h5",
+    "organism": "Human",
+    "source": "breast cancer",
+    "platform": "Illumina NovaSeq 6000"
+  },
+  {
+    "id": "gse174367-gse174367",
+    "authors": "Morabito S, Miyoshi E, Swarup V",
+    "title": "Single-nucleus chromatin accessibility and transcriptomic characterization of Alzheimer’s Disease",
+    "gseAccession": "GSE174367",
+    "dataFileName": "GSE174367_snATAC-seq_filtered_peak_bc_matrix.h5",
+    "organism": "Human",
+    "source": "Control brain",
+    "platform": "Illumina NovaSeq 6000"
+  },
+  {
+    "id": "gse178988-gsm5402770",
+    "authors": "Wu LM, Lu QR",
+    "title": "Transcriptional programs dictating Schwann cell transformation in MPNST [scATACseq]",
+    "gseAccession": "GSE178988",
+    "dataFileName": "GSM5402770_P115L1mutP_filtered_peak_bc_matrix.h5",
+    "organism": "Mouse",
+    "source": "Peripheral nerve tumor",
+    "platform": "Illumina NovaSeq 6000"
+  },
+  {
+    "id": "gse178988-gsm5402771",
+    "authors": "Wu LM, Lu QR",
+    "title": "Transcriptional programs dictating Schwann cell transformation in MPNST [scATACseq]",
+    "gseAccession": "GSE178988",
+    "dataFileName": "GSM5402771_NF_2-004_filtered_peak_bc_matrix.h5",
+    "organism": "Human",
+    "source": "Peripheral nerve tumor",
+    "platform": "Illumina NovaSeq 6000"
+  },
+  {
+    "id": "gse178988-gsm5402772",
+    "authors": "Wu LM, Lu QR",
+    "title": "Transcriptional programs dictating Schwann cell transformation in MPNST [scATACseq]",
+    "gseAccession": "GSE178988",
+    "dataFileName": "GSM5402772_MPNST_2-084_filtered_peak_bc_matrix.h5",
+    "organism": "Human",
+    "source": "Peripheral nerve tumor",
+    "platform": "Illumina NovaSeq 6000"
+  },
+  {
+    "id": "gse192856-gsm5766892",
+    "authors": "Spildrejorde M, Samara A, Sharma A, Falck M, Leithaug M, Modafferi S et al.",
+    "title": "Single-cell ATAC-seq analysis of hESCs undergoing neuronal differentiation [scATAC-seq]",
+    "gseAccession": "GSE192856",
+    "dataFileName": "GSM5766892_d0-ctrl_filtered_peak_bc_matrix.h5",
+    "organism": "Human",
+    "source": "HS360, day 0, hESCs undifferentiated",
+    "platform": "Illumina NovaSeq 6000"
+  },
+  {
+    "id": "gse192856-gsm5766893",
+    "authors": "Spildrejorde M, Samara A, Sharma A, Falck M, Leithaug M, Modafferi S et al.",
+    "title": "Single-cell ATAC-seq analysis of hESCs undergoing neuronal differentiation [scATAC-seq]",
+    "gseAccession": "GSE192856",
+    "dataFileName": "GSM5766893_d20-ctrl_filtered_peak_bc_matrix.h5",
+    "organism": "Human",
+    "source": "HS360, day 20, past stage III maturation",
+    "platform": "Illumina NovaSeq 6000"
+  },
+  {
+    "id": "gse198730-gse198730",
+    "authors": "Khateb M, Perovanovic J, Ko KD, Jiang K, Feng X, Luna Na et al.",
+    "title": "Transcriptomics, Regulatory Syntax, and Enhancer Identification in Heterogenous Populations of Mesoderm-Induced ESCs at Single-Cell Resolution",
+    "gseAccession": "GSE198730",
+    "dataFileName": "GSE198730_Instructed_ESC_scATAC_rep1_filtered_peak_bc_matrix.h5",
+    "organism": "Mouse",
+    "source": "Instructed ESC",
+    "platform": "NextSeq 550"
+  },
+  {
+    "id": "gse198730-gse198730",
+    "authors": "Khateb M, Perovanovic J, Ko KD, Jiang K, Feng X, Luna Na et al.",
+    "title": "Transcriptomics, Regulatory Syntax, and Enhancer Identification in Heterogenous Populations of Mesoderm-Induced ESCs at Single-Cell Resolution",
+    "gseAccession": "GSE198730",
+    "dataFileName": "GSE198730_aPSM_scATAC_rep1_filtered_peak_bc_matrix.h5",
+    "organism": "Mouse",
+    "source": "Differentiated ESC",
+    "platform": "NextSeq 550"
+  },
+  {
+    "id": "gse198730-gse198730",
+    "authors": "Khateb M, Perovanovic J, Ko KD, Jiang K, Feng X, Luna Na et al.",
+    "title": "Transcriptomics, Regulatory Syntax, and Enhancer Identification in Heterogenous Populations of Mesoderm-Induced ESCs at Single-Cell Resolution",
+    "gseAccession": "GSE198730",
+    "dataFileName": "GSE198730_naive_ESC_scATAC_rep1_filtered_peak_bc_matrix.h5",
+    "organism": "Mouse",
+    "source": "Naïve ESC",
+    "platform": "NextSeq 550"
+  },
+  {
+    "id": "gse200813-gsm6044072",
+    "authors": "Li S, Yang M, Teng S, Wang D",
+    "title": "Single-cell chromatin accessible state of paired primary and liver metastasis colorectal cancer cells from PDX cells derived mouse model",
+    "gseAccession": "GSE200813",
+    "dataFileName": "GSM6044072_1P_human_filtered_peak_bc_matrix.h5",
+    "organism": "Human",
+    "source": "colorectal cancer cells",
+    "platform": "Illumina NovaSeq 6000"
+  },
+  {
+    "id": "gse200813-gsm6044073",
+    "authors": "Li S, Yang M, Teng S, Wang D",
+    "title": "Single-cell chromatin accessible state of paired primary and liver metastasis colorectal cancer cells from PDX cells derived mouse model",
+    "gseAccession": "GSE200813",
+    "dataFileName": "GSM6044073_2P_human_filtered_peak_bc_matrix.h5",
+    "organism": "Human",
+    "source": "colorectal cancer cells",
+    "platform": "Illumina NovaSeq 6000"
+  },
+  {
+    "id": "gse200813-gsm6044074",
+    "authors": "Li S, Yang M, Teng S, Wang D",
+    "title": "Single-cell chromatin accessible state of paired primary and liver metastasis colorectal cancer cells from PDX cells derived mouse model",
+    "gseAccession": "GSE200813",
+    "dataFileName": "GSM6044074_4P_human_filtered_peak_bc_matrix.h5",
+    "organism": "Human",
+    "source": "colorectal cancer cells",
+    "platform": "Illumina NovaSeq 6000"
+  },
+  {
+    "id": "gse200813-gsm6044075",
+    "authors": "Li S, Yang M, Teng S, Wang D",
+    "title": "Single-cell chromatin accessible state of paired primary and liver metastasis colorectal cancer cells from PDX cells derived mouse model",
+    "gseAccession": "GSE200813",
+    "dataFileName": "GSM6044075_1LM_human_filtered_peak_bc_matrix.h5",
+    "organism": "Human",
+    "source": "colorectal cancer cells",
+    "platform": "Illumina NovaSeq 6000"
+  },
+  {
+    "id": "gse200813-gsm6044076",
+    "authors": "Li S, Yang M, Teng S, Wang D",
+    "title": "Single-cell chromatin accessible state of paired primary and liver metastasis colorectal cancer cells from PDX cells derived mouse model",
+    "gseAccession": "GSE200813",
+    "dataFileName": "GSM6044076_2LM_human_filtered_peak_bc_matrix.h5",
+    "organism": "Human",
+    "source": "colorectal cancer cells",
+    "platform": "Illumina NovaSeq 6000"
+  },
+  {
+    "id": "gse200813-gsm6044077",
+    "authors": "Li S, Yang M, Teng S, Wang D",
+    "title": "Single-cell chromatin accessible state of paired primary and liver metastasis colorectal cancer cells from PDX cells derived mouse model",
+    "gseAccession": "GSE200813",
+    "dataFileName": "GSM6044077_4LM_human_filtered_peak_bc_matrix.h5",
+    "organism": "Human",
+    "source": "colorectal cancer cells",
+    "platform": "Illumina NovaSeq 6000"
+  },
+  {
+    "id": "gse201213-gsm6052781",
+    "authors": "Li F, Xu T, Li J, Hao X et al",
+    "title": "Single cell ATAC-seq of mouse hair follicle morphogenesis",
+    "gseAccession": "GSE201213",
+    "dataFileName": "GSM6052781_E13.5_filtered_peak_bc_matrix.h5",
+    "organism": "Mouse",
+    "source": "skin",
+    "platform": "Illumina NovaSeq 6000"
+  },
+  {
+    "id": "gse201213-gsm6052782",
+    "authors": "Li F, Xu T, Li J, Hao X et al",
+    "title": "Single cell ATAC-seq of mouse hair follicle morphogenesis",
+    "gseAccession": "GSE201213",
+    "dataFileName": "GSM6052782_E16.5_filtered_peak_bc_matrix.h5",
+    "organism": "Mouse",
+    "source": "skin",
+    "platform": "Illumina NovaSeq 6000"
+  },
+  {
+    "id": "gse201213-gsm6052783",
+    "authors": "Li F, Xu T, Li J, Hao X et al",
+    "title": "Single cell ATAC-seq of mouse hair follicle morphogenesis",
+    "gseAccession": "GSE201213",
+    "dataFileName": "GSM6052783_P0_filtered_peak_bc_matrix.h5",
+    "organism": "Mouse",
+    "source": "skin",
+    "platform": "Illumina NovaSeq 6000"
+  },
+  {
+    "id": "gse205549-gsm6214533",
+    "authors": "Lin YH, Duong HG, Limary AE, Kim ES et al",
+    "title": "Small intestine and colon tissue-resident memory CD8+ T cells exhibit transcriptional, epigenetic, and functional heterogeneity in concert with differential dependence on Eomesodermin [scATAC-seq]",
+    "gseAccession": "GSE205549",
+    "dataFileName": "GSM6214533_1_CIEL_filtered_peak_bc_matrix.h5",
+    "organism": "Mouse",
+    "source": "Small intestine intraepithelial lymphocytes",
+    "platform": "Illumina NovaSeq 6000"
+  },
+  {
+    "id": "gse205549-gsm6214534",
+    "authors": "Lin YH, Duong HG, Limary AE, Kim ES et al",
+    "title": "Small intestine and colon tissue-resident memory CD8+ T cells exhibit transcriptional, epigenetic, and functional heterogeneity in concert with differential dependence on Eomesodermin [scATAC-seq]",
+    "gseAccession": "GSE205549",
+    "dataFileName": "GSM6214534_2_CLPL_filtered_peak_bc_matrix.h5",
+    "organism": "Mouse",
+    "source": "Small intestine LPL",
+    "platform": "Illumina NovaSeq 6000"
+  },
+  {
+    "id": "gse205549-gsm6214535",
+    "authors": "Lin YH, Duong HG, Limary AE, Kim ES et al",
+    "title": "Small intestine and colon tissue-resident memory CD8+ T cells exhibit transcriptional, epigenetic, and functional heterogeneity in concert with differential dependence on Eomesodermin [scATAC-seq]",
+    "gseAccession": "GSE205549",
+    "dataFileName": "GSM6214535_4_SI_IEL_filtered_peak_bc_matrix.h5",
+    "organism": "Mouse",
+    "source": "Colon IEL",
+    "platform": "Illumina NovaSeq 6000"
+  },
+  {
+    "id": "gse205549-gsm6214536",
+    "authors": "Lin YH, Duong HG, Limary AE, Kim ES et al",
+    "title": "Small intestine and colon tissue-resident memory CD8+ T cells exhibit transcriptional, epigenetic, and functional heterogeneity in concert with differential dependence on Eomesodermin [scATAC-seq]",
+    "gseAccession": "GSE205549",
+    "dataFileName": "GSM6214536_6_SI_LPL_filtered_peak_bc_matrix.h5",
+    "organism": "Mouse",
+    "source": "Colon LPL",
+    "platform": "Illumina NovaSeq 6000"
+  },
+  {
+    "id": "gse211087-gsm6449878",
+    "authors": "Itahashi K, Irie T, Nishikawa H",
+    "title": "Integrated multiomics profiling identifies the differentiation program of regulatory T cells in human tumors [scATAC-seq]",
+    "gseAccession": "GSE211087",
+    "dataFileName": "GSM6449878_NSCLC8_TIL_eTreg_scATAC_filtered_peak_bc_matrix.h5",
+    "organism": "Human",
+    "source": "TIL",
+    "platform": "Illumina NovaSeq 6000"
+  },
+  {
+    "id": "gse211087-gsm6449879",
+    "authors": "Itahashi K, Irie T, Nishikawa H",
+    "title": "Integrated multiomics profiling identifies the differentiation program of regulatory T cells in human tumors [scATAC-seq]",
+    "gseAccession": "GSE211087",
+    "dataFileName": "GSM6449879_NSCLC14_NormalLung_TregandCD8posT_scATAC_filtered_peak_bc_matrix.h5",
+    "organism": "Human",
+    "source": "normal lung",
+    "platform": "Illumina NovaSeq 6000"
+  },
+  {
+    "id": "gse211087-gsm6449880",
+    "authors": "Itahashi K, Irie T, Nishikawa H",
+    "title": "Integrated multiomics profiling identifies the differentiation program of regulatory T cells in human tumors [scATAC-seq]",
+    "gseAccession": "GSE211087",
+    "dataFileName": "GSM6449880_HD4_PBMC_eTreg_scATAC_filtered_peak_bc_matrix.h5",
+    "organism": "Human",
+    "source": "PBMC",
+    "platform": "Illumina NovaSeq 6000"
+  },
+  {
+    "id": "gse211087-gsm6449881",
+    "authors": "Itahashi K, Irie T, Nishikawa H",
+    "title": "Integrated multiomics profiling identifies the differentiation program of regulatory T cells in human tumors [scATAC-seq]",
+    "gseAccession": "GSE211087",
+    "dataFileName": "GSM6449881_HD4_CD4CD25posT_scATAC_filtered_peak_bc_matrix.h5",
+    "organism": "Human",
+    "source": "PBMC",
+    "platform": "Illumina NovaSeq 6000"
+  },
+  {
+    "id": "gse211087-gsm6449882",
+    "authors": "Itahashi K, Irie T, Nishikawa H",
+    "title": "Integrated multiomics profiling identifies the differentiation program of regulatory T cells in human tumors [scATAC-seq]",
+    "gseAccession": "GSE211087",
+    "dataFileName": "GSM6449882_HD4_PBMC_nTreg_scATAC_filtered_peak_bc_matrix.h5",
+    "organism": "Human",
+    "source": "PBMC",
+    "platform": "Illumina NovaSeq 6000"
+  },
+  {
+    "id": "gse211087-gsm6449883",
+    "authors": "Itahashi K, Irie T, Nishikawa H",
+    "title": "Integrated multiomics profiling identifies the differentiation program of regulatory T cells in human tumors [scATAC-seq]",
+    "gseAccession": "GSE211087",
+    "dataFileName": "GSM6449883_HD5_PBMC_nTreg_scATAC_filtered_peak_bc_matrix.h5",
+    "organism": "Human",
+    "source": "PBMC",
+    "platform": "Illumina NovaSeq 6000"
+  },
+  {
+    "id": "gse211087-gsm6449884",
+    "authors": "Itahashi K, Irie T, Nishikawa H",
+    "title": "Integrated multiomics profiling identifies the differentiation program of regulatory T cells in human tumors [scATAC-seq]",
+    "gseAccession": "GSE211087",
+    "dataFileName": "GSM6449884_HD6_PBMC_eTreg_filtered_peak_bc_matrix.h5",
+    "organism": "Human",
+    "source": "PBMC",
+    "platform": "Illumina NovaSeq 6000"
+  },
+  {
+    "id": "gse211087-gsm6449885",
+    "authors": "Itahashi K, Irie T, Nishikawa H",
+    "title": "Integrated multiomics profiling identifies the differentiation program of regulatory T cells in human tumors [scATAC-seq]",
+    "gseAccession": "GSE211087",
+    "dataFileName": "GSM6449885_HD6_PBMC_CD4CD25posT_scATAC_filtered_peak_bc_matrix.h5",
+    "organism": "Human",
+    "source": "PBMC",
+    "platform": "Illumina NovaSeq 6000"
+  },
+  {
+    "id": "gse220026-gsm6783751",
+    "authors": "Spildrejorde M, Samara A, Sharma A, Leithaug M, Falck M, Modafferi S et al.",
+    "title": "Single-cell ATAC-seq analysis of hESCs undergoing neuronal differentiation exposed to paracetamol [scATAC-seq]",
+    "gseAccession": "GSE220026",
+    "dataFileName": "GSM6783751_d20-p100_filtered_peak_bc_matrix.h5",
+    "organism": "Human",
+    "source": "HS360, day 20, past stage III maturation, exposed to 100 μM paracetamol",
+    "platform": "Illumina HiSeq 2000"
+  },
+  {
+    "id": "gse220026-gsm6783752",
+    "authors": "Spildrejorde M, Samara A, Sharma A, Leithaug M, Falck M, Modafferi S et al.",
+    "title": "Single-cell ATAC-seq analysis of hESCs undergoing neuronal differentiation exposed to paracetamol [scATAC-seq]",
+    "gseAccession": "GSE220026",
+    "dataFileName": "GSM6783752_d20-p200_filtered_peak_bc_matrix.h5",
+    "organism": "Human",
+    "source": "HS360, day 20, past stage III maturation, exposed to 200 μM paracetamol",
+    "platform": "Illumina HiSeq 2000"
+  },
+  {
+    "id": "gse225801-gsm7056601",
+    "authors": "Winter DR, Perlman H",
+    "title": "Tissue-resident, extravascular Ly6c- monocytes are critical for inflammation in the synovium",
+    "gseAccession": "GSE225801",
+    "dataFileName": "GSM7056601_B6_joint_NCMs_filtered_feature_bc_matrix.h5",
+    "organism": "Mouse",
+    "source": "Ankle Joint Synovium",
+    "platform": "Illumina NovaSeq 6000"
+  },
+  {
+    "id": "gse225801-gsm7056603",
+    "authors": "Winter DR, Perlman H",
+    "title": "Tissue-resident, extravascular Ly6c- monocytes are critical for inflammation in the synovium",
+    "gseAccession": "GSE225801",
+    "dataFileName": "GSM7056603_B6_joint_DCs_filtered_feature_bc_matrix.h5",
+    "organism": "Mouse",
+    "source": "Ankle Joint Synovium",
+    "platform": "Illumina NovaSeq 6000"
+  },
+  {
+    "id": "gse225801-gsm7056605",
+    "authors": "Winter DR, Perlman H",
+    "title": "Tissue-resident, extravascular Ly6c- monocytes are critical for inflammation in the synovium",
+    "gseAccession": "GSE225801",
+    "dataFileName": "GSM7056605_B6_joint_macs_filtered_feature_bc_matrix.h5",
+    "organism": "Mouse",
+    "source": "Ankle Joint Synovium",
+    "platform": "Illumina NovaSeq 6000"
+  },
+  {
+    "id": "gse225801-gsm7056607",
+    "authors": "Winter DR, Perlman H",
+    "title": "Tissue-resident, extravascular Ly6c- monocytes are critical for inflammation in the synovium",
+    "gseAccession": "GSE225801",
+    "dataFileName": "GSM7056607_b6_STIA_D7_monos_filtered_feature_bc_matrix.h5",
+    "organism": "Mouse",
+    "source": "Ankle Joint Synovium",
+    "platform": "Illumina NovaSeq 6000"
+  },
+  {
+    "id": "gse225801-gsm7056609",
+    "authors": "Winter DR, Perlman H",
+    "title": "Tissue-resident, extravascular Ly6c- monocytes are critical for inflammation in the synovium",
+    "gseAccession": "GSE225801",
+    "dataFileName": "GSM7056609_HP_20210331_MONOS_filtered_peak_bc_matrix.h5",
+    "organism": "Mouse",
+    "source": "Ankle Joint Synovium",
+    "platform": "Illumina NextSeq 500"
+  },
+  {
+    "id": "gse226067-gsm7062446",
+    "authors": "Liu Q, Dong W",
+    "title": "scATAC-seq of antigen-specific CD8+ T cells from different time-course of LCMV-Armstrong infected mice",
+    "gseAccession": "GSE226067",
+    "dataFileName": "GSM7062446_Naive_filtered_peak_bc_matrix.h5",
+    "organism": "Mouse",
+    "source": "Lymphocytes",
+    "platform": "Illumina NovaSeq 6000"
+  },
+  {
+    "id": "gse226067-gsm7062447",
+    "authors": "Liu Q, Dong W",
+    "title": "scATAC-seq of antigen-specific CD8+ T cells from different time-course of LCMV-Armstrong infected mice",
+    "gseAccession": "GSE226067",
+    "dataFileName": "GSM7062447_D2_filtered_peak_bc_matrix.h5",
+    "organism": "Mouse",
+    "source": "Lymphocytes",
+    "platform": "Illumina NovaSeq 6000"
+  },
+  {
+    "id": "gse226067-gsm7062448",
+    "authors": "Liu Q, Dong W",
+    "title": "scATAC-seq of antigen-specific CD8+ T cells from different time-course of LCMV-Armstrong infected mice",
+    "gseAccession": "GSE226067",
+    "dataFileName": "GSM7062448_D8-1_filtered_peak_bc_matrix.h5",
+    "organism": "Mouse",
+    "source": "Lymphocytes",
+    "platform": "Illumina NovaSeq 6000"
+  },
+  {
+    "id": "gse226067-gsm7062449",
+    "authors": "Liu Q, Dong W",
+    "title": "scATAC-seq of antigen-specific CD8+ T cells from different time-course of LCMV-Armstrong infected mice",
+    "gseAccession": "GSE226067",
+    "dataFileName": "GSM7062449_D8-2_filtered_peak_bc_matrix.h5",
+    "organism": "Mouse",
+    "source": "Lymphocytes",
+    "platform": "Illumina NovaSeq 6000"
+  },
+  {
+    "id": "gse226067-gsm7062450",
+    "authors": "Liu Q, Dong W",
+    "title": "scATAC-seq of antigen-specific CD8+ T cells from different time-course of LCMV-Armstrong infected mice",
+    "gseAccession": "GSE226067",
+    "dataFileName": "GSM7062450_D180_filtered_peak_bc_matrix.h5",
+    "organism": "Mouse",
+    "source": "Lymphocytes",
+    "platform": "Illumina NovaSeq 6000"
+  },
+  {
+    "id": "gse226108-gsm7064214",
+    "authors": "Chen R, DeAngelis M, Liang Q, Cheng X, Wang J, Li J",
+    "title": "A multi-omics atlas of the human retina at single-cell resolution",
+    "gseAccession": "GSE226108",
+    "dataFileName": "GSM7064214_19_D003_filtered_peak_bc_matrix.h5",
+    "organism": "Human",
+    "source": "macula lutea",
+    "platform": "Illumina NovaSeq 6000"
+  },
+  {
+    "id": "gse226108-gsm7064215",
+    "authors": "Chen R, DeAngelis M, Liang Q, Cheng X, Wang J, Li J",
+    "title": "A multi-omics atlas of the human retina at single-cell resolution",
+    "gseAccession": "GSE226108",
+    "dataFileName": "GSM7064215_19_D005_filtered_peak_bc_matrix.h5",
+    "organism": "Human",
+    "source": "macula lutea",
+    "platform": "Illumina NovaSeq 6000"
+  },
+  {
+    "id": "gse226108-gsm7064216",
+    "authors": "Chen R, DeAngelis M, Liang Q, Cheng X, Wang J, Li J",
+    "title": "A multi-omics atlas of the human retina at single-cell resolution",
+    "gseAccession": "GSE226108",
+    "dataFileName": "GSM7064216_19_D006_filtered_peak_bc_matrix.h5",
+    "organism": "Human",
+    "source": "macula lutea",
+    "platform": "Illumina NovaSeq 6000"
+  },
+  {
+    "id": "gse226108-gsm7064217",
+    "authors": "Chen R, DeAngelis M, Liang Q, Cheng X, Wang J, Li J",
+    "title": "A multi-omics atlas of the human retina at single-cell resolution",
+    "gseAccession": "GSE226108",
+    "dataFileName": "GSM7064217_19_D007_filtered_peak_bc_matrix.h5",
+    "organism": "Human",
+    "source": "macula lutea",
+    "platform": "Illumina NovaSeq 6000"
+  },
+  {
+    "id": "gse226108-gsm7064218",
+    "authors": "Chen R, DeAngelis M, Liang Q, Cheng X, Wang J, Li J",
+    "title": "A multi-omics atlas of the human retina at single-cell resolution",
+    "gseAccession": "GSE226108",
+    "dataFileName": "GSM7064218_19_D008_filtered_peak_bc_matrix.h5",
+    "organism": "Human",
+    "source": "macula lutea",
+    "platform": "Illumina NovaSeq 6000"
+  },
+  {
+    "id": "gse226108-gsm7064219",
+    "authors": "Chen R, DeAngelis M, Liang Q, Cheng X, Wang J, Li J",
+    "title": "A multi-omics atlas of the human retina at single-cell resolution",
+    "gseAccession": "GSE226108",
+    "dataFileName": "GSM7064219_19_D009_filtered_peak_bc_matrix.h5",
+    "organism": "Human",
+    "source": "macula lutea",
+    "platform": "Illumina NovaSeq 6000"
+  },
+  {
+    "id": "gse226108-gsm7064220",
+    "authors": "Chen R, DeAngelis M, Liang Q, Cheng X, Wang J, Li J",
+    "title": "A multi-omics atlas of the human retina at single-cell resolution",
+    "gseAccession": "GSE226108",
+    "dataFileName": "GSM7064220_19_D010_filtered_peak_bc_matrix.h5",
+    "organism": "Human",
+    "source": "macula lutea",
+    "platform": "Illumina NovaSeq 6000"
+  },
+  {
+    "id": "gse226108-gsm7064221",
+    "authors": "Chen R, DeAngelis M, Liang Q, Cheng X, Wang J, Li J",
+    "title": "A multi-omics atlas of the human retina at single-cell resolution",
+    "gseAccession": "GSE226108",
+    "dataFileName": "GSM7064221_19_D011_filtered_peak_bc_matrix.h5",
+    "organism": "Human",
+    "source": "macula lutea",
+    "platform": "Illumina NovaSeq 6000"
+  },
+  {
+    "id": "gse226108-gsm7064222",
+    "authors": "Chen R, DeAngelis M, Liang Q, Cheng X, Wang J, Li J",
+    "title": "A multi-omics atlas of the human retina at single-cell resolution",
+    "gseAccession": "GSE226108",
+    "dataFileName": "GSM7064222_19_D019_filtered_peak_bc_matrix.h5",
+    "organism": "Human",
+    "source": "macula lutea",
+    "platform": "Illumina NovaSeq 6000"
+  },
+  {
+    "id": "gse226108-gsm7064223",
+    "authors": "Chen R, DeAngelis M, Liang Q, Cheng X, Wang J, Li J",
+    "title": "A multi-omics atlas of the human retina at single-cell resolution",
+    "gseAccession": "GSE226108",
+    "dataFileName": "GSM7064223_19D013_fovea_19_filtered_peak_bc_matrix.h5",
+    "organism": "Human",
+    "source": "fovea centralis",
+    "platform": "Illumina NovaSeq 6000"
+  },
+  {
+    "id": "gse226108-gsm7064227",
+    "authors": "Chen R, DeAngelis M, Liang Q, Cheng X, Wang J, Li J",
+    "title": "A multi-omics atlas of the human retina at single-cell resolution",
+    "gseAccession": "GSE226108",
+    "dataFileName": "GSM7064227_19D013_macular_19_filtered_peak_bc_matrix.h5",
+    "organism": "Human",
+    "source": "macula lutea proper",
+    "platform": "Illumina NovaSeq 6000"
+  },
+  {
+    "id": "gse226108-gsm7064229",
+    "authors": "Chen R, DeAngelis M, Liang Q, Cheng X, Wang J, Li J",
+    "title": "A multi-omics atlas of the human retina at single-cell resolution",
+    "gseAccession": "GSE226108",
+    "dataFileName": "GSM7064229_19D014_19_filtered_peak_bc_matrix.h5",
+    "organism": "Human",
+    "source": "macula lutea",
+    "platform": "Illumina NovaSeq 6000"
+  },
+  {
+    "id": "gse226108-gsm7064239",
+    "authors": "Chen R, DeAngelis M, Liang Q, Cheng X, Wang J, Li J",
+    "title": "A multi-omics atlas of the human retina at single-cell resolution",
+    "gseAccession": "GSE226108",
+    "dataFileName": "GSM7064239_19D016_19_filtered_peak_bc_matrix.h5",
+    "organism": "Human",
+    "source": "macula lutea",
+    "platform": "Illumina NovaSeq 6000"
+  },
+  {
+    "id": "gse226108-gsm7064243",
+    "authors": "Chen R, DeAngelis M, Liang Q, Cheng X, Wang J, Li J",
+    "title": "A multi-omics atlas of the human retina at single-cell resolution",
+    "gseAccession": "GSE226108",
+    "dataFileName": "GSM7064243_D005_13_filtered_peak_bc_matrix.h5",
+    "organism": "Human",
+    "source": "macula lutea proper",
+    "platform": "Illumina NovaSeq 6000"
+  },
+  {
+    "id": "gse226108-gsm7064244",
+    "authors": "Chen R, DeAngelis M, Liang Q, Cheng X, Wang J, Li J",
+    "title": "A multi-omics atlas of the human retina at single-cell resolution",
+    "gseAccession": "GSE226108",
+    "dataFileName": "GSM7064244_D009_13_filtered_peak_bc_matrix.h5",
+    "organism": "Human",
+    "source": "macula lutea proper",
+    "platform": "Illumina NovaSeq 6000"
+  },
+  {
+    "id": "gse226108-gsm7064245",
+    "authors": "Chen R, DeAngelis M, Liang Q, Cheng X, Wang J, Li J",
+    "title": "A multi-omics atlas of the human retina at single-cell resolution",
+    "gseAccession": "GSE226108",
+    "dataFileName": "GSM7064245_D013_13_filtered_peak_bc_matrix.h5",
+    "organism": "Human",
+    "source": "macula lutea proper",
+    "platform": "Illumina NovaSeq 6000"
+  },
+  {
+    "id": "gse226108-gsm7064246",
+    "authors": "Chen R, DeAngelis M, Liang Q, Cheng X, Wang J, Li J",
+    "title": "A multi-omics atlas of the human retina at single-cell resolution",
+    "gseAccession": "GSE226108",
+    "dataFileName": "GSM7064246_D017_13_filtered_peak_bc_matrix.h5",
+    "organism": "Human",
+    "source": "macula lutea proper",
+    "platform": "Illumina NovaSeq 6000"
+  },
+  {
+    "id": "gse226108-gsm7064247",
+    "authors": "Chen R, DeAngelis M, Liang Q, Cheng X, Wang J, Li J",
+    "title": "A multi-omics atlas of the human retina at single-cell resolution",
+    "gseAccession": "GSE226108",
+    "dataFileName": "GSM7064247_D018_13_filtered_peak_bc_matrix.h5",
+    "organism": "Human",
+    "source": "macula lutea proper",
+    "platform": "Illumina NovaSeq 6000"
+  },
+  {
+    "id": "gse226108-gsm7064248",
+    "authors": "Chen R, DeAngelis M, Liang Q, Cheng X, Wang J, Li J",
+    "title": "A multi-omics atlas of the human retina at single-cell resolution",
+    "gseAccession": "GSE226108",
+    "dataFileName": "GSM7064248_D019_13_filtered_peak_bc_matrix.h5",
+    "organism": "Human",
+    "source": "macula lutea proper",
+    "platform": "Illumina NovaSeq 6000"
+  },
+  {
+    "id": "gse226108-gsm7064249",
+    "authors": "Chen R, DeAngelis M, Liang Q, Cheng X, Wang J, Li J",
+    "title": "A multi-omics atlas of the human retina at single-cell resolution",
+    "gseAccession": "GSE226108",
+    "dataFileName": "GSM7064249_D021_13_filtered_peak_bc_matrix.h5",
+    "organism": "Human",
+    "source": "macula lutea proper",
+    "platform": "Illumina NovaSeq 6000"
+  },
+  {
+    "id": "gse226108-gsm7064250",
+    "authors": "Chen R, DeAngelis M, Liang Q, Cheng X, Wang J, Li J",
+    "title": "A multi-omics atlas of the human retina at single-cell resolution",
+    "gseAccession": "GSE226108",
+    "dataFileName": "GSM7064250_D026_13_filtered_peak_bc_matrix.h5",
+    "organism": "Human",
+    "source": "macula lutea proper",
+    "platform": "Illumina NovaSeq 6000"
+  },
+  {
+    "id": "gse226108-gsm7064251",
+    "authors": "Chen R, DeAngelis M, Liang Q, Cheng X, Wang J, Li J",
+    "title": "A multi-omics atlas of the human retina at single-cell resolution",
+    "gseAccession": "GSE226108",
+    "dataFileName": "GSM7064251_D027_13_filtered_peak_bc_matrix.h5",
+    "organism": "Human",
+    "source": "macula lutea proper",
+    "platform": "Illumina NovaSeq 6000"
+  },
+  {
+    "id": "gse226108-gsm7064252",
+    "authors": "Chen R, DeAngelis M, Liang Q, Cheng X, Wang J, Li J",
+    "title": "A multi-omics atlas of the human retina at single-cell resolution",
+    "gseAccession": "GSE226108",
+    "dataFileName": "GSM7064252_D028_13_filtered_peak_bc_matrix.h5",
+    "organism": "Human",
+    "source": "macula lutea proper",
+    "platform": "Illumina NovaSeq 6000"
+  },
+  {
+    "id": "gse232002-gsm7308366",
+    "authors": "Laurie SJ, Foster II JP, Bruce DW, Bommiasamy H, Kolupaev OV, Yazdimamaghani M et al.",
+    "title": "Multiomic Single Cell Evaluation Reveals Inflammatory Cytokines Affect Innate Lymphoid Cell Fate After Allogeneic Stem Cell Transplantation [scATAC-Seq]",
+    "gseAccession": "GSE232002",
+    "dataFileName": "GSM7308366_Exp157DukeaBMTI_filtered_peak_bc_matrix.h5",
+    "organism": "Human",
+    "source": "PBMC",
+    "platform": "NextSeq 2000"
+  },
+  {
+    "id": "gse232002-gsm7308367",
+    "authors": "Laurie SJ, Foster II JP, Bruce DW, Bommiasamy H, Kolupaev OV, Yazdimamaghani M et al.",
+    "title": "Multiomic Single Cell Evaluation Reveals Inflammatory Cytokines Affect Innate Lymphoid Cell Fate After Allogeneic Stem Cell Transplantation [scATAC-Seq]",
+    "gseAccession": "GSE232002",
+    "dataFileName": "GSM7308367_Exp157DukeaBMTB_filtered_peak_bc_matrix.h5",
+    "organism": "Human",
+    "source": "PBMC",
+    "platform": "NextSeq 2000"
+  },
+  {
+    "id": "gse232002-gsm7308368",
+    "authors": "Laurie SJ, Foster II JP, Bruce DW, Bommiasamy H, Kolupaev OV, Yazdimamaghani M et al.",
+    "title": "Multiomic Single Cell Evaluation Reveals Inflammatory Cytokines Affect Innate Lymphoid Cell Fate After Allogeneic Stem Cell Transplantation [scATAC-Seq]",
+    "gseAccession": "GSE232002",
+    "dataFileName": "GSM7308368_Exp157DukeaBMTJ_filtered_peak_bc_matrix.h5",
+    "organism": "Human",
+    "source": "PBMC",
+    "platform": "NextSeq 2000"
+  },
+  {
+    "id": "gse232002-gsm7308369",
+    "authors": "Laurie SJ, Foster II JP, Bruce DW, Bommiasamy H, Kolupaev OV, Yazdimamaghani M et al.",
+    "title": "Multiomic Single Cell Evaluation Reveals Inflammatory Cytokines Affect Innate Lymphoid Cell Fate After Allogeneic Stem Cell Transplantation [scATAC-Seq]",
+    "gseAccession": "GSE232002",
+    "dataFileName": "GSM7308369_Exp157DukeaBMTC_filtered_peak_bc_matrix.h5",
+    "organism": "Human",
+    "source": "PBMC",
+    "platform": "NextSeq 2000"
+  },
+  {
+    "id": "gse232002-gsm7308370",
+    "authors": "Laurie SJ, Foster II JP, Bruce DW, Bommiasamy H, Kolupaev OV, Yazdimamaghani M et al.",
+    "title": "Multiomic Single Cell Evaluation Reveals Inflammatory Cytokines Affect Innate Lymphoid Cell Fate After Allogeneic Stem Cell Transplantation [scATAC-Seq]",
+    "gseAccession": "GSE232002",
+    "dataFileName": "GSM7308370_Exp157DukeaBMTD_filtered_peak_bc_matrix.h5",
+    "organism": "Human",
+    "source": "PBMC",
+    "platform": "Illumina NovaSeq 6000"
+  },
+  {
+    "id": "gse232002-gsm7308371",
+    "authors": "Laurie SJ, Foster II JP, Bruce DW, Bommiasamy H, Kolupaev OV, Yazdimamaghani M et al.",
+    "title": "Multiomic Single Cell Evaluation Reveals Inflammatory Cytokines Affect Innate Lymphoid Cell Fate After Allogeneic Stem Cell Transplantation [scATAC-Seq]",
+    "gseAccession": "GSE232002",
+    "dataFileName": "GSM7308371_Exp157DukeaBMTE_filtered_peak_bc_matrix.h5",
+    "organism": "Human",
+    "source": "PBMC",
+    "platform": "Illumina NovaSeq 6000"
+  },
+  {
+    "id": "gse232002-gsm7308372",
+    "authors": "Laurie SJ, Foster II JP, Bruce DW, Bommiasamy H, Kolupaev OV, Yazdimamaghani M et al.",
+    "title": "Multiomic Single Cell Evaluation Reveals Inflammatory Cytokines Affect Innate Lymphoid Cell Fate After Allogeneic Stem Cell Transplantation [scATAC-Seq]",
+    "gseAccession": "GSE232002",
+    "dataFileName": "GSM7308372_Exp157DukeaBMTF_filtered_peak_bc_matrix.h5",
+    "organism": "Human",
+    "source": "PBMC",
+    "platform": "Illumina NovaSeq 6000"
+  },
+  {
+    "id": "gse232002-gsm7308373",
+    "authors": "Laurie SJ, Foster II JP, Bruce DW, Bommiasamy H, Kolupaev OV, Yazdimamaghani M et al.",
+    "title": "Multiomic Single Cell Evaluation Reveals Inflammatory Cytokines Affect Innate Lymphoid Cell Fate After Allogeneic Stem Cell Transplantation [scATAC-Seq]",
+    "gseAccession": "GSE232002",
+    "dataFileName": "GSM7308373_Exp157DukeaBMTG_filtered_peak_bc_matrix.h5",
+    "organism": "Human",
+    "source": "PBMC",
+    "platform": "NextSeq 2000"
+  },
+  {
+    "id": "gse232002-gsm7308374",
+    "authors": "Laurie SJ, Foster II JP, Bruce DW, Bommiasamy H, Kolupaev OV, Yazdimamaghani M et al.",
+    "title": "Multiomic Single Cell Evaluation Reveals Inflammatory Cytokines Affect Innate Lymphoid Cell Fate After Allogeneic Stem Cell Transplantation [scATAC-Seq]",
+    "gseAccession": "GSE232002",
+    "dataFileName": "GSM7308374_Exp157DukeaBMTH_filtered_peak_bc_matrix.h5",
+    "organism": "Human",
+    "source": "PBMC",
+    "platform": "NextSeq 2000"
+  },
+  {
+    "id": "gse232002-gsm7308375",
+    "authors": "Laurie SJ, Foster II JP, Bruce DW, Bommiasamy H, Kolupaev OV, Yazdimamaghani M et al.",
+    "title": "Multiomic Single Cell Evaluation Reveals Inflammatory Cytokines Affect Innate Lymphoid Cell Fate After Allogeneic Stem Cell Transplantation [scATAC-Seq]",
+    "gseAccession": "GSE232002",
+    "dataFileName": "GSM7308375_Exp157DukeaBMTK_filtered_peak_bc_matrix.h5",
+    "organism": "Human",
+    "source": "PBMC",
+    "platform": "NextSeq 2000"
+  },
+  {
+    "id": "gse232002-gsm7308376",
+    "authors": "Laurie SJ, Foster II JP, Bruce DW, Bommiasamy H, Kolupaev OV, Yazdimamaghani M et al.",
+    "title": "Multiomic Single Cell Evaluation Reveals Inflammatory Cytokines Affect Innate Lymphoid Cell Fate After Allogeneic Stem Cell Transplantation [scATAC-Seq]",
+    "gseAccession": "GSE232002",
+    "dataFileName": "GSM7308376_Exp157DukeaBMTL_filtered_peak_bc_matrix.h5",
+    "organism": "Human",
+    "source": "PBMC",
+    "platform": "NextSeq 2000"
+  },
+  {
+    "id": "gse232002-gsm7308377",
+    "authors": "Laurie SJ, Foster II JP, Bruce DW, Bommiasamy H, Kolupaev OV, Yazdimamaghani M et al.",
+    "title": "Multiomic Single Cell Evaluation Reveals Inflammatory Cytokines Affect Innate Lymphoid Cell Fate After Allogeneic Stem Cell Transplantation [scATAC-Seq]",
+    "gseAccession": "GSE232002",
+    "dataFileName": "GSM7308377_Exp157DukeaBMTM_filtered_peak_bc_matrix.h5",
+    "organism": "Human",
+    "source": "PBMC",
+    "platform": "NextSeq 2000"
+  },
+  {
+    "id": "gse232002-gsm7308378",
+    "authors": "Laurie SJ, Foster II JP, Bruce DW, Bommiasamy H, Kolupaev OV, Yazdimamaghani M et al.",
+    "title": "Multiomic Single Cell Evaluation Reveals Inflammatory Cytokines Affect Innate Lymphoid Cell Fate After Allogeneic Stem Cell Transplantation [scATAC-Seq]",
+    "gseAccession": "GSE232002",
+    "dataFileName": "GSM7308378_Exp157DukeaBMTN_filtered_peak_bc_matrix.h5",
+    "organism": "Human",
+    "source": "PBMC",
+    "platform": "NextSeq 2000"
+  },
+  {
+    "id": "gse232002-gsm7308380",
+    "authors": "Laurie SJ, Foster II JP, Bruce DW, Bommiasamy H, Kolupaev OV, Yazdimamaghani M et al.",
+    "title": "Multiomic Single Cell Evaluation Reveals Inflammatory Cytokines Affect Innate Lymphoid Cell Fate After Allogeneic Stem Cell Transplantation [scATAC-Seq]",
+    "gseAccession": "GSE232002",
+    "dataFileName": "GSM7308380_Exp157DukeaBMTO_filtered_peak_bc_matrix.h5",
+    "organism": "Human",
+    "source": "PBMC",
+    "platform": "NextSeq 2000"
+  },
+  {
+    "id": "gse232002-gsm7308381",
+    "authors": "Laurie SJ, Foster II JP, Bruce DW, Bommiasamy H, Kolupaev OV, Yazdimamaghani M et al.",
+    "title": "Multiomic Single Cell Evaluation Reveals Inflammatory Cytokines Affect Innate Lymphoid Cell Fate After Allogeneic Stem Cell Transplantation [scATAC-Seq]",
+    "gseAccession": "GSE232002",
+    "dataFileName": "GSM7308381_Exp157DukeaBMTP_filtered_peak_bc_matrix.h5",
+    "organism": "Human",
+    "source": "PBMC",
+    "platform": "NextSeq 2000"
+  },
+  {
+    "id": "gse241714-gsm7734290",
+    "authors": "Liu Q, Dong W",
+    "title": "scATAC-seq of OT-1 CD8+ T cells from different time-course of Lm-OVA infected mice",
+    "gseAccession": "GSE241714",
+    "dataFileName": "GSM7734290_Naive_filtered_peak_bc_matrix.h5",
+    "organism": "Mouse",
+    "source": "Lymphocytes",
+    "platform": "Illumina NovaSeq 6000"
+  },
+  {
+    "id": "gse241714-gsm7734291",
+    "authors": "Liu Q, Dong W",
+    "title": "scATAC-seq of OT-1 CD8+ T cells from different time-course of Lm-OVA infected mice",
+    "gseAccession": "GSE241714",
+    "dataFileName": "GSM7734291_D2_filtered_peak_bc_matrix.h5",
+    "organism": "Mouse",
+    "source": "Lymphocytes",
+    "platform": "Illumina NovaSeq 6000"
+  },
+  {
+    "id": "gse241714-gsm7734292",
+    "authors": "Liu Q, Dong W",
+    "title": "scATAC-seq of OT-1 CD8+ T cells from different time-course of Lm-OVA infected mice",
+    "gseAccession": "GSE241714",
+    "dataFileName": "GSM7734292_D8_filtered_peak_bc_matrix.h5",
+    "organism": "Mouse",
+    "source": "Lymphocytes",
+    "platform": "Illumina NovaSeq 6000"
+  },
+  {
+    "id": "gse241745-gsm7734711",
+    "authors": "Wu J, Castro LN, Suva ML, Bernstein BE",
+    "title": "Single-cell transcription and chromatin accessbility profiles of IDH mutant gliomas",
+    "gseAccession": "GSE241745",
+    "dataFileName": "GSM7734711_MGH227_filtered_peak_bc_matrix.h5",
+    "organism": "Human",
+    "source": "primary tissue",
+    "platform": "Illumina NextSeq 500"
+  },
+  {
+    "id": "gse241745-gsm7734712",
+    "authors": "Wu J, Castro LN, Suva ML, Bernstein BE",
+    "title": "Single-cell transcription and chromatin accessbility profiles of IDH mutant gliomas",
+    "gseAccession": "GSE241745",
+    "dataFileName": "GSM7734712_MGH230_filtered_peak_bc_matrix.h5",
+    "organism": "Human",
+    "source": "primary tissue",
+    "platform": "Illumina NextSeq 500"
+  },
+  {
+    "id": "gse241745-gsm7734713",
+    "authors": "Wu J, Castro LN, Suva ML, Bernstein BE",
+    "title": "Single-cell transcription and chromatin accessbility profiles of IDH mutant gliomas",
+    "gseAccession": "GSE241745",
+    "dataFileName": "GSM7734713_MGH231_filtered_peak_bc_matrix.h5",
+    "organism": "Human",
+    "source": "primary tissue",
+    "platform": "Illumina NextSeq 500"
+  },
+  {
+    "id": "gse241745-gsm7734714",
+    "authors": "Wu J, Castro LN, Suva ML, Bernstein BE",
+    "title": "Single-cell transcription and chromatin accessbility profiles of IDH mutant gliomas",
+    "gseAccession": "GSE241745",
+    "dataFileName": "GSM7734714_MGH232_filtered_peak_bc_matrix.h5",
+    "organism": "Human",
+    "source": "primary tissue",
+    "platform": "Illumina NextSeq 500"
+  },
+  {
+    "id": "gse241745-gsm7734715",
+    "authors": "Wu J, Castro LN, Suva ML, Bernstein BE",
+    "title": "Single-cell transcription and chromatin accessbility profiles of IDH mutant gliomas",
+    "gseAccession": "GSE241745",
+    "dataFileName": "GSM7734715_MGH234_filtered_peak_bc_matrix.h5",
+    "organism": "Human",
+    "source": "primary tissue",
+    "platform": "Illumina NextSeq 500"
+  },
+  {
+    "id": "gse241745-gsm7734716",
+    "authors": "Wu J, Castro LN, Suva ML, Bernstein BE",
+    "title": "Single-cell transcription and chromatin accessbility profiles of IDH mutant gliomas",
+    "gseAccession": "GSE241745",
+    "dataFileName": "GSM7734716_MGH236_filtered_peak_bc_matrix.h5",
+    "organism": "Human",
+    "source": "primary tissue",
+    "platform": "Illumina NextSeq 500"
+  },
+  {
+    "id": "gse241745-gsm7734717",
+    "authors": "Wu J, Castro LN, Suva ML, Bernstein BE",
+    "title": "Single-cell transcription and chromatin accessbility profiles of IDH mutant gliomas",
+    "gseAccession": "GSE241745",
+    "dataFileName": "GSM7734717_MGH239_filtered_peak_bc_matrix.h5",
+    "organism": "Human",
+    "source": "primary tissue",
+    "platform": "Illumina NextSeq 500"
+  },
+  {
+    "id": "gse241745-gsm7734718",
+    "authors": "Wu J, Castro LN, Suva ML, Bernstein BE",
+    "title": "Single-cell transcription and chromatin accessbility profiles of IDH mutant gliomas",
+    "gseAccession": "GSE241745",
+    "dataFileName": "GSM7734718_MGH240_filtered_peak_bc_matrix.h5",
+    "organism": "Human",
+    "source": "primary tissue",
+    "platform": "Illumina NextSeq 500"
+  },
+  {
+    "id": "gse241745-gsm7734719",
+    "authors": "Wu J, Castro LN, Suva ML, Bernstein BE",
+    "title": "Single-cell transcription and chromatin accessbility profiles of IDH mutant gliomas",
+    "gseAccession": "GSE241745",
+    "dataFileName": "GSM7734719_BWH3_filtered_peak_bc_matrix.h5",
+    "organism": "Human",
+    "source": "primary tissue",
+    "platform": "Illumina NextSeq 500"
+  },
+  {
+    "id": "gse241745-gsm7734720",
+    "authors": "Wu J, Castro LN, Suva ML, Bernstein BE",
+    "title": "Single-cell transcription and chromatin accessbility profiles of IDH mutant gliomas",
+    "gseAccession": "GSE241745",
+    "dataFileName": "GSM7734720_BWH14_filtered_peak_bc_matrix.h5",
+    "organism": "Human",
+    "source": "primary tissue",
+    "platform": "Illumina NextSeq 500"
+  },
+  {
+    "id": "gse243004-gsm7777060",
+    "authors": "Racine L, Parmentier R",
+    "title": "Metabolic adaptation pilots the differentiation of human hematopoietic cells (scATAC-Seq)",
+    "gseAccession": "GSE243004",
+    "dataFileName": "GSM7777060_CTRL_filtered_peak_bc_matrix.h5",
+    "organism": "Human",
+    "source": "umbilical cord blood",
+    "platform": "Illumina NovaSeq 6000"
+  },
+  {
+    "id": "gse243004-gsm7777061",
+    "authors": "Racine L, Parmentier R",
+    "title": "Metabolic adaptation pilots the differentiation of human hematopoietic cells (scATAC-Seq)",
+    "gseAccession": "GSE243004",
+    "dataFileName": "GSM7777061_2DG_filtered_peak_bc_matrix.h5",
+    "organism": "Human",
+    "source": "umbilical cord blood",
+    "platform": "Illumina NovaSeq 6000"
+  },
+  {
+    "id": "gse243004-gsm7777062",
+    "authors": "Racine L, Parmentier R",
+    "title": "Metabolic adaptation pilots the differentiation of human hematopoietic cells (scATAC-Seq)",
+    "gseAccession": "GSE243004",
+    "dataFileName": "GSM7777062_DON_filtered_peak_bc_matrix.h5",
+    "organism": "Human",
+    "source": "umbilical cord blood",
+    "platform": "Illumina NovaSeq 6000"
+  },
+  {
+    "id": "gse243004-gsm7777063",
+    "authors": "Racine L, Parmentier R",
+    "title": "Metabolic adaptation pilots the differentiation of human hematopoietic cells (scATAC-Seq)",
+    "gseAccession": "GSE243004",
+    "dataFileName": "GSM7777063_AOA_filtered_peak_bc_matrix.h5",
+    "organism": "Human",
+    "source": "umbilical cord blood",
+    "platform": "Illumina NovaSeq 6000"
+  },
+  {
+    "id": "gse247157-gsm7884540",
+    "authors": "Chen R, DeAngelis MM, Li Y, Wang J, Cheng X, Liang Q et al.",
+    "title": "Single-cell multiomics of the human retina reveals hierarchical transcription factor collaboration in mediating cell type-specific effects of genetic variants on gene regulation",
+    "gseAccession": "GSE247157",
+    "dataFileName": "GSM7884540_D013_13_lobe_atac_filtered_peak_bc_matrix.h5",
+    "organism": "Human",
+    "source": "peripheral region of retina",
+    "platform": "Illumina NovaSeq 6000"
+  },
+  {
+    "id": "gse247157-gsm7884541",
+    "authors": "Chen R, DeAngelis MM, Li Y, Wang J, Cheng X, Liang Q et al.",
+    "title": "Single-cell multiomics of the human retina reveals hierarchical transcription factor collaboration in mediating cell type-specific effects of genetic variants on gene regulation",
+    "gseAccession": "GSE247157",
+    "dataFileName": "GSM7884541_D027_13_lobe_atac_filtered_peak_bc_matrix.h5",
+    "organism": "Human",
+    "source": "peripheral region of retina",
+    "platform": "Illumina NovaSeq 6000"
+  },
+  {
+    "id": "gse247157-gsm7884543",
+    "authors": "Chen R, DeAngelis MM, Li Y, Wang J, Cheng X, Liang Q et al.",
+    "title": "Single-cell multiomics of the human retina reveals hierarchical transcription factor collaboration in mediating cell type-specific effects of genetic variants on gene regulation",
+    "gseAccession": "GSE247157",
+    "dataFileName": "GSM7884543_D030_13_macular_atac_filtered_peak_bc_matrix.h5",
+    "organism": "Human",
+    "source": "macula lutea",
+    "platform": "Illumina NovaSeq 6000"
+  },
+  {
+    "id": "gse247157-gsm7884545",
+    "authors": "Chen R, DeAngelis MM, Li Y, Wang J, Cheng X, Liang Q et al.",
+    "title": "Single-cell multiomics of the human retina reveals hierarchical transcription factor collaboration in mediating cell type-specific effects of genetic variants on gene regulation",
+    "gseAccession": "GSE247157",
+    "dataFileName": "GSM7884545_D021_13_lobe_atac_filtered_peak_bc_matrix.h5",
+    "organism": "Human",
+    "source": "peripheral region of retina",
+    "platform": "Illumina NovaSeq 6000"
+  },
+  {
+    "id": "gse247157-gsm7884547",
+    "authors": "Chen R, DeAngelis MM, Li Y, Wang J, Cheng X, Liang Q et al.",
+    "title": "Single-cell multiomics of the human retina reveals hierarchical transcription factor collaboration in mediating cell type-specific effects of genetic variants on gene regulation",
+    "gseAccession": "GSE247157",
+    "dataFileName": "GSM7884547_19_D008_lobe_atac_filtered_peak_bc_matrix.h5",
+    "organism": "Human",
+    "source": "peripheral region of retina",
+    "platform": "Illumina NovaSeq 6000"
+  },
+  {
+    "id": "gse247157-gsm7884548",
+    "authors": "Chen R, DeAngelis MM, Li Y, Wang J, Cheng X, Liang Q et al.",
+    "title": "Single-cell multiomics of the human retina reveals hierarchical transcription factor collaboration in mediating cell type-specific effects of genetic variants on gene regulation",
+    "gseAccession": "GSE247157",
+    "dataFileName": "GSM7884548_19_D007_lobe_atac_filtered_peak_bc_matrix.h5",
+    "organism": "Human",
+    "source": "peripheral region of retina",
+    "platform": "Illumina NovaSeq 6000"
+  },
+  {
+    "id": "gse247157-gsm7884549",
+    "authors": "Chen R, DeAngelis MM, Li Y, Wang J, Cheng X, Liang Q et al.",
+    "title": "Single-cell multiomics of the human retina reveals hierarchical transcription factor collaboration in mediating cell type-specific effects of genetic variants on gene regulation",
+    "gseAccession": "GSE247157",
+    "dataFileName": "GSM7884549_D009_13_lobe_atac_filtered_peak_bc_matrix.h5",
+    "organism": "Human",
+    "source": "peripheral region of retina",
+    "platform": "Illumina NovaSeq 6000"
+  },
+  {
+    "id": "gse247157-gsm7884550",
+    "authors": "Chen R, DeAngelis MM, Li Y, Wang J, Cheng X, Liang Q et al.",
+    "title": "Single-cell multiomics of the human retina reveals hierarchical transcription factor collaboration in mediating cell type-specific effects of genetic variants on gene regulation",
+    "gseAccession": "GSE247157",
+    "dataFileName": "GSM7884550_D005_13_lobe_atac_filtered_peak_bc_matrix.h5",
+    "organism": "Human",
+    "source": "peripheral region of retina",
+    "platform": "Illumina NovaSeq 6000"
+  },
+  {
+    "id": "gse247157-gsm7884552",
+    "authors": "Chen R, DeAngelis MM, Li Y, Wang J, Cheng X, Liang Q et al.",
+    "title": "Single-cell multiomics of the human retina reveals hierarchical transcription factor collaboration in mediating cell type-specific effects of genetic variants on gene regulation",
+    "gseAccession": "GSE247157",
+    "dataFileName": "GSM7884552_19_D010_lobe_atac_filtered_peak_bc_matrix.h5",
+    "organism": "Human",
+    "source": "peripheral region of retina",
+    "platform": "Illumina NovaSeq 6000"
+  },
+  {
+    "id": "gse247157-gsm7884554",
+    "authors": "Chen R, DeAngelis MM, Li Y, Wang J, Cheng X, Liang Q et al.",
+    "title": "Single-cell multiomics of the human retina reveals hierarchical transcription factor collaboration in mediating cell type-specific effects of genetic variants on gene regulation",
+    "gseAccession": "GSE247157",
+    "dataFileName": "GSM7884554_19_D009_lobe_atac_filtered_peak_bc_matrix.h5",
+    "organism": "Human",
+    "source": "peripheral region of retina",
+    "platform": "Illumina NovaSeq 6000"
+  },
+  {
+    "id": "gse247157-gsm7884558",
+    "authors": "Chen R, DeAngelis MM, Li Y, Wang J, Cheng X, Liang Q et al.",
+    "title": "Single-cell multiomics of the human retina reveals hierarchical transcription factor collaboration in mediating cell type-specific effects of genetic variants on gene regulation",
+    "gseAccession": "GSE247157",
+    "dataFileName": "GSM7884558_D017_13_lobe_atac_filtered_peak_bc_matrix.h5",
+    "organism": "Human",
+    "source": "peripheral region of retina",
+    "platform": "Illumina NovaSeq 6000"
+  },
+  {
+    "id": "gse247157-gsm7884560",
+    "authors": "Chen R, DeAngelis MM, Li Y, Wang J, Cheng X, Liang Q et al.",
+    "title": "Single-cell multiomics of the human retina reveals hierarchical transcription factor collaboration in mediating cell type-specific effects of genetic variants on gene regulation",
+    "gseAccession": "GSE247157",
+    "dataFileName": "GSM7884560_19_D003_lobe_atac_filtered_peak_bc_matrix.h5",
+    "organism": "Human",
+    "source": "peripheral region of retina",
+    "platform": "Illumina NovaSeq 6000"
+  },
+  {
+    "id": "gse247157-gsm7884563",
+    "authors": "Chen R, DeAngelis MM, Li Y, Wang J, Cheng X, Liang Q et al.",
+    "title": "Single-cell multiomics of the human retina reveals hierarchical transcription factor collaboration in mediating cell type-specific effects of genetic variants on gene regulation",
+    "gseAccession": "GSE247157",
+    "dataFileName": "GSM7884563_19_D005_lobe_atac_filtered_peak_bc_matrix.h5",
+    "organism": "Human",
+    "source": "peripheral region of retina",
+    "platform": "Illumina NovaSeq 6000"
+  },
+  {
+    "id": "gse247157-gsm7884566",
+    "authors": "Chen R, DeAngelis MM, Li Y, Wang J, Cheng X, Liang Q et al.",
+    "title": "Single-cell multiomics of the human retina reveals hierarchical transcription factor collaboration in mediating cell type-specific effects of genetic variants on gene regulation",
+    "gseAccession": "GSE247157",
+    "dataFileName": "GSM7884566_19_D011_lobe_atac_filtered_peak_bc_matrix.h5",
+    "organism": "Human",
+    "source": "peripheral region of retina",
+    "platform": "Illumina NovaSeq 6000"
+  },
+  {
+    "id": "gse247157-gsm7884567",
+    "authors": "Chen R, DeAngelis MM, Li Y, Wang J, Cheng X, Liang Q et al.",
+    "title": "Single-cell multiomics of the human retina reveals hierarchical transcription factor collaboration in mediating cell type-specific effects of genetic variants on gene regulation",
+    "gseAccession": "GSE247157",
+    "dataFileName": "GSM7884567_19_D019_lobe_atac_filtered_peak_bc_matrix.h5",
+    "organism": "Human",
+    "source": "peripheral region of retina",
+    "platform": "Illumina NovaSeq 6000"
+  },
+  {
+    "id": "gse247157-gsm7884570",
+    "authors": "Chen R, DeAngelis MM, Li Y, Wang J, Cheng X, Liang Q et al.",
+    "title": "Single-cell multiomics of the human retina reveals hierarchical transcription factor collaboration in mediating cell type-specific effects of genetic variants on gene regulation",
+    "gseAccession": "GSE247157",
+    "dataFileName": "GSM7884570_D019_13_lobe_atac_filtered_peak_bc_matrix.h5",
+    "organism": "Human",
+    "source": "peripheral region of retina",
+    "platform": "Illumina NovaSeq 6000"
+  },
+  {
+    "id": "gse247157-gsm7884571",
+    "authors": "Chen R, DeAngelis MM, Li Y, Wang J, Cheng X, Liang Q et al.",
+    "title": "Single-cell multiomics of the human retina reveals hierarchical transcription factor collaboration in mediating cell type-specific effects of genetic variants on gene regulation",
+    "gseAccession": "GSE247157",
+    "dataFileName": "GSM7884571_D028_13_lobe_atac_filtered_peak_bc_matrix.h5",
+    "organism": "Human",
+    "source": "peripheral region of retina",
+    "platform": "Illumina NovaSeq 6000"
+  },
+  {
+    "id": "gse247157-gsm7884572",
+    "authors": "Chen R, DeAngelis MM, Li Y, Wang J, Cheng X, Liang Q et al.",
+    "title": "Single-cell multiomics of the human retina reveals hierarchical transcription factor collaboration in mediating cell type-specific effects of genetic variants on gene regulation",
+    "gseAccession": "GSE247157",
+    "dataFileName": "GSM7884572_D026_13_lobe_atac_filtered_peak_bc_matrix.h5",
+    "organism": "Human",
+    "source": "peripheral region of retina",
+    "platform": "Illumina NovaSeq 6000"
+  },
+  {
+    "id": "gse247157-gsm7884574",
+    "authors": "Chen R, DeAngelis MM, Li Y, Wang J, Cheng X, Liang Q et al.",
+    "title": "Single-cell multiomics of the human retina reveals hierarchical transcription factor collaboration in mediating cell type-specific effects of genetic variants on gene regulation",
+    "gseAccession": "GSE247157",
+    "dataFileName": "GSM7884574_19_D006_lobe_atac_filtered_peak_bc_matrix.h5",
+    "organism": "Human",
+    "source": "peripheral region of retina",
+    "platform": "Illumina NovaSeq 6000"
+  },
+  {
+    "id": "gse247157-gsm7884576",
+    "authors": "Chen R, DeAngelis MM, Li Y, Wang J, Cheng X, Liang Q et al.",
+    "title": "Single-cell multiomics of the human retina reveals hierarchical transcription factor collaboration in mediating cell type-specific effects of genetic variants on gene regulation",
+    "gseAccession": "GSE247157",
+    "dataFileName": "GSM7884576_D030_13_lobe_atac_filtered_peak_bc_matrix.h5",
+    "organism": "Human",
+    "source": "peripheral region of retina",
+    "platform": "Illumina NovaSeq 6000"
+  },
+  {
+    "id": "gse247157-gsm7884578",
+    "authors": "Chen R, DeAngelis MM, Li Y, Wang J, Cheng X, Liang Q et al.",
+    "title": "Single-cell multiomics of the human retina reveals hierarchical transcription factor collaboration in mediating cell type-specific effects of genetic variants on gene regulation",
+    "gseAccession": "GSE247157",
+    "dataFileName": "GSM7884578_D018_13_lobe_atac_filtered_peak_bc_matrix.h5",
+    "organism": "Human",
+    "source": "peripheral region of retina",
+    "platform": "Illumina NovaSeq 6000"
+  },
+  {
+    "id": "gse272265-gsm8397466",
+    "authors": "Stomper J, Niroula A, Belizaire R, McConkey M, Ebert BL",
+    "title": "Sex differences in DNMT3A-mutant clonal hematopoiesis and the effects of estrogen [scATAC-Seq]",
+    "gseAccession": "GSE272265",
+    "dataFileName": "GSM8397466_WT1_filtered_peak_bc_matrix.h5",
+    "organism": "Mouse",
+    "source": "Bone marrow",
+    "platform": "Illumina NovaSeq 6000"
+  },
+  {
+    "id": "gse272265-gsm8397467",
+    "authors": "Stomper J, Niroula A, Belizaire R, McConkey M, Ebert BL",
+    "title": "Sex differences in DNMT3A-mutant clonal hematopoiesis and the effects of estrogen [scATAC-Seq]",
+    "gseAccession": "GSE272265",
+    "dataFileName": "GSM8397467_WT2_filtered_peak_bc_matrix.h5",
+    "organism": "Mouse",
+    "source": "Bone marrow",
+    "platform": "Illumina NovaSeq 6000"
+  },
+  {
+    "id": "gse272265-gsm8397468",
+    "authors": "Stomper J, Niroula A, Belizaire R, McConkey M, Ebert BL",
+    "title": "Sex differences in DNMT3A-mutant clonal hematopoiesis and the effects of estrogen [scATAC-Seq]",
+    "gseAccession": "GSE272265",
+    "dataFileName": "GSM8397468_Dnmt3a1_filtered_peak_bc_matrix.h5",
+    "organism": "Mouse",
+    "source": "Bone marrow",
+    "platform": "Illumina NovaSeq 6000"
+  },
+  {
+    "id": "gse272265-gsm8397469",
+    "authors": "Stomper J, Niroula A, Belizaire R, McConkey M, Ebert BL",
+    "title": "Sex differences in DNMT3A-mutant clonal hematopoiesis and the effects of estrogen [scATAC-Seq]",
+    "gseAccession": "GSE272265",
+    "dataFileName": "GSM8397469_Dnmt3a2_filtered_peak_bc_matrix.h5",
+    "organism": "Mouse",
+    "source": "Bone marrow",
+    "platform": "Illumina NovaSeq 6000"
+  },
+  {
+    "id": "gse288015-gsm8757498",
+    "authors": "Ishikawa E, Motooka D, Liu Y, Okuzaki D, Yamasaki S",
+    "title": "Thymic iNKT cells in Prkd2/3 mice (scRNA/TCR-seq, scATAC-seq)",
+    "gseAccession": "GSE288015",
+    "dataFileName": "GSM8757498_WT_filtered_peak_bc_matrix.h5",
+    "organism": "Mouse",
+    "source": "Thymus",
+    "platform": "Illumina NovaSeq 6000"
+  },
+  {
+    "id": "gse288015-gsm8757499",
+    "authors": "Ishikawa E, Motooka D, Liu Y, Okuzaki D, Yamasaki S",
+    "title": "Thymic iNKT cells in Prkd2/3 mice (scRNA/TCR-seq, scATAC-seq)",
+    "gseAccession": "GSE288015",
+    "dataFileName": "GSM8757499_KO_filtered_peak_bc_matrix.h5",
+    "organism": "Mouse",
+    "source": "Thymus",
+    "platform": "Illumina NovaSeq 6000"
+  },
+  {
+    "id": "gse288654-gsm8772512",
+    "authors": "Das A, Saeki K, Dell'Orso S, Wang X, Stains J, Riddle R et al.",
+    "title": "Integrative Single-Cell RNA-Seq and ATAC-Seq Identifies Transcriptional and Epigenetic Blueprint Guiding Osteoclastogenic Trajectory [scATAC-seq]",
+    "gseAccession": "GSE288654",
+    "dataFileName": "GSM8772512_WT_filtered_peak_bc_matrix.h5",
+    "organism": "Mouse",
+    "source": "bone marrow cells",
+    "platform": "Illumina HiSeq 3000"
+  },
+  {
+    "id": "gse288654-gsm8772513",
+    "authors": "Das A, Saeki K, Dell'Orso S, Wang X, Stains J, Riddle R et al.",
+    "title": "Integrative Single-Cell RNA-Seq and ATAC-Seq Identifies Transcriptional and Epigenetic Blueprint Guiding Osteoclastogenic Trajectory [scATAC-seq]",
+    "gseAccession": "GSE288654",
+    "dataFileName": "GSM8772513_cKO_filtered_peak_bc_matrix.h5",
+    "organism": "Mouse",
+    "source": "bone marrow cells",
+    "platform": "Illumina HiSeq 3000"
+  },
+  {
+    "id": "gse305163-gsm9163267",
+    "authors": "Chung Y, Koehler SD, Cancelarich S, Gibson TM, Pregernig G, Becker L et al.",
+    "title": "Functional, sustained recovery of hearing in Otoferlin-deficient mice using DB-OTO, a hair cell-specific AAV based dual vector gene therapy",
+    "gseAccession": "GSE305163",
+    "dataFileName": "GSM9163267_sc-0077_coch_atac_5min_filtered_peak_bc_matrix.h5",
+    "organism": "Mouse",
+    "source": "cochlea",
+    "platform": "Illumina NovaSeq 6000"
+  },
+  {
+    "id": "gse305163-gsm9163268",
+    "authors": "Chung Y, Koehler SD, Cancelarich S, Gibson TM, Pregernig G, Becker L et al.",
+    "title": "Functional, sustained recovery of hearing in Otoferlin-deficient mice using DB-OTO, a hair cell-specific AAV based dual vector gene therapy",
+    "gseAccession": "GSE305163",
+    "dataFileName": "GSM9163268_sc-0077_coch_atac_10min_filtered_peak_bc_matrix.h5",
+    "organism": "Mouse",
+    "source": "cochlea",
+    "platform": "Illumina NovaSeq 6000"
+  },
+  {
+    "id": "gse299741-gsm9045358",
+    "authors": "Coda DM, Watt L, Glauser L, Batiuk M, Burns AM, Stahl CL et al.",
+    "title": "Cell-type and locus-specific epigenetic editing of memory expression [scATAC_data]",
+    "gseAccession": "GSE299741",
+    "dataFileName": "GSM9045358_dCas9_NT_filtered_peak_bc_matrix.h5",
+    "organism": "Mouse",
+    "source": "hippocampus DG",
+    "platform": "Element AVITI"
+  },
+  {
+    "id": "gse299741-gsm9045359",
+    "authors": "Coda DM, Watt L, Glauser L, Batiuk M, Burns AM, Stahl CL et al.",
+    "title": "Cell-type and locus-specific epigenetic editing of memory expression [scATAC_data]",
+    "gseAccession": "GSE299741",
+    "dataFileName": "GSM9045359_dCas9_Arc_filtered_peak_bc_matrix.h5",
+    "organism": "Mouse",
+    "source": "hippocampus DG",
+    "platform": "Element AVITI"
+  },
+  {
+    "id": "gse296197-gse296197",
+    "authors": "Weldy CS",
+    "title": "The epigenomic landscape of single vascular cells reflects developmental origin and identifies disease risk loci",
+    "gseAccession": "GSE296197",
+    "dataFileName": "GSE296197_scATACseq_AGGR_filtered_peak_bc_matrix.h5",
+    "organism": "Mouse",
+    "source": "aortic root, ascending aorta to brachiocephalic artery take off",
+    "platform": "Illumina NovaSeq 6000"
+  },
+  {
+    "id": "gse299466-gsm9039551",
+    "authors": "Morgan D, Zhang B",
+    "title": "scATAC-seq of murine B cells post NP-OVA immunization",
+    "gseAccession": "GSE299466",
+    "dataFileName": "GSM9039551_wt_filtered_peak_bc_matrix.h5",
+    "organism": "Mouse",
+    "source": "spleen",
+    "platform": "Illumina NovaSeq X"
+  },
+  {
+    "id": "gse299466-gsm9039552",
+    "authors": "Morgan D, Zhang B",
+    "title": "scATAC-seq of murine B cells post NP-OVA immunization",
+    "gseAccession": "GSE299466",
+    "dataFileName": "GSM9039552_k11_filtered_peak_bc_matrix.h5",
+    "organism": "Mouse",
+    "source": "spleen",
+    "platform": "Illumina NovaSeq X"
+  },
+  {
+    "id": "gse289708-gsm8797341",
+    "authors": "Hegde S, Halasz L, Merad M",
+    "title": "Myeloid progenitor dysregulation fuels immunosuppressive macrophages in tumors",
+    "gseAccession": "GSE289708",
+    "dataFileName": "GSM8797341_mm_scATAC_BM_KP_Nfe2l2_WT_filtered_peak_bc_matrix.h5",
+    "organism": "Mouse",
+    "source": "Bone marrow",
+    "platform": "Illumina NovaSeq 6000"
+  },
+  {
+    "id": "gse289708-gsm8797342",
+    "authors": "Hegde S, Halasz L, Merad M",
+    "title": "Myeloid progenitor dysregulation fuels immunosuppressive macrophages in tumors",
+    "gseAccession": "GSE289708",
+    "dataFileName": "GSM8797342_mm_scATAC_BM_KP_Nfe2l2_KO_filtered_peak_bc_matrix.h5",
+    "organism": "Mouse",
+    "source": "Bone marrow",
+    "platform": "Illumina NovaSeq 6000"
+  },
+  {
+    "id": "gse270148-gsm8069361",
+    "authors": "Hegde S, Giotti B, Soong BY, Halasz L et al",
+    "title": "Myeloid progenitor dysregulation fuels immunosuppressive macrophages in tumours",
+    "gseAccession": "GSE270148",
+    "dataFileName": "GSM8069361_mm_scATACseq_BM_naive_filtered_peak_bc_matrix.h5",
+    "organism": "Mouse",
+    "source": "Bone marrow",
+    "platform": "Illumina NovaSeq 6000"
+  },
+  {
+    "id": "gse270148-gsm8069362",
+    "authors": "Hegde S, Giotti B, Soong BY, Halasz L et al",
+    "title": "Myeloid progenitor dysregulation fuels immunosuppressive macrophages in tumours",
+    "gseAccession": "GSE270148",
+    "dataFileName": "GSM8069362_mm_scATACseq_BM_KP_Rep1_filtered_peak_bc_matrix.h5",
+    "organism": "Mouse",
+    "source": "Bone marrow",
+    "platform": "Illumina NovaSeq 6000"
+  },
+  {
+    "id": "gse270148-gsm8069363",
+    "authors": "Hegde S, Giotti B, Soong BY, Halasz L et al",
+    "title": "Myeloid progenitor dysregulation fuels immunosuppressive macrophages in tumours",
+    "gseAccession": "GSE270148",
+    "dataFileName": "GSM8069363_mm_scATACseq_BM_KP_Rep2_filtered_peak_bc_matrix.h5",
+    "organism": "Mouse",
+    "source": "Bone marrow",
+    "platform": "Illumina NovaSeq 6000"
+  },
+  {
+    "id": "gse270148-gsm8069364",
+    "authors": "Hegde S, Giotti B, Soong BY, Halasz L et al",
+    "title": "Myeloid progenitor dysregulation fuels immunosuppressive macrophages in tumours",
+    "gseAccession": "GSE270148",
+    "dataFileName": "GSM8069364_mm_scATACseq_Lung_naive_filtered_peak_bc_matrix.h5",
+    "organism": "Mouse",
+    "source": "Lung naive",
+    "platform": "Illumina NovaSeq 6000"
+  },
+  {
+    "id": "gse270148-gsm8069365",
+    "authors": "Hegde S, Giotti B, Soong BY, Halasz L et al",
+    "title": "Myeloid progenitor dysregulation fuels immunosuppressive macrophages in tumours",
+    "gseAccession": "GSE270148",
+    "dataFileName": "GSM8069365_mm_scATACseq_Lung_KP_filtered_peak_bc_matrix.h5",
+    "organism": "Mouse",
+    "source": "Lung tumor",
+    "platform": "Illumina NovaSeq 6000"
+  },
+  {
+    "id": "gse270148-gsm8069366",
+    "authors": "Hegde S, Giotti B, Soong BY, Halasz L et al",
+    "title": "Myeloid progenitor dysregulation fuels immunosuppressive macrophages in tumours",
+    "gseAccession": "GSE270148",
+    "dataFileName": "GSM8069366_mm_scATACseq_Blood_KP_filtered_peak_bc_matrix.h5",
+    "organism": "Mouse",
+    "source": "Blood",
+    "platform": "Illumina NovaSeq 6000"
+  },
+  {
+    "id": "gse270148-gsm8069367",
+    "authors": "Hegde S, Giotti B, Soong BY, Halasz L et al",
+    "title": "Myeloid progenitor dysregulation fuels immunosuppressive macrophages in tumours",
+    "gseAccession": "GSE270148",
+    "dataFileName": "GSM8069367_hs_scATACseq_PBMC_Lu881_filtered_peak_bc_matrix.h5",
+    "organism": "Human",
+    "source": "Blood",
+    "platform": "Illumina NovaSeq 6000"
+  },
+  {
+    "id": "gse270148-gsm8069368",
+    "authors": "Hegde S, Giotti B, Soong BY, Halasz L et al",
+    "title": "Myeloid progenitor dysregulation fuels immunosuppressive macrophages in tumours",
+    "gseAccession": "GSE270148",
+    "dataFileName": "GSM8069368_hs_scATACseq_PBMC_Lu883_filtered_peak_bc_matrix.h5",
+    "organism": "Human",
+    "source": "Blood",
+    "platform": "Illumina NovaSeq 6000"
+  },
+  {
+    "id": "gse270148-gsm8069369",
+    "authors": "Hegde S, Giotti B, Soong BY, Halasz L et al",
+    "title": "Myeloid progenitor dysregulation fuels immunosuppressive macrophages in tumours",
+    "gseAccession": "GSE270148",
+    "dataFileName": "GSM8069369_hs_scATACseq_PBMC_Lu885_filtered_peak_bc_matrix.h5",
+    "organism": "Human",
+    "source": "Blood",
+    "platform": "Illumina NovaSeq 6000"
+  },
+  {
+    "id": "gse270148-gsm8069370",
+    "authors": "Hegde S, Giotti B, Soong BY, Halasz L et al",
+    "title": "Myeloid progenitor dysregulation fuels immunosuppressive macrophages in tumours",
+    "gseAccession": "GSE270148",
+    "dataFileName": "GSM8069370_hs_scATACseq_PBMC_Lu898_filtered_peak_bc_matrix.h5",
+    "organism": "Human",
+    "source": "Blood",
+    "platform": "Illumina NovaSeq 6000"
+  },
+  {
+    "id": "gse270148-gsm8069371",
+    "authors": "Hegde S, Giotti B, Soong BY, Halasz L et al",
+    "title": "Myeloid progenitor dysregulation fuels immunosuppressive macrophages in tumours",
+    "gseAccession": "GSE270148",
+    "dataFileName": "GSM8069371_hs_scATACseq_PBMC_Lu912_filtered_peak_bc_matrix.h5",
+    "organism": "Human",
+    "source": "Blood",
+    "platform": "Illumina NovaSeq 6000"
+  },
+  {
+    "id": "gse270148-gsm8069372",
+    "authors": "Hegde S, Giotti B, Soong BY, Halasz L et al",
+    "title": "Myeloid progenitor dysregulation fuels immunosuppressive macrophages in tumours",
+    "gseAccession": "GSE270148",
+    "dataFileName": "GSM8069372_hs_scATACseq_PBMC_Lu929_filtered_peak_bc_matrix.h5",
+    "organism": "Human",
+    "source": "Blood",
+    "platform": "Illumina NovaSeq 6000"
+  },
+  {
+    "id": "gse270148-gsm8069373",
+    "authors": "Hegde S, Giotti B, Soong BY, Halasz L et al",
+    "title": "Myeloid progenitor dysregulation fuels immunosuppressive macrophages in tumours",
+    "gseAccession": "GSE270148",
+    "dataFileName": "GSM8069373_hs_scATACseq_PBMC_Lu931_filtered_peak_bc_matrix.h5",
+    "organism": "Human",
+    "source": "Blood",
+    "platform": "Illumina NovaSeq 6000"
+  },
+  {
+    "id": "gse270148-gsm8069374",
+    "authors": "Hegde S, Giotti B, Soong BY, Halasz L et al",
+    "title": "Myeloid progenitor dysregulation fuels immunosuppressive macrophages in tumours",
+    "gseAccession": "GSE270148",
+    "dataFileName": "GSM8069374_hs_scATACseq_PBMC_Lu934_filtered_peak_bc_matrix.h5",
+    "organism": "Human",
+    "source": "Blood",
+    "platform": "Illumina NovaSeq 6000"
+  },
+  {
+    "id": "gse270148-gsm8069375",
+    "authors": "Hegde S, Giotti B, Soong BY, Halasz L et al",
+    "title": "Myeloid progenitor dysregulation fuels immunosuppressive macrophages in tumours",
+    "gseAccession": "GSE270148",
+    "dataFileName": "GSM8069375_hs_scATACseq_PBMC_Lu936_filtered_peak_bc_matrix.h5",
+    "organism": "Human",
+    "source": "Blood",
+    "platform": "Illumina NovaSeq 6000"
+  },
+  {
+    "id": "gse270148-gsm8069376",
+    "authors": "Hegde S, Giotti B, Soong BY, Halasz L et al",
+    "title": "Myeloid progenitor dysregulation fuels immunosuppressive macrophages in tumours",
+    "gseAccession": "GSE270148",
+    "dataFileName": "GSM8069376_hs_scATACseq_Tumor_Lu881_filtered_peak_bc_matrix.h5",
+    "organism": "Human",
+    "source": "Lung tumor",
+    "platform": "Illumina NovaSeq 6000"
+  },
+  {
+    "id": "gse270148-gsm8069377",
+    "authors": "Hegde S, Giotti B, Soong BY, Halasz L et al",
+    "title": "Myeloid progenitor dysregulation fuels immunosuppressive macrophages in tumours",
+    "gseAccession": "GSE270148",
+    "dataFileName": "GSM8069377_hs_scATACseq_Tumor_Lu883_filtered_peak_bc_matrix.h5",
+    "organism": "Human",
+    "source": "Lung tumor",
+    "platform": "Illumina NovaSeq 6000"
+  },
+  {
+    "id": "gse270148-gsm8069378",
+    "authors": "Hegde S, Giotti B, Soong BY, Halasz L et al",
+    "title": "Myeloid progenitor dysregulation fuels immunosuppressive macrophages in tumours",
+    "gseAccession": "GSE270148",
+    "dataFileName": "GSM8069378_hs_scATACseq_Tumor_Lu885_filtered_peak_bc_matrix.h5",
+    "organism": "Human",
+    "source": "Lung tumor",
+    "platform": "Illumina NovaSeq 6000"
+  },
+  {
+    "id": "gse270148-gsm8069379",
+    "authors": "Hegde S, Giotti B, Soong BY, Halasz L et al",
+    "title": "Myeloid progenitor dysregulation fuels immunosuppressive macrophages in tumours",
+    "gseAccession": "GSE270148",
+    "dataFileName": "GSM8069379_hs_scATACseq_Tumor_Lu898_filtered_peak_bc_matrix.h5",
+    "organism": "Human",
+    "source": "Lung tumor",
+    "platform": "Illumina NovaSeq 6000"
+  },
+  {
+    "id": "gse270148-gsm8069380",
+    "authors": "Hegde S, Giotti B, Soong BY, Halasz L et al",
+    "title": "Myeloid progenitor dysregulation fuels immunosuppressive macrophages in tumours",
+    "gseAccession": "GSE270148",
+    "dataFileName": "GSM8069380_hs_scATACseq_Tumor_Lu912_filtered_peak_bc_matrix.h5",
+    "organism": "Human",
+    "source": "Lung tumor",
+    "platform": "Illumina NovaSeq 6000"
+  },
+  {
+    "id": "gse270148-gsm8069381",
+    "authors": "Hegde S, Giotti B, Soong BY, Halasz L et al",
+    "title": "Myeloid progenitor dysregulation fuels immunosuppressive macrophages in tumours",
+    "gseAccession": "GSE270148",
+    "dataFileName": "GSM8069381_hs_scATACseq_Tumor_Lu929_filtered_peak_bc_matrix.h5",
+    "organism": "Human",
+    "source": "Lung tumor",
+    "platform": "Illumina NovaSeq 6000"
+  },
+  {
+    "id": "gse270148-gsm8069382",
+    "authors": "Hegde S, Giotti B, Soong BY, Halasz L et al",
+    "title": "Myeloid progenitor dysregulation fuels immunosuppressive macrophages in tumours",
+    "gseAccession": "GSE270148",
+    "dataFileName": "GSM8069382_hs_scATACseq_Tumor_Lu931_filtered_peak_bc_matrix.h5",
+    "organism": "Human",
+    "source": "Lung tumor",
+    "platform": "Illumina NovaSeq 6000"
+  },
+  {
+    "id": "gse270148-gsm8069383",
+    "authors": "Hegde S, Giotti B, Soong BY, Halasz L et al",
+    "title": "Myeloid progenitor dysregulation fuels immunosuppressive macrophages in tumours",
+    "gseAccession": "GSE270148",
+    "dataFileName": "GSM8069383_hs_scATACseq_Tumor_Lu934_filtered_peak_bc_matrix.h5",
+    "organism": "Human",
+    "source": "Lung tumor",
+    "platform": "Illumina NovaSeq 6000"
+  },
+  {
+    "id": "gse270148-gsm8069384",
+    "authors": "Hegde S, Giotti B, Soong BY, Halasz L et al",
+    "title": "Myeloid progenitor dysregulation fuels immunosuppressive macrophages in tumours",
+    "gseAccession": "GSE270148",
+    "dataFileName": "GSM8069384_hs_scATACseq_Tumor_Lu936_filtered_peak_bc_matrix.h5",
+    "organism": "Human",
+    "source": "Lung tumor",
+    "platform": "Illumina NovaSeq 6000"
+  },
+  {
+    "id": "gse301287-gsm9080087",
+    "authors": "Lee H, Leblay N, Ahn S, Benaoudia S, Hasheminasabgorji E, Poorebrahim M et al.",
+    "title": "Multimodal antigenic escape to GPRC5D-targeted T-cell engagers in multiple myeloma [scATAC-seq]",
+    "gseAccession": "GSE301287",
+    "dataFileName": "GSM9080087_P1695_ATAC_MM_filtered_peak_bc_matrix.h5",
+    "organism": "Human",
+    "source": "Bone marrow",
+    "platform": "Illumina NextSeq 500"
+  },
+  {
+    "id": "gse301287-gsm9080088",
+    "authors": "Lee H, Leblay N, Ahn S, Benaoudia S, Hasheminasabgorji E, Poorebrahim M et al.",
+    "title": "Multimodal antigenic escape to GPRC5D-targeted T-cell engagers in multiple myeloma [scATAC-seq]",
+    "gseAccession": "GSE301287",
+    "dataFileName": "GSM9080088_P4520_ATAC_MM_filtered_peak_bc_matrix.h5",
+    "organism": "Human",
+    "source": "Bone marrow",
+    "platform": "Illumina NextSeq 500"
+  },
+  {
+    "id": "gse301287-gsm9080089",
+    "authors": "Lee H, Leblay N, Ahn S, Benaoudia S, Hasheminasabgorji E, Poorebrahim M et al.",
+    "title": "Multimodal antigenic escape to GPRC5D-targeted T-cell engagers in multiple myeloma [scATAC-seq]",
+    "gseAccession": "GSE301287",
+    "dataFileName": "GSM9080089_P1858_ATAC_MM_filtered_peak_bc_matrix.h5",
+    "organism": "Human",
+    "source": "Bone marrow",
+    "platform": "Illumina NextSeq 500"
+  },
+  {
+    "id": "gse301287-gsm9080090",
+    "authors": "Lee H, Leblay N, Ahn S, Benaoudia S, Hasheminasabgorji E, Poorebrahim M et al.",
+    "title": "Multimodal antigenic escape to GPRC5D-targeted T-cell engagers in multiple myeloma [scATAC-seq]",
+    "gseAccession": "GSE301287",
+    "dataFileName": "GSM9080090_P4585_ATAC_MM_filtered_peak_bc_matrix.h5",
+    "organism": "Human",
+    "source": "Bone marrow",
+    "platform": "Illumina NextSeq 500"
+  },
+  {
+    "id": "gse295436-gsm8948079",
+    "authors": "Kiuchi M, Nemoto M, Yagyu H, Aoki A, Iwamura C, Sugimoto H et al.",
+    "title": "Hepatic leukemia factor directs tissue residency of proinflammatory CD4+ T cells",
+    "gseAccession": "GSE295436",
+    "dataFileName": "GSM8948079_Asp-Ag_iv_nega_14w_filtered_peak_bc_matrix.h5",
+    "organism": "Mouse",
+    "source": "Lung",
+    "platform": "Illumina NovaSeq 6000"
+  },
+  {
+    "id": "gse295436-gsm8948080",
+    "authors": "Kiuchi M, Nemoto M, Yagyu H, Aoki A, Iwamura C, Sugimoto H et al.",
+    "title": "Hepatic leukemia factor directs tissue residency of proinflammatory CD4+ T cells",
+    "gseAccession": "GSE295436",
+    "dataFileName": "GSM8948080_Asp-Ag_iv_posi_14w_filtered_peak_bc_matrix.h5",
+    "organism": "Mouse",
+    "source": "Lung",
+    "platform": "Illumina NovaSeq 6000"
+  },
+  {
+    "id": "gse295436-gsm8948081",
+    "authors": "Kiuchi M, Nemoto M, Yagyu H, Aoki A, Iwamura C, Sugimoto H et al.",
+    "title": "Hepatic leukemia factor directs tissue residency of proinflammatory CD4+ T cells",
+    "gseAccession": "GSE295436",
+    "dataFileName": "GSM8948081_Control_iv_nega_14w_filtered_peak_bc_matrix.h5",
+    "organism": "Mouse",
+    "source": "Lung",
+    "platform": "Illumina NovaSeq 6000"
+  },
+  {
+    "id": "gse295436-gsm8948082",
+    "authors": "Kiuchi M, Nemoto M, Yagyu H, Aoki A, Iwamura C, Sugimoto H et al.",
+    "title": "Hepatic leukemia factor directs tissue residency of proinflammatory CD4+ T cells",
+    "gseAccession": "GSE295436",
+    "dataFileName": "GSM8948082_Control_iv_posi_14w_filtered_peak_bc_matrix.h5",
+    "organism": "Mouse",
+    "source": "Lung",
+    "platform": "Illumina NovaSeq 6000"
+  },
+  {
+    "id": "gse299558-gsm9040799",
+    "authors": "Ntita M, Hassan D, Evans SE",
+    "title": "[scATAC-seq]: Inhaled PRR Agonists Reprogram Lung Epithelial Cells to Prevent Type 2 Allergic Inflammation",
+    "gseAccession": "GSE299558",
+    "dataFileName": "GSM9040799_HDM-only_filtered_peak_bc_matrix.h5",
+    "organism": "Mouse",
+    "source": "Lungs",
+    "platform": "Illumina NovaSeq 6000"
+  },
+  {
+    "id": "gse299558-gsm9040800",
+    "authors": "Ntita M, Hassan D, Evans SE",
+    "title": "[scATAC-seq]: Inhaled PRR Agonists Reprogram Lung Epithelial Cells to Prevent Type 2 Allergic Inflammation",
+    "gseAccession": "GSE299558",
+    "dataFileName": "GSM9040800_Pam2ODN-HDM_filtered_peak_bc_matrix.h5",
+    "organism": "Mouse",
+    "source": "Lungs",
+    "platform": "Illumina NovaSeq 6000"
+  },
+  {
+    "id": "gse206767-gse206767",
+    "authors": "Wang G, Zhang D, Qin L, Huang B",
+    "title": "Chemical-based external stimulation reprograms BJs into FiNs (scATAC-seq)",
+    "gseAccession": "GSE206767",
+    "dataFileName": "GSE206767_filtered_peak_bc_matrix.h5",
+    "organism": "Mouse",
+    "source": "BJ Fibroblast cells and FiN induced neuron cells",
+    "platform": "Illumina NovaSeq 6000"
+  },
+  {
+    "id": "gse286575-gsm8729707",
+    "authors": "Shen W",
+    "title": "single-cell ATAC-sequencing of human aortic media that was composed by vascular smooth muscle cells",
+    "gseAccession": "GSE286575",
+    "dataFileName": "GSM8729707_filtered_peak_bc_matrix_cellrangerGenome.h5",
+    "organism": "Human",
+    "source": "aortic media",
+    "platform": "Illumina NovaSeq 6000"
+  },
+  {
+    "id": "gse297712-gsm8997246",
+    "authors": "Salem MA, Varkey A, Estrada MD, Eisele CD, Freud AG, Mundy-Bosse BL et al.",
+    "title": "Gene regulatory programs of NK cells show that NCAM1 (CD56) and KIRs are controlled by genetically polymorphic distal regulatory elements [scATAC-seq]",
+    "gseAccession": "GSE297712",
+    "dataFileName": "GSM8997246_Sample1_filtered_peak_bc_matrix.h5",
+    "organism": "Human",
+    "source": "Blood",
+    "platform": "Illumina NovaSeq X"
+  },
+  {
+    "id": "gse297712-gsm8997247",
+    "authors": "Salem MA, Varkey A, Estrada MD, Eisele CD, Freud AG, Mundy-Bosse BL et al.",
+    "title": "Gene regulatory programs of NK cells show that NCAM1 (CD56) and KIRs are controlled by genetically polymorphic distal regulatory elements [scATAC-seq]",
+    "gseAccession": "GSE297712",
+    "dataFileName": "GSM8997247_Sample2_filtered_peak_bc_matrix.h5",
+    "organism": "Human",
+    "source": "Blood",
+    "platform": "Illumina NovaSeq X"
+  },
+  {
+    "id": "gse297712-gsm8997248",
+    "authors": "Salem MA, Varkey A, Estrada MD, Eisele CD, Freud AG, Mundy-Bosse BL et al.",
+    "title": "Gene regulatory programs of NK cells show that NCAM1 (CD56) and KIRs are controlled by genetically polymorphic distal regulatory elements [scATAC-seq]",
+    "gseAccession": "GSE297712",
+    "dataFileName": "GSM8997248_Sample3_filtered_peak_bc_matrix.h5",
+    "organism": "Human",
+    "source": "Blood",
+    "platform": "Illumina NovaSeq X"
+  },
+  {
+    "id": "gse292194-gsm8852347",
+    "authors": "Roudier MP, Gulati R, Sayar E, Patel RA, Tratt M, Richards HM et al.",
+    "title": "Patterns of intra- and inter-tumor phenotypic heterogeneity in men with lethal prostate cancer [scATAC-seq]",
+    "gseAccession": "GSE292194",
+    "dataFileName": "GSM8852347_MH_07_042_M2_filtered_peak_bc_matrix.h5",
+    "organism": "Human",
+    "source": "tumor tissue",
+    "platform": "Illumina NovaSeq X Plus"
+  },
+  {
+    "id": "gse292194-gsm8852349",
+    "authors": "Roudier MP, Gulati R, Sayar E, Patel RA, Tratt M, Richards HM et al.",
+    "title": "Patterns of intra- and inter-tumor phenotypic heterogeneity in men with lethal prostate cancer [scATAC-seq]",
+    "gseAccession": "GSE292194",
+    "dataFileName": "GSM8852349_MH_13_084_D13_filtered_peak_bc_matrix.h5",
+    "organism": "Human",
+    "source": "tumor tissue",
+    "platform": "Illumina NovaSeq X Plus"
+  },
+  {
+    "id": "gse277242-gsm8517035",
+    "authors": "Min Dai",
+    "title": "An enhancer-AAV toolbox to target and manipulate distinct interneuron subtypes [P28]",
+    "gseAccession": "GSE277242",
+    "dataFileName": "GSM8517035_scATAC_P28_Dlx_ALM_rep1_filtered_peak_bc_matrix.h5",
+    "organism": "Mouse",
+    "source": "Cortex - ALM",
+    "platform": "Illumina NovaSeq 6000"
+  },
+  {
+    "id": "gse277242-gsm8517036",
+    "authors": "Min Dai",
+    "title": "An enhancer-AAV toolbox to target and manipulate distinct interneuron subtypes [P28]",
+    "gseAccession": "GSE277242",
+    "dataFileName": "GSM8517036_scATAC_P28_Dlx_ALM_rep2_filtered_peak_bc_matrix.h5",
+    "organism": "Mouse",
+    "source": "Cortex - ALM",
+    "platform": "Illumina NovaSeq 6000"
+  },
+  {
+    "id": "gse272181-gsm8395368",
+    "authors": "Min Dai",
+    "title": "An enhancer-AAV toolbox to target and manipulate distinct interneuron subtypes [P28]",
+    "gseAccession": "GSE272181",
+    "dataFileName": "GSM8395368_scATAC_P30_BG_Dlx_rep1_filtered_peak_bc_matrix.h5",
+    "organism": "Mouse",
+    "source": "basal ganglia",
+    "platform": "Illumina NovaSeq 6000"
+  },
+  {
+    "id": "gse272181-gsm8395369",
+    "authors": "Min Dai",
+    "title": "An enhancer-AAV toolbox to target and manipulate distinct interneuron subtypes [P28]",
+    "gseAccession": "GSE272181",
+    "dataFileName": "GSM8395369_scATAC_P30_BG_Dlx_rep2_filtered_peak_bc_matrix.h5",
+    "organism": "Mouse",
+    "source": "basal ganglia",
+    "platform": "Illumina NovaSeq 6000"
+  },
+  {
+    "id": "gse294221-gsm8900548",
+    "authors": "Cha P, Zou Z, Nouws J, Dela Cruz C, Sharma L, Yan X et al.",
+    "title": "Integrative Single-Cell RNA and ATAC Sequencing Reveals the Impact of Chronic Cigarette Smoking on Lung Epithelial Responses to Influenza and Hyperoxia",
+    "gseAccession": "GSE294221",
+    "dataFileName": "GSM8900548_sample1_ATAC_filtered_peak_bc_matrix.h5",
+    "organism": "Mouse",
+    "source": "lung",
+    "platform": "Illumina NovaSeq 6000"
+  },
+  {
+    "id": "gse294221-gsm8900549",
+    "authors": "Cha P, Zou Z, Nouws J, Dela Cruz C, Sharma L, Yan X et al.",
+    "title": "Integrative Single-Cell RNA and ATAC Sequencing Reveals the Impact of Chronic Cigarette Smoking on Lung Epithelial Responses to Influenza and Hyperoxia",
+    "gseAccession": "GSE294221",
+    "dataFileName": "GSM8900549_sample2_ATAC_filtered_peak_bc_matrix.h5",
+    "organism": "Mouse",
+    "source": "lung",
+    "platform": "Illumina NovaSeq 6000"
+  },
+  {
+    "id": "gse294221-gsm8900550",
+    "authors": "Cha P, Zou Z, Nouws J, Dela Cruz C, Sharma L, Yan X et al.",
+    "title": "Integrative Single-Cell RNA and ATAC Sequencing Reveals the Impact of Chronic Cigarette Smoking on Lung Epithelial Responses to Influenza and Hyperoxia",
+    "gseAccession": "GSE294221",
+    "dataFileName": "GSM8900550_sample3_ATAC_filtered_peak_bc_matrix.h5",
+    "organism": "Mouse",
+    "source": "lung",
+    "platform": "Illumina NovaSeq 6000"
+  },
+  {
+    "id": "gse294221-gsm8900551",
+    "authors": "Cha P, Zou Z, Nouws J, Dela Cruz C, Sharma L, Yan X et al.",
+    "title": "Integrative Single-Cell RNA and ATAC Sequencing Reveals the Impact of Chronic Cigarette Smoking on Lung Epithelial Responses to Influenza and Hyperoxia",
+    "gseAccession": "GSE294221",
+    "dataFileName": "GSM8900551_sample4_ATAC_filtered_peak_bc_matrix.h5",
+    "organism": "Mouse",
+    "source": "lung",
+    "platform": "Illumina NovaSeq 6000"
+  },
+  {
+    "id": "gse294221-gsm8900552",
+    "authors": "Cha P, Zou Z, Nouws J, Dela Cruz C, Sharma L, Yan X et al.",
+    "title": "Integrative Single-Cell RNA and ATAC Sequencing Reveals the Impact of Chronic Cigarette Smoking on Lung Epithelial Responses to Influenza and Hyperoxia",
+    "gseAccession": "GSE294221",
+    "dataFileName": "GSM8900552_sample5_ATAC_filtered_peak_bc_matrix.h5",
+    "organism": "Mouse",
+    "source": "lung",
+    "platform": "Illumina NovaSeq 6000"
+  },
+  {
+    "id": "gse294221-gsm8900553",
+    "authors": "Cha P, Zou Z, Nouws J, Dela Cruz C, Sharma L, Yan X et al.",
+    "title": "Integrative Single-Cell RNA and ATAC Sequencing Reveals the Impact of Chronic Cigarette Smoking on Lung Epithelial Responses to Influenza and Hyperoxia",
+    "gseAccession": "GSE294221",
+    "dataFileName": "GSM8900553_sample6_ATAC_filtered_peak_bc_matrix.h5",
+    "organism": "Mouse",
+    "source": "lung",
+    "platform": "Illumina NovaSeq 6000"
+  },
+  {
+    "id": "gse226177-gsm7062446",
+    "authors": "Zhonghui Tang",
+    "title": "Chromatin landscape alteration uncovers multiple transcriptional circuits during memory CD8+ T cell differentiation",
+    "gseAccession": "GSE226177",
+    "dataFileName": "GSM7062446_Naive_filtered_peak_bc_matrix.h5",
+    "organism": "Mouse",
+    "source": "Lymphocytes",
+    "platform": "Illumina NovaSeq 6000"
+  },
+  {
+    "id": "gse226177-gsm7062447",
+    "authors": "Zhonghui Tang",
+    "title": "Chromatin landscape alteration uncovers multiple transcriptional circuits during memory CD8+ T cell differentiation",
+    "gseAccession": "GSE226177",
+    "dataFileName": "GSM7062447_D2_filtered_peak_bc_matrix.h5",
+    "organism": "Mouse",
+    "source": "Lymphocytes",
+    "platform": "Illumina NovaSeq 6000"
+  },
+  {
+    "id": "gse226177-gsm7062448",
+    "authors": "Zhonghui Tang",
+    "title": "Chromatin landscape alteration uncovers multiple transcriptional circuits during memory CD8+ T cell differentiation",
+    "gseAccession": "GSE226177",
+    "dataFileName": "GSM7062448_D8-1_filtered_peak_bc_matrix.h5",
+    "organism": "Mouse",
+    "source": "Lymphocytes",
+    "platform": "Illumina NovaSeq 6000"
+  },
+  {
+    "id": "gse226177-gsm7062449",
+    "authors": "Zhonghui Tang",
+    "title": "Chromatin landscape alteration uncovers multiple transcriptional circuits during memory CD8+ T cell differentiation",
+    "gseAccession": "GSE226177",
+    "dataFileName": "GSM7062449_D8-2_filtered_peak_bc_matrix.h5",
+    "organism": "Mouse",
+    "source": "Lymphocytes",
+    "platform": "Illumina NovaSeq 6000"
+  },
+  {
+    "id": "gse226177-gsm7062450",
+    "authors": "Zhonghui Tang",
+    "title": "Chromatin landscape alteration uncovers multiple transcriptional circuits during memory CD8+ T cell differentiation",
+    "gseAccession": "GSE226177",
+    "dataFileName": "GSM7062450_D180_filtered_peak_bc_matrix.h5",
+    "organism": "Mouse",
+    "source": "Lymphocytes",
+    "platform": "Illumina NovaSeq 6000"
+  },
+  {
+    "id": "gse274934-gsm8462143",
+    "authors": "Baek S, Sung E, Kim G, Hong MH, Lee CY, Shim HS et al.",
+    "title": "Single-cell multi-omics reveals tumor microenvironment factors underlying poor immunotherapy responses in ALK-positive lung cancer",
+    "gseAccession": "GSE274934",
+    "dataFileName": "GSM8462143_AL05_ATAC_filtered_peak_bc_matrix.h5",
+    "organism": "Human",
+    "source": "Lung",
+    "platform": "HiSeq X Ten"
+  },
+  {
+    "id": "gse274934-gsm8462144",
+    "authors": "Baek S, Sung E, Kim G, Hong MH, Lee CY, Shim HS et al.",
+    "title": "Single-cell multi-omics reveals tumor microenvironment factors underlying poor immunotherapy responses in ALK-positive lung cancer",
+    "gseAccession": "GSE274934",
+    "dataFileName": "GSM8462144_AL08_ATAC_filtered_peak_bc_matrix.h5",
+    "organism": "Human",
+    "source": "Lung",
+    "platform": "HiSeq X Ten"
+  },
+  {
+    "id": "gse274934-gsm8462145",
+    "authors": "Baek S, Sung E, Kim G, Hong MH, Lee CY, Shim HS et al.",
+    "title": "Single-cell multi-omics reveals tumor microenvironment factors underlying poor immunotherapy responses in ALK-positive lung cancer",
+    "gseAccession": "GSE274934",
+    "dataFileName": "GSM8462145_AL10_ATAC_filtered_peak_bc_matrix.h5",
+    "organism": "Human",
+    "source": "Lung",
+    "platform": "HiSeq X Ten"
+  },
+  {
+    "id": "gse274934-gsm8462146",
+    "authors": "Baek S, Sung E, Kim G, Hong MH, Lee CY, Shim HS et al.",
+    "title": "Single-cell multi-omics reveals tumor microenvironment factors underlying poor immunotherapy responses in ALK-positive lung cancer",
+    "gseAccession": "GSE274934",
+    "dataFileName": "GSM8462146_AL11_ATAC_filtered_peak_bc_matrix.h5",
+    "organism": "Human",
+    "source": "Lung",
+    "platform": "HiSeq X Ten"
+  },
+  {
+    "id": "gse274934-gsm8462147",
+    "authors": "Baek S, Sung E, Kim G, Hong MH, Lee CY, Shim HS et al.",
+    "title": "Single-cell multi-omics reveals tumor microenvironment factors underlying poor immunotherapy responses in ALK-positive lung cancer",
+    "gseAccession": "GSE274934",
+    "dataFileName": "GSM8462147_AL12_ATAC_filtered_peak_bc_matrix.h5",
+    "organism": "Human",
+    "source": "Lung",
+    "platform": "HiSeq X Ten"
+  },
+  {
+    "id": "gse252843-gsm8008841",
+    "authors": "Poluben L, Balk SP, Russo J, Nouri M",
+    "title": "Increased chromatin accessibility drives transition to androgen receptor splice variant dependence in castration-resistant prostate cancer [scATAC-Seq]",
+    "gseAccession": "GSE252843",
+    "dataFileName": "GSM8008841_vcap_d_filtered_peak_bc_matrix.h5",
+    "organism": "Human",
+    "source": "Prostate",
+    "platform": "NextSeq 550"
+  },
+  {
+    "id": "gse252843-gsm8008842",
+    "authors": "Poluben L, Balk SP, Russo J, Nouri M",
+    "title": "Increased chromatin accessibility drives transition to androgen receptor splice variant dependence in castration-resistant prostate cancer [scATAC-Seq]",
+    "gseAccession": "GSE252843",
+    "dataFileName": "GSM8008842_vcap_enz_filtered_peak_bc_matrix.h5",
+    "organism": "Human",
+    "source": "Prostate",
+    "platform": "NextSeq 550"
+  },
+  {
+    "id": "gse252843-gsm8008843",
+    "authors": "Poluben L, Balk SP, Russo J, Nouri M",
+    "title": "Increased chromatin accessibility drives transition to androgen receptor splice variant dependence in castration-resistant prostate cancer [scATAC-Seq]",
+    "gseAccession": "GSE252843",
+    "dataFileName": "GSM8008843_vcap16_filtered_peak_bc_matrix.h5",
+    "organism": "Human",
+    "source": "Prostate",
+    "platform": "NextSeq 550"
+  },
+  {
+    "id": "gse278419-gsm8546124",
+    "authors": "Xu L, Korogi Y, Li R, Sun X",
+    "title": "RUNX2 promotes pulmonary fibrosis through the conversion of alveolar fibroblasts into pathological fibroblasts",
+    "gseAccession": "GSE278419",
+    "dataFileName": "GSM8546124_Control_filtered_peak_bc_matrix.h5",
+    "organism": "Mouse",
+    "source": "Epcam-CD31-CD45-",
+    "platform": "Illumina NovaSeq 6000"
+  },
+  {
+    "id": "gse278419-gsm8546125",
+    "authors": "Xu L, Korogi Y, Li R, Sun X",
+    "title": "RUNX2 promotes pulmonary fibrosis through the conversion of alveolar fibroblasts into pathological fibroblasts",
+    "gseAccession": "GSE278419",
+    "dataFileName": "GSM8546125_BLM_filtered_peak_bc_matrix.h5",
+    "organism": "Mouse",
+    "source": "Epcam-CD31-CD45-",
+    "platform": "Illumina NovaSeq 6000"
+  },
+  {
+    "id": "gse237304-gsm7605339",
+    "authors": "Zhang M",
+    "title": "ARID1B regulates BCL11B-mediated non-canonical Activin signaling to maintain mesenchymal stem cell homeostasis in the mouse incisor [scATAC-seq]",
+    "gseAccession": "GSE237304",
+    "dataFileName": "GSM7605339_Ctrl_filtered_peak_bc_matrix.h5",
+    "organism": "Mouse",
+    "source": "incisor",
+    "platform": "Illumina NovaSeq 6000"
+  },
+  {
+    "id": "gse237304-gsm7605340",
+    "authors": "Zhang M",
+    "title": "ARID1B regulates BCL11B-mediated non-canonical Activin signaling to maintain mesenchymal stem cell homeostasis in the mouse incisor [scATAC-seq]",
+    "gseAccession": "GSE237304",
+    "dataFileName": "GSM7605340_GBM_filtered_peak_bc_matrix.h5",
+    "organism": "Mouse",
+    "source": "incisor",
+    "platform": "Illumina NovaSeq 6000"
+  },
+  {
+    "id": "gse225932-gsm7060654",
+    "authors": "Good-Jacobson KL, Cooper L, Powell DR",
+    "title": "Chromatin accessibility profile at the single cell level of splenic LCMV-specific B cells in acute versus chronic LCMV infection [scATAC-seq]",
+    "gseAccession": "GSE225932",
+    "dataFileName": "GSM7060654_acute_rep1_filtered_peak_bc_matrix.h5",
+    "organism": "Mouse",
+    "source": "Spleen",
+    "platform": "MGISEQ-2000RS"
+  },
+  {
+    "id": "gse225932-gsm7060655",
+    "authors": "Good-Jacobson KL, Cooper L, Powell DR",
+    "title": "Chromatin accessibility profile at the single cell level of splenic LCMV-specific B cells in acute versus chronic LCMV infection [scATAC-seq]",
+    "gseAccession": "GSE225932",
+    "dataFileName": "GSM7060655_acute_rep2_filtered_peak_bc_matrix.h5",
+    "organism": "Mouse",
+    "source": "Spleen",
+    "platform": "MGISEQ-2000RS"
+  },
+  {
+    "id": "gse225932-gsm7060656",
+    "authors": "Good-Jacobson KL, Cooper L, Powell DR",
+    "title": "Chromatin accessibility profile at the single cell level of splenic LCMV-specific B cells in acute versus chronic LCMV infection [scATAC-seq]",
+    "gseAccession": "GSE225932",
+    "dataFileName": "GSM7060656_chronic_rep1_filtered_peak_bc_matrix.h5",
+    "organism": "Mouse",
+    "source": "Spleen",
+    "platform": "MGISEQ-2000RS"
+  },
+  {
+    "id": "gse225932-gsm7060657",
+    "authors": "Good-Jacobson KL, Cooper L, Powell DR",
+    "title": "Chromatin accessibility profile at the single cell level of splenic LCMV-specific B cells in acute versus chronic LCMV infection [scATAC-seq]",
+    "gseAccession": "GSE225932",
+    "dataFileName": "GSM7060657_chronic_rep2_filtered_peak_bc_matrix.h5",
+    "organism": "Mouse",
+    "source": "Spleen",
+    "platform": "MGISEQ-2000RS"
+  },
+  {
+    "id": "gse225932-gse225932",
+    "authors": "Good-Jacobson KL, Cooper L, Powell DR",
+    "title": "Chromatin accessibility profile at the single cell level of splenic LCMV-specific B cells in acute versus chronic LCMV infection [scATAC-seq]",
+    "gseAccession": "GSE225932",
+    "dataFileName": "GSE225932_b_cell_scATAC_feb2022_aggr_nonorm_20220311_filtered_peak_bc_matrix.h5",
+    "organism": "Mouse",
+    "source": "Aggr Spleen",
+    "platform": "MGISEQ-2000RS"
+  },
+  {
+    "id": "gse252523-gsm8002547",
+    "authors": "Dony L, Krontira AC, Kaspar L, Ahmad R, Demirel IS, Grochowicz M et al.",
+    "title": "Chronic exposure to glucocorticoids amplifies inhibitory neuron cell fate during human neurodevelopment in organoids [scATAC-seq]",
+    "gseAccession": "GSE252523",
+    "dataFileName": "GSM8002547_Chr-Veh_R1_filtered_peak_bc_matrix.h5",
+    "organism": "Human",
+    "source": "Unguided neural organoid",
+    "platform": "Illumina NovaSeq 6000"
+  },
+  {
+    "id": "gse252523-gsm8002548",
+    "authors": "Dony L, Krontira AC, Kaspar L, Ahmad R, Demirel IS, Grochowicz M et al.",
+    "title": "Chronic exposure to glucocorticoids amplifies inhibitory neuron cell fate during human neurodevelopment in organoids [scATAC-seq]",
+    "gseAccession": "GSE252523",
+    "dataFileName": "GSM8002548_Chr-Veh_R2_filtered_peak_bc_matrix.h5",
+    "organism": "Human",
+    "source": "Unguided neural organoid",
+    "platform": "Illumina NovaSeq 6000"
+  },
+  {
+    "id": "gse252523-gsm8002549",
+    "authors": "Dony L, Krontira AC, Kaspar L, Ahmad R, Demirel IS, Grochowicz M et al.",
+    "title": "Chronic exposure to glucocorticoids amplifies inhibitory neuron cell fate during human neurodevelopment in organoids [scATAC-seq]",
+    "gseAccession": "GSE252523",
+    "dataFileName": "GSM8002549_Veh-Veh_R1_filtered_peak_bc_matrix.h5",
+    "organism": "Human",
+    "source": "Unguided neural organoid",
+    "platform": "Illumina NovaSeq 6000"
+  },
+  {
+    "id": "gse252523-gsm8002550",
+    "authors": "Dony L, Krontira AC, Kaspar L, Ahmad R, Demirel IS, Grochowicz M et al.",
+    "title": "Chronic exposure to glucocorticoids amplifies inhibitory neuron cell fate during human neurodevelopment in organoids [scATAC-seq]",
+    "gseAccession": "GSE252523",
+    "dataFileName": "GSM8002550_Veh-Veh_R2_filtered_peak_bc_matrix.h5",
+    "organism": "Human",
+    "source": "Unguided neural organoid",
+    "platform": "Illumina NovaSeq 6000"
+  },
+  {
+    "id": "gse248713-gsm7919028",
+    "authors": "Purbey PK, Smale ST",
+    "title": "NF-kB Broadly Orchestrates Nucleosome Remodeling during the Primary Response to Toll-Like Receptor 4 Signaling [scATAC-seq]",
+    "gseAccession": "GSE248713",
+    "dataFileName": "GSM7919028_1B_BMDM_LA_0h_filtered_peak_bc_matrix.h5",
+    "organism": "Mouse",
+    "source": "primary macrophages Bone Marrow",
+    "platform": "Illumina NovaSeq 6000"
+  },
+  {
+    "id": "gse248713-gsm7919029",
+    "authors": "Purbey PK, Smale ST",
+    "title": "NF-kB Broadly Orchestrates Nucleosome Remodeling during the Primary Response to Toll-Like Receptor 4 Signaling [scATAC-seq]",
+    "gseAccession": "GSE248713",
+    "dataFileName": "GSM7919029_2B_BMDM_LA_2h_filtered_peak_bc_matrix.h5",
+    "organism": "Mouse",
+    "source": "primary macrophages Bone Marrow",
+    "platform": "Illumina NovaSeq 6000"
+  },
+  {
+    "id": "gse199268-gsm5968478",
+    "authors": "Leblay N, Ahn S, Tilmont R, Poorebrahim M, Maity R, Lee H et al.",
+    "title": "scATACseq Datasets Supporting Integrated Epigenetic and Transcriptional Single-Cell Analysis of t(11;14) Multiple Myeloma and Its BCL2 Dependency",
+    "gseAccession": "GSE199268",
+    "dataFileName": "GSM5968478_P1698_Post_filtered_peak_bc_matrix.h5",
+    "organism": "Human",
+    "source": "Primary CD138+ MM cells",
+    "platform": "Illumina NextSeq 500"
+  },
+  {
+    "id": "gse199268-gsm5968479",
+    "authors": "Leblay N, Ahn S, Tilmont R, Poorebrahim M, Maity R, Lee H et al.",
+    "title": "scATACseq Datasets Supporting Integrated Epigenetic and Transcriptional Single-Cell Analysis of t(11;14) Multiple Myeloma and Its BCL2 Dependency",
+    "gseAccession": "GSE199268",
+    "dataFileName": "GSM5968479_P1555_Post_filtered_peak_bc_matrix.h5",
+    "organism": "Human",
+    "source": "Primary CD138+ MM cells",
+    "platform": "Illumina NextSeq 500"
+  },
+  {
+    "id": "gse199268-gsm5968480",
+    "authors": "Leblay N, Ahn S, Tilmont R, Poorebrahim M, Maity R, Lee H et al.",
+    "title": "scATACseq Datasets Supporting Integrated Epigenetic and Transcriptional Single-Cell Analysis of t(11;14) Multiple Myeloma and Its BCL2 Dependency",
+    "gseAccession": "GSE199268",
+    "dataFileName": "GSM5968480_P1498_Pre_filtered_peak_bc_matrix.h5",
+    "organism": "Human",
+    "source": "Primary CD138+ MM cells",
+    "platform": "Illumina NextSeq 500"
+  },
+  {
+    "id": "gse199268-gsm5968481",
+    "authors": "Leblay N, Ahn S, Tilmont R, Poorebrahim M, Maity R, Lee H et al.",
+    "title": "scATACseq Datasets Supporting Integrated Epigenetic and Transcriptional Single-Cell Analysis of t(11;14) Multiple Myeloma and Its BCL2 Dependency",
+    "gseAccession": "GSE199268",
+    "dataFileName": "GSM5968481_P1479_Post_filtered_peak_bc_matrix.h5",
+    "organism": "Human",
+    "source": "Primary CD138+ MM cells",
+    "platform": "Illumina NextSeq 500"
+  },
+  {
+    "id": "gse199268-gsm5968482",
+    "authors": "Leblay N, Ahn S, Tilmont R, Poorebrahim M, Maity R, Lee H et al.",
+    "title": "scATACseq Datasets Supporting Integrated Epigenetic and Transcriptional Single-Cell Analysis of t(11;14) Multiple Myeloma and Its BCL2 Dependency",
+    "gseAccession": "GSE199268",
+    "dataFileName": "GSM5968482_P1438_Post_filtered_peak_bc_matrix.h5",
+    "organism": "Human",
+    "source": "Primary CD138+ MM cells",
+    "platform": "Illumina NextSeq 500"
+  },
+  {
+    "id": "gse199268-gsm5968483",
+    "authors": "Leblay N, Ahn S, Tilmont R, Poorebrahim M, Maity R, Lee H et al.",
+    "title": "scATACseq Datasets Supporting Integrated Epigenetic and Transcriptional Single-Cell Analysis of t(11;14) Multiple Myeloma and Its BCL2 Dependency",
+    "gseAccession": "GSE199268",
+    "dataFileName": "GSM5968483_P1393_Pre_filtered_peak_bc_matrix.h5",
+    "organism": "Human",
+    "source": "Primary CD138+ MM cells",
+    "platform": "Illumina NextSeq 500"
+  },
+  {
+    "id": "gse199268-gsm5968484",
+    "authors": "Leblay N, Ahn S, Tilmont R, Poorebrahim M, Maity R, Lee H et al.",
+    "title": "scATACseq Datasets Supporting Integrated Epigenetic and Transcriptional Single-Cell Analysis of t(11;14) Multiple Myeloma and Its BCL2 Dependency",
+    "gseAccession": "GSE199268",
+    "dataFileName": "GSM5968484_P1389_Pre_filtered_peak_bc_matrix.h5",
+    "organism": "Human",
+    "source": "Primary CD138+ MM cells",
+    "platform": "Illumina NextSeq 500"
+  },
+  {
+    "id": "gse199268-gsm5968485",
+    "authors": "Leblay N, Ahn S, Tilmont R, Poorebrahim M, Maity R, Lee H et al.",
+    "title": "scATACseq Datasets Supporting Integrated Epigenetic and Transcriptional Single-Cell Analysis of t(11;14) Multiple Myeloma and Its BCL2 Dependency",
+    "gseAccession": "GSE199268",
+    "dataFileName": "GSM5968485_P1217_Pre_filtered_peak_bc_matrix.h5",
+    "organism": "Human",
+    "source": "Primary CD138+ MM cells",
+    "platform": "Illumina NextSeq 500"
+  },
+  {
+    "id": "gse199268-gsm7040827",
+    "authors": "Leblay N, Ahn S, Tilmont R, Poorebrahim M, Maity R, Lee H et al.",
+    "title": "scATACseq Datasets Supporting Integrated Epigenetic and Transcriptional Single-Cell Analysis of t(11;14) Multiple Myeloma and Its BCL2 Dependency",
+    "gseAccession": "GSE199268",
+    "dataFileName": "GSM7040827_P1723_Pre_filtered_peak_bc_matrix.h5",
+    "organism": "Human",
+    "source": "Primary CD138+ MM cells",
+    "platform": "Illumina NextSeq 500"
+  },
+  {
+    "id": "gse199268-gsm7040828",
+    "authors": "Leblay N, Ahn S, Tilmont R, Poorebrahim M, Maity R, Lee H et al.",
+    "title": "scATACseq Datasets Supporting Integrated Epigenetic and Transcriptional Single-Cell Analysis of t(11;14) Multiple Myeloma and Its BCL2 Dependency",
+    "gseAccession": "GSE199268",
+    "dataFileName": "GSM7040828_P1608_Pre_filtered_peak_bc_matrix.h5",
+    "organism": "Human",
+    "source": "Primary CD138+ MM cells",
+    "platform": "Illumina NextSeq 500"
+  },
+  {
+    "id": "gse199268-gsm7040829",
+    "authors": "Leblay N, Ahn S, Tilmont R, Poorebrahim M, Maity R, Lee H et al.",
+    "title": "scATACseq Datasets Supporting Integrated Epigenetic and Transcriptional Single-Cell Analysis of t(11;14) Multiple Myeloma and Its BCL2 Dependency",
+    "gseAccession": "GSE199268",
+    "dataFileName": "GSM7040829_P1675_Post_filtered_peak_bc_matrix.h5",
+    "organism": "Human",
+    "source": "Primary CD138+ MM cells",
+    "platform": "Illumina NextSeq 500"
+  },
+  {
+    "id": "gse199268-gsm7040830",
+    "authors": "Leblay N, Ahn S, Tilmont R, Poorebrahim M, Maity R, Lee H et al.",
+    "title": "scATACseq Datasets Supporting Integrated Epigenetic and Transcriptional Single-Cell Analysis of t(11;14) Multiple Myeloma and Its BCL2 Dependency",
+    "gseAccession": "GSE199268",
+    "dataFileName": "GSM7040830_P1299_Pre_filtered_peak_bc_matrix.h5",
+    "organism": "Human",
+    "source": "Primary CD138+ MM cells",
+    "platform": "Illumina NextSeq 500"
+  },
+  {
+    "id": "gse199268-gsm7040831",
+    "authors": "Leblay N, Ahn S, Tilmont R, Poorebrahim M, Maity R, Lee H et al.",
+    "title": "scATACseq Datasets Supporting Integrated Epigenetic and Transcriptional Single-Cell Analysis of t(11;14) Multiple Myeloma and Its BCL2 Dependency",
+    "gseAccession": "GSE199268",
+    "dataFileName": "GSM7040831_P1345_Post_filtered_peak_bc_matrix.h5",
+    "organism": "Human",
+    "source": "Primary CD138+ MM cells",
+    "platform": "Illumina NextSeq 500"
+  },
+  {
+    "id": "gse199268-gsm7040832",
+    "authors": "Leblay N, Ahn S, Tilmont R, Poorebrahim M, Maity R, Lee H et al.",
+    "title": "scATACseq Datasets Supporting Integrated Epigenetic and Transcriptional Single-Cell Analysis of t(11;14) Multiple Myeloma and Its BCL2 Dependency",
+    "gseAccession": "GSE199268",
+    "dataFileName": "GSM7040832_P1643_Pre_filtered_peak_bc_matrix.h5",
+    "organism": "Human",
+    "source": "Primary CD138+ MM cells",
+    "platform": "Illumina NextSeq 500"
+  },
+  {
+    "id": "gse199268-gsm7040833",
+    "authors": "Leblay N, Ahn S, Tilmont R, Poorebrahim M, Maity R, Lee H et al.",
+    "title": "scATACseq Datasets Supporting Integrated Epigenetic and Transcriptional Single-Cell Analysis of t(11;14) Multiple Myeloma and Its BCL2 Dependency",
+    "gseAccession": "GSE199268",
+    "dataFileName": "GSM7040833_P1752_Pre_filtered_peak_bc_matrix.h5",
+    "organism": "Human",
+    "source": "Primary CD138+ MM cells",
+    "platform": "Illumina NextSeq 500"
+  },
+  {
+    "id": "gse199268-gsm7040834",
+    "authors": "Leblay N, Ahn S, Tilmont R, Poorebrahim M, Maity R, Lee H et al.",
+    "title": "scATACseq Datasets Supporting Integrated Epigenetic and Transcriptional Single-Cell Analysis of t(11;14) Multiple Myeloma and Its BCL2 Dependency",
+    "gseAccession": "GSE199268",
+    "dataFileName": "GSM7040834_P1680_Pre_filtered_peak_bc_matrix.h5",
+    "organism": "Human",
+    "source": "Primary CD138+ MM cells",
+    "platform": "Illumina NextSeq 500"
+  },
+  {
+    "id": "gse199268-gsm7040835",
+    "authors": "Leblay N, Ahn S, Tilmont R, Poorebrahim M, Maity R, Lee H et al.",
+    "title": "scATACseq Datasets Supporting Integrated Epigenetic and Transcriptional Single-Cell Analysis of t(11;14) Multiple Myeloma and Its BCL2 Dependency",
+    "gseAccession": "GSE199268",
+    "dataFileName": "GSM7040835_P1388_Pre_filtered_peak_bc_matrix.h5",
+    "organism": "Human",
+    "source": "Primary CD138+ MM cells",
+    "platform": "Illumina NextSeq 500"
+  },
+  {
+    "id": "gse199268-gsm7040836",
+    "authors": "Leblay N, Ahn S, Tilmont R, Poorebrahim M, Maity R, Lee H et al.",
+    "title": "scATACseq Datasets Supporting Integrated Epigenetic and Transcriptional Single-Cell Analysis of t(11;14) Multiple Myeloma and Its BCL2 Dependency",
+    "gseAccession": "GSE199268",
+    "dataFileName": "GSM7040836_P1751_Pre_filtered_peak_bc_matrix.h5",
+    "organism": "Human",
+    "source": "Primary CD138+ MM cells",
+    "platform": "Illumina NextSeq 500"
+  },
+  {
+    "id": "gse199268-gsm7040837",
+    "authors": "Leblay N, Ahn S, Tilmont R, Poorebrahim M, Maity R, Lee H et al.",
+    "title": "scATACseq Datasets Supporting Integrated Epigenetic and Transcriptional Single-Cell Analysis of t(11;14) Multiple Myeloma and Its BCL2 Dependency",
+    "gseAccession": "GSE199268",
+    "dataFileName": "GSM7040837_P1809_Post_filtered_peak_bc_matrix.h5",
+    "organism": "Human",
+    "source": "Primary CD138+ MM cells",
+    "platform": "Illumina NextSeq 500"
+  },
+  {
+    "id": "gse199268-gsm7040838",
+    "authors": "Leblay N, Ahn S, Tilmont R, Poorebrahim M, Maity R, Lee H et al.",
+    "title": "scATACseq Datasets Supporting Integrated Epigenetic and Transcriptional Single-Cell Analysis of t(11;14) Multiple Myeloma and Its BCL2 Dependency",
+    "gseAccession": "GSE199268",
+    "dataFileName": "GSM7040838_P1396_Pre_filtered_peak_bc_matrix.h5",
+    "organism": "Human",
+    "source": "Primary CD138+ MM cells",
+    "platform": "Illumina NextSeq 500"
+  },
+  {
+    "id": "gse199268-gsm7040839",
+    "authors": "Leblay N, Ahn S, Tilmont R, Poorebrahim M, Maity R, Lee H et al.",
+    "title": "scATACseq Datasets Supporting Integrated Epigenetic and Transcriptional Single-Cell Analysis of t(11;14) Multiple Myeloma and Its BCL2 Dependency",
+    "gseAccession": "GSE199268",
+    "dataFileName": "GSM7040839_P1461_Post_filtered_peak_bc_matrix.h5",
+    "organism": "Human",
+    "source": "Primary CD138+ MM cells",
+    "platform": "Illumina NextSeq 500"
+  },
+  {
+    "id": "gse199268-gsm7040840",
+    "authors": "Leblay N, Ahn S, Tilmont R, Poorebrahim M, Maity R, Lee H et al.",
+    "title": "scATACseq Datasets Supporting Integrated Epigenetic and Transcriptional Single-Cell Analysis of t(11;14) Multiple Myeloma and Its BCL2 Dependency",
+    "gseAccession": "GSE199268",
+    "dataFileName": "GSM7040840_P1395_Pre_filtered_peak_bc_matrix.h5",
+    "organism": "Human",
+    "source": "Primary CD138+ MM cells",
+    "platform": "Illumina NextSeq 500"
+  },
+  {
+    "id": "gse199268-gsm7040841",
+    "authors": "Leblay N, Ahn S, Tilmont R, Poorebrahim M, Maity R, Lee H et al.",
+    "title": "scATACseq Datasets Supporting Integrated Epigenetic and Transcriptional Single-Cell Analysis of t(11;14) Multiple Myeloma and Its BCL2 Dependency",
+    "gseAccession": "GSE199268",
+    "dataFileName": "GSM7040841_P1606_Post_filtered_peak_bc_matrix.h5",
+    "organism": "Human",
+    "source": "Primary CD138+ MM cells",
+    "platform": "Illumina NextSeq 500"
+  },
+  {
+    "id": "gse199268-gsm7040842",
+    "authors": "Leblay N, Ahn S, Tilmont R, Poorebrahim M, Maity R, Lee H et al.",
+    "title": "scATACseq Datasets Supporting Integrated Epigenetic and Transcriptional Single-Cell Analysis of t(11;14) Multiple Myeloma and Its BCL2 Dependency",
+    "gseAccession": "GSE199268",
+    "dataFileName": "GSM7040842_P1722_Pre_filtered_peak_bc_matrix.h5",
+    "organism": "Human",
+    "source": "Primary CD138+ MM cells",
+    "platform": "Illumina NextSeq 500"
+  },
+  {
+    "id": "gse215758-gsm6638254",
+    "authors": "Peter S, W Dean P",
+    "title": "Temporal chromatin accessibility changes define transcriptional states essential for osteosarcoma metastasis [scATAC-Seq]",
+    "gseAccession": "GSE215758",
+    "dataFileName": "GSM6638254_filtered_peak_bc_matrix.h5",
+    "organism": "Human",
+    "source": "MG63.3-GFP",
+    "platform": "Illumina HiSeq 4000"
+  },
+  {
+    "id": "gse229065-gsm7151559",
+    "authors": "Uehata T, Takeuchi O",
+    "title": "Effect of the Regnase-1/3-Nfkbiz axis on the epigenomic profile in mouse Flt3–CD48–Lin–Sca1+Kit+ (LSK) cells",
+    "gseAccession": "GSE229065",
+    "dataFileName": "GSM7151559_01_filtered_peak_bc_matrix.h5",
+    "organism": "Mouse",
+    "source": "bone marrow",
+    "platform": "Illumina NovaSeq 6000"
+  },
+  {
+    "id": "gse229065-gsm7151560",
+    "authors": "Uehata T, Takeuchi O",
+    "title": "Effect of the Regnase-1/3-Nfkbiz axis on the epigenomic profile in mouse Flt3–CD48–Lin–Sca1+Kit+ (LSK) cells",
+    "gseAccession": "GSE229065",
+    "dataFileName": "GSM7151560_02_filtered_peak_bc_matrix.h5",
+    "organism": "Mouse",
+    "source": "bone marrow",
+    "platform": "Illumina NovaSeq 6000"
+  },
+  {
+    "id": "gse229065-gsm7151561",
+    "authors": "Uehata T, Takeuchi O",
+    "title": "Effect of the Regnase-1/3-Nfkbiz axis on the epigenomic profile in mouse Flt3–CD48–Lin–Sca1+Kit+ (LSK) cells",
+    "gseAccession": "GSE229065",
+    "dataFileName": "GSM7151561_03_filtered_peak_bc_matrix.h5",
+    "organism": "Mouse",
+    "source": "bone marrow",
+    "platform": "Illumina NovaSeq 6000"
+  },
+  {
+    "id": "gse229065-gsm7151562",
+    "authors": "Uehata T, Takeuchi O",
+    "title": "Effect of the Regnase-1/3-Nfkbiz axis on the epigenomic profile in mouse Flt3–CD48–Lin–Sca1+Kit+ (LSK) cells",
+    "gseAccession": "GSE229065",
+    "dataFileName": "GSM7151562_04_filtered_peak_bc_matrix.h5",
+    "organism": "Mouse",
+    "source": "bone marrow",
+    "platform": "Illumina NovaSeq 6000"
+  },
+  {
+    "id": "gse217119-gsm6705322",
+    "authors": "Jindal K, Adil MT, Yamaguchi N, Wang HC, Yang X, Kamimoto K et al.",
+    "title": "Single-cell lineage capture across genomic modalities with CellTag-multi reveals fate-specific gene regulatory changes [scATAC-seq - iEP].",
+    "gseAccession": "GSE217119",
+    "dataFileName": "GSM6705322_B4D12-ATAC-r1-1_filtered_peak_bc_matrix.h5",
+    "organism": "Mouse",
+    "source": "reprogrammed MEFs",
+    "platform": "Illumina NovaSeq 6000"
+  },
+  {
+    "id": "gse217119-gsm6705323",
+    "authors": "Jindal K, Adil MT, Yamaguchi N, Wang HC, Yang X, Kamimoto K et al.",
+    "title": "Single-cell lineage capture across genomic modalities with CellTag-multi reveals fate-specific gene regulatory changes [scATAC-seq - iEP].",
+    "gseAccession": "GSE217119",
+    "dataFileName": "GSM6705323_B4D12-ATAC-r1-2_filtered_peak_bc_matrix.h5",
+    "organism": "Mouse",
+    "source": "reprogrammed MEFs",
+    "platform": "Illumina NovaSeq 6000"
+  },
+  {
+    "id": "gse217119-gsm6705324",
+    "authors": "Jindal K, Adil MT, Yamaguchi N, Wang HC, Yang X, Kamimoto K et al.",
+    "title": "Single-cell lineage capture across genomic modalities with CellTag-multi reveals fate-specific gene regulatory changes [scATAC-seq - iEP].",
+    "gseAccession": "GSE217119",
+    "dataFileName": "GSM6705324_B4D12-ATAC-r2-1_filtered_peak_bc_matrix.h5",
+    "organism": "Mouse",
+    "source": "reprogrammed MEFs",
+    "platform": "Illumina NovaSeq 6000"
+  },
+  {
+    "id": "gse217119-gsm6705325",
+    "authors": "Jindal K, Adil MT, Yamaguchi N, Wang HC, Yang X, Kamimoto K et al.",
+    "title": "Single-cell lineage capture across genomic modalities with CellTag-multi reveals fate-specific gene regulatory changes [scATAC-seq - iEP].",
+    "gseAccession": "GSE217119",
+    "dataFileName": "GSM6705325_B4D12-ATAC-r2-2_filtered_peak_bc_matrix.h5",
+    "organism": "Mouse",
+    "source": "reprogrammed MEFs",
+    "platform": "Illumina NovaSeq 6000"
+  },
+  {
+    "id": "gse217119-gsm6705326",
+    "authors": "Jindal K, Adil MT, Yamaguchi N, Wang HC, Yang X, Kamimoto K et al.",
+    "title": "Single-cell lineage capture across genomic modalities with CellTag-multi reveals fate-specific gene regulatory changes [scATAC-seq - iEP].",
+    "gseAccession": "GSE217119",
+    "dataFileName": "GSM6705326_B4D21-ATAC-r1-1_filtered_peak_bc_matrix.h5",
+    "organism": "Mouse",
+    "source": "reprogrammed MEFs",
+    "platform": "Illumina NovaSeq 6000"
+  },
+  {
+    "id": "gse217119-gsm6705327",
+    "authors": "Jindal K, Adil MT, Yamaguchi N, Wang HC, Yang X, Kamimoto K et al.",
+    "title": "Single-cell lineage capture across genomic modalities with CellTag-multi reveals fate-specific gene regulatory changes [scATAC-seq - iEP].",
+    "gseAccession": "GSE217119",
+    "dataFileName": "GSM6705327_B4D21-ATAC-r1-2_filtered_peak_bc_matrix.h5",
+    "organism": "Mouse",
+    "source": "reprogrammed MEFs",
+    "platform": "Illumina NovaSeq 6000"
+  },
+  {
+    "id": "gse217119-gsm6705328",
+    "authors": "Jindal K, Adil MT, Yamaguchi N, Wang HC, Yang X, Kamimoto K et al.",
+    "title": "Single-cell lineage capture across genomic modalities with CellTag-multi reveals fate-specific gene regulatory changes [scATAC-seq - iEP].",
+    "gseAccession": "GSE217119",
+    "dataFileName": "GSM6705328_B4D21-ATAC-r1-3_filtered_peak_bc_matrix.h5",
+    "organism": "Mouse",
+    "source": "reprogrammed MEFs",
+    "platform": "Illumina NovaSeq 6000"
+  },
+  {
+    "id": "gse217119-gsm6705329",
+    "authors": "Jindal K, Adil MT, Yamaguchi N, Wang HC, Yang X, Kamimoto K et al.",
+    "title": "Single-cell lineage capture across genomic modalities with CellTag-multi reveals fate-specific gene regulatory changes [scATAC-seq - iEP].",
+    "gseAccession": "GSE217119",
+    "dataFileName": "GSM6705329_B4D21-ATAC-r1-4_filtered_peak_bc_matrix.h5",
+    "organism": "Mouse",
+    "source": "reprogrammed MEFs",
+    "platform": "Illumina NovaSeq 6000"
+  },
+  {
+    "id": "gse217119-gsm6705330",
+    "authors": "Jindal K, Adil MT, Yamaguchi N, Wang HC, Yang X, Kamimoto K et al.",
+    "title": "Single-cell lineage capture across genomic modalities with CellTag-multi reveals fate-specific gene regulatory changes [scATAC-seq - iEP].",
+    "gseAccession": "GSE217119",
+    "dataFileName": "GSM6705330_B4D21-ATAC-r1-5_filtered_peak_bc_matrix.h5",
+    "organism": "Mouse",
+    "source": "reprogrammed MEFs",
+    "platform": "Illumina NovaSeq 6000"
+  },
+  {
+    "id": "gse217119-gsm6705331",
+    "authors": "Jindal K, Adil MT, Yamaguchi N, Wang HC, Yang X, Kamimoto K et al.",
+    "title": "Single-cell lineage capture across genomic modalities with CellTag-multi reveals fate-specific gene regulatory changes [scATAC-seq - iEP].",
+    "gseAccession": "GSE217119",
+    "dataFileName": "GSM6705331_B4D21-ATAC-r1-6_filtered_peak_bc_matrix.h5",
+    "organism": "Mouse",
+    "source": "reprogrammed MEFs",
+    "platform": "Illumina NovaSeq 6000"
+  },
+  {
+    "id": "gse217119-gsm6705332",
+    "authors": "Jindal K, Adil MT, Yamaguchi N, Wang HC, Yang X, Kamimoto K et al.",
+    "title": "Single-cell lineage capture across genomic modalities with CellTag-multi reveals fate-specific gene regulatory changes [scATAC-seq - iEP].",
+    "gseAccession": "GSE217119",
+    "dataFileName": "GSM6705332_B4D21-ATAC-r2-1_filtered_peak_bc_matrix.h5",
+    "organism": "Mouse",
+    "source": "reprogrammed MEFs",
+    "platform": "Illumina NovaSeq 6000"
+  },
+  {
+    "id": "gse217119-gsm6705333",
+    "authors": "Jindal K, Adil MT, Yamaguchi N, Wang HC, Yang X, Kamimoto K et al.",
+    "title": "Single-cell lineage capture across genomic modalities with CellTag-multi reveals fate-specific gene regulatory changes [scATAC-seq - iEP].",
+    "gseAccession": "GSE217119",
+    "dataFileName": "GSM6705333_B4D21-ATAC-r2-2_filtered_peak_bc_matrix.h5",
+    "organism": "Mouse",
+    "source": "reprogrammed MEFs",
+    "platform": "Illumina NovaSeq 6000"
+  },
+  {
+    "id": "gse217119-gsm6705334",
+    "authors": "Jindal K, Adil MT, Yamaguchi N, Wang HC, Yang X, Kamimoto K et al.",
+    "title": "Single-cell lineage capture across genomic modalities with CellTag-multi reveals fate-specific gene regulatory changes [scATAC-seq - iEP].",
+    "gseAccession": "GSE217119",
+    "dataFileName": "GSM6705334_B4D21-ATAC-r2-3_filtered_peak_bc_matrix.h5",
+    "organism": "Mouse",
+    "source": "reprogrammed MEFs",
+    "platform": "Illumina NovaSeq 6000"
+  },
+  {
+    "id": "gse217119-gsm6705335",
+    "authors": "Jindal K, Adil MT, Yamaguchi N, Wang HC, Yang X, Kamimoto K et al.",
+    "title": "Single-cell lineage capture across genomic modalities with CellTag-multi reveals fate-specific gene regulatory changes [scATAC-seq - iEP].",
+    "gseAccession": "GSE217119",
+    "dataFileName": "GSM6705335_B4D21-ATAC-r2-4_filtered_peak_bc_matrix.h5",
+    "organism": "Mouse",
+    "source": "reprogrammed MEFs",
+    "platform": "Illumina NovaSeq 6000"
+  },
+  {
+    "id": "gse217119-gsm6705336",
+    "authors": "Jindal K, Adil MT, Yamaguchi N, Wang HC, Yang X, Kamimoto K et al.",
+    "title": "Single-cell lineage capture across genomic modalities with CellTag-multi reveals fate-specific gene regulatory changes [scATAC-seq - iEP].",
+    "gseAccession": "GSE217119",
+    "dataFileName": "GSM6705336_B4D21-ATAC-r2-5_filtered_peak_bc_matrix.h5",
+    "organism": "Mouse",
+    "source": "reprogrammed MEFs",
+    "platform": "Illumina NovaSeq 6000"
+  },
+  {
+    "id": "gse217119-gsm6705337",
+    "authors": "Jindal K, Adil MT, Yamaguchi N, Wang HC, Yang X, Kamimoto K et al.",
+    "title": "Single-cell lineage capture across genomic modalities with CellTag-multi reveals fate-specific gene regulatory changes [scATAC-seq - iEP].",
+    "gseAccession": "GSE217119",
+    "dataFileName": "GSM6705337_B4D21-ATAC-r2-6_filtered_peak_bc_matrix.h5",
+    "organism": "Mouse",
+    "source": "reprogrammed MEFs",
+    "platform": "Illumina NovaSeq 6000"
+  },
+  {
+    "id": "gse217119-gsm6705338",
+    "authors": "Jindal K, Adil MT, Yamaguchi N, Wang HC, Yang X, Kamimoto K et al.",
+    "title": "Single-cell lineage capture across genomic modalities with CellTag-multi reveals fate-specific gene regulatory changes [scATAC-seq - iEP].",
+    "gseAccession": "GSE217119",
+    "dataFileName": "GSM6705338_B4D3-ATAC-r1-1_filtered_peak_bc_matrix.h5",
+    "organism": "Mouse",
+    "source": "reprogrammed MEFs",
+    "platform": "Illumina NovaSeq 6000"
+  },
+  {
+    "id": "gse217119-gsm6705339",
+    "authors": "Jindal K, Adil MT, Yamaguchi N, Wang HC, Yang X, Kamimoto K et al.",
+    "title": "Single-cell lineage capture across genomic modalities with CellTag-multi reveals fate-specific gene regulatory changes [scATAC-seq - iEP].",
+    "gseAccession": "GSE217119",
+    "dataFileName": "GSM6705339_B4D3-ATAC-r1-2_filtered_peak_bc_matrix.h5",
+    "organism": "Mouse",
+    "source": "reprogrammed MEFs",
+    "platform": "Illumina NovaSeq 6000"
+  },
+  {
+    "id": "gse217119-gsm6705340",
+    "authors": "Jindal K, Adil MT, Yamaguchi N, Wang HC, Yang X, Kamimoto K et al.",
+    "title": "Single-cell lineage capture across genomic modalities with CellTag-multi reveals fate-specific gene regulatory changes [scATAC-seq - iEP].",
+    "gseAccession": "GSE217119",
+    "dataFileName": "GSM6705340_B4D3-ATAC-r1-3_filtered_peak_bc_matrix.h5",
+    "organism": "Mouse",
+    "source": "reprogrammed MEFs",
+    "platform": "Illumina NovaSeq 6000"
+  },
+  {
+    "id": "gse217119-gsm6705341",
+    "authors": "Jindal K, Adil MT, Yamaguchi N, Wang HC, Yang X, Kamimoto K et al.",
+    "title": "Single-cell lineage capture across genomic modalities with CellTag-multi reveals fate-specific gene regulatory changes [scATAC-seq - iEP].",
+    "gseAccession": "GSE217119",
+    "dataFileName": "GSM6705341_B4D3-ATAC-r1-4_filtered_peak_bc_matrix.h5",
+    "organism": "Mouse",
+    "source": "reprogrammed MEFs",
+    "platform": "Illumina NovaSeq 6000"
+  },
+  {
+    "id": "gse217119-gsm6705342",
+    "authors": "Jindal K, Adil MT, Yamaguchi N, Wang HC, Yang X, Kamimoto K et al.",
+    "title": "Single-cell lineage capture across genomic modalities with CellTag-multi reveals fate-specific gene regulatory changes [scATAC-seq - iEP].",
+    "gseAccession": "GSE217119",
+    "dataFileName": "GSM6705342_B4D3-ATAC-r1-5_filtered_peak_bc_matrix.h5",
+    "organism": "Mouse",
+    "source": "reprogrammed MEFs",
+    "platform": "Illumina NovaSeq 6000"
+  },
+  {
+    "id": "gse217119-gsm6705343",
+    "authors": "Jindal K, Adil MT, Yamaguchi N, Wang HC, Yang X, Kamimoto K et al.",
+    "title": "Single-cell lineage capture across genomic modalities with CellTag-multi reveals fate-specific gene regulatory changes [scATAC-seq - iEP].",
+    "gseAccession": "GSE217119",
+    "dataFileName": "GSM6705343_B4D3-ATAC-r1-6_filtered_peak_bc_matrix.h5",
+    "organism": "Mouse",
+    "source": "reprogrammed MEFs",
+    "platform": "Illumina NovaSeq 6000"
+  },
+  {
+    "id": "gse217119-gsm6705344",
+    "authors": "Jindal K, Adil MT, Yamaguchi N, Wang HC, Yang X, Kamimoto K et al.",
+    "title": "Single-cell lineage capture across genomic modalities with CellTag-multi reveals fate-specific gene regulatory changes [scATAC-seq - iEP].",
+    "gseAccession": "GSE217119",
+    "dataFileName": "GSM6705344_B4D3-ATAC-r2-1_filtered_peak_bc_matrix.h5",
+    "organism": "Mouse",
+    "source": "reprogrammed MEFs",
+    "platform": "Illumina NovaSeq 6000"
+  },
+  {
+    "id": "gse217119-gsm6705345",
+    "authors": "Jindal K, Adil MT, Yamaguchi N, Wang HC, Yang X, Kamimoto K et al.",
+    "title": "Single-cell lineage capture across genomic modalities with CellTag-multi reveals fate-specific gene regulatory changes [scATAC-seq - iEP].",
+    "gseAccession": "GSE217119",
+    "dataFileName": "GSM6705345_B4D3-ATAC-r2-2_filtered_peak_bc_matrix.h5",
+    "organism": "Mouse",
+    "source": "reprogrammed MEFs",
+    "platform": "Illumina NovaSeq 6000"
+  },
+  {
+    "id": "gse217119-gsm6705346",
+    "authors": "Jindal K, Adil MT, Yamaguchi N, Wang HC, Yang X, Kamimoto K et al.",
+    "title": "Single-cell lineage capture across genomic modalities with CellTag-multi reveals fate-specific gene regulatory changes [scATAC-seq - iEP].",
+    "gseAccession": "GSE217119",
+    "dataFileName": "GSM6705346_B4D3-ATAC-r2-3_filtered_peak_bc_matrix.h5",
+    "organism": "Mouse",
+    "source": "reprogrammed MEFs",
+    "platform": "Illumina NovaSeq 6000"
+  },
+  {
+    "id": "gse217119-gsm6705347",
+    "authors": "Jindal K, Adil MT, Yamaguchi N, Wang HC, Yang X, Kamimoto K et al.",
+    "title": "Single-cell lineage capture across genomic modalities with CellTag-multi reveals fate-specific gene regulatory changes [scATAC-seq - iEP].",
+    "gseAccession": "GSE217119",
+    "dataFileName": "GSM6705347_B4D3-ATAC-r2-4_filtered_peak_bc_matrix.h5",
+    "organism": "Mouse",
+    "source": "reprogrammed MEFs",
+    "platform": "Illumina NovaSeq 6000"
+  },
+  {
+    "id": "gse217119-gsm6705348",
+    "authors": "Jindal K, Adil MT, Yamaguchi N, Wang HC, Yang X, Kamimoto K et al.",
+    "title": "Single-cell lineage capture across genomic modalities with CellTag-multi reveals fate-specific gene regulatory changes [scATAC-seq - iEP].",
+    "gseAccession": "GSE217119",
+    "dataFileName": "GSM6705348_B4D3-ATAC-r2-5_filtered_peak_bc_matrix.h5",
+    "organism": "Mouse",
+    "source": "reprogrammed MEFs",
+    "platform": "Illumina NovaSeq 6000"
+  },
+  {
+    "id": "gse217119-gsm6705349",
+    "authors": "Jindal K, Adil MT, Yamaguchi N, Wang HC, Yang X, Kamimoto K et al.",
+    "title": "Single-cell lineage capture across genomic modalities with CellTag-multi reveals fate-specific gene regulatory changes [scATAC-seq - iEP].",
+    "gseAccession": "GSE217119",
+    "dataFileName": "GSM6705349_B4D3-ATAC-r2-6_filtered_peak_bc_matrix.h5",
+    "organism": "Mouse",
+    "source": "reprogrammed MEFs",
+    "platform": "Illumina NovaSeq 6000"
+  },
+  {
+    "id": "gse217119-gsm6705350",
+    "authors": "Jindal K, Adil MT, Yamaguchi N, Wang HC, Yang X, Kamimoto K et al.",
+    "title": "Single-cell lineage capture across genomic modalities with CellTag-multi reveals fate-specific gene regulatory changes [scATAC-seq - iEP].",
+    "gseAccession": "GSE217119",
+    "dataFileName": "GSM6705350_B4D3-ATAC-r2-7_filtered_peak_bc_matrix.h5",
+    "organism": "Mouse",
+    "source": "reprogrammed MEFs",
+    "platform": "Illumina NovaSeq 6000"
+  },
+  {
+    "id": "gse216506-gsm6675425",
+    "authors": "Jindal K, Adil MT, Yamaguchi N, Wang HC, Yang X, Kamimoto K et al.",
+    "title": "Single-cell lineage capture across genomic modalities with CellTag-multi reveals fate-specific gene regulatory changes [scATAC-seq - iEP].",
+    "gseAccession": "GSE216506",
+    "dataFileName": "GSM6675425_d2_5_filtered_peak_bc_matrix.h5",
+    "organism": "Mouse",
+    "source": "adult mouse bone marrow",
+    "platform": "Illumina NextSeq 500"
+  },
+  {
+    "id": "gse216506-gsm6675426",
+    "authors": "Jindal K, Adil MT, Yamaguchi N, Wang HC, Yang X, Kamimoto K et al.",
+    "title": "Single-cell lineage capture across genomic modalities with CellTag-multi reveals fate-specific gene regulatory changes [scATAC-seq - iEP].",
+    "gseAccession": "GSE216506",
+    "dataFileName": "GSM6675426_d5_1_filtered_peak_bc_matrix.h5",
+    "organism": "Mouse",
+    "source": "adult mouse bone marrow",
+    "platform": "Illumina NextSeq 500"
+  },
+  {
+    "id": "gse216506-gsm6675427",
+    "authors": "Jindal K, Adil MT, Yamaguchi N, Wang HC, Yang X, Kamimoto K et al.",
+    "title": "Single-cell lineage capture across genomic modalities with CellTag-multi reveals fate-specific gene regulatory changes [scATAC-seq - iEP].",
+    "gseAccession": "GSE216506",
+    "dataFileName": "GSM6675427_d5_2_filtered_peak_bc_matrix.h5",
+    "organism": "Mouse",
+    "source": "adult mouse bone marrow",
+    "platform": "Illumina NextSeq 500"
+  },
+  {
+    "id": "gse216506-gsm6675428",
+    "authors": "Jindal K, Adil MT, Yamaguchi N, Wang HC, Yang X, Kamimoto K et al.",
+    "title": "Single-cell lineage capture across genomic modalities with CellTag-multi reveals fate-specific gene regulatory changes [scATAC-seq - iEP].",
+    "gseAccession": "GSE216506",
+    "dataFileName": "GSM6675428_d5_3_filtered_peak_bc_matrix.h5",
+    "organism": "Mouse",
+    "source": "adult mouse bone marrow",
+    "platform": "Illumina NextSeq 500"
+  },
+  {
+    "id": "gse216506-gsm6675429",
+    "authors": "Jindal K, Adil MT, Yamaguchi N, Wang HC, Yang X, Kamimoto K et al.",
+    "title": "Single-cell lineage capture across genomic modalities with CellTag-multi reveals fate-specific gene regulatory changes [scATAC-seq - iEP].",
+    "gseAccession": "GSE216506",
+    "dataFileName": "GSM6675429_d5_4_filtered_peak_bc_matrix.h5",
+    "organism": "Mouse",
+    "source": "adult mouse bone marrow",
+    "platform": "Illumina NextSeq 500"
+  },
+  {
+    "id": "gse235116-gse235116",
+    "authors": "Mise-Omata S, Ando M, Srirat T, Nakagawara K, Hayakawa T, Iizuka-Koga M et al.",
+    "title": "SOCS3 deletion in effector T cells confers an anti-tumorigenic role of IL-6 to the pro-tumorigenic cytokine [scATAC-Seq]",
+    "gseAccession": "GSE235116",
+    "dataFileName": "GSE235116_filtered_peak_bc_matrix.h5",
+    "organism": "Mouse",
+    "source": "MC38 tumor",
+    "platform": "Illumina NovaSeq 6000"
+  },
+  {
+    "id": "gse234574-gsm7471119",
+    "authors": "Preiss NK, Wilkins OM, Usherwood EJ",
+    "title": "Characterizing control of memory CD8 T cell differentiation by BTB-ZF transcription factor Zbtb20 using single cell RNA-sequencing (scATAC-Seq)",
+    "gseAccession": "GSE234574",
+    "dataFileName": "GSM7471119_Day10-Zbtb20-KO-OT-I_filtered_peak_bc_matrix.h5",
+    "organism": "Mouse",
+    "source": "Splenocytes",
+    "platform": "Illumina NextSeq 500"
+  },
+  {
+    "id": "gse234574-gsm7471120",
+    "authors": "Preiss NK, Wilkins OM, Usherwood EJ",
+    "title": "Characterizing control of memory CD8 T cell differentiation by BTB-ZF transcription factor Zbtb20 using single cell RNA-sequencing (scATAC-Seq)",
+    "gseAccession": "GSE234574",
+    "dataFileName": "GSM7471120_Day10-WT-OT-I_filtered_peak_bc_matrix.h5",
+    "organism": "Mouse",
+    "source": "Splenocytes",
+    "platform": "Illumina NextSeq 500"
+  },
+  {
+    "id": "gse234574-gsm7471121",
+    "authors": "Preiss NK, Wilkins OM, Usherwood EJ",
+    "title": "Characterizing control of memory CD8 T cell differentiation by BTB-ZF transcription factor Zbtb20 using single cell RNA-sequencing (scATAC-Seq)",
+    "gseAccession": "GSE234574",
+    "dataFileName": "GSM7471121_Day30-Zbtb20-KO-OT-I_filtered_peak_bc_matrix.h5",
+    "organism": "Mouse",
+    "source": "Splenocytes",
+    "platform": "Illumina NextSeq 500"
+  },
+  {
+    "id": "gse234574-gsm7471122",
+    "authors": "Preiss NK, Wilkins OM, Usherwood EJ",
+    "title": "Characterizing control of memory CD8 T cell differentiation by BTB-ZF transcription factor Zbtb20 using single cell RNA-sequencing (scATAC-Seq)",
+    "gseAccession": "GSE234574",
+    "dataFileName": "GSM7471122_Day30-WT-OT-I_filtered_peak_bc_matrix.h5",
+    "organism": "Mouse",
+    "source": "Splenocytes",
+    "platform": "Illumina NextSeq 500"
+  },
+  {
+    "id": "gse141825-gsm4213749",
+    "authors": "Wang J, Adrianto I, Wu X, Zhou L, Mi Q",
+    "title": "Single-cell ATAC-seq of mouse thymus iNKT cells",
+    "gseAccession": "GSE141825",
+    "dataFileName": "GSM4213749_Thy-St0-NKT-Va14_filtered_peak_bc_matrix.h5",
+    "organism": "Mouse",
+    "source": "Thymus",
+    "platform": "Illumina NovaSeq 6000"
+  },
+  {
+    "id": "gse141825-gsm4213750",
+    "authors": "Wang J, Adrianto I, Wu X, Zhou L, Mi Q",
+    "title": "Single-cell ATAC-seq of mouse thymus iNKT cells",
+    "gseAccession": "GSE141825",
+    "dataFileName": "GSM4213750_Thy-St0-NKT-B6_filtered_peak_bc_matrix.h5",
+    "organism": "Mouse",
+    "source": "Thymus",
+    "platform": "Illumina NovaSeq 6000"
+  },
+  {
+    "id": "gse141825-gsm4213751",
+    "authors": "Wang J, Adrianto I, Wu X, Zhou L, Mi Q",
+    "title": "Single-cell ATAC-seq of mouse thymus iNKT cells",
+    "gseAccession": "GSE141825",
+    "dataFileName": "GSM4213751_Thy-St1-NKT_filtered_peak_bc_matrix.h5",
+    "organism": "Mouse",
+    "source": "Thymus",
+    "platform": "Illumina NovaSeq 6000"
+  },
+  {
+    "id": "gse141825-gsm4213752",
+    "authors": "Wang J, Adrianto I, Wu X, Zhou L, Mi Q",
+    "title": "Single-cell ATAC-seq of mouse thymus iNKT cells",
+    "gseAccession": "GSE141825",
+    "dataFileName": "GSM4213752_Thy-St2-NKT_filtered_peak_bc_matrix.h5",
+    "organism": "Mouse",
+    "source": "Thymus",
+    "platform": "Illumina NovaSeq 6000"
+  },
+  {
+    "id": "gse141825-gsm4213753",
+    "authors": "Wang J, Adrianto I, Wu X, Zhou L, Mi Q",
+    "title": "Single-cell ATAC-seq of mouse thymus iNKT cells",
+    "gseAccession": "GSE141825",
+    "dataFileName": "GSM4213753_Thy-St3-NKT_filtered_peak_bc_matrix.h5",
+    "organism": "Mouse",
+    "source": "Thymus",
+    "platform": "Illumina NovaSeq 6000"
+  },
+  {
+    "id": "gse231384-gsm7267133",
+    "authors": "Peiyao Wu",
+    "title": "HUB162 and HUB161",
+    "gseAccession": "GSE231384",
+    "dataFileName": "GSM7267133_ess.filtered_peak_bc_matrix.h5",
+    "organism": "Human",
+    "source": "blood",
+    "platform": "Illumina NovaSeq 6000"
+  },
+  {
+    "id": "gse231384-gsm7267135",
+    "authors": "Peiyao Wu",
+    "title": "HUB162 and HUB161",
+    "gseAccession": "GSE231384",
+    "dataFileName": "GSM7267135_noness.filtered_peak_bc_matrix.h5",
+    "organism": "Human",
+    "source": "blood",
+    "platform": "Illumina NovaSeq 6000"
+  },
+  {
+    "id": "gse213404-gsm6585735",
+    "authors": "Lin C, Jyotaki M, Quinlan J, Feng S, Zhou M, Jiang P et al.",
+    "title": "Inflammation induces bitter taste oversensitization via epigenetic changes in Tas2r gene clusters",
+    "gseAccession": "GSE213404",
+    "dataFileName": "GSM6585735_91962_PBS_filtered_peak_bc_matrix.h5",
+    "organism": "Mouse",
+    "source": "circumvallate papillae",
+    "platform": "Illumina HiSeq 4000"
+  },
+  {
+    "id": "gse213404-gsm6585736",
+    "authors": "Lin C, Jyotaki M, Quinlan J, Feng S, Zhou M, Jiang P et al.",
+    "title": "Inflammation induces bitter taste oversensitization via epigenetic changes in Tas2r gene clusters",
+    "gseAccession": "GSE213404",
+    "dataFileName": "GSM6585736_91963_LPS_filtered_peak_bc_matrix.h5",
+    "organism": "Mouse",
+    "source": "circumvallate papillae",
+    "platform": "Illumina HiSeq 4000"
+  },
+  {
+    "id": "gse210569-gsm6432740",
+    "authors": "Sneddon J, de la O S, Liu Z, Yao X",
+    "title": "Single-cell chromatin accessibility of developing murine pancreas identifies cell state-specific gene regulatory programs",
+    "gseAccession": "GSE210569",
+    "dataFileName": "GSM6432740_E14.5_Whole_filtered_peak_bc_matrix.h5",
+    "organism": "Mouse",
+    "source": "pancreas",
+    "platform": "Illumina NovaSeq 6000"
+  },
+  {
+    "id": "gse210569-gsm6432741",
+    "authors": "Sneddon J, de la O S, Liu Z, Yao X",
+    "title": "Single-cell chromatin accessibility of developing murine pancreas identifies cell state-specific gene regulatory programs",
+    "gseAccession": "GSE210569",
+    "dataFileName": "GSM6432741_E14.5_Fev_High_filtered_peak_bc_matrix.h5",
+    "organism": "Mouse",
+    "source": "pancreas",
+    "platform": "Illumina NovaSeq 6000"
+  },
+  {
+    "id": "gse210569-gsm7244762",
+    "authors": "Sneddon J, de la O S, Liu Z, Yao X",
+    "title": "Single-cell chromatin accessibility of developing murine pancreas identifies cell state-specific gene regulatory programs",
+    "gseAccession": "GSE210569",
+    "dataFileName": "GSM7244762_E17.5_Whole_Pancreas_2_lane_1_filtered_peak_bc_matrix.h5",
+    "organism": "Mouse",
+    "source": "pancreas",
+    "platform": "Illumina NovaSeq 6000"
+  },
+  {
+    "id": "gse210569-gsm7244763",
+    "authors": "Sneddon J, de la O S, Liu Z, Yao X",
+    "title": "Single-cell chromatin accessibility of developing murine pancreas identifies cell state-specific gene regulatory programs",
+    "gseAccession": "GSE210569",
+    "dataFileName": "GSM7244763_E17.5_Whole_Pancreas_2_lane_2_filtered_peak_bc_matrix.h5",
+    "organism": "Mouse",
+    "source": "pancreas",
+    "platform": "Illumina NovaSeq 6000"
+  },
+  {
+    "id": "gse210569-gsm7244764",
+    "authors": "Sneddon J, de la O S, Liu Z, Yao X",
+    "title": "Single-cell chromatin accessibility of developing murine pancreas identifies cell state-specific gene regulatory programs",
+    "gseAccession": "GSE210569",
+    "dataFileName": "GSM7244764_E14.5_Whole_Pancreas_2_filtered_peak_bc_matrix.h5",
+    "organism": "Mouse",
+    "source": "pancreas",
+    "platform": "Illumina NovaSeq 6000"
+  },
+  {
+    "id": "gse207698-gsm6310593",
+    "authors": "Burdziak C, Alonso-Curbelo D, Pe'er D, Lowe SW",
+    "title": "Epigenetic plasticity cooperates with emergent cell-cell interactions to drive neoplastic tissue remodeling in the pancreas [ATAC-seq]",
+    "gseAccession": "GSE207698",
+    "dataFileName": "GSM6310593_DACE270_Epi_filtered_peak_bc_matrix.h5",
+    "organism": "Mouse",
+    "source": "pancreas",
+    "platform": "Illumina NovaSeq 6000"
+  },
+  {
+    "id": "gse207698-gsm6310594",
+    "authors": "Burdziak C, Alonso-Curbelo D, Pe'er D, Lowe SW",
+    "title": "Epigenetic plasticity cooperates with emergent cell-cell interactions to drive neoplastic tissue remodeling in the pancreas [ATAC-seq]",
+    "gseAccession": "GSE207698",
+    "dataFileName": "GSM6310594_DACE271_Epi_filtered_peak_bc_matrix.h5",
+    "organism": "Mouse",
+    "source": "pancreas",
+    "platform": "Illumina NovaSeq 6000"
+  },
+  {
+    "id": "gse207698-gsm6310595",
+    "authors": "Burdziak C, Alonso-Curbelo D, Pe'er D, Lowe SW",
+    "title": "Epigenetic plasticity cooperates with emergent cell-cell interactions to drive neoplastic tissue remodeling in the pancreas [ATAC-seq]",
+    "gseAccession": "GSE207698",
+    "dataFileName": "GSM6310595_DACC963_PT_B_mKate_plus_ATAC_filtered_peak_bc_matrix.h5",
+    "organism": "Mouse",
+    "source": "pancreas",
+    "platform": "Illumina NovaSeq 6000"
+  },
+  {
+    "id": "gse207698-gsm6310596",
+    "authors": "Burdziak C, Alonso-Curbelo D, Pe'er D, Lowe SW",
+    "title": "Epigenetic plasticity cooperates with emergent cell-cell interactions to drive neoplastic tissue remodeling in the pancreas [ATAC-seq]",
+    "gseAccession": "GSE207698",
+    "dataFileName": "GSM6310596_DAC_D020_p5_Epi_ATAC_filtered_peak_bc_matrix.h5",
+    "organism": "Mouse",
+    "source": "pancreas",
+    "platform": "Illumina NovaSeq 6000"
+  },
+  {
+    "id": "gse216175-gse216175",
+    "authors": "Fetahu IS, Esser-Skala W, Dnyansagar R, Sindelar S, Rifatbegovic F, Bileck A et al.",
+    "title": "Single cell ATAC sequencing data of neuroblastoma infiltrated bone marrow",
+    "gseAccession": "GSE216175",
+    "dataFileName": "GSE216175_filtered_peak_bc_matrix.h5",
+    "organism": "Mouse",
+    "source": "bone marrow",
+    "platform": "Illumina NovaSeq 6000"
+  },
+  {
+    "id": "gse190977-gsm5736797",
+    "authors": "Ko T, Ito M, Sassa T, Nomura S, Toyooka K, Umezawa A et al.",
+    "title": "TEAD1 trapping by the Q353R-Lamin A/C causes dilated cardiomyopathy.",
+    "gseAccession": "GSE190977",
+    "dataFileName": "GSM5736797_scATAC_KI_1_filtered_peak_bc_matrix.h5",
+    "organism": "Mouse",
+    "source": "heart",
+    "platform": "Illumina NovaSeq 6000"
+  },
+  {
+    "id": "gse190977-gsm5736798",
+    "authors": "Ko T, Ito M, Sassa T, Nomura S, Toyooka K, Umezawa A et al.",
+    "title": "TEAD1 trapping by the Q353R-Lamin A/C causes dilated cardiomyopathy.",
+    "gseAccession": "GSE190977",
+    "dataFileName": "GSM5736798_scATAC_WT_1_filtered_peak_bc_matrix.h5",
+    "organism": "Mouse",
+    "source": "heart",
+    "platform": "Illumina NovaSeq 6000"
+  },
+  {
+    "id": "gse190977-gsm5736799",
+    "authors": "Ko T, Ito M, Sassa T, Nomura S, Toyooka K, Umezawa A et al.",
+    "title": "TEAD1 trapping by the Q353R-Lamin A/C causes dilated cardiomyopathy.",
+    "gseAccession": "GSE190977",
+    "dataFileName": "GSM5736799_scATAC_WT_2_filtered_peak_bc_matrix.h5",
+    "organism": "Mouse",
+    "source": "heart",
+    "platform": "Illumina NovaSeq 6000"
+  },
+  {
+    "id": "gse171599-gsm8196956",
+    "authors": "Gaspar-Maia A, Ismail WM, Hasson D, Safgren S, Ordog T, Bernstein E",
+    "title": "MacroH2A histone variants modulate enhancer activity to repress oncogenic programs and cellular reprogramming",
+    "gseAccession": "GSE171599",
+    "dataFileName": "GSM8196956_MCF7_0_5_filtered_peak_bc_matrix.h5",
+    "organism": "Human",
+    "source": "MCF-7",
+    "platform": "Illumina HiSeq 4000"
+  },
+  {
+    "id": "gse171599-gsm8196957",
+    "authors": "Gaspar-Maia A, Ismail WM, Hasson D, Safgren S, Ordog T, Bernstein E",
+    "title": "MacroH2A histone variants modulate enhancer activity to repress oncogenic programs and cellular reprogramming",
+    "gseAccession": "GSE171599",
+    "dataFileName": "GSM8196957_0_5_filtered_peak_bc_matrix.h5",
+    "organism": "Human",
+    "source": "MCF-7",
+    "platform": "Illumina HiSeq 4000"
+  },
+  {
+    "id": "gse171599-gsm8196958",
+    "authors": "Gaspar-Maia A, Ismail WM, Hasson D, Safgren S, Ordog T, Bernstein E",
+    "title": "MacroH2A histone variants modulate enhancer activity to repress oncogenic programs and cellular reprogramming",
+    "gseAccession": "GSE171599",
+    "dataFileName": "GSM8196958_MCF7_2_1_filtered_peak_bc_matrix.h5",
+    "organism": "Human",
+    "source": "MCF-7",
+    "platform": "Illumina HiSeq 4000"
+  },
+  {
+    "id": "gse171599-gsm8196959",
+    "authors": "Gaspar-Maia A, Ismail WM, Hasson D, Safgren S, Ordog T, Bernstein E",
+    "title": "MacroH2A histone variants modulate enhancer activity to repress oncogenic programs and cellular reprogramming",
+    "gseAccession": "GSE171599",
+    "dataFileName": "GSM8196959_2_1_filtered_peak_bc_matrix.h5",
+    "organism": "Human",
+    "source": "MCF-7",
+    "platform": "Illumina HiSeq 4000"
+  },
+  {
+    "id": "gse214082-gsm6598797",
+    "authors": "Zhang C, Li Y, LeMaire SA, Shen YH",
+    "title": "single cell ATACseq of control and AngII challenged mouse ascending aorta",
+    "gseAccession": "GSE214082",
+    "dataFileName": "GSM6598797_CD_filtered_peak_bc_matrix.h5",
+    "organism": "Mouse",
+    "source": "ascending aorta",
+    "platform": "Illumina NovaSeq 6000"
+  },
+  {
+    "id": "gse214082-gsm6598798",
+    "authors": "Zhang C, Li Y, LeMaire SA, Shen YH",
+    "title": "single cell ATACseq of control and AngII challenged mouse ascending aorta",
+    "gseAccession": "GSE214082",
+    "dataFileName": "GSM6598798_HFD_filtered_peak_bc_matrix.h5",
+    "organism": "Mouse",
+    "source": "ascending aorta",
+    "platform": "Illumina NovaSeq 6000"
+  },
+  {
+    "id": "gse193304-gsm5788504",
+    "authors": "He Y, Sun Y, Zou D, Li X",
+    "title": "Single-cell Sequencing Highlights Heterogeneity and Malignant Progression in Actinic Keratosis and Cutaneous Squamous Cell Carcinoma",
+    "gseAccession": "GSE193304",
+    "dataFileName": "GSM5788504_S10_ATAC_filtered_peak_bc_matrix.h5",
+    "organism": "Human",
+    "source": "skin",
+    "platform": "Illumina NovaSeq 6000"
+  },
+  {
+    "id": "gse213469-gse213469",
+    "authors": "Quezada L, Jin W",
+    "title": "Open chromatin regions at the single cell level of CD8+ T cells from the spleens of LCMV-Armstrong or LCMV-Clone 13 infected mice",
+    "gseAccession": "GSE213469",
+    "dataFileName": "GSE213469_filtered_peak_bc_matrix.h5",
+    "organism": "Mouse",
+    "source": "Spleen",
+    "platform": "Illumina NovaSeq 6000"
+  },
+  {
+    "id": "gse199557-gsm5975167",
+    "authors": "Giles J, Wherry EJ",
+    "title": "Longitudinal single cell transcriptional and epigenetic mapping of effector, memory, and exhausted CD8 T cells reveals shared biological circuits across distinct cell fates [scATAC-Seq 2]",
+    "gseAccession": "GSE199557",
+    "dataFileName": "GSM5975167_scA_101_filtered_peak_bc_matrix.h5",
+    "organism": "Mouse",
+    "source": "P14 naïve CD8 T cells",
+    "platform": "Illumina NovaSeq 6000"
+  },
+  {
+    "id": "gse199557-gsm5975168",
+    "authors": "Giles J, Wherry EJ",
+    "title": "Longitudinal single cell transcriptional and epigenetic mapping of effector, memory, and exhausted CD8 T cells reveals shared biological circuits across distinct cell fates [scATAC-Seq 2]",
+    "gseAccession": "GSE199557",
+    "dataFileName": "GSM5975168_scA_102_filtered_peak_bc_matrix.h5",
+    "organism": "Mouse",
+    "source": "P14 CD8 T cells from LCMV Armstrong infection 8 days post infection",
+    "platform": "Illumina NovaSeq 6000"
+  },
+  {
+    "id": "gse199557-gsm5975169",
+    "authors": "Giles J, Wherry EJ",
+    "title": "Longitudinal single cell transcriptional and epigenetic mapping of effector, memory, and exhausted CD8 T cells reveals shared biological circuits across distinct cell fates [scATAC-Seq 2]",
+    "gseAccession": "GSE199557",
+    "dataFileName": "GSM5975169_scA_103_filtered_peak_bc_matrix.h5",
+    "organism": "Mouse",
+    "source": "P14 CD8 T cells from LCMV Armstrong infection 15 days post infection",
+    "platform": "Illumina NovaSeq 6000"
+  },
+  {
+    "id": "gse199557-gsm5975170",
+    "authors": "Giles J, Wherry EJ",
+    "title": "Longitudinal single cell transcriptional and epigenetic mapping of effector, memory, and exhausted CD8 T cells reveals shared biological circuits across distinct cell fates [scATAC-Seq 2]",
+    "gseAccession": "GSE199557",
+    "dataFileName": "GSM5975170_scA_104_filtered_peak_bc_matrix.h5",
+    "organism": "Mouse",
+    "source": "P14 CD8 T cells from LCMV Armstrong infection 30 days post infection",
+    "platform": "Illumina NovaSeq 6000"
+  },
+  {
+    "id": "gse199557-gsm5975171",
+    "authors": "Giles J, Wherry EJ",
+    "title": "Longitudinal single cell transcriptional and epigenetic mapping of effector, memory, and exhausted CD8 T cells reveals shared biological circuits across distinct cell fates [scATAC-Seq 2]",
+    "gseAccession": "GSE199557",
+    "dataFileName": "GSM5975171_scA_105_filtered_peak_bc_matrix.h5",
+    "organism": "Mouse",
+    "source": "P14 CD8 T cells from LCMV Clone13 infection 8 days post infection",
+    "platform": "Illumina NovaSeq 6000"
+  },
+  {
+    "id": "gse199557-gsm5975172",
+    "authors": "Giles J, Wherry EJ",
+    "title": "Longitudinal single cell transcriptional and epigenetic mapping of effector, memory, and exhausted CD8 T cells reveals shared biological circuits across distinct cell fates [scATAC-Seq 2]",
+    "gseAccession": "GSE199557",
+    "dataFileName": "GSM5975172_scA_106_filtered_peak_bc_matrix.h5",
+    "organism": "Mouse",
+    "source": "P14 CD8 T cells from LCMV Clone13 infection 15 days post infection",
+    "platform": "Illumina NovaSeq 6000"
+  },
+  {
+    "id": "gse199557-gsm5975173",
+    "authors": "Giles J, Wherry EJ",
+    "title": "Longitudinal single cell transcriptional and epigenetic mapping of effector, memory, and exhausted CD8 T cells reveals shared biological circuits across distinct cell fates [scATAC-Seq 2]",
+    "gseAccession": "GSE199557",
+    "dataFileName": "GSM5975173_scA_107_filtered_peak_bc_matrix.h5",
+    "organism": "Mouse",
+    "source": "P14 CD8 T cells from LCMV Clone13 infection 30 days post infection",
+    "platform": "Illumina NovaSeq 6000"
+  },
+  {
+    "id": "gse199557-gsm5975174",
+    "authors": "Giles J, Wherry EJ",
+    "title": "Longitudinal single cell transcriptional and epigenetic mapping of effector, memory, and exhausted CD8 T cells reveals shared biological circuits across distinct cell fates [scATAC-Seq 2]",
+    "gseAccession": "GSE199557",
+    "dataFileName": "GSM5975174_scA_108_filtered_peak_bc_matrix.h5",
+    "organism": "Mouse",
+    "source": "P14 CD8 T cells from LCMV Clone13 infection+anti PDL1 treatment",
+    "platform": "Illumina NovaSeq 6000"
+  },
+  {
+    "id": "gse199556-gsm5975165",
+    "authors": "Giles J, Wherry EJ",
+    "title": "Longitudinal single cell transcriptional and epigenetic mapping of effector, memory, and exhausted CD8 T cells reveals shared biological circuits across distinct cell fates [scATAC-Seq 1]",
+    "gseAccession": "GSE199556",
+    "dataFileName": "GSM5975165_Arm_d60_filtered_peak_bc_matrix.h5",
+    "organism": "Mouse",
+    "source": "P14 CD8 T cells from LCMV Armstrong infection 60 days post infection",
+    "platform": "Illumina NovaSeq 6000"
+  },
+  {
+    "id": "gse199556-gsm5975166",
+    "authors": "Giles J, Wherry EJ",
+    "title": "Longitudinal single cell transcriptional and epigenetic mapping of effector, memory, and exhausted CD8 T cells reveals shared biological circuits across distinct cell fates [scATAC-Seq 1]",
+    "gseAccession": "GSE199556",
+    "dataFileName": "GSM5975166_Arm_d200_filtered_peak_bc_matrix.h5",
+    "organism": "Mouse",
+    "source": "P14 CD8 T cells from LCMV Armstrong infection 200 days post infection",
+    "platform": "Illumina NovaSeq 6000"
+  },
+  {
+    "id": "gse201793-gsm6071618",
+    "authors": "Cheng K, Sakata Y, Mayama M, Sasaki K",
+    "title": "Reconstitution of human adrenocortical specification and steroidogenesis using induced pluripotent stem cells [scATAC-seq]",
+    "gseAccession": "GSE201793",
+    "dataFileName": "GSM6071618_filtered_peak_bc_matrix_fl09.h5",
+    "organism": "Human",
+    "source": "WGNT SV20-211",
+    "platform": "Illumina NextSeq 500"
+  },
+  {
+    "id": "gse201793-gsm6071619",
+    "authors": "Cheng K, Sakata Y, Mayama M, Sasaki K",
+    "title": "Reconstitution of human adrenocortical specification and steroidogenesis using induced pluripotent stem cells [scATAC-seq]",
+    "gseAccession": "GSE201793",
+    "dataFileName": "GSM6071619_filtered_peak_bc_matrix_fl22.h5",
+    "organism": "Human",
+    "source": "WGNT SV20-211",
+    "platform": "Illumina NextSeq 500"
+  },
+  {
+    "id": "gse178422-gsm5390872",
+    "authors": "Langille E, Malik A, Schramek D",
+    "title": "Loss of epigenetic regulation disrupts lineage commitment and promotes breast cancer (scATAC-Seq)",
+    "gseAccession": "GSE178422",
+    "dataFileName": "GSM5390872_A02_filtered_peak_bc_matrix.h5",
+    "organism": "Mouse",
+    "source": "mammary epithelial cells",
+    "platform": "Illumina HiSeq 3000"
+  },
+  {
+    "id": "gse178422-gsm5390873",
+    "authors": "Langille E, Malik A, Schramek D",
+    "title": "Loss of epigenetic regulation disrupts lineage commitment and promotes breast cancer (scATAC-Seq)",
+    "gseAccession": "GSE178422",
+    "dataFileName": "GSM5390873_A03_filtered_peak_bc_matrix.h5",
+    "organism": "Mouse",
+    "source": "mammary epithelial cells",
+    "platform": "Illumina HiSeq 3000"
+  },
+  {
+    "id": "gse178422-gsm5390874",
+    "authors": "Langille E, Malik A, Schramek D",
+    "title": "Loss of epigenetic regulation disrupts lineage commitment and promotes breast cancer (scATAC-Seq)",
+    "gseAccession": "GSE178422",
+    "dataFileName": "GSM5390874_A04_filtered_peak_bc_matrix.h5",
+    "organism": "Mouse",
+    "source": "mammary epithelial cells",
+    "platform": "Illumina HiSeq 3000"
+  },
+  {
+    "id": "gse181188-gsm5492243",
+    "authors": "Poplineau M, Duprez E, Adrien M",
+    "title": "Single cell analyses reveals a non-canonical EZH2 activity as main driver of RA resistance in PLZF/RARA leukemia [scATAC-seq]",
+    "gseAccession": "GSE181188",
+    "dataFileName": "GSM5492243_ATAC_PLZF_RARA_CT_filtered_peak_bc_matrix.h5",
+    "organism": "Mouse",
+    "source": "Leukemic bone marrow",
+    "platform": "Illumina HiSeq 2000"
+  },
+  {
+    "id": "gse181188-gsm5492244",
+    "authors": "Poplineau M, Duprez E, Adrien M",
+    "title": "Single cell analyses reveals a non-canonical EZH2 activity as main driver of RA resistance in PLZF/RARA leukemia [scATAC-seq]",
+    "gseAccession": "GSE181188",
+    "dataFileName": "GSM5492244_ATAC_PLZF_RARA_RA_filtered_peak_bc_matrix.h5",
+    "organism": "Mouse",
+    "source": "Leukemic bone marrow",
+    "platform": "Illumina HiSeq 2000"
+  },
+  {
+    "id": "gse203567-gsm6176366",
+    "authors": "Parmentier R, Racine L",
+    "title": "Global genome decompaction leads to stochastic activation of gene expression as a first step toward fate commitment in human hematopoietic cells [scATAC-seq]",
+    "gseAccession": "GSE203567",
+    "dataFileName": "GSM6176366_filtered_peak_bc_matrix.h5",
+    "organism": "Human",
+    "source": "Umbilical cord blood",
+    "platform": "Illumina NovaSeq 6000"
+  },
+  {
+    "id": "gse168372-gsm5266835",
+    "authors": "Na J, Chen X",
+    "title": "Integrative epigenomic and transcriptomic analysis reveals the requirement of JUNB for hematopoietic fate induction",
+    "gseAccession": "GSE168372",
+    "dataFileName": "GSM5266835_day6_ATAC_filtered_peak_bc_matrix.h5",
+    "organism": "Human",
+    "source": "cultured cells",
+    "platform": "HiSeq X Ten"
+  },
+  {
+    "id": "gse148223-gse148223",
+    "authors": "Fuertes Marraco SA, Alpern D, Speiser DE",
+    "title": "Marking the difference in acutely responding human CD8 T cells",
+    "gseAccession": "GSE148223",
+    "dataFileName": "GSE148223_filtered_peak_bc_matrix.h5",
+    "organism": "Human",
+    "source": "CD8 T cells",
+    "platform": "Illumina HiSeq 4000"
+  },
+  {
+    "id": "gse180898-gsm5474436",
+    "authors": "El-Dahr S",
+    "title": "Chromatin and gene-regulatory dynamics of mouse nephron progenitors at single-cell resolution [scATAC-Seq]",
+    "gseAccession": "GSE180898",
+    "dataFileName": "GSM5474436_SH2_E165_filtered_peak_bc_matrix.h5",
+    "organism": "Mouse",
+    "source": "Embryonic Kidneys",
+    "platform": "NextSeq 550"
+  },
+  {
+    "id": "gse180898-gsm5474437",
+    "authors": "El-Dahr S",
+    "title": "Chromatin and gene-regulatory dynamics of mouse nephron progenitors at single-cell resolution [scATAC-Seq]",
+    "gseAccession": "GSE180898",
+    "dataFileName": "GSM5474437_SH3_P2_filtered_peak_bc_matrix.h5",
+    "organism": "Mouse",
+    "source": "Embryonic Kidneys",
+    "platform": "NextSeq 550"
+  },
+  {
+    "id": "gse180898-gsm5474438",
+    "authors": "El-Dahr S",
+    "title": "Chromatin and gene-regulatory dynamics of mouse nephron progenitors at single-cell resolution [scATAC-Seq]",
+    "gseAccession": "GSE180898",
+    "dataFileName": "GSM5474438_SH7_P2_filtered_peak_bc_matrix.h5",
+    "organism": "Mouse",
+    "source": "Embryonic Kidneys",
+    "platform": "NextSeq 550"
+  },
+  {
+    "id": "gse180898-gsm5474439",
+    "authors": "El-Dahr S",
+    "title": "Chromatin and gene-regulatory dynamics of mouse nephron progenitors at single-cell resolution [scATAC-Seq]",
+    "gseAccession": "GSE180898",
+    "dataFileName": "GSM5474439_SH9_E165_filtered_peak_bc_matrix.h5",
+    "organism": "Mouse",
+    "source": "Embryonic Kidneys",
+    "platform": "NextSeq 550"
+  },
+  {
+    "id": "gse186291-gsm5643204",
+    "authors": "Bosselut R, Nie J",
+    "title": "Single-cell ATAC of WT thymic IEL precursors (IELp)",
+    "gseAccession": "GSE186291",
+    "dataFileName": "GSM5643204_filtered_peak_bc_matrix_Ctrl_1.h5",
+    "organism": "Mouse",
+    "source": "Thymus",
+    "platform": "NextSeq 2000"
+  },
+  {
+    "id": "gse186291-gsm5643206",
+    "authors": "Bosselut R, Nie J",
+    "title": "Single-cell ATAC of WT thymic IEL precursors (IELp)",
+    "gseAccession": "GSE186291",
+    "dataFileName": "GSM5643206_filtered_peak_bc_matrix_Ctrl_2.h5",
+    "organism": "Mouse",
+    "source": "Thymus",
+    "platform": "NextSeq 2000"
+  },
+  {
+    "id": "gse190795-gsm5732087",
+    "authors": "Kaplan MH, Ulrich BJ, Kharwadkar R, Gao H",
+    "title": "IL-9 is required for multi-cytokine producing tissue-resident memory CD4+ T cell-dependent allergic airway recall responses",
+    "gseAccession": "GSE190795",
+    "dataFileName": "GSM5732087_ST2_pos_1_filtered_peak_bc_matrix.h5",
+    "organism": "Mouse",
+    "source": "Lung ST2+ CD4+ T cells",
+    "platform": "Illumina NovaSeq 6000"
+  },
+  {
+    "id": "gse190795-gsm5732088",
+    "authors": "Kaplan MH, Ulrich BJ, Kharwadkar R, Gao H",
+    "title": "IL-9 is required for multi-cytokine producing tissue-resident memory CD4+ T cell-dependent allergic airway recall responses",
+    "gseAccession": "GSE190795",
+    "dataFileName": "GSM5732088_ST2_pos_2_filtered_peak_bc_matrix.h5",
+    "organism": "Mouse",
+    "source": "Lung ST2+ CD4+ T cells",
+    "platform": "Illumina NovaSeq 6000"
+  },
+  {
+    "id": "gse190795-gsm5732089",
+    "authors": "Kaplan MH, Ulrich BJ, Kharwadkar R, Gao H",
+    "title": "IL-9 is required for multi-cytokine producing tissue-resident memory CD4+ T cell-dependent allergic airway recall responses",
+    "gseAccession": "GSE190795",
+    "dataFileName": "GSM5732089_ST2_neg_1_filtered_peak_bc_matrix.h5",
+    "organism": "Mouse",
+    "source": "Lung ST2+ CD4+ T cells",
+    "platform": "Illumina NovaSeq 6000"
+  },
+  {
+    "id": "gse190795-gsm5732090",
+    "authors": "Kaplan MH, Ulrich BJ, Kharwadkar R, Gao H",
+    "title": "IL-9 is required for multi-cytokine producing tissue-resident memory CD4+ T cell-dependent allergic airway recall responses",
+    "gseAccession": "GSE190795",
+    "dataFileName": "GSM5732090_ST2_neg_2_filtered_peak_bc_matrix.h5",
+    "organism": "Mouse",
+    "source": "Lung ST2+ CD4+ T cells",
+    "platform": "Illumina NovaSeq 6000"
+  },
+  {
+    "id": "gse175621-gsm5342787",
+    "authors": "Turner A, Shengen H, Zang C, Miller C",
+    "title": "Cell-specific chromatin landscape in human coronary artery resolves regulatory mechanisms of disease risk",
+    "gseAccession": "GSE175621",
+    "dataFileName": "GSM5342787_scA_filtered_peak_bc_matrix.h5",
+    "organism": "Human",
+    "source": "Coronary artery",
+    "platform": "Illumina NovaSeq 6000"
+  },
+  {
+    "id": "gse175621-gsm5342788",
+    "authors": "Turner A, Shengen H, Zang C, Miller C",
+    "title": "Cell-specific chromatin landscape in human coronary artery resolves regulatory mechanisms of disease risk",
+    "gseAccession": "GSE175621",
+    "dataFileName": "GSM5342788_scB_filtered_peak_bc_matrix.h5",
+    "organism": "Human",
+    "source": "Coronary artery",
+    "platform": "Illumina NovaSeq 6000"
+  },
+  {
+    "id": "gse175621-gsm5342789",
+    "authors": "Turner A, Shengen H, Zang C, Miller C",
+    "title": "Cell-specific chromatin landscape in human coronary artery resolves regulatory mechanisms of disease risk",
+    "gseAccession": "GSE175621",
+    "dataFileName": "GSM5342789_scC_filtered_peak_bc_matrix.h5",
+    "organism": "Human",
+    "source": "Coronary artery",
+    "platform": "Illumina NovaSeq 6000"
+  },
+  {
+    "id": "gse175621-gsm5342790",
+    "authors": "Turner A, Shengen H, Zang C, Miller C",
+    "title": "Cell-specific chromatin landscape in human coronary artery resolves regulatory mechanisms of disease risk",
+    "gseAccession": "GSE175621",
+    "dataFileName": "GSM5342790_scD_filtered_peak_bc_matrix.h5",
+    "organism": "Human",
+    "source": "Coronary artery",
+    "platform": "Illumina NovaSeq 6000"
+  },
+  {
+    "id": "gse175621-gsm5342791",
+    "authors": "Turner A, Shengen H, Zang C, Miller C",
+    "title": "Cell-specific chromatin landscape in human coronary artery resolves regulatory mechanisms of disease risk",
+    "gseAccession": "GSE175621",
+    "dataFileName": "GSM5342791_scE_filtered_peak_bc_matrix.h5",
+    "organism": "Human",
+    "source": "Coronary artery",
+    "platform": "Illumina NovaSeq 6000"
+  },
+  {
+    "id": "gse175621-gsm5342792",
+    "authors": "Turner A, Shengen H, Zang C, Miller C",
+    "title": "Cell-specific chromatin landscape in human coronary artery resolves regulatory mechanisms of disease risk",
+    "gseAccession": "GSE175621",
+    "dataFileName": "GSM5342792_scF_filtered_peak_bc_matrix.h5",
+    "organism": "Human",
+    "source": "Coronary artery",
+    "platform": "Illumina NovaSeq 6000"
+  },
+  {
+    "id": "gse175621-gsm5342793",
+    "authors": "Turner A, Shengen H, Zang C, Miller C",
+    "title": "Cell-specific chromatin landscape in human coronary artery resolves regulatory mechanisms of disease risk",
+    "gseAccession": "GSE175621",
+    "dataFileName": "GSM5342793_scG_filtered_peak_bc_matrix.h5",
+    "organism": "Human",
+    "source": "Coronary artery",
+    "platform": "Illumina NovaSeq 6000"
+  },
+  {
+    "id": "gse175621-gsm5342794",
+    "authors": "Turner A, Shengen H, Zang C, Miller C",
+    "title": "Cell-specific chromatin landscape in human coronary artery resolves regulatory mechanisms of disease risk",
+    "gseAccession": "GSE175621",
+    "dataFileName": "GSM5342794_scH_filtered_peak_bc_matrix.h5",
+    "organism": "Human",
+    "source": "Coronary artery",
+    "platform": "Illumina NovaSeq 6000"
+  },
+  {
+    "id": "gse175621-gsm5342795",
+    "authors": "Turner A, Shengen H, Zang C, Miller C",
+    "title": "Cell-specific chromatin landscape in human coronary artery resolves regulatory mechanisms of disease risk",
+    "gseAccession": "GSE175621",
+    "dataFileName": "GSM5342795_scI_filtered_peak_bc_matrix.h5",
+    "organism": "Human",
+    "source": "Coronary artery",
+    "platform": "Illumina NovaSeq 6000"
+  },
+  {
+    "id": "gse175621-gsm5342796",
+    "authors": "Turner A, Shengen H, Zang C, Miller C",
+    "title": "Cell-specific chromatin landscape in human coronary artery resolves regulatory mechanisms of disease risk",
+    "gseAccession": "GSE175621",
+    "dataFileName": "GSM5342796_scJ_filtered_peak_bc_matrix.h5",
+    "organism": "Human",
+    "source": "Coronary artery",
+    "platform": "Illumina NovaSeq 6000"
+  },
+  {
+    "id": "gse175621-gsm5342797",
+    "authors": "Turner A, Shengen H, Zang C, Miller C",
+    "title": "Cell-specific chromatin landscape in human coronary artery resolves regulatory mechanisms of disease risk",
+    "gseAccession": "GSE175621",
+    "dataFileName": "GSM5342797_scK_filtered_peak_bc_matrix.h5",
+    "organism": "Human",
+    "source": "Coronary artery",
+    "platform": "Illumina NovaSeq 6000"
+  },
+  {
+    "id": "gse175621-gsm5342798",
+    "authors": "Turner A, Shengen H, Zang C, Miller C",
+    "title": "Cell-specific chromatin landscape in human coronary artery resolves regulatory mechanisms of disease risk",
+    "gseAccession": "GSE175621",
+    "dataFileName": "GSM5342798_scL_filtered_peak_bc_matrix.h5",
+    "organism": "Human",
+    "source": "Coronary artery",
+    "platform": "Illumina NovaSeq 6000"
+  },
+  {
+    "id": "gse175621-gsm5342799",
+    "authors": "Turner A, Shengen H, Zang C, Miller C",
+    "title": "Cell-specific chromatin landscape in human coronary artery resolves regulatory mechanisms of disease risk",
+    "gseAccession": "GSE175621",
+    "dataFileName": "GSM5342799_scM_filtered_peak_bc_matrix.h5",
+    "organism": "Human",
+    "source": "Coronary artery",
+    "platform": "Illumina NovaSeq 6000"
+  },
+  {
+    "id": "gse175621-gsm5342800",
+    "authors": "Turner A, Shengen H, Zang C, Miller C",
+    "title": "Cell-specific chromatin landscape in human coronary artery resolves regulatory mechanisms of disease risk",
+    "gseAccession": "GSE175621",
+    "dataFileName": "GSM5342800_scN_filtered_peak_bc_matrix.h5",
+    "organism": "Human",
+    "source": "Coronary artery",
+    "platform": "Illumina NovaSeq 6000"
+  },
+  {
+    "id": "gse175621-gsm5342801",
+    "authors": "Turner A, Shengen H, Zang C, Miller C",
+    "title": "Cell-specific chromatin landscape in human coronary artery resolves regulatory mechanisms of disease risk",
+    "gseAccession": "GSE175621",
+    "dataFileName": "GSM5342801_scO_filtered_peak_bc_matrix.h5",
+    "organism": "Human",
+    "source": "Coronary artery",
+    "platform": "Illumina NovaSeq 6000"
+  },
+  {
+    "id": "gse175621-gsm5342802",
+    "authors": "Turner A, Shengen H, Zang C, Miller C",
+    "title": "Cell-specific chromatin landscape in human coronary artery resolves regulatory mechanisms of disease risk",
+    "gseAccession": "GSE175621",
+    "dataFileName": "GSM5342802_scP_filtered_peak_bc_matrix.h5",
+    "organism": "Human",
+    "source": "Coronary artery",
+    "platform": "Illumina NovaSeq 6000"
+  },
+  {
+    "id": "gse175621-gsm5342803",
+    "authors": "Turner A, Shengen H, Zang C, Miller C",
+    "title": "Cell-specific chromatin landscape in human coronary artery resolves regulatory mechanisms of disease risk",
+    "gseAccession": "GSE175621",
+    "dataFileName": "GSM5342803_scQ_filtered_peak_bc_matrix.h5",
+    "organism": "Human",
+    "source": "Coronary artery",
+    "platform": "Illumina NovaSeq 6000"
+  },
+  {
+    "id": "gse175621-gsm5342804",
+    "authors": "Turner A, Shengen H, Zang C, Miller C",
+    "title": "Cell-specific chromatin landscape in human coronary artery resolves regulatory mechanisms of disease risk",
+    "gseAccession": "GSE175621",
+    "dataFileName": "GSM5342804_scR_filtered_peak_bc_matrix.h5",
+    "organism": "Human",
+    "source": "Coronary artery",
+    "platform": "Illumina NovaSeq 6000"
+  },
+  {
+    "id": "gse175621-gsm5342805",
+    "authors": "Turner A, Shengen H, Zang C, Miller C",
+    "title": "Cell-specific chromatin landscape in human coronary artery resolves regulatory mechanisms of disease risk",
+    "gseAccession": "GSE175621",
+    "dataFileName": "GSM5342805_scS_filtered_peak_bc_matrix.h5",
+    "organism": "Human",
+    "source": "Coronary artery",
+    "platform": "Illumina NovaSeq 6000"
+  },
+  {
+    "id": "gse175621-gsm5342806",
+    "authors": "Turner A, Shengen H, Zang C, Miller C",
+    "title": "Cell-specific chromatin landscape in human coronary artery resolves regulatory mechanisms of disease risk",
+    "gseAccession": "GSE175621",
+    "dataFileName": "GSM5342806_scT_filtered_peak_bc_matrix.h5",
+    "organism": "Human",
+    "source": "Coronary artery",
+    "platform": "Illumina NovaSeq 6000"
+  },
+  {
+    "id": "gse175621-gsm5342807",
+    "authors": "Turner A, Shengen H, Zang C, Miller C",
+    "title": "Cell-specific chromatin landscape in human coronary artery resolves regulatory mechanisms of disease risk",
+    "gseAccession": "GSE175621",
+    "dataFileName": "GSM5342807_scU_filtered_peak_bc_matrix.h5",
+    "organism": "Human",
+    "source": "Coronary artery",
+    "platform": "Illumina NovaSeq 6000"
+  },
+  {
+    "id": "gse175621-gsm5342808",
+    "authors": "Turner A, Shengen H, Zang C, Miller C",
+    "title": "Cell-specific chromatin landscape in human coronary artery resolves regulatory mechanisms of disease risk",
+    "gseAccession": "GSE175621",
+    "dataFileName": "GSM5342808_scV_filtered_peak_bc_matrix.h5",
+    "organism": "Human",
+    "source": "Coronary artery",
+    "platform": "Illumina NovaSeq 6000"
+  },
+  {
+    "id": "gse175621-gsm5342809",
+    "authors": "Turner A, Shengen H, Zang C, Miller C",
+    "title": "Cell-specific chromatin landscape in human coronary artery resolves regulatory mechanisms of disease risk",
+    "gseAccession": "GSE175621",
+    "dataFileName": "GSM5342809_scW_filtered_peak_bc_matrix.h5",
+    "organism": "Human",
+    "source": "Coronary artery",
+    "platform": "Illumina NovaSeq 6000"
+  },
+  {
+    "id": "gse175621-gsm5342810",
+    "authors": "Turner A, Shengen H, Zang C, Miller C",
+    "title": "Cell-specific chromatin landscape in human coronary artery resolves regulatory mechanisms of disease risk",
+    "gseAccession": "GSE175621",
+    "dataFileName": "GSM5342810_scX_filtered_peak_bc_matrix.h5",
+    "organism": "Human",
+    "source": "Coronary artery",
+    "platform": "Illumina NovaSeq 6000"
+  },
+  {
+    "id": "gse175621-gsm5342811",
+    "authors": "Turner A, Shengen H, Zang C, Miller C",
+    "title": "Cell-specific chromatin landscape in human coronary artery resolves regulatory mechanisms of disease risk",
+    "gseAccession": "GSE175621",
+    "dataFileName": "GSM5342811_scY_filtered_peak_bc_matrix.h5",
+    "organism": "Human",
+    "source": "Coronary artery",
+    "platform": "Illumina NovaSeq 6000"
+  },
+  {
+    "id": "gse175621-gsm5342812",
+    "authors": "Turner A, Shengen H, Zang C, Miller C",
+    "title": "Cell-specific chromatin landscape in human coronary artery resolves regulatory mechanisms of disease risk",
+    "gseAccession": "GSE175621",
+    "dataFileName": "GSM5342812_scZ_filtered_peak_bc_matrix.h5",
+    "organism": "Human",
+    "source": "Coronary artery",
+    "platform": "Illumina NovaSeq 6000"
+  },
+  {
+    "id": "gse175621-gsm5342813",
+    "authors": "Turner A, Shengen H, Zang C, Miller C",
+    "title": "Cell-specific chromatin landscape in human coronary artery resolves regulatory mechanisms of disease risk",
+    "gseAccession": "GSE175621",
+    "dataFileName": "GSM5342813_scAA_filtered_peak_bc_matrix.h5",
+    "organism": "Human",
+    "source": "Coronary artery",
+    "platform": "Illumina NovaSeq 6000"
+  },
+  {
+    "id": "gse175621-gsm5342814",
+    "authors": "Turner A, Shengen H, Zang C, Miller C",
+    "title": "Cell-specific chromatin landscape in human coronary artery resolves regulatory mechanisms of disease risk",
+    "gseAccession": "GSE175621",
+    "dataFileName": "GSM5342814_scAB_filtered_peak_bc_matrix.h5",
+    "organism": "Human",
+    "source": "Coronary artery",
+    "platform": "Illumina NovaSeq 6000"
+  },
+  {
+    "id": "gse175621-gsm5342815",
+    "authors": "Turner A, Shengen H, Zang C, Miller C",
+    "title": "Cell-specific chromatin landscape in human coronary artery resolves regulatory mechanisms of disease risk",
+    "gseAccession": "GSE175621",
+    "dataFileName": "GSM5342815_scAC_filtered_peak_bc_matrix.h5",
+    "organism": "Human",
+    "source": "Coronary artery",
+    "platform": "Illumina NovaSeq 6000"
+  },
+  {
+    "id": "gse175621-gsm5342816",
+    "authors": "Turner A, Shengen H, Zang C, Miller C",
+    "title": "Cell-specific chromatin landscape in human coronary artery resolves regulatory mechanisms of disease risk",
+    "gseAccession": "GSE175621",
+    "dataFileName": "GSM5342816_scAD_filtered_peak_bc_matrix.h5",
+    "organism": "Human",
+    "source": "Coronary artery",
+    "platform": "Illumina NovaSeq 6000"
+  },
+  {
+    "id": "gse175621-gsm5342817",
+    "authors": "Turner A, Shengen H, Zang C, Miller C",
+    "title": "Cell-specific chromatin landscape in human coronary artery resolves regulatory mechanisms of disease risk",
+    "gseAccession": "GSE175621",
+    "dataFileName": "GSM5342817_scAE_filtered_peak_bc_matrix.h5",
+    "organism": "Human",
+    "source": "Coronary artery",
+    "platform": "Illumina NovaSeq 6000"
+  },
+  {
+    "id": "gse175621-gsm5342818",
+    "authors": "Turner A, Shengen H, Zang C, Miller C",
+    "title": "Cell-specific chromatin landscape in human coronary artery resolves regulatory mechanisms of disease risk",
+    "gseAccession": "GSE175621",
+    "dataFileName": "GSM5342818_scAF_filtered_peak_bc_matrix.h5",
+    "organism": "Human",
+    "source": "Coronary artery",
+    "platform": "Illumina NovaSeq 6000"
+  },
+  {
+    "id": "gse175621-gsm5342819",
+    "authors": "Turner A, Shengen H, Zang C, Miller C",
+    "title": "Cell-specific chromatin landscape in human coronary artery resolves regulatory mechanisms of disease risk",
+    "gseAccession": "GSE175621",
+    "dataFileName": "GSM5342819_scAG_filtered_peak_bc_matrix.h5",
+    "organism": "Human",
+    "source": "Coronary artery",
+    "platform": "Illumina NovaSeq 6000"
+  },
+  {
+    "id": "gse175621-gsm5342820",
+    "authors": "Turner A, Shengen H, Zang C, Miller C",
+    "title": "Cell-specific chromatin landscape in human coronary artery resolves regulatory mechanisms of disease risk",
+    "gseAccession": "GSE175621",
+    "dataFileName": "GSM5342820_scAH_filtered_peak_bc_matrix.h5",
+    "organism": "Human",
+    "source": "Coronary artery",
+    "platform": "Illumina NovaSeq 6000"
+  },
+  {
+    "id": "gse175621-gsm5342821",
+    "authors": "Turner A, Shengen H, Zang C, Miller C",
+    "title": "Cell-specific chromatin landscape in human coronary artery resolves regulatory mechanisms of disease risk",
+    "gseAccession": "GSE175621",
+    "dataFileName": "GSM5342821_scAI_filtered_peak_bc_matrix.h5",
+    "organism": "Human",
+    "source": "Coronary artery",
+    "platform": "Illumina NovaSeq 6000"
+  },
+  {
+    "id": "gse175621-gsm5342822",
+    "authors": "Turner A, Shengen H, Zang C, Miller C",
+    "title": "Cell-specific chromatin landscape in human coronary artery resolves regulatory mechanisms of disease risk",
+    "gseAccession": "GSE175621",
+    "dataFileName": "GSM5342822_scAJ_filtered_peak_bc_matrix.h5",
+    "organism": "Human",
+    "source": "Coronary artery",
+    "platform": "Illumina NovaSeq 6000"
+  },
+  {
+    "id": "gse175621-gsm5342823",
+    "authors": "Turner A, Shengen H, Zang C, Miller C",
+    "title": "Cell-specific chromatin landscape in human coronary artery resolves regulatory mechanisms of disease risk",
+    "gseAccession": "GSE175621",
+    "dataFileName": "GSM5342823_scAK_filtered_peak_bc_matrix.h5",
+    "organism": "Human",
+    "source": "Coronary artery",
+    "platform": "Illumina NovaSeq 6000"
+  },
+  {
+    "id": "gse175621-gsm5342824",
+    "authors": "Turner A, Shengen H, Zang C, Miller C",
+    "title": "Cell-specific chromatin landscape in human coronary artery resolves regulatory mechanisms of disease risk",
+    "gseAccession": "GSE175621",
+    "dataFileName": "GSM5342824_scAL_filtered_peak_bc_matrix.h5",
+    "organism": "Human",
+    "source": "Coronary artery",
+    "platform": "Illumina NovaSeq 6000"
+  },
+  {
+    "id": "gse175621-gsm5342825",
+    "authors": "Turner A, Shengen H, Zang C, Miller C",
+    "title": "Cell-specific chromatin landscape in human coronary artery resolves regulatory mechanisms of disease risk",
+    "gseAccession": "GSE175621",
+    "dataFileName": "GSM5342825_scAM_filtered_peak_bc_matrix.h5",
+    "organism": "Human",
+    "source": "Coronary artery",
+    "platform": "Illumina NovaSeq 6000"
+  },
+  {
+    "id": "gse175621-gsm5342826",
+    "authors": "Turner A, Shengen H, Zang C, Miller C",
+    "title": "Cell-specific chromatin landscape in human coronary artery resolves regulatory mechanisms of disease risk",
+    "gseAccession": "GSE175621",
+    "dataFileName": "GSM5342826_scAN_filtered_peak_bc_matrix.h5",
+    "organism": "Human",
+    "source": "Coronary artery",
+    "platform": "Illumina NovaSeq 6000"
+  },
+  {
+    "id": "gse175621-gsm5342827",
+    "authors": "Turner A, Shengen H, Zang C, Miller C",
+    "title": "Cell-specific chromatin landscape in human coronary artery resolves regulatory mechanisms of disease risk",
+    "gseAccession": "GSE175621",
+    "dataFileName": "GSM5342827_scAO_filtered_peak_bc_matrix.h5",
+    "organism": "Human",
+    "source": "Coronary artery",
+    "platform": "Illumina NovaSeq 6000"
+  },
+  {
+    "id": "gse175621-gsm5342828",
+    "authors": "Turner A, Shengen H, Zang C, Miller C",
+    "title": "Cell-specific chromatin landscape in human coronary artery resolves regulatory mechanisms of disease risk",
+    "gseAccession": "GSE175621",
+    "dataFileName": "GSM5342828_scAP_filtered_peak_bc_matrix.h5",
+    "organism": "Human",
+    "source": "Coronary artery",
+    "platform": "Illumina NovaSeq 6000"
+  },
+  {
+    "id": "gse175621-gsm5342829",
+    "authors": "Turner A, Shengen H, Zang C, Miller C",
+    "title": "Cell-specific chromatin landscape in human coronary artery resolves regulatory mechanisms of disease risk",
+    "gseAccession": "GSE175621",
+    "dataFileName": "GSM5342829_scAQ_filtered_peak_bc_matrix.h5",
+    "organism": "Human",
+    "source": "Coronary artery",
+    "platform": "Illumina NovaSeq 6000"
+  },
+  {
+    "id": "gse175621-gsm5342830",
+    "authors": "Turner A, Shengen H, Zang C, Miller C",
+    "title": "Cell-specific chromatin landscape in human coronary artery resolves regulatory mechanisms of disease risk",
+    "gseAccession": "GSE175621",
+    "dataFileName": "GSM5342830_scAR_filtered_peak_bc_matrix.h5",
+    "organism": "Human",
+    "source": "Coronary artery",
+    "platform": "Illumina NovaSeq 6000"
+  },
+  {
+    "id": "gse184846-gsm5598163",
+    "authors": "Vacchio M, Chopp L, Bosselut R",
+    "title": "Dependence on Bcl6 and Blimp1 identifies distinct mechanisms driving memory and follicular helper CD4+ T cell differentiation [scATAC-Seq]",
+    "gseAccession": "GSE184846",
+    "dataFileName": "GSM5598163_filtered_peak_bc_matrix_WT_E4.h5",
+    "organism": "Mouse",
+    "source": "Spleen",
+    "platform": "NextSeq 2000"
+  },
+  {
+    "id": "gse184846-gsm5598164",
+    "authors": "Vacchio M, Chopp L, Bosselut R",
+    "title": "Dependence on Bcl6 and Blimp1 identifies distinct mechanisms driving memory and follicular helper CD4+ T cell differentiation [scATAC-Seq]",
+    "gseAccession": "GSE184846",
+    "dataFileName": "GSM5598164_filtered_peak_bc_matrix_dKO_E4.h5",
+    "organism": "Mouse",
+    "source": "Spleen",
+    "platform": "NextSeq 2000"
+  },
+  {
+    "id": "gse184846-gsm5598165",
+    "authors": "Vacchio M, Chopp L, Bosselut R",
+    "title": "Dependence on Bcl6 and Blimp1 identifies distinct mechanisms driving memory and follicular helper CD4+ T cell differentiation [scATAC-Seq]",
+    "gseAccession": "GSE184846",
+    "dataFileName": "GSM5598165_filtered_peak_bc_matrix_WT_E5.h5",
+    "organism": "Mouse",
+    "source": "Spleen",
+    "platform": "NextSeq 2000"
+  },
+  {
+    "id": "gse184846-gsm5598166",
+    "authors": "Vacchio M, Chopp L, Bosselut R",
+    "title": "Dependence on Bcl6 and Blimp1 identifies distinct mechanisms driving memory and follicular helper CD4+ T cell differentiation [scATAC-Seq]",
+    "gseAccession": "GSE184846",
+    "dataFileName": "GSM5598166_filtered_peak_bc_matrix_dKO_E5.h5",
+    "organism": "Mouse",
+    "source": "Spleen",
+    "platform": "NextSeq 2000"
+  },
+  {
+    "id": "gse184846-gsm5598167",
+    "authors": "Vacchio M, Chopp L, Bosselut R",
+    "title": "Dependence on Bcl6 and Blimp1 identifies distinct mechanisms driving memory and follicular helper CD4+ T cell differentiation [scATAC-Seq]",
+    "gseAccession": "GSE184846",
+    "dataFileName": "GSM5598167_filtered_peak_bc_matrix_WT_E6.h5",
+    "organism": "Mouse",
+    "source": "Spleen",
+    "platform": "NextSeq 2000"
+  },
+  {
+    "id": "gse184846-gsm5598168",
+    "authors": "Vacchio M, Chopp L, Bosselut R",
+    "title": "Dependence on Bcl6 and Blimp1 identifies distinct mechanisms driving memory and follicular helper CD4+ T cell differentiation [scATAC-Seq]",
+    "gseAccession": "GSE184846",
+    "dataFileName": "GSM5598168_filtered_peak_bc_matrix_dKO_E6.h5",
+    "organism": "Mouse",
+    "source": "Spleen",
+    "platform": "NextSeq 2000"
+  },
+  {
+    "id": "gse184846-gsm5598169",
+    "authors": "Vacchio M, Chopp L, Bosselut R",
+    "title": "Dependence on Bcl6 and Blimp1 identifies distinct mechanisms driving memory and follicular helper CD4+ T cell differentiation [scATAC-Seq]",
+    "gseAccession": "GSE184846",
+    "dataFileName": "GSM5598169_filtered_peak_bc_matrix_WT_E7.h5",
+    "organism": "Mouse",
+    "source": "Spleen",
+    "platform": "NextSeq 2000"
+  },
+  {
+    "id": "gse184846-gsm5598170",
+    "authors": "Vacchio M, Chopp L, Bosselut R",
+    "title": "Dependence on Bcl6 and Blimp1 identifies distinct mechanisms driving memory and follicular helper CD4+ T cell differentiation [scATAC-Seq]",
+    "gseAccession": "GSE184846",
+    "dataFileName": "GSM5598170_filtered_peak_bc_matrix_dKO_E7.h5",
+    "organism": "Mouse",
+    "source": "Spleen",
+    "platform": "NextSeq 2000"
+  },
+  {
+    "id": "gse166174-gse166174",
+    "authors": "Collin J, Queen R, Zerti D, Steel DH, Bowen C, Parulekar M et al.",
+    "title": "Dissecting transcriptional and chromatin accessibility heterogeneity of proliferating cone precursors in human retinoblastoma tumours by single cell sequencing [scATAC-seq]",
+    "gseAccession": "GSE166174",
+    "dataFileName": "GSE166174_filtered_peak_bc_matrix.h5",
+    "organism": "Human",
+    "source": "Retina",
+    "platform": "Illumina NovaSeq 6000"
+  },
+  {
+    "id": "gse157378-gsm4763866",
+    "authors": "Liu X, Rowan SC, Noble PW, Jiang D",
+    "title": "Single cell ATAC-sequencing on E17.5 mouse lungs.",
+    "gseAccession": "GSE157378",
+    "dataFileName": "GSM4763866_E17-5-7_scATAC-seq_filtered_peak_bc_matrix.h5",
+    "organism": "Mouse",
+    "source": "embryonic mouse lung single cells",
+    "platform": "Illumina NovaSeq 6000"
+  },
+  {
+    "id": "gse157378-gsm4763867",
+    "authors": "Liu X, Rowan SC, Noble PW, Jiang D",
+    "title": "Single cell ATAC-sequencing on E17.5 mouse lungs.",
+    "gseAccession": "GSE157378",
+    "dataFileName": "GSM4763867_E17-5-8_scATAC-seq_filtered_peak_bc_matrix.h5",
+    "organism": "Mouse",
+    "source": "embryonic mouse lung single cells",
+    "platform": "Illumina NovaSeq 6000"
+  },
+  {
+    "id": "gse157378-gsm4763868",
+    "authors": "Liu X, Rowan SC, Noble PW, Jiang D",
+    "title": "Single cell ATAC-sequencing on E17.5 mouse lungs.",
+    "gseAccession": "GSE157378",
+    "dataFileName": "GSM4763868_E17-5-9_scATAC-seq_filtered_peak_bc_matrix.h5",
+    "organism": "Mouse",
+    "source": "embryonic mouse lung single cells",
+    "platform": "Illumina NovaSeq 6000"
+  },
+  {
+    "id": "gse154175-gse154175",
+    "authors": "Meijer M, Agirre E, Kabbe M, van Tuijn CA, Heskol A, Falcao AM et al.",
+    "title": "A primed immune transcriptional program is activated in oligodendroglia in multiple sclerosis [SCATAC_10X]",
+    "gseAccession": "GSE154175",
+    "dataFileName": "GSE154175_filtered_peak_bc_matrix.h5",
+    "organism": "Mouse",
+    "source": "spinal cord tissue",
+    "platform": "Illumina NovaSeq 6000"
+  },
+  {
+    "id": "gse164422-gsm5009426",
+    "authors": "Penkala IJ, Morley MP, Morrisey EE",
+    "title": "Single Cell sequencing analysis of adult AT1 Yap/Taz KO and wild-type lung epithelium",
+    "gseAccession": "GSE164422",
+    "dataFileName": "GSM5009426_filtered_peak_bc_matrix.h5",
+    "organism": "Mouse",
+    "source": "Lung epithelium",
+    "platform": "Illumina NextSeq 500"
+  },
+  {
+    "id": "gse174456-gse174456",
+    "authors": "Shinoda K, Liu L, Benitez G",
+    "title": "scATAC-seq of Inguinal Adipose Tissue of UCP1-KO and WT mice.",
+    "gseAccession": "GSE174456",
+    "dataFileName": "GSE174456_aggr_WT_and_UCP1-KO.filtered_peak_bc_matrix.h5",
+    "organism": "Mouse",
+    "source": "Inguinal Adipose Tissue",
+    "platform": "Illumina NextSeq 500"
+  },
+  {
+    "id": "gse153163-gsm4635089",
+    "authors": "Di Bella DJ, Habibi E, Regev A, Arlotta P",
+    "title": "Molecular Logic of Cellular Diversification in the Mouse Cerebral Cortex (scATACseq)",
+    "gseAccession": "GSE153163",
+    "dataFileName": "GSM4635089_E13_5_filtered_peak_bc_matrix.h5",
+    "organism": "Mouse",
+    "source": "mouse brain cortex",
+    "platform": "Illumina NextSeq 500"
+  },
+  {
+    "id": "gse153163-gsm4635090",
+    "authors": "Di Bella DJ, Habibi E, Regev A, Arlotta P",
+    "title": "Molecular Logic of Cellular Diversification in the Mouse Cerebral Cortex (scATACseq)",
+    "gseAccession": "GSE153163",
+    "dataFileName": "GSM4635090_E15_5_filtered_peak_bc_matrix.h5",
+    "organism": "Mouse",
+    "source": "mouse brain cortex",
+    "platform": "Illumina NextSeq 500"
+  },
+  {
+    "id": "gse153163-gsm4635091",
+    "authors": "Di Bella DJ, Habibi E, Regev A, Arlotta P",
+    "title": "Molecular Logic of Cellular Diversification in the Mouse Cerebral Cortex (scATACseq)",
+    "gseAccession": "GSE153163",
+    "dataFileName": "GSM4635091_E18_5_filtered_peak_bc_matrix.h5",
+    "organism": "Mouse",
+    "source": "mouse brain cortex",
+    "platform": "Illumina NextSeq 500"
+  },
+  {
+    "id": "gse164747-gsm5018058",
+    "authors": "Liu Z, Chen T, Tian W, Chen Y",
+    "title": "Discovery and functional assessment of a novel adipocyte population driven by intracellular Wnt/β-catenin signaling in mammals",
+    "gseAccession": "GSE164747",
+    "dataFileName": "GSM5018058_atac_iBATneg_filtered_peak_bc_matrix.h5",
+    "organism": "Mouse",
+    "source": "Interscapular brown adipose tissues",
+    "platform": "NextSeq 550"
+  },
+  {
+    "id": "gse164747-gsm5018059",
+    "authors": "Liu Z, Chen T, Tian W, Chen Y",
+    "title": "Discovery and functional assessment of a novel adipocyte population driven by intracellular Wnt/β-catenin signaling in mammals",
+    "gseAccession": "GSE164747",
+    "dataFileName": "GSM5018059_atac_iBATpos_filtered_peak_bc_matrix.h5",
+    "organism": "Mouse",
+    "source": "Interscapular brown adipose tissues",
+    "platform": "NextSeq 550"
+  },
+  {
+    "id": "gse164747-gsm5018060",
+    "authors": "Liu Z, Chen T, Tian W, Chen Y",
+    "title": "Discovery and functional assessment of a novel adipocyte population driven by intracellular Wnt/β-catenin signaling in mammals",
+    "gseAccession": "GSE164747",
+    "dataFileName": "GSM5018060_atac_iWATneg_filtered_peak_bc_matrix.h5",
+    "organism": "Mouse",
+    "source": "Inguinal white adipose tissues",
+    "platform": "NextSeq 550"
+  },
+  {
+    "id": "gse164747-gsm5018061",
+    "authors": "Liu Z, Chen T, Tian W, Chen Y",
+    "title": "Discovery and functional assessment of a novel adipocyte population driven by intracellular Wnt/β-catenin signaling in mammals",
+    "gseAccession": "GSE164747",
+    "dataFileName": "GSM5018061_atac_iWATpos_filtered_peak_bc_matrix.h5",
+    "organism": "Mouse",
+    "source": "Inguinal white adipose tissues",
+    "platform": "NextSeq 550"
+  },
+  {
+    "id": "gse151425-gsm4577930",
+    "authors": "Brady NJ, Bagadion AM, Singh R, Rickman DS",
+    "title": "Temporal evolution of cellular heterogeneity during the progression to advanced, AR-negative prostate cancer [scATAC-seq]",
+    "gseAccession": "GSE151425",
+    "dataFileName": "GSM4577930_NMYC_RB_3056_filtered_peak_bc_matrix.h5",
+    "organism": "Mouse",
+    "source": "Mouse tumor",
+    "platform": "Illumina NovaSeq 6000"
+  },
+  {
+    "id": "gse151425-gsm4795688",
+    "authors": "Brady NJ, Bagadion AM, Singh R, Rickman DS",
+    "title": "Temporal evolution of cellular heterogeneity during the progression to advanced, AR-negative prostate cancer [scATAC-seq]",
+    "gseAccession": "GSE151425",
+    "dataFileName": "GSM4795688_NMYC_RB_3489_filtered_peak_bc_matrix.h5",
+    "organism": "Mouse",
+    "source": "Mouse tumor",
+    "platform": "Illumina NovaSeq 6000"
+  },
+  {
+    "id": "gse151425-gsm4795689",
+    "authors": "Brady NJ, Bagadion AM, Singh R, Rickman DS",
+    "title": "Temporal evolution of cellular heterogeneity during the progression to advanced, AR-negative prostate cancer [scATAC-seq]",
+    "gseAccession": "GSE151425",
+    "dataFileName": "GSM4795689_NMYC_RB_3490_filtered_peak_bc_matrix.h5",
+    "organism": "Mouse",
+    "source": "Mouse tumor",
+    "platform": "Illumina NovaSeq 6000"
+  },
+  {
+    "id": "gse158196-gsm4795059",
+    "authors": "Little D, Chen J",
+    "title": "Differential chromatin binding of the lung lineage transcription factor NKX2-1 resolves opposing murine alveolar cell fates in vivo [scATAC-Seq]",
+    "gseAccession": "GSE158196",
+    "dataFileName": "GSM4795059_7wk-scATAC_filtered_peak_bc_matrix.h5",
+    "organism": "Mouse",
+    "source": "Lung epithelial, immune, endothelial, and mesenchymal cells",
+    "platform": "Illumina NovaSeq 6000"
+  },
+  {
+    "id": "gse161132-gsm4890020",
+    "authors": "Yang Z, Liu G",
+    "title": "Decoding Cortical Glial Cell Development",
+    "gseAccession": "GSE161132",
+    "dataFileName": "GSM4890020_filtered_peak_bc_matrix.h5",
+    "organism": "Mouse",
+    "source": "mouse cortex",
+    "platform": "Illumina NovaSeq 6000"
+  },
+  {
+    "id": "gse153479-gse153479",
+    "authors": "Wang Z, Tan W, Olson E",
+    "title": "Single cell ATAC-seq of neonatal heart regeneration",
+    "gseAccession": "GSE153479",
+    "dataFileName": "GSE153479_filtered_peak_bc_matrix.h5",
+    "organism": "Mouse",
+    "source": "Single cells isolated from ventricle tissue below left anterior descending artery ligation plane",
+    "platform": "Illumina NextSeq 500"
+  },
+  {
+    "id": "gse137069-gse137069",
+    "authors": "Alonso Curbelo D, Lowe SW",
+    "title": "An epigenetic program established by gene – environment interactions initiates pancreatic carcinogenesis [scATAC-Seq]",
+    "gseAccession": "GSE137069",
+    "dataFileName": "GSE137069_Merged_filtered_peak_bc_matrix.h5",
+    "organism": "Mouse",
+    "source": "sorted primary pancreatic epithelial cells",
+    "platform": "Illumina HiSeq 2500"
+  },
+  {
+    "id": "gse151408-gse151408",
+    "authors": "Pfefferlé M, Ingoglia G, Vallelian F, Schaer D",
+    "title": "Erythrophagocytosis drives anti-inflammatory programming of liver macrophages (ATAC-seq)",
+    "gseAccession": "GSE151408",
+    "dataFileName": "GSE151408_filtered_peak_bc_matrix.h5",
+    "organism": "Mouse",
+    "source": "Liver",
+    "platform": "Illumina NextSeq 500"
+  },
+  {
+    "id": "gse142358-gsm4226308",
+    "authors": "Muench DE, Olsson A, Chetal K, Salomonis N, Grimes HL",
+    "title": "Mouse models of neutropenia reveal progenitor-stage-specific defects [scATAC-Seq]",
+    "gseAccession": "GSE142358",
+    "dataFileName": "GSM4226308_Gfi1-WT-rep-3531-filtered_peak_bc_matrix.h5",
+    "organism": "Mouse",
+    "source": "Bone marrow",
+    "platform": "Illumina NovaSeq 6000"
+  },
+  {
+    "id": "gse142358-gsm4226309",
+    "authors": "Muench DE, Olsson A, Chetal K, Salomonis N, Grimes HL",
+    "title": "Mouse models of neutropenia reveal progenitor-stage-specific defects [scATAC-Seq]",
+    "gseAccession": "GSE142358",
+    "dataFileName": "GSM4226309_Gfi1-WT-rep-3534-filtered_peak_bc_matrix.h5",
+    "organism": "Mouse",
+    "source": "Bone marrow",
+    "platform": "Illumina NovaSeq 6000"
+  },
+  {
+    "id": "gse142358-gsm4226310",
+    "authors": "Muench DE, Olsson A, Chetal K, Salomonis N, Grimes HL",
+    "title": "Mouse models of neutropenia reveal progenitor-stage-specific defects [scATAC-Seq]",
+    "gseAccession": "GSE142358",
+    "dataFileName": "GSM4226310_Gfi1-R412X-R412X-filtered_peak_bc_matrix.h5",
+    "organism": "Mouse",
+    "source": "Bone marrow",
+    "platform": "Illumina NovaSeq 6000"
+  },
+  {
+    "id": "gse192947-gsm5769453",
+    "authors": "Jimenez E, Burgess SM, Slevin C, Wu W, Elkahloun AG",
+    "title": "A regulatory network of Sox and Six transcription factors initiate a cell fate transformation during hearing regeneration in adult zebrafish",
+    "gseAccession": "GSE192947",
+    "dataFileName": "GSM5769453_WT_S_filtered_peak_bc_matrix.h5",
+    "organism": "Zebrafish",
+    "source": "Untreated wild-type saccule",
+    "platform": "NextSeq 550"
+  },
+  {
+    "id": "gse192947-gsm5769454",
+    "authors": "Jimenez E, Burgess SM, Slevin C, Wu W, Elkahloun AG",
+    "title": "A regulatory network of Sox and Six transcription factors initiate a cell fate transformation during hearing regeneration in adult zebrafish",
+    "gseAccession": "GSE192947",
+    "dataFileName": "GSM5769454_WT_U_filtered_peak_bc_matrix.h5",
+    "organism": "Zebrafish",
+    "source": "Untreated wild-type saccule",
+    "platform": "NextSeq 550"
+  },
+  {
+    "id": "gse192947-gsm5769455",
+    "authors": "Jimenez E, Burgess SM, Slevin C, Wu W, Elkahloun AG",
+    "title": "A regulatory network of Sox and Six transcription factors initiate a cell fate transformation during hearing regeneration in adult zebrafish",
+    "gseAccession": "GSE192947",
+    "dataFileName": "GSM5769455_Day4_WT_S_filtered_peak_bc_matrix.h5",
+    "organism": "Zebrafish",
+    "source": "Day 4 post-DT wild-type saccule",
+    "platform": "NextSeq 550"
+  },
+  {
+    "id": "gse192947-gsm5769456",
+    "authors": "Jimenez E, Burgess SM, Slevin C, Wu W, Elkahloun AG",
+    "title": "A regulatory network of Sox and Six transcription factors initiate a cell fate transformation during hearing regeneration in adult zebrafish",
+    "gseAccession": "GSE192947",
+    "dataFileName": "GSM5769456_DTR_S_filtered_peak_bc_matrix.h5",
+    "organism": "Zebrafish",
+    "source": "Untreated DTR saccule",
+    "platform": "NextSeq 550"
+  },
+  {
+    "id": "gse192947-gsm5769457",
+    "authors": "Jimenez E, Burgess SM, Slevin C, Wu W, Elkahloun AG",
+    "title": "A regulatory network of Sox and Six transcription factors initiate a cell fate transformation during hearing regeneration in adult zebrafish",
+    "gseAccession": "GSE192947",
+    "dataFileName": "GSM5769457_DTR_U_filtered_peak_bc_matrix.h5",
+    "organism": "Zebrafish",
+    "source": "Untreated DTR utricle",
+    "platform": "NextSeq 550"
+  },
+  {
+    "id": "gse192947-gsm5769458",
+    "authors": "Jimenez E, Burgess SM, Slevin C, Wu W, Elkahloun AG",
+    "title": "A regulatory network of Sox and Six transcription factors initiate a cell fate transformation during hearing regeneration in adult zebrafish",
+    "gseAccession": "GSE192947",
+    "dataFileName": "GSM5769458_Day4_DTR_S_filtered_peak_bc_matrix.h5",
+    "organism": "Zebrafish",
+    "source": "Regenerating adult zebrafish saccule",
+    "platform": "NextSeq 550"
+  },
+  {
+    "id": "gse192947-gsm5769459",
+    "authors": "Jimenez E, Burgess SM, Slevin C, Wu W, Elkahloun AG",
+    "title": "A regulatory network of Sox and Six transcription factors initiate a cell fate transformation during hearing regeneration in adult zebrafish",
+    "gseAccession": "GSE192947",
+    "dataFileName": "GSM5769459_Day4_DTR_U_filtered_peak_bc_matrix.h5",
+    "organism": "Zebrafish",
+    "source": "Regenerating adult zebrafish utricle",
+    "platform": "NextSeq 550"
+  },
+  {
+    "id": "gse192947-gsm5769460",
+    "authors": "Jimenez E, Burgess SM, Slevin C, Wu W, Elkahloun AG",
+    "title": "A regulatory network of Sox and Six transcription factors initiate a cell fate transformation during hearing regeneration in adult zebrafish",
+    "gseAccession": "GSE192947",
+    "dataFileName": "GSM5769460_Day5_DTR_S_filtered_peak_bc_matrix.h5",
+    "organism": "Zebrafish",
+    "source": "Regenerating adult zebrafish saccule",
+    "platform": "NextSeq 550"
+  },
+  {
+    "id": "gse192947-gsm5769461",
+    "authors": "Jimenez E, Burgess SM, Slevin C, Wu W, Elkahloun AG",
+    "title": "A regulatory network of Sox and Six transcription factors initiate a cell fate transformation during hearing regeneration in adult zebrafish",
+    "gseAccession": "GSE192947",
+    "dataFileName": "GSM5769461_Day5_DTR_U_filtered_peak_bc_matrix.h5",
+    "organism": "Zebrafish",
+    "source": "Regenerating adult zebrafish utricle",
+    "platform": "NextSeq 550"
+  },
+  {
+    "id": "gse192947-gsm5769462",
+    "authors": "Jimenez E, Burgess SM, Slevin C, Wu W, Elkahloun AG",
+    "title": "A regulatory network of Sox and Six transcription factors initiate a cell fate transformation during hearing regeneration in adult zebrafish",
+    "gseAccession": "GSE192947",
+    "dataFileName": "GSM5769462_Day7_DTR_S_filtered_peak_bc_matrix.h5",
+    "organism": "Zebrafish",
+    "source": "Regenerating adult zebrafish saccule",
+    "platform": "NextSeq 550"
+  },
+  {
+    "id": "gse192947-gsm5769463",
+    "authors": "Jimenez E, Burgess SM, Slevin C, Wu W, Elkahloun AG",
+    "title": "A regulatory network of Sox and Six transcription factors initiate a cell fate transformation during hearing regeneration in adult zebrafish",
+    "gseAccession": "GSE192947",
+    "dataFileName": "GSM5769463_Day7_DTR_U_filtered_peak_bc_matrix.h5",
+    "organism": "Zebrafish",
+    "source": "Regenerating adult zebrafish utricle",
+    "platform": "NextSeq 550"
+  },
+  {
+    "id": "gse191029-gsm5737722",
+    "authors": "Blaser BW",
+    "title": "Microenvironmental Control of Hematopoietic Niche Capacity via CXCL8 and Protein Kinase C",
+    "gseAccession": "GSE191029",
+    "dataFileName": "GSM5737722_sele_mcs_filtered_peak_bc_matrix.h5",
+    "organism": "Zebrafish",
+    "source": "zebrafish kidney marrow",
+    "platform": "Illumina NovaSeq 6000"
+  },
+  {
+    "id": "gse191029-gsm5737723",
+    "authors": "Blaser BW",
+    "title": "Microenvironmental Control of Hematopoietic Niche Capacity via CXCL8 and Protein Kinase C",
+    "gseAccession": "GSE191029",
+    "dataFileName": "GSM5737723_sele_prkcda_filtered_peak_bc_matrix.h5",
+    "organism": "Zebrafish",
+    "source": "zebrafish kidney marrow",
+    "platform": "Illumina NovaSeq 6000"
+  },
+  {
+    "id": "gse305723-gsm9183493",
+    "authors": "Wang H, Lu M, Huang L, Zou X, Liu H, Gao Y et al.",
+    "title": "Multi-omics analyses reveal DjTcf4 critical for proper timing of differentiation in planarian regeneration [scATAC_head]",
+    "gseAccession": "GSE305723",
+    "dataFileName": "GSM9183493_scATAC_intact_rep1_filtered_peak_bc_matrix.h5",
+    "organism": "Planarian",
+    "source": "Head intact",
+    "platform": "Illumina NovaSeq 6000"
+  },
+  {
+    "id": "gse305723-gsm9183494",
+    "authors": "Wang H, Lu M, Huang L, Zou X, Liu H, Gao Y et al.",
+    "title": "Multi-omics analyses reveal DjTcf4 critical for proper timing of differentiation in planarian regeneration [scATAC_head]",
+    "gseAccession": "GSE305723",
+    "dataFileName": "GSM9183494_scATAC_intact_rep2_filtered_peak_bc_matrix.h5",
+    "organism": "Planarian",
+    "source": "Head intact",
+    "platform": "Illumina NovaSeq 6000"
+  },
+  {
+    "id": "gse305723-gsm9183495",
+    "authors": "Wang H, Lu M, Huang L, Zou X, Liu H, Gao Y et al.",
+    "title": "Multi-omics analyses reveal DjTcf4 critical for proper timing of differentiation in planarian regeneration [scATAC_head]",
+    "gseAccession": "GSE305723",
+    "dataFileName": "GSM9183495_scATAC_5dpa_rep1_filtered_peak_bc_matrix.h5",
+    "organism": "Planarian",
+    "source": "Head blastema",
+    "platform": "Illumina NovaSeq 6000"
+  },
+  {
+    "id": "gse305723-gsm9183496",
+    "authors": "Wang H, Lu M, Huang L, Zou X, Liu H, Gao Y et al.",
+    "title": "Multi-omics analyses reveal DjTcf4 critical for proper timing of differentiation in planarian regeneration [scATAC_head]",
+    "gseAccession": "GSE305723",
+    "dataFileName": "GSM9183496_scATAC_5dpa_rep2_filtered_peak_bc_matrix.h5",
+    "organism": "Planarian",
+    "source": "Head blastema",
+    "platform": "Illumina NovaSeq 6000"
+  },
+  {
+    "id": "gse214705-gsm6614577",
+    "authors": "Mohana G, Dorier J, Li X, Malek H, Leleu M, Rodriguez D et al.",
+    "title": "Chromosome-level organization of the regulatory genome in the Drosophila nervous system [scATAC-seq]",
+    "gseAccession": "GSE214705",
+    "dataFileName": "GSM6614577_filtered_peak_bc_matrix.h5",
+    "organism": "Drosophila",
+    "source": "central nervous system",
+    "platform": "Illumina HiSeq 4000"
+  }
+]

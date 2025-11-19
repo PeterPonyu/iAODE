@@ -13,5 +13,9 @@ anndata>=0.8.0
 scanpy>=1.8.0
 scvi-tools>=0.16.0
 
+# Visualization and benchmarking
+matplotlib>=3.3.0
+scib>=1.0.0
+
 # Utilities
 tqdm>=4.60.0
