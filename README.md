@@ -26,8 +26,8 @@ pip install iaode
 ### From Source
 
 ```bash
-git clone https://github.com/yourusername/iaode.git
-cd iaode
+git clone https://github.com/PeterPonyu/iAODE.git
+cd iAODE
 pip install -e .
 ```
 
@@ -285,7 +285,7 @@ If you use iAODE in your research, please cite:
   author = {Fu, Zeyu},
   title = {iAODE: Interpretable Autoencoder with Ordinary Differential Equations},
   year = {2024},
-  url = {https://github.com/yourusername/iaode}
+  url = {https://github.com/PeterPonyu/iAODE}
 }
 ```
 
@@ -312,7 +312,7 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 ## Contact
 
 For questions and feedback:
-- GitHub Issues: [https://github.com/yourusername/iaode/issues](https://github.com/yourusername/iaode/issues)
+- GitHub Issues: [https://github.com/PeterPonyu/iAODE/issues](https://github.com/PeterPonyu/iAODE/issues)
 - Email: zeyufu@example.com
 
 ## Changelog

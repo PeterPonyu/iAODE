@@ -65,10 +65,10 @@ docs = [
 ]
 
 [project.urls]
-Homepage = "https://github.com/yourusername/iaode"
+Homepage = "https://github.com/PeterPonyu/iAODE"
 Documentation = "https://iaode.readthedocs.io"
-Repository = "https://github.com/yourusername/iaode"
-"Bug Tracker" = "https://github.com/yourusername/iaode/issues"
+Repository = "https://github.com/PeterPonyu/iAODE"
+"Bug Tracker" = "https://github.com/PeterPonyu/iAODE/issues"
 
 [tool.setuptools]
 packages = ["iaode"]

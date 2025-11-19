@@ -6,8 +6,8 @@ Thank you for your interest in contributing to iAODE! This document provides gui
 
 1. Clone the repository:
 ```bash
-git clone https://github.com/yourusername/iaode.git
-cd iaode
+git clone https://github.com/PeterPonyu/iAODE.git
+cd iAODE
 ```
 
 2. Create a development environment:

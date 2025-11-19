@@ -1,4 +1,3 @@
-
 import numpy as np
 import pandas as pd
 from sklearn.decomposition import PCA
@@ -6,93 +5,94 @@ from scipy.stats import entropy, skew, kurtosis
 from scipy.linalg import svd, norm
 import warnings
 
+
 class SingleCellLatentSpaceEvaluator:
     """
-    专门针对单细胞数据的潜在空间质量评估器
+    Latent space quality evaluator tailored to single-cell data.
     
-    特别适用于：
-    - 单细胞轨迹数据 (发育、分化等)
-    - 单细胞稳态群体数据
-    - 时间序列单细胞数据
+    Especially suitable for:
+    - Single-cell trajectory data (development, differentiation, etc.)
+    - Single-cell steady-state population data
+    - Time-series single-cell data
     
-    关键特性：
-    - 为轨迹数据调整了指标解释
-    - 低各向同性 = 好 (强方向性)
-    - 低参与比 = 好 (信息集中)
-    - 高谱衰减 = 好 (维度效率)
+    Key properties:
+    - Metric interpretations adapted for trajectory data
+    - Low isotropy = good (strong directionality)
+    - Low participation ratio = good (information concentration)
+    - High spectral decay = good (dimensional efficiency)
     """
     
     def __init__(self, data_type="trajectory", verbose=True):
         """
-        Initialize评估器
+        Initialize the evaluator.
         
         Args:
-            data_type: "trajectory" 或 "steady_state"
-            verbose: 是否输出详细信息
+            data_type: "trajectory" or "steady_state"
+            verbose: whether to print detailed logs
         """
         self.data_type = data_type
         self.verbose = verbose
         
-        # 根据数据类型调整期望值
+        # Adjust preferences according to data type
         if data_type == "trajectory":
-            self.isotropy_preference = "low"      # 轨迹期望低各向同性
-            self.participation_preference = "low"  # 轨迹期望低参与比
+            self.isotropy_preference = "low"       # trajectories prefer low isotropy
+            self.participation_preference = "low"  # trajectories prefer low participation ratio
         else:  # steady_state
-            self.isotropy_preference = "high"     # 稳态期望高各向同性  
-            self.participation_preference = "high" # 稳态期望高参与比
+            self.isotropy_preference = "high"      # steady state prefers high isotropy
+            self.participation_preference = "high" # steady state prefers high participation ratio
     
     def _log(self, message):
         if self.verbose:
             print(message)
     
-    # ==================== 1. 修正的流形维度一致性 ====================
+    # ==================== 1. Refined manifold dimensionality consistency ====================
     
     def manifold_dimensionality_score_v2(self, latent_space, 
-                                        variance_thresholds=[0.8, 0.9, 0.95],
-                                        use_multiple_methods=True):
+                                         variance_thresholds=[0.8, 0.9, 0.95],
+                                         use_multiple_methods=True):
         """
-        修正版流形维度一致性评估
-        解决了原版本所有方法得分相同的问题
+        Refined manifold dimensionality consistency metric.
+        Fixes the issue in the original version where all methods yielded the same score.
         
         Args:
-            latent_space: 潜在空间坐标
-            variance_thresholds: 多个方差阈值
-            use_multiple_methods: 是否使用多种方法
+            latent_space: latent coordinates
+            variance_thresholds: list of variance thresholds
+            use_multiple_methods: whether to combine multiple methods
             
         Returns:
-            float: 维度效率分数 (0-1)
+            float: dimensional efficiency score (0–1)
         """
         try:
             if latent_space.shape[1] == 1:
                 return 1.0
             
-            # 中心化数据
+            # Center data
             centered_data = latent_space - np.mean(latent_space, axis=0)
             
-            # PCA分析
+            # PCA
             pca = PCA().fit(centered_data)
             explained_variance_ratio = pca.explained_variance_ratio_
             explained_variance = pca.explained_variance_
             
             dimension_scores = []
             
-            # 方法1：多阈值维度效率
+            # Method 1: multi-threshold dimensional efficiency
             for threshold in variance_thresholds:
                 cumsum = np.cumsum(explained_variance_ratio)
                 effective_dims = np.where(cumsum >= threshold)[0]
                 
                 if len(effective_dims) > 0:
                     effective_dim = effective_dims[0] + 1
-                    # 修正的效率计算：更少维度达到阈值 = 更好
+                    # Fewer dimensions to reach the threshold = higher efficiency
                     efficiency = 1.0 - (effective_dim - 1) / (latent_space.shape[1] - 1)
                     dimension_scores.append(efficiency)
             
-            # 方法2：Kaiser准则维度效率
+            # Method 2: Kaiser criterion efficiency
             normalized_eigenvalues = explained_variance / np.mean(explained_variance)
             kaiser_dim = np.sum(normalized_eigenvalues > 1.0)
             kaiser_efficiency = 1.0 - (kaiser_dim - 1) / (latent_space.shape[1] - 1)
             
-            # 方法3：肘部法则
+            # Method 3: elbow method
             if len(explained_variance) > 2:
                 ratios = explained_variance[:-1] / explained_variance[1:]
                 elbow_dim = np.argmax(ratios) + 1
@@ -100,23 +100,21 @@ class SingleCellLatentSpaceEvaluator:
             else:
                 elbow_efficiency = 1.0
             
-            # 方法4：谱衰减率
+            # Method 4: spectral decay
             if len(explained_variance) > 1:
-                # 计算特征值的对数衰减
                 log_eigenvals = np.log(explained_variance + 1e-10)
                 x = np.arange(len(log_eigenvals))
                 
-                # 线性拟合斜率（衰减率）
                 if len(x) > 1:
                     slope = np.polyfit(x, log_eigenvals, 1)[0]
-                    # 斜率越负，衰减越快，维度集中度越好
+                    # More negative slope => faster decay => stronger concentration
                     decay_score = 1.0 / (1.0 + np.exp(slope))
                 else:
                     decay_score = 0.5
             else:
                 decay_score = 0.5
             
-            # 综合分数
+            # Aggregate score
             if use_multiple_methods:
                 all_scores = dimension_scores + [kaiser_efficiency, elbow_efficiency, decay_score]
                 final_score = np.mean([s for s in all_scores if s is not None])
@@ -126,13 +124,13 @@ class SingleCellLatentSpaceEvaluator:
             return np.clip(final_score, 0.0, 1.0)
             
         except Exception as e:
-            warnings.warn(f"流形维度一致性计算出错: {e}")
+            warnings.warn(f"Error computing manifold dimensionality consistency: {e}")
             return 0.5
     
-    # ==================== 2. 高效内在特性指标 ====================
+    # ==================== 2. Intrinsic efficiency metrics ====================
     
     def spectral_decay_rate(self, latent_space):
-        """谱衰减率 - 越高表示维度集中度越好"""
+        """Spectral decay rate — higher means better concentration across dimensions."""
         try:
             centered_data = latent_space - np.mean(latent_space, axis=0)
             U, s, Vt = svd(centered_data, full_matrices=False)
@@ -141,32 +139,31 @@ class SingleCellLatentSpaceEvaluator:
             if len(eigenvalues) < 2:
                 return 1.0
             
-            # 指数衰减拟合
+            # Fit exponential decay in log space
             log_eigenvals = np.log(eigenvalues + 1e-10)
             x = np.arange(len(log_eigenvals))
             
             slope, _ = np.polyfit(x, log_eigenvals, 1)
-            
-            # 衰减率越负，说明衰减越快
             normalized_decay = 1.0 / (1.0 + np.exp(slope))
             
-            # 第一个特征值的集中度
+            # Concentration of the first eigenvalue
             concentration = eigenvalues[0] / np.sum(eigenvalues)
             
-            # 综合分数
+            # Combined score
             spectral_score = 0.6 * normalized_decay + 0.4 * concentration
             
             return np.clip(spectral_score, 0.0, 1.0)
             
         except Exception as e:
-            warnings.warn(f"谱衰减率计算出错: {e}")
+            warnings.warn(f"Error computing spectral decay rate: {e}")
             return 0.5
     
     def participation_ratio_score(self, latent_space):
         """
-        参与比分数
-        对于轨迹数据：越低越好 (信息集中)
-        对于稳态数据：越高越好 (均匀分布)
+        Participation ratio score.
+        
+        For trajectory data: lower is better (information more concentrated).
+        For steady-state data: higher is better (more even spread).
         """
         try:
             centered_data = latent_space - np.mean(latent_space, axis=0)
@@ -178,7 +175,7 @@ class SingleCellLatentSpaceEvaluator:
             if len(eigenvalues) == 0:
                 return 0.0
             
-            # 参与比公式
+            # Participation ratio
             sum_eigenvals = np.sum(eigenvalues)
             sum_eigenvals_squared = np.sum(eigenvalues**2)
             
@@ -189,32 +186,32 @@ class SingleCellLatentSpaceEvaluator:
             else:
                 normalized_pr = 0.0
             
-            # 根据数据类型调整分数
+            # Adjust according to data type
             if self.participation_preference == "low":
-                # 轨迹数据：低参与比更好
+                # trajectories prefer low participation
                 score = 1.0 - normalized_pr
             else:
-                # 稳态数据：高参与比更好
+                # steady state prefers high participation
                 score = normalized_pr
             
             return np.clip(score, 0.0, 1.0)
             
         except Exception as e:
-            warnings.warn(f"参与比计算出错: {e}")
+            warnings.warn(f"Error computing participation ratio: {e}")
             return 0.5
     
 
     def isotropy_anisotropy_score(self, latent_space):
         """
-        各向同性/异性分数 - 增强版
+        Isotropy/anisotropy score (enhanced version).
         
-        对于轨迹数据：低各向同性更好 (高方向性)
-        对于稳态数据：高各向同性更好 (均匀分布)
+        For trajectory data: low isotropy (high anisotropy) is better (strong directionality).
+        For steady-state data: high isotropy is better (uniform spreading).
         
-        增强特性：
-        - 使用对数变换增加敏感度，避免饱和问题
-        - 集成多种测量方法提高区分度
-        - 动态调整敏感度阈值
+        Enhancements:
+        - Log transforms for higher sensitivity and reduced saturation
+        - Multiple complementary measures to improve discriminability
+        - Adaptive sensitivity via nonlinear mappings
         """
         try:
             centered_data = latent_space - np.mean(latent_space, axis=0)
@@ -228,73 +225,74 @@ class SingleCellLatentSpaceEvaluator:
             
             eigenvalues = np.sort(eigenvalues)[::-1]
             
-            # 方法1：对数椭圆度 (解决饱和问题)
+            # Method 1: log-ellipticity (mitigates saturation)
             log_ellipticity = np.log(eigenvalues[0]) - np.log(eigenvalues[-1] + 1e-12)
             enhanced_ellipticity = np.tanh(log_ellipticity / 4.0)
             
-            # 方法2：多级条件数 (考虑所有相邻比率)
+            # Method 2: multi-level condition numbers
             condition_ratios = []
-            for i in range(len(eigenvalues)-1):
-                ratio = eigenvalues[i] / (eigenvalues[i+1] + 1e-12)
+            for i in range(len(eigenvalues) - 1):
+                ratio = eigenvalues[i] / (eigenvalues[i + 1] + 1e-12)
                 condition_ratios.append(np.log(ratio))
             
             mean_log_condition = np.mean(condition_ratios)
             enhanced_condition = np.tanh(mean_log_condition / 2.0)
             
-            # 方法3：比率方差各向异性 (高敏感度)
+            # Method 3: variance of adjacent ratios
             ratios = eigenvalues[:-1] / (eigenvalues[1:] + 1e-12)
             ratio_variance = np.var(np.log(ratios))
             ratio_anisotropy = np.tanh(ratio_variance)
             
-            # 方法4：熵各向异性
+            # Method 4: entropy-based anisotropy
             eigenval_probs = eigenvalues / np.sum(eigenvalues)
             eigenval_entropy = -np.sum(eigenval_probs * np.log(eigenval_probs + 1e-12))
             max_entropy = np.log(len(eigenvalues))
             entropy_isotropy = eigenval_entropy / max_entropy if max_entropy > 0 else 0
             entropy_anisotropy = 1.0 - entropy_isotropy
             
-            # 方法5：主成分支配度
-            primary_dominance = eigenvalues[0] / np.sum(eigenvalues[1:]) if len(eigenvalues) > 1 else 1
+            # Method 5: dominance of the first principal component
+            primary_dominance = (
+                eigenvalues[0] / np.sum(eigenvalues[1:]) if len(eigenvalues) > 1 else 1
+            )
             dominance_anisotropy = np.tanh(np.log(primary_dominance + 1) / 2.0)
             
-            # 方法6：有效维度反比
+            # Method 6: inverse effective dimensionality
             participation_ratio = (np.sum(eigenvalues)**2) / np.sum(eigenvalues**2)
             effective_dim_anisotropy = 1.0 - (participation_ratio / len(eigenvalues))
             
-            # 加权综合分数
+            # Weighted combination
             anisotropy_components = [
-                enhanced_ellipticity * 0.25,      # 增强椭圆度
-                enhanced_condition * 0.25,        # 改进条件数
-                ratio_anisotropy * 0.20,          # 比率方差
-                entropy_anisotropy * 0.15,        # 熵方法
-                dominance_anisotropy * 0.10,      # 主导性
-                effective_dim_anisotropy * 0.05   # 有效维度
+                enhanced_ellipticity * 0.25,
+                enhanced_condition * 0.25,
+                ratio_anisotropy * 0.20,
+                entropy_anisotropy * 0.15,
+                dominance_anisotropy * 0.10,
+                effective_dim_anisotropy * 0.05,
             ]
             
             weighted_anisotropy = np.sum(anisotropy_components)
             
-            # 根据数据类型调整输出
+            # Adjust based on data type
             if self.isotropy_preference == "low":
-                # 轨迹数据：高各向异性更好
+                # trajectories favor high anisotropy
                 score = weighted_anisotropy
             else:
-                # 稳态数据：低各向异性更好（高各向同性）
+                # steady state favors low anisotropy (high isotropy)
                 score = 1.0 - weighted_anisotropy
             
             return np.clip(score, 0.0, 1.0)
             
         except Exception as e:
-            warnings.warn(f"各向同性分析出错: {e}")
+            warnings.warn(f"Error in isotropy/anisotropy analysis: {e}")
             return 0.5
 
 
-    
-    # ==================== 3. 单细胞特异性指标 ====================
+    # ==================== 3. Single-cell–specific metrics ====================
     
     def trajectory_directionality_score(self, latent_space):
         """
-        轨迹方向性评估
-        评估主发育轴的支配程度
+        Trajectory directionality score.
+        Quantifies how strongly a dominant developmental axis is expressed.
         """
         try:
             pca = PCA()
@@ -302,14 +300,11 @@ class SingleCellLatentSpaceEvaluator:
             explained_var = pca.explained_variance_ratio_
             
             if len(explained_var) >= 2:
-                # 主方向支配度
                 main_dominance = explained_var[0]
                 
-                # 相对于其他方向的比率
                 other_variance = np.sum(explained_var[1:])
                 if other_variance > 1e-10:
                     dominance_ratio = explained_var[0] / other_variance
-                    # sigmoid 归一化
                     directionality = dominance_ratio / (1.0 + dominance_ratio)
                 else:
                     directionality = 1.0
@@ -319,104 +314,100 @@ class SingleCellLatentSpaceEvaluator:
             return np.clip(directionality, 0.0, 1.0)
             
         except Exception as e:
-            warnings.warn(f"轨迹方向性计算出错: {e}")
+            warnings.warn(f"Error computing trajectory directionality: {e}")
             return 0.5
     
     def noise_resilience_score(self, latent_space):
         """
-        噪声抵抗性评估
-        评估降维结果对技术噪声的过滤能力
+        Noise resilience score.
+        Assesses how well the latent space filters out technical noise.
         """
         try:
-            # 基于特征值的噪声评估
             pca = PCA()
             pca.fit(latent_space)
             explained_variance = pca.explained_variance_
             
             if len(explained_variance) > 1:
-                # 计算信噪比
-                signal_variance = np.sum(explained_variance[:2])  # 前两个主成分
+                signal_variance = np.sum(explained_variance[:2])  # first two PCs
                 noise_variance = np.sum(explained_variance[2:]) if len(explained_variance) > 2 else 0
                 
                 if noise_variance > 1e-10:
                     snr = signal_variance / noise_variance
-                    noise_resilience = min(snr / 10.0, 1.0)  # 归一化
+                    noise_resilience = min(snr / 10.0, 1.0)  # normalized
                 else:
-                    noise_resilience = 1.0  # 完美去噪
+                    noise_resilience = 1.0
             else:
                 noise_resilience = 1.0
                 
             return np.clip(noise_resilience, 0.0, 1.0)
             
         except Exception as e:
-            warnings.warn(f"噪声抵抗性计算出错: {e}")
+            warnings.warn(f"Error computing noise resilience: {e}")
             return 0.5
     
-    # ==================== 4. 综合评估框架 ====================
+    # ==================== 4. Comprehensive evaluation framework ====================
     
     def comprehensive_evaluation(self, latent_space):
         """
-        单细胞数据的综合潜在空间评估
+        Comprehensive latent space evaluation for single-cell data.
         
         Args:
-            latent_space: 潜在空间坐标
+            latent_space: latent coordinates
             
         Returns:
-            dict: 完整的评估结果
+            dict: full set of evaluation results
         """
         
-        self._log(f"开始单细胞数据 ({self.data_type}) 综合评估...")
+        self._log(f"Starting comprehensive evaluation for single-cell data ({self.data_type})...")
         
         results = {}
         
-        # 1. 核心流形指标
-        self._log("计算流形维度指标...")
+        # 1. Core manifold metrics
+        self._log("Computing manifold dimensionality metrics...")
         results['manifold_dimensionality'] = self.manifold_dimensionality_score_v2(latent_space)
         
-        # 2. 谱分析指标
-        self._log("计算谱分析指标...")
+        # 2. Spectral metrics
+        self._log("Computing spectral metrics...")
         results['spectral_decay_rate'] = self.spectral_decay_rate(latent_space)
         results['participation_ratio'] = self.participation_ratio_score(latent_space)
         results['anisotropy_score'] = self.isotropy_anisotropy_score(latent_space)
         
-        # 3. 单细胞特异性指标
-        self._log("计算单细胞特异性指标...")
+        # 3. Single-cell–specific metrics
+        self._log("Computing single-cell–specific metrics...")
         results['trajectory_directionality'] = self.trajectory_directionality_score(latent_space)
         
-        # 4. 技术质量指标
-        self._log("计算技术质量指标...")
+        # 4. Technical quality metrics
+        self._log("Computing technical quality metrics...")
         results['noise_resilience'] = self.noise_resilience_score(latent_space)
         
-        # 5. 计算综合分数
-        self._log("计算综合分数...")
+        # 5. Aggregate scores
+        self._log("Computing aggregate scores...")
         
-        # 核心质量分数 (基础流形特性)
         core_metrics = [
             results['manifold_dimensionality'],
             results['spectral_decay_rate'],
             results['participation_ratio'],
-            results['anisotropy_score']
+            results['anisotropy_score'],
         ]
         results['core_quality'] = np.mean(core_metrics)
         
-        # 最终综合分数
         if self.data_type == "trajectory":
-            # 轨迹数据：更重视方向性
+            # Trajectories: emphasize directionality
             final_components = [
-                results['core_quality'] * 0.5,          # 核心质量 50%
-                results['trajectory_directionality'] * 0.3,  # 轨迹方向性 30%
-                results['noise_resilience'] * 0.2       # 噪声抵抗 20%
+                results['core_quality'] * 0.5,
+                results['trajectory_directionality'] * 0.3,
+                results['noise_resilience'] * 0.2,
             ]
         else:
-            # 稳态数据：更重视核心质量
+            # Steady state: emphasize core manifold quality
             final_components = [
-                results['core_quality'] * 0.7,          # 核心质量 70%
-                results['noise_resilience'] * 0.3       # 噪声抵抗 30%
+                results['core_quality'] * 0.7,
+                results['noise_resilience'] * 0.3,
             ]
         
         results['overall_quality'] = np.sum(final_components)
         
-        # 添加解释性信息
+        # Add interpretation
         results['data_type'] = self.data_type
         results['interpretation'] = self._generate_interpretation(results)
         
@@ -426,144 +417,148 @@ class SingleCellLatentSpaceEvaluator:
         return results
     
     def _generate_interpretation(self, results):
-        """生成结果解释"""
+        """Generate a qualitative interpretation of the results."""
         
         interpretation = {
             'quality_level': '',
             'strengths': [],
             'weaknesses': [],
-            'recommendations': []
+            'recommendations': [],
         }
         
         overall = results['overall_quality']
         
-        # 质量等级
+        # Quality level
         if overall >= 0.8:
-            interpretation['quality_level'] = "优秀"
+            interpretation['quality_level'] = "Excellent"
         elif overall >= 0.6:
-            interpretation['quality_level'] = "良好"
+            interpretation['quality_level'] = "Good"
         elif overall >= 0.4:
-            interpretation['quality_level'] = "中等"
+            interpretation['quality_level'] = "Fair"
         else:
-            interpretation['quality_level'] = "需要改进"
+            interpretation['quality_level'] = "Needs improvement"
         
-        # 分析各项指标
         thresholds = {'high': 0.7, 'medium': 0.5, 'low': 0.3}
         
-        # 优势分析
+        # Strengths
         if results['manifold_dimensionality'] > thresholds['high']:
-            interpretation['strengths'].append("维度压缩效率高")
+            interpretation['strengths'].append("High dimensional compression efficiency")
         
         if results['spectral_decay_rate'] > thresholds['high']:
-            interpretation['strengths'].append("特征值衰减良好")
+            interpretation['strengths'].append("Strong eigenvalue decay")
             
         if results['anisotropy_score'] > thresholds['high']:
             if self.data_type == "trajectory":
-                interpretation['strengths'].append("轨迹方向性强")
+                interpretation['strengths'].append("Strong trajectory directionality")
             else:
-                interpretation['strengths'].append("空间分布均匀")
+                interpretation['strengths'].append("Uniform spatial distribution")
                 
         if results['participation_ratio'] > thresholds['high']:
             if self.data_type == "trajectory":
-                interpretation['strengths'].append("信息集中度高")
+                interpretation['strengths'].append("High information concentration")
             else:
-                interpretation['strengths'].append("维度利用均衡")
+                interpretation['strengths'].append("Balanced use of dimensions")
         
         if results['trajectory_directionality'] > thresholds['high']:
-            interpretation['strengths'].append("主发育轴明显")
+            interpretation['strengths'].append("Clear dominant developmental axis")
         
-        # 劣势分析
+        # Weaknesses
         if results['noise_resilience'] < thresholds['medium']:
-            interpretation['weaknesses'].append("噪声过滤能力不足")
+            interpretation['weaknesses'].append("Insufficient noise filtering")
             
         if results['trajectory_directionality'] < thresholds['medium']:
-            interpretation['weaknesses'].append("主发育轴不够明显")
+            interpretation['weaknesses'].append("Dominant developmental axis is weak")
             
         if results['core_quality'] < thresholds['medium']:
-            interpretation['weaknesses'].append("基础流形质量较低")
+            interpretation['weaknesses'].append("Low core manifold quality")
         
-        # 建议
+        # Recommendations
         if overall < 0.6:
-            interpretation['recommendations'].append("考虑调整降维Args")
-            interpretation['recommendations'].append("增加数据预处理步骤")
+            interpretation['recommendations'].append("Consider adjusting dimensionality reduction parameters")
+            interpretation['recommendations'].append("Add or refine preprocessing steps")
             
         if results['noise_resilience'] < 0.4:
-            interpretation['recommendations'].append("增强噪声过滤")
+            interpretation['recommendations'].append("Strengthen noise filtering")
             
         if self.data_type == "trajectory" and results['trajectory_directionality'] < 0.5:
-            interpretation['recommendations'].append("优化轨迹方向性保持")
+            interpretation['recommendations'].append("Optimize preservation of trajectory directionality")
         
         return interpretation
     
     def _print_comprehensive_results(self, results):
-        """打印综合评估结果"""
+        """Print human-readable summary of the evaluation."""
         
-        print("\n" + "="*80)
-        print(f"           单细胞数据 ({self.data_type.upper()}) 潜在空间质量评估")
-        print("="*80)
+        print("\n" + "=" * 80)
+        print(f"     Single-cell ({self.data_type.upper()}) Latent Space Quality Evaluation")
+        print("=" * 80)
         
-        # 核心指标
-        print(f"\n【核心流形指标】")
-        print(f"  流形维度一致性: {results['manifold_dimensionality']:.4f} ★")
-        print(f"  谱衰减率: {results['spectral_decay_rate']:.4f} (越高越好)")
-        print(f"  参与比分数: {results['participation_ratio']:.4f} ({'低参与比好' if self.participation_preference == 'low' else '高参与比好'})")
-        print(f"  各向异性分数: {results['anisotropy_score']:.4f} ({'高异性好' if self.isotropy_preference == 'low' else '低异性好'})")
+        # Core metrics
+        print(f"\n[Core Manifold Metrics]")
+        print(f"  Manifold dimensionality consistency: {results['manifold_dimensionality']:.4f} ★")
+        print(f"  Spectral decay rate: {results['spectral_decay_rate']:.4f} (higher is better)")
+        print(
+            f"  Participation ratio score: {results['participation_ratio']:.4f} "
+            f"({'lower is better' if self.participation_preference == 'low' else 'higher is better'})"
+        )
+        print(
+            f"  Anisotropy score: {results['anisotropy_score']:.4f} "
+            f"({'higher anisotropy preferred' if self.isotropy_preference == 'low' else 'lower anisotropy preferred'})"
+        )
         
-        # 单细胞特异性指标
-        print(f"\n【单细胞特异性指标】")
-        print(f"  轨迹方向性: {results['trajectory_directionality']:.4f} (越高越好)")
+        # Single-cell–specific
+        print(f"\n[Single-cell Specific Metrics]")
+        print(f"  Trajectory directionality: {results['trajectory_directionality']:.4f} (higher is better)")
         
-        # 技术质量
-        print(f"\n【技术质量指标】")
-        print(f"  噪声抵抗性: {results['noise_resilience']:.4f} (越高越好)")
+        # Technical quality
+        print(f"\n[Technical Quality Metrics]")
+        print(f"  Noise resilience: {results['noise_resilience']:.4f} (higher is better)")
         
-        # 综合评估
-        print(f"\n【综合评估】")
-        print(f"  核心质量分数: {results['core_quality']:.4f}")
-        print(f"  总体质量分数: {results['overall_quality']:.4f} ★★★")
+        # Aggregate
+        print(f"\n[Aggregate Scores]")
+        print(f"  Core quality score: {results['core_quality']:.4f}")
+        print(f"  Overall quality score: {results['overall_quality']:.4f} ★★★")
         
-        # 解释
+        # Interpretation
         interp = results['interpretation']
-        print(f"\n【评估结果】")
-        print(f"  质量等级: {interp['quality_level']}")
+        print(f"\n[Interpretation]")
+        print(f"  Quality level: {interp['quality_level']}")
         
         if interp['strengths']:
-            print(f"  优势: {', '.join(interp['strengths'])}")
+            print(f"  Strengths: {', '.join(interp['strengths'])}")
         
         if interp['weaknesses']:
-            print(f"  劣势: {', '.join(interp['weaknesses'])}")
+            print(f"  Weaknesses: {', '.join(interp['weaknesses'])}")
             
         if interp['recommendations']:
-            print(f"  建议: {', '.join(interp['recommendations'])}")
+            print(f"  Recommendations: {', '.join(interp['recommendations'])}")
         
-        print("="*80)
+        print("=" * 80)
     
     def compare_methods(self, method_results_dict):
         """
-        比较不同降维方法的效果
+        Compare different dimensionality reduction methods.
         
         Args:
-            method_results_dict: {method_name: latent_space} 字典
-            
+            method_results_dict: dict mapping method name to latent_space
+        
         Returns:
-            DataFrame: 比较结果表格
+            DataFrame: comparison table of evaluation metrics
         """
         
         comparison_results = []
         
         for method_name, latent_space in method_results_dict.items():
-            self._log(f"\n评估方法: {method_name}")
+            self._log(f"\nEvaluating method: {method_name}")
             
-            # 暂时关闭详细输出
+            # Temporarily disable verbose printing
             original_verbose = self.verbose
             self.verbose = False
             
             results = self.comprehensive_evaluation(latent_space)
             
-            # 恢复输出设置
+            # Restore verbosity setting
             self.verbose = original_verbose
             
-            # 提取关键指标
             comparison_results.append({
                 'Method': method_name,
                 'Overall_Quality': results['overall_quality'],
@@ -573,13 +568,12 @@ class SingleCellLatentSpaceEvaluator:
                 'Anisotropy_Score': results['anisotropy_score'],
                 'Trajectory_Directionality': results['trajectory_directionality'],
                 'Noise_Resilience': results['noise_resilience'],
-                'Quality_Level': results['interpretation']['quality_level']
+                'Quality_Level': results['interpretation']['quality_level'],
             })
         
-        # 转换为DataFrame
         df = pd.DataFrame(comparison_results)
         
-        # 按总体质量排序
+        # Sort by overall quality
         df = df.sort_values('Overall_Quality', ascending=False)
         
         if self.verbose:
@@ -588,52 +582,53 @@ class SingleCellLatentSpaceEvaluator:
         return df
     
     def _print_comparison_table(self, df):
-        """打印比较结果表格"""
+        """Print a formatted comparison table."""
         
-        print(f"\n{'='*100}")
-        print(f"                    降维方法效果比较 ({self.data_type.upper()} 数据)")
-        print('='*100)
+        print(f"\n{'=' * 100}")
+        print(f"                 Dimensionality Reduction Method Comparison ({self.data_type.upper()} data)")
+        print('=' * 100)
         
-        # 设置显示格式
         pd.set_option('display.float_format', '{:.4f}'.format)
         pd.set_option('display.max_columns', None)
         pd.set_option('display.width', None)
         
         print(df.to_string(index=False))
         
-        print(f"\n🏆 最佳方法: {df.iloc[0]['Method']} (总分: {df.iloc[0]['Overall_Quality']:.4f})")
+        print(f"\nBest method: {df.iloc[0]['Method']} (Overall score: {df.iloc[0]['Overall_Quality']:.4f})")
         
-        print('='*100)
+        print('=' * 100)
 
-# ==================== 便捷函数 ====================
+
+# ==================== Convenience functions ====================
 
 def evaluate_single_cell_latent_space(latent_space, data_type="trajectory", verbose=True):
     """
-    便捷函数：评估单细胞潜在空间质量
+    Convenience function: evaluate the quality of a single-cell latent space.
     
     Args:
-        latent_space: 潜在空间坐标
-        data_type: "trajectory" 或 "steady_state"  
-        verbose: 是否详细输出
+        latent_space: latent coordinates
+        data_type: "trajectory" or "steady_state"
+        verbose: whether to print detailed logs
         
     Returns:
-        dict: 评估结果
+        dict: evaluation results
     """
     
     evaluator = SingleCellLatentSpaceEvaluator(data_type=data_type, verbose=verbose)
     return evaluator.comprehensive_evaluation(latent_space)
 
+
 def compare_single_cell_methods(method_results_dict, data_type="trajectory", verbose=True):
     """
-    便捷函数：比较不同单细胞降维方法
+    Convenience function: compare multiple single-cell dimensionality reduction methods.
     
     Args:
-        method_results_dict: {method_name: latent_space} 字典
-        data_type: "trajectory" 或 "steady_state"
-        verbose: 是否详细输出
+        method_results_dict: dict mapping method name to latent_space
+        data_type: "trajectory" or "steady_state"
+        verbose: whether to print detailed logs
         
     Returns:
-        DataFrame: 比较结果
+        DataFrame: comparison results
     """
     
     evaluator = SingleCellLatentSpaceEvaluator(data_type=data_type, verbose=verbose)

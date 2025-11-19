@@ -112,5 +112,5 @@ All examples can be easily adapted to your own data:
 ## Support
 
 For issues or questions:
-- GitHub Issues: https://github.com/yourusername/iaode/issues
+- GitHub Issues: https://github.com/PeterPonyu/iAODE/issues
 - Documentation: https://iaode.readthedocs.io

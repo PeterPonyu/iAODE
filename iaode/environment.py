@@ -224,34 +224,6 @@ class Env(iVAE, envMixin):
         
         return avg_val_loss, val_score
 
-    # # NEW: Test evaluation
-    # def evaluate_test(self):
-    #     """Final evaluation on test set (call only once after training)"""
-        
-    #     self.eval()  # Set model to evaluation mode
-    #     test_losses = []
-    #     all_latents = []
-        
-    #     with torch.no_grad():
-    #         for batch_data, in self.test_loader:
-    #             batch_data = batch_data.to(self.device)
-                
-    #             # Forward pass
-    #             loss_value = self._compute_loss_only(batch_data)
-    #             test_losses.append(loss_value)
-                
-    #             # Get latent representations
-    #             latent = self.take_latent(batch_data)
-    #             all_latents.append(latent)
-        
-    #     # Average test loss
-    #     avg_test_loss = np.mean(test_losses)
-        
-    #     # Compute metrics on test latents
-    #     all_latents = np.concatenate(all_latents, axis=0)
-    #     test_score = self._calc_score_with_labels(all_latents, self.labels_test)
-        
-    #     return avg_test_loss, test_score, all_latents
 
     # NEW: Check early stopping
     def check_early_stopping(self, val_loss, patience=20):

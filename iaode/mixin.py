@@ -1,4 +1,4 @@
-#mixin.py
+# mixin.py
 
 import torch
 import torch.nn.functional as F
@@ -19,14 +19,14 @@ from typing import Optional
 class scviMixin:
     def _normal_kl(self, mu1, lv1, mu2, lv2):
         """
-        计算两个正态分布之间的KL散度
+        KL divergence between two Gaussian distributions.
 
-        参数:
-        mu1, mu2: 两个分布的均值
-        lv1, lv2: 两个分布的对数方差
+        Args:
+            mu1, mu2: means of the two distributions
+            lv1, lv2: log-variances of the two distributions
 
-        返回:
-        KL散度值
+        Returns:
+            KL divergence tensor
         """
         v1 = torch.exp(lv1)
         v2 = torch.exp(lv2)
@@ -37,16 +37,16 @@ class scviMixin:
 
     def _log_nb(self, x, mu, theta, eps=1e-8):
         """
-        计算负二项分布下的对数概率
+        Log-likelihood under a negative binomial distribution.
 
-        参数:
-        x: 数据
-        mu: 分布均值
-        theta: 离散参数
-        eps: 数值稳定性常数
+        Args:
+            x: observed counts
+            mu: mean of the distribution
+            theta: dispersion parameter
+            eps: numerical stability constant
 
-        返回:
-        对数概率值
+        Returns:
+            Log-likelihood tensor
         """
         log_theta_mu_eps = torch.log(theta + mu + eps)
         res = (
@@ -60,17 +60,17 @@ class scviMixin:
 
     def _log_zinb(self, x, mu, theta, pi, eps=1e-8):
         """
-        计算零膨胀负二项分布下的对数概率
+        Log-likelihood under a zero-inflated negative binomial distribution.
 
-        参数:
-        x: 数据
-        mu: 分布均值
-        theta: 离散参数
-        pi: 零膨胀混合权重的logits
-        eps: 数值稳定性常数
+        Args:
+            x: observed counts
+            mu: mean of the NB component
+            theta: dispersion parameter of the NB component
+            pi: logits for the zero-inflation component
+            eps: numerical stability constant
 
-        返回:
-        对数概率值
+        Returns:
+            Log-likelihood tensor
         """
         softplus_pi = F.softplus(-pi)
         log_theta_eps = torch.log(theta + eps)
@@ -96,22 +96,23 @@ class scviMixin:
 
 class NODEMixin:
     """
-    Mixin类，提供Neural ODE相关的功能
+    Mixin providing Neural ODE utilities.
     """
 
     @staticmethod
     def get_step_size(step_size, t0, t1, n_points):
         """
-        获取ODE求解器的步长配置
+        Build step size options for the ODE solver.
 
-        参数:
-        step_size: 步长，如果为None则自动计算
-        t0: 起始时间
-        t1: 结束时间
-        n_points: 时间点数量
+        Args:
+            step_size: step size; if None, use solver defaults;
+                       if "auto", compute uniform step size from (t0, t1, n_points)
+            t0: initial time
+            t1: final time
+            n_points: number of time points
 
-        返回:
-        ODE求解器的配置字典
+        Returns:
+            dict of ODE solver options
         """
         if step_size is None:
             return {}
@@ -129,36 +130,47 @@ class NODEMixin:
         step_size: Optional[float] = None,
     ) -> torch.Tensor:
         """
-        使用torchdiffeq求解ODE
+        Solve an ODE using torchdiffeq.
 
-        参数:
-        ode_func: ODE函数模型
-        z0: 初始状态
-        t: 时间点
-        method: 求解方法
-        step_size: 步长
+        Args:
+            ode_func: ODE function module
+            z0: initial state
+            t: time points
+            method: ODE solver method
+            step_size: step size for fixed-step solvers
 
-        返回:
-        ODE求解结果
+        Returns:
+            Tensor of ODE solutions over time
         """
         options = self.get_step_size(step_size, t[0], t[-1], len(t))
 
-        # 确保数据在CPU上，因为某些ODE求解器在GPU上可能会有问题
+        # Force CPU because some ODE solvers are unstable on GPU
         cpu_z0 = z0.to("cpu")
         cpu_t = t.to("cpu")
 
-        # 求解ODE
         pred_z = odeint(ode_func, cpu_z0, cpu_t, method=method, options=options)
 
-        # 将结果移回到原始设备
+        # Move result back to original device
         pred_z = pred_z.to(z0.device)
 
         return pred_z
 
+
 class betatcMixin:
     def _betatc_compute_gaussian_log_density(self, samples, mean, log_var):
+        """
+        Compute log-density of a diagonal Gaussian.
+
+        Args:
+            samples: samples \(z\)
+            mean: mean \(\mu\)
+            log_var: log-variance \(\log \sigma^2\)
+
+        Returns:
+            Log-density tensor
+        """
         import math
-        
+
         pi = torch.tensor(math.pi, device=samples.device)
         normalization = torch.log(2 * pi)
         inv_sigma = torch.exp(-log_var)
@@ -166,32 +178,46 @@ class betatcMixin:
         return -0.5 * (tmp * tmp * inv_sigma + log_var + normalization)
 
     def _betatc_compute_total_correlation(self, z_sampled, z_mean, z_logvar):
+        """
+        Estimate total correlation term for β-TCVAE.
+
+        Args:
+            z_sampled: sampled latent codes, shape [B, D]
+            z_mean: means of approximate posterior, shape [B, D]
+            z_logvar: log-variances of approximate posterior, shape [B, D]
+
+        Returns:
+            Scalar total correlation estimate
+        """
         batch_size = z_sampled.size(0)
-        
-        # Compute log density: [B, B, D]
+
+        # log_qz_prob: [B, B, D]
         log_qz_prob = self._betatc_compute_gaussian_log_density(
-            z_sampled.unsqueeze(dim=1),   # [B, 1, D]
-            z_mean.unsqueeze(dim=0),       # [1, B, D]
-            z_logvar.unsqueeze(dim=0),     # [1, B, D]
+            z_sampled.unsqueeze(dim=1),  # [B, 1, D]
+            z_mean.unsqueeze(dim=0),     # [1, B, D]
+            z_logvar.unsqueeze(dim=0),   # [1, B, D]
         )
-        
-        # Add batch size normalization and clamp for stability
+
+        # Clamp for numerical stability
         log_qz_prob = torch.clamp(log_qz_prob, min=-1000, max=1000)
-        
-        # log q(z) = logsumexp over batch of sum over dims - log(batch_size)
+
+        # log q(z) = logsumexp_b sum_d log q(z_b | x_b) - log B
         log_qz = torch.logsumexp(log_qz_prob.sum(dim=2), dim=1) - math.log(batch_size)
-        
-        # log prod_j q(z_j) = sum over dims of (logsumexp over batch - log(batch_size))
-        log_qz_product = (torch.logsumexp(log_qz_prob, dim=1) - math.log(batch_size)).sum(dim=1)
-        
-        # Total correlation
+
+        # log ∏_j q(z_j) = ∑_j [logsumexp_b log q(z_j | x_b) - log B]
+        log_qz_product = (
+            torch.logsumexp(log_qz_prob, dim=1) - math.log(batch_size)
+        ).sum(dim=1)
+
         tc = (log_qz - log_qz_product).mean()
-        
         return tc
-    
+
 
 class infoMixin:
     def _compute_mmd(self, z_posterior_samples, z_prior_samples):
+        """
+        Compute MMD between posterior and prior samples.
+        """
         mean_pz_pz = self._compute_unbiased_mean(
             self._compute_kernel(z_prior_samples, z_prior_samples), unbaised=True
         )
@@ -206,6 +232,9 @@ class infoMixin:
         return mmd
 
     def _compute_unbiased_mean(self, kernel, unbaised):
+        """
+        Compute (optionally) unbiased mean of kernel entries.
+        """
         N, M = kernel.shape
         if unbaised:
             sum_kernel = kernel.sum(dim=(0, 1)) - torch.diagonal(
@@ -217,6 +246,9 @@ class infoMixin:
         return mean_kernel
 
     def _compute_kernel(self, z0, z1):
+        """
+        Build RBF kernel matrix between two batches of latent codes.
+        """
         batch_size, z_size = z0.shape
         z0 = z0.unsqueeze(-2)
         z1 = z1.unsqueeze(-3)
@@ -226,6 +258,9 @@ class infoMixin:
         return kernel
 
     def _kernel_rbf(self, x, y):
+        """
+        Radial basis function (Gaussian) kernel.
+        """
         z_size = x.shape[-1]
         sigma = 2 * 2 * z_size
         kernel = torch.exp(-((x - y).pow(2).sum(dim=-1) / sigma))
@@ -234,6 +269,16 @@ class infoMixin:
 
 class dipMixin:
     def _dip_loss(self, q_m, q_s):
+        """
+        DIP-VAE loss based on covariance of latent variables.
+
+        Args:
+            q_m: latent means, shape [B, D]
+            q_s: latent log-variances, shape [B, D]
+
+        Returns:
+            Scalar DIP loss
+        """
         cov_matrix = self._dip_cov_matrix(q_m, q_s)
         cov_diag = torch.diagonal(cov_matrix)
         cov_off_diag = cov_matrix - torch.diag(cov_diag)
@@ -243,39 +288,62 @@ class dipMixin:
         return dip_loss
 
     def _dip_cov_matrix(self, q_m, q_s):
+        """
+        Covariance matrix used in DIP-VAE.
+
+        Args:
+            q_m: latent means, shape [B, D]
+            q_s: latent log-variances, shape [B, D]
+
+        Returns:
+            Covariance matrix of shape [D, D]
+        """
         cov_q_mean = torch.cov(q_m.T)
         E_var = torch.mean(torch.diag(q_s.exp()), dim=0)
         cov_matrix = cov_q_mean + E_var
         return cov_matrix
 
 
-# Add this to the envMixin class in mixin.py
-
 class envMixin:
     def _calc_score(self, latent):
-        """Calculate score using stored indices (for old compatibility)"""
+        """
+        Compute clustering scores using stored labels (backward compatible).
+        """
         labels = self._calc_label(latent)
         scores = self._metrics(latent, labels, self.labels[self.idx])
         return scores
 
     def _calc_score_with_labels(self, latent, true_labels):
-        """Calculate score with provided ground truth labels"""
+        """
+        Compute clustering scores using provided ground truth labels.
+        """
         predicted_labels = self._calc_label(latent)
         scores = self._metrics(latent, predicted_labels, true_labels)
         return scores
 
     def _calc_label(self, latent):
-        """Cluster latent space"""
+        """
+        Cluster latent space with k-means.
+
+        Uses the latent dimensionality as the number of clusters.
+        """
         labels = KMeans(latent.shape[1]).fit_predict(latent)
         return labels
 
     def _calc_corr(self, latent):
-        """Calculate correlation"""
+        """
+        Mean absolute correlation of latent dimensions (excluding self-correlation).
+        """
         acorr = abs(np.corrcoef(latent.T))
         return acorr.sum(axis=1).mean().item() - 1
 
     def _metrics(self, latent, predicted_labels, true_labels):
-        """Calculate all metrics"""
+        """
+        Compute clustering and structure metrics.
+
+        Returns:
+            tuple: (ARI, NMI, silhouette, Calinski–Harabasz, Davies–Bouldin, mean correlation)
+        """
         ARI = adjusted_mutual_info_score(true_labels, predicted_labels)
         NMI = normalized_mutual_info_score(true_labels, predicted_labels)
         ASW = silhouette_score(latent, predicted_labels)

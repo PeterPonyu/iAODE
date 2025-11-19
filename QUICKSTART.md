@@ -283,6 +283,6 @@ If you use iAODE in your research:
   author = {Fu, Zeyu},
   title = {iAODE: Interpretable Autoencoder with Ordinary Differential Equations},
   year = {2024},
-  url = {https://github.com/yourusername/iaode}
+  url = {https://github.com/PeterPonyu/iAODE}
 }
 ```
