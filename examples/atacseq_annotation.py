@@ -46,10 +46,7 @@ if not H5_FILE.exists() or not GTF_FILE.exists():
     print("  wget -P examples/data/ https://cf.10xgenomics.com/samples/cell-atac/2.0.0/atac_pbmc_5k_nextgem/filtered_peak_bc_matrix.h5")
 
     print("Note: File names at 10X sample directories may vary. If a direct 'filtered_peak_bc_matrix.h5' is not present, visit the base URL in a browser and download the appropriate archive or H5 file.")
-    print("\nNote: Large GTF files (e.g. ~800 MB) should NOT be pushed directly to GitHub.")
-    print("Options:")
-    print("  - Use Git LFS for large files: 'git lfs install' and 'git lfs track \"examples/data/*.gtf*\"' then commit .gitattributes")
-    print("  - Host large files externally (Zenodo, S3, or figshare) and use a small download helper script in 'examples/data/'")
+    print("\nNote: Large GTF files (e.g. ~800 MB) should NOT be pushed directly to the repository. Prefer hosting the files externally (Zenodo, S3, figshare) and providing a small download helper script in 'examples/data/' to fetch them.")
     sys.exit(1)
 
 print("="*70)
