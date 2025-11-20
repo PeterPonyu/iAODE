@@ -44,6 +44,7 @@ dependencies = [
     "anndata>=0.8.0",
     "scanpy>=1.8.0",
     "scvi-tools>=0.16.0",
+    "requests>=2.25.0",
     "tqdm>=4.60.0",
 ]
 
