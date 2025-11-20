@@ -63,22 +63,43 @@ metrics_iaode = model.get_resource_metrics()
 print_success(f"iAODE trained in {metrics_iaode['train_time']:.2f}s")
 
 # ==================================================
-# Evaluate iAODE
+# Create Test Set for Fair Comparison
+# ==================================================
+
+print_section("Creating test split for fair comparison")
+
+splitter = iaode.DataSplitter(
+    n_samples=adata.n_obs,
+    test_size=0.15,
+    val_size=0.15,
+    random_state=42
+)
+
+print_info(f"Train: {len(splitter.train_idx)} cells, Test: {len(splitter.test_idx)} cells")
+
+# ==================================================
+# Evaluate iAODE (on test set)
 # ==================================================
 
 print_section("Evaluating iAODE")
 
+# Get test set data
+latent_iaode_test = latent_iaode[splitter.test_idx]
+X_high_test = adata[splitter.test_idx].X
+if hasattr(X_high_test, 'toarray'):
+    X_high_test = X_high_test.toarray()
+
 # Dimensionality Reduction metrics
 dr_metrics = iaode.evaluate_dimensionality_reduction(
-    X_high=adata.X.toarray() if hasattr(adata.X, 'toarray') else adata.X,
-    X_low=latent_iaode,
+    X_high=X_high_test,
+    X_low=latent_iaode_test,
     k=10,
     verbose=True
 )
 
 # Latent Space metrics
 ls_metrics = iaode.evaluate_single_cell_latent_space(
-    latent_space=latent_iaode,
+    latent_space=latent_iaode_test,
     data_type='trajectory',
     verbose=True
 )
@@ -88,13 +109,6 @@ ls_metrics = iaode.evaluate_single_cell_latent_space(
 # ==================================================
 
 print_section("Training scVI-family models")
-
-splitter = iaode.DataSplitter(
-    n_samples=adata.n_obs,
-    test_size=0.15,
-    val_size=0.15,
-    random_state=42
-)
 
 scvi_results = iaode.train_scvi_models(
     adata, splitter,
@@ -113,7 +127,8 @@ scvi_metrics = iaode.evaluate_scvi_models(
 print_section("Computing comprehensive metrics for all models")
 
 results = {'iAODE': {
-    'latent': latent_iaode,
+    'latent': latent_iaode_test,
+    'adata_subset': adata[splitter.test_idx].copy(),
     'train_time': metrics_iaode['train_time'],
     'dr_metrics': dr_metrics,
     'ls_metrics': ls_metrics
@@ -215,7 +230,7 @@ print_success(f"Saved: {csv_path}")
 
 print_section("Generating comparison visualizations")
 
-# Compute UMAP for iAODE
+# Use full iAODE latent for main UMAP
 adata.obsm['X_iaode'] = latent_iaode
 sc.pp.neighbors(adata, use_rep='X_iaode')
 sc.tl.umap(adata)
@@ -245,12 +260,10 @@ for idx, model_name in enumerate(['iAODE', 'scvi', 'peakvi'], start=4):
     if model_name in results:
         ax = plt.subplot(2, 3, idx)
         
-        if model_name == 'iAODE':
-            adata_viz = adata.copy()
-        else:
-            adata_viz = results[model_name]['adata_subset'].copy()
-        
+        # Use the subset data that matches the latent representation
+        adata_viz = results[model_name]['adata_subset'].copy()
         latent = results[model_name]['latent']
+        
         if latent.ndim == 1:
             latent = latent.reshape(-1, 1)
         

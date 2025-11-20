@@ -24,6 +24,7 @@ import scanpy as sc
 import numpy as np
 import matplotlib.pyplot as plt
 from scipy.interpolate import griddata
+from sklearn.neighbors import NearestNeighbors
 import warnings
 warnings.filterwarnings('ignore')
 
@@ -147,30 +148,48 @@ fig, axes = plt.subplots(1, 2, figsize=(14, 6))
 # Quiver plot
 ax = axes[0]
 scatter = ax.scatter(umap_coords[:, 0], umap_coords[:, 1],
-                     c=pseudotime, cmap='viridis', s=20, alpha=0.6)
-quiver = ax.quiver(umap_coords[:, 0], umap_coords[:, 1],
-                   velocity_umap[:, 0], velocity_umap[:, 1],
-                   color='black', alpha=0.4, width=0.003, scale=20)
+                     c=pseudotime, cmap='viridis', s=30, alpha=0.6)
+# Subsample for better visualization
+step = max(1, n_cells // 300)  # Show ~300 arrows
+quiver = ax.quiver(umap_coords[::step, 0], umap_coords[::step, 1],
+                   velocity_umap[::step, 0], velocity_umap[::step, 1],
+                   color='red', alpha=0.6, width=0.006, scale=15, 
+                   headwidth=4, headlength=5, headaxislength=4.5)
 ax.set_title('Velocity Field (Quiver)', fontsize=12, fontweight='bold')
 ax.set_xlabel('UMAP 1')
 ax.set_ylabel('UMAP 2')
 plt.colorbar(scatter, ax=ax, label='Pseudotime')
 
-# Streamplot
+# Streamplot on UMAP
 ax = axes[1]
-# Create grid for streamplot
+# Use UMAP coordinates for streamplot
 x = umap_coords[:, 0]
 y = umap_coords[:, 1]
-u = velocity_umap[:, 0]
-v = velocity_umap[:, 1]
 
-grid_x, grid_y = np.mgrid[x.min():x.max():50j, y.min():y.max():50j]
-grid_u = griddata((x, y), u, (grid_x, grid_y), method='cubic', fill_value=0)
-grid_v = griddata((x, y), v, (grid_x, grid_y), method='cubic', fill_value=0)
+# Compute velocity on UMAP space
+# Use transitions between nearby points in UMAP space
+nn = NearestNeighbors(n_neighbors=10)
+nn.fit(umap_coords)
+dists, indices = nn.kneighbors(umap_coords)
 
-scatter = ax.scatter(x, y, c=pseudotime, cmap='viridis', s=20, alpha=0.6)
+# Compute velocity as average direction to future neighbors (higher pseudotime)
+velocity_umap_stream = np.zeros((n_cells, 2))
+for i in range(n_cells):
+    future_neighbors = indices[i][pseudotime[indices[i]] > pseudotime[i]]
+    if len(future_neighbors) > 0:
+        avg_direction = np.mean(umap_coords[future_neighbors] - umap_coords[i], axis=0)
+        velocity_umap_stream[i] = avg_direction
+
+# Create grid for streamplot
+grid_x, grid_y = np.mgrid[x.min():x.max():40j, y.min():y.max():40j]
+grid_u = griddata((x, y), velocity_umap_stream[:, 0], (grid_x, grid_y), 
+                  method='linear', fill_value=0)
+grid_v = griddata((x, y), velocity_umap_stream[:, 1], (grid_x, grid_y), 
+                  method='linear', fill_value=0)
+
+scatter = ax.scatter(x, y, c=pseudotime, cmap='viridis', s=30, alpha=0.6, zorder=2)
 ax.streamplot(grid_x[:, 0], grid_y[0, :], grid_u, grid_v,
-              color='black', density=1.5, linewidth=0.8, arrowsize=1)
+              color='red', density=1.2, linewidth=1.2, arrowsize=1.5, zorder=1)
 ax.set_title('Velocity Field (Streamplot)', fontsize=12, fontweight='bold')
 ax.set_xlabel('UMAP 1')
 ax.set_ylabel('UMAP 2')
