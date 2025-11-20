@@ -85,8 +85,63 @@ Most examples use publicly available datasets from Scanpy:
 - `sc.datasets.paul15()`: Mouse hematopoiesis data
 
 For the scATAC-seq example, you'll need:
-- Your own 10X scATAC-seq data or download from 10X Genomics
-- Gene annotation file from GENCODE or Ensembl
+- Your own 10X scATAC-seq H5 matrix (place it in `examples/data/`)
+- Gene annotation file from GENCODE or Ensembl (GTF). Place it in `examples/data/`.
+
+Note about large files
+----------------------
+The gene annotation GTF can be large (hundreds of MB). Do not push large raw data files to GitHub.
+Options:
+
+- Use Git LFS for large files:
+
+```bash
+git lfs install
+git lfs track "examples/data/*.gtf*"
+git add .gitattributes
+git add examples/data/<your-gtf-file>
+git commit -m "Add example GTF via Git LFS"
+git push origin main
+```
+
+- Host large files externally (Zenodo, S3, figshare) and provide a small download helper script in `examples/data/`.
+
+Example file layout (recommended):
+
+```
+examples/
+	data/
+		filtered_peak_bc_matrix.h5   # 10X peak matrix (keep locally or in LFS)
+		gencode.v44.annotation.gtf.gz # GTF (use LFS or external hosting)
+	atacseq_annotation.py
+```
+
+## Verified Data URLs
+
+Below are verified, commonly used reference files and example datasets you can download and place into `examples/data/`.
+
+GENCODE annotations
+- Human v19 (GRCh37/hg19): https://ftp.ebi.ac.uk/pub/databases/gencode/Gencode_human/release_19/gencode.v19.annotation.gtf.gz
+- Mouse vM25 (GRCm38/mm10): https://ftp.ebi.ac.uk/pub/databases/gencode/Gencode_mouse/release_M25/gencode.vM25.annotation.gtf.gz
+- Human v49 (GRCh38/hg38): https://ftp.ebi.ac.uk/pub/databases/gencode/Gencode_human/release_49/gencode.v49.annotation.gtf.gz
+- Mouse vM38 (GRCm39/mm39): https://ftp.ebi.ac.uk/pub/databases/gencode/Gencode_mouse/release_M38/gencode.vM38.annotation.gtf.gz
+
+10X Genomics scATAC-seq example datasets (base URLs)
+- 5k Human PBMCs (ATAC v1.1): https://cf.10xgenomics.com/samples/cell-atac/2.0.0/atac_pbmc_5k_nextgem/
+- 10k Human PBMCs (ATAC v2): https://cf.10xgenomics.com/samples/cell-atac/2.1.0/atac_pbmc_10k_v2/
+- 8k Mouse Cortex (ATAC v2): https://cf.10xgenomics.com/samples/cell-atac/2.1.0/atac_mouse_cortex_8k_v2/
+
+Quick download examples:
+
+```bash
+# Download a GENCODE GTF (example: human v49)
+wget -P examples/data/ https://ftp.ebi.ac.uk/pub/databases/gencode/Gencode_human/release_49/gencode.v49.annotation.gtf.gz
+
+# Example: download 10X filtered peak matrix (open the base URL and pick the appropriate file name, e.g. 'filtered_peak_bc_matrix.h5')
+wget -P examples/data/ https://cf.10xgenomics.com/samples/cell-atac/2.0.0/atac_pbmc_5k_nextgem/filtered_peak_bc_matrix.h5
+```
+
+Note: 10X sample directories may contain tarballs or multiple files; open the base URL in a browser to identify the correct file if the direct name is not available.
 
 ## Output
 

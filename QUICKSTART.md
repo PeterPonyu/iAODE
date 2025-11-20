@@ -98,6 +98,18 @@ adata = iaode.annotation_pipeline(
     promoter_upstream=2000,
     n_top_peaks=20000
 )
+
+Note: For the scATAC example, download a GENCODE GTF and a 10X peak matrix and place them in `examples/data/` before running. Verified download sources include:
+
+- GENCODE GTF (example): https://ftp.ebi.ac.uk/pub/databases/gencode/Gencode_human/release_49/gencode.v49.annotation.gtf.gz
+- 10X PBMC 5k sample base URL: https://cf.10xgenomics.com/samples/cell-atac/2.0.0/atac_pbmc_5k_nextgem/
+
+Example:
+
+```bash
+wget -P examples/data/ https://ftp.ebi.ac.uk/pub/databases/gencode/Gencode_human/release_49/gencode.v49.annotation.gtf.gz
+wget -P examples/data/ https://cf.10xgenomics.com/samples/cell-atac/2.0.0/atac_pbmc_5k_nextgem/filtered_peak_bc_matrix.h5
+```
 ```
 
 ### 4. Model Evaluation
