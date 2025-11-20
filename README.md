@@ -42,9 +42,9 @@ pip install -e .
 
 ## Quick Start
 
-For a full working example, see `examples/` directory and `QUICKSTART.md`.
+> **📁 See `examples/` for complete runnable examples**
 
-### scRNA-seq Analysis
+### Basic scRNA-seq Analysis
 
 ```python
 import scanpy as sc
@@ -57,12 +57,45 @@ sc.pp.normalize_total(adata, target_sum=1e4)
 sc.pp.log1p(adata)
 adata.layers['counts'] = adata.X.copy()
 
-# Train iAODE model
-model = iaode.agent(adata, layer='counts', latent_dim=10, loss_mode='nb')
-model.fit(epochs=100, patience=20)
+# Train iAODE model with key hyperparameters
+model = iaode.agent(
+    adata,
+    layer='counts',
+    latent_dim=10,         # Latent space dimensions
+    hidden_dim=128,        # Hidden layer size
+    encoder_type='mlp',    # Options: 'mlp', 'residual_mlp', 'transformer', 'linear'
+    loss_mode='nb',        # Options: 'mse', 'nb', 'zinb'
+    use_ode=False          # Set True for trajectory inference
+)
 
-# Get latent representation
+model.fit(epochs=100, patience=20, val_every=5)
 latent = model.get_latent()
+
+# Visualize with UMAP
+adata.obsm['X_iaode'] = latent
+sc.pp.neighbors(adata, use_rep='X_iaode')
+sc.tl.umap(adata)
+sc.pl.umap(adata, color='paul15_clusters')
+```
+
+### Trajectory Inference with Neural ODE
+
+```python
+# Enable Neural ODE for trajectory modeling
+model = iaode.agent(
+    adata,
+    use_ode=True,          # Enable ODE
+    i_dim=2,               # ODE intermediate dimension
+    latent_dim=10,
+    loss_mode='nb'
+)
+
+model.fit(epochs=100)
+latent = model.get_latent()
+iembed = model.get_iembed()  # ODE intermediate states
+
+# Compute pseudotime from latent space
+adata.obs['pseudotime'] = (latent[:, 0] - latent[:, 0].min()) / (latent[:, 0].max() - latent[:, 0].min())
 ```
 
 ### scATAC-seq Peak Annotation
