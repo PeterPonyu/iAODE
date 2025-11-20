@@ -198,6 +198,155 @@ scvi_results = train_scvi_models(
 - **MMD**: Maximum mean discrepancy
 - **ODE Consistency**: Aligns VAE and ODE latents
 
+## Examples
+
+The `examples/` directory contains complete, runnable scripts demonstrating all major features. All outputs are automatically organized in `examples/outputs/<example_name>/` for easy access.
+
+### Running the Examples
+
+**Prerequisites**: Ensure iAODE is installed:
+
+```bash
+pip install iaode
+# or from source:
+cd /path/to/iAODE && pip install -e .
+```
+
+**Navigate to examples directory**:
+
+```bash
+cd examples
+```
+
+### Available Examples
+
+#### 1. Basic Usage (`basic_usage.py`)
+Demonstrates fundamental scRNA-seq dimensionality reduction with iAODE.
+
+```bash
+python basic_usage.py
+```
+
+**Features:**
+- Installation verification and setup
+- Paul15 dataset preprocessing
+- Model training with inline hyperparameter documentation
+- UMAP-based visualizations (cell types, latent dimensions)
+- Outputs saved to `outputs/basic_usage/`
+
+**Key hyperparameters explained:**
+- `encoder_type='mlp'`: Encoder architecture (options: 'mlp', 'residual_mlp', 'transformer', 'linear')
+- `loss_mode='nb'`: Loss function (options: 'mse', 'nb', 'zinb')
+- `latent_dim=10`: Dimensionality of latent space
+- `hidden_dim=128`: Hidden layer size
+
+---
+
+#### 2. Trajectory Inference (`trajectory_inference.py`)
+Demonstrates Neural ODE-based trajectory modeling for developmental processes.
+
+```bash
+python trajectory_inference.py
+```
+
+**Features:**
+- Neural ODE integration with `use_ode=True`
+- Pseudotime computation and visualization
+- Velocity field analysis (quiver + streamplot)
+- UMAP-based trajectory visualization
+- Outputs saved to `outputs/trajectory_inference/`
+
+**Key configuration:**
+- `use_ode=True`: Enable Neural ODE for continuous trajectories
+- `i_dim=2`: Intermediate ODE state dimension for trajectory modeling
+
+---
+
+#### 3. Model Evaluation (`model_evaluation.py`)
+Comprehensive benchmarking comparing iAODE against scVI-family models.
+
+```bash
+python model_evaluation.py
+```
+
+**Features:**
+- Side-by-side comparison: iAODE, scVI, PEAKVI, POISSONVI
+- **Consistent evaluation metrics** across all models:
+  - **Dimensionality Reduction**: Distance Correlation, Q_local, Q_global
+  - **Latent Space Quality**: Manifold Dimensionality, Spectral Decay, Trajectory Directionality
+  - **Clustering**: NMI, ARI, ASW
+- Comparison table saved as CSV
+- Visual comparisons (bar plots + UMAP visualizations)
+- Outputs saved to `outputs/model_evaluation/`
+
+---
+
+#### 4. scATAC-seq Annotation (`atacseq_annotation.py`)
+Complete scATAC-seq peak annotation and preprocessing pipeline.
+
+```bash
+python atacseq_annotation.py
+```
+
+**Prerequisites**: Download required data files first:
+
+```bash
+cd data
+bash download_data.sh
+# This downloads:
+# - mouse_brain_5k_v1.1.h5 (10X scATAC-seq data)
+# - gencode.vM25.annotation.gtf (mouse gene annotations)
+```
+
+**Features:**
+- Data availability checks with clear download instructions
+- Peak-to-gene annotation (promoter/gene body/distal/intergenic)
+- TF-IDF normalization
+- Highly variable peak (HVP) selection
+- Comprehensive QC visualizations (4-panel plot)
+- Outputs saved to `outputs/atacseq_annotation/`
+
+**QC visualizations:**
+- Peak annotation type distribution
+- Distance to TSS histogram
+- Peak counts per cell
+- Highly variable peak selection
+
+---
+
+### Output Organization
+
+All examples save outputs to structured directories:
+
+```
+examples/
+├── outputs/
+│   ├── basic_usage/
+│   │   ├── umap_celltypes.png
+│   │   └── latent_dimensions.png
+│   ├── trajectory_inference/
+│   │   ├── trajectory_umap.png
+│   │   └── velocity_field.png
+│   ├── model_evaluation/
+│   │   ├── model_comparison.png
+│   │   └── model_comparison.csv
+│   └── atacseq_annotation/
+│       └── annotation_qc.png
+```
+
+### Customization
+
+All examples can be adapted to your data:
+
+1. **Load your AnnData object** instead of example datasets
+2. **Adjust hyperparameters** based on your data characteristics:
+   - Increase `latent_dim` for complex datasets (e.g., 20-50)
+   - Use `encoder_type='transformer'` for large-scale data
+   - Set `loss_mode='zinb'` for highly sparse data
+3. **Modify visualization parameters** (colors, resolution, layout)
+
+For detailed hyperparameter guidance, see inline comments in each example script.
+
 ## API Reference
 
 ### Main Classes
@@ -303,10 +452,10 @@ for epoch in range(100):
 If you use iAODE in your research, please cite:
 
 ```bibtex
-@software{iaode2024,
+@software{iaode2025,
     author = {Zeyu Fu},
     title = {iAODE: Interpretable Autoencoder with Ordinary Differential Equations},
-    year = {2024},
+    year = {2025},
     url = {https://github.com/PeterPonyu/iAODE}
 }
 ```
