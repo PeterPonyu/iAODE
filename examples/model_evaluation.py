@@ -45,6 +45,7 @@ model = iaode.agent(
 )
 
 model.fit(epochs=100, patience=20, val_every=5)
+# get_latent() returns full dataset representation
 latent_iaode = model.get_latent()
 
 # ============================================================================
@@ -130,8 +131,11 @@ results = {
 # Add scVI results
 for model_name, result in scvi_results.items():
     if result is not None:
+        # scVI models need adata to be setup before getting latent representation
+        # Use only test set for fair comparison (same as metrics evaluation)
         results[model_name] = {
             'latent': result['model'].get_latent_representation(result['adata_test']),
+            'adata_subset': result['adata_test'].copy(),  # Store subset for visualization
             'train_time': result['train_time'],
             'metrics': scvi_metrics.get(model_name, {})
         }
@@ -219,8 +223,16 @@ for idx, model_name in enumerate(['iAODE', 'scvi', 'peakvi'], start=4):
         ax = plt.subplot(2, 3, idx)
         latent = results[model_name]['latent']
         
-        # Compute UMAP for this method
-        adata_viz = adata.copy()
+        # Use appropriate adata subset for each model
+        if model_name == 'iAODE':
+            adata_viz = adata.copy()
+        else:
+            # scVI models: use test set subset
+            adata_viz = results[model_name]['adata_subset'].copy()
+        
+        # Ensure latent is 2D array
+        if latent.ndim == 1:
+            latent = latent.reshape(-1, 1)
         adata_viz.obsm['X_latent'] = latent
         sc.pp.neighbors(adata_viz, use_rep='X_latent')
         sc.tl.umap(adata_viz)

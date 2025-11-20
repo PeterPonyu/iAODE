@@ -146,6 +146,15 @@ Thumbs.db
 *.pth
 *.ckpt
 
+# Examples data (keep raw large files out of git; use Git LFS or external hosting)
+examples/data/*.gtf*
+examples/data/*.gff*
+examples/data/*.h5
+examples/data/*.h5ad
+examples/data/*.mtx
+examples/data/*.loom
+examples/data/*.bed
+
 # Logs
 logs/
 *.log

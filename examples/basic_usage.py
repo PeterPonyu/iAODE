@@ -67,21 +67,17 @@ sc.tl.umap(adata)
 # Plot results
 import matplotlib.pyplot as plt
 
-fig, axes = plt.subplots(1, 2, figsize=(12, 5))
-
-# Color by cell type (if available)
+# Visualize UMAP colored by cell type
 if 'paul15_clusters' in adata.obs.columns:
-    sc.pl.umap(adata, color='paul15_clusters', ax=axes[0], show=False)
-    axes[0].set_title('Cell Types')
+    sc.pl.umap(adata, color='paul15_clusters', title='Cell Types', 
+               save='_iaode_celltypes.png', show=False)
 
-# Color by latent dimension 1
-sc.pl.umap(adata, color=adata.obsm['X_iaode'][:, 0], 
-           ax=axes[1], show=False, cmap='viridis')
-axes[1].set_title('Latent Dimension 1')
+# Visualize UMAP colored by latent dimension 1
+adata.obs['Latent_Dim1'] = adata.obsm['X_iaode'][:, 0]
+sc.pl.umap(adata, color='Latent_Dim1', cmap='viridis', 
+           title='Latent Dimension 1', save='_iaode_latent.png', show=False)
 
-plt.tight_layout()
-plt.savefig('iaode_results_basic.png', dpi=300, bbox_inches='tight')
-print("\nResults saved to 'iaode_results_basic.png'")
+print("\nUMAP plots saved to figures/umap_iaode_celltypes.png and figures/umap_iaode_latent.png")
 
 # Print model performance metrics
 resource_metrics = model.get_resource_metrics()
