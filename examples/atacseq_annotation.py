@@ -15,8 +15,8 @@ EXAMPLE_DIR = Path(__file__).parent
 DATA_DIR = EXAMPLE_DIR / "data"
 
 # File names (update these to match the files you put in examples/data/)
-H5_FILE = DATA_DIR / "filtered_peak_bc_matrix.h5"
-GTF_FILE = DATA_DIR / "gencode.v44.annotation.gtf.gz"
+H5_FILE = DATA_DIR / "mouse_brain_5k_v1.1.h5"
+GTF_FILE = DATA_DIR / "gencode.vM25.annotation.gtf"
 OUTPUT_FILE = EXAMPLE_DIR / "results" / "annotated_peaks.h5ad"
 
 # Ensure data files exist and give clear instructions if not

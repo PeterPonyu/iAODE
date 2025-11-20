@@ -306,9 +306,45 @@ For questions and feedback:
 
 ## Changelog
 
-### v0.1.0 (2024-11-19)
-- Initial release
-- VAE with neural ODE support
-- scATAC-seq peak annotation pipeline
-- Comprehensive evaluation metrics
-- Benchmark framework for scVI models
+### v0.2.0 (2025-11-20)
+
+**Documentation & Usability**
+- Streamlined all documentation for clarity (README, QUICKSTART, examples/README)
+- Separated scRNA-seq and scATAC-seq examples with clear workflows
+- Added verified GENCODE and 10X Genomics reference data URLs
+- Created `examples/data/download_data.sh` helper script for fetching reference files
+- Removed Git LFS references in favor of external hosting guidance
+
+**Code Quality**
+- Cleaned example scripts: removed unused imports, simplified output messages
+- Fixed Markdown formatting: proper code block spacing and language tags
+- Ensured all API usage examples are correct and tested
+
+**Package Improvements**
+- Clarified that `paul15` dataset is scRNA-seq with standard preprocessing
+- Highlighted complete scATAC-seq preprocessing + annotation pipeline
+- Improved inline code documentation
+
+### v0.1.2 (2025-11-19)
+
+**Metadata & Contact**
+- Updated author name to "Zeyu Fu" across all files
+- Set primary contact email to fuzeyu99@126.com
+- Fixed BibTeX citation formatting
+
+### v0.1.1 (2025-11-19)
+
+**Bug Fixes**
+- Added missing `requests` dependency for scvi-tools compatibility
+- Dropped Python 3.8 support (requires Python ≥3.9 for optax/scvi-tools)
+- Fixed CI test imports and matrix configuration
+
+### v0.1.0 (2025-11-19)
+
+**Initial Release**
+- VAE with neural ODE support for trajectory inference
+- Complete scATAC-seq peak annotation pipeline
+- Comprehensive evaluation metrics for dimensionality reduction
+- Benchmark framework for comparing against scVI models
+- Support for multiple encoder types (MLP, Residual MLP, Linear, Transformer)
+- Multiple loss modes (MSE, NB, ZINB) for different data types
