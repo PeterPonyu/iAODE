@@ -1,7 +1,7 @@
 # iAODE: Interpretable Autoencoder with Ordinary Differential Equations
 
 [![PyPI version](https://badge.fury.io/py/iaode.svg)](https://badge.fury.io/py/iaode)
-[![Python 3.8+](https://img.shields.io/badge/python-3.8+-blue.svg)](https://www.python.org/downloads/)
+[![Python 3.9+](https://img.shields.io/badge/python-3.9+-blue.svg)](https://www.python.org/downloads/)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
 A deep learning framework for single-cell omics data analysis that combines variational autoencoders (VAE) with neural ordinary differential equations (ODE) for trajectory inference and dimensionality reduction.
@@ -33,7 +33,7 @@ pip install -e .
 
 ### Dependencies
 
-- Python >= 3.8
+- Python >= 3.9
 - PyTorch >= 1.10.0
 - AnnData >= 0.8.0
 - Scanpy >= 1.8.0
