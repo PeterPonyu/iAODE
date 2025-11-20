@@ -24,7 +24,7 @@ import scanpy as sc
 import numpy as np
 import matplotlib.pyplot as plt
 from scipy.interpolate import griddata
-from sklearn.neighbors import NearestNeighbors
+from sklearn.decomposition import PCA
 import warnings
 warnings.filterwarnings('ignore')
 
@@ -80,25 +80,33 @@ print_section("Extracting trajectory representations")
 
 latent = model.get_latent()
 iembed = model.get_iembed()  # ODE intermediate state
+pseudotime = model.get_pseudotime()  # ODE time parameter
+velocity = model.get_velocity()  # ODE gradients in latent space
 
 adata.obsm['X_iaode'] = latent
 adata.obsm['X_iembed'] = iembed
+adata.obsm['velocity'] = velocity
+adata.obs['pseudotime'] = pseudotime
 
 # Compute UMAP on latent space (not iembed)
 sc.pp.neighbors(adata, use_rep='X_iaode', n_neighbors=15)
 sc.tl.umap(adata, min_dist=0.3)
 
 print_success(f"Latent: {latent.shape}, I-embed: {iembed.shape}")
+print_success(f"Pseudotime: {pseudotime.shape}, Velocity: {velocity.shape}")
 
 # ==================================================
-# Compute Pseudotime
+# Pseudotime Analysis
 # ==================================================
 
-print_section("Computing pseudotime")
+print_section("Analyzing pseudotime trajectory")
 
-# Simple pseudotime from first latent dimension
-pseudotime = (latent[:, 0] - latent[:, 0].min()) / (latent[:, 0].max() - latent[:, 0].min())
-adata.obs['pseudotime'] = pseudotime
+# Normalize pseudotime to [0, 1]
+pseudotime_norm = (pseudotime - pseudotime.min()) / (pseudotime.max() - pseudotime.min())
+adata.obs['pseudotime_norm'] = pseudotime_norm
+
+print(f"  Pseudotime range: [{pseudotime.min():.3f}, {pseudotime.max():.3f}]")
+print(f"  Pseudotime mean: {pseudotime.mean():.3f} ± {pseudotime.std():.3f}")
 
 # ==================================================
 # Visualizations
@@ -110,8 +118,8 @@ plt.rcParams.update({'figure.dpi': 100, 'savefig.dpi': 300, 'font.size': 10})
 # Plot 1: UMAP with pseudotime
 fig, axes = plt.subplots(1, 2, figsize=(12, 5))
 
-sc.pl.umap(adata, color='pseudotime', cmap='viridis',
-           title='Pseudotime Trajectory', ax=axes[0], show=False, frameon=True)
+sc.pl.umap(adata, color='pseudotime_norm', cmap='viridis',
+           title='Pseudotime Trajectory (ODE Time)', ax=axes[0], show=False, frameon=True)
 
 if 'paul15_clusters' in adata.obs.columns:
     sc.pl.umap(adata, color='paul15_clusters',
@@ -123,24 +131,22 @@ plt.close()
 print_success(f"Saved: {OUTPUT_DIR}/trajectory_umap.png")
 
 # Plot 2: Velocity field on UMAP
-print_section("Computing velocity field")
+print_section("Computing velocity field visualization")
 
-# Compute transitions in latent space
+# Get velocity from model (ODE gradients in latent space)
 n_cells = adata.n_obs
-transitions = np.zeros((n_cells, 2))
-
-# Simple velocity approximation from latent gradients
-latent_sorted = latent[np.argsort(pseudotime)]
-velocity_latent = np.gradient(latent_sorted[:, :2], axis=0)
-
-# Map back to original order
-sort_idx = np.argsort(pseudotime)
-unsort_idx = np.argsort(sort_idx)
-velocity_latent = velocity_latent[unsort_idx]
-
-# Project to UMAP
 umap_coords = adata.obsm['X_umap']
-velocity_umap = velocity_latent[:, :2] * 0.1  # Scale for visualization
+
+# Project velocity to UMAP space using linear approximation
+# Compute UMAP basis vectors by comparing neighbors
+from sklearn.decomposition import PCA
+
+# Use PCA to reduce velocity from latent_dim to 2D for UMAP visualization
+pca = PCA(n_components=2)
+velocity_2d = pca.fit_transform(velocity)
+
+# Scale for visualization
+velocity_umap = velocity_2d * 0.05
 
 # Create velocity plots
 fig, axes = plt.subplots(1, 2, figsize=(14, 6))
@@ -148,49 +154,34 @@ fig, axes = plt.subplots(1, 2, figsize=(14, 6))
 # Quiver plot
 ax = axes[0]
 scatter = ax.scatter(umap_coords[:, 0], umap_coords[:, 1],
-                     c=pseudotime, cmap='viridis', s=30, alpha=0.6)
+                     c=pseudotime_norm, cmap='viridis', s=30, alpha=0.6)
 # Subsample for better visualization
 step = max(1, n_cells // 300)  # Show ~300 arrows
 quiver = ax.quiver(umap_coords[::step, 0], umap_coords[::step, 1],
                    velocity_umap[::step, 0], velocity_umap[::step, 1],
                    color='red', alpha=0.6, width=0.006, scale=15, 
                    headwidth=4, headlength=5, headaxislength=4.5)
-ax.set_title('Velocity Field (Quiver)', fontsize=12, fontweight='bold')
+ax.set_title('Velocity Field (Quiver) - ODE Gradients', fontsize=12, fontweight='bold')
 ax.set_xlabel('UMAP 1')
 ax.set_ylabel('UMAP 2')
 plt.colorbar(scatter, ax=ax, label='Pseudotime')
 
-# Streamplot on UMAP
+# Streamplot with ODE-based velocity
 ax = axes[1]
-# Use UMAP coordinates for streamplot
 x = umap_coords[:, 0]
 y = umap_coords[:, 1]
 
-# Compute velocity on UMAP space
-# Use transitions between nearby points in UMAP space
-nn = NearestNeighbors(n_neighbors=10)
-nn.fit(umap_coords)
-dists, indices = nn.kneighbors(umap_coords)
-
-# Compute velocity as average direction to future neighbors (higher pseudotime)
-velocity_umap_stream = np.zeros((n_cells, 2))
-for i in range(n_cells):
-    future_neighbors = indices[i][pseudotime[indices[i]] > pseudotime[i]]
-    if len(future_neighbors) > 0:
-        avg_direction = np.mean(umap_coords[future_neighbors] - umap_coords[i], axis=0)
-        velocity_umap_stream[i] = avg_direction
-
-# Create grid for streamplot
+# Create grid for streamplot using actual ODE velocity
 grid_x, grid_y = np.mgrid[x.min():x.max():40j, y.min():y.max():40j]
-grid_u = griddata((x, y), velocity_umap_stream[:, 0], (grid_x, grid_y), 
+grid_u = griddata((x, y), velocity_umap[:, 0], (grid_x, grid_y), 
                   method='linear', fill_value=0)
-grid_v = griddata((x, y), velocity_umap_stream[:, 1], (grid_x, grid_y), 
+grid_v = griddata((x, y), velocity_umap[:, 1], (grid_x, grid_y), 
                   method='linear', fill_value=0)
 
-scatter = ax.scatter(x, y, c=pseudotime, cmap='viridis', s=30, alpha=0.6, zorder=2)
+scatter = ax.scatter(x, y, c=pseudotime_norm, cmap='viridis', s=30, alpha=0.6, zorder=2)
 ax.streamplot(grid_x[:, 0], grid_y[0, :], grid_u, grid_v,
               color='red', density=1.2, linewidth=1.2, arrowsize=1.5, zorder=1)
-ax.set_title('Velocity Field (Streamplot)', fontsize=12, fontweight='bold')
+ax.set_title('Velocity Field (Streamplot) - ODE Gradients', fontsize=12, fontweight='bold')
 ax.set_xlabel('UMAP 1')
 ax.set_ylabel('UMAP 2')
 plt.colorbar(scatter, ax=ax, label='Pseudotime')
@@ -201,4 +192,7 @@ plt.close()
 print_success(f"Saved: {OUTPUT_DIR}/velocity_field.png")
 
 print_header("Complete")
-print_info("Neural ODE captured trajectory dynamics with velocity field")
+print_info("Neural ODE captured trajectory dynamics with pseudotime and velocity")
+print_info(f"Pseudotime range: [{pseudotime.min():.3f}, {pseudotime.max():.3f}]")
+print_info(f"Velocity magnitude: mean={np.linalg.norm(velocity, axis=1).mean():.3f}")
+
