@@ -158,7 +158,7 @@ class NODEMixin:
 
 class betatcMixin:
     def _betatc_compute_gaussian_log_density(self, samples, mean, log_var):
-        """
+        r"""
         Compute log-density of a diagonal Gaussian.
 
         Args:
