@@ -78,7 +78,12 @@ For the scATAC-seq example, you'll need:
 - 10X scATAC-seq H5 file
 - GENCODE/Ensembl GTF annotation
 
-Place both files in `examples/data/` before running the example. See `README.md` for verified data download links.
+Place both files in `examples/data/` before running the example. See `README.md` for verified data download links, or use the provided download helper:
+
+```bash
+cd examples/data
+./download_data.sh human 5k_pbmc  # Download human GTF and 5k PBMC sample
+```
 
 ## Verified Data URLs
 
