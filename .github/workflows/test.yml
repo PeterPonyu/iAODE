@@ -31,4 +31,4 @@ jobs:
     - name: Test imports
       run: |
         python -c "import iaode; print('iaode version:', iaode.__version__)"
-        python -c "from iaode import iAODEAgent, annotation_pipeline; print('Imports successful')"
+        python -c "from iaode import agent, annotation_pipeline; print('Imports successful')"
