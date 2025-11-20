@@ -6,11 +6,51 @@ scATAC-seq peaks to genes using genomic features.
 """
 
 import iaode
+from pathlib import Path
+import sys
 
-# File paths (replace with your data)
-H5_FILE = "data/filtered_peak_bc_matrix.h5"
-GTF_FILE = "data/gencode.v44.annotation.gtf.gz"
-OUTPUT_FILE = "results/annotated_peaks.h5ad"
+# Recommend placing example data under the examples/data/ directory.
+# This keeps examples portable and avoids hard-coded absolute paths.
+EXAMPLE_DIR = Path(__file__).parent
+DATA_DIR = EXAMPLE_DIR / "data"
+
+# File names (update these to match the files you put in examples/data/)
+H5_FILE = DATA_DIR / "filtered_peak_bc_matrix.h5"
+GTF_FILE = DATA_DIR / "gencode.v44.annotation.gtf.gz"
+OUTPUT_FILE = EXAMPLE_DIR / "results" / "annotated_peaks.h5ad"
+
+# Ensure data files exist and give clear instructions if not
+if not H5_FILE.exists() or not GTF_FILE.exists():
+    print("\nERROR: Required example data not found.")
+    print(f"  Expected H5 file at: {H5_FILE}")
+    print(f"  Expected GTF file at: {GTF_FILE}\n")
+    print("Please place your 10X scATAC 'filtered_peak_bc_matrix.h5' and the GTF file")
+    print("under the 'examples/data/' folder, or update the paths at the top of this script.")
+
+    print("\nVerified reference downloads (recommended):")
+    print("  GENCODE GTFs:")
+    print("    - Human v19 (GRCh37/hg19): https://ftp.ebi.ac.uk/pub/databases/gencode/Gencode_human/release_19/gencode.v19.annotation.gtf.gz")
+    print("    - Mouse vM25 (GRCm38/mm10): https://ftp.ebi.ac.uk/pub/databases/gencode/Gencode_mouse/release_M25/gencode.vM25.annotation.gtf.gz")
+    print("    - Human v49 (GRCh38/hg38): https://ftp.ebi.ac.uk/pub/databases/gencode/Gencode_human/release_49/gencode.v49.annotation.gtf.gz")
+    print("    - Mouse vM38 (GRCm39/mm39): https://ftp.ebi.ac.uk/pub/databases/gencode/Gencode_mouse/release_M38/gencode.vM38.annotation.gtf.gz")
+
+    print("  10X Genomics scATAC-seq example datasets (base URLs):")
+    print("    - 5k Human PBMCs (ATAC v1.1): https://cf.10xgenomics.com/samples/cell-atac/2.0.0/atac_pbmc_5k_nextgem/")
+    print("    - 10k Human PBMCs (ATAC v2): https://cf.10xgenomics.com/samples/cell-atac/2.1.0/atac_pbmc_10k_v2/")
+    print("    - 8k Mouse Cortex (ATAC v2): https://cf.10xgenomics.com/samples/cell-atac/2.1.0/atac_mouse_cortex_8k_v2/")
+
+    print("Quick download examples:")
+    print("  # Download a GENCODE GTF (example: human v49)")
+    print("  wget -P examples/data/ https://ftp.ebi.ac.uk/pub/databases/gencode/Gencode_human/release_49/gencode.v49.annotation.gtf.gz")
+    print("  # Example: download 10X filtered peak matrix (open the base URL and pick the appropriate file, e.g. 'filtered_peak_bc_matrix.h5')")
+    print("  wget -P examples/data/ https://cf.10xgenomics.com/samples/cell-atac/2.0.0/atac_pbmc_5k_nextgem/filtered_peak_bc_matrix.h5")
+
+    print("Note: File names at 10X sample directories may vary. If a direct 'filtered_peak_bc_matrix.h5' is not present, visit the base URL in a browser and download the appropriate archive or H5 file.")
+    print("\nNote: Large GTF files (e.g. ~800 MB) should NOT be pushed directly to GitHub.")
+    print("Options:")
+    print("  - Use Git LFS for large files: 'git lfs install' and 'git lfs track \"examples/data/*.gtf*\"' then commit .gitattributes")
+    print("  - Host large files externally (Zenodo, S3, or figshare) and use a small download helper script in 'examples/data/'")
+    sys.exit(1)
 
 print("="*70)
 print("scATAC-seq Peak Annotation Pipeline")
