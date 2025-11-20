@@ -20,6 +20,7 @@ if not check_iaode_installed():
     sys.exit(1)
 
 import iaode
+import numpy as np
 import matplotlib.pyplot as plt
 import warnings
 warnings.filterwarnings('ignore')
@@ -94,7 +95,6 @@ if 'annotation_type' in adata.var.columns and len(adata.var['annotation_type'].v
         autotext.set_fontsize(9)
     ax.set_title('Peak Annotation Distribution', fontweight='bold', pad=20)
 else:
-    # Fallback if no annotation_type column
     ax = axes[0, 0]
     ax.text(0.5, 0.5, 'Peak annotation\nnot available', 
             ha='center', va='center', fontsize=12, color='gray')
@@ -104,16 +104,31 @@ else:
 # Distance to TSS
 if 'distance_to_tss' in adata.var.columns:
     ax = axes[0, 1]
-    distances = adata.var['distance_to_tss'].dropna()
-    ax.hist(distances[distances.abs() < 50000], bins=50, color='#2E86AB', alpha=0.7, edgecolor='black')
-    ax.set_xlabel('Distance to TSS (bp)')
-    ax.set_ylabel('Count')
-    ax.set_title('Peak Distance to TSS', fontweight='bold')
-    ax.grid(axis='y', alpha=0.3)
+    distances_array = np.asarray(adata.var['distance_to_tss'])
+    distances_array = distances_array[np.isfinite(distances_array)]
+    distances_array = distances_array[np.abs(distances_array) < 50000]
+    if distances_array.size > 0:
+        ax.hist(distances_array, bins=50, color='#2E86AB', alpha=0.7, edgecolor='black')
+        ax.set_xlabel('Distance to TSS (bp)')
+        ax.set_ylabel('Count')
+        ax.set_title('Peak Distance to TSS', fontweight='bold')
+        ax.grid(axis='y', alpha=0.3)
+    else:
+        ax.text(0.5, 0.5, 'No TSS distances\navailable',
+                ha='center', va='center', fontsize=12, color='gray')
+        ax.set_title('Peak Distance to TSS', fontweight='bold')
+        ax.axis('off')
 
 # Peak counts per cell
 ax = axes[1, 0]
-peak_counts = adata.X.sum(axis=1).A1 if hasattr(adata.X, 'A1') else adata.X.sum(axis=1)
+try:
+    peak_counts_mat = adata.X.sum(axis=1)  # type: ignore[call-arg]
+    if hasattr(peak_counts_mat, 'A1'):
+        peak_counts = peak_counts_mat.A1
+    else:
+        peak_counts = np.asarray(peak_counts_mat).ravel()
+except Exception:
+    peak_counts = np.asarray(adata.X).sum(axis=1)
 ax.hist(peak_counts, bins=50, color='#A23B72', alpha=0.7, edgecolor='black')
 ax.set_xlabel('Peak Counts')
 ax.set_ylabel('Number of Cells')
@@ -132,6 +147,12 @@ if 'highly_variable' in adata.var.columns:
     ax.grid(axis='y', alpha=0.3)
     for i, v in enumerate(counts):
         ax.text(i, v + max(counts)*0.02, f'{v:,}', ha='center', fontweight='bold')
+else:
+    ax = axes[1, 1]
+    ax.text(0.5, 0.5, 'HVP selection\nnot performed', 
+            ha='center', va='center', fontsize=12, color='gray')
+    ax.set_title('Highly Variable Peaks Selection', fontweight='bold')
+    ax.axis('off')
 
 plt.tight_layout()
 plt.savefig(OUTPUT_DIR / 'annotation_qc.png', dpi=300, bbox_inches='tight')

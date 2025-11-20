@@ -230,7 +230,8 @@ def train_scvi_models(adata, splitter, n_latent=10, n_epochs=400, batch_size=128
         # Record time and GPU memory
         train_time = time.time() - start_time
         peak_memory = torch.cuda.max_memory_allocated() / 1e9 if use_cuda else 0
-        actual_epochs = len(scvi_model.history['elbo_train'])  # Actual epochs trained
+        _hist = scvi_model.history or {}
+        actual_epochs = len(_hist.get('elbo_train', []))  # type: ignore[index]
         
         # Setup test data
         SCVI.setup_anndata(adata_test, layer="counts", batch_key=None)
@@ -291,7 +292,8 @@ def train_scvi_models(adata, splitter, n_latent=10, n_epochs=400, batch_size=128
         # Record time and GPU memory
         train_time = time.time() - start_time
         peak_memory = torch.cuda.max_memory_allocated() / 1e9 if use_cuda else 0
-        actual_epochs = len(peakvi_model.history['elbo_train'])
+        _hist = peakvi_model.history or {}
+        actual_epochs = len(_hist.get('elbo_train', []))  # type: ignore[index]
         
         # Setup test data
         adata_test_peakvi = adata[splitter.test_idx].copy()
@@ -353,7 +355,8 @@ def train_scvi_models(adata, splitter, n_latent=10, n_epochs=400, batch_size=128
         # Record time and GPU memory
         train_time = time.time() - start_time
         peak_memory = torch.cuda.max_memory_allocated() / 1e9 if use_cuda else 0
-        actual_epochs = len(poissonvi_model.history['elbo_train'])
+        _hist = poissonvi_model.history or {}
+        actual_epochs = len(_hist.get('elbo_train', []))  # type: ignore[index]
         
         # Setup test data
         adata_test_poissonvi = adata[splitter.test_idx].copy()
