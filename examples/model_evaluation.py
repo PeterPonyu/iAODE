@@ -56,7 +56,7 @@ model = iaode.agent(
     use_ode=True, encoder_type='mlp', loss_mode='nb', batch_size=128
 )
 
-model.fit(epochs=100, patience=20, val_every=5)
+model.fit(epochs=400, patience=20, val_every=5)
 latent_iaode = model.get_latent()
 
 metrics_iaode = model.get_resource_metrics()
@@ -104,6 +104,31 @@ ls_metrics = iaode.evaluate_single_cell_latent_space(
     verbose=True
 )
 
+# Clustering metrics for iAODE
+print_info("Computing clustering metrics for iAODE")
+adata_test = adata[splitter.test_idx].copy()
+adata_test.obsm['X_latent'] = latent_iaode_test
+
+# Compute neighbors and clustering in latent space
+sc.pp.neighbors(adata_test, use_rep='X_latent')
+sc.tl.leiden(adata_test, key_added='leiden_latent')
+
+# Compute clustering metrics
+from sklearn.metrics import normalized_mutual_info_score, adjusted_rand_score, silhouette_score
+
+if 'paul15_clusters' in adata_test.obs.columns:
+    true_labels = adata_test.obs['paul15_clusters'].values
+    pred_labels = adata_test.obs['leiden_latent'].values
+    
+    cluster_metrics_iaode = {
+        'NMI': normalized_mutual_info_score(true_labels, pred_labels),
+        'ARI': adjusted_rand_score(true_labels, pred_labels),
+        'ASW': silhouette_score(latent_iaode_test, true_labels)
+    }
+    print_success(f"iAODE Clustering - NMI: {cluster_metrics_iaode['NMI']:.3f}, ARI: {cluster_metrics_iaode['ARI']:.3f}, ASW: {cluster_metrics_iaode['ASW']:.3f}")
+else:
+    cluster_metrics_iaode = {}
+
 # ==================================================
 # Train scVI Models
 # ==================================================
@@ -112,7 +137,7 @@ print_section("Training scVI-family models")
 
 scvi_results = iaode.train_scvi_models(
     adata, splitter,
-    n_latent=10, n_epochs=100, batch_size=128
+    n_latent=10, n_epochs=400, batch_size=128
 )
 
 # Evaluate scVI models with clustering metrics
@@ -131,7 +156,8 @@ results = {'iAODE': {
     'adata_subset': adata[splitter.test_idx].copy(),
     'train_time': metrics_iaode['train_time'],
     'dr_metrics': dr_metrics,
-    'ls_metrics': ls_metrics
+    'ls_metrics': ls_metrics,
+    'cluster_metrics': cluster_metrics_iaode
 }}
 
 # Evaluate scVI models with same metrics as iAODE
@@ -237,28 +263,34 @@ sc.tl.umap(adata)
 
 plt.rcParams.update({'figure.dpi': 100, 'savefig.dpi': 300, 'font.size': 10})
 
-fig = plt.figure(figsize=(15, 10))
+fig = plt.figure(figsize=(18, 15))
 
-# Plot 1-3: Metrics comparison bar plots
+# Plot 1-6: Metrics comparison bar plots (2 rows x 3 cols)
 metrics_to_plot = [
     ('Distance Corr', 'Distance Correlation'),
     ('Q_local', 'Local Quality'),
-    ('Q_global', 'Global Quality')
+    ('Q_global', 'Global Quality'),
+    ('NMI', 'Normalized Mutual Info'),
+    ('ARI', 'Adjusted Rand Index'),
+    ('ASW', 'Silhouette Score')
 ]
 
 for idx, (col, title) in enumerate(metrics_to_plot, 1):
-    ax = plt.subplot(2, 3, idx)
+    ax = plt.subplot(3, 3, idx)
     data_plot = df[df[col].notna()]
     if not data_plot.empty:
-        ax.bar(data_plot['Model'], data_plot[col], color=['#2E86AB', '#A23B72', '#F18F01'])
+        colors = ['#2E86AB', '#A23B72', '#F18F01'][:len(data_plot)]
+        ax.bar(data_plot['Model'], data_plot[col], color=colors)
         ax.set_title(title, fontweight='bold')
         ax.set_ylabel('Score')
         ax.grid(axis='y', alpha=0.3)
+        ax.tick_params(axis='x', rotation=45)
 
-# Plot 4-6: UMAP visualizations
-for idx, model_name in enumerate(['iAODE', 'scvi', 'peakvi'], start=4):
+# Plot 7-9: UMAP visualizations (single legend per row)
+legend_handles = None
+for idx, model_name in enumerate(['iAODE', 'scvi', 'peakvi'], start=7):
     if model_name in results:
-        ax = plt.subplot(2, 3, idx)
+        ax = plt.subplot(3, 3, idx)
         
         # Use the subset data that matches the latent representation
         adata_viz = results[model_name]['adata_subset'].copy()
@@ -272,8 +304,27 @@ for idx, model_name in enumerate(['iAODE', 'scvi', 'peakvi'], start=4):
         sc.tl.umap(adata_viz)
         
         if 'paul15_clusters' in adata_viz.obs.columns:
-            sc.pl.umap(adata_viz, color='paul15_clusters', ax=ax, show=False, frameon=True)
+            # Plot without legend first
+            sc.pl.umap(adata_viz, color='paul15_clusters', ax=ax, show=False, 
+                      frameon=True, legend_loc=None)
+            
+            # Capture legend from first plot only
+            if idx == 7:
+                legend_handles = ax.get_legend_handles_labels()
+                if ax.get_legend() is not None:
+                    ax.get_legend().remove()
+            else:
+                # Remove legend from other plots
+                if ax.get_legend() is not None:
+                    ax.get_legend().remove()
+        
         ax.set_title(f'{model_name.upper()} Latent Space', fontweight='bold')
+
+# Add single shared legend for UMAP plots
+if legend_handles is not None and legend_handles[0]:
+    fig.legend(legend_handles[0], legend_handles[1], 
+              loc='lower center', ncol=len(legend_handles[0]), 
+              bbox_to_anchor=(0.5, -0.02), frameon=True)
 
 plt.tight_layout()
 plt.savefig(OUTPUT_DIR / 'model_comparison.png', dpi=300, bbox_inches='tight')

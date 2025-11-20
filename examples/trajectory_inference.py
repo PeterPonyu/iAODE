@@ -67,7 +67,7 @@ model = iaode.agent(
     batch_size=128
 )
 
-model.fit(epochs=100, patience=20, val_every=5)
+model.fit(epochs=400, patience=20, val_every=5)
 
 metrics = model.get_resource_metrics()
 print_success(f"Trained in {metrics['train_time']:.2f}s")
