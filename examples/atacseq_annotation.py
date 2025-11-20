@@ -78,13 +78,28 @@ plt.rcParams.update({'figure.dpi': 100, 'savefig.dpi': 300, 'font.size': 10})
 fig, axes = plt.subplots(2, 2, figsize=(12, 10))
 
 # Peak annotation distribution
-if 'peak_type' in adata.var.columns:
+if 'peak_type' in adata.var.columns and len(adata.var['peak_type'].value_counts()) > 0:
     peak_types = adata.var['peak_type'].value_counts()
     ax = axes[0, 0]
     colors = ['#2E86AB', '#A23B72', '#F18F01', '#06A77D', '#D3D3D3']
-    ax.pie(peak_types.values, labels=peak_types.index, autopct='%1.1f%%',
-           colors=colors[:len(peak_types)], startangle=90)
+    wedges, texts, autotexts = ax.pie(peak_types.values, labels=peak_types.index, 
+                                        autopct='%1.1f%%', colors=colors[:len(peak_types)], 
+                                        startangle=90)
+    # Ensure text is visible
+    for text in texts:
+        text.set_fontsize(9)
+    for autotext in autotexts:
+        autotext.set_color('white')
+        autotext.set_fontweight('bold')
+        autotext.set_fontsize(9)
     ax.set_title('Peak Annotation Distribution', fontweight='bold', pad=20)
+else:
+    # Fallback if no peak_type column
+    ax = axes[0, 0]
+    ax.text(0.5, 0.5, 'Peak annotation\nnot available', 
+            ha='center', va='center', fontsize=12, color='gray')
+    ax.set_title('Peak Annotation Distribution', fontweight='bold', pad=20)
+    ax.axis('off')
 
 # Distance to TSS
 if 'distance_to_tss' in adata.var.columns:
