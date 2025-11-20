@@ -179,6 +179,46 @@ class agent(Env):
         """Get latent representation from test set only"""
         return self.take_latent(torch.FloatTensor(self.X_test).to(self.device))
     
+    def get_pseudotime(self):
+        """
+        Get pseudotime (ODE time parameter) from full dataset
+        
+        Only available when use_ode=True. Pseudotime represents the inferred
+        temporal ordering of cells along a continuous trajectory.
+        
+        Returns:
+            np.ndarray: Pseudotime values for all cells, shape (n_cells,)
+        
+        Raises:
+            ValueError: If model was not initialized with use_ode=True
+        """
+        if not self.use_ode:
+            raise ValueError(
+                "Pseudotime is only available when use_ode=True. "
+                "Reinitialize the model with use_ode=True to enable trajectory inference."
+            )
+        return self.take_time(self.X)
+    
+    def get_velocity(self):
+        """
+        Get velocity vectors (ODE gradients) from full dataset
+        
+        Only available when use_ode=True. Velocity represents the direction
+        and magnitude of change in latent space along the trajectory.
+        
+        Returns:
+            np.ndarray: Velocity vectors for all cells, shape (n_cells, latent_dim)
+        
+        Raises:
+            ValueError: If model was not initialized with use_ode=True
+        """
+        if not self.use_ode:
+            raise ValueError(
+                "Velocity is only available when use_ode=True. "
+                "Reinitialize the model with use_ode=True to enable trajectory inference."
+            )
+        return self.take_grad(self.X)
+    
     def get_resource_metrics(self):
         """
         Get resource usage metrics from training
