@@ -1,4 +1,4 @@
-#module.py
+# module.py
 
 import torch
 import torch.nn as nn
@@ -10,17 +10,49 @@ from .mixin import NODEMixin
 
 class Encoder(nn.Module):
     """
-    变分编码器网络，将输入状态映射到潜在分布。
-
-    支持多种编码器结构:
-    - 'mlp': 两层全连接网络（默认）
-    - 'mlp_residual': 多层残差 MLP
-    - 'linear': 单层线性编码
-    - 'transformer': 使用 TransformerEncoder 作为特征提取 backbone
-
-    输入:
-        x: 一般为 (batch_size, state_dim) 的张量。
-            若为 (state_dim,), 会自动视为 batch_size=1。
+    Variational encoder mapping input states to latent distributions.
+    
+    Supports multiple encoder architectures:
+    - 'mlp': Two-layer fully connected network (default)
+    - 'mlp_residual': Multi-layer residual MLP
+    - 'linear': Single-layer linear encoding
+    - 'transformer': TransformerEncoder as feature extraction backbone
+    
+    Parameters
+    ----------
+    state_dim : int
+        Dimension of input state (number of peaks for scATAC-seq)
+    hidden_dim : int
+        Dimension of hidden layers
+    action_dim : int
+        Dimension of latent space
+    use_ode : bool, default=False
+        Whether to use ODE for trajectory inference
+    encoder_type : {'mlp', 'mlp_residual', 'linear', 'transformer'}, default='mlp'
+        Type of encoder architecture
+    encoder_num_layers : int, default=2
+        Number of encoder layers
+    encoder_n_heads : int, default=4
+        Number of attention heads (for transformer only)
+    encoder_d_model : int, optional
+        Model dimension for transformer (defaults to hidden_dim if None)
+    
+    Input Shape
+    -----------
+    x : torch.Tensor
+        (batch_size, state_dim) or (state_dim,)
+        Single cells automatically expand to batch_size=1
+    
+    Output Shape
+    ------------
+    q_z : torch.Tensor
+        Sampled latent vector (batch_size, action_dim)
+    q_m : torch.Tensor
+        Mean of latent distribution (batch_size, action_dim)
+    q_s : torch.Tensor
+        Log-variance of latent distribution (batch_size, action_dim)
+    t : torch.Tensor, optional
+        Inferred pseudotime (batch_size,), only when use_ode=True
     """
 
     def __init__(
@@ -38,7 +70,7 @@ class Encoder(nn.Module):
         self.use_ode = use_ode
         self.encoder_type = encoder_type
 
-        # ---------- choose backbone ----------
+        # Build encoder backbone
         if encoder_type == "mlp":
             layers = []
             in_dim = state_dim
@@ -79,7 +111,7 @@ class Encoder(nn.Module):
                 d_model=encoder_d_model,
                 nhead=encoder_n_heads,
                 dim_feedforward=hidden_dim * 4,
-                batch_first=True,  # (batch, seq_len, d_model)
+                batch_first=True,
             )
             self.transformer = nn.TransformerEncoder(
                 encoder_layer, num_layers=encoder_num_layers
@@ -90,10 +122,10 @@ class Encoder(nn.Module):
         else:
             raise ValueError(f"Unknown encoder_type: {encoder_type}")
 
-        # ---------- latent parameters ----------
+        # Latent distribution parameters
         self.latent_params = nn.Linear(self.out_dim, action_dim * 2)
 
-        # time head for ODE mode
+        # Pseudotime inference head (ODE mode)
         if use_ode:
             self.time_encoder = nn.Sequential(
                 nn.Linear(self.out_dim, 1),
@@ -104,39 +136,45 @@ class Encoder(nn.Module):
 
     @staticmethod
     def _init_weights(m: nn.Module) -> None:
+        """Initialize network weights using Xavier initialization"""
         if isinstance(m, nn.Linear):
             nn.init.xavier_normal_(m.weight)
             nn.init.constant_(m.bias, 0.01)
 
     def _encode_features(self, x: torch.Tensor) -> torch.Tensor:
         """
-        将输入 x 编码为 hidden 表示。
-        输入:
-            x: 至少 2 维, (batch_size, state_dim)
-        输出:
-            hidden: (batch_size, out_dim)
+        Encode input to hidden representation.
+        
+        Parameters
+        ----------
+        x : torch.Tensor
+            Input tensor (batch_size, state_dim)
+        
+        Returns
+        -------
+        hidden : torch.Tensor
+            Encoded features (batch_size, out_dim)
         """
-        # 确保存在 batch 维度 (batch_size, state_dim)
+        # Ensure batch dimension exists
         if x.dim() == 1:
             x = x.unsqueeze(0)
 
         if self.encoder_type in ["mlp", "linear"]:
-            hidden = self.base_network(x)  # (batch, out_dim)
+            hidden = self.base_network(x)
 
         elif self.encoder_type == "mlp_residual":
-            h = self.input_proj(x)  # (batch, hidden_dim)
+            h = self.input_proj(x)
             for block in self.res_blocks:
-                h = h + block(h)     # residual
-            hidden = h              # (batch, hidden_dim)
+                h = h + block(h)  # Residual connection
+            hidden = h
 
         elif self.encoder_type == "transformer":
-            # (batch, state_dim) -> (batch, 1, state_dim)
+            # Add sequence dimension: (batch, state_dim) -> (batch, 1, state_dim)
             if x.dim() == 2:
                 x = x.unsqueeze(1)
-            # 若未来你改成真正的序列输入，x 可以是 (batch, seq_len, state_dim)
             x_emb = self.input_proj(x)        # (batch, seq_len, d_model)
             h = self.transformer(x_emb)       # (batch, seq_len, d_model)
-            # pool over seq_len -> (batch, d_model)
+            # Pool over sequence dimension
             h = h.transpose(1, 2)             # (batch, d_model, seq_len)
             hidden = self.pool(h).squeeze(-1) # (batch, d_model)
 
@@ -151,20 +189,35 @@ class Encoder(nn.Module):
         Tuple[torch.Tensor, torch.Tensor, torch.Tensor],
         Tuple[torch.Tensor, torch.Tensor, torch.Tensor, torch.Tensor],
     ]:
-        # 1) 提取特征 (batch, out_dim)
+        """
+        Forward pass through encoder.
+        
+        Returns
+        -------
+        q_z : torch.Tensor
+            Sampled latent vector
+        q_m : torch.Tensor
+            Latent mean
+        q_s : torch.Tensor
+            Latent log-variance
+        t : torch.Tensor, optional
+            Inferred pseudotime (only when use_ode=True)
+        """
+        # Extract features
         hidden = self._encode_features(x)
 
-        # 2) 计算潜在分布参数
-        latent_output = self.latent_params(hidden)   # (batch, 2 * action_dim)
+        # Compute latent distribution parameters
+        latent_output = self.latent_params(hidden)
         q_m, q_s = torch.split(latent_output, latent_output.size(-1) // 2, dim=-1)
 
+        # Reparameterization trick
         std = F.softplus(q_s) + 1e-6
         dist = Normal(q_m, std)
-        q_z = dist.rsample()                         # (batch, action_dim)
+        q_z = dist.rsample()
 
-        # 3) ODE 模式下输出时间 t
+        # Infer pseudotime (ODE mode)
         if self.use_ode:
-            t = self.time_encoder(hidden).squeeze(-1)  # (batch,)
+            t = self.time_encoder(hidden).squeeze(-1)
             return q_z, q_m, q_s, t
 
         return q_z, q_m, q_s
@@ -172,23 +225,28 @@ class Encoder(nn.Module):
 
 class Decoder(nn.Module):
     """
-    解码器网络，将潜在向量映射回原始空间
-
-    支持三种损失模式：
-    - 'mse': 均方误差损失，适用于连续数据
-    - 'nb': 负二项分布损失，适用于离散计数数据
-    - 'zinb': 零膨胀负二项分布损失，适用于有大量零值的计数数据
-
-    参数
+    Decoder network mapping latent vectors back to input space.
+    
+    Supports three loss modes tailored for scATAC-seq data:
+    - 'mse': Mean squared error for continuous data
+    - 'nb': Negative binomial for count data (recommended)
+    - 'zinb': Zero-inflated negative binomial for sparse count data
+    
+    Parameters
     ----------
     state_dim : int
-        原始空间的维度
+        Dimension of input space (number of peaks)
     hidden_dim : int
-        隐藏层的维度
+        Dimension of hidden layers
     action_dim : int
-        潜在空间的维度
-    loss_mode : Literal['mse', 'nb', 'zinb']
-        损失函数的模式，默认为'nb'
+        Dimension of latent space
+    loss_mode : {'mse', 'nb', 'zinb'}, default='nb'
+        Type of reconstruction loss
+    
+    Notes
+    -----
+    For scATAC-seq data, 'nb' or 'zinb' is recommended due to the discrete,
+    count-based nature of chromatin accessibility measurements.
     """
 
     def __init__(
@@ -201,7 +259,7 @@ class Decoder(nn.Module):
         super().__init__()
         self.loss_mode = loss_mode
 
-        # 共享基础网络部分
+        # Shared base network
         self.base_network = nn.Sequential(
             nn.Linear(action_dim, hidden_dim),
             nn.ReLU(),
@@ -209,70 +267,81 @@ class Decoder(nn.Module):
             nn.ReLU(),
         )
 
-        # 根据损失模式配置输出层
+        # Configure output heads based on loss mode
         if loss_mode in ["nb", "zinb"]:
-            # 负二项分布参数：过离散参数
+            # Negative binomial: dispersion parameter
             self.disp = nn.Parameter(torch.randn(state_dim))
-            # 均值参数：使用Softmax确保归一化
+            # Mean parameter with Softmax normalization
             self.mean_decoder = nn.Sequential(
-                nn.Linear(hidden_dim, state_dim), nn.Softmax(dim=-1)
+                nn.Linear(hidden_dim, state_dim), 
+                nn.Softmax(dim=-1)
             )
-        else:  # 'mse'模式
-            # 直接线性输出
+        else:  # 'mse' mode
             self.mean_decoder = nn.Linear(hidden_dim, state_dim)
 
-        # 零膨胀参数 (仅用于'zinb'模式)
+        # Zero-inflation parameter (ZINB only)
         if loss_mode == "zinb":
             self.dropout_decoder = nn.Linear(hidden_dim, state_dim)
 
-        # 应用权重初始化
         self.apply(self._init_weights)
 
     @staticmethod
     def _init_weights(m: nn.Module) -> None:
-        """初始化网络权重"""
+        """Initialize network weights"""
         if isinstance(m, nn.Linear):
             nn.init.xavier_normal_(m.weight)
             nn.init.constant_(m.bias, 0.01)
 
     def forward(self, x: torch.Tensor):
         """
-        前向传播
-
-        参数
+        Forward pass through decoder.
+        
+        Parameters
         ----------
         x : torch.Tensor
-            形状为(batch_size, action_dim)的潜在向量
-
-        返回
-        ----------
-        对于'mse'和'nb'模式：
-            torch.Tensor: 重构的输出
-        对于'zinb'模式：
-            Tuple[torch.Tensor, torch.Tensor]: (重构均值, 零膨胀参数的logits)
+            Latent vector (batch_size, action_dim)
+        
+        Returns
+        -------
+        For 'mse' and 'nb' modes:
+            mean : torch.Tensor
+                Reconstructed output (batch_size, state_dim)
+        
+        For 'zinb' mode:
+            mean : torch.Tensor
+                Reconstructed mean (batch_size, state_dim)
+            dropout_logits : torch.Tensor
+                Zero-inflation logits (batch_size, state_dim)
         """
-        # 通过基础网络
         hidden = self.base_network(x)
-
-        # 计算均值输出
         mean = self.mean_decoder(hidden)
 
-        # 对于'zinb'模式，还需计算零膨胀参数
         if self.loss_mode == "zinb":
             dropout_logits = self.dropout_decoder(hidden)
             return mean, dropout_logits
 
-        # 对于'mse'和'nb'模式，只返回均值
         return mean
 
 
 class LatentODEfunc(nn.Module):
     """
-    潜在空间ODE函数模型
-
-    参数:
-    n_latent: 潜在空间维度
-    n_hidden: 隐藏层维度
+    Neural ODE function for latent dynamics modeling.
+    
+    Models continuous temporal dynamics in latent space for trajectory inference
+    in single-cell data. The ODE function dx/dt = f(x, t) is parameterized by
+    a two-layer neural network.
+    
+    Parameters
+    ----------
+    n_latent : int, default=10
+        Dimension of latent space
+    n_hidden : int, default=25
+        Dimension of hidden layer
+    
+    Notes
+    -----
+    Used for pseudotime inference in scATAC-seq data, enabling continuous
+    trajectory modeling of chromatin accessibility dynamics.
     """
 
     def __init__(
@@ -287,14 +356,19 @@ class LatentODEfunc(nn.Module):
 
     def forward(self, t: torch.Tensor, x: torch.Tensor) -> torch.Tensor:
         """
-        计算在时间t和状态x下的梯度
-
-        参数:
-        t: 时间点
-        x: 潜在状态
-
-        返回:
-        梯度值
+        Compute latent dynamics gradient.
+        
+        Parameters
+        ----------
+        t : torch.Tensor
+            Time point
+        x : torch.Tensor
+            Latent state
+        
+        Returns
+        -------
+        dx_dt : torch.Tensor
+            Temporal gradient in latent space
         """
         out = self.fc1(x)
         out = self.elu(out)
@@ -302,21 +376,43 @@ class LatentODEfunc(nn.Module):
         return out
 
 
-class VAE(nn.Module, NODEMixin):
+class iVAE(nn.Module, NODEMixin):
     """
-    Variational Autoencoder with support for both linear.
-
+    Interpretable Variational Autoencoder (iVAE) with interpretable bottleneck.
+    
+    Core architecture for iAODE (interpretable Accessibility ODE VAE), designed
+    for scATAC-seq data analysis. Combines VAE with information bottleneck for
+    interpretable latent representations.
+    
     Parameters
     ----------
     state_dim : int
-        Dimension of input state space
+        Dimension of input state (number of peaks)
     hidden_dim : int
         Dimension of hidden layers
     action_dim : int
-        Dimension of action/latent space
+        Dimension of latent space (full)
     i_dim : int
-        Dimension of information bottleneck
-
+        Dimension of interpretable bottleneck
+    use_ode : bool
+        Whether to use Neural ODE for trajectory inference
+    loss_mode : {'mse', 'nb', 'zinb'}, default='nb'
+        Reconstruction loss type
+    encoder_type : {'mlp', 'mlp_residual', 'linear', 'transformer'}, default='mlp'
+        Encoder architecture
+    encoder_num_layers : int, default=2
+        Number of encoder layers
+    encoder_n_heads : int, default=4
+        Number of attention heads (transformer only)
+    encoder_d_model : int, optional
+        Transformer model dimension
+    device : torch.device
+        Device for computation
+    
+    Notes
+    -----
+    The interpretable bottleneck (i_dim) provides a compressed representation
+    that balances reconstruction quality with biological interpretability.
     """
 
     def __init__(
@@ -347,41 +443,59 @@ class VAE(nn.Module, NODEMixin):
             encoder_num_layers=encoder_num_layers,
             encoder_n_heads=encoder_n_heads,
             encoder_d_model=encoder_d_model,
-        ).to(device)        
+        ).to(device)
         
+        # Initialize decoder
         self.decoder = Decoder(state_dim, hidden_dim, action_dim, loss_mode).to(device)
 
+        # Initialize ODE solver
         if use_ode:
             self.ode_solver = LatentODEfunc(action_dim)
 
-        # Information bottleneck layers
+        # Interpretable bottleneck layers
         self.latent_encoder = nn.Linear(action_dim, i_dim).to(device)
         self.latent_decoder = nn.Linear(i_dim, action_dim).to(device)
 
     def forward(self, x: torch.Tensor) -> Tuple[torch.Tensor, ...]:
         """
-        Forward pass through the VAE.
-
+        Forward pass through VAE.
+        
         Parameters
         ----------
         x : torch.Tensor
-            Input tensor
-
+            Input tensor (batch_size, state_dim)
+        
         Returns
         -------
-        Tuple[torch.Tensor, ...]
-            - q_z: sampled latent vector
-            - q_m: mean of encoding distribution
-            - q_s: log variance of encoding distribution
-            - pred_x: reconstructed input (direct path)
-            - le: encoded information bottleneck
-            - ld: decoded information bottleneck
-            - pred_xl: reconstructed input (bottleneck path)
+        Tuple containing:
+            q_z : torch.Tensor
+                Sampled latent vector
+            q_m : torch.Tensor
+                Latent mean
+            q_s : torch.Tensor
+                Latent log-variance
+            pred_x : torch.Tensor
+                Reconstructed input (direct path)
+            le : torch.Tensor
+                Encoded bottleneck representation
+            pred_xl : torch.Tensor
+                Reconstructed input (bottleneck path)
+            
+            Additional returns for ODE mode:
+            q_z_ode : torch.Tensor
+                ODE-evolved latent
+            pred_x_ode : torch.Tensor
+                ODE reconstruction
+            
+            Additional returns for ZINB mode:
+            dropout_logits : torch.Tensor
+                Zero-inflation parameters
         """
         # Encode
         if self.encoder.use_ode:
             q_z, q_m, q_s, t = self.encoder(x)
 
+            # Sort by pseudotime
             idxs = torch.argsort(t)
             t = t[idxs]
             q_z = q_z[idxs]
@@ -389,6 +503,7 @@ class VAE(nn.Module, NODEMixin):
             q_s = q_s[idxs]
             x = x[idxs]
 
+            # Remove duplicate time points
             unique_mask = torch.ones_like(t, dtype=torch.bool)
             unique_mask[1:] = t[1:] != t[:-1]
 
@@ -398,36 +513,30 @@ class VAE(nn.Module, NODEMixin):
             q_s = q_s[unique_mask]
             x = x[unique_mask]
 
+            # Solve ODE from initial state
             z0 = q_z[0]
             q_z_ode = self.solve_ode(self.ode_solver, z0, t)
-            # Information bottleneck
+            
+            # Information bottleneck paths
             le = self.latent_encoder(q_z)
             ld = self.latent_decoder(le)
-
             le_ode = self.latent_encoder(q_z_ode)
             ld_ode = self.latent_decoder(le_ode)
 
+            # Decode
             if self.decoder.loss_mode == "zinb":
                 pred_x, dropout_logits = self.decoder(q_z)
                 pred_xl, dropout_logitsl = self.decoder(ld)
                 pred_x_ode, dropout_logits_ode = self.decoder(q_z_ode)
                 pred_xl_ode, dropout_logitsl_ode = self.decoder(ld_ode)
                 return (
-                    q_z,
-                    q_m,
-                    q_s,
-                    x,
-                    pred_x,
-                    dropout_logits,
-                    le,
-                    le_ode,
-                    pred_xl,
-                    dropout_logitsl,
+                    q_z, q_m, q_s, x,
+                    pred_x, dropout_logits,
+                    le, le_ode,
+                    pred_xl, dropout_logitsl,
                     q_z_ode,
-                    pred_x_ode,
-                    dropout_logits_ode,
-                    pred_xl_ode,
-                    dropout_logitsl_ode,
+                    pred_x_ode, dropout_logits_ode,
+                    pred_xl_ode, dropout_logitsl_ode,
                 )
             else:
                 pred_x = self.decoder(q_z)
@@ -435,13 +544,9 @@ class VAE(nn.Module, NODEMixin):
                 pred_x_ode = self.decoder(q_z_ode)
                 pred_xl_ode = self.decoder(ld_ode)
                 return (
-                    q_z,
-                    q_m,
-                    q_s,
-                    x,
+                    q_z, q_m, q_s, x,
                     pred_x,
-                    le,
-                    le_ode,
+                    le, le_ode,
                     pred_xl,
                     q_z_ode,
                     pred_x_ode,
@@ -450,22 +555,20 @@ class VAE(nn.Module, NODEMixin):
 
         else:
             q_z, q_m, q_s = self.encoder(x)
+            
             # Information bottleneck
             le = self.latent_encoder(q_z)
             ld = self.latent_decoder(le)
 
+            # Decode
             if self.decoder.loss_mode == "zinb":
                 pred_x, dropout_logits = self.decoder(q_z)
                 pred_xl, dropout_logitsl = self.decoder(ld)
                 return (
-                    q_z,
-                    q_m,
-                    q_s,
-                    pred_x,
-                    dropout_logits,
+                    q_z, q_m, q_s,
+                    pred_x, dropout_logits,
                     le,
-                    pred_xl,
-                    dropout_logitsl,
+                    pred_xl, dropout_logitsl,
                 )
             else:
                 pred_x = self.decoder(q_z)

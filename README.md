@@ -1,19 +1,49 @@
-# iAODE: Interpretable Autoencoder with Ordinary Differential Equations
+# iAODE: Interpretable Accessibility ODE VAE for scATAC-seq
 
-[![PyPI version](https://badge.fury.io/py/iaode.svg)](https://badge.fury.io/py/iaode)
-[![Python 3.9+](https://img.shields.io/badge/python-3.9+-blue.svg)](https://www.python.org/downloads/)
-[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+[![PyPI version](https://badge.fury.io/py/iaode.svg)](https://badge.fury.io/py/iaode) [![Python 3.9+](https://img.shields.io/badge/python-3.9+-blue.svg)](https://www.python.org/downloads/) [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
-A deep learning framework for single-cell omics data analysis that combines variational autoencoders (VAE) with neural ordinary differential equations (ODE) for trajectory inference and dimensionality reduction.
+`iAODE` (interpretable Accessibility ODE VAE) is a lightweight deep learning framework purpose-built for single‑cell ATAC‑seq (scATAC‑seq) data. It couples a variational autoencoder (VAE) with a Neural ODE and an interpretable bottleneck to jointly achieve:
 
-## Features
+1. **Robust modeling** of sparse count accessibility profiles (NB / ZINB likelihoods)
+2. **Continuous trajectory inference** (Neural ODE pseudotime + velocity)
+3. **Interpretable latent factors** (biologically aligned bottleneck)
+4. **Scalable preprocessing** (TF‑IDF + highly variable peak selection) aligned with Signac / SnapATAC2 best practices
 
-- **Interpretable Dimensionality Reduction**: VAE-based architecture with multiple loss modes (MSE, NB, ZINB)
-- **Trajectory Inference**: Neural ODE integration for continuous trajectory modeling
-- **scATAC-seq Peak Annotation**: Comprehensive peak-to-gene annotation pipeline following best practices
-- **Comprehensive Evaluation**: Built-in metrics for dimensionality reduction and latent space quality
-- **Benchmark Framework**: Compare against state-of-the-art methods (scVI, PEAKVI, POISSONVI)
-- **Flexible Architecture**: Support for multiple encoder types (MLP, Residual MLP, Linear, Transformer)
+The design targets the unique characteristics of scATAC data: extreme sparsity, library size variability, heterogeneous peak accessibility kinetics, and dynamic regulatory trajectories.
+
+---
+
+## Core Architecture
+
+```
+Raw Peak Counts  --(TF-IDF)-->  Normalized Matrix  --(HVP Selection)-->  Peak Subset
+       |
+       v
+Encoder (MLP / Residual / Transformer) --> q(z|x)
+       |                 \
+       |                  +--> Bottleneck (i_dim) -> Interpretable factors
+       v
+   Neural ODE f(z,t) -> z_ode(t)  (pseudotime + dynamics)
+       |                \
+       |                 +--> Consistency Loss (q_z vs z_ode)
+       v
+   Decoder (NB / ZINB / MSE) -> Reconstruction x_hat
+```
+
+**Key Components**:
+- **TF‑IDF Normalization**: Stabilizes cell‑wise peak depth, emphasizes specific accessibility
+- **Highly Variable Peaks (HVP)**: Variance / VMR / deviance‑based selection
+- **NB/ZINB Likelihoods**: Models over‑dispersion & zero inflation
+- **Neural ODE**: Smooth accessibility progression with pseudotime & velocity
+- **Interpretable Bottleneck**: Linear compression preserving biologically decodable axes
+- **Multi‑Objective Regularization**: β‑VAE KL, β‑TC, DIP, InfoVAE MMD, ODE consistency
+
+**Loss Function**:
+```
+Loss = recon + i_recon + ODE_consistency + β·KL + dip·DIP + tc·TC + info·MMD
+```
+
+---
 
 ## Installation
 
@@ -31,85 +61,169 @@ cd iAODE
 pip install -e .
 ```
 
-### Dependencies
+### Requirements
 
-- Python >= 3.9
-- PyTorch >= 1.10.0
-- AnnData >= 0.8.0
-- Scanpy >= 1.8.0
-- scvi-tools >= 0.16.0
-- See `requirements.txt` for complete list
+- Python ≥ 3.9
+- PyTorch ≥ 1.10.0
+- AnnData ≥ 0.8.0
+- Scanpy ≥ 1.8.0
+- scvi-tools ≥ 0.16.0
+
+See `requirements.txt` for complete dependencies.
+
+---
 
 ## Quick Start
 
-> **📁 See `examples/` for complete runnable examples**
-
-### Basic scRNA-seq Analysis
+### Basic scATAC-seq Workflow
 
 ```python
 import scanpy as sc
 import iaode
+from iaode.utils import tfidf_normalization, select_highly_variable_peaks
+from iaode.annotation import load_10x_h5_data
 
-# Load and preprocess
-adata = sc.datasets.paul15()
-sc.pp.filter_cells(adata, min_genes=200)
-sc.pp.normalize_total(adata, target_sum=1e4)
-sc.pp.log1p(adata)
+# 1. Download and load scATAC-seq data (auto-cached)
+h5_file, gtf_file = iaode.datasets.mouse_brain_5k_atacseq()
+print(f"Data downloaded to: {h5_file.parent}")
+
+# Load peak count matrix
+adata = load_10x_h5_data(str(h5_file))
 adata.layers['counts'] = adata.X.copy()
+print(f"Loaded: {adata.n_obs} cells × {adata.n_vars} peaks")
 
-# Train iAODE model with key hyperparameters
+# 2. TF-IDF normalization (Signac/SnapATAC2 best practice)
+tfidf_normalization(
+    adata,
+    scale_factor=1e4,
+    log_tf=False,
+    log_idf=True,
+    inplace=True
+)
+
+# 3. Highly variable peak (HVP) selection
+select_highly_variable_peaks(
+    adata,
+    n_top_peaks=20000,
+    method='signac',
+    min_accessibility=0.01,
+    max_accessibility=0.95,
+    inplace=True
+)
+
+# Subset to HVPs
+hvp_mask = adata.var['highly_variable']
+adata = adata[:, hvp_mask].copy()
+print(f"Retained {adata.n_vars} highly variable peaks")
+
+# 4. Train iAODE model
 model = iaode.agent(
     adata,
     layer='counts',
-    latent_dim=10,         # Latent space dimensions
-    hidden_dim=128,        # Hidden layer size
-    encoder_type='mlp',    # Options: 'mlp', 'residual_mlp', 'transformer', 'linear'
-    loss_mode='nb',        # Options: 'mse', 'nb', 'zinb'
-    use_ode=False          # Set True for trajectory inference
+    latent_dim=32,         # Higher for scATAC complexity
+    hidden_dim=512,        # Deeper for regulatory patterns
+    encoder_type='mlp',
+    loss_mode='zinb',      # Best for sparse scATAC data
+    use_ode=False
 )
 
-model.fit(epochs=100, patience=20, val_every=5)
-latent = model.get_latent()
+model.fit(epochs=400, patience=25, val_every=10)
 
-# Visualize with UMAP
+# 5. Extract latent representation
+latent = model.get_latent()
 adata.obsm['X_iaode'] = latent
+
+# 6. Visualize with UMAP
 sc.pp.neighbors(adata, use_rep='X_iaode')
 sc.tl.umap(adata)
-sc.pl.umap(adata, color='paul15_clusters')
+
+# Color by QC metrics
+sc.pl.umap(adata, color=['n_genes_by_counts', 'total_counts'])
 ```
 
-### Trajectory Inference with Neural ODE
+### scATAC-seq with Trajectory Inference
 
 ```python
-# Enable Neural ODE for trajectory modeling
+import scanpy as sc
+import iaode
+from iaode.utils import tfidf_normalization, select_highly_variable_peaks
+from iaode.annotation import load_10x_h5_data
+
+# 1. Load and preprocess scATAC-seq data
+h5_file, gtf_file = iaode.datasets.mouse_brain_5k_atacseq()
+adata = load_10x_h5_data(str(h5_file))
+adata.layers['counts'] = adata.X.copy()
+
+# TF-IDF normalization
+tfidf_normalization(adata, scale_factor=1e4, log_tf=False, log_idf=True, inplace=True)
+
+# Select highly variable peaks
+select_highly_variable_peaks(adata, n_top_peaks=20000, method='signac', inplace=True)
+adata = adata[:, adata.var['highly_variable']].copy()
+
+# 2. Train iAODE with Neural ODE for trajectory inference
 model = iaode.agent(
     adata,
-    use_ode=True,          # Enable ODE
-    i_dim=2,               # ODE intermediate dimension
-    latent_dim=10,
-    loss_mode='nb'
+    layer='counts',
+    use_ode=True,          # Enable Neural ODE dynamics
+    i_dim=16,              # Interpretable bottleneck dimension
+    latent_dim=32,
+    hidden_dim=512,
+    encoder_type='mlp',
+    loss_mode='zinb'
 )
 
-model.fit(epochs=100)
-latent = model.get_latent()
-iembed = model.get_iembed()  # ODE intermediate states
+model.fit(epochs=400, patience=25, val_every=10)
 
-# Compute pseudotime from latent space
-adata.obs['pseudotime'] = (latent[:, 0] - latent[:, 0].min()) / (latent[:, 0].max() - latent[:, 0].min())
+# 3. Extract trajectory-related representations
+latent = model.get_latent()           # Latent space (z)
+iembed = model.get_iembed()           # Interpretable regulatory factors
+pseudotime = model.get_pseudotime()   # ODE time parameter
+velocity = model.get_velocity()       # Latent velocity field
+
+# Store in AnnData
+adata.obsm['X_iaode'] = latent
+adata.obsm['X_iembed'] = iembed
+adata.obs['pseudotime'] = pseudotime
+adata.obsm['velocity'] = velocity
+
+# 4. Visualize trajectory
+sc.pp.neighbors(adata, use_rep='X_iaode')
+sc.tl.umap(adata)
+
+# Color UMAP by pseudotime to reveal developmental trajectory
+sc.pl.umap(adata, color='pseudotime', cmap='viridis')
+
+# Visualize velocity field (requires UMAP coordinates)
+E_grid, V_grid = model.get_vfres(
+    adata,
+    zs_key='X_iaode',
+    E_key='X_umap',
+    stream=True,
+    density=1.5
+)
+
+import matplotlib.pyplot as plt
+fig, ax = plt.subplots(figsize=(8, 6))
+sc.pl.umap(adata, color='pseudotime', ax=ax, show=False)
+ax.streamplot(E_grid[0], E_grid[1], V_grid[0], V_grid[1], 
+              color='gray', density=1.5, linewidth=0.5, arrowsize=1)
+plt.tight_layout()
+plt.show()
 ```
 
-### scATAC-seq Peak Annotation
+### scATAC-seq Peak Annotation Pipeline
 
-**Automatic data download** - iAODE automatically downloads and caches example datasets:
+**Automatic data download** - iAODE automatically downloads and caches datasets:
 
 ```python
 import iaode
 
-# Automatically downloads mouse brain 5k scATAC-seq + GENCODE annotation
+# Downloads mouse brain 5k scATAC-seq + GENCODE vM25 GTF
 # Files cached in ~/.iaode/data/ and reused on subsequent runs
 h5_file, gtf_file = iaode.datasets.mouse_brain_5k_atacseq()
 
-# Run annotation pipeline
+# Run complete annotation pipeline
 adata = iaode.annotation_pipeline(
     h5_file=str(h5_file),
     gtf_file=str(gtf_file),
@@ -117,62 +231,219 @@ adata = iaode.annotation_pipeline(
     promoter_downstream=500,  # TSS downstream region
     apply_tfidf=True,        # TF-IDF normalization
     select_hvp=True,         # Select highly variable peaks
-    n_top_peaks=20000        # Number of HVPs
+    n_top_peaks=20000        # Number of HVPs to retain
 )
+
+# AnnData now contains:
+# - adata.var['peak_type']: promoter/exonic/intronic/intergenic
+# - adata.var['gene_name']: Associated gene names
+# - adata.var['distance_to_tss']: Distance to nearest TSS
+# - adata.var['highly_variable']: HVP selection mask
+# - Preprocessed with TF-IDF and HVP selection
 ```
 
 **Available datasets:**
 
 ```python
-# Mouse brain 5k scATAC-seq (73 MB H5 + 847 MB GTF)
+# Mouse brain 5k scATAC-seq
 h5, gtf = iaode.datasets.mouse_brain_5k_atacseq()
 
-# Human PBMC 5k scATAC-seq (alternative dataset)
+# Human PBMC 5k scATAC-seq
 h5, gtf = iaode.datasets.human_pbmc_5k_atacseq()
 
-# Manage cache
+# Cache management
 iaode.datasets.list_cached_files()  # Show cached files
 iaode.datasets.clear_cache()        # Clear all cached data
 ```
 
-**Manual download option** (if needed):
+
+---
+
+## Examples
+
+Comprehensive examples are available in the `examples/` directory. See **[examples/README.md](examples/README.md)** for detailed documentation.
+
+### Example Scripts
+
+| Script | Purpose | Best For |
+|--------|---------|----------|
+| **`scATAC_quickstart.py`** | Complete scATAC pipeline (TF‑IDF → HVP → iAODE) | Real scATAC-seq analysis |
+| **`atacseq_annotation.py`** | Peak-to-gene annotation + QC plots | Understanding peak annotation |
+| **`trajectory_ode.py`** | Neural ODE pseudotime & velocity | Trajectory inference |
+| **`evaluation_metrics.py`** | DR quality + clustering metrics | Model evaluation |
+| **`model_evaluation.py`** | Benchmark vs scVI models | Comparative analysis |
+| **`basic_usage.py`** | Simple scRNA-seq workflow | Getting started |
+| **`trajectory_inference.py`** | Trajectory with vector field | Velocity visualization |
+
+### Running Examples
 
 ```bash
-cd examples/data
-./download_data.sh mouse  # Downloads to examples/data/
+cd examples
+
+# Complete scATAC-seq workflow with auto-download
+python atacseq_annotation.py
+
+# Or use your own data
+python scATAC_quickstart.py \
+    --h5 filtered_peak_bc_matrix.h5 \
+    --gtf gencode.vM25.annotation.gtf.gz \
+    --use-ode --latent-dim 32 --i-dim 16
+
+# Trajectory inference with synthetic data
+python trajectory_ode.py
+
+# Comprehensive benchmarking
+python model_evaluation.py
 ```
 
-**Reference datasets (manual):**
+All examples save outputs to `examples/outputs/` with visualizations and processed data. See **[examples/README.md](examples/README.md)** for detailed usage instructions and output descriptions.
 
-- GENCODE GTFs: [v19](https://ftp.ebi.ac.uk/pub/databases/gencode/Gencode_human/release_19/gencode.v19.annotation.gtf.gz) | [v49](https://ftp.ebi.ac.uk/pub/databases/gencode/Gencode_human/release_49/gencode.v49.annotation.gtf.gz) | [Mouse vM25](https://ftp.ebi.ac.uk/pub/databases/gencode/Gencode_mouse/release_M25/gencode.vM25.annotation.gtf.gz) | [Mouse vM38](https://ftp.ebi.ac.uk/pub/databases/gencode/Gencode_mouse/release_M38/gencode.vM38.annotation.gtf.gz)
-- 10X samples: [5k PBMC](https://cf.10xgenomics.com/samples/cell-atac/2.0.0/atac_pbmc_5k_nextgem/) | [10k PBMC](https://cf.10xgenomics.com/samples/cell-atac/2.1.0/atac_pbmc_10k_v2/) | [8k Cortex](https://cf.10xgenomics.com/samples/cell-atac/2.1.0/atac_mouse_cortex_8k_v2/)
+---
 
-### Evaluation and Benchmarking
+## API Reference
+
+### `iaode.agent` - Main Model Interface
+
+**Initialization:**
 
 ```python
-from iaode import (
-    evaluate_dimensionality_reduction,
-    evaluate_single_cell_latent_space,
-    DataSplitter,
-    train_scvi_models
+model = iaode.agent(
+    adata,                    # AnnData object
+    layer='counts',           # Data layer to use
+    latent_dim=10,            # Latent space dimension
+    hidden_dim=128,           # Hidden layer dimension
+    i_dim=None,               # Interpretable bottleneck dim (required if use_ode=True)
+    use_ode=False,            # Enable Neural ODE
+    loss_mode='nb',           # Loss function: 'mse', 'nb', 'zinb'
+    encoder_type='mlp',       # Encoder: 'mlp', 'residual_mlp', 'transformer', 'linear'
+    lr=1e-4,                  # Learning rate
+    batch_size=128,           # Batch size
+    beta=1.0,                 # KL divergence weight
+    recon=1.0,                # Reconstruction loss weight
+    tc=0.0,                   # Total correlation weight
+    dip=0.0,                  # DIP weight
+    info=0.0                  # InfoVAE MMD weight
 )
+```
 
-# Evaluate dimensionality reduction quality
-dr_metrics = evaluate_dimensionality_reduction(
-    X_high=adata.X,
-    X_low=latent,
-    k=10,
+**Training:**
+
+```python
+model.fit(
+    epochs=100,               # Maximum epochs
+    patience=20,              # Early stopping patience
+    val_every=5,              # Validation frequency
+    early_stop=True           # Enable early stopping
+)
+```
+
+**Representation Extraction:**
+
+```python
+# Basic representations
+latent = model.get_latent()              # Latent space (n_cells, latent_dim)
+iembed = model.get_iembed()              # Interpretable factors (n_cells, i_dim)
+
+# Trajectory-specific (requires use_ode=True)
+pseudotime = model.get_pseudotime()      # ODE time parameter (n_cells,)
+velocity = model.get_velocity()          # Latent velocity (n_cells, latent_dim)
+
+# Vector field for visualization (requires UMAP in adata.obsm['X_umap'])
+E_grid, V_grid = model.get_vfres(
+    adata,
+    zs_key='X_iaode',        # Latent representation key
+    E_key='X_umap',          # Embedding key for visualization
+    stream=True,             # Return streamplot-compatible format
+    density=1.5              # Grid density
+)
+```
+
+**Evaluation Metrics:**
+
+```python
+# Training metrics
+metrics = model.get_resource_metrics()
+# Returns: {'train_time': float, 'actual_epochs': int, 'peak_memory_gb': float}
+```
+
+---
+
+### `iaode.annotation_pipeline` - scATAC-seq Preprocessing
+
+**Complete annotation and preprocessing pipeline:**
+
+```python
+adata = iaode.annotation_pipeline(
+    h5_file,                    # Path to 10X H5 file
+    gtf_file,                   # Path to GTF annotation
+    promoter_upstream=2000,     # TSS upstream extension (bp)
+    promoter_downstream=500,    # TSS downstream extension (bp)
+    apply_tfidf=True,           # Apply TF-IDF normalization
+    select_hvp=True,            # Select highly variable peaks
+    n_top_peaks=20000,          # Number of HVPs to retain
+    hvp_method='signac',        # HVP method: 'signac', 'snapatac2', 'deviance'
+    min_accessibility=0.01,     # Min peak accessibility fraction
+    max_accessibility=0.95      # Max peak accessibility fraction
+)
+```
+
+**Returns AnnData with:**
+- `adata.var['peak_type']`: Peak annotation (promoter/exonic/intronic/intergenic)
+- `adata.var['gene_name']`: Associated gene names
+- `adata.var['distance_to_tss']`: Distance to nearest TSS
+- `adata.var['highly_variable']`: HVP selection mask
+- Preprocessed and normalized counts
+
+---
+
+### Evaluation Functions
+
+#### Dimensionality Reduction Quality
+
+```python
+from iaode import evaluate_dimensionality_reduction
+
+metrics = evaluate_dimensionality_reduction(
+    X_high,                  # High-dimensional data (n_cells, n_features)
+    X_low,                   # Low-dimensional embedding (n_cells, n_latent)
+    k=10,                    # Number of neighbors
     verbose=True
 )
 
-# Evaluate latent space for single-cell data
-ls_metrics = evaluate_single_cell_latent_space(
-    latent_space=latent,
-    data_type='trajectory',  # or 'steady_state'
+# Returns:
+# - distance_correlation: Global structure preservation (Spearman ρ)
+# - Q_local: Local neighborhood quality
+# - Q_global: Global structure quality
+# - K_max: Local-global transition point
+```
+
+#### Latent Space Quality
+
+```python
+from iaode import evaluate_single_cell_latent_space
+
+metrics = evaluate_single_cell_latent_space(
+    latent_space,            # Latent representation (n_cells, n_latent)
+    data_type='trajectory',  # 'trajectory' or 'steady_state'
     verbose=True
 )
 
-# Benchmark against scVI models
+# Returns:
+# - manifold_dimensionality: Dimensional efficiency (0-1)
+# - spectral_decay_rate: Eigenvalue concentration
+# - participation_ratio: Dimensional balance
+# - anisotropy_score: Directionality strength
+# - trajectory_directionality: Dominant axis strength
+# - noise_resilience: Signal-to-noise ratio
+# - overall_quality: Aggregate score
+```
+
+#### Model Benchmarking
+
+```python
+from iaode import DataSplitter, train_scvi_models, evaluate_scvi_models
+
+# Create consistent train/val/test splits
 splitter = DataSplitter(
     n_samples=adata.n_obs,
     test_size=0.15,
@@ -180,6 +451,7 @@ splitter = DataSplitter(
     random_state=42
 )
 
+# Train scVI family models
 scvi_results = train_scvi_models(
     adata,
     splitter,
@@ -187,261 +459,72 @@ scvi_results = train_scvi_models(
     n_epochs=400,
     batch_size=128
 )
+
+# Evaluate all models
+scvi_metrics = evaluate_scvi_models(
+    scvi_results,
+    adata,
+    splitter.test_idx
+)
 ```
-
-## Model Architecture
-
-### Core Components
-
-1. **Encoder**: Maps input data to latent distribution
-   - Types: MLP, Residual MLP, Linear, Transformer
-   - Outputs: mean, log-variance, sampled latent vector
-
-2. **Decoder**: Reconstructs data from latent representation
-   - Supports MSE, NB, ZINB loss modes
-   - Learns library size and dispersion parameters
-
-3. **Neural ODE** (Optional): Models continuous trajectories
-   - Latent ODE function for trajectory inference
-   - Time encoder predicts pseudo-time
-
-4. **Information Bottleneck**: Additional interpretable layer
-   - Projects latent space to lower-dimensional embedding
-   - Enhances interpretability
-
-### Loss Components
-
-- **Reconstruction**: MSE / NB / ZINB likelihood
-- **KL Divergence**: Regularizes latent distribution
-- **β-TCVAE**: Total correlation decomposition
-- **DIP**: Disentanglement via learned projections  
-- **MMD**: Maximum mean discrepancy
-- **ODE Consistency**: Aligns VAE and ODE latents
-
-## Examples
-
-The `examples/` directory contains complete, runnable scripts demonstrating all major features. All outputs are automatically organized in `examples/outputs/<example_name>/` for easy access.
-
-### Running the Examples
-
-**Prerequisites**: Ensure iAODE is installed:
-
-```bash
-pip install iaode
-# or from source:
-cd /path/to/iAODE && pip install -e .
-```
-
-**Navigate to examples directory**:
-
-```bash
-cd examples
-```
-
-### Available Examples
-
-#### 1. Basic Usage (`basic_usage.py`)
-Demonstrates fundamental scRNA-seq dimensionality reduction with iAODE.
-
-```bash
-python basic_usage.py
-```
-
-**Features:**
-- Installation verification and setup
-- Paul15 dataset preprocessing
-- Model training with inline hyperparameter documentation
-- UMAP-based visualizations (cell types, latent dimensions)
-- Outputs saved to `outputs/basic_usage/`
-
-**Key hyperparameters explained:**
-- `encoder_type='mlp'`: Encoder architecture (options: 'mlp', 'residual_mlp', 'transformer', 'linear')
-- `loss_mode='nb'`: Loss function (options: 'mse', 'nb', 'zinb')
-- `latent_dim=10`: Dimensionality of latent space
-- `hidden_dim=128`: Hidden layer size
 
 ---
 
-#### 2. Trajectory Inference (`trajectory_inference.py`)
-Demonstrates Neural ODE-based trajectory modeling for developmental processes.
+### Preprocessing Utilities
 
-```bash
-python trajectory_inference.py
+```python
+from iaode.utils import tfidf_normalization, select_highly_variable_peaks
+
+# TF-IDF normalization (Signac/SnapATAC2 style)
+tfidf_normalization(
+    adata,
+    scale_factor=1e4,
+    log_tf=False,
+    log_idf=True,
+    inplace=True
+)
+
+# Highly variable peak selection
+select_highly_variable_peaks(
+    adata,
+    n_top_peaks=20000,
+    method='signac',         # or 'snapatac2', 'deviance'
+    min_accessibility=0.01,
+    max_accessibility=0.95,
+    inplace=True
+)
 ```
-
-**Features:**
-- Neural ODE integration with `use_ode=True`
-- Pseudotime computation and visualization
-- Velocity field analysis (quiver + streamplot)
-- UMAP-based trajectory visualization
-- Outputs saved to `outputs/trajectory_inference/`
-
-**Key configuration:**
-- `use_ode=True`: Enable Neural ODE for continuous trajectories
-- `i_dim=2`: Intermediate ODE state dimension for trajectory modeling
 
 ---
-
-#### 3. Model Evaluation (`model_evaluation.py`)
-Comprehensive benchmarking comparing iAODE against scVI-family models.
-
-```bash
-python model_evaluation.py
-```
-
-**Features:**
-- Side-by-side comparison: iAODE, scVI, PEAKVI, POISSONVI
-- **Consistent evaluation metrics** across all models:
-  - **Dimensionality Reduction**: Distance Correlation, Q_local, Q_global
-  - **Latent Space Quality**: Manifold Dimensionality, Spectral Decay, Trajectory Directionality
-  - **Clustering**: NMI, ARI, ASW
-- Comparison table saved as CSV
-- Visual comparisons (bar plots + UMAP visualizations)
-- Outputs saved to `outputs/model_evaluation/`
-
----
-
-#### 4. scATAC-seq Annotation (`atacseq_annotation.py`)
-Complete scATAC-seq peak annotation and preprocessing pipeline.
-
-```bash
-python atacseq_annotation.py
-```
-
-**Features:**
-- **Automatic data download**: Mouse brain 5k scATAC-seq + GENCODE annotation
-- Files cached in `~/.iaode/data/` and reused on subsequent runs
-- Peak-to-gene annotation (promoter/gene body/distal/intergenic)
-- TF-IDF normalization
-- Highly variable peak (HVP) selection
-- Comprehensive QC visualizations (4-panel plot)
-- Outputs saved to `outputs/atacseq_annotation/`
-
-**First run downloads** (~920 MB total):
-- `mouse_brain_5k_v1.1.h5` (73 MB) - 10X scATAC-seq data
-- `gencode.vM25.annotation.gtf` (847 MB) - Mouse gene annotations
-
-**QC visualizations:**
-- Peak annotation type distribution
-- Distance to TSS histogram
-- Peak counts per cell
-- Highly variable peak selection
-
----
-
-### Output Organization
-
-All examples save outputs to structured directories:
-
-```
-examples/
-├── outputs/
-│   ├── basic_usage/
-│   │   ├── umap_celltypes.png
-│   │   └── latent_dimensions.png
-│   ├── trajectory_inference/
-│   │   ├── trajectory_umap.png
-│   │   └── velocity_field.png
-│   ├── model_evaluation/
-│   │   ├── model_comparison.png
-│   │   └── model_comparison.csv
-│   └── atacseq_annotation/
-│       └── annotation_qc.png
-```
-
-### Customization
-
-All examples can be adapted to your data:
-
-1. **Load your AnnData object** instead of example datasets
-2. **Adjust hyperparameters** based on your data characteristics:
-   - Increase `latent_dim` for complex datasets (e.g., 20-50)
-   - Use `encoder_type='transformer'` for large-scale data
-   - Set `loss_mode='zinb'` for highly sparse data
-3. **Modify visualization parameters** (colors, resolution, layout)
-
-For detailed hyperparameter guidance, see inline comments in each example script.
-
-## API Reference
-
-### Main Classes
-
-#### `iaode.agent`
-
-High-level interface for model training and inference.
-
-**Parameters:**
-- `adata` (AnnData): Input single-cell data
-- `layer` (str): Data layer to use (default: 'counts')
-- `latent_dim` (int): Latent space dimension (default: 10)
-- `hidden_dim` (int): Hidden layer dimension (default: 128)
-- `use_ode` (bool): Enable neural ODE (default: False)
-- `loss_mode` (str): Loss function ('mse', 'nb', 'zinb')
-- `encoder_type` (str): Encoder architecture ('mlp', 'mlp_residual', 'linear', 'transformer')
-- `lr` (float): Learning rate (default: 1e-4)
-- `beta` (float): KL divergence weight (default: 1.0)
-- `recon` (float): Reconstruction loss weight (default: 1.0)
-
-**Methods:**
-- `fit(epochs, patience, val_every, early_stop)`: Train model
-- `get_latent()`: Get latent representation
-- `get_iembed()`: Get interpretable embedding
-- `get_test_latent()`: Get test set latent representation
-
-### Annotation Functions
-
-#### `iaode.annotation_pipeline`
-
-Complete scATAC-seq peak annotation and preprocessing.
-
-**Parameters:**
-- `h5_file` (str): Path to 10X H5 file
-- `gtf_file` (str): Path to GTF annotation
-- `promoter_upstream` (int): TSS upstream extension (default: 2000)
-- `promoter_downstream` (int): TSS downstream extension (default: 500)
-- `apply_tfidf` (bool): Apply TF-IDF normalization (default: True)
-- `select_hvp` (bool): Select highly variable peaks (default: True)
-- `n_top_peaks` (int): Number of HVPs (default: 20000)
-
-### Evaluation Functions
-
-#### `iaode.evaluate_dimensionality_reduction`
-
-Evaluate dimensionality reduction quality.
-
-**Returns:** Dict with distance_correlation, Q_local, Q_global, K_max
-
-#### `iaode.evaluate_single_cell_latent_space`
-
-Evaluate single-cell latent space quality.
-
-**Returns:** Dict with manifold_dimensionality, spectral_decay_rate, participation_ratio, etc.
 
 ## Advanced Usage
 
 ### Custom Encoder Architecture
 
 ```python
+# Transformer encoder for large-scale data
 model = iaode.agent(
     adata,
     encoder_type='transformer',
     encoder_num_layers=4,
     encoder_n_heads=8,
     encoder_d_model=256,
-    hidden_dim=512
+    hidden_dim=512,
+    latent_dim=32
 )
 ```
 
-### Multiple Loss Terms
+### Multi-Objective Regularization
 
 ```python
+# Fine-tune regularization weights
 model = iaode.agent(
     adata,
     recon=1.0,      # Reconstruction loss
     beta=1.0,       # KL divergence
-    tc=0.5,         # Total correlation
-    dip=0.1,        # Disentanglement
-    info=0.05       # MMD loss
+    tc=0.5,         # Total correlation (disentanglement)
+    dip=0.1,        # DIP (dimension-wise independence)
+    info=0.05       # InfoVAE MMD (distribution matching)
 )
 ```
 
@@ -456,76 +539,94 @@ for epoch in range(100):
         val_loss, val_score = model.validate()
         print(f"Epoch {epoch}: Val Loss={val_loss:.4f}")
         
-    # Custom early stopping logic
     if should_stop(val_loss):
         model.load_best_model()
         break
 ```
 
-## Citing iAODE
+---
+
+## Citation
 
 If you use iAODE in your research, please cite:
 
 ```bibtex
 @software{iaode2025,
     author = {Zeyu Fu},
-    title = {iAODE: Interpretable Autoencoder with Ordinary Differential Equations},
+    title = {iAODE: Interpretable Accessibility ODE VAE for Single-Cell Chromatin Dynamics},
     year = {2025},
+    publisher = {GitHub},
     url = {https://github.com/PeterPonyu/iAODE}
 }
 ```
 
+---
+
 ## Contributing
 
-Contributions are welcome! Please feel free to submit a Pull Request.
+Contributions are welcome! Please:
 
 1. Fork the repository
-2. Create your feature branch (`git checkout -b feature/AmazingFeature`)
-3. Commit your changes (`git commit -m 'Add some AmazingFeature'`)
-4. Push to the branch (`git push origin feature/AmazingFeature`)
+2. Create a feature branch (`git checkout -b feature/AmazingFeature`)
+3. Commit changes (`git commit -m 'Add AmazingFeature'`)
+4. Push to branch (`git push origin feature/AmazingFeature`)
 5. Open a Pull Request
+
+For major changes, please open an issue first to discuss proposed changes.
+
+---
 
 ## License
 
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 
+---
+
 ## Acknowledgments
 
-- Built on top of PyTorch, AnnData, and Scanpy ecosystems
-- Inspired by scVI-tools, Signac, and SnapATAC2 best practices
-- Neural ODE implementation using torchdiffeq
+Built upon ideas from:
+- **scVI-tools**: scVI, PEAKVI, POISSONVI architectures
+- **Signac** and **SnapATAC2**: scATAC-seq best practices
+- **Neural ODE** literature: Continuous latent dynamics
+
+PyTorch, AnnData, and Scanpy ecosystems provide the foundation.
+
+---
 
 ## Contact
 
-For questions and feedback:
-- GitHub Issues: [https://github.com/PeterPonyu/iAODE/issues](https://github.com/PeterPonyu/iAODE/issues)
-- Email: fuzeyu99@126.com
+- **GitHub Issues**: [https://github.com/PeterPonyu/iAODE/issues](https://github.com/PeterPonyu/iAODE/issues)
+- **Email**: fuzeyu99@126.com
+
+---
 
 ## Changelog
 
 ### v0.2.0 (2025-11-20)
 
 **Documentation & Usability**
-- Streamlined all documentation for clarity (README, QUICKSTART, examples/README)
-- Separated scRNA-seq and scATAC-seq examples with clear workflows
-- Added verified GENCODE and 10X Genomics reference data URLs
-- Created `examples/data/download_data.sh` helper script for fetching reference files
-- Removed Git LFS references in favor of external hosting guidance
+- Comprehensive documentation overhaul (README, examples/README, QUICKSTART)
+- Separated scRNA-seq and scATAC-seq workflows with clear examples
+- Added automatic dataset download and caching system
+- Created `examples/data/download_data.sh` helper script
+- Verified all API usage examples against actual implementation
 
 **Code Quality**
-- Cleaned example scripts: removed unused imports, simplified output messages
-- Fixed Markdown formatting: proper code block spacing and language tags
-- Ensured all API usage examples are correct and tested
+- Cleaned example scripts: removed unused imports, improved error handling
+- Fixed all cross-references between examples and core modules
+- Enhanced inline documentation and error messages
+- Verified method signatures: `get_velocity()`, `get_vfres()`, `get_pseudotime()`, etc.
 
 **Package Improvements**
-- Clarified that `paul15` dataset is scRNA-seq with standard preprocessing
-- Highlighted complete scATAC-seq preprocessing + annotation pipeline
-- Improved inline code documentation
+- Complete scATAC-seq preprocessing pipeline with TF-IDF and HVP selection
+- Improved peak annotation with distance-to-TSS computation
+- Enhanced evaluation metrics (DRE + LSE frameworks)
+- Better handling of sparse data and zero inflation
 
 ### v0.1.2 (2025-11-19)
 
 **Metadata & Contact**
-- Updated author name to "Zeyu Fu" across all files
+- Updated author name to "Zeyu Fu"
 - Set primary contact email to fuzeyu99@126.com
 - Fixed BibTeX citation formatting
 
@@ -533,15 +634,15 @@ For questions and feedback:
 
 **Bug Fixes**
 - Added missing `requests` dependency for scvi-tools compatibility
-- Dropped Python 3.8 support (requires Python ≥3.9 for optax/scvi-tools)
+- Dropped Python 3.8 support (requires Python ≥3.9)
 - Fixed CI test imports and matrix configuration
 
 ### v0.1.0 (2025-11-19)
 
 **Initial Release**
-- VAE with neural ODE support for trajectory inference
+- VAE with Neural ODE support for trajectory inference
 - Complete scATAC-seq peak annotation pipeline
-- Comprehensive evaluation metrics for dimensionality reduction
-- Benchmark framework for comparing against scVI models
-- Support for multiple encoder types (MLP, Residual MLP, Linear, Transformer)
-- Multiple loss modes (MSE, NB, ZINB) for different data types
+- Comprehensive evaluation metrics
+- Benchmark framework vs scVI models
+- Multiple encoder types (MLP, Residual, Transformer, Linear)
+- Multiple loss modes (MSE, NB, ZINB)

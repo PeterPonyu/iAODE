@@ -72,9 +72,11 @@ class DimensionalityReductionEvaluator:
             D_high = pairwise_distances(X_high)
             D_low = pairwise_distances(X_low)
             
-            distance_corr, _ = spearmanr(D_high.ravel(), D_low.ravel())
-            
-            return distance_corr if not np.isnan(distance_corr) else 0.0
+            distance_corr_tuple = spearmanr(D_high.ravel(), D_low.ravel())
+            # spearmanr returns (correlation, pvalue); extract first element robustly
+            distance_corr = distance_corr_tuple[0] if isinstance(distance_corr_tuple, tuple) else distance_corr_tuple  # type: ignore[index]
+            # Cast to native float for downstream type stability
+            return float(distance_corr) if not np.isnan(distance_corr) else 0.0  # type: ignore[arg-type]
             
         except Exception as e:
             warnings.warn(f"Error computing distance correlation: {e}")
@@ -217,7 +219,8 @@ class DimensionalityReductionEvaluator:
             else:
                 Q_global = qnx_values[-1] if len(qnx_values) > 0 else 0.0
             
-            return Q_local, Q_global, K_max
+            # Explicitly cast to native Python types
+            return float(Q_local), float(Q_global), int(K_max)
             
         except Exception as e:
             warnings.warn(f"Error computing Q metrics: {e}")
@@ -266,15 +269,15 @@ class DimensionalityReductionEvaluator:
         qnx_values = self.compute_qnx_series(corank)
         Q_local, Q_global, K_max = self.get_q_local_global(qnx_values)
         
-        results['Q_local'] = Q_local
-        results['Q_global'] = Q_global
-        results['K_max'] = K_max
+        results['Q_local'] = float(Q_local)
+        results['Q_global'] = float(Q_global)
+        results['K_max'] = int(K_max)
         
-        overall_quality = np.mean([
+        overall_quality = float(np.mean([
             results['distance_correlation'],
             results['Q_local'],
             results['Q_global'],
-        ])
+        ]))
         results['overall_quality'] = overall_quality
         
         if self.verbose:
@@ -343,11 +346,11 @@ class DimensionalityReductionEvaluator:
             
             self.verbose = original_verbose
             
-            overall_quality = np.mean([
+            overall_quality = float(np.mean([
                 results['distance_correlation'],
-                results['Q_local'],
-                results['Q_global'],
-            ])
+                results['Q_Local'],
+                results['Q_Global'],
+            ]))
             
             comparison_results.append({
                 'Method': method_name,

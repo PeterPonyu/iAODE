@@ -1,6 +1,6 @@
 import numpy as np
 from scipy.sparse import issparse, csr_matrix
-from typing import Literal, Tuple
+from typing import Literal, Tuple, Optional
 import warnings
 
 # ============================================================================
@@ -73,7 +73,7 @@ def tfidf_normalization(adata,
     n_cells = adata.n_obs
     
     # Count cells where each peak is accessible (count > 0)
-    n_cells_per_peak = np.array((X > 0).sum(axis=0)).flatten()
+    n_cells_per_peak = np.asarray((X > 0).sum(axis=0)).ravel()  # type: ignore[attr-defined]
     n_cells_per_peak[n_cells_per_peak == 0] = 1  # Avoid division by zero
     
     if log_idf:
@@ -89,8 +89,8 @@ def tfidf_normalization(adata,
     
     tfidf = tf.multiply(idf)
     tfidf = tfidf.multiply(scale_factor)
-    
-    adata.X = tfidf
+      
+    adata.X = tfidf.tocsr()
     
     # Store normalization parameters
     adata.uns['tfidf_params'] = {
@@ -306,7 +306,7 @@ def select_highly_variable_peaks(
 
 
 
-def get_dataset_category(n_cells: int) -> Tuple[str, int, int]:
+def get_dataset_category(n_cells: int) -> Tuple[str, Optional[int], Optional[int]]:
     """
     Categorize dataset by size and return configuration
     
@@ -324,3 +324,4 @@ def get_dataset_category(n_cells: int) -> Tuple[str, int, int]:
         return 'medium', 10000, 20000
     else:
         return 'large', 20000, 20000
+    

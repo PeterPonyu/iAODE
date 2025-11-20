@@ -29,8 +29,10 @@ def load_10x_h5_data(h5_file: str) -> ad.AnnData:
     
     print(f"   • Loaded: {adata.n_obs:,} cells × {adata.n_vars:,} peaks")
     
-    # Store raw counts
-    adata.layers['counts'] = adata.X.copy()
+    # Store raw counts (guard for backends without .copy())
+    # Pylance may not see .copy on backend objects; ignore if missing
+    X_raw = adata.X.copy() if hasattr(adata.X, "copy") else adata.X  # type: ignore[attr-defined]
+    adata.layers['counts'] = X_raw
     
     return adata
 
@@ -315,7 +317,9 @@ def annotate_peaks_to_genes(
     annotation_types = []
     distances_to_tss = []
     
-    for idx, row in adata.var.iterrows():
+    # Iterate over peaks using explicit DataFrame reference to satisfy type checkers
+    var_df = adata.var  # ensures pandas DataFrame semantics
+    for idx, row in var_df.iterrows():  # type: ignore[attr-defined]
         chrom = row['chr']
         peak_start = row['start']
         peak_end = row['end']

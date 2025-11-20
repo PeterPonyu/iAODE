@@ -20,11 +20,10 @@ if not check_iaode_installed():
     sys.exit(1)
 
 import iaode
+import numpy as np
 import scanpy as sc
 import numpy as np
 import matplotlib.pyplot as plt
-from scipy.interpolate import griddata
-from sklearn.decomposition import PCA
 import warnings
 warnings.filterwarnings('ignore')
 
@@ -42,7 +41,11 @@ adata = sc.datasets.paul15()
 sc.pp.filter_cells(adata, min_genes=200)
 sc.pp.normalize_total(adata, target_sum=1e4)
 sc.pp.log1p(adata)
-adata.layers['counts'] = adata.X.copy()
+raw_X = adata.X
+try:
+    adata.layers['counts'] = raw_X.copy()  # type: ignore[attr-defined]
+except Exception:
+    adata.layers['counts'] = np.asarray(raw_X)
 
 print_success(f"Loaded: {adata.n_obs} cells × {adata.n_vars} genes")
 
@@ -85,10 +88,9 @@ velocity = model.get_velocity()  # ODE gradients in latent space
 
 adata.obsm['X_iaode'] = latent
 adata.obsm['X_iembed'] = iembed
-adata.obsm['velocity'] = velocity
 adata.obs['pseudotime'] = pseudotime
 
-# Compute UMAP on latent space (not iembed)
+# Compute UMAP on latent space
 sc.pp.neighbors(adata, use_rep='X_iaode', n_neighbors=15)
 sc.tl.umap(adata, min_dist=0.3)
 
@@ -130,69 +132,86 @@ plt.savefig(OUTPUT_DIR / 'trajectory_umap.png', dpi=300, bbox_inches='tight')
 plt.close()
 print_success(f"Saved: {OUTPUT_DIR}/trajectory_umap.png")
 
-# Plot 2: Velocity field on UMAP
+# ==================================================
+# Plot 2: Velocity Field using get_vfres()
+# ==================================================
+
 print_section("Computing velocity field visualization")
+print_info("Using model.get_vfres() for proper ODE-based vector field")
 
-# Get velocity from model (ODE gradients in latent space)
-n_cells = adata.n_obs
-umap_coords = adata.obsm['X_umap']
-
-# Project velocity to UMAP space using linear approximation
-# Compute UMAP basis vectors by comparing neighbors
-from sklearn.decomposition import PCA
-
-# Use PCA to reduce velocity from latent_dim to 2D for UMAP visualization
-pca = PCA(n_components=2)
-velocity_2d = pca.fit_transform(velocity)
-
-# Scale for visualization
-velocity_umap = velocity_2d * 0.05
-
-# Create velocity plots
-fig, axes = plt.subplots(1, 2, figsize=(14, 6))
-
-# Quiver plot
-ax = axes[0]
-scatter = ax.scatter(umap_coords[:, 0], umap_coords[:, 1],
-                     c=pseudotime_norm, cmap='viridis', s=30, alpha=0.6)
-# Subsample for better visualization
-step = max(1, n_cells // 300)  # Show ~300 arrows
-quiver = ax.quiver(umap_coords[::step, 0], umap_coords[::step, 1],
-                   velocity_umap[::step, 0], velocity_umap[::step, 1],
-                   color='red', alpha=0.6, width=0.006, scale=15, 
-                   headwidth=4, headlength=5, headaxislength=4.5)
-ax.set_title('Velocity Field (Quiver) - ODE Gradients', fontsize=12, fontweight='bold')
-ax.set_xlabel('UMAP 1')
-ax.set_ylabel('UMAP 2')
-plt.colorbar(scatter, ax=ax, label='Pseudotime')
-
-# Streamplot with ODE-based velocity
-ax = axes[1]
-x = umap_coords[:, 0]
-y = umap_coords[:, 1]
-
-# Create grid for streamplot using actual ODE velocity
-grid_x, grid_y = np.mgrid[x.min():x.max():40j, y.min():y.max():40j]
-grid_u = griddata((x, y), velocity_umap[:, 0], (grid_x, grid_y), 
-                  method='linear', fill_value=0)
-grid_v = griddata((x, y), velocity_umap[:, 1], (grid_x, grid_y), 
-                  method='linear', fill_value=0)
-
-scatter = ax.scatter(x, y, c=pseudotime_norm, cmap='viridis', s=30, alpha=0.6, zorder=2)
-ax.streamplot(grid_x[:, 0], grid_y[0, :], grid_u, grid_v,
-              color='red', density=1.2, linewidth=1.2, arrowsize=1.5, zorder=1)
-ax.set_title('Velocity Field (Streamplot) - ODE Gradients', fontsize=12, fontweight='bold')
-ax.set_xlabel('UMAP 1')
-ax.set_ylabel('UMAP 2')
-plt.colorbar(scatter, ax=ax, label='Pseudotime')
-
-plt.tight_layout()
-plt.savefig(OUTPUT_DIR / 'velocity_field.png', dpi=300, bbox_inches='tight')
-plt.close()
-print_success(f"Saved: {OUTPUT_DIR}/velocity_field.png")
+# Use the agent's built-in vector field computation
+try:
+    E_grid, V_grid = model.get_vfres(
+        adata,
+        zs_key='X_iaode',     # Latent space key
+        E_key='X_umap',        # UMAP embedding key
+        vf_key='X_velocity',   # Store velocity here
+        stream=True,           # Return streamplot format
+        density=1.5,           # Grid density
+        smooth=0.5             # Smoothing parameter
+    )
+    
+    # Create streamplot visualization
+    fig, ax = plt.subplots(figsize=(10, 8))
+    
+    # Scatter plot with pseudotime coloring
+    scatter = ax.scatter(adata.obsm['X_umap'][:, 0], 
+                        adata.obsm['X_umap'][:, 1],
+                        c=pseudotime_norm, 
+                        cmap='viridis', 
+                        s=30, 
+                        alpha=0.6,
+                        zorder=2)
+    
+    # Streamplot overlay
+    ax.streamplot(E_grid[0], E_grid[1], V_grid[0], V_grid[1],
+                 color='red', density=1.2, linewidth=1.2, 
+                 arrowsize=1.5, zorder=1)
+    
+    ax.set_title('Velocity Field (Neural ODE)', fontsize=14, fontweight='bold')
+    ax.set_xlabel('UMAP 1')
+    ax.set_ylabel('UMAP 2')
+    plt.colorbar(scatter, ax=ax, label='Pseudotime')
+    
+    plt.tight_layout()
+    plt.savefig(OUTPUT_DIR / 'velocity_field_ode.png', dpi=300, bbox_inches='tight')
+    plt.close()
+    print_success(f"Saved: {OUTPUT_DIR}/velocity_field_ode.png")
+    
+except Exception as e:
+    print_info(f"Note: get_vfres() requires use_ode=True and proper setup")
+    print_info(f"Error: {e}")
+    print_info("Falling back to basic velocity visualization")
+    
+    # Fallback: Basic quiver plot
+    fig, ax = plt.subplots(figsize=(10, 8))
+    umap_coords = adata.obsm['X_umap']
+    
+    # Project velocity to 2D using simple linear approximation
+    from sklearn.decomposition import PCA
+    pca = PCA(n_components=2)
+    velocity_2d = pca.fit_transform(velocity) * 0.05
+    
+    scatter = ax.scatter(umap_coords[:, 0], umap_coords[:, 1],
+                        c=pseudotime_norm, cmap='viridis', s=30, alpha=0.6)
+    
+    # Subsample for visualization
+    step = max(1, adata.n_obs // 300)
+    ax.quiver(umap_coords[::step, 0], umap_coords[::step, 1],
+             velocity_2d[::step, 0], velocity_2d[::step, 1],
+             color='red', alpha=0.6, width=0.006, scale=15)
+    
+    ax.set_title('Velocity Field (Fallback Projection)', fontsize=14, fontweight='bold')
+    ax.set_xlabel('UMAP 1')
+    ax.set_ylabel('UMAP 2')
+    plt.colorbar(scatter, ax=ax, label='Pseudotime')
+    
+    plt.tight_layout()
+    plt.savefig(OUTPUT_DIR / 'velocity_field.png', dpi=300, bbox_inches='tight')
+    plt.close()
+    print_success(f"Saved: {OUTPUT_DIR}/velocity_field.png")
 
 print_header("Complete")
 print_info("Neural ODE captured trajectory dynamics with pseudotime and velocity")
 print_info(f"Pseudotime range: [{pseudotime.min():.3f}, {pseudotime.max():.3f}]")
 print_info(f"Velocity magnitude: mean={np.linalg.norm(velocity, axis=1).mean():.3f}")
-

@@ -21,6 +21,7 @@ if not check_iaode_installed():
     sys.exit(1)
 
 import iaode
+import numpy as np
 import scanpy as sc
 import matplotlib.pyplot as plt
 import warnings
@@ -42,7 +43,11 @@ print(f"  Original: {adata.n_obs} cells × {adata.n_vars} genes")
 sc.pp.filter_cells(adata, min_genes=200)
 sc.pp.normalize_total(adata, target_sum=1e4)
 sc.pp.log1p(adata)
-adata.layers['counts'] = adata.X.copy()
+raw_X = adata.X
+try:
+    adata.layers['counts'] = raw_X.copy()  # type: ignore[attr-defined]
+except Exception:
+    adata.layers['counts'] = np.asarray(raw_X)
 
 print_success(f"Preprocessed: {adata.n_obs} cells × {adata.n_vars} genes")
 

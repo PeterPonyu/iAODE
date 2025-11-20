@@ -150,8 +150,12 @@ class NODEMixin:
 
         pred_z = odeint(ode_func, cpu_z0, cpu_t, method=method, options=options)
 
+        # Ensure tensor type (odeint should return Tensor)
+        if not isinstance(pred_z, torch.Tensor):  # defensive
+            pred_z = torch.as_tensor(pred_z)
+
         # Move result back to original device
-        pred_z = pred_z.to(z0.device)
+        pred_z = pred_z.to(z0.device)  # type: ignore[union-attr]
 
         return pred_z
 
@@ -310,7 +314,9 @@ class envMixin:
         Compute clustering scores using stored labels (backward compatible).
         """
         labels = self._calc_label(latent)
-        scores = self._metrics(latent, labels, self.labels[self.idx])
+        # Guard dynamic attributes for editor type checking
+        true_labels = self.labels[self.idx] if hasattr(self, 'labels') and hasattr(self, 'idx') else labels  # type: ignore[attr-defined]
+        scores = self._metrics(latent, labels, true_labels)
         return scores
 
     def _calc_score_with_labels(self, latent, true_labels):
