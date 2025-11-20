@@ -280,9 +280,9 @@ If you use iAODE in your research:
 
 ```bibtex
 @software{iaode2024,
-  author = {Fu, Zeyu},
-  title = {iAODE: Interpretable Autoencoder with Ordinary Differential Equations},
-  year = {2024},
-  url = {https://github.com/PeterPonyu/iAODE}
+    author = {Zeyu Fu},
+    title = {iAODE: Interpretable Autoencoder with Ordinary Differential Equations},
+    year = {2024},
+    url = {https://github.com/PeterPonyu/iAODE}
 }
 ```
