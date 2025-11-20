@@ -78,12 +78,12 @@ plt.rcParams.update({'figure.dpi': 100, 'savefig.dpi': 300, 'font.size': 10})
 fig, axes = plt.subplots(2, 2, figsize=(12, 10))
 
 # Peak annotation distribution
-if 'peak_type' in adata.var.columns and len(adata.var['peak_type'].value_counts()) > 0:
-    peak_types = adata.var['peak_type'].value_counts()
+if 'annotation_type' in adata.var.columns and len(adata.var['annotation_type'].value_counts()) > 0:
+    annotation_types = adata.var['annotation_type'].value_counts()
     ax = axes[0, 0]
     colors = ['#2E86AB', '#A23B72', '#F18F01', '#06A77D', '#D3D3D3']
-    wedges, texts, autotexts = ax.pie(peak_types.values, labels=peak_types.index, 
-                                        autopct='%1.1f%%', colors=colors[:len(peak_types)], 
+    wedges, texts, autotexts = ax.pie(annotation_types.values, labels=annotation_types.index, 
+                                        autopct='%1.1f%%', colors=colors[:len(annotation_types)], 
                                         startangle=90)
     # Ensure text is visible
     for text in texts:
@@ -94,7 +94,7 @@ if 'peak_type' in adata.var.columns and len(adata.var['peak_type'].value_counts(
         autotext.set_fontsize(9)
     ax.set_title('Peak Annotation Distribution', fontweight='bold', pad=20)
 else:
-    # Fallback if no peak_type column
+    # Fallback if no annotation_type column
     ax = axes[0, 0]
     ax.text(0.5, 0.5, 'Peak annotation\nnot available', 
             ha='center', va='center', fontsize=12, color='gray')
@@ -153,11 +153,11 @@ print_success(f"Saved: {output_file}")
 
 # Summary
 print_header("Annotation Summary")
-if 'peak_type' in adata.var.columns:
-    peak_type_counts = adata.var['peak_type'].value_counts()
-    for peak_type, count in peak_type_counts.items():
+if 'annotation_type' in adata.var.columns:
+    annotation_type_counts = adata.var['annotation_type'].value_counts()
+    for annotation_type, count in annotation_type_counts.items():
         pct = count / len(adata.var) * 100
-        print(f"  {peak_type:20s}: {count:6d} ({pct:5.1f}%)")
+        print(f"  {annotation_type:20s}: {count:6d} ({pct:5.1f}%)")
 
 print()
 print_info("Annotated data ready for downstream analysis with iAODE")

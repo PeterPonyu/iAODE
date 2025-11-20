@@ -63,7 +63,7 @@ model = iaode.agent(
     encoder_type='mlp', loss_mode='nb', batch_size=128
 )
 
-model.fit(epochs=100, patience=20, val_every=5)
+model.fit(epochs=400, patience=20, val_every=5)
 
 metrics = model.get_resource_metrics()
 print_success(f"Trained in {metrics['train_time']:.2f}s ({metrics['actual_epochs']} epochs)")
