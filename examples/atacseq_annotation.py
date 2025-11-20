@@ -107,7 +107,7 @@ for i, (gene, count) in enumerate(top_genes.items(), 1):
 
 # Accessibility distribution
 import numpy as np
-print(f"\n📈 Peak Accessibility:")
+print("\nPeak Accessibility:")
 print(f"   Mean: {adata.var['accessibility'].mean():.4f}")
 print(f"   Median: {adata.var['accessibility'].median():.4f}")
 print(f"   Min: {adata.var['accessibility'].min():.4f}")
@@ -122,7 +122,6 @@ if 'highly_variable' in adata.var.columns:
 
 # Quality control plot
 import matplotlib.pyplot as plt
-import seaborn as sns
 
 fig, axes = plt.subplots(2, 2, figsize=(12, 10))
 
@@ -158,6 +157,6 @@ axes[1, 1].set_title('Peak Width Distribution')
 
 plt.tight_layout()
 plt.savefig('peak_annotation_qc.png', dpi=300, bbox_inches='tight')
-print(f"\n💾 QC plot saved to 'peak_annotation_qc.png'")
+print("\nQC plot saved to 'peak_annotation_qc.png'")
 
 print("\n✅ Done! Annotated data saved to:", OUTPUT_FILE)
