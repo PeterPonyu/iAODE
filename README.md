@@ -42,93 +42,57 @@ pip install -e .
 
 ## Quick Start
 
-### Basic Usage
+For a full working example, see `examples/` directory and `QUICKSTART.md`.
+
+### scRNA-seq Analysis
 
 ```python
-import anndata as ad
+import scanpy as sc
 import iaode
 
-# Load your single-cell data
-adata = ad.read_h5ad('your_data.h5ad')
+# Load and preprocess
+adata = sc.datasets.paul15()
+sc.pp.filter_cells(adata, min_genes=200)
+sc.pp.normalize_total(adata, target_sum=1e4)
+sc.pp.log1p(adata)
+adata.layers['counts'] = adata.X.copy()
 
-# Create and train model
-model = iaode.agent(
-    adata,
-    layer='counts',
-    latent_dim=10,
-    hidden_dim=128,
-    use_ode=True,          # Enable neural ODE for trajectory
-    loss_mode='nb',        # Negative binomial loss for count data
-    encoder_type='mlp'     # MLP encoder architecture
-)
-
-# Train with early stopping
-model.fit(
-    epochs=100,
-    patience=20,
-    val_every=5,
-    early_stop=True
-)
+# Train iAODE model
+model = iaode.agent(adata, layer='counts', latent_dim=10, loss_mode='nb')
+model.fit(epochs=100, patience=20)
 
 # Get latent representation
 latent = model.get_latent()
-
-# Get interpretable embedding
-iembed = model.get_iembed()
 ```
 
 ### scATAC-seq Peak Annotation
 
+iAODE provides a complete scATAC-seq preprocessing and annotation pipeline:
+
 ```python
 import iaode
 
-# Complete annotation pipeline
 adata = iaode.annotation_pipeline(
     h5_file='filtered_peak_bc_matrix.h5',
-    gtf_file='gencode.v44.annotation.gtf',
-    output_h5ad='annotated_peaks.h5ad',
-    
-    # Annotation parameters
+    gtf_file='gencode.v49.annotation.gtf.gz',
     promoter_upstream=2000,
-    promoter_downstream=500,
-    gene_body=True,
-    gene_type='protein_coding',
-    
-    # TF-IDF normalization
     apply_tfidf=True,
-    tfidf_scale_factor=1e4,
-    
-    # Highly variable peaks
     select_hvp=True,
-    n_top_peaks=20000,
-    hvp_method='signac'
+    n_top_peaks=20000
 )
+```
 
-### Reference data and example datasets
-
-For scATAC-seq annotation you will need a GTF annotation and a 10X peak-matrix H5 file. Below are verified, commonly used downloads you can use with the examples (place downloaded files into `examples/data/`).
-
-- GENCODE GTFs:
-    - Human v19 (GRCh37/hg19): https://ftp.ebi.ac.uk/pub/databases/gencode/Gencode_human/release_19/gencode.v19.annotation.gtf.gz
-    - Mouse vM25 (GRCm38/mm10): https://ftp.ebi.ac.uk/pub/databases/gencode/Gencode_mouse/release_M25/gencode.vM25.annotation.gtf.gz
-    - Human v49 (GRCh38/hg38): https://ftp.ebi.ac.uk/pub/databases/gencode/Gencode_human/release_49/gencode.v49.annotation.gtf.gz
-    - Mouse vM38 (GRCm39/mm39): https://ftp.ebi.ac.uk/pub/databases/gencode/Gencode_mouse/release_M38/gencode.vM38.annotation.gtf.gz
-
-- 10X Genomics scATAC example datasets (base URLs):
-    - 5k Human PBMCs (ATAC v1.1): https://cf.10xgenomics.com/samples/cell-atac/2.0.0/atac_pbmc_5k_nextgem/
-    - 10k Human PBMCs (ATAC v2): https://cf.10xgenomics.com/samples/cell-atac/2.1.0/atac_pbmc_10k_v2/
-    - 8k Mouse Cortex (ATAC v2): https://cf.10xgenomics.com/samples/cell-atac/2.1.0/atac_mouse_cortex_8k_v2/
-
-Example download commands:
+**Quick data download:** Use `examples/data/download_data.sh` to fetch reference files:
 
 ```bash
-# Download a GENCODE GTF (example: human v49)
-wget -P examples/data/ https://ftp.ebi.ac.uk/pub/databases/gencode/Gencode_human/release_49/gencode.v49.annotation.gtf.gz
+cd examples/data
+./download_data.sh human 5k_pbmc
+```
 
-# Example: download 10X filtered peak matrix (open the base URL and pick the appropriate file name)
-wget -P examples/data/ https://cf.10xgenomics.com/samples/cell-atac/2.0.0/atac_pbmc_5k_nextgem/filtered_peak_bc_matrix.h5
-```
-```
+**Reference datasets:**
+
+- GENCODE GTFs: [v19](https://ftp.ebi.ac.uk/pub/databases/gencode/Gencode_human/release_19/gencode.v19.annotation.gtf.gz) | [v49](https://ftp.ebi.ac.uk/pub/databases/gencode/Gencode_human/release_49/gencode.v49.annotation.gtf.gz) | [Mouse vM25](https://ftp.ebi.ac.uk/pub/databases/gencode/Gencode_mouse/release_M25/gencode.vM25.annotation.gtf.gz) | [Mouse vM38](https://ftp.ebi.ac.uk/pub/databases/gencode/Gencode_mouse/release_M38/gencode.vM38.annotation.gtf.gz)
+- 10X samples: [5k PBMC](https://cf.10xgenomics.com/samples/cell-atac/2.0.0/atac_pbmc_5k_nextgem/) | [10k PBMC](https://cf.10xgenomics.com/samples/cell-atac/2.1.0/atac_pbmc_10k_v2/) | [8k Cortex](https://cf.10xgenomics.com/samples/cell-atac/2.1.0/atac_mouse_cortex_8k_v2/)
 
 ### Evaluation and Benchmarking
 
