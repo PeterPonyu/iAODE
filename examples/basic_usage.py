@@ -1,89 +1,109 @@
 """
-Basic Usage Example: Training iAODE on scRNA-seq Data
+Basic Usage Example - scRNA-seq Dimensionality Reduction
 
-This example demonstrates the basic workflow of using iAODE for
-dimensionality reduction on single-cell RNA-seq data.
+This example demonstrates basic iAODE model training for scRNA-seq data
+with standard preprocessing and UMAP visualization.
+
+Dataset: paul15 (2730 cells, hematopoietic differentiation)
 """
 
-import anndata as ad
-import scanpy as sc
+import sys
+from pathlib import Path
+
+# Check iaode installation
+sys.path.insert(0, str(Path(__file__).parent))
+from _example_utils import (
+    check_iaode_installed, setup_output_dir,
+    print_header, print_section, print_success, print_info
+)
+
+if not check_iaode_installed():
+    sys.exit(1)
+
 import iaode
+import scanpy as sc
+import matplotlib.pyplot as plt
+import warnings
+warnings.filterwarnings('ignore')
 
-# Load example dataset (or use your own data)
-print("Loading data...")
-adata = sc.datasets.paul15()  # Example: mouse hematopoiesis dataset
+OUTPUT_DIR = setup_output_dir("basic_usage")
+print_info(f"Outputs saved to: {OUTPUT_DIR}")
 
-# Preprocess data (standard scanpy workflow)
-print("Preprocessing...")
+# ==================================================
+# Load and Preprocess Data
+# ==================================================
+
+print_header("Basic iAODE Usage - scRNA-seq")
+print_section("Loading paul15 dataset")
+
+adata = sc.datasets.paul15()
+print(f"  Original: {adata.n_obs} cells × {adata.n_vars} genes")
+
 sc.pp.filter_cells(adata, min_genes=200)
-sc.pp.filter_genes(adata, min_cells=3)
 sc.pp.normalize_total(adata, target_sum=1e4)
 sc.pp.log1p(adata)
-
-# Store raw counts in layer for iAODE
 adata.layers['counts'] = adata.X.copy()
 
-print(f"Dataset: {adata.n_obs} cells × {adata.n_vars} genes")
+print_success(f"Preprocessed: {adata.n_obs} cells × {adata.n_vars} genes")
 
-# Create iAODE model
-print("\nCreating model...")
+# ==================================================
+# Train Model
+# ==================================================
+
+print_section("Training iAODE model")
+print_info("Hyperparameters:")
+print("  latent_dim=10      → Latent dimensionality")
+print("  hidden_dim=128     → Hidden layer size") 
+print("  encoder_type='mlp' → Options: 'mlp', 'residual_mlp', 'transformer', 'linear'")
+print("  loss_mode='nb'     → Options: 'mse', 'nb', 'zinb'")
+print()
+
 model = iaode.agent(
-    adata,
-    layer='counts',
-    latent_dim=10,
-    hidden_dim=128,
-    use_ode=False,        # Set to True for trajectory inference
-    loss_mode='nb',       # Negative binomial for count data
-    encoder_type='mlp',
-    lr=1e-4,
-    batch_size=128,
-    train_size=0.7,
-    val_size=0.15,
-    test_size=0.15,
-    random_seed=42
+    adata, layer='counts', latent_dim=10, hidden_dim=128,
+    encoder_type='mlp', loss_mode='nb', batch_size=128
 )
 
-# Train model
-print("\nTraining model...")
-model.fit(
-    epochs=100,
-    patience=20,
-    val_every=5,
-    early_stop=True
-)
+model.fit(epochs=100, patience=20, val_every=5)
 
-# Get latent representation
-print("\nExtracting latent representation...")
+metrics = model.get_resource_metrics()
+print_success(f"Trained in {metrics['train_time']:.2f}s ({metrics['actual_epochs']} epochs)")
+
+# ==================================================
+# Visualize
+# ==================================================
+
+print_section("Generating UMAP visualizations")
+
 latent = model.get_latent()
-
-# Add to AnnData object
 adata.obsm['X_iaode'] = latent
 
-# Visualize with UMAP
-print("\nComputing UMAP...")
 sc.pp.neighbors(adata, use_rep='X_iaode', n_neighbors=15)
-sc.tl.umap(adata)
+sc.tl.umap(adata, min_dist=0.3)
 
-# Plot results
-import matplotlib.pyplot as plt
+# Set visualization style
+plt.rcParams.update({'figure.dpi': 100, 'savefig.dpi': 300, 'font.size': 10})
 
-# Visualize UMAP colored by cell type
+# Plot cell types
 if 'paul15_clusters' in adata.obs.columns:
-    sc.pl.umap(adata, color='paul15_clusters', title='Cell Types', 
-               save='_iaode_celltypes.png', show=False)
+    sc.settings.figdir = OUTPUT_DIR
+    sc.pl.umap(adata, color='paul15_clusters', title='iAODE - Cell Types',
+               frameon=True, save='_celltypes.png', show=False)
+    print_success(f"Saved: {OUTPUT_DIR}/umap_celltypes.png")
 
-# Visualize UMAP colored by latent dimension 1
-adata.obs['Latent_Dim1'] = adata.obsm['X_iaode'][:, 0]
-sc.pl.umap(adata, color='Latent_Dim1', cmap='viridis', 
-           title='Latent Dimension 1', save='_iaode_latent.png', show=False)
+# Plot latent dimensions
+adata.obs['Latent_Dim1'] = latent[:, 0]
+adata.obs['Latent_Dim2'] = latent[:, 1]
 
-print("\nUMAP plots saved to figures/umap_iaode_celltypes.png and figures/umap_iaode_latent.png")
+fig, axes = plt.subplots(1, 2, figsize=(12, 5))
+sc.pl.umap(adata, color='Latent_Dim1', cmap='viridis', title='Latent Dim 1',
+           ax=axes[0], show=False, frameon=True)
+sc.pl.umap(adata, color='Latent_Dim2', cmap='plasma', title='Latent Dim 2',
+           ax=axes[1], show=False, frameon=True)
 
-# Print model performance metrics
-resource_metrics = model.get_resource_metrics()
-print("\nModel Performance:")
-print(f"  Training time: {resource_metrics['train_time']:.2f}s")
-print(f"  Peak GPU memory: {resource_metrics['peak_memory_gb']:.3f} GB")
-print(f"  Actual epochs: {resource_metrics['actual_epochs']}")
+plt.tight_layout()
+plt.savefig(OUTPUT_DIR / 'latent_dimensions.png', dpi=300, bbox_inches='tight')
+plt.close()
+print_success(f"Saved: {OUTPUT_DIR}/latent_dimensions.png")
 
-print("\nDone!")
+print_header("Complete")
+print_info("Next: Try trajectory_inference.py for Neural ODE analysis")

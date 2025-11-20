@@ -1,162 +1,163 @@
 """
 scATAC-seq Peak Annotation Example
 
-This example demonstrates the complete pipeline for annotating
-scATAC-seq peaks to genes using genomic features.
+Complete pipeline for annotating scATAC-seq peaks to genes using
+genomic features from GTF files.
+
+Required data: 10X filtered_peak_bc_matrix.h5 and GENCODE GTF file
+Download using: ./examples/data/download_data.sh
 """
 
-import iaode
-from pathlib import Path
 import sys
+from pathlib import Path
 
-# Recommend placing example data under the examples/data/ directory.
-# This keeps examples portable and avoids hard-coded absolute paths.
-EXAMPLE_DIR = Path(__file__).parent
-DATA_DIR = EXAMPLE_DIR / "data"
-
-# File names (update these to match the files you put in examples/data/)
-H5_FILE = DATA_DIR / "mouse_brain_5k_v1.1.h5"
-GTF_FILE = DATA_DIR / "gencode.vM25.annotation.gtf"
-OUTPUT_FILE = EXAMPLE_DIR / "results" / "annotated_peaks.h5ad"
-
-# Ensure data files exist and give clear instructions if not
-if not H5_FILE.exists() or not GTF_FILE.exists():
-    print("\nERROR: Required example data not found.")
-    print(f"  Expected H5 file at: {H5_FILE}")
-    print(f"  Expected GTF file at: {GTF_FILE}\n")
-    print("Please place your 10X scATAC 'filtered_peak_bc_matrix.h5' and the GTF file")
-    print("under the 'examples/data/' folder, or update the paths at the top of this script.")
-
-    print("\nVerified reference downloads (recommended):")
-    print("  GENCODE GTFs:")
-    print("    - Human v19 (GRCh37/hg19): https://ftp.ebi.ac.uk/pub/databases/gencode/Gencode_human/release_19/gencode.v19.annotation.gtf.gz")
-    print("    - Mouse vM25 (GRCm38/mm10): https://ftp.ebi.ac.uk/pub/databases/gencode/Gencode_mouse/release_M25/gencode.vM25.annotation.gtf.gz")
-    print("    - Human v49 (GRCh38/hg38): https://ftp.ebi.ac.uk/pub/databases/gencode/Gencode_human/release_49/gencode.v49.annotation.gtf.gz")
-    print("    - Mouse vM38 (GRCm39/mm39): https://ftp.ebi.ac.uk/pub/databases/gencode/Gencode_mouse/release_M38/gencode.vM38.annotation.gtf.gz")
-
-    print("  10X Genomics scATAC-seq example datasets (base URLs):")
-    print("    - 5k Human PBMCs (ATAC v1.1): https://cf.10xgenomics.com/samples/cell-atac/2.0.0/atac_pbmc_5k_nextgem/")
-    print("    - 10k Human PBMCs (ATAC v2): https://cf.10xgenomics.com/samples/cell-atac/2.1.0/atac_pbmc_10k_v2/")
-    print("    - 8k Mouse Cortex (ATAC v2): https://cf.10xgenomics.com/samples/cell-atac/2.1.0/atac_mouse_cortex_8k_v2/")
-
-    print("Quick download examples:")
-    print("  # Download a GENCODE GTF (example: human v49)")
-    print("  wget -P examples/data/ https://ftp.ebi.ac.uk/pub/databases/gencode/Gencode_human/release_49/gencode.v49.annotation.gtf.gz")
-    print("  # Example: download 10X filtered peak matrix (open the base URL and pick the appropriate file, e.g. 'filtered_peak_bc_matrix.h5')")
-    print("  wget -P examples/data/ https://cf.10xgenomics.com/samples/cell-atac/2.0.0/atac_pbmc_5k_nextgem/filtered_peak_bc_matrix.h5")
-
-    print("Note: File names at 10X sample directories may vary. If a direct 'filtered_peak_bc_matrix.h5' is not present, visit the base URL in a browser and download the appropriate archive or H5 file.")
-    print("\nNote: Large GTF files (e.g. ~800 MB) should NOT be pushed directly to the repository. Prefer hosting the files externally (Zenodo, S3, figshare) and providing a small download helper script in 'examples/data/' to fetch them.")
-    sys.exit(1)
-
-print("="*70)
-print("scATAC-seq Peak Annotation Pipeline")
-print("="*70)
-
-# Run complete annotation pipeline
-adata = iaode.annotation_pipeline(
-    h5_file=H5_FILE,
-    gtf_file=GTF_FILE,
-    output_h5ad=OUTPUT_FILE,
-    
-    # === Peak-to-Gene Annotation Settings ===
-    promoter_upstream=2000,        # TSS -2kb
-    promoter_downstream=500,       # TSS +500bp
-    gene_body=True,                # Include gene body annotations
-    distal_threshold=50000,        # 50kb max distance for distal
-    gene_type='protein_coding',    # Focus on protein-coding genes
-    annotation_priority='promoter', # Prefer promoter over gene body
-    
-    # === TF-IDF Normalization ===
-    apply_tfidf=True,
-    tfidf_scale_factor=1e4,        # Standard scale factor
-    tfidf_log_tf=False,            # Standard TF (not log-transformed)
-    tfidf_log_idf=True,            # Standard IDF (log-transformed)
-    
-    # === Highly Variable Peaks ===
-    select_hvp=True,
-    n_top_peaks=20000,             # Select top 20k peaks
-    hvp_min_accessibility=0.01,    # Peak in ≥1% of cells
-    hvp_max_accessibility=0.95,    # Filter ubiquitous peaks
-    hvp_method='signac'            # Use Signac method
+sys.path.insert(0, str(Path(__file__).parent))
+from _example_utils import (
+    check_iaode_installed, setup_output_dir, check_data_files,
+    print_header, print_section, print_success, print_info, print_error
 )
 
-print("\n" + "="*70)
-print("Pipeline Complete!")
-print("="*70)
+if not check_iaode_installed():
+    sys.exit(1)
 
-# Inspect results
-print(f"\n📊 Dataset Summary:")
-print(f"   Cells: {adata.n_obs:,}")
-print(f"   Peaks: {adata.n_vars:,}")
-print(f"   Highly variable peaks: {adata.var['highly_variable'].sum():,}")
-
-# Annotation statistics
-annotation_counts = adata.var['annotation_type'].value_counts()
-print(f"\n📍 Peak Annotations:")
-for anno_type, count in annotation_counts.items():
-    pct = count / adata.n_vars * 100
-    print(f"   {anno_type.capitalize():12s}: {count:6,} ({pct:5.1f}%)")
-
-# Top annotated genes
-top_genes = adata.var['gene_annotation'].value_counts().head(10)
-print(f"\n🧬 Top 10 Annotated Genes:")
-for i, (gene, count) in enumerate(top_genes.items(), 1):
-    if gene not in ['intergenic', 'parse_failed']:
-        print(f"   {i:2d}. {gene:15s}: {count:4d} peaks")
-
-# Accessibility distribution
-import numpy as np
-print("\nPeak Accessibility:")
-print(f"   Mean: {adata.var['accessibility'].mean():.4f}")
-print(f"   Median: {adata.var['accessibility'].median():.4f}")
-print(f"   Min: {adata.var['accessibility'].min():.4f}")
-print(f"   Max: {adata.var['accessibility'].max():.4f}")
-
-# HVP statistics
-if 'highly_variable' in adata.var.columns:
-    hvp_accessibility = adata.var.loc[
-        adata.var['highly_variable'], 'accessibility'
-    ].mean()
-    print(f"   Mean accessibility (HVPs): {hvp_accessibility:.4f}")
-
-# Quality control plot
+import iaode
 import matplotlib.pyplot as plt
+import warnings
+warnings.filterwarnings('ignore')
+
+OUTPUT_DIR = setup_output_dir("atacseq_annotation")
+
+# ==================================================
+# Check Data Files
+# ==================================================
+
+print_header("scATAC-seq Peak Annotation Pipeline")
+
+DATA_DIR = Path(__file__).parent / "data"
+H5_FILE = DATA_DIR / "mouse_brain_5k_v1.1.h5"
+GTF_FILE = DATA_DIR / "gencode.vM25.annotation.gtf"
+
+print_section("Checking data files")
+
+required_files = {
+    "H5 peak matrix": H5_FILE,
+    "GTF annotation": GTF_FILE
+}
+
+if not check_data_files(required_files):
+    print_error("Required data files not found!")
+    print_info("Download data using:")
+    print("  cd examples/data")
+    print("  ./download_data.sh mouse 5k_pbmc")
+    print()
+    print_info("Or manually download:")
+    print("  GTF: https://ftp.ebi.ac.uk/pub/databases/gencode/Gencode_mouse/release_M25/gencode.vM25.annotation.gtf.gz")
+    print("  H5:  https://cf.10xgenomics.com/samples/cell-atac/2.0.0/atac_mouse_brain_5k_v1.1/atac_mouse_brain_5k_v1.1_filtered_peak_bc_matrix.h5")
+    sys.exit(1)
+
+print_success("All required data files found")
+
+# ==================================================
+# Run Annotation Pipeline
+# ==================================================
+
+print_section("Running annotation pipeline")
+print_info("Configuration:")
+print("  promoter_upstream=2000   → Promoter region definition")
+print("  apply_tfidf=True         → TF-IDF normalization for peaks")
+print("  select_hvp=True          → Select highly variable peaks")
+print("  n_top_peaks=20000        → Number of HVPs to retain")
+print()
+
+adata = iaode.annotation_pipeline(
+    h5_file=str(H5_FILE),
+    gtf_file=str(GTF_FILE),
+    promoter_upstream=2000,
+    promoter_downstream=500,
+    apply_tfidf=True,
+    select_hvp=True,
+    n_top_peaks=20000
+)
+
+print_success(f"Annotated: {adata.n_obs} cells × {adata.n_vars} peaks")
+
+# ==================================================
+# Visualize Annotations
+# ==================================================
+
+print_section("Generating annotation visualizations")
+
+plt.rcParams.update({'figure.dpi': 100, 'savefig.dpi': 300, 'font.size': 10})
 
 fig, axes = plt.subplots(2, 2, figsize=(12, 10))
 
-# 1. Annotation type distribution
-anno_counts = adata.var['annotation_type'].value_counts()
-axes[0, 0].bar(range(len(anno_counts)), anno_counts.values)
-axes[0, 0].set_xticks(range(len(anno_counts)))
-axes[0, 0].set_xticklabels(anno_counts.index, rotation=45, ha='right')
-axes[0, 0].set_ylabel('Number of Peaks')
-axes[0, 0].set_title('Peak Annotation Distribution')
+# Peak annotation distribution
+if 'peak_type' in adata.var.columns:
+    peak_types = adata.var['peak_type'].value_counts()
+    ax = axes[0, 0]
+    colors = ['#2E86AB', '#A23B72', '#F18F01', '#06A77D', '#D3D3D3']
+    ax.pie(peak_types.values, labels=peak_types.index, autopct='%1.1f%%',
+           colors=colors[:len(peak_types)], startangle=90)
+    ax.set_title('Peak Annotation Distribution', fontweight='bold', pad=20)
 
-# 2. Accessibility histogram
-axes[0, 1].hist(adata.var['accessibility'], bins=50, edgecolor='black', alpha=0.7)
-axes[0, 1].axvline(0.01, color='red', linestyle='--', label='Min threshold')
-axes[0, 1].axvline(0.95, color='blue', linestyle='--', label='Max threshold')
-axes[0, 1].set_xlabel('Accessibility')
-axes[0, 1].set_ylabel('Number of Peaks')
-axes[0, 1].set_title('Peak Accessibility Distribution')
-axes[0, 1].legend()
+# Distance to TSS
+if 'distance_to_tss' in adata.var.columns:
+    ax = axes[0, 1]
+    distances = adata.var['distance_to_tss'].dropna()
+    ax.hist(distances[distances.abs() < 50000], bins=50, color='#2E86AB', alpha=0.7, edgecolor='black')
+    ax.set_xlabel('Distance to TSS (bp)')
+    ax.set_ylabel('Count')
+    ax.set_title('Peak Distance to TSS', fontweight='bold')
+    ax.grid(axis='y', alpha=0.3)
 
-# 3. Distance to TSS (log scale)
-valid_dist = adata.var['distance_to_tss'].dropna()
-axes[1, 0].hist(np.log10(valid_dist + 1), bins=50, edgecolor='black', alpha=0.7)
-axes[1, 0].set_xlabel('log10(Distance to TSS + 1)')
-axes[1, 0].set_ylabel('Number of Peaks')
-axes[1, 0].set_title('Distance to Nearest TSS')
+# Peak counts per cell
+ax = axes[1, 0]
+peak_counts = adata.X.sum(axis=1).A1 if hasattr(adata.X, 'A1') else adata.X.sum(axis=1)
+ax.hist(peak_counts, bins=50, color='#A23B72', alpha=0.7, edgecolor='black')
+ax.set_xlabel('Peak Counts')
+ax.set_ylabel('Number of Cells')
+ax.set_title('Peak Counts per Cell', fontweight='bold')
+ax.grid(axis='y', alpha=0.3)
 
-# 4. Peak width distribution
-axes[1, 1].hist(adata.var['peak_width'], bins=50, edgecolor='black', alpha=0.7)
-axes[1, 1].set_xlabel('Peak Width (bp)')
-axes[1, 1].set_ylabel('Number of Peaks')
-axes[1, 1].set_title('Peak Width Distribution')
+# Highly variable peaks
+if 'highly_variable' in adata.var.columns:
+    ax = axes[1, 1]
+    hvp_count = adata.var['highly_variable'].sum()
+    categories = ['HVP', 'Non-HVP']
+    counts = [hvp_count, len(adata.var) - hvp_count]
+    ax.bar(categories, counts, color=['#F18F01', '#D3D3D3'], edgecolor='black')
+    ax.set_ylabel('Number of Peaks')
+    ax.set_title('Highly Variable Peaks Selection', fontweight='bold')
+    ax.grid(axis='y', alpha=0.3)
+    for i, v in enumerate(counts):
+        ax.text(i, v + max(counts)*0.02, f'{v:,}', ha='center', fontweight='bold')
 
 plt.tight_layout()
-plt.savefig('peak_annotation_qc.png', dpi=300, bbox_inches='tight')
-print("\nQC plot saved to 'peak_annotation_qc.png'")
+plt.savefig(OUTPUT_DIR / 'annotation_qc.png', dpi=300, bbox_inches='tight')
+plt.close()
+print_success(f"Saved: {OUTPUT_DIR}/annotation_qc.png")
 
-print("\n✅ Done! Annotated data saved to:", OUTPUT_FILE)
+# ==================================================
+# Save Results
+# ==================================================
+
+print_section("Saving annotated data")
+
+results_dir = Path(__file__).parent / "results"
+results_dir.mkdir(exist_ok=True)
+
+output_file = results_dir / "annotated_peaks.h5ad"
+adata.write_h5ad(output_file)
+print_success(f"Saved: {output_file}")
+
+# Summary
+print_header("Annotation Summary")
+if 'peak_type' in adata.var.columns:
+    peak_type_counts = adata.var['peak_type'].value_counts()
+    for peak_type, count in peak_type_counts.items():
+        pct = count / len(adata.var) * 100
+        print(f"  {peak_type:20s}: {count:6d} ({pct:5.1f}%)")
+
+print()
+print_info("Annotated data ready for downstream analysis with iAODE")
+print_info("Use this data with iaode.agent() for scATAC-seq modeling")

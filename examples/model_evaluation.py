@@ -1,62 +1,74 @@
 """
-Model Evaluation and Benchmarking Example
+Model Evaluation and Benchmarking
 
-This example demonstrates how to evaluate iAODE models and compare
-them against state-of-the-art methods like scVI.
+Comprehensive evaluation comparing iAODE against scVI-family models
+with consistent metrics across all methods.
+
+Dataset: paul15 (scRNA-seq trajectory)
 """
 
-import anndata as ad
-import scanpy as sc
+import sys
+from pathlib import Path
+
+sys.path.insert(0, str(Path(__file__).parent))
+from _example_utils import (
+    check_iaode_installed, setup_output_dir,
+    print_header, print_section, print_success, print_info, print_warning
+)
+
+if not check_iaode_installed():
+    sys.exit(1)
+
 import iaode
+import scanpy as sc
 import numpy as np
-import matplotlib.pyplot as plt
 import pandas as pd
+import matplotlib.pyplot as plt
+import warnings
+warnings.filterwarnings('ignore')
 
-# Load data
-print("Loading data...")
+OUTPUT_DIR = setup_output_dir("model_evaluation")
+print_info(f"Outputs saved to: {OUTPUT_DIR}")
+
+# ==================================================
+# Load Data
+# ==================================================
+
+print_header("Model Evaluation & Benchmarking")
+print_section("Loading paul15 dataset")
+
 adata = sc.datasets.paul15()
-
-# Preprocess
 sc.pp.filter_cells(adata, min_genes=200)
-sc.pp.filter_genes(adata, min_cells=3)
 sc.pp.normalize_total(adata, target_sum=1e4)
 sc.pp.log1p(adata)
 adata.layers['counts'] = adata.X.copy()
 
-print(f"Dataset: {adata.n_obs} cells × {adata.n_vars} genes")
+print_success(f"Loaded: {adata.n_obs} cells × {adata.n_vars} genes")
 
-# ============================================================================
-# Part 1: Train iAODE Model
-# ============================================================================
+# ==================================================
+# Train iAODE
+# ==================================================
 
-print("\n" + "="*70)
-print("Training iAODE Model")
-print("="*70)
+print_section("Training iAODE model")
 
 model = iaode.agent(
-    adata,
-    layer='counts',
-    latent_dim=10,
-    hidden_dim=128,
-    use_ode=True,
-    loss_mode='nb',
-    encoder_type='mlp',
-    batch_size=128
+    adata, layer='counts', latent_dim=10, hidden_dim=128,
+    use_ode=True, encoder_type='mlp', loss_mode='nb', batch_size=128
 )
 
 model.fit(epochs=100, patience=20, val_every=5)
-# get_latent() returns full dataset representation
 latent_iaode = model.get_latent()
 
-# ============================================================================
-# Part 2: Evaluate Dimensionality Reduction Quality
-# ============================================================================
+metrics_iaode = model.get_resource_metrics()
+print_success(f"iAODE trained in {metrics_iaode['train_time']:.2f}s")
 
-print("\n" + "="*70)
-print("Evaluating Dimensionality Reduction Quality")
-print("="*70)
+# ==================================================
+# Evaluate iAODE
+# ==================================================
 
-# Evaluate against original high-dimensional space
+print_section("Evaluating iAODE")
+
+# Dimensionality Reduction metrics
 dr_metrics = iaode.evaluate_dimensionality_reduction(
     X_high=adata.X.toarray() if hasattr(adata.X, 'toarray') else adata.X,
     X_low=latent_iaode,
@@ -64,29 +76,19 @@ dr_metrics = iaode.evaluate_dimensionality_reduction(
     verbose=True
 )
 
-# ============================================================================
-# Part 3: Evaluate Latent Space Quality
-# ============================================================================
-
-print("\n" + "="*70)
-print("Evaluating Latent Space Quality")
-print("="*70)
-
+# Latent Space metrics
 ls_metrics = iaode.evaluate_single_cell_latent_space(
     latent_space=latent_iaode,
-    data_type='trajectory',  # Hematopoiesis is a trajectory dataset
+    data_type='trajectory',
     verbose=True
 )
 
-# ============================================================================
-# Part 4: Benchmark Against scVI Models
-# ============================================================================
+# ==================================================
+# Train scVI Models
+# ==================================================
 
-print("\n" + "="*70)
-print("Benchmarking Against scVI Models")
-print("="*70)
+print_section("Training scVI-family models")
 
-# Create data splitter (same splits for fair comparison)
 splitter = iaode.DataSplitter(
     n_samples=adata.n_obs,
     test_size=0.15,
@@ -94,155 +96,176 @@ splitter = iaode.DataSplitter(
     random_state=42
 )
 
-# Train scVI models
 scvi_results = iaode.train_scvi_models(
-    adata,
-    splitter,
-    n_latent=10,
-    n_epochs=100,
-    batch_size=128
+    adata, splitter,
+    n_latent=10, n_epochs=100, batch_size=128
 )
 
-# Evaluate scVI models
+# Evaluate scVI models with clustering metrics
 scvi_metrics = iaode.evaluate_scvi_models(
-    scvi_results,
-    adata,
-    splitter.test_idx
+    scvi_results, adata, splitter.test_idx
 )
 
-# ============================================================================
-# Part 5: Compare All Methods
-# ============================================================================
+# ==================================================
+# Comprehensive Evaluation for All Models
+# ==================================================
 
-print("\n" + "="*70)
-print("Comparing All Methods")
-print("="*70)
+print_section("Computing comprehensive metrics for all models")
 
-# Collect results
-results = {
-    'iAODE': {
-        'latent': latent_iaode,
-        'train_time': model.get_resource_metrics()['train_time'],
-        'dr_metrics': dr_metrics,
-        'ls_metrics': ls_metrics
-    }
-}
+results = {'iAODE': {
+    'latent': latent_iaode,
+    'train_time': metrics_iaode['train_time'],
+    'dr_metrics': dr_metrics,
+    'ls_metrics': ls_metrics
+}}
 
-# Add scVI results
+# Evaluate scVI models with same metrics as iAODE
 for model_name, result in scvi_results.items():
     if result is not None:
-        # scVI models need adata to be setup before getting latent representation
-        # Use only test set for fair comparison (same as metrics evaluation)
+        print_info(f"Evaluating {model_name.upper()}")
+        
+        # Get latent from test set
+        latent_scvi = result['model'].get_latent_representation(result['adata_test'])
+        
+        # Get corresponding high-dim data
+        X_high_test = adata[splitter.test_idx].X
+        if hasattr(X_high_test, 'toarray'):
+            X_high_test = X_high_test.toarray()
+        
+        # DR metrics for scVI
+        try:
+            dr_scvi = iaode.evaluate_dimensionality_reduction(
+                X_high=X_high_test,
+                X_low=latent_scvi,
+                k=10,
+                verbose=False
+            )
+        except Exception as e:
+            print_warning(f"DR metrics failed for {model_name}: {e}")
+            dr_scvi = {}
+        
+        # LS metrics for scVI
+        try:
+            ls_scvi = iaode.evaluate_single_cell_latent_space(
+                latent_space=latent_scvi,
+                data_type='trajectory',
+                verbose=False
+            )
+        except Exception as e:
+            print_warning(f"LS metrics failed for {model_name}: {e}")
+            ls_scvi = {}
+        
         results[model_name] = {
-            'latent': result['model'].get_latent_representation(result['adata_test']),
-            'adata_subset': result['adata_test'].copy(),  # Store subset for visualization
+            'latent': latent_scvi,
+            'adata_subset': result['adata_test'].copy(),
             'train_time': result['train_time'],
-            'metrics': scvi_metrics.get(model_name, {})
+            'dr_metrics': dr_scvi,
+            'ls_metrics': ls_scvi,
+            'cluster_metrics': scvi_metrics.get(model_name, {})
         }
+        
+        print_success(f"{model_name.upper()} evaluated")
 
-# Create comparison DataFrame
+# ==================================================
+# Create Comparison Table
+# ==================================================
+
+print_section("Generating comparison table")
+
 comparison_data = []
 for model_name, data in results.items():
-    row = {'Model': model_name}
+    row = {'Model': model_name, 'Train Time (s)': data['train_time']}
     
-    # Training metrics
-    row['Train Time (s)'] = data['train_time']
-    
-    if model_name == 'iAODE':
-        # DR metrics
-        row['Distance Corr'] = data['dr_metrics']['distance_correlation']
-        row['Q_local'] = data['dr_metrics']['Q_local']
-        row['Q_global'] = data['dr_metrics']['Q_global']
-        
-        # LS metrics
-        row['Manifold Dim'] = data['ls_metrics']['manifold_dimensionality']
-        row['Spectral Decay'] = data['ls_metrics']['spectral_decay_rate']
-        row['Trajectory Dir'] = data['ls_metrics']['trajectory_directionality']
+    # DR metrics
+    if 'dr_metrics' in data and data['dr_metrics']:
+        row['Distance Corr'] = data['dr_metrics'].get('distance_correlation', np.nan)
+        row['Q_local'] = data['dr_metrics'].get('Q_local', np.nan)
+        row['Q_global'] = data['dr_metrics'].get('Q_global', np.nan)
     else:
-        # scVI metrics
-        if 'metrics' in data and data['metrics']:
-            row['NMI'] = data['metrics'].get('NMI', np.nan)
-            row['ARI'] = data['metrics'].get('ARI', np.nan)
-            row['ASW'] = data['metrics'].get('ASW', np.nan)
+        row.update({'Distance Corr': np.nan, 'Q_local': np.nan, 'Q_global': np.nan})
+    
+    # LS metrics
+    if 'ls_metrics' in data and data['ls_metrics']:
+        row['Manifold Dim'] = data['ls_metrics'].get('manifold_dimensionality', np.nan)
+        row['Spectral Decay'] = data['ls_metrics'].get('spectral_decay_rate', np.nan)
+        row['Trajectory Dir'] = data['ls_metrics'].get('trajectory_directionality', np.nan)
+    else:
+        row.update({'Manifold Dim': np.nan, 'Spectral Decay': np.nan, 'Trajectory Dir': np.nan})
+    
+    # Clustering metrics
+    if 'cluster_metrics' in data and data['cluster_metrics']:
+        row['NMI'] = data['cluster_metrics'].get('NMI', np.nan)
+        row['ARI'] = data['cluster_metrics'].get('ARI', np.nan)
+        row['ASW'] = data['cluster_metrics'].get('ASW', np.nan)
+    else:
+        row.update({'NMI': np.nan, 'ARI': np.nan, 'ASW': np.nan})
     
     comparison_data.append(row)
 
 df = pd.DataFrame(comparison_data)
-
-print("\n📊 Model Comparison:")
 print(df.to_string(index=False))
 
-# Save results
-df.to_csv('model_comparison.csv', index=False)
-print("\n💾 Results saved to 'model_comparison.csv'")
+csv_path = OUTPUT_DIR / 'model_comparison.csv'
+df.to_csv(csv_path, index=False)
+print_success(f"Saved: {csv_path}")
 
-# ============================================================================
-# Part 6: Visualization
-# ============================================================================
+# ==================================================
+# Visualizations
+# ==================================================
 
-print("\nCreating visualization...")
+print_section("Generating comparison visualizations")
+
+# Compute UMAP for iAODE
+adata.obsm['X_iaode'] = latent_iaode
+sc.pp.neighbors(adata, use_rep='X_iaode')
+sc.tl.umap(adata)
+
+plt.rcParams.update({'figure.dpi': 100, 'savefig.dpi': 300, 'font.size': 10})
 
 fig = plt.figure(figsize=(15, 10))
 
-# Plot 1: Training time comparison
-ax1 = plt.subplot(2, 3, 1)
-models = df['Model'].values
-times = df['Train Time (s)'].values
-colors = ['#e74c3c' if m == 'iAODE' else '#3498db' for m in models]
-ax1.barh(models, times, color=colors)
-ax1.set_xlabel('Training Time (seconds)')
-ax1.set_title('Training Time Comparison')
+# Plot 1-3: Metrics comparison bar plots
+metrics_to_plot = [
+    ('Distance Corr', 'Distance Correlation'),
+    ('Q_local', 'Local Quality'),
+    ('Q_global', 'Global Quality')
+]
 
-# Plot 2: Distance correlation (iAODE only)
-ax2 = plt.subplot(2, 3, 2)
-if 'Distance Corr' in df.columns:
-    ax2.bar(['Distance Corr', 'Q_local', 'Q_global'], 
-            [df.loc[df['Model']=='iAODE', 'Distance Corr'].values[0],
-             df.loc[df['Model']=='iAODE', 'Q_local'].values[0],
-             df.loc[df['Model']=='iAODE', 'Q_global'].values[0]],
-            color='#e74c3c')
-    ax2.set_ylim([0, 1])
-    ax2.set_ylabel('Score')
-    ax2.set_title('iAODE DR Quality Metrics')
+for idx, (col, title) in enumerate(metrics_to_plot, 1):
+    ax = plt.subplot(2, 3, idx)
+    data_plot = df[df[col].notna()]
+    if not data_plot.empty:
+        ax.bar(data_plot['Model'], data_plot[col], color=['#2E86AB', '#A23B72', '#F18F01'])
+        ax.set_title(title, fontweight='bold')
+        ax.set_ylabel('Score')
+        ax.grid(axis='y', alpha=0.3)
 
-# Plot 3: Latent space quality (iAODE only)
-ax3 = plt.subplot(2, 3, 3)
-if 'Manifold Dim' in df.columns:
-    ax3.bar(['Manifold\nDim', 'Spectral\nDecay', 'Trajectory\nDir'], 
-            [df.loc[df['Model']=='iAODE', 'Manifold Dim'].values[0],
-             df.loc[df['Model']=='iAODE', 'Spectral Decay'].values[0],
-             df.loc[df['Model']=='iAODE', 'Trajectory Dir'].values[0]],
-            color='#e74c3c')
-    ax3.set_ylim([0, 1])
-    ax3.set_ylabel('Score')
-    ax3.set_title('iAODE LS Quality Metrics')
-
-# Plot 4-6: UMAP visualizations for different methods
+# Plot 4-6: UMAP visualizations
 for idx, model_name in enumerate(['iAODE', 'scvi', 'peakvi'], start=4):
     if model_name in results:
         ax = plt.subplot(2, 3, idx)
-        latent = results[model_name]['latent']
         
-        # Use appropriate adata subset for each model
         if model_name == 'iAODE':
             adata_viz = adata.copy()
         else:
-            # scVI models: use test set subset
             adata_viz = results[model_name]['adata_subset'].copy()
         
-        # Ensure latent is 2D array
+        latent = results[model_name]['latent']
         if latent.ndim == 1:
             latent = latent.reshape(-1, 1)
+        
         adata_viz.obsm['X_latent'] = latent
         sc.pp.neighbors(adata_viz, use_rep='X_latent')
         sc.tl.umap(adata_viz)
         
         if 'paul15_clusters' in adata_viz.obs.columns:
-            sc.pl.umap(adata_viz, color='paul15_clusters', ax=ax, show=False)
-        ax.set_title(f'{model_name.upper()} Latent Space')
+            sc.pl.umap(adata_viz, color='paul15_clusters', ax=ax, show=False, frameon=True)
+        ax.set_title(f'{model_name.upper()} Latent Space', fontweight='bold')
 
 plt.tight_layout()
-plt.savefig('model_evaluation.png', dpi=300, bbox_inches='tight')
-print("💾 Visualization saved to 'model_evaluation.png'")
+plt.savefig(OUTPUT_DIR / 'model_comparison.png', dpi=300, bbox_inches='tight')
+plt.close()
+print_success(f"Saved: {OUTPUT_DIR}/model_comparison.png")
 
-print("\n✅ Evaluation complete!")
+print_header("Evaluation Complete")
+print_info("All models evaluated with consistent metrics")

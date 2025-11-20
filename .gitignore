@@ -155,6 +155,14 @@ examples/data/*.mtx
 examples/data/*.loom
 examples/data/*.bed
 
+# Example outputs (generated files)
+examples/outputs/
+examples/results/
+examples/*.png
+examples/*.csv
+*.png
+*.csv
+
 # Logs
 logs/
 *.log
