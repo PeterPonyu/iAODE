@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "iaode"
-version = "0.1.2"
+version = "0.2.0"
 description = "Interpretable Autoencoder with Ordinary Differential Equations for single-cell omics analysis"
 readme = "README.md"
 authors = [

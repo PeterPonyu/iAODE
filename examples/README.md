@@ -37,15 +37,8 @@ python trajectory_inference.py
 Complete pipeline for annotating scATAC-seq peaks to genes.
 
 **Topics covered:**
-- Loading 10X scATAC-seq data
-- Peak-to-gene annotation using GTF files
-- TF-IDF normalization
-- Highly variable peak selection
-- Quality control visualization
 
 **Requirements:**
-- 10X scATAC-seq H5 file
-- Gene annotation GTF file (GENCODE/Ensembl)
 
 **Run:**
 ```bash
@@ -53,11 +46,8 @@ python atacseq_annotation.py
 ```
 
 ### 4. Model Evaluation (`model_evaluation.py`)
-Comprehensive evaluation and benchmarking against other methods.
-
 **Topics covered:**
 - Evaluating dimensionality reduction quality
-- Assessing latent space properties
 - Benchmarking against scVI models
 - Comparing multiple methods
 - Generating comparison visualizations
@@ -85,36 +75,10 @@ Most examples use publicly available datasets from Scanpy:
 - `sc.datasets.paul15()`: Mouse hematopoiesis data
 
 For the scATAC-seq example, you'll need:
-- Your own 10X scATAC-seq H5 matrix (place it in `examples/data/`)
-- Gene annotation file from GENCODE or Ensembl (GTF). Place it in `examples/data/`.
+- 10X scATAC-seq H5 file
+- GENCODE/Ensembl GTF annotation
 
-Note about large files
-----------------------
-The gene annotation GTF can be large (hundreds of MB). Do not push large raw data files to GitHub.
-Options:
-
-- Use Git LFS for large files:
-
-```bash
-git lfs install
-git lfs track "examples/data/*.gtf*"
-git add .gitattributes
-git add examples/data/<your-gtf-file>
-git commit -m "Add example GTF via Git LFS"
-git push origin main
-```
-
-- Host large files externally (Zenodo, S3, figshare) and provide a small download helper script in `examples/data/`.
-
-Example file layout (recommended):
-
-```
-examples/
-	data/
-		filtered_peak_bc_matrix.h5   # 10X peak matrix (keep locally or in LFS)
-		gencode.v44.annotation.gtf.gz # GTF (use LFS or external hosting)
-	atacseq_annotation.py
-```
+Place both files in `examples/data/` before running the example. See `README.md` for verified data download links.
 
 ## Verified Data URLs
 
