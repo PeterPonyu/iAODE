@@ -67,6 +67,9 @@ from .utils import (
     select_highly_variable_peaks,
 )
 
+# Import datasets module (lazy import to avoid unnecessary dependencies)
+from . import datasets
+
 # Define public API
 __all__ = [
     # Main agent class
@@ -94,4 +97,7 @@ __all__ = [
     # Utility functions
     'tfidf_normalization',
     'select_highly_variable_peaks',
+    
+    # Datasets module
+    'datasets',
 ]

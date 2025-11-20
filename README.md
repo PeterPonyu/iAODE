@@ -100,29 +100,49 @@ adata.obs['pseudotime'] = (latent[:, 0] - latent[:, 0].min()) / (latent[:, 0].ma
 
 ### scATAC-seq Peak Annotation
 
-iAODE provides a complete scATAC-seq preprocessing and annotation pipeline:
+**Automatic data download** - iAODE automatically downloads and caches example datasets:
 
 ```python
 import iaode
 
+# Automatically downloads mouse brain 5k scATAC-seq + GENCODE annotation
+# Files cached in ~/.iaode/data/ and reused on subsequent runs
+h5_file, gtf_file = iaode.datasets.mouse_brain_5k_atacseq()
+
+# Run annotation pipeline
 adata = iaode.annotation_pipeline(
-    h5_file='filtered_peak_bc_matrix.h5',
-    gtf_file='gencode.v49.annotation.gtf.gz',
-    promoter_upstream=2000,
-    apply_tfidf=True,
-    select_hvp=True,
-    n_top_peaks=20000
+    h5_file=str(h5_file),
+    gtf_file=str(gtf_file),
+    promoter_upstream=2000,  # TSS upstream region
+    promoter_downstream=500,  # TSS downstream region
+    apply_tfidf=True,        # TF-IDF normalization
+    select_hvp=True,         # Select highly variable peaks
+    n_top_peaks=20000        # Number of HVPs
 )
 ```
 
-**Quick data download:** Use `examples/data/download_data.sh` to fetch reference files:
+**Available datasets:**
+
+```python
+# Mouse brain 5k scATAC-seq (73 MB H5 + 847 MB GTF)
+h5, gtf = iaode.datasets.mouse_brain_5k_atacseq()
+
+# Human PBMC 5k scATAC-seq (alternative dataset)
+h5, gtf = iaode.datasets.human_pbmc_5k_atacseq()
+
+# Manage cache
+iaode.datasets.list_cached_files()  # Show cached files
+iaode.datasets.clear_cache()        # Clear all cached data
+```
+
+**Manual download option** (if needed):
 
 ```bash
 cd examples/data
-./download_data.sh human 5k_pbmc
+./download_data.sh mouse  # Downloads to examples/data/
 ```
 
-**Reference datasets:**
+**Reference datasets (manual):**
 
 - GENCODE GTFs: [v19](https://ftp.ebi.ac.uk/pub/databases/gencode/Gencode_human/release_19/gencode.v19.annotation.gtf.gz) | [v49](https://ftp.ebi.ac.uk/pub/databases/gencode/Gencode_human/release_49/gencode.v49.annotation.gtf.gz) | [Mouse vM25](https://ftp.ebi.ac.uk/pub/databases/gencode/Gencode_mouse/release_M25/gencode.vM25.annotation.gtf.gz) | [Mouse vM38](https://ftp.ebi.ac.uk/pub/databases/gencode/Gencode_mouse/release_M38/gencode.vM38.annotation.gtf.gz)
 - 10X samples: [5k PBMC](https://cf.10xgenomics.com/samples/cell-atac/2.0.0/atac_pbmc_5k_nextgem/) | [10k PBMC](https://cf.10xgenomics.com/samples/cell-atac/2.1.0/atac_pbmc_10k_v2/) | [8k Cortex](https://cf.10xgenomics.com/samples/cell-atac/2.1.0/atac_mouse_cortex_8k_v2/)
@@ -288,23 +308,18 @@ Complete scATAC-seq peak annotation and preprocessing pipeline.
 python atacseq_annotation.py
 ```
 
-**Prerequisites**: Download required data files first:
-
-```bash
-cd data
-bash download_data.sh
-# This downloads:
-# - mouse_brain_5k_v1.1.h5 (10X scATAC-seq data)
-# - gencode.vM25.annotation.gtf (mouse gene annotations)
-```
-
 **Features:**
-- Data availability checks with clear download instructions
+- **Automatic data download**: Mouse brain 5k scATAC-seq + GENCODE annotation
+- Files cached in `~/.iaode/data/` and reused on subsequent runs
 - Peak-to-gene annotation (promoter/gene body/distal/intergenic)
 - TF-IDF normalization
 - Highly variable peak (HVP) selection
 - Comprehensive QC visualizations (4-panel plot)
 - Outputs saved to `outputs/atacseq_annotation/`
+
+**First run downloads** (~920 MB total):
+- `mouse_brain_5k_v1.1.h5` (73 MB) - 10X scATAC-seq data
+- `gencode.vM25.annotation.gtf` (847 MB) - Mouse gene annotations
 
 **QC visualizations:**
 - Peak annotation type distribution

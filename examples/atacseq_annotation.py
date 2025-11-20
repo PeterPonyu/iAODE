@@ -4,8 +4,7 @@ scATAC-seq Peak Annotation Example
 Complete pipeline for annotating scATAC-seq peaks to genes using
 genomic features from GTF files.
 
-Required data: 10X filtered_peak_bc_matrix.h5 and GENCODE GTF file
-Download using: ./examples/data/download_data.sh
+Data is automatically downloaded to ~/.iaode/data/ on first run.
 """
 
 import sys
@@ -13,8 +12,8 @@ from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).parent))
 from _example_utils import (
-    check_iaode_installed, setup_output_dir, check_data_files,
-    print_header, print_section, print_success, print_info, print_error
+    check_iaode_installed, setup_output_dir,
+    print_header, print_section, print_success, print_info
 )
 
 if not check_iaode_installed():
@@ -28,34 +27,21 @@ warnings.filterwarnings('ignore')
 OUTPUT_DIR = setup_output_dir("atacseq_annotation")
 
 # ==================================================
-# Check Data Files
+# Download Data (Automatic)
 # ==================================================
 
 print_header("scATAC-seq Peak Annotation Pipeline")
 
-DATA_DIR = Path(__file__).parent / "data"
-H5_FILE = DATA_DIR / "mouse_brain_5k_v1.1.h5"
-GTF_FILE = DATA_DIR / "gencode.vM25.annotation.gtf"
+print_section("Downloading data (automatic)")
+print_info("Dataset: 10X Mouse Brain 5k scATAC-seq + GENCODE vM25 annotation")
+print_info("Files cached in: ~/.iaode/data/")
+print()
 
-print_section("Checking data files")
+# Automatically download data if not cached
+# This will use cached versions on subsequent runs
+h5_file, gtf_file = iaode.datasets.mouse_brain_5k_atacseq()
 
-required_files = {
-    "H5 peak matrix": H5_FILE,
-    "GTF annotation": GTF_FILE
-}
-
-if not check_data_files(required_files):
-    print_error("Required data files not found!")
-    print_info("Download data using:")
-    print("  cd examples/data")
-    print("  ./download_data.sh mouse 5k_pbmc")
-    print()
-    print_info("Or manually download:")
-    print("  GTF: https://ftp.ebi.ac.uk/pub/databases/gencode/Gencode_mouse/release_M25/gencode.vM25.annotation.gtf.gz")
-    print("  H5:  https://cf.10xgenomics.com/samples/cell-atac/2.0.0/atac_mouse_brain_5k_v1.1/atac_mouse_brain_5k_v1.1_filtered_peak_bc_matrix.h5")
-    sys.exit(1)
-
-print_success("All required data files found")
+print_success("Data ready for analysis")
 
 # ==================================================
 # Run Annotation Pipeline
@@ -70,8 +56,8 @@ print("  n_top_peaks=20000        → Number of HVPs to retain")
 print()
 
 adata = iaode.annotation_pipeline(
-    h5_file=str(H5_FILE),
-    gtf_file=str(GTF_FILE),
+    h5_file=str(h5_file),
+    gtf_file=str(gtf_file),
     promoter_upstream=2000,
     promoter_downstream=500,
     apply_tfidf=True,
