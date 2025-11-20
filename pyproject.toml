@@ -4,11 +4,11 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "iaode"
-version = "0.1.1"
+version = "0.1.2"
 description = "Interpretable Autoencoder with Ordinary Differential Equations for single-cell omics analysis"
 readme = "README.md"
 authors = [
-    {name = "Zeyu Fu", email = "zeyufu@example.com"}
+    {name = "Zeyu Fu", email = "fuzeyu99@126.com"}
 ]
 license = {text = "MIT"}
 classifiers = [

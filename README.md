@@ -282,10 +282,10 @@ If you use iAODE in your research, please cite:
 
 ```bibtex
 @software{iaode2024,
-  author = {Fu, Zeyu},
-  title = {iAODE: Interpretable Autoencoder with Ordinary Differential Equations},
-  year = {2024},
-  url = {https://github.com/PeterPonyu/iAODE}
+    author = {Zeyu Fu},
+    title = {iAODE: Interpretable Autoencoder with Ordinary Differential Equations},
+    year = {2024},
+    url = {https://github.com/PeterPonyu/iAODE}
 }
 ```
 
@@ -313,7 +313,7 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 For questions and feedback:
 - GitHub Issues: [https://github.com/PeterPonyu/iAODE/issues](https://github.com/PeterPonyu/iAODE/issues)
-- Email: zeyufu@example.com
+- Email: fuzeyu99@126.com
 
 ## Changelog
 
