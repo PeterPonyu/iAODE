@@ -2,6 +2,7 @@
 Shared utilities for iAODE examples
 """
 from pathlib import Path
+import os
 
 # ANSI color codes for pretty terminal output
 class Colors:
@@ -78,20 +79,31 @@ def check_data_files(files_dict):
     
     return all_exist
 
-def setup_output_dir(example_name):
+def setup_output_dir(example_name: str) -> Path:
     """
-    Create and return output directory for example
-    
+    Create and return output directory for example.
+
+    Environment variables to customize behavior:
+    - IAODE_OUTPUT_ROOT: Root directory for outputs (default: examples/outputs)
+    - IAODE_OUTPUT_FLAT: If set to '1' or 'true', do not create per-example
+      subdirectories; write all outputs directly under the root.
+
     Parameters
     ----------
     example_name : str
         Name of the example (e.g., 'basic_usage')
-    
+
     Returns
     -------
     Path
         Output directory path
     """
-    output_dir = Path(__file__).parent / "outputs" / example_name
+    default_root = Path(__file__).parent / "outputs"
+    # Support both IAODE_OUTPUT_DIR (alias) and IAODE_OUTPUT_ROOT
+    root_env = os.environ.get("IAODE_OUTPUT_DIR") or os.environ.get("IAODE_OUTPUT_ROOT")
+    root = Path(root_env) if root_env else default_root
+    flat = os.environ.get("IAODE_OUTPUT_FLAT", "0").strip().lower() in {"1", "true", "yes"}
+
+    output_dir = root if flat else (root / example_name)
     output_dir.mkdir(parents=True, exist_ok=True)
     return output_dir
