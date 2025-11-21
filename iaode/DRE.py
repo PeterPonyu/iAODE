@@ -348,8 +348,8 @@ class DimensionalityReductionEvaluator:
             
             overall_quality = float(np.mean([
                 results['distance_correlation'],
-                results['Q_Local'],
-                results['Q_Global'],
+                results['Q_local'],
+                results['Q_global'],
             ]))
             
             comparison_results.append({

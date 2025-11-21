@@ -183,25 +183,7 @@ class agent(Env):
         val_every: int = 5,
         early_stop: bool = True,
     ):
-        """
-        Train model with early stopping.
-        
-        Parameters
-        ----------
-        epochs : int, default=100
-            Maximum number of training epochs
-        patience : int, default=20
-            Early stopping patience (epochs without improvement)
-        val_every : int, default=5
-            Validate every N epochs
-        early_stop : bool, default=True
-            Whether to use early stopping
-        
-        Returns
-        -------
-        self : agent
-            Trained model instance
-        """
+        """Train model with early stopping."""
         
         # Initialize resource tracking
         use_cuda = torch.cuda.is_available()
@@ -209,53 +191,56 @@ class agent(Env):
             torch.cuda.reset_peak_memory_stats()
         start_time = time.time()
 
-        with tqdm.tqdm(total=epochs, desc="Training", ncols=225) as pbar:
-            for epoch in range(epochs):
+        # Main progress bar (compact)
+        with tqdm.tqdm(total=epochs, desc="Training", position=0) as pbar:
+            # Secondary info bar (detailed metrics)
+            with tqdm.tqdm(total=0, position=1, bar_format='{desc}') as pbar_info:
                 
-                train_loss = self.train_epoch()
-
-                if (epoch + 1) % val_every == 0 or epoch == 0:
-                    val_loss, val_score = self.validate()
-                    # Ensure native float for type checkers
-                    val_loss = float(val_loss)
+                for epoch in range(epochs):
                     
-                    if early_stop:
-                        should_stop, improved = self.check_early_stopping(val_loss, patience)
+                    train_loss = self.train_epoch()
 
-                        pbar.set_postfix({
-                            "Train": f"{train_loss:.2f}",
-                            "Val": f"{val_loss:.2f}",
-                            "ARI": f"{val_score[0]:.2f}",
-                            "NMI": f"{val_score[1]:.2f}",
-                            "ASW": f"{val_score[2]:.2f}",
-                            "CAL": f"{val_score[3]:.2f}",
-                            "DAV": f"{val_score[4]:.2f}",
-                            "COR": f"{val_score[5]:.2f}",
-                            "Best": f"{self.best_val_loss:.2f}",
-                            "Pat": f"{self.patience_counter}/{patience}",
-                            "Imp": "✓" if improved else "✗"
-                        })
+                    if (epoch + 1) % val_every == 0 or epoch == 0:
+                        val_loss, val_score = self.validate()
+                        val_loss = float(val_loss)
+                        
+                        if early_stop:
+                            should_stop, improved = self.check_early_stopping(val_loss, patience)
 
-                        if should_stop:
-                            self.actual_epochs = epoch + 1
-                            print(f"\n\nEarly stopping at epoch {epoch + 1}")
-                            print(f"Best validation loss: {self.best_val_loss:.4f}")
-                            break
-                    else:
-                        pbar.set_postfix({
-                            "Train": f"{train_loss:.2f}",
-                            "Val": f"{val_loss:.2f}",
-                            "ARI": f"{val_score[0]:.2f}",
-                            "NMI": f"{val_score[1]:.2f}",
-                            "ASW": f"{val_score[2]:.2f}",
-                            "CAL": f"{val_score[3]:.2f}",
-                            "DAV": f"{val_score[4]:.2f}",
-                            "COR": f"{val_score[5]:.2f}",
-                        })
-                
-                pbar.update(1)
-            else:
-                self.actual_epochs = epochs
+                            # Main bar: key metrics only
+                            pbar.set_postfix({
+                                "trn": f"{train_loss:.2f}",
+                                "val": f"{val_loss:.2f}",
+                                "pat": f"{self.patience_counter}/{patience}",
+                                "↑" if improved else "↓": ""
+                            })
+                            
+                            # Info bar: all metrics
+                            pbar_info.set_description_str(
+                                f"Metrics | ARI:{val_score[0]:.3f} NMI:{val_score[1]:.3f} "
+                                f"ASW:{val_score[2]:.3f} CAL:{val_score[3]:.3f} "
+                                f"DAV:{val_score[4]:.3f} COR:{val_score[5]:.3f} | "
+                                f"Best:{self.best_val_loss:.3f}"
+                            )
+
+                            if should_stop:
+                                self.actual_epochs = epoch + 1
+                                pbar.write(f"\nEarly stopping at epoch {epoch + 1}")
+                                break
+                        else:
+                            pbar.set_postfix({
+                                "trn": f"{train_loss:.2f}",
+                                "val": f"{val_loss:.2f}",
+                            })
+                            pbar_info.set_description_str(
+                                f"Metrics | ARI:{val_score[0]:.3f} NMI:{val_score[1]:.3f} "
+                                f"ASW:{val_score[2]:.3f} CAL:{val_score[3]:.3f} "
+                                f"DAV:{val_score[4]:.3f} COR:{val_score[5]:.3f}"
+                            )
+                    
+                    pbar.update(1)
+                else:
+                    self.actual_epochs = epochs
 
         # Record resource usage
         self.train_time = time.time() - start_time
@@ -265,12 +250,13 @@ class agent(Env):
         print(f"Training Complete")
         print(f"{'='*70}")
         print(f"  Epochs: {self.actual_epochs}/{epochs}")
-        print(f"  Time: {self.train_time:.2f}s")
+        print(f"  Time: {self.train_time:.2f}s ({self.train_time/self.actual_epochs:.2f}s/epoch)")
         print(f"  Peak GPU Memory: {self.peak_memory_gb:.3f} GB")
+        if early_stop:
+            print(f"  Best Val Loss: {self.best_val_loss:.4f}")
         print(f"{'='*70}\n")
 
         return self
-
     # ========================================================================
     # Representation Extraction
     # ========================================================================
@@ -811,6 +797,10 @@ def quiver_autoscale(E: np.ndarray, V: np.ndarray) -> float:
 
     fig, ax = plt.subplots()
     scale_factor = np.abs(E).max()
+    
+    # Avoid division by zero
+    if scale_factor == 0:
+        scale_factor = 1.0
 
     Q = ax.quiver(
         E[:, 0] / scale_factor,
@@ -821,11 +811,18 @@ def quiver_autoscale(E: np.ndarray, V: np.ndarray) -> float:
         scale=None,
         scale_units="xy",
     )
-    # Avoid calling private matplotlib internals (_init) for stability
-    fig.clf()
-    plt.close(fig)
+    
+    # Render the figure to compute Q.scale
+    try:
+        fig.canvas.draw()
+        quiver_scale = Q.scale if Q.scale is not None else 1.0
+    except Exception:
+        # Fallback if rendering fails
+        quiver_scale = 1.0
+    finally:
+        plt.close(fig)
 
-    return Q.scale / scale_factor
+    return quiver_scale / scale_factor
 
 
 def l2_norm(x: np.ndarray, axis: int = -1) -> np.ndarray:
