@@ -1,8 +1,8 @@
 """
-Basic Usage Example - scATAC-seq Dimensionality Reduction
+Basic scATAC-seq example: dimensionality reduction with iAODE
 
-This example demonstrates basic iAODE model training for scATAC-seq data
-with peak annotation, TF-IDF normalization, and UMAP visualization.
+Train iAODE on scATAC-seq with peak annotation, TF-IDF normalization,
+and UMAP-based visualization.
 
 Dataset: 10X Mouse Brain 5k scATAC-seq
 """
@@ -34,7 +34,7 @@ OUTPUT_DIR = setup_output_dir("basic_usage")
 # Load and Annotate Data
 # ==================================================
 
-print_header("Basic iAODE Usage - scATAC-seq")
+print_header("Basic iAODE usage – scATAC-seq")
 
 print_section("Loading and annotating scATAC-seq data")
 print_info("Dataset: 10X Mouse Brain 5k scATAC-seq")
@@ -60,12 +60,12 @@ print()
 # Train Model
 # ==================================================
 
-print_section("Training iAODE model")
+print_section("Training iAODE")
 print_info("Model configuration:")
-print("  • Latent dimension: 10")
-print("  • Hidden dimension: 128")
-print("  • Encoder type: MLP")
-print("  • Loss mode: MSE (suitable for TF-IDF normalized peaks)")
+print("  • Latent dim: 10")
+print("  • Hidden dim: 128")
+print("  • Encoder: MLP")
+print("  • Loss: MSE (for TF-IDF-normalized peaks)")
 print("  • Batch size: 128")
 print()
 
@@ -75,7 +75,7 @@ model = iaode.agent(
     latent_dim=10,
     hidden_dim=128,
     encoder_type='mlp',
-    loss_mode='mse',  # MSE for TF-IDF normalized data
+    loss_mode='mse',  # MSE for TF-IDF-normalized data
     batch_size=128
 )
 
@@ -96,11 +96,11 @@ print_section("Extracting latent representations")
 latent = model.get_latent()
 adata.obsm['X_iaode'] = latent
 
-# Compute UMAP
+# Compute UMAP on latent space
 sc.pp.neighbors(adata, use_rep='X_iaode', n_neighbors=15)
 sc.tl.umap(adata, min_dist=0.3)
 
-print_success(f"Latent space: {latent.shape}")
+print_success(f"Latent space shape: {latent.shape}")
 print_info(f"  Mean: {latent.mean():.3f} ± {latent.std():.3f}")
 print_info(f"  Range: [{latent.min():.3f}, {latent.max():.3f}]")
 print()
@@ -111,7 +111,7 @@ print()
 
 print_section("Generating visualizations")
 
-# Set global style
+# Global plotting style
 plt.rcParams.update({
     'font.family': 'sans-serif',
     'font.sans-serif': ['Ubuntu', 'DejaVu Sans', 'Liberation Sans', 'sans-serif'],
@@ -127,14 +127,14 @@ plt.rcParams.update({
     'ps.fonttype': 42,
 })
 
-# Create figure with 2×2 grid
+# 2×2 layout
 fig = plt.figure(figsize=(14, 10))
 gs = gridspec.GridSpec(2, 2, figure=fig,
                        left=0.08, right=0.96,
                        top=0.94, bottom=0.08,
                        hspace=0.30, wspace=0.35)
 
-# Get UMAP coordinates
+# UMAP coordinates and shared limits
 umap_coords = adata.obsm['X_umap']
 x_min, x_max = umap_coords[:, 0].min(), umap_coords[:, 0].max()
 y_min, y_max = umap_coords[:, 1].min(), umap_coords[:, 1].max()
@@ -145,7 +145,7 @@ xlim = [x_min - padding * x_range, x_max + padding * x_range]
 ylim = [y_min - padding * y_range, y_max + padding * y_range]
 
 def style_umap_ax(ax):
-    """Apply consistent styling to UMAP axes"""
+    """Consistent styling for UMAP axes."""
     ax.set_xlim(xlim)
     ax.set_ylim(ylim)
     ax.set_xlabel('UMAP 1', fontsize=11, fontweight='bold')
@@ -158,7 +158,7 @@ def style_umap_ax(ax):
     ax.tick_params(width=1.2, labelsize=10)
 
 def add_colorbar(fig, ax, scatter, label):
-    """Add consistent colorbar"""
+    """Attach a styled colorbar."""
     divider = make_axes_locatable(ax)
     cax = divider.append_axes("right", size="3%", pad=0.08)
     cbar = plt.colorbar(scatter, cax=cax)
@@ -167,25 +167,29 @@ def add_colorbar(fig, ax, scatter, label):
     cbar.outline.set_linewidth(1.2)
     return cbar
 
-# Panel A: Latent Dimension 1
+# Panel A: Latent dimension 1
 ax1 = fig.add_subplot(gs[0, 0])
-scatter1 = ax1.scatter(umap_coords[:, 0], umap_coords[:, 1],
-                       c=latent[:, 0], cmap='viridis',
-                       s=12, alpha=0.8, edgecolors='none', rasterized=True)
+scatter1 = ax1.scatter(
+    umap_coords[:, 0], umap_coords[:, 1],
+    c=latent[:, 0], cmap='viridis',
+    s=12, alpha=0.8, edgecolors='none', rasterized=True
+)
 style_umap_ax(ax1)
-ax1.set_title('A. Latent Dimension 1', fontsize=12, fontweight='bold', loc='left', pad=10)
-add_colorbar(fig, ax1, scatter1, 'Latent Dim 1')
+ax1.set_title('A. Latent dimension 1', fontsize=12, fontweight='bold', loc='left', pad=10)
+add_colorbar(fig, ax1, scatter1, 'Latent dim 1')
 
-# Panel B: Latent Dimension 2
+# Panel B: Latent dimension 2
 ax2 = fig.add_subplot(gs[0, 1])
-scatter2 = ax2.scatter(umap_coords[:, 0], umap_coords[:, 1],
-                       c=latent[:, 1], cmap='plasma',
-                       s=12, alpha=0.8, edgecolors='none', rasterized=True)
+scatter2 = ax2.scatter(
+    umap_coords[:, 0], umap_coords[:, 1],
+    c=latent[:, 1], cmap='plasma',
+    s=12, alpha=0.8, edgecolors='none', rasterized=True
+)
 style_umap_ax(ax2)
-ax2.set_title('B. Latent Dimension 2', fontsize=12, fontweight='bold', loc='left', pad=10)
-add_colorbar(fig, ax2, scatter2, 'Latent Dim 2')
+ax2.set_title('B. Latent dimension 2', fontsize=12, fontweight='bold', loc='left', pad=10)
+add_colorbar(fig, ax2, scatter2, 'Latent dim 2')
 
-# Panel C: Total Peak Counts
+# Panel C: Total peak counts
 ax3 = fig.add_subplot(gs[1, 0])
 try:
     peak_counts_mat = adata.X.sum(axis=1)  # type: ignore[call-arg]
@@ -196,21 +200,25 @@ try:
 except Exception:
     peak_counts = np.asarray(adata.X).sum(axis=1)
 
-scatter3 = ax3.scatter(umap_coords[:, 0], umap_coords[:, 1],
-                       c=peak_counts, cmap='YlOrRd',
-                       s=12, alpha=0.8, edgecolors='none', rasterized=True)
+scatter3 = ax3.scatter(
+    umap_coords[:, 0], umap_coords[:, 1],
+    c=peak_counts, cmap='YlOrRd',
+    s=12, alpha=0.8, edgecolors='none', rasterized=True
+)
 style_umap_ax(ax3)
-ax3.set_title('C. Total Peak Counts', fontsize=12, fontweight='bold', loc='left', pad=10)
-add_colorbar(fig, ax3, scatter3, 'Peak Counts')
+ax3.set_title('C. Total peak counts', fontsize=12, fontweight='bold', loc='left', pad=10)
+add_colorbar(fig, ax3, scatter3, 'Peak counts')
 
-# Panel D: Latent Space Variance
+# Panel D: Per-cell latent variance
 ax4 = fig.add_subplot(gs[1, 1])
 latent_variance = np.var(latent, axis=1)
-scatter4 = ax4.scatter(umap_coords[:, 0], umap_coords[:, 1],
-                       c=latent_variance, cmap='coolwarm',
-                       s=12, alpha=0.8, edgecolors='none', rasterized=True)
+scatter4 = ax4.scatter(
+    umap_coords[:, 0], umap_coords[:, 1],
+    c=latent_variance, cmap='coolwarm',
+    s=12, alpha=0.8, edgecolors='none', rasterized=True
+)
 style_umap_ax(ax4)
-ax4.set_title('D. Latent Space Variance', fontsize=12, fontweight='bold', loc='left', pad=10)
+ax4.set_title('D. Latent variance per cell', fontsize=12, fontweight='bold', loc='left', pad=10)
 add_colorbar(fig, ax4, scatter4, 'Variance')
 
 # Save figure
@@ -226,7 +234,7 @@ print()
 # Additional Analysis: Latent Dimension Distribution
 # ==================================================
 
-print_section("Analyzing latent space distribution")
+print_section("Analyzing latent distributions")
 
 fig2 = plt.figure(figsize=(14, 5))
 gs2 = gridspec.GridSpec(1, 3, figure=fig2,
@@ -235,7 +243,7 @@ gs2 = gridspec.GridSpec(1, 3, figure=fig2,
                         wspace=0.35)
 
 def style_hist_ax(ax):
-    """Apply consistent styling to histogram axes"""
+    """Consistent styling for histogram axes."""
     ax.spines['top'].set_visible(False)
     ax.spines['right'].set_visible(False)
     ax.spines['left'].set_linewidth(1.2)
@@ -243,20 +251,29 @@ def style_hist_ax(ax):
     ax.tick_params(width=1.2, labelsize=10)
     ax.grid(axis='y', alpha=0.3, linestyle='--', linewidth=0.6)
 
-# Histogram of first 3 latent dimensions
+# Histograms for the first 3 latent dimensions
 colors = ['#0077BB', '#EE7733', '#009988']
 for i in range(3):
     ax = fig2.add_subplot(gs2[0, i])
-    ax.hist(latent[:, i], bins=40, color=colors[i], 
-            alpha=0.75, edgecolor='black', linewidth=0.8)
-    ax.axvline(latent[:, i].mean(), color='#CC3311',
-              linestyle='--', linewidth=2.5,
-              label=f'Mean: {latent[:, i].mean():.3f}')
-    ax.set_xlabel(f'Latent Dimension {i+1}', fontsize=11, fontweight='bold')
-    ax.set_ylabel('Cell Count', fontsize=11, fontweight='bold')
-    ax.set_title(f'Latent Dim {i+1} Distribution', 
-                fontsize=12, fontweight='bold')
-    ax.legend(fontsize=9, frameon=True, edgecolor='black', framealpha=0.95)
+    ax.hist(
+        latent[:, i], bins=40, color=colors[i],
+        alpha=0.75, edgecolor='black', linewidth=0.8
+    )
+    ax.axvline(
+        latent[:, i].mean(), color='#CC3311',
+        linestyle='--', linewidth=2.5,
+        label=f'Mean: {latent[:, i].mean():.3f}'
+    )
+    ax.set_xlabel(f'Latent dimension {i+1}', fontsize=11, fontweight='bold')
+    ax.set_ylabel('Cell count', fontsize=11, fontweight='bold')
+    ax.set_title(
+        f'Latent dim {i+1} distribution',
+        fontsize=12, fontweight='bold'
+    )
+    ax.legend(
+        fontsize=9, frameon=True,
+        edgecolor='black', framealpha=0.95
+    )
     style_hist_ax(ax)
 
 plt.savefig(OUTPUT_DIR / 'latent_distributions.png', dpi=300, bbox_inches='tight')
@@ -271,21 +288,21 @@ print()
 # Summary
 # ==================================================
 
-print_header("Analysis Complete")
+print_header("Analysis complete")
 
-print_info("Dataset Summary:")
+print_info("Dataset summary:")
 print(f"  Cells: {adata.n_obs:,}")
 print(f"  Peaks: {adata.n_vars:,}")
 print(f"  Mean peaks per cell: {peak_counts.mean():.1f}")
 print()
 
-print_info("Model Performance:")
+print_info("Model performance:")
 print(f"  Training time: {metrics['train_time']:.2f}s")
 print(f"  Epochs: {metrics['actual_epochs']}")
 print(f"  Peak GPU memory: {metrics['peak_memory_gb']:.3f} GB")
 print()
 
-print_info("Latent Space Statistics:")
+print_info("Latent space statistics (first 5 dims):")
 for i in range(min(5, latent.shape[1])):
     print(f"  Dim {i+1}: mean={latent[:, i].mean():7.3f}, std={latent[:, i].std():.3f}")
 print()
@@ -297,10 +314,10 @@ print(f"  • {OUTPUT_DIR}/latent_distributions.png")
 print(f"  • {OUTPUT_DIR}/latent_distributions.pdf")
 print()
 
-print_header("Next Steps")
-print_info("Continue with advanced analyses:")
-print("  1. trajectory_inference.py - Neural ODE for trajectory analysis")
-print("  2. Clustering analysis using sc.tl.leiden(adata)")
+print_header("Next steps")
+print_info("Suggested follow-up analyses:")
+print("  1. trajectory_inference_atac.py – Neural ODE trajectory inference")
+print("  2. Clustering via sc.tl.leiden(adata)")
 print("  3. Differential accessibility analysis")
-print("  4. Peak-to-gene linkage for regulatory analysis")
+print("  4. Peak-to-gene linkage and regulatory analysis")
 print()

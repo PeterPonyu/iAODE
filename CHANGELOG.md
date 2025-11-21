@@ -4,6 +4,48 @@ All notable changes to this project will be documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/), and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.2.3] - 2025-11-21
+
+### Changed
+
+- **Example code formatting improvements**:
+  - Comprehensive refactoring of all example scripts for consistency and readability
+  - Improved docstrings and comments with better descriptions
+  - Enhanced code formatting: proper line breaks, consistent indentation, multi-line function calls
+  - Unified font stack (Ubuntu font priority) across all visualization examples
+  - Streamlined CLI output: simplified print statements, improved table layout
+  - Better variable naming for clarity (e.g., `vfres` → `vfres`, `lim_x` → consistent usage)
+
+- **Examples README documentation overhaul**:
+  - Complete restructuring with clear sections (Prerequisites, Running, Shared Utilities, Example Overview)
+  - Added comprehensive 4.1–4.4 section describing each example's workflow, key steps, figures, and outputs
+  - Enhanced pedagogical structure: prerequisites, data download, execution, output organization
+  - Improved table of contents with links to specific sections
+  - Added LaTeX math formatting for technical descriptions (e.g., pseudotime correlations)
+  - Better emphasis on modality-specific workflows (scRNA-seq vs scATAC-seq)
+
+- **Output and visualization consistency**:
+  - Panel labels: lowercase titles (e.g., "A. Pseudotime" → "A. pseudotime")
+  - Simplified metric legends and colorbar labeling
+  - Improved axis label formatting (no unnecessary capitalization)
+  - Enhanced visual hierarchy in multi-panel figures
+
+- **Code organization improvements**:
+  - Removed redundant comments and developer notes
+  - Cleaner function parameter formatting
+  - Better separation of logical blocks with section dividers (──────)
+  - More consistent error handling and fallback patterns
+
+### Notes
+
+- All example scripts remain functionally identical; changes are cosmetic and organizational.
+- Documentation improvements aim to make examples more accessible to new users.
+- Ready for publication as stable 0.2.3 release.
+
+[0.2.3]: https://github.com/PeterPonyu/iAODE/releases/tag/v0.2.3
+
+---
+
 ## [0.2.2] - 2025-11-21
 
 ### Added
