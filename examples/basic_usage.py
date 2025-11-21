@@ -21,10 +21,10 @@ if not check_iaode_installed():
 
 import iaode
 import numpy as np
-import scanpy as sc
+import scanpy as sc  # type: ignore
 import matplotlib.pyplot as plt
 from matplotlib import gridspec
-from mpl_toolkits.axes_grid1 import make_axes_locatable
+from mpl_toolkits.axes_grid1 import make_axes_locatable  # type: ignore
 import warnings
 warnings.filterwarnings('ignore')
 

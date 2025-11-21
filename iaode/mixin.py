@@ -2,11 +2,11 @@
 
 import torch
 import torch.nn.functional as F
-from torchdiffeq import odeint
+from torchdiffeq import odeint  # type: ignore
 import numpy as np
 import math
-from sklearn.cluster import KMeans
-from sklearn.metrics import (
+from sklearn.cluster import KMeans  # type: ignore
+from sklearn.metrics import (  # type: ignore
     adjusted_mutual_info_score,
     normalized_mutual_info_score,
     silhouette_score,

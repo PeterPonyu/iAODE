@@ -20,12 +20,12 @@ if not check_iaode_installed():
     sys.exit(1)
 
 import iaode
-import scanpy as sc
+import scanpy as sc  # type: ignore
 import numpy as np
-import pandas as pd
+import pandas as pd  # type: ignore
 import matplotlib.pyplot as plt
 from matplotlib import gridspec
-from mpl_toolkits.axes_grid1 import make_axes_locatable
+from mpl_toolkits.axes_grid1 import make_axes_locatable  # type: ignore
 import warnings
 warnings.filterwarnings('ignore')
 
@@ -70,7 +70,7 @@ adata = iaode.annotation_pipeline(
     promoter_downstream=500,
     apply_tfidf=True,
     select_hvp=True,
-    n_top_peaks=CONFIG['n_hvp']
+    n_top_peaks=int(CONFIG['n_hvp'])
 )
 
 print_success(f"Annotated: {adata.n_obs:,} cells × {adata.n_vars:,} peaks")
@@ -97,7 +97,7 @@ print()
 
 # Ensure counts layer exists
 if 'counts' not in adata.layers:
-    from scipy.sparse import issparse
+    from scipy.sparse import issparse  # type: ignore
     if issparse(adata.X):
         adata.layers['counts'] = adata.X.copy()
     else:
@@ -140,18 +140,18 @@ print_section("Training iAODE model")
 model = iaode.agent(
     adata, 
     layer='counts',
-    latent_dim=CONFIG['latent_dim'],
-    hidden_dim=CONFIG['hidden_dim'],
+    latent_dim=int(CONFIG['latent_dim']),
+    hidden_dim=int(CONFIG['hidden_dim']),
     use_ode=True,
     encoder_type='mlp',
     loss_mode='mse',  # MSE for TF-IDF normalized scATAC data
-    batch_size=CONFIG['batch_size']
+    batch_size=int(CONFIG['batch_size'])
 )
 
 model.fit(
-    epochs=CONFIG['epochs'],
-    patience=CONFIG['patience'],
-    val_every=CONFIG['val_every']
+    epochs=int(CONFIG['epochs']),
+    patience=int(CONFIG['patience']),
+    val_every=int(CONFIG['val_every'])
 )
 
 latent_iaode = model.get_latent()
@@ -434,10 +434,10 @@ def style_umap_ax(ax, xlim=None, ylim=None):
     """Apply consistent styling to UMAP axes"""
     ax.set_xlabel('UMAP 1', fontsize=11, fontweight='bold')
     ax.set_ylabel('UMAP 2', fontsize=11, fontweight='bold')
-    if xlim is not None:
-        ax.set_xlim(xlim)
-    if ylim is not None:
-        ax.set_ylim(ylim)
+    if lim_x is not None:
+        ax.set_xlim(lim_x)
+    if lim_y is not None:
+        ax.set_ylim(lim_y)
     ax.set_aspect('equal', adjustable='box')
     ax.spines['top'].set_visible(False)
     ax.spines['right'].set_visible(False)
@@ -482,8 +482,8 @@ y_min, y_max = np.min(all_y), np.max(all_y)
 padding = 0.05
 x_range = x_max - x_min
 y_range = y_max - y_min
-xlim = [x_min - padding * x_range, x_max + padding * x_range]
-ylim = [y_min - padding * y_range, y_max + padding * y_range]
+lim_x: tuple[float, float] = (x_min - padding * x_range, x_max + padding * x_range)
+lim_y: tuple[float, float] = (y_min - padding * y_range, y_max + padding * y_range)
 
 # Row 2: UMAP colored by Peak Counts (consistent coloring)
 panel_labels_row2 = ['E', 'F', 'G', 'H', 'I']
@@ -509,7 +509,7 @@ for idx, model_name in enumerate(model_names_plot):
             vmax=vmax_peaks
         )
         
-        style_umap_ax(ax, xlim=xlim, ylim=ylim)
+        style_umap_ax(ax, xlim=lim_x, ylim=lim_y)
         ax.set_title(f'{panel_label}. {model_name.upper()} - Peak Counts',
                     fontsize=11, fontweight='bold', loc='left', pad=8)
         
@@ -549,7 +549,7 @@ for idx, model_name in enumerate(model_names_plot):
             vmax=vmax_latent
         )
         
-        style_umap_ax(ax, xlim=xlim, ylim=ylim)
+        style_umap_ax(ax, xlim=lim_x, ylim=lim_y)
         ax.set_title(f'{panel_label}. {model_name.upper()} - Latent Dim 1',
                     fontsize=11, fontweight='bold', loc='left', pad=8)
         

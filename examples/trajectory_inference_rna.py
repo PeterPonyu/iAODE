@@ -21,11 +21,12 @@ if not check_iaode_installed():
 
 import iaode
 import numpy as np
-import scanpy as sc
-from scipy.sparse import issparse
+import scanpy as sc  # type: ignore
+from scipy.sparse import issparse  # type: ignore
+from scipy.stats import pearsonr, spearmanr  # type: ignore
 import matplotlib.pyplot as plt
 from matplotlib import gridspec
-from mpl_toolkits.axes_grid1 import make_axes_locatable
+from mpl_toolkits.axes_grid1 import make_axes_locatable  # type: ignore
 import warnings
 warnings.filterwarnings('ignore')
 
@@ -211,11 +212,11 @@ if 'paul15_clusters' in adata.obs.columns:
     categories = adata.obs['paul15_clusters'].cat.categories
     n_cats = len(categories)
     if n_cats <= 10:
-        colors = plt.cm.tab10(np.linspace(0, 1, 10))[:n_cats]
+        colors = plt.colormaps['tab10'](np.linspace(0, 1, 10))[:n_cats]
     elif n_cats <= 20:
-        colors = plt.cm.tab20(np.linspace(0, 1, 20))[:n_cats]
+        colors = plt.colormaps['tab20'](np.linspace(0, 1, 20))[:n_cats]
     else:
-        colors = plt.cm.gist_ncar(np.linspace(0, 1, n_cats))
+        colors = plt.colormaps['gist_ncar'](np.linspace(0, 1, n_cats))
     
     for i, cat in enumerate(categories):
         mask = adata.obs['paul15_clusters'] == cat
@@ -353,16 +354,16 @@ print_success(f"Saved: {OUTPUT_DIR}/trajectory_analysis.pdf")
 print_header("Analysis Complete")
 print_info("Neural ODE Trajectory Inference Summary")
 print()
-print(f"  Dataset:")
+print("  Dataset:")
 print(f"    Cells: {adata.n_obs:,}")
 print(f"    Genes: {adata.n_vars:,}")
 print()
-print(f"  Training:")
+print("  Training:")
 print(f"    Time: {metrics['train_time']:.2f}s ({metrics['train_time']/metrics['actual_epochs']:.2f}s/epoch)")
 print(f"    Epochs: {metrics['actual_epochs']}")
 print(f"    GPU Memory: {metrics['peak_memory_gb']:.3f} GB")
 print()
-print(f"  Pseudotime Statistics:")
+print("  Pseudotime Statistics:")
 print(f"    Range: [{pseudotime.min():.4f}, {pseudotime.max():.4f}]")
 print(f"    Mean:  {pseudotime.mean():.4f} ± {pseudotime.std():.4f}")
 print(f"    Median: {np.median(pseudotime):.4f}")
@@ -372,21 +373,20 @@ print()
 velocity_latent = adata.obsm['X_vf_latent']
 velocity_mag_latent = np.linalg.norm(velocity_latent, axis=1)
 
-print(f"  Velocity Statistics:")
-print(f"    Latent space:")
+print("  Velocity Statistics:")
+print("    Latent space:")
 print(f"      Mean magnitude: {velocity_mag_latent.mean():.5f} ± {velocity_mag_latent.std():.5f}")
 print(f"      Max magnitude:  {velocity_mag_latent.max():.5f}")
-print(f"    UMAP space:")
+print("    UMAP space:")
 print(f"      Mean magnitude: {velocity_magnitude.mean():.5f} ± {velocity_magnitude.std():.5f}")
 print(f"      Max magnitude:  {velocity_magnitude.max():.5f}")
 print()
 
 # Correlation between pseudotime and velocity
-from scipy.stats import pearsonr, spearmanr
 pearson_corr, pearson_pval = pearsonr(pseudotime_norm, velocity_magnitude)
 spearman_corr, spearman_pval = spearmanr(pseudotime_norm, velocity_magnitude)
 
-print(f"  Pseudotime-Velocity Correlation:")
+print("  Pseudotime-Velocity Correlation:")
 print(f"    Pearson:  r = {pearson_corr:.4f} (p = {pearson_pval:.2e})")
 print(f"    Spearman: ρ = {spearman_corr:.4f} (p = {spearman_pval:.2e})")
 print()

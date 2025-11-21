@@ -1,8 +1,7 @@
 import numpy as np
-import pandas as pd
-from sklearn.metrics import pairwise_distances
-from scipy.stats import spearmanr
-import time
+import pandas as pd  # type: ignore
+from sklearn.metrics import pairwise_distances  # type: ignore
+from scipy.stats import spearmanr  # type: ignore
 import warnings
 from typing import Dict, Tuple
 

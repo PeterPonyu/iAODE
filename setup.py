@@ -4,7 +4,7 @@ Setup configuration for iaode package.
 This file is kept for backward compatibility. Modern build uses pyproject.toml.
 """
 
-from setuptools import setup
+from setuptools import setup  # type: ignore
 
 # Read long description from README
 with open("README.md", "r", encoding="utf-8") as fh:

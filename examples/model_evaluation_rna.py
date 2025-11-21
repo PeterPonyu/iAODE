@@ -20,9 +20,9 @@ if not check_iaode_installed():
     sys.exit(1)
 
 import iaode
-import scanpy as sc
+import scanpy as sc  # type: ignore
 import numpy as np
-import pandas as pd
+import pandas as pd  # type: ignore
 import matplotlib.pyplot as plt
 from matplotlib import gridspec
 import warnings
@@ -59,7 +59,7 @@ adata = sc.datasets.paul15()
 sc.pp.filter_cells(adata, min_genes=200)
 
 # Store raw counts BEFORE normalization
-from scipy.sparse import issparse
+from scipy.sparse import issparse  # type: ignore
 if issparse(adata.X):
     adata.layers['counts'] = adata.X.copy()
 else:
@@ -95,18 +95,18 @@ print_section("Training iAODE model")
 model = iaode.agent(
     adata, 
     layer='counts',
-    latent_dim=CONFIG['latent_dim'],
-    hidden_dim=CONFIG['hidden_dim'],
+    latent_dim=int(CONFIG['latent_dim']),
+    hidden_dim=int(CONFIG['hidden_dim']),
     use_ode=True,
     encoder_type='mlp',
     loss_mode='nb',
-    batch_size=CONFIG['batch_size']
+    batch_size=int(CONFIG['batch_size'])
 )
 
 model.fit(
-    epochs=CONFIG['epochs'],
-    patience=CONFIG['patience'],
-    val_every=CONFIG['val_every']
+    epochs=int(CONFIG['epochs']),
+    patience=int(CONFIG['patience']),
+    val_every=int(CONFIG['val_every'])
 )
 
 latent_iaode = model.get_latent()
@@ -368,11 +368,11 @@ for idx, (model_name, panel_label) in enumerate(zip(model_names_plot[:4], umap_p
             # Use a clean color palette
             n_cats = len(categories)
             if n_cats <= 10:
-                colors_palette = plt.cm.tab10(np.linspace(0, 1, 10))[:n_cats]
+                colors_palette = plt.colormaps['tab10'](np.linspace(0, 1, 10))[:n_cats]
             elif n_cats <= 20:
-                colors_palette = plt.cm.tab20(np.linspace(0, 1, 20))[:n_cats]
+                colors_palette = plt.colormaps['tab20'](np.linspace(0, 1, 20))[:n_cats]
             else:
-                colors_palette = plt.cm.gist_ncar(np.linspace(0, 1, n_cats))
+                colors_palette = plt.colormaps['gist_ncar'](np.linspace(0, 1, n_cats))
             
             for i, cat in enumerate(categories):
                 mask = adata_viz.obs['paul15_clusters'] == cat

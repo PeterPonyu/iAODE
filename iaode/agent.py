@@ -1,16 +1,16 @@
 # agent.py
 
 from .environment import Env
-import scanpy as sc
-from anndata import AnnData
+import scanpy as sc  # type: ignore
+from anndata import AnnData  # type: ignore
 import numpy as np
 import torch
-import tqdm
+import tqdm  # type: ignore
 import time
 from typing import Literal, Optional
-from scipy.stats import norm
-from scipy.sparse import issparse, csr_matrix, coo_matrix
-from sklearn.neighbors import NearestNeighbors
+from scipy.stats import norm  # type: ignore
+from scipy.sparse import issparse, csr_matrix, coo_matrix  # type: ignore
+from sklearn.neighbors import NearestNeighbors  # type: ignore
 
 
 class agent(Env):
