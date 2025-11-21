@@ -378,17 +378,17 @@ print()
 print_header("Analysis Complete")
 print_info("Neural ODE Trajectory Inference Summary - scATAC-seq")
 print()
-print(f"  Dataset:")
+print("  Dataset:")
 print(f"    Cells: {adata.n_obs:,}")
 print(f"    Peaks (HVP): {adata.n_vars:,}")
 print(f"    Mean accessibility: {peak_counts.mean():.1f} ± {peak_counts.std():.1f}")
 print()
-print(f"  Training:")
+print("  Training:")
 print(f"    Time: {metrics['train_time']:.2f}s ({metrics['train_time']/metrics['actual_epochs']:.2f}s/epoch)")
 print(f"    Epochs: {metrics['actual_epochs']}")
 print(f"    GPU Memory: {metrics['peak_memory_gb']:.3f} GB")
 print()
-print(f"  Pseudotime Statistics:")
+print("  Pseudotime Statistics:")
 print(f"    Range: [{pseudotime.min():.4f}, {pseudotime.max():.4f}]")
 print(f"    Mean:  {pseudotime.mean():.4f} ± {pseudotime.std():.4f}")
 print(f"    Median: {np.median(pseudotime):.4f}")
@@ -398,28 +398,28 @@ print()
 velocity_latent = adata.obsm['X_vf_latent']
 velocity_mag_latent = np.linalg.norm(velocity_latent, axis=1)
 
-print(f"  Velocity Statistics:")
-print(f"    Latent space:")
+print("  Velocity Statistics:")
+print("    Latent space:")
 print(f"      Mean magnitude: {velocity_mag_latent.mean():.5f} ± {velocity_mag_latent.std():.5f}")
 print(f"      Max magnitude:  {velocity_mag_latent.max():.5f}")
-print(f"    UMAP space:")
+print("    UMAP space:")
 print(f"      Mean magnitude: {velocity_magnitude.mean():.5f} ± {velocity_magnitude.std():.5f}")
 print(f"      Max magnitude:  {velocity_magnitude.max():.5f}")
 print()
 
 # Correlation between pseudotime and velocity
-from scipy.stats import pearsonr, spearmanr  # type: ignore
+from scipy.stats import pearsonr, spearmanr  # type: ignore  # noqa: E402
 pearson_corr, pearson_pval = pearsonr(pseudotime_norm, velocity_magnitude)
 spearman_corr, spearman_pval = spearmanr(pseudotime_norm, velocity_magnitude)
 
-print(f"  Pseudotime-Velocity Correlation:")
+print("  Pseudotime-Velocity Correlation:")
 print(f"    Pearson:  r = {pearson_corr:.4f} (p = {pearson_pval:.2e})")
 print(f"    Spearman: ρ = {spearman_corr:.4f} (p = {spearman_pval:.2e})")
 print()
 
 # Peak annotation statistics (if available)
 if 'annotation_type' in adata.var.columns:
-    print(f"  Peak Annotation Distribution:")
+    print("  Peak Annotation Distribution:")
     annotation_counts = adata.var['annotation_type'].value_counts()
     for annot, count in annotation_counts.items():
         pct = count / len(adata.var) * 100

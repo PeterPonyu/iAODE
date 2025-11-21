@@ -258,7 +258,6 @@ iaode.datasets.list_cached_files()  # Show cached files
 iaode.datasets.clear_cache()        # Clear all cached data
 ```
 
-
 ---
 
 ## Examples
@@ -275,7 +274,6 @@ Comprehensive examples are available in the `examples/` directory. See **[exampl
 | **`model_evaluation_rna.py`** | Benchmark iAODE vs scVI on scRNA-seq | scRNA | Comparative analysis (transcriptome) |
 | **`trajectory_inference_atac.py`** | Neural ODE trajectory with scATAC-seq | scATAC | Chromatin accessibility dynamics |
 | **`trajectory_inference_rna.py`** | Neural ODE trajectory with scRNA-seq | scRNA | Transcriptional trajectory |
-
 
 ### Running Examples
 

@@ -1,10 +1,6 @@
-import gc
-import os
 import time
 import numpy as np
-import pandas as pd  # type: ignore
 import scanpy as sc  # type: ignore
-import scipy.sparse as sp  # type: ignore
 import torch
 from sklearn.cluster import KMeans  # type: ignore
 from sklearn.metrics import (  # type: ignore
@@ -77,7 +73,7 @@ class DataSplitter:
         self.test_idx = test_idx
         self.train_val_idx = train_val_idx
         
-        print(f"\nData split sizes:")
+        print("\nData split sizes:")
         print(f"  Total: {self.n_samples}")
         print(f"  Train: {len(train_idx)} ({len(train_idx)/self.n_samples*100:.1f}%)")
         print(f"  Val:   {len(val_idx)} ({len(val_idx)/self.n_samples*100:.1f}%)")
@@ -245,7 +241,7 @@ def train_scvi_models(adata, splitter, n_latent=10, n_epochs=400, batch_size=128
             'actual_epochs': actual_epochs
         }
         
-        print(f"✓ SCVI training completed")
+        print("✓ SCVI training completed")
         print(f"  Epochs: {actual_epochs}/{n_epochs}, Time: {train_time:.2f}s, Peak GPU Memory: {peak_memory:.3f} GB")
         
     except Exception as e:
@@ -308,7 +304,7 @@ def train_scvi_models(adata, splitter, n_latent=10, n_epochs=400, batch_size=128
             'actual_epochs': actual_epochs
         }
         
-        print(f"✓ PEAKVI training completed")
+        print("✓ PEAKVI training completed")
         print(f"  Epochs: {actual_epochs}/{n_epochs}, Time: {train_time:.2f}s, Peak GPU Memory: {peak_memory:.3f} GB")
         
     except Exception as e:
@@ -371,7 +367,7 @@ def train_scvi_models(adata, splitter, n_latent=10, n_epochs=400, batch_size=128
             'actual_epochs': actual_epochs
         }
         
-        print(f"✓ POISSONVI training completed")
+        print("✓ POISSONVI training completed")
         print(f"  Epochs: {actual_epochs}/{n_epochs}, Time: {train_time:.2f}s, Peak GPU Memory: {peak_memory:.3f} GB")
         
     except Exception as e:
