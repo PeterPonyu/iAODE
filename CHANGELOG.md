@@ -2,6 +2,8 @@
 
 All notable changes to this project will be documented in this file.
 
+The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/), and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
+
 ## [0.2.2] - 2025-11-21
 
 ### Added
@@ -59,6 +61,8 @@ All notable changes to this project will be documented in this file.
 
 [0.2.2]: https://github.com/PeterPonyu/iAODE/releases/tag/v0.2.2
 
+---
+
 ## [0.2.1] - 2025-11-20
 
 ### Added
@@ -90,3 +94,64 @@ All notable changes to this project will be documented in this file.
 - Next planned work: logging cleanup, seed consolidation, lightweight logger introduction.
 
 [0.2.1]: https://github.com/PeterPonyu/iAODE/releases/tag/v0.2.1
+
+---
+
+## [0.2.0] - 2025-11-20
+
+### Documentation & Usability
+- Comprehensive documentation overhaul (README, examples/README, QUICKSTART)
+- Separated scRNA-seq and scATAC-seq workflows with clear examples
+- Added automatic dataset download and caching system
+- Created `examples/data/download_data.sh` helper script
+- Verified all API usage examples against actual implementation
+
+### Code Quality
+- Cleaned example scripts: removed unused imports, improved error handling
+- Fixed all cross-references between examples and core modules
+- Enhanced inline documentation and error messages
+- Verified method signatures: `get_velocity()`, `get_vfres()`, `get_pseudotime()`, etc.
+
+### Package Improvements
+- Complete scATAC-seq preprocessing pipeline with TF-IDF and HVP selection
+- Improved peak annotation with distance-to-TSS computation
+- Enhanced evaluation metrics (DRE + LSE frameworks)
+- Better handling of sparse data and zero inflation
+
+[0.2.0]: https://github.com/PeterPonyu/iAODE/releases/tag/v0.2.0
+
+---
+
+## [0.1.2] - 2025-11-19
+
+### Metadata & Contact
+- Updated author name to "Zeyu Fu"
+- Set primary contact email to fuzeyu99@126.com
+- Fixed BibTeX citation formatting
+
+[0.1.2]: https://github.com/PeterPonyu/iAODE/releases/tag/v0.1.2
+
+---
+
+## [0.1.1] - 2025-11-19
+
+### Bug Fixes
+- Added missing `requests` dependency for scvi-tools compatibility
+- Dropped Python 3.8 support (requires Python ≥3.9)
+- Fixed CI test imports and matrix configuration
+
+[0.1.1]: https://github.com/PeterPonyu/iAODE/releases/tag/v0.1.1
+
+---
+
+## [0.1.0] - 2025-11-19
+
+### Initial Release
+- VAE with Neural ODE support for trajectory inference
+- Complete scATAC-seq peak annotation pipeline
+- Comprehensive evaluation metrics
+- Benchmark framework vs scVI models
+- Multiple encoder types (MLP, Residual, Transformer, Linear)
+- Multiple loss modes (MSE, NB, ZINB)
+
+[0.1.0]: https://github.com/PeterPonyu/iAODE/releases/tag/v0.1.0

@@ -22,55 +22,45 @@ A deep generative model for scATAC-seq data that combines:
 
 | Script | Purpose | Data Source | Key Outputs |
 |--------|---------|-------------|-------------|
-| **`scATAC_quickstart.py`** | Complete scATAC pipeline (TF-IDF → HVP → iAODE) | User H5 + GTF | Latent, iembed, pseudotime, velocity |
+| **`basic_usage.py`** | Complete scATAC pipeline with visualizations | Auto-downloads Mouse Brain 5k | 2D/histogram plots, embeddings |
 | **`atacseq_annotation.py`** | Peak-to-gene annotation with QC plots | Auto-downloads Mouse Brain 5k | Annotated peaks + visualizations |
-| **`trajectory_ode.py`** | Neural ODE trajectory on synthetic data | Synthetic sparse | Pseudotime + velocity extraction |
+| **`trajectory_inference_atac.py`** | Neural ODE trajectory inference for scATAC-seq | Auto-downloads Mouse Brain 5k | Pseudotime + velocity + multi-panel figures |
 
 ### 📊 **Evaluation & Benchmarking**
 
 | Script | Purpose | Data Source | Key Metrics |
 |--------|---------|-------------|-------------|
-| **`evaluation_metrics.py`** | Dimensionality reduction + clustering quality | Synthetic data | Distance corr, Q_local/global, ARI, NMI |
-| **`model_evaluation.py`** | Comprehensive benchmarking vs scVI models | User data | Train/val/test metrics, DRE + LSE |
+| **`model_evaluation_atac.py`** | Benchmark iAODE vs scVI on scATAC-seq | Auto-downloads Mouse Brain 5k | DRE + LSE metrics, train/val/test |
+| **`model_evaluation_rna.py`** | Benchmark iAODE vs scVI on scRNA-seq | Auto-downloads paul15 | Clustering metrics, reconstruction |
 
-### 🧬 **Legacy scRNA-seq Examples**
+### 🧬 **scRNA-seq Examples**
 
 | Script | Purpose | Data Source | Notes |
 |--------|---------|-------------|-------|
-| **`basic_usage.py`** | Simple scRNA-seq workflow | paul15 (auto) | Basic training + UMAP |
-| **`trajectory_inference.py`** | scRNA trajectory with vector field | paul15 (auto) | Uses `get_vfres()` for streamplot |
+| **`trajectory_inference_rna.py`** | scRNA trajectory with Neural ODE + vector field | Auto-downloads paul15 | Uses `get_vfres()` for streamplot |
 
 ---
 
 ## 🚀 **Quick Start: scATAC-seq**
 
-### **1. End-to-End Pipeline** (`scATAC_quickstart.py`)
+### **1. Basic Usage with Visualizations** (`basic_usage.py`)
 
-Process your own 10X scATAC-seq data:
+Get started with scATAC-seq analysis with publication-quality visualizations:
 
 ```bash
-python scATAC_quickstart.py \
-    --h5 filtered_peak_bc_matrix.h5 \
-    --gtf gencode.vM25.annotation.gtf.gz \
-    --use-ode \
-    --latent-dim 32 \
-    --hidden-dim 512 \
-    --i-dim 16 \
-    --loss-mode zinb \
-    --epochs 400
+python basic_usage.py
 ```
 
-**Fast dry run** (subset 5000 cells):
-```bash
-python scATAC_quickstart.py --h5 filtered_peak_bc_matrix.h5 --subsample 5000
-```
+**What it does**:
+1. Downloads Mouse Brain 5k scATAC-seq data (cached in `~/.iaode/data/`)
+2. TF-IDF normalization
+3. Highly variable peak (HVP) selection
+4. Trains iAODE model with MSE loss
+5. Generates 2D scatter plots and histograms
 
-**Outputs**:
-- `iaode_scATAC_processed.h5ad` containing:
-  - `obsm['X_iaode']` — Latent representation (z)
-  - `obsm['X_iembed']` — **Interpretable factors** (i_dim bottleneck)
-  - `obs['pseudotime']` — ODE time parameter (if `--use-ode`)
-  - `obsm['velocity']` — Latent velocity field (if `--use-ode`)
+**Outputs** (default `examples/outputs/basic_usage/`):
+- Latent embeddings and visualizations
+- Quality control plots
 
 ---
 
@@ -90,80 +80,90 @@ python atacseq_annotation.py
 5. Selects highly variable peaks (HVPs)
 6. Generates QC plots
 
-**Outputs**:
-- `results/annotated_peaks.h5ad`
-- `outputs/atacseq_annotation/annotation_qc.png`
+**Outputs** (default `examples/outputs/atacseq_annotation/`):
+
+- `annotated_peaks.h5ad`
+- `annotation_qc.png`
 
 ---
 
-### **3. Neural ODE Trajectory** (`trajectory_ode.py`)
+### **3. Neural ODE Trajectory** (`trajectory_inference_atac.py`)
 
-Minimal example with synthetic data (no files needed):
+Full trajectory inference pipeline with multi-panel publication-quality figures:
 
 ```bash
-python trajectory_ode.py --latent-dim 24 --i-dim 12 --epochs 300
+python trajectory_inference_atac.py
 ```
 
-**Outputs**:
-- `trajectory_ode_output.h5ad` with pseudotime and velocity
-- Demonstrates ODE-based trajectory inference
+**What it does**:
+1. Downloads Mouse Brain 5k scATAC-seq data
+2. Preprocessing with TF-IDF + HVP selection
+3. Trains iAODE with Neural ODE enabled
+4. Extracts pseudotime and velocity
+5. Generates multi-panel figures with streamplot velocity fields
+
+**Outputs** (default `examples/outputs/trajectory_inference_atac/`):
+- Multi-panel publication-quality figures (PDF + PNG)
+- Processed AnnData with trajectory information
 
 ---
 
 ## 📊 **Evaluation Examples**
 
-### **1. Dimensionality Reduction Quality** (`evaluation_metrics.py`)
+### **1. Model Benchmarking on scATAC-seq** (`model_evaluation_atac.py`)
+
+Compare iAODE against scVI family models on scATAC-seq data:
 
 ```bash
-python evaluation_metrics.py
-```
-
-**Metrics computed**:
-- **Distance correlation**: Global structure preservation (Spearman ρ)
-- **Q_local / Q_global**: Local vs global neighborhood quality
-- **Clustering metrics**: ARI, NMI, ASW, Calinski-Harabasz, Davies-Bouldin
-
-```
-
----
-
-### **2. Model Benchmarking** (`model_evaluation.py`)
-
-Compare iAODE against scVI family models:
-
-```bash
-python model_evaluation.py
+python model_evaluation_atac.py
 ```
 
 **Models compared**:
 - iAODE (this work)
 - scVI (Negative Binomial VAE)
 - PEAKVI (scATAC-specific VAE)
-- POISSONVI (Poisson VAE)
 
 **Evaluation framework**:
 - **DRE** (Dimensionality Reduction Evaluator): Distance correlation, Q metrics
-- **LSE** (Latent Space Evaluator): Manifold consistency, spectral decay, participation ratio, anisotropy
+- **LSE** (Latent Space Evaluator): Manifold consistency, spectral decay, participation ratio
 - **Clustering**: ARI, NMI, silhouette score
 - **Resource metrics**: Training time, GPU memory
 
+**Outputs** (default `examples/outputs/model_evaluation_atacseq/`):
+- `model_comparison.csv` with comprehensive metrics
+- Colorblind-friendly comparison visualizations
+
 ---
 
-## 🧬 **Legacy scRNA-seq Examples**
+### **2. Model Benchmarking on scRNA-seq** (`model_evaluation_rna.py`)
 
-### **1. Basic Usage** (`basic_usage.py`)
-```bash
-python basic_usage.py
-```
-- paul15 hematopoietic differentiation dataset
-- Simple training + UMAP visualization
+Compare iAODE against scVI on scRNA-seq data:
 
-### **2. Trajectory Inference** (`trajectory_inference.py`)
 ```bash
-python trajectory_inference.py
+python model_evaluation_rna.py
 ```
-- paul15 with Neural ODE
+
+**Outputs** (default `examples/outputs/model_evaluation/`):
+- `model_comparison.csv` with comprehensive metrics
+- Visualization plots comparing model performance
+
+---
+
+## 🧬 **scRNA-seq Examples**
+
+### **Trajectory Inference** (`trajectory_inference_rna.py`)
+
+```bash
+python trajectory_inference_rna.py
+```
+
+**What it does**:
+- Uses paul15 hematopoietic differentiation dataset
+- Neural ODE trajectory inference
 - Velocity field visualization using `model.get_vfres()`
+
+**Outputs** (default `examples/outputs/trajectory_inference/`):
+- Multi-panel figures with velocity streamplots
 
 ---
 
@@ -374,4 +374,4 @@ MIT License - See LICENSE file for details.
 
 ---
 
-**Last Updated**: 2025 | **iAODE Version**: 1.0.0
+**Last Updated**: 2025-11-21 | **iAODE Version**: 0.2.2
