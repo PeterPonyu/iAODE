@@ -1,8 +1,7 @@
 """
-Model Evaluation and Benchmarking - scATAC-seq
+Model evaluation and benchmarking (scATAC-seq)
 
-Comprehensive evaluation comparing iAODE against scVI-family models
-focusing on Latent Space Evaluation metrics.
+Compare iAODE with scVI-family models using latent space evaluation metrics.
 
 Dataset: 10X Mouse Brain 5k scATAC-seq (HVP subset)
 """
@@ -47,15 +46,15 @@ CONFIG = {
 }
 
 OUTPUT_DIR = setup_output_dir("model_evaluation_atac")
-print_info(f"Outputs saved to: {OUTPUT_DIR}")
-print_info(f"Configuration: {CONFIG['epochs']} epochs, latent_dim={CONFIG['latent_dim']}, HVP={CONFIG['n_hvp']}")
+print_info(f"Saving outputs to: {OUTPUT_DIR}")
+print_info(f"Config: {CONFIG['epochs']} epochs, latent_dim={CONFIG['latent_dim']}, HVP={CONFIG['n_hvp']}")
 print()
 
 # ==================================================
 # Load and Annotate scATAC Data
 # ==================================================
 
-print_header("Model Evaluation & Benchmarking - scATAC-seq")
+print_header("Model evaluation & benchmarking (scATAC-seq)")
 
 print_section("Loading and annotating scATAC-seq data")
 print_info("Dataset: 10X Mouse Brain 5k scATAC-seq")
@@ -91,7 +90,7 @@ if 'highly_variable' in adata.var.columns:
     print_success(f"HVP subset: {adata.n_obs:,} cells × {adata.n_vars:,} peaks")
     print_info(f"  Retained {n_hvp:,} / {n_total_peaks:,} peaks ({n_hvp/n_total_peaks*100:.1f}%)")
 else:
-    print_warning("No HVP information found, using all peaks")
+    print_warning("No HVP flag found; using all peaks")
 
 print()
 
@@ -103,7 +102,7 @@ if 'counts' not in adata.layers:
     else:
         adata.layers['counts'] = np.asarray(adata.X.copy())
 
-# Compute peak statistics for visualization
+# Peak statistics for visualization
 try:
     peak_counts_mat = adata.X.sum(axis=1)  # type: ignore[call-arg]
     if hasattr(peak_counts_mat, 'A1'):
@@ -135,7 +134,7 @@ print()
 # Train iAODE
 # ==================================================
 
-print_section("Training iAODE model")
+print_section("Training iAODE")
 
 model = iaode.agent(
     adata, 
@@ -144,7 +143,7 @@ model = iaode.agent(
     hidden_dim=int(CONFIG['hidden_dim']),
     use_ode=True,
     encoder_type='mlp',
-    loss_mode='mse',  # MSE for TF-IDF normalized scATAC data
+    loss_mode='mse',  # MSE for TF-IDF-normalized scATAC data
     batch_size=int(CONFIG['batch_size'])
 )
 
@@ -172,8 +171,8 @@ X_high_test = adata[splitter.test_idx].layers['counts']
 if hasattr(X_high_test, 'toarray'):
     X_high_test = X_high_test.toarray()
 
-# Latent Space Evaluation metrics
-print_info("Computing Latent Space Evaluation (LSE) metrics...")
+# Latent space evaluation metrics
+print_info("Computing latent space evaluation (LSE) metrics...")
 ls_metrics = iaode.evaluate_single_cell_latent_space(
     latent_space=latent_iaode_test,
     data_type='trajectory',
@@ -213,7 +212,7 @@ for model_name, result in scvi_results.items():
         
         latent_scvi = result['model'].get_latent_representation(result['adata_test'])
         
-        # Latent Space Evaluation metrics
+        # Latent space evaluation metrics
         try:
             ls_scvi = iaode.evaluate_single_cell_latent_space(
                 latent_space=latent_scvi,
@@ -240,7 +239,7 @@ print()
 # Create Comparison Table
 # ==================================================
 
-print_section("Generating comparison table")
+print_section("Building comparison table")
 
 comparison_data = []
 for model_name, data in results.items():
@@ -250,7 +249,7 @@ for model_name, data in results.items():
         'Epochs': data['epochs']
     }
     
-    # Latent Space Evaluation metrics
+    # Latent space evaluation metrics
     ls = data.get('ls_metrics', {})
     row['Manifold Dim'] = ls.get('manifold_dimensionality', np.nan)
     row['Spectral Decay'] = ls.get('spectral_decay_rate', np.nan)
@@ -265,7 +264,7 @@ print()
 
 csv_path = OUTPUT_DIR / 'model_comparison.csv'
 df.to_csv(csv_path, index=False)
-print_success(f"Saved: {csv_path}")
+print_success(f"Saved table: {csv_path}")
 print()
 
 # ==================================================
@@ -280,7 +279,7 @@ for model_name, data in results.items():
     sc.pp.neighbors(adata_viz, use_rep='X_latent', n_neighbors=15)
     sc.tl.umap(adata_viz, min_dist=0.3)
     results[model_name]['adata_viz'] = adata_viz
-    print_info(f"  {model_name.upper()} UMAP computed")
+    print_info(f"  Computed UMAP for {model_name.upper()}")
 
 print()
 
@@ -290,7 +289,7 @@ print()
 
 print_section("Generating multi-panel figure")
 
-# Set global style with Ubuntu font
+# Global style with Ubuntu-like sans serif font
 plt.rcParams.update({
     'font.family': 'sans-serif',
     'font.sans-serif': ['Ubuntu', 'DejaVu Sans', 'Liberation Sans', 'sans-serif'],
@@ -306,7 +305,7 @@ plt.rcParams.update({
     'ps.fonttype': 42,
 })
 
-# Professional color palette (colorblind-friendly)
+# Colorblind-friendly palette
 MODEL_COLORS = {
     'iAODE': '#0173B2',
     'scvi': '#DE8F05',
@@ -315,14 +314,14 @@ MODEL_COLORS = {
     'poissonvi': '#CA9161'
 }
 
-# Determine available models - include all trained models up to 5
+# Include all trained models (up to 5)
 model_names_ordered = ['iAODE', 'peakvi', 'poissonvi', 'scvi', 'scanvi']
 model_names_plot = [m for m in model_names_ordered if m in results.keys()][:5]
 
 n_models = len(model_names_plot)
-print_info(f"Visualizing {n_models} models: {', '.join([m.upper() for m in model_names_plot])}")
+print_info(f"Visualizing models: {', '.join([m.upper() for m in model_names_plot])}")
 
-# Create figure with organized 3-row layout (expand to 5 columns if needed)
+# 3-row layout, up to 5 columns
 fig = plt.figure(figsize=(3.2 * n_models, 12))
 gs = gridspec.GridSpec(3, n_models, figure=fig,
                        left=0.07, right=0.98,
@@ -330,7 +329,7 @@ gs = gridspec.GridSpec(3, n_models, figure=fig,
                        hspace=0.30, wspace=0.30)
 
 def style_axis(ax, grid=True):
-    """Apply consistent styling to axes"""
+    """Consistent axis styling."""
     ax.spines['top'].set_visible(False)
     ax.spines['right'].set_visible(False)
     ax.spines['left'].set_linewidth(1.2)
@@ -339,41 +338,54 @@ def style_axis(ax, grid=True):
     if grid:
         ax.grid(axis='y', alpha=0.3, linestyle='--', linewidth=0.6)
 
-# Helper function for bar plots
 def plot_metric_bar(ax, df_data, metric_col, title, ylabel='Score', ylim=None):
-    """Create consistent bar plots for metrics"""
+    """Bar plot helper for metric comparison."""
     data_plot = df_data[df_data[metric_col].notna()].copy()
     
     if data_plot.empty:
-        ax.text(0.5, 0.5, 'No data', ha='center', va='center', 
-                transform=ax.transAxes, fontsize=12, color='#666666', style='italic')
+        ax.text(
+            0.5, 0.5, 'No data',
+            ha='center', va='center',
+            transform=ax.transAxes,
+            fontsize=12, color='#666666', style='italic'
+        )
         ax.set_title(title, fontsize=12, fontweight='bold', loc='left')
         ax.axis('off')
         return
     
     x_pos = np.arange(len(data_plot))
-    colors = [MODEL_COLORS.get(m, MODEL_COLORS.get(m.lower(), '#888888')) for m in data_plot['Model']]
+    colors = [MODEL_COLORS.get(m, MODEL_COLORS.get(m.lower(), '#888888'))
+              for m in data_plot['Model']]
     
-    bars = ax.bar(x_pos, data_plot[metric_col], 
-                 color=colors, edgecolor='black', 
-                 linewidth=1.2, alpha=0.85, width=0.7)
+    bars = ax.bar(
+        x_pos, data_plot[metric_col],
+        color=colors, edgecolor='black',
+        linewidth=1.2, alpha=0.85, width=0.7
+    )
     
     ax.set_xticks(x_pos)
-    ax.set_xticklabels(data_plot['Model'], rotation=0, ha='center', fontweight='bold', fontsize=10)
+    ax.set_xticklabels(
+        data_plot['Model'],
+        rotation=0, ha='center',
+        fontweight='bold', fontsize=10
+    )
     ax.set_ylabel(ylabel, fontsize=11, fontweight='bold')
     if ylim:
         ax.set_ylim(ylim)
     ax.set_title(title, fontsize=12, fontweight='bold', loc='left', pad=10)
     style_axis(ax, grid=True)
     
-    # Add value labels on bars
+    # Numeric labels on bars
     for bar in bars:
         height = bar.get_height()
         if not np.isnan(height):
-            ax.text(bar.get_x() + bar.get_width()/2., height,
-                   f'{height:.3f}', ha='center', 
-                   va='bottom' if height >= 0 else 'top', 
-                   fontsize=9, fontweight='bold')
+            ax.text(
+                bar.get_x() + bar.get_width() / 2., height,
+                f'{height:.3f}',
+                ha='center',
+                va='bottom' if height >= 0 else 'top',
+                fontsize=9, fontweight='bold'
+            )
 
 # Prepare numeric dataframe
 df_plot = df.copy()
@@ -381,13 +393,13 @@ numeric_cols = ['Manifold Dim', 'Spectral Decay', 'Trajectory Dir', 'Train Time 
 for col in numeric_cols:
     df_plot[col] = pd.to_numeric(df_plot[col], errors='coerce')
 
-# Row 1: Latent Space Evaluation Metrics (distribute across columns)
+# Row 1: Latent space metrics + training time
 metric_cols = ['Manifold Dim', 'Spectral Decay', 'Trajectory Dir', 'Train Time (s)']
 metric_titles = [
-    'A. Manifold Dimensionality',
-    'B. Spectral Decay Rate',
-    'C. Trajectory Directionality',
-    'D. Training Time'
+    'A. Manifold dimensionality',
+    'B. Spectral decay rate',
+    'C. Trajectory directionality',
+    'D. Training time'
 ]
 metric_ylabels = ['Score', 'Score', 'Score', 'Time (seconds)']
 metric_ylims = [(0, 1), (0, 1), (0, 1), None]
@@ -406,32 +418,40 @@ for idx in range(n_models):
             df_time = df_plot[df_plot[col].notna()].copy()
             if not df_time.empty:
                 x_pos = np.arange(len(df_time))
-                colors = [MODEL_COLORS.get(m, MODEL_COLORS.get(m.lower(), '#888888')) for m in df_time['Model']]
+                colors = [MODEL_COLORS.get(m, MODEL_COLORS.get(m.lower(), '#888888'))
+                          for m in df_time['Model']]
                 
-                bars = ax.bar(x_pos, df_time[col],
-                              color=colors, edgecolor='black', 
-                              linewidth=1.2, alpha=0.85, width=0.7)
+                bars = ax.bar(
+                    x_pos, df_time[col],
+                    color=colors, edgecolor='black',
+                    linewidth=1.2, alpha=0.85, width=0.7
+                )
                 
                 ax.set_xticks(x_pos)
-                ax.set_xticklabels(df_time['Model'], rotation=0, ha='center', fontweight='bold', fontsize=10)
+                ax.set_xticklabels(
+                    df_time['Model'],
+                    rotation=0, ha='center',
+                    fontweight='bold', fontsize=10
+                )
                 ax.set_ylabel(ylabel, fontsize=11, fontweight='bold')
                 ax.set_title(title, fontsize=12, fontweight='bold', loc='left', pad=10)
                 style_axis(ax, grid=True)
                 
                 for bar in bars:
                     height = bar.get_height()
-                    ax.text(bar.get_x() + bar.get_width()/2., height,
-                            f'{height:.1f}', ha='center', va='bottom', 
-                            fontsize=9, fontweight='bold')
+                    ax.text(
+                        bar.get_x() + bar.get_width() / 2., height,
+                        f'{height:.1f}',
+                        ha='center', va='bottom',
+                        fontsize=9, fontweight='bold'
+                    )
         else:
             plot_metric_bar(ax, df_plot, col, title, ylabel=ylabel, ylim=ylim)
     else:
-        # Empty panel for excess columns
         ax.axis('off')
 
-# Helper function for UMAP styling
 def style_umap_ax(ax, xlim=None, ylim=None):
-    """Apply consistent styling to UMAP axes"""
+    """Consistent styling for UMAP axes."""
     ax.set_xlabel('UMAP 1', fontsize=11, fontweight='bold')
     ax.set_ylabel('UMAP 2', fontsize=11, fontweight='bold')
     if lim_x is not None:
@@ -446,7 +466,7 @@ def style_umap_ax(ax, xlim=None, ylim=None):
     ax.tick_params(width=1.2, labelsize=10)
 
 def add_colorbar(fig, ax, scatter, label):
-    """Add consistent colorbar"""
+    """Attach a colorbar with consistent style."""
     divider = make_axes_locatable(ax)
     cax = divider.append_axes("right", size="4%", pad=0.08)
     cbar = plt.colorbar(scatter, cax=cax)
@@ -455,7 +475,7 @@ def add_colorbar(fig, ax, scatter, label):
     cbar.outline.set_linewidth(1.2)
     return cbar
 
-# Compute consistent color ranges for both visualizations
+# Shared color ranges
 all_peak_counts = []
 all_latent_dim1 = []
 for model_name in model_names_plot:
@@ -468,7 +488,7 @@ vmax_peaks = np.percentile(all_peak_counts, 98)
 vmin_latent = np.percentile(all_latent_dim1, 2)
 vmax_latent = np.percentile(all_latent_dim1, 98)
 
-# Compute consistent axis limits
+# Shared UMAP axis limits
 all_x = []
 all_y = []
 for model_name in model_names_plot:
@@ -485,7 +505,7 @@ y_range = y_max - y_min
 lim_x: tuple[float, float] = (x_min - padding * x_range, x_max + padding * x_range)
 lim_y: tuple[float, float] = (y_min - padding * y_range, y_max + padding * y_range)
 
-# Row 2: UMAP colored by Peak Counts (consistent coloring)
+# Row 2: UMAP colored by peak counts
 panel_labels_row2 = ['E', 'F', 'G', 'H', 'I']
 
 for idx, model_name in enumerate(model_names_plot):
@@ -510,21 +530,27 @@ for idx, model_name in enumerate(model_names_plot):
         )
         
         style_umap_ax(ax, xlim=lim_x, ylim=lim_y)
-        ax.set_title(f'{panel_label}. {model_name.upper()} - Peak Counts',
-                    fontsize=11, fontweight='bold', loc='left', pad=8)
+        ax.set_title(
+            f'{panel_label}. {model_name.upper()} - peak counts',
+            fontsize=11, fontweight='bold', loc='left', pad=8
+        )
         
-        # Add colorbar only to the last panel
+        # Colorbar only on last panel
         if idx == len(model_names_plot) - 1:
-            add_colorbar(fig, ax, scatter, 'Peak Counts')
+            add_colorbar(fig, ax, scatter, 'Peak counts')
     else:
-        ax.text(0.5, 0.5, f'{model_name.upper()}\nnot available',
-                ha='center', va='center', fontsize=11,
-                color='#666666', style='italic')
-        ax.set_title(f'{panel_label}. {model_name.upper()}',
-                    fontsize=11, fontweight='bold', loc='left', pad=8)
+        ax.text(
+            0.5, 0.5, f'{model_name.upper()}\nnot available',
+            ha='center', va='center', fontsize=11,
+            color='#666666', style='italic'
+        )
+        ax.set_title(
+            f'{panel_label}. {model_name.upper()}',
+            fontsize=11, fontweight='bold', loc='left', pad=8
+        )
         ax.axis('off')
 
-# Row 3: UMAP colored by Latent Dimension 1 (consistent coloring)
+# Row 3: UMAP colored by latent dimension 1
 panel_labels_row3 = ['J', 'K', 'L', 'M', 'N']
 
 for idx, model_name in enumerate(model_names_plot):
@@ -550,18 +576,24 @@ for idx, model_name in enumerate(model_names_plot):
         )
         
         style_umap_ax(ax, xlim=lim_x, ylim=lim_y)
-        ax.set_title(f'{panel_label}. {model_name.upper()} - Latent Dim 1',
-                    fontsize=11, fontweight='bold', loc='left', pad=8)
+        ax.set_title(
+            f'{panel_label}. {model_name.upper()} - latent dim 1',
+            fontsize=11, fontweight='bold', loc='left', pad=8
+        )
         
-        # Add colorbar only to the last panel
+        # Colorbar only on last panel
         if idx == len(model_names_plot) - 1:
-            add_colorbar(fig, ax, scatter, 'Latent Dim 1')
+            add_colorbar(fig, ax, scatter, 'Latent dim 1')
     else:
-        ax.text(0.5, 0.5, f'{model_name.upper()}\nnot available',
-                ha='center', va='center', fontsize=11,
-                color='#666666', style='italic')
-        ax.set_title(f'{panel_label}. {model_name.upper()}',
-                    fontsize=11, fontweight='bold', loc='left', pad=8)
+        ax.text(
+            0.5, 0.5, f'{model_name.upper()}\nnot available',
+            ha='center', va='center', fontsize=11,
+            color='#666666', style='italic'
+        )
+        ax.set_title(
+            f'{panel_label}. {model_name.upper()}',
+            fontsize=11, fontweight='bold', loc='left', pad=8
+        )
         ax.axis('off')
 
 # Save figure
@@ -569,16 +601,16 @@ plt.savefig(OUTPUT_DIR / 'model_comparison.png', dpi=300, bbox_inches='tight')
 plt.savefig(OUTPUT_DIR / 'model_comparison.pdf', dpi=300, bbox_inches='tight')
 plt.close()
 
-print_success(f"Saved: {OUTPUT_DIR}/model_comparison.png")
-print_success(f"Saved: {OUTPUT_DIR}/model_comparison.pdf")
+print_success(f"Saved figure: {OUTPUT_DIR}/model_comparison.png")
+print_success(f"Saved figure: {OUTPUT_DIR}/model_comparison.pdf")
 print()
 
 # ==================================================
 # Summary
 # ==================================================
 
-print_header("Evaluation Complete")
-print_info("Model Benchmarking Summary - scATAC-seq with HVP subset")
+print_header("Evaluation complete")
+print_info("scATAC-seq model benchmarking (HVP subset)")
 print()
 print("  Configuration:")
 print("    • Dataset: 10X Mouse Brain 5k scATAC-seq")
@@ -587,7 +619,7 @@ print(f"    • Test cells: {len(splitter.test_idx):,}")
 print(f"    • Epochs: {CONFIG['epochs']}")
 print(f"    • Latent dim: {CONFIG['latent_dim']}")
 print()
-print("  Performance Summary:")
+print("  Performance summary:")
 for model_name in model_names_plot:
     if model_name in results:
         data = results[model_name]
@@ -607,9 +639,9 @@ print(f"  • {OUTPUT_DIR}/model_comparison.png")
 print(f"  • {OUTPUT_DIR}/model_comparison.pdf")
 print()
 
-print_info("Visualization Summary:")
-print("  • Row 1: Latent Space Evaluation (LSE) metrics + Training time")
-print("  • Row 2: UMAP embeddings colored by peak counts (consistent scale)")
-print("  • Row 3: UMAP embeddings colored by latent dimension 1 (consistent scale)")
-print("  • All UMAPs use same axis limits and color ranges for fair comparison")
+print_info("Visualization layout:")
+print("  • Row 1: Latent space metrics + training time")
+print("  • Row 2: UMAP colored by peak counts (shared scale)")
+print("  • Row 3: UMAP colored by latent dim 1 (shared scale)")
+print("  • All UMAPs share axis limits and color ranges for fair comparison")
 print()
