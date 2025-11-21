@@ -265,38 +265,35 @@ Comprehensive examples are available in the `examples/` directory. See **[exampl
 
 ### Example Scripts
 
-| Script | Purpose | Best For |
-|--------|---------|----------|
-| **`scATAC_quickstart.py`** | Complete scATAC pipeline (TF‑IDF → HVP → iAODE) | Real scATAC-seq analysis |
-| **`atacseq_annotation.py`** | Peak-to-gene annotation + QC plots | Understanding peak annotation |
-| **`trajectory_ode.py`** | Neural ODE pseudotime & velocity | Trajectory inference |
-| **`evaluation_metrics.py`** | DR quality + clustering metrics | Model evaluation |
-| **`model_evaluation.py`** | Benchmark vs scVI models | Comparative analysis |
-| **`basic_usage.py`** | Simple scRNA-seq workflow | Getting started |
-| **`trajectory_inference.py`** | Trajectory with vector field | Velocity visualization |
+| Script | Purpose | Modality | Best For |
+|--------|---------|----------|----------|
+| **`basic_usage.py`** | scATAC-seq with 2D/histogram visualizations | scATAC | Getting started with scATAC-seq |
+| **`atacseq_annotation.py`** | Peak-to-gene annotation + QC plots | scATAC | Understanding peak annotation |
+| **`model_evaluation_atac.py`** | Benchmark iAODE vs scVI on scATAC-seq | scATAC | Comparative analysis (chromatin) |
+| **`model_evaluation_rna.py`** | Benchmark iAODE vs scVI on scRNA-seq | scRNA | Comparative analysis (transcriptome) |
+| **`trajectory_inference_atac.py`** | Neural ODE trajectory with scATAC-seq | scATAC | Chromatin accessibility dynamics |
+| **`trajectory_inference_rna.py`** | Neural ODE trajectory with scRNA-seq | scRNA | Transcriptional trajectory |
+
 
 ### Running Examples
 
 ```bash
 cd examples
 
-# Complete scATAC-seq workflow with auto-download
+# Getting started with scATAC-seq
+python basic_usage.py
+
+# Peak-to-gene annotation with auto-download
 python atacseq_annotation.py
 
-# Or use your own data
-python scATAC_quickstart.py \
-    --h5 filtered_peak_bc_matrix.h5 \
-    --gtf gencode.vM25.annotation.gtf.gz \
-    --use-ode --latent-dim 32 --i-dim 16
+# Benchmark models on scATAC-seq data
+python model_evaluation_atac.py
 
-# Trajectory inference with synthetic data
-python trajectory_ode.py
-
-# Comprehensive benchmarking
-python model_evaluation.py
+# Trajectory inference with Neural ODE (scRNA-seq)
+python trajectory_inference_rna.py
 ```
 
-All examples save outputs to `examples/outputs/` with visualizations and processed data. See **[examples/README.md](examples/README.md)** for detailed usage instructions and output descriptions.
+All examples save outputs to `examples/outputs/<example_name>/` by default. See **[examples/README.md](examples/README.md)** for detailed usage instructions and customization options.
 
 ---
 
