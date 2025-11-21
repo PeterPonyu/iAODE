@@ -31,6 +31,7 @@ Encoder (MLP / Residual / Transformer) --> q(z|x)
 ```
 
 **Key Components**:
+
 - **TF‑IDF Normalization**: Stabilizes cell‑wise peak depth, emphasizes specific accessibility
 - **Highly Variable Peaks (HVP)**: Variance / VMR / deviance‑based selection
 - **NB/ZINB Likelihoods**: Models over‑dispersion & zero inflation
@@ -39,7 +40,8 @@ Encoder (MLP / Residual / Transformer) --> q(z|x)
 - **Multi‑Objective Regularization**: β‑VAE KL, β‑TC, DIP, InfoVAE MMD, ODE consistency
 
 **Loss Function**:
-```
+
+```python
 Loss = recon + i_recon + ODE_consistency + β·KL + dip·DIP + tc·TC + info·MMD
 ```
 
@@ -385,6 +387,7 @@ adata = iaode.annotation_pipeline(
 ```
 
 **Returns AnnData with:**
+
 - `adata.var['peak_type']`: Peak annotation (promoter/exonic/intronic/intergenic)
 - `adata.var['gene_name']`: Associated gene names
 - `adata.var['distance_to_tss']`: Distance to nearest TSS
@@ -582,6 +585,7 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 ## Acknowledgments
 
 Built upon ideas from:
+
 - **scVI-tools**: scVI, PEAKVI, POISSONVI architectures
 - **Signac** and **SnapATAC2**: scATAC-seq best practices
 - **Neural ODE** literature: Continuous latent dynamics
@@ -593,7 +597,7 @@ PyTorch, AnnData, and Scanpy ecosystems provide the foundation.
 ## Contact
 
 - **GitHub Issues**: [https://github.com/PeterPonyu/iAODE/issues](https://github.com/PeterPonyu/iAODE/issues)
-- **Email**: fuzeyu99@126.com
+- **Email**: <fuzeyu99@126.com>
 
 ---
 

@@ -40,6 +40,7 @@ pytest              # Run tests
 ### New Encoder Type
 
 Add to `iaode/module.py`:
+
 ```python
 class NewEncoder(nn.Module):
     def forward(self, x):
