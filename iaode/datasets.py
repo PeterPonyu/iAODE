@@ -309,7 +309,7 @@ def list_cached_files() -> None:
     print(f"Location: {data_dir}")
     print()
     
-    total_size = 0
+    total_size: float = 0.0
     file_count = 0
     
     for root, dirs, files in os.walk(data_dir):

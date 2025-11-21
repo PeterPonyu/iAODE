@@ -247,7 +247,7 @@ class agent(Env):
         self.peak_memory_gb = torch.cuda.max_memory_allocated() / 1e9 if use_cuda else 0.0
 
         print(f"\n{'='*70}")
-        print(f"Training Complete")
+        print("Training Complete")
         print(f"{'='*70}")
         print(f"  Epochs: {self.actual_epochs}/{epochs}")
         print(f"  Time: {self.train_time:.2f}s ({self.train_time/self.actual_epochs:.2f}s/epoch)")
@@ -553,7 +553,9 @@ class agent(Env):
                 indices_matrix2[i] = idx
 
         # Compute cosine similarities
-        vals, rows, cols = [], [], []
+        vals: list = []
+        rows: list = []
+        cols: list = []
         for i in range(ncells):
             # Get neighbors (first-order + second-order)
             dist_mat = adata.obsp["distances"]

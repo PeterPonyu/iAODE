@@ -65,6 +65,7 @@ python basic_usage.py
 - Latent embeddings and visualizations
 - Quality control plots
 
+
 ---
 
 ### **2. Peak Annotation Pipeline** (`atacseq_annotation.py`)
@@ -77,12 +78,13 @@ python atacseq_annotation.py
 
 **What it does**:
 
-1. Downloads Mouse Brain 5k scATAC-seq + GENCODE vM25 GTF (cached in `~/.iaode/data/`)
+1. Downloads Mouse Brain 5k scATAC-seq data (cached in `~/.iaode/data/`)
 2. Annotates peaks → promoter/exonic/intronic/intergenic
 3. Computes distance to TSS
 4. TF-IDF normalization
 5. Selects highly variable peaks (HVPs)
 6. Generates QC plots
+
 
 **Outputs** (default `examples/outputs/atacseq_annotation/`):
 
@@ -100,13 +102,16 @@ python trajectory_inference_atac.py
 ```
 
 **What it does**:
+
 1. Downloads Mouse Brain 5k scATAC-seq data
 2. Preprocessing with TF-IDF + HVP selection
 3. Trains iAODE with Neural ODE enabled
 4. Extracts pseudotime and velocity
 5. Generates multi-panel figures with streamplot velocity fields
 
+
 **Outputs** (default `examples/outputs/trajectory_inference_atac/`):
+
 - Multi-panel publication-quality figures (PDF + PNG)
 - Processed AnnData with trajectory information
 
@@ -123,17 +128,21 @@ python model_evaluation_atac.py
 ```
 
 **Models compared**:
+
 - iAODE (this work)
 - scVI (Negative Binomial VAE)
 - PEAKVI (scATAC-specific VAE)
 
 **Evaluation framework**:
+
+
 - **DRE** (Dimensionality Reduction Evaluator): Distance correlation, Q metrics
 - **LSE** (Latent Space Evaluator): Manifold consistency, spectral decay, participation ratio
 - **Clustering**: ARI, NMI, silhouette score
 - **Resource metrics**: Training time, GPU memory
 
 **Outputs** (default `examples/outputs/model_evaluation_atacseq/`):
+
 - `model_comparison.csv` with comprehensive metrics
 - Colorblind-friendly comparison visualizations
 
@@ -148,12 +157,13 @@ python model_evaluation_rna.py
 ```
 
 **Outputs** (default `examples/outputs/model_evaluation/`):
+
 - `model_comparison.csv` with comprehensive metrics
 - Visualization plots comparing model performance
 
 ---
 
-## 🧬 **scRNA-seq Examples**
+## 🧬 **scRNA-seq Examples (Trajectory Inference)**
 
 ### **Trajectory Inference** (`trajectory_inference_rna.py`)
 
@@ -168,7 +178,9 @@ python trajectory_inference_rna.py
 - Velocity field visualization using `model.get_vfres()`
 
 **Outputs** (default `examples/outputs/trajectory_inference/`):
+
 - Multi-panel figures with velocity streamplots
+
 
 ---
 
@@ -198,11 +210,13 @@ python trajectory_inference_rna.py
 
 ---
 
+
 ## ⚙️ **Preprocessing Pipeline**
 
 Standard workflow (implemented in examples):
 
 ```python
+
 # 1. Load data
 adata = load_10x_h5_data('filtered_peak_bc_matrix.h5')
 adata.layers['counts'] = adata.X.copy()
@@ -240,6 +254,7 @@ velocity = model.get_velocity()      # Latent velocity (if use_ode=True)
 
 ---
 
+
 ## 🎨 **Interpretability: Understanding `X_iembed`**
 
 The **interpretable bottleneck** (`i_dim`) captures regulatory modules:
@@ -250,11 +265,13 @@ iembed = model.get_iembed()  # Shape: (n_cells, i_dim=16)
 ```
 
 **What are interpretable factors?**
+
 - Explicit low-dimensional bottleneck before latent space
 - Each factor represents a regulatory module or cell state axis
 - Can be correlated with TFs, chromatin states, or biological pathways
 
 **Visualization**:
+
 ```python
 import scanpy as sc
 adata.obsm['X_iembed'] = iembed
@@ -267,22 +284,26 @@ sc.pl.umap(adata, color=['Factor_1', 'Factor_2'])
 
 ---
 
+
 ## 🧭 **Trajectory & Velocity Inference**
 
 ### **Neural ODE Dynamics**
 
 When `use_ode=True`, iAODE learns latent ODE dynamics:
 
-```
+```txt
 dz/dt = f_ode(z, t)
 ```
 
 **Key methods**:
+
 - `model.get_pseudotime()` → ODE time parameter (t)
 - `model.get_velocity()` → Latent velocity field (dz/dt)
 - `model.get_vfres()` → Vector field for streamplot visualization
 
 **Example**:
+
+
 ```python
 model = iaode.agent(adata, use_ode=True, i_dim=8, ...)
 model.fit(epochs=400)
@@ -305,6 +326,7 @@ E_grid, V_grid = model.get_vfres(
 ```
 
 ---
+
 
 ## 🔧 **Customization Guide**
 
@@ -340,17 +362,20 @@ E_grid, V_grid = model.get_vfres(
 ## 📚 **Evaluation Metrics Reference**
 
 ### **Dimensionality Reduction (DRE)**
+
 - **Distance Correlation**: Spearman ρ between high-dim and low-dim pairwise distances (higher = better global structure)
 - **Q_local**: Local neighborhood preservation quality (higher = better)
 - **Q_global**: Global structure preservation quality (higher = better)
 
 ### **Latent Space Quality (LSE)**
+
 - **Manifold Dimensionality Consistency**: How efficiently variance is captured (0-1, higher = better)
 - **Spectral Decay Rate**: Eigenvalue concentration (higher = better for trajectories)
 - **Participation Ratio**: Dimensional balance (lower = better for trajectories, higher for steady-state)
 - **Anisotropy Score**: Directionality strength (higher = better for trajectories)
 
 ### **Clustering**
+
 - **ARI** (Adjusted Rand Index): Overlap with ground truth (0-1, higher = better)
 - **NMI** (Normalized Mutual Info): Information agreement (0-1, higher = better)
 - **ASW** (Silhouette Score): Cluster separation (-1 to 1, higher = better)
@@ -362,8 +387,9 @@ E_grid, V_grid = model.get_vfres(
 ## 🤝 **Contributing**
 
 Found issues or want to add examples? Open an issue or PR:
-- **GitHub**: https://github.com/PeterPonyu/iAODE
-- **Issues**: https://github.com/PeterPonyu/iAODE/issues
+
+- **GitHub**: [https://github.com/PeterPonyu/iAODE](https://github.com/PeterPonyu/iAODE)
+- **Issues**: [https://github.com/PeterPonyu/iAODE/issues](https://github.com/PeterPonyu/iAODE/issues)
 
 ---
 
@@ -378,8 +404,9 @@ MIT License - See LICENSE file for details.
 - **Documentation**: [Link to main docs when available]
 - **Paper**: [Link to preprint/publication]
 - **Data Sources**:
-  - 10X Genomics: https://www.10xgenomics.com/datasets
-  - GENCODE: https://www.gencodegenes.org/
+
+  - 10X Genomics: [https://www.10xgenomics.com/datasets](https://www.10xgenomics.com/datasets)
+  - GENCODE: [https://www.gencodegenes.org/](https://www.gencodegenes.org/)
 
 ---
 
