@@ -8,7 +8,8 @@ dimensionality reduction.
 Main Components:
 - agent: High-level interface for model training and evaluation
 - annotation: Peak-to-gene annotation pipeline for scATAC-seq data
-- BEN: Benchmark evaluation framework for comparing dimensionality reduction methods
+- BEN: Benchmark evaluation framework for comparing dimensionality
+       reduction methods
 - environment: Data handling and train/validation/test splitting
 - model: Core VAE model with ODE integration
 - module: Neural network building blocks (encoders, decoders, ODE functions)
@@ -19,10 +20,10 @@ Main Components:
 Usage Example:
     >>> import anndata as ad
     >>> import iaode
-    >>> 
+    >>>
     >>> # Load your data
     >>> adata = ad.read_h5ad('your_data.h5ad')
-    >>> 
+    >>>
     >>> # Create and train model
     >>> model = iaode.agent(
     ...     adata,
@@ -31,7 +32,7 @@ Usage Example:
     ...     use_ode=True
     ... )
     >>> model.fit(epochs=100)
-    >>> 
+    >>>
     >>> # Get latent representation
     >>> latent = model.get_latent()
 """
