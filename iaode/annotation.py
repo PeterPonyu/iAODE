@@ -148,7 +148,7 @@ class GTFParser:
     
     def __init__(self, gtf_file: str):
         self.gtf_file = Path(gtf_file)
-        self.genes = defaultdict(list)  # chr -> [(start, end, gene_name, gene_id, strand)]
+        self.genes: Dict[str, list] = defaultdict(list)  # chr -> [(start, end, gene_name, gene_id, strand)]
         
     def parse(self, feature_type: str = 'gene', 
               gene_type: Optional[str] = 'protein_coding') -> Dict:
@@ -412,7 +412,7 @@ def annotate_peaks_to_genes(
     adata.var['distance_to_tss'] = distances_to_tss
     
     # Statistics
-    print(f"\n   📊 Annotation Summary:")
+    print("\n   📊 Annotation Summary:")
     type_counts = pd.Series(annotation_types).value_counts()
     for anno_type in ['promoter', 'gene_body', 'distal', 'intergenic']:
         if anno_type in type_counts.index:
@@ -426,7 +426,7 @@ def annotate_peaks_to_genes(
     # Top genes
     gene_counts = pd.Series([g for g in annotations if g not in ['intergenic', 'parse_failed']]).value_counts()
     if len(gene_counts) > 0:
-        print(f"\n   🔝 Top 5 annotated genes:")
+        print("\n   🔝 Top 5 annotated genes:")
         for gene, count in gene_counts.head(5).items():
             print(f"      • {gene}: {count} peaks")
     
@@ -570,7 +570,7 @@ def annotation_pipeline(
     
     # Step 6: Save output
     if output_h5ad:
-        print(f"\n💾 Saving results")
+        print("\n💾 Saving results")
         output_path = Path(output_h5ad)
         output_path.parent.mkdir(parents=True, exist_ok=True)
         adata.write_h5ad(output_h5ad)
@@ -580,7 +580,7 @@ def annotation_pipeline(
     print("\n" + "="*70)
     print("✅ Pipeline complete!")
     print("="*70)
-    print(f"\n📋 Final dataset:")
+    print("\n📋 Final dataset:")
     print(f"   • Cells: {adata.n_obs:,}")
     print(f"   • Peaks: {adata.n_vars:,}")
     if select_hvp:

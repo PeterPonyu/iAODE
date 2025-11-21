@@ -72,7 +72,7 @@ class Encoder(nn.Module):
 
         # Build encoder backbone
         if encoder_type == "mlp":
-            layers = []
+            layers: list[nn.Module] = []
             in_dim = state_dim
             for _ in range(encoder_num_layers):
                 layers.append(nn.Linear(in_dim, hidden_dim))
@@ -272,10 +272,11 @@ class Decoder(nn.Module):
             # Negative binomial: dispersion parameter
             self.disp = nn.Parameter(torch.randn(state_dim))
             # Mean parameter with Softmax normalization
-            self.mean_decoder = nn.Sequential(
+            mean_decoder_seq: nn.Module = nn.Sequential(
                 nn.Linear(hidden_dim, state_dim), 
                 nn.Softmax(dim=-1)
             )
+            self.mean_decoder = mean_decoder_seq
         else:  # 'mse' mode
             self.mean_decoder = nn.Linear(hidden_dim, state_dim)
 

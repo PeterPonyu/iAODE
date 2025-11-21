@@ -141,17 +141,17 @@ class iaodeModel(nn.Module, scviMixin, dipMixin, betatcMixin, infoMixin):
                         pred_xl_ode, dropout_logitsl_ode,
                     ) = self.nn(states)
 
-                    l = x.sum(-1).view(-1, 1)
-                    pred_x = pred_x * l
-                    pred_x_ode = pred_x_ode * l
+                    L = x.sum(-1).view(-1, 1)
+                    pred_x = pred_x * L
+                    pred_x_ode = pred_x_ode * L
                     disp = torch.exp(self.nn.decoder.disp)
                     
                     recon_loss = -self._log_zinb(x, pred_x, disp, dropout_logits).sum(-1).mean()
                     recon_loss += -self._log_zinb(x, pred_x_ode, disp, dropout_logits_ode).sum(-1).mean()
 
                     if self.irecon:
-                        pred_xl = pred_xl * l
-                        pred_xl_ode = pred_xl_ode * l
+                        pred_xl = pred_xl * L
+                        pred_xl_ode = pred_xl_ode * L
                         irecon_loss = -self.irecon * self._log_zinb(x, pred_xl, disp, dropout_logitsl).sum(-1).mean()
                         irecon_loss += -self.irecon * self._log_zinb(x, pred_xl_ode, disp, dropout_logitsl_ode).sum(-1).mean()
                     else:
@@ -169,17 +169,17 @@ class iaodeModel(nn.Module, scviMixin, dipMixin, betatcMixin, infoMixin):
                     ) = self.nn(states)
 
                     if self.loss_mode == "nb":
-                        l = x.sum(-1).view(-1, 1)
-                        pred_x = pred_x * l
-                        pred_x_ode = pred_x_ode * l
+                        L = x.sum(-1).view(-1, 1)
+                        pred_x = pred_x * L
+                        pred_x_ode = pred_x_ode * L
                         disp = torch.exp(self.nn.decoder.disp)
                         
                         recon_loss = -self._log_nb(x, pred_x, disp).sum(-1).mean()
                         recon_loss += -self._log_nb(x, pred_x_ode, disp).sum(-1).mean()
 
                         if self.irecon:
-                            pred_xl = pred_xl * l
-                            pred_xl_ode = pred_xl_ode * l
+                            pred_xl = pred_xl * L
+                            pred_xl_ode = pred_xl_ode * L
                             irecon_loss = -self.irecon * self._log_nb(x, pred_xl, disp).sum(-1).mean()
                             irecon_loss += -self.irecon * self._log_nb(x, pred_xl_ode, disp).sum(-1).mean()
                         else:
@@ -196,14 +196,14 @@ class iaodeModel(nn.Module, scviMixin, dipMixin, betatcMixin, infoMixin):
                 if self.loss_mode == "zinb":
                     q_z, q_m, q_s, pred_x, dropout_logits, le, pred_xl, dropout_logitsl = self.nn(states)
 
-                    l = states.sum(-1).view(-1, 1)
-                    pred_x = pred_x * l
+                    L = states.sum(-1).view(-1, 1)
+                    pred_x = pred_x * L
                     disp = torch.exp(self.nn.decoder.disp)
                     recon_loss = -self._log_zinb(states, pred_x, disp, dropout_logits).sum(-1).mean()
 
                     if self.irecon:
-                        pred_xl = pred_xl * l
-                        irecon_loss = -self.irecon * self._log_zinb(states, pred_xl, disp, dropout_logitsl).sum(-1).mean()
+                        pred_xl = pred_xl * L
+                        irecon_loss = -self.irecon * self._log_zinb(x, pred_xl, disp, dropout_logitsl).sum(-1).mean()
                     else:
                         irecon_loss = torch.zeros(1).to(self.device)
 
@@ -211,8 +211,8 @@ class iaodeModel(nn.Module, scviMixin, dipMixin, betatcMixin, infoMixin):
                     q_z, q_m, q_s, pred_x, le, pred_xl = self.nn(states)
 
                     if self.loss_mode == "nb":
-                        l = states.sum(-1).view(-1, 1)
-                        pred_x = pred_x * l
+                        L = states.sum(-1).view(-1, 1)
+                        pred_x = pred_x * L
                         disp = torch.exp(self.nn.decoder.disp)
                         recon_loss = -self._log_nb(states, pred_x, disp).sum(-1).mean()
 
@@ -365,16 +365,16 @@ class iaodeModel(nn.Module, scviMixin, dipMixin, betatcMixin, infoMixin):
                 
                 qz_div = F.mse_loss(q_z, q_z_ode, reduction="none").sum(-1).mean()
 
-                l = x.sum(-1).view(-1, 1)
-                pred_x = pred_x * l
-                pred_x_ode = pred_x_ode * l
+                L = x.sum(-1).view(-1, 1)
+                pred_x = pred_x * L
+                pred_x_ode = pred_x_ode * L
                 disp = torch.exp(self.nn.decoder.disp)
                 recon_loss = -self._log_zinb(x, pred_x, disp, dropout_logits).sum(-1).mean()
                 recon_loss += -self._log_zinb(x, pred_x_ode, disp, dropout_logits_ode).sum(-1).mean()
 
                 if self.irecon:
-                    pred_xl = pred_xl * l
-                    pred_xl_ode = pred_xl_ode * l
+                    pred_xl = pred_xl * L
+                    pred_xl_ode = pred_xl_ode * L
                     irecon_loss = -self.irecon * self._log_zinb(x, pred_xl, disp, dropout_logitsl).sum(-1).mean()
                     irecon_loss += -self.irecon * self._log_zinb(x, pred_xl_ode, disp, dropout_logitsl_ode).sum(-1).mean()
                 else:
@@ -394,16 +394,16 @@ class iaodeModel(nn.Module, scviMixin, dipMixin, betatcMixin, infoMixin):
                 qz_div = F.mse_loss(q_z, q_z_ode, reduction="none").sum(-1).mean()
 
                 if self.loss_mode == "nb":
-                    l = x.sum(-1).view(-1, 1)
-                    pred_x = pred_x * l
-                    pred_x_ode = pred_x_ode * l
+                    L = x.sum(-1).view(-1, 1)
+                    pred_x = pred_x * L
+                    pred_x_ode = pred_x_ode * L
                     disp = torch.exp(self.nn.decoder.disp)
                     recon_loss = -self._log_nb(x, pred_x, disp).sum(-1).mean()
                     recon_loss += -self._log_nb(x, pred_x_ode, disp).sum(-1).mean()
 
                     if self.irecon:
-                        pred_xl = pred_xl * l
-                        pred_xl_ode = pred_xl_ode * l
+                        pred_xl = pred_xl * L
+                        pred_xl_ode = pred_xl_ode * L
                         irecon_loss = -self.irecon * self._log_nb(x, pred_xl, disp).sum(-1).mean()
                         irecon_loss += -self.irecon * self._log_nb(x, pred_xl_ode, disp).sum(-1).mean()
                     else:
