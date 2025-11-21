@@ -10,8 +10,7 @@ import urllib.request
 import gzip
 import shutil
 from pathlib import Path
-from typing import Optional, Tuple
-import anndata as ad  # type: ignore
+from typing import Tuple
 
 
 def get_data_dir() -> Path:
@@ -63,7 +62,7 @@ def _download_file(url: str, output_path: Path, desc: str = "file") -> None:
         
         urllib.request.urlretrieve(url, output_path, reporthook=reporthook)
         print()  # New line after progress
-        print(f"   ✓ Downloaded successfully")
+        print("   ✓ Downloaded successfully")
     except Exception as e:
         print(f"\n   ✗ Download failed: {e}")
         raise
@@ -145,10 +144,10 @@ def mouse_brain_5k_atacseq(force_download: bool = False, use_local: bool = True)
             print(f"✓ Using local files from: {local_examples_dir}")
             # Copy to cache for consistency
             if not h5_file.exists():
-                print(f"  Copying H5 to cache...")
+                print("  Copying H5 to cache...")
                 shutil.copy(local_h5, h5_file)
             if not gtf_file.exists():
-                print(f"  Copying GTF to cache...")
+                print("  Copying GTF to cache...")
                 shutil.copy(local_gtf, gtf_file)
             print()
             print("=" * 70)
@@ -172,7 +171,7 @@ def mouse_brain_5k_atacseq(force_download: bool = False, use_local: bool = True)
             print("MANUAL DOWNLOAD REQUIRED")
             print("=" * 70)
             print("Please download the file manually:")
-            print(f"\n1. Visit: https://www.10xgenomics.com/datasets/fresh-cortex-from-adult-mouse-brain-p-50-1-standard-2-0-0")
+            print("\n1. Visit: https://www.10xgenomics.com/datasets/fresh-cortex-from-adult-mouse-brain-p-50-1-standard-2-0-0")
             print("   Or try direct link:")
             print(f"   {h5_url}")
             print(f"\n2. Save as: {h5_file}")
@@ -194,7 +193,7 @@ def mouse_brain_5k_atacseq(force_download: bool = False, use_local: bool = True)
         # Clean up compressed file to save space
         if gtf_gz.exists():
             gtf_gz.unlink()
-            print(f"   ✓ Removed compressed file to save space")
+            print("   ✓ Removed compressed file to save space")
     else:
         print(f"✓ Using cached GTF: {gtf_file}")
     
@@ -265,7 +264,7 @@ def human_pbmc_5k_atacseq(force_download: bool = False) -> Tuple[Path, Path]:
         # Clean up compressed file
         if gtf_gz.exists():
             gtf_gz.unlink()
-            print(f"   ✓ Removed compressed file to save space")
+            print("   ✓ Removed compressed file to save space")
     else:
         print(f"✓ Using cached GTF: {gtf_file}")
     

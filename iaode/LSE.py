@@ -1,7 +1,6 @@
 import numpy as np
 import pandas as pd  # type: ignore
 from sklearn.decomposition import PCA  # type: ignore
-from scipy.stats import entropy  # type: ignore
 from scipy.linalg import svd  # type: ignore
 import warnings
 
