@@ -15,7 +15,7 @@ The design targets the unique characteristics of scATAC data: extreme sparsity, 
 
 ## Core Architecture
 
-```
+```text
 Raw Peak Counts  --(TF-IDF)-->  Normalized Matrix  --(HVP Selection)-->  Peak Subset
        |
        v

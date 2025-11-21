@@ -65,30 +65,30 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 ## [0.2.1] - 2025-11-20
 
-### Added
+### Added (v0.2.1)
 
 - New scATAC-focused examples: `scATAC_quickstart.py`, `trajectory_ode.py`, `evaluation_metrics.py`.
 - Refreshed root `README.md` emphasizing scATAC workflow, Neural ODE concept, interpretable bottleneck, recommended hyperparameters.
 - Updated `examples/README.md` with curated index and troubleshooting table.
 - Added end-to-end scATAC quickstart pipeline (TF-IDF + HVP + training + embeddings export).
 
-### Changed
+### Changed (v0.2.1)
 
 - Example scripts now use safe fallbacks for `adata.X.copy()` to support multiple AnnData backing modes and satisfy static analysis.
 - Improved distance-to-TSS and peak count computations with robust numpy conversions.
 - Cast evaluation outputs to native Python types in `DRE.py` and guarded history accesses in `BEN.py`.
 - Added defensive ODE tensor casting and attribute guards in `mixin.py`.
 
-### Fixed
+### Fixed (v0.2.1)
 
 - VSCode/Pylance diagnostics in core and example modules (history access, sparse ops, tensor device moves, AnnData matrix copies).
 - Potential type issues for dimensionality reduction evaluation by ensuring use of `np.asarray`.
 
-### Removed
+### Removed (v0.2.1)
 
 - Redundant multi-file benchmarking framework replaced earlier by single streamlined benchmark (retained outside this release scope).
 
-### Notes
+### Notes (v0.2.1)
 
 - Focus shift: scATAC-seq is now the primary documented use case; legacy scRNA examples retained but marked as legacy.
 - Next planned work: logging cleanup, seed consolidation, lightweight logger introduction.

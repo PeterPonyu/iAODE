@@ -188,7 +188,7 @@ if 'annotation_type' in adata.var.columns:
                             COLORS['grey']) for ann in annotation_counts.index]
     
     # Create pie chart with enhanced styling
-    wedges, texts, autotexts = ax1.pie(
+    pie_result = ax1.pie(
         annotation_counts.values,
         labels=[str(label).replace('_', ' ').title() for label in annotation_counts.index],
         autopct=lambda pct: f'{pct:.1f}%' if pct > 2 else '',
@@ -197,6 +197,11 @@ if 'annotation_type' in adata.var.columns:
         wedgeprops={'edgecolor': 'white', 'linewidth': 2.5},
         textprops={'fontsize': 10}
     )
+    if isinstance(pie_result, tuple) and len(pie_result) >= 3:
+        wedges, texts, autotexts = pie_result[0], pie_result[1], pie_result[2]
+    else:
+        # Fallback if pie returns different number of values
+        pass
     
     # Style text for better readability
     for text in texts:

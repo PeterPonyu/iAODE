@@ -11,7 +11,7 @@ import gzip
 import shutil
 from pathlib import Path
 from typing import Optional, Tuple
-import anndata as ad
+import anndata as ad  # type: ignore
 
 
 def get_data_dir() -> Path:

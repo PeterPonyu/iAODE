@@ -5,9 +5,9 @@ Best practices from Signac, SnapATAC2, and scvi-tools (2024)
 """
 
 import numpy as np
-import pandas as pd
-import scanpy as sc
-import anndata as ad
+import pandas as pd  # type: ignore
+import scanpy as sc  # type: ignore
+import anndata as ad  # type: ignore
 from pathlib import Path
 from typing import Literal, Optional, Dict
 import re

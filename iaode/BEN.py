@@ -2,23 +2,23 @@ import gc
 import os
 import time
 import numpy as np
-import pandas as pd
-import scanpy as sc
-import scipy.sparse as sp
+import pandas as pd  # type: ignore
+import scanpy as sc  # type: ignore
+import scipy.sparse as sp  # type: ignore
 import torch
-from sklearn.cluster import KMeans
-from sklearn.metrics import (
+from sklearn.cluster import KMeans  # type: ignore
+from sklearn.metrics import (  # type: ignore
     normalized_mutual_info_score,
     adjusted_mutual_info_score,
     silhouette_score,
     davies_bouldin_score,
     calinski_harabasz_score
 )
-from sklearn.model_selection import train_test_split
+from sklearn.model_selection import train_test_split  # type: ignore
 
 # scVI imports
-from scvi.model import SCVI, PEAKVI
-from scvi.external import POISSONVI
+from scvi.model import SCVI, PEAKVI  # type: ignore
+from scvi.external import POISSONVI  # type: ignore
 from .DRE import evaluate_dimensionality_reduction
 from .LSE import evaluate_single_cell_latent_space
 

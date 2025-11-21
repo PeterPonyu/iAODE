@@ -1,5 +1,5 @@
 import numpy as np
-from scipy.sparse import issparse, csr_matrix
+from scipy.sparse import issparse, csr_matrix  # type: ignore
 from typing import Literal, Tuple, Optional
 import warnings
 

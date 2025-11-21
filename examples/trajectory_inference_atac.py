@@ -21,11 +21,11 @@ if not check_iaode_installed():
 
 import iaode
 import numpy as np
-import scanpy as sc
-from scipy.sparse import issparse
+import scanpy as sc  # type: ignore
+from scipy.sparse import issparse  # type: ignore
 import matplotlib.pyplot as plt
 from matplotlib import gridspec
-from mpl_toolkits.axes_grid1 import make_axes_locatable
+from mpl_toolkits.axes_grid1 import make_axes_locatable  # type: ignore
 import warnings
 warnings.filterwarnings('ignore')
 
@@ -408,7 +408,7 @@ print(f"      Max magnitude:  {velocity_magnitude.max():.5f}")
 print()
 
 # Correlation between pseudotime and velocity
-from scipy.stats import pearsonr, spearmanr
+from scipy.stats import pearsonr, spearmanr  # type: ignore
 pearson_corr, pearson_pval = pearsonr(pseudotime_norm, velocity_magnitude)
 spearman_corr, spearman_pval = spearmanr(pseudotime_norm, velocity_magnitude)
 

@@ -1,8 +1,8 @@
 import numpy as np
-import pandas as pd
-from sklearn.decomposition import PCA
-from scipy.stats import entropy, skew, kurtosis
-from scipy.linalg import svd, norm
+import pandas as pd  # type: ignore
+from sklearn.decomposition import PCA  # type: ignore
+from scipy.stats import entropy  # type: ignore
+from scipy.linalg import svd  # type: ignore
 import warnings
 
 
@@ -493,7 +493,7 @@ class SingleCellLatentSpaceEvaluator:
         print("=" * 80)
         
         # Core metrics
-        print(f"\n[Core Manifold Metrics]")
+        print("\n[Core Manifold Metrics]")
         print(f"  Manifold dimensionality consistency: {results['manifold_dimensionality']:.4f} ★")
         print(f"  Spectral decay rate: {results['spectral_decay_rate']:.4f} (higher is better)")
         print(
@@ -506,21 +506,21 @@ class SingleCellLatentSpaceEvaluator:
         )
         
         # Single-cell–specific
-        print(f"\n[Single-cell Specific Metrics]")
+        print("\n[Single-cell Specific Metrics]")
         print(f"  Trajectory directionality: {results['trajectory_directionality']:.4f} (higher is better)")
         
         # Technical quality
-        print(f"\n[Technical Quality Metrics]")
+        print("\n[Technical Quality Metrics]")
         print(f"  Noise resilience: {results['noise_resilience']:.4f} (higher is better)")
         
         # Aggregate
-        print(f"\n[Aggregate Scores]")
+        print("\n[Aggregate Scores]")
         print(f"  Core quality score: {results['core_quality']:.4f}")
         print(f"  Overall quality score: {results['overall_quality']:.4f} ★★★")
         
         # Interpretation
         interp = results['interpretation']
-        print(f"\n[Interpretation]")
+        print("\n[Interpretation]")
         print(f"  Quality level: {interp['quality_level']}")
         
         if interp['strengths']:

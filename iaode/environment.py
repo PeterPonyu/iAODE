@@ -3,8 +3,8 @@
 from .model import iaodeModel
 from .mixin import envMixin
 import numpy as np
-from sklearn.cluster import KMeans
-from sklearn.preprocessing import LabelEncoder
+from sklearn.cluster import KMeans  # type: ignore
+from sklearn.preprocessing import LabelEncoder  # type: ignore
 import torch
 from torch.utils.data import DataLoader, TensorDataset
 
