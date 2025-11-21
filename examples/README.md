@@ -9,6 +9,7 @@ Comprehensive examples demonstrating **iAODE** (interpretable Accessibility ODE 
 **iAODE** = **I**nterpretable **A**ccessibility **O**rdinary **D**ifferential **E**quation VAE
 
 A deep generative model for scATAC-seq data that combines:
+
 - **Variational Autoencoder (VAE)**: Dimensionality reduction with probabilistic reconstruction (NB/ZINB)
 - **Interpretable Bottleneck**: Explicit `i_dim` factors (`X_iembed`) capturing regulatory modules
 - **Neural ODE**: Optional trajectory dynamics for pseudotime and velocity inference
@@ -52,6 +53,7 @@ python basic_usage.py
 ```
 
 **What it does**:
+
 1. Downloads Mouse Brain 5k scATAC-seq data (cached in `~/.iaode/data/`)
 2. TF-IDF normalization
 3. Highly variable peak (HVP) selection
@@ -59,6 +61,7 @@ python basic_usage.py
 5. Generates 2D scatter plots and histograms
 
 **Outputs** (default `examples/outputs/basic_usage/`):
+
 - Latent embeddings and visualizations
 - Quality control plots
 
@@ -73,6 +76,7 @@ python atacseq_annotation.py
 ```
 
 **What it does**:
+
 1. Downloads Mouse Brain 5k scATAC-seq + GENCODE vM25 GTF (cached in `~/.iaode/data/`)
 2. Annotates peaks → promoter/exonic/intronic/intergenic
 3. Computes distance to TSS
@@ -158,6 +162,7 @@ python trajectory_inference_rna.py
 ```
 
 **What it does**:
+
 - Uses paul15 hematopoietic differentiation dataset
 - Neural ODE trajectory inference
 - Velocity field visualization using `model.get_vfres()`
@@ -172,18 +177,22 @@ python trajectory_inference_rna.py
 ### **For Real scATAC-seq Analysis**
 
 **Minimum**:
+
 - 10X Genomics filtered peak matrix: `filtered_peak_bc_matrix.h5`
 
 **Recommended** (for annotation):
+
 - Matching GTF annotation file
 
 **Suggested datasets**:
+
 | Species | Dataset | GTF Version | Size |
 |---------|---------|-------------|------|
 | Mouse | 10X Mouse Brain 5k | GENCODE vM25 | ~5k cells, ~100k peaks |
 | Human | 10X PBMC 5k | GENCODE v49 | ~5k cells, ~120k peaks |
 
 ### **For Demo/Testing**
+
 - `atacseq_annotation.py` auto-downloads Mouse Brain 5k
 - Other examples use synthetic or auto-downloaded data (paul15)
 
