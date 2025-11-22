@@ -105,12 +105,12 @@ Demonstrate trajectory inference on the hematopoietic `paul15` dataset using `ia
      sc.pp.log1p(adata)
      ```
 
-2. **Train iAODE with Neural ODE**
+   - Train iAODE with Neural ODE
    - Configuration:
      - `use_ode=True`
      - `i_dim=2` (interpretable ODE bottleneck)
-     - `latent_dim=10`
-     - `hidden_dim=128`
+     - `latent_dim=32`
+     - `hidden_dim=512`
      - `loss_mode='nb'` (negative binomial on counts)
    - Fit with early stopping:
 
@@ -216,9 +216,9 @@ Apply Neural ODE trajectory inference to **chromatin accessibility** data and vi
    - Configuration:
      - `use_ode=True`
      - `i_dim=2`
-     - `latent_dim=10`
-     - `hidden_dim=128`
-     - `loss_mode='mse'` (appropriate for TF‑IDF‑normalized scATAC)
+     - `latent_dim=32`
+     - `hidden_dim=512`
+     - `loss_mode='nb'` (appropriate for scATAC count data)
    - Fit with early stopping.
    - Resource metrics recorded.
 
@@ -375,8 +375,8 @@ Benchmark `iAODE` against **scVI‑family models** on the `paul15` trajectory da
 3. **Train iAODE**
 
    - Neural ODE model with:
-     - `latent_dim=10`
-     - `hidden_dim=128`
+     - `latent_dim=32`
+     - `hidden_dim=512`
      - `loss_mode='nb'`
    - Early stopping:
      - `epochs=100`, `patience=20`, `val_every=5`
