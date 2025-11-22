@@ -75,7 +75,7 @@ class Env(iaodeModel, envMixin):
         self.random_seed = random_seed
 
         # Register data and create splits
-        self._register_anndata(adata, layer, latent_dim)
+        self._register_anndata(adata, layer, latent_dim, loss_mode)
 
         # Initialize model
         super().__init__(
@@ -114,14 +114,20 @@ class Env(iaodeModel, envMixin):
         self.best_model_state = None
         self.patience_counter = 0
 
-    def _register_anndata(self, adata, layer: str, latent_dim: int):
+    def _register_anndata(self, adata, layer: str, latent_dim: int, loss_mode: str):
         """Load data and create train/val/test splits"""
         
-        # Load and log-transform data
+        # Load data
         if hasattr(adata.layers[layer], 'toarray'):
-            self.X = np.log1p(adata.layers[layer].toarray())
+            data = adata.layers[layer].toarray()
         else:
-            self.X = np.log1p(adata.layers[layer])
+            data = adata.layers[layer]
+
+        # Apply log-transform only for MSE loss (NB/ZINB expect raw counts)
+        if loss_mode in ['nb', 'zinb']:
+            self.X = data
+        else:
+            self.X = np.log1p(data)
 
         self.n_obs = adata.shape[0]
         self.n_var = adata.shape[1]
