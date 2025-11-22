@@ -75,7 +75,7 @@ class Env(iaodeModel, envMixin):
         self.random_seed = random_seed
 
         # Register data and create splits
-        self._register_anndata(adata, layer, latent_dim, loss_mode)
+        self._register_anndata(adata, layer, latent_dim)
 
         # Initialize model
         super().__init__(
@@ -114,20 +114,16 @@ class Env(iaodeModel, envMixin):
         self.best_model_state = None
         self.patience_counter = 0
 
-    def _register_anndata(self, adata, layer: str, latent_dim: int, loss_mode: str):
+    def _register_anndata(self, adata, layer: str, latent_dim: int):
         """Load data and create train/val/test splits"""
         
-        # Load data
+        # Load raw counts and create log-transformed version
         if hasattr(adata.layers[layer], 'toarray'):
-            data = adata.layers[layer].toarray()
+            self.X_raw = adata.layers[layer].toarray()
+            self.X = np.log1p(self.X_raw)
         else:
-            data = adata.layers[layer]
-
-        # Apply log-transform only for MSE loss (NB/ZINB expect raw counts)
-        if loss_mode in ['nb', 'zinb']:
-            self.X = data
-        else:
-            self.X = np.log1p(data)
+            self.X_raw = adata.layers[layer].copy()
+            self.X = np.log1p(self.X_raw)
 
         self.n_obs = adata.shape[0]
         self.n_var = adata.shape[1]
@@ -152,10 +148,14 @@ class Env(iaodeModel, envMixin):
         self.val_idx = indices[n_train:n_train + n_val]
         self.test_idx = indices[n_train + n_val:]
 
-        # Split data
+        # Split data (both raw and log-transformed)
         self.X_train = self.X[self.train_idx]
         self.X_val = self.X[self.val_idx]
         self.X_test = self.X[self.test_idx]
+        
+        self.X_raw_train = self.X_raw[self.train_idx]
+        self.X_raw_val = self.X_raw[self.val_idx]
+        self.X_raw_test = self.X_raw[self.test_idx]
 
         # Indexing warnings suppressed – runtime types are ndarray
         self.labels_train = self.labels[self.train_idx]  # type: ignore[index]
@@ -175,15 +175,19 @@ class Env(iaodeModel, envMixin):
     def _create_dataloaders(self):
         """Create PyTorch DataLoaders for training, validation, and testing"""
         
-        # Convert to tensors
+        # Convert to tensors (log-transformed for encoder, raw for loss)
         X_train_tensor = torch.FloatTensor(self.X_train)
         X_val_tensor = torch.FloatTensor(self.X_val)
         X_test_tensor = torch.FloatTensor(self.X_test)
+        
+        X_raw_train_tensor = torch.FloatTensor(self.X_raw_train)
+        X_raw_val_tensor = torch.FloatTensor(self.X_raw_val)
+        X_raw_test_tensor = torch.FloatTensor(self.X_raw_test)
 
-        # Create datasets
-        train_dataset = TensorDataset(X_train_tensor)
-        val_dataset = TensorDataset(X_val_tensor)
-        test_dataset = TensorDataset(X_test_tensor)
+        # Create datasets with both log-transformed and raw counts
+        train_dataset = TensorDataset(X_train_tensor, X_raw_train_tensor)
+        val_dataset = TensorDataset(X_val_tensor, X_raw_val_tensor)
+        test_dataset = TensorDataset(X_test_tensor, X_raw_test_tensor)
 
         # Create dataloaders
         self.train_loader = DataLoader(
@@ -216,9 +220,10 @@ class Env(iaodeModel, envMixin):
         self.train()
         epoch_losses = []
 
-        for batch_data, in self.train_loader:
-            batch_data = batch_data.to(self.device)
-            self.update(batch_data)
+        for batch_data_log, batch_data_raw in self.train_loader:
+            batch_data_log = batch_data_log.to(self.device)
+            batch_data_raw = batch_data_raw.to(self.device)
+            self.update(batch_data_log, batch_data_raw)
             epoch_losses.append(self.loss[-1][0])
 
         avg_train_loss = np.mean(epoch_losses)
@@ -234,15 +239,16 @@ class Env(iaodeModel, envMixin):
         all_latents = []
 
         with torch.no_grad():
-            for batch_data, in self.val_loader:
-                batch_data = batch_data.to(self.device)
+            for batch_data_log, batch_data_raw in self.val_loader:
+                batch_data_log = batch_data_log.to(self.device)
+                batch_data_raw = batch_data_raw.to(self.device)
 
                 # Compute loss
-                loss_value = self._compute_loss_only(batch_data)
+                loss_value = self._compute_loss_only(batch_data_log, batch_data_raw)
                 val_losses.append(loss_value)
 
                 # Extract latent representations
-                latent = self.take_latent(batch_data)
+                latent = self.take_latent(batch_data_log)
                 all_latents.append(latent)
 
         # Average validation loss

@@ -457,14 +457,17 @@ class iVAE(nn.Module, NODEMixin):
         self.latent_encoder = nn.Linear(action_dim, i_dim).to(device)
         self.latent_decoder = nn.Linear(i_dim, action_dim).to(device)
 
-    def forward(self, x: torch.Tensor) -> Tuple[torch.Tensor, ...]:
+    def forward(self, x_log: torch.Tensor, x_raw: torch.Tensor = None) -> Tuple[torch.Tensor, ...]:
         """
         Forward pass through VAE.
         
         Parameters
         ----------
-        x : torch.Tensor
-            Input tensor (batch_size, state_dim)
+        x_log : torch.Tensor
+            Log-transformed input tensor (batch_size, state_dim) for encoder stability
+        x_raw : torch.Tensor, optional
+            Raw count tensor (batch_size, state_dim) for NB/ZINB loss calculation.
+            If None, uses x_log (for MSE mode or backward compatibility)
         
         Returns
         -------
@@ -475,6 +478,8 @@ class iVAE(nn.Module, NODEMixin):
                 Latent mean
             q_s : torch.Tensor
                 Latent log-variance
+            x_raw : torch.Tensor
+                Raw counts for loss calculation
             pred_x : torch.Tensor
                 Reconstructed input (direct path)
             le : torch.Tensor
@@ -492,9 +497,13 @@ class iVAE(nn.Module, NODEMixin):
             dropout_logits : torch.Tensor
                 Zero-inflation parameters
         """
-        # Encode
+        # Use x_log for backward compatibility if x_raw not provided
+        if x_raw is None:
+            x_raw = x_log
+            
+        # Encode using log-transformed data for stability
         if self.encoder.use_ode:
-            q_z, q_m, q_s, t = self.encoder(x)
+            q_z, q_m, q_s, t = self.encoder(x_log)
 
             # Sort by pseudotime
             idxs = torch.argsort(t)
@@ -502,7 +511,7 @@ class iVAE(nn.Module, NODEMixin):
             q_z = q_z[idxs]
             q_m = q_m[idxs]
             q_s = q_s[idxs]
-            x = x[idxs]
+            x_raw = x_raw[idxs]  # Sort raw counts to match
 
             # Remove duplicate time points
             unique_mask = torch.ones_like(t, dtype=torch.bool)
@@ -512,7 +521,7 @@ class iVAE(nn.Module, NODEMixin):
             q_z = q_z[unique_mask]
             q_m = q_m[unique_mask]
             q_s = q_s[unique_mask]
-            x = x[unique_mask]
+            x_raw = x_raw[unique_mask]  # Apply mask to raw counts
 
             # Solve ODE from initial state
             z0 = q_z[0]
@@ -531,7 +540,7 @@ class iVAE(nn.Module, NODEMixin):
                 pred_x_ode, dropout_logits_ode = self.decoder(q_z_ode)
                 pred_xl_ode, dropout_logitsl_ode = self.decoder(ld_ode)
                 return (
-                    q_z, q_m, q_s, x,
+                    q_z, q_m, q_s, x_raw,  # Return raw counts for loss
                     pred_x, dropout_logits,
                     le, le_ode,
                     pred_xl, dropout_logitsl,
@@ -545,7 +554,7 @@ class iVAE(nn.Module, NODEMixin):
                 pred_x_ode = self.decoder(q_z_ode)
                 pred_xl_ode = self.decoder(ld_ode)
                 return (
-                    q_z, q_m, q_s, x,
+                    q_z, q_m, q_s, x_raw,  # Return raw counts for loss
                     pred_x,
                     le, le_ode,
                     pred_xl,
@@ -555,7 +564,7 @@ class iVAE(nn.Module, NODEMixin):
                 )
 
         else:
-            q_z, q_m, q_s = self.encoder(x)
+            q_z, q_m, q_s = self.encoder(x_log)  # Encode log-transformed
             
             # Information bottleneck
             le = self.latent_encoder(q_z)
@@ -566,7 +575,7 @@ class iVAE(nn.Module, NODEMixin):
                 pred_x, dropout_logits = self.decoder(q_z)
                 pred_xl, dropout_logitsl = self.decoder(ld)
                 return (
-                    q_z, q_m, q_s,
+                    q_z, q_m, q_s, x_raw,  # Return raw counts for loss
                     pred_x, dropout_logits,
                     le,
                     pred_xl, dropout_logitsl,
@@ -574,4 +583,4 @@ class iVAE(nn.Module, NODEMixin):
             else:
                 pred_x = self.decoder(q_z)
                 pred_xl = self.decoder(ld)
-                return (q_z, q_m, q_s, pred_x, le, pred_xl)
+                return (q_z, q_m, q_s, x_raw, pred_x, le, pred_xl)  # Return raw counts for loss
