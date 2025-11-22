@@ -4,6 +4,38 @@ All notable changes to this project will be documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/), and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.2.4] - 2025-11-22
+
+### Added
+
+- **README badges**: Added PyTorch (>=1.10) and Tests workflow badges for better visibility
+- **CI improvements**:
+  - Test workflow now properly executes pytest instead of just import checks
+  - Added `tomli` dependency to publish workflow for version verification
+  - Install dev dependencies in test workflow for proper test execution
+
+### Changed
+
+- **PyPI badge**: Updated to link directly to PyPI project page instead of badge.fury.io
+- **Workflow refinements**:
+  - Removed verbose package listing from publish workflow (streamlined)
+  - Removed Test PyPI publishing step (no token configured)
+  - Badge now correctly points to test workflow instead of publish workflow
+
+### Fixed
+
+- **Test execution**: Tests folder now properly runs in CI with pytest
+- **Documentation formatting**: Improved examples README with better code block spacing
+
+### Notes
+
+- Tests folder validated as necessary for quality assurance
+- All workflows now lean and functional
+
+[0.2.4]: https://github.com/PeterPonyu/iAODE/releases/tag/v0.2.4
+
+---
+
 ## [0.2.3] - 2025-11-21
 
 ### Changed
