@@ -1,78 +1,106 @@
 # Contributing to iAODE
 
-Thank you for your interest in contributing to iAODE!
+Welcome! This project thrives on community contributions. Please follow the steps below to get up and running and make your work easy to review.
 
-## Quick Setup
+## Getting Started
 
-```bash
-git clone https://github.com/PeterPonyu/iAODE.git
-cd iAODE
-python -m venv venv
-source venv/bin/activate  # Windows: venv\Scripts\activate
-pip install -e ".[dev]"
-```
+1. **Clone the repository**:
+
+    ```bash
+    git clone https://github.com/PeterPonyu/iAODE.git
+    cd iAODE
+    ```
+
+2. **Create and activate a virtual environment**:
+
+    ```bash
+    python -m venv .venv
+    source .venv/bin/activate   # Windows: .venv\Scripts\activate
+    python -m pip install --upgrade pip
+    ```
+
+3. **Install development dependencies**:
+
+    ```bash
+    pip install -e ".[dev]"
+    ```
+
+4. **Keep dependencies in sync** by updating `requirements.txt` or `pyproject.toml` whenever you add new packages.
+
+## Development Workflow
+
+1. **Fork** the repository if you do not have write access.
+2. **Create a feature branch**: `git checkout -b feat/your-topic` (use a name that reflects the change).
+3. **Make incremental commits** with clear messages referencing the work (e.g., `feat: add encoder factory tests`).
+4. **Run formatting and linting** before committing (see Code Standards).
+5. **Push** your branch: `git push origin feat/your-topic`.
+6. **Open a Pull Request** against `main` with a concise summary, testing performed, and any follow-up notes.
 
 ## Code Standards
 
-- Follow PEP 8 guidelines
-- Use type hints and docstrings for public functions
-- Format with Black (line length: 100)
-- Test with pytest before submitting
+- Follow [PEP 8](https://peps.python.org/pep-0008/) styling.
+- Prefer descriptive type hints and docstrings for all public APIs.
+- Use the configured formatter and linters:
 
-```bash
-black iaode/        # Format code
-pytest              # Run tests
-```
+  ```bash
+  black iaode/          # enforce formatting (line length 100)
+  ```
 
-## Contributing Workflow
+- Explain complex logic with brief inline comments or helper functions rather than long paragraphs.
+- Keep imports ordered and grouped (stdlib, third-party, local).
 
-1. **Fork** the repository
-2. **Create** feature branch: `git checkout -b feature/name`
-3. **Develop** your changes with tests
-4. **Format** code: `black iaode/`
-5. **Test**: `pytest`
-6. **Commit**: `git commit -m 'Add feature'`
-7. **Push**: `git push origin feature/name`
-8. **Submit** Pull Request with clear description
+## Testing
 
-## Adding Features
+- Write or update pytest tests for any functional change, bug fix, or new feature.
+- Tests should live under the `tests/` directory or near the components they target.
+- Execute the full suite before pushing:
 
-### New Encoder Type
+  ```bash
+  pytest
+  ```
 
-Add to `iaode/module.py`:
+- If a test is flaky, document the failure in the PR so reviewers can rerun the suite.
 
-```python
-class NewEncoder(nn.Module):
-    def forward(self, x):
-        return q_z, q_m, q_s
-```
+## Documentation & Examples
 
-Update encoder factory and add tests.
-
-### New Loss Function
-
-Implement in `iaode/model.py`, update `iVAE.update()`, document and test.
-
-### Evaluation Metrics
-
-Add to `iaode/DRE.py` or `iaode/LSE.py`, document interpretation, provide examples.
-
-## Documentation
-
-- Update README.md for major features
-- Add examples in `examples/` directory
-- Use clear docstrings with Args, Returns, Examples
+- Update `README.md` or `docs/` when adding new user-facing functionality.
+- Add runnable examples under `examples/` for new workflows or APIs.
+- Keep docstrings consistent: include `Args`, `Returns`, `Raises`, and a short usage snippet when appropriate.
 
 ## Reporting Issues
 
-Include: Python version, iAODE version, OS, minimal example, error trace, expected behavior.
+When opening an issue, include:
 
-## Questions?
+1. Python and iAODE versions (`python -V`, `pip show iaode`).
+2. OS/environment details.
+3. Minimal code snippet to reproduce the problem.
+4. Full error trace or logs.
+5. Expected vs actual behavior.
 
-Open a GitHub Discussion or check existing issues.
+Issues that do not follow these steps may be delayed for clarification.
 
-## License
+## Pull Request Expectations
 
-Contributions are licensed under the MIT License.
+- Link related issues or discussions in the PR description.
+- Describe the problem, your solution, and verification steps (commands/outputs).
+- Add screenshots or sample outputs when relevant.
+- Tag maintainers or reviewers if the change requires special attention.
+- Keep PRs focused—larger changes may be easier to review if split into multiple PRs.
 
-Thank you for contributing!
+## Adding New Components
+
+- **Encoders/Losses**: extend the relevant module (`iaode/module.py`, `iaode/model.py`), update the factory methods, and add tests.
+- **Evaluation**: update `iaode/DRE.py` or `iaode/LSE.py`, document the interpretation of new metrics, and include usage examples.
+- **New APIs**: ensure updates propagate to documentation, `examples/`, and tests.
+
+## Community & Support
+
+- Ask questions in Discussions or search Issues before opening a new thread.
+- Respect others’ time—keep comments focused and constructive.
+- If you are unsure about the scope, open an issue to discuss the direction before coding.
+
+## Licensing
+
+By contributing, you agree all your contributions are covered under the [MIT License](LICENSE).
+
+Thank you for helping iAODE grow!

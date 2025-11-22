@@ -124,9 +124,18 @@ class iaodeModel(nn.Module, scviMixin, dipMixin, betatcMixin, infoMixin):
         self.nn_optimizer = optim.Adam(self.nn.parameters(), lr=lr)
         self.loss = []
 
-    def _compute_loss_only(self, states):
-        """Compute loss without gradient update (for validation)"""
-        states = states.to(self.device)
+    def _compute_loss_only(self, states_log, states_raw):
+        """Compute loss without gradient update (for validation)
+        
+        Parameters
+        ----------
+        states_log : torch.Tensor
+            Log-transformed data for encoder stability
+        states_raw : torch.Tensor
+            Raw count data for NB/ZINB loss calculation
+        """
+        states_log = states_log.to(self.device)
+        states_raw = states_raw.to(self.device)
 
         with torch.no_grad():
             if self.use_ode:
@@ -139,7 +148,7 @@ class iaodeModel(nn.Module, scviMixin, dipMixin, betatcMixin, infoMixin):
                         q_z_ode,
                         pred_x_ode, dropout_logits_ode,
                         pred_xl_ode, dropout_logitsl_ode,
-                    ) = self.nn(states)
+                    ) = self.nn(states_log, states_raw)  # Pass both log and raw
 
                     L = x.sum(-1).view(-1, 1)
                     pred_x = pred_x * L
@@ -166,7 +175,7 @@ class iaodeModel(nn.Module, scviMixin, dipMixin, betatcMixin, infoMixin):
                         q_z_ode,
                         pred_x_ode,
                         pred_xl_ode,
-                    ) = self.nn(states)
+                    ) = self.nn(states_log, states_raw)  # Pass both log and raw
 
                     if self.loss_mode == "nb":
                         L = x.sum(-1).view(-1, 1)
@@ -185,45 +194,47 @@ class iaodeModel(nn.Module, scviMixin, dipMixin, betatcMixin, infoMixin):
                         else:
                             irecon_loss = torch.zeros(1).to(self.device)
                     else:
-                        recon_loss = F.mse_loss(x, pred_x, reduction="none").sum(-1).mean()
-                        recon_loss += F.mse_loss(x, pred_x_ode, reduction="none").sum(-1).mean()
-                        irecon_loss = F.mse_loss(x, pred_xl, reduction="none").sum(-1).mean()
-                        irecon_loss += F.mse_loss(x, pred_xl_ode, reduction="none").sum(-1).mean()
+                        # MSE mode - use log-transformed for consistency
+                        recon_loss = F.mse_loss(states_log, pred_x, reduction="none").sum(-1).mean()
+                        recon_loss += F.mse_loss(states_log, pred_x_ode, reduction="none").sum(-1).mean()
+                        irecon_loss = F.mse_loss(states_log, pred_xl, reduction="none").sum(-1).mean()
+                        irecon_loss += F.mse_loss(states_log, pred_xl_ode, reduction="none").sum(-1).mean()
 
                 qz_div = F.mse_loss(q_z, q_z_ode, reduction="none").sum(-1).mean()
                 
             else:
                 if self.loss_mode == "zinb":
-                    q_z, q_m, q_s, pred_x, dropout_logits, le, pred_xl, dropout_logitsl = self.nn(states)
+                    q_z, q_m, q_s, x, pred_x, dropout_logits, le, pred_xl, dropout_logitsl = self.nn(states_log, states_raw)
 
-                    L = states.sum(-1).view(-1, 1)
+                    L = x.sum(-1).view(-1, 1)  # Use raw counts for library size
                     pred_x = pred_x * L
                     disp = torch.exp(self.nn.decoder.disp)
-                    recon_loss = -self._log_zinb(states, pred_x, disp, dropout_logits).sum(-1).mean()
+                    recon_loss = -self._log_zinb(x, pred_x, disp, dropout_logits).sum(-1).mean()  # Use raw counts
 
                     if self.irecon:
                         pred_xl = pred_xl * L
-                        irecon_loss = -self.irecon * self._log_zinb(x, pred_xl, disp, dropout_logitsl).sum(-1).mean()
+                        irecon_loss = -self.irecon * self._log_zinb(x, pred_xl, disp, dropout_logitsl).sum(-1).mean()  # Use raw counts
                     else:
                         irecon_loss = torch.zeros(1).to(self.device)
 
                 else:
-                    q_z, q_m, q_s, pred_x, le, pred_xl = self.nn(states)
+                    q_z, q_m, q_s, x, pred_x, le, pred_xl = self.nn(states_log, states_raw)
 
                     if self.loss_mode == "nb":
-                        L = states.sum(-1).view(-1, 1)
+                        L = x.sum(-1).view(-1, 1)  # Use raw counts for library size
                         pred_x = pred_x * L
                         disp = torch.exp(self.nn.decoder.disp)
-                        recon_loss = -self._log_nb(states, pred_x, disp).sum(-1).mean()
+                        recon_loss = -self._log_nb(x, pred_x, disp).sum(-1).mean()  # Use raw counts
 
                         if self.irecon:
                             pred_xl = pred_xl * L
-                            irecon_loss = -self.irecon * self._log_nb(states, pred_xl, disp).sum(-1).mean()
+                            irecon_loss = -self.irecon * self._log_nb(x, pred_xl, disp).sum(-1).mean()  # Use raw counts
                         else:
                             irecon_loss = torch.zeros(1).to(self.device)
                     else:
-                        recon_loss = F.mse_loss(states, pred_x, reduction="none").sum(-1).mean()
-                        irecon_loss = F.mse_loss(states, pred_xl, reduction="none").sum(-1).mean()
+                        # MSE mode can use either log or raw, using log for consistency with original
+                        recon_loss = F.mse_loss(states_log, pred_x, reduction="none").sum(-1).mean()
+                        irecon_loss = F.mse_loss(states_log, pred_xl, reduction="none").sum(-1).mean()
 
                 qz_div = torch.zeros(1).to(self.device)
 
@@ -284,10 +295,11 @@ class iaodeModel(nn.Module, scviMixin, dipMixin, betatcMixin, infoMixin):
             le_ode = self.nn.latent_encoder(q_z_ode)
             return (self.vae_reg * le + self.ode_reg * le_ode).cpu().numpy()
         else:
+            # For inference, states is log-transformed, pass as both args
             if self.loss_mode == "zinb":
-                q_z, q_m, q_s, pred_x, dropout_logits, le, pred_xl, dropout_logitsl = self.nn(states)
+                q_z, q_m, q_s, x, pred_x, dropout_logits, le, pred_xl, dropout_logitsl = self.nn(states, states)
             else:
-                q_z, q_m, q_s, pred_x, le, pred_xl = self.nn(states)
+                q_z, q_m, q_s, x, pred_x, le, pred_xl = self.nn(states, states)
             return le.cpu().numpy()
 
     @torch.no_grad()
@@ -343,12 +355,30 @@ class iaodeModel(nn.Module, scviMixin, dipMixin, betatcMixin, infoMixin):
 
         return sparse_trans
 
-    def update(self, states):
-        """Perform one gradient update step"""
-        if not isinstance(states, torch.Tensor):
-            states = torch.tensor(states, dtype=torch.float).to(self.device)
+    def update(self, states_log, states_raw=None):
+        """Perform one gradient update step
+        
+        Parameters
+        ----------
+        states_log : torch.Tensor
+            Log-transformed data for encoder stability
+        states_raw : torch.Tensor, optional
+            Raw count data for NB/ZINB loss calculation.
+            If None, uses states_log (for backward compatibility with MSE mode)
+        """
+        if not isinstance(states_log, torch.Tensor):
+            states_log = torch.tensor(states_log, dtype=torch.float).to(self.device)
         else:
-            states = states.to(self.device)
+            states_log = states_log.to(self.device)
+            
+        # For backward compatibility, use log data if raw not provided
+        if states_raw is None:
+            states_raw = states_log
+        else:
+            if not isinstance(states_raw, torch.Tensor):
+                states_raw = torch.tensor(states_raw, dtype=torch.float).to(self.device)
+            else:
+                states_raw = states_raw.to(self.device)
 
         # Forward pass
         if self.use_ode:
@@ -361,7 +391,7 @@ class iaodeModel(nn.Module, scviMixin, dipMixin, betatcMixin, infoMixin):
                     q_z_ode,
                     pred_x_ode, dropout_logits_ode,
                     pred_xl_ode, dropout_logitsl_ode,
-                ) = self.nn(states)
+                ) = self.nn(states_log, states_raw)  # Pass both log and raw
                 
                 qz_div = F.mse_loss(q_z, q_z_ode, reduction="none").sum(-1).mean()
 
@@ -389,7 +419,7 @@ class iaodeModel(nn.Module, scviMixin, dipMixin, betatcMixin, infoMixin):
                     q_z_ode,
                     pred_x_ode,
                     pred_xl_ode,
-                ) = self.nn(states)
+                ) = self.nn(states_log, states_raw)  # Pass both log and raw
                 
                 qz_div = F.mse_loss(q_z, q_z_ode, reduction="none").sum(-1).mean()
 
@@ -409,43 +439,45 @@ class iaodeModel(nn.Module, scviMixin, dipMixin, betatcMixin, infoMixin):
                     else:
                         irecon_loss = torch.zeros(1).to(self.device)
                 else:
-                    recon_loss = F.mse_loss(x, pred_x, reduction="none").sum(-1).mean()
-                    recon_loss += F.mse_loss(x, pred_x_ode, reduction="none").sum(-1).mean()
-                    irecon_loss = F.mse_loss(x, pred_xl, reduction="none").sum(-1).mean()
-                    irecon_loss += F.mse_loss(x, pred_xl_ode, reduction="none").sum(-1).mean()
+                    # MSE mode - use log-transformed for consistency
+                    recon_loss = F.mse_loss(states_log, pred_x, reduction="none").sum(-1).mean()
+                    recon_loss += F.mse_loss(states_log, pred_x_ode, reduction="none").sum(-1).mean()
+                    irecon_loss = F.mse_loss(states_log, pred_xl, reduction="none").sum(-1).mean()
+                    irecon_loss += F.mse_loss(states_log, pred_xl_ode, reduction="none").sum(-1).mean()
 
         else:
             if self.loss_mode == "zinb":
-                q_z, q_m, q_s, pred_x, dropout_logits, le, pred_xl, dropout_logitsl = self.nn(states)
+                q_z, q_m, q_s, x, pred_x, dropout_logits, le, pred_xl, dropout_logitsl = self.nn(states_log, states_raw)
 
-                L = states.sum(-1).view(-1, 1)
+                L = x.sum(-1).view(-1, 1)  # Use raw counts for library size
                 pred_x = pred_x * L
                 disp = torch.exp(self.nn.decoder.disp)
-                recon_loss = -self._log_zinb(states, pred_x, disp, dropout_logits).sum(-1).mean()
+                recon_loss = -self._log_zinb(x, pred_x, disp, dropout_logits).sum(-1).mean()  # Use raw counts
 
                 if self.irecon:
                     pred_xl = pred_xl * L
-                    irecon_loss = -self.irecon * self._log_zinb(states, pred_xl, disp, dropout_logitsl).sum(-1).mean()
+                    irecon_loss = -self.irecon * self._log_zinb(x, pred_xl, disp, dropout_logitsl).sum(-1).mean()  # Use raw counts
                 else:
                     irecon_loss = torch.zeros(1).to(self.device)
 
             else:
-                q_z, q_m, q_s, pred_x, le, pred_xl = self.nn(states)
+                q_z, q_m, q_s, x, pred_x, le, pred_xl = self.nn(states_log, states_raw)
 
                 if self.loss_mode == "nb":
-                    L = states.sum(-1).view(-1, 1)
+                    L = x.sum(-1).view(-1, 1)  # Use raw counts for library size
                     pred_x = pred_x * L
                     disp = torch.exp(self.nn.decoder.disp)
-                    recon_loss = -self._log_nb(states, pred_x, disp).sum(-1).mean()
+                    recon_loss = -self._log_nb(x, pred_x, disp).sum(-1).mean()  # Use raw counts
 
                     if self.irecon:
                         pred_xl = pred_xl * L
-                        irecon_loss = -self.irecon * self._log_nb(states, pred_xl, disp).sum(-1).mean()
+                        irecon_loss = -self.irecon * self._log_nb(x, pred_xl, disp).sum(-1).mean()  # Use raw counts
                     else:
                         irecon_loss = torch.zeros(1).to(self.device)
                 else:
-                    recon_loss = F.mse_loss(states, pred_x, reduction="none").sum(-1).mean()
-                    irecon_loss = F.mse_loss(states, pred_xl, reduction="none").sum(-1).mean()
+                    # MSE mode - use log-transformed for consistency
+                    recon_loss = F.mse_loss(states_log, pred_x, reduction="none").sum(-1).mean()
+                    irecon_loss = F.mse_loss(states_log, pred_xl, reduction="none").sum(-1).mean()
 
             qz_div = torch.zeros(1).to(self.device)
 
