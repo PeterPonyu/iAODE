@@ -1,15 +1,15 @@
 # iAODE: Interpretable Accessibility ODE VAE for scATAC-seq
 
-[![PyPI version](https://badge.fury.io/py/iaode.svg)](https://badge.fury.io/py/iaode) [![Python 3.9+](https://img.shields.io/badge/python-3.9+-blue.svg)](https://www.python.org/downloads/) [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+[![PyPI version](https://badge.fury.io/py/iaode.svg)](https://pypi.org/project/iaode/) [![Python 3.9+](https://img.shields.io/badge/python-3.9+-blue.svg)](https://www.python.org/downloads/) [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT) [![PyTorch >=1.10](https://img.shields.io/badge/PyTorch-%3E=1.10-EE4C2C?logo=pytorch)](https://pytorch.org/) [![CI](https://github.com/PeterPonyu/iAODE/actions/workflows/publish-to-pypi.yml/badge.svg)](https://github.com/PeterPonyu/iAODE/actions/workflows/publish-to-pypi.yml)
 
-`iAODE` (interpretable Accessibility ODE VAE) is a lightweight deep learning framework purpose-built for single‑cell ATAC‑seq (scATAC‑seq) data. It couples a variational autoencoder (VAE) with a Neural ODE and an interpretable bottleneck to jointly achieve:
+**iAODE** (Interpretable Accessibility ODE VAE) is a lightweight deep learning framework purpose-built for single‑cell ATAC‑seq (scATAC‑seq) data. It integrates a Variational Autoencoder (VAE) with a Neural ODE and an interpretable bottleneck to jointly achieve:
 
-1. **Robust modeling** of sparse count accessibility profiles (NB / ZINB likelihoods)
-2. **Continuous trajectory inference** (Neural ODE pseudotime + velocity)
-3. **Interpretable latent factors** (biologically aligned bottleneck)
-4. **Scalable preprocessing** (TF‑IDF + highly variable peak selection) aligned with Signac / SnapATAC2 best practices
+1. **Robust Modeling:** Handles sparse count accessibility profiles using Negative Binomial (NB) or Zero-Inflated Negative Binomial (ZINB) likelihoods.
+2. **Continuous Trajectory Inference:** Infers dynamics via Neural ODE pseudotime and latent velocity fields.
+3. **Interpretable Latent Factors:** Utilizes a biologically aligned bottleneck to extract meaningful features.
+4. **Scalable Preprocessing:** Implements TF‑IDF normalization and Highly Variable Peak (HVP) selection, aligned with Signac and SnapATAC2 best practices.
 
-The design targets the unique characteristics of scATAC data: extreme sparsity, library size variability, heterogeneous peak accessibility kinetics, and dynamic regulatory trajectories.
+The design specifically targets the unique characteristics of scATAC data, including extreme sparsity, library size variability, heterogeneous peak accessibility kinetics, and dynamic regulatory trajectories.
 
 ---
 
@@ -30,16 +30,16 @@ Encoder (MLP / Residual / Transformer) --> q(z|x)
    Decoder (NB / ZINB / MSE) -> Reconstruction x_hat
 ```
 
-**Key Components**:
+**Key Components:**
 
-- **TF‑IDF Normalization**: Stabilizes cell‑wise peak depth, emphasizes specific accessibility
-- **Highly Variable Peaks (HVP)**: Variance / VMR / deviance‑based selection
-- **NB/ZINB Likelihoods**: Models over‑dispersion & zero inflation
-- **Neural ODE**: Smooth accessibility progression with pseudotime & velocity
-- **Interpretable Bottleneck**: Linear compression preserving biologically decodable axes
-- **Multi‑Objective Regularization**: β‑VAE KL, β‑TC, DIP, InfoVAE MMD, ODE consistency
+- **TF‑IDF Normalization:** Stabilizes cell‑wise sequencing depth and highlights specific accessibility patterns.
+- **Highly Variable Peaks (HVP):** Selects informative peaks using variance, VMR, or deviance‑based methods.
+- **NB/ZINB Likelihoods:** Explicitly models over‑dispersion and zero inflation inherent in single-cell data.
+- **Neural ODE:** Learns smooth accessibility progressions using pseudotime and velocity.
+- **Interpretable Bottleneck:** A linear compression layer that preserves biologically decodable axes.
+- **Multi‑Objective Regularization:** Includes $\beta$-VAE KL, $\beta$-TC, DIP, InfoVAE MMD, and ODE consistency losses.
 
-**Loss Function**:
+**Loss Function:**
 
 ```python
 Loss = recon + i_recon + ODE_consistency + β·KL + dip·DIP + tc·TC + info·MMD
@@ -71,7 +71,7 @@ pip install -e .
 - Scanpy ≥ 1.8.0
 - scvi-tools ≥ 0.16.0
 
-See `requirements.txt` for complete dependencies.
+See `requirements.txt` for the complete list of dependencies.
 
 ---
 
@@ -122,10 +122,10 @@ print(f"Retained {adata.n_vars} highly variable peaks")
 model = iaode.agent(
     adata,
     layer='counts',
-    latent_dim=32,         # Higher for scATAC complexity
-    hidden_dim=512,        # Deeper for regulatory patterns
+    latent_dim=32,         # Higher dimension for scATAC complexity
+    hidden_dim=512,        # Deeper network for regulatory patterns
     encoder_type='mlp',
-    loss_mode='zinb',      # Best for sparse scATAC data
+    loss_mode='zinb',      # Recommended for sparse scATAC data
     use_ode=False
 )
 
@@ -216,13 +216,13 @@ plt.show()
 
 ### scATAC-seq Peak Annotation Pipeline
 
-**Automatic data download** - iAODE automatically downloads and caches datasets:
+**Automatic Data Download** - iAODE automatically downloads and caches datasets:
 
 ```python
 import iaode
 
-# Downloads mouse brain 5k scATAC-seq + GENCODE vM25 GTF
-# Files cached in ~/.iaode/data/ and reused on subsequent runs
+# Download mouse brain 5k scATAC-seq + GENCODE vM25 GTF
+# Files are cached in ~/.iaode/data/ and reused on subsequent runs
 h5_file, gtf_file = iaode.datasets.mouse_brain_5k_atacseq()
 
 # Run complete annotation pipeline
@@ -230,21 +230,21 @@ adata = iaode.annotation_pipeline(
     h5_file=str(h5_file),
     gtf_file=str(gtf_file),
     promoter_upstream=2000,  # TSS upstream region
-    promoter_downstream=500,  # TSS downstream region
-    apply_tfidf=True,        # TF-IDF normalization
+    promoter_downstream=500, # TSS downstream region
+    apply_tfidf=True,        # Apply TF-IDF normalization
     select_hvp=True,         # Select highly variable peaks
     n_top_peaks=20000        # Number of HVPs to retain
 )
 
-# AnnData now contains:
-# - adata.var['peak_type']: promoter/exonic/intronic/intergenic
+# The returned AnnData object contains:
+# - adata.var['peak_type']: Annotation (promoter/exonic/intronic/intergenic)
 # - adata.var['gene_name']: Associated gene names
 # - adata.var['distance_to_tss']: Distance to nearest TSS
 # - adata.var['highly_variable']: HVP selection mask
-# - Preprocessed with TF-IDF and HVP selection
+# - Preprocessed counts (TF-IDF)
 ```
 
-**Available datasets:**
+**Available Datasets:**
 
 ```python
 # Mouse brain 5k scATAC-seq
@@ -262,7 +262,7 @@ iaode.datasets.clear_cache()        # Clear all cached data
 
 ## Examples
 
-Comprehensive examples are available in the `examples/` directory. See **[examples/README.md](examples/README.md)** for detailed documentation.
+Comprehensive examples are provided in the `examples/` directory. See **[examples/README.md](examples/README.md)** for detailed documentation.
 
 ### Example Scripts
 
@@ -293,7 +293,7 @@ python model_evaluation_atac.py
 python trajectory_inference_rna.py
 ```
 
-All examples save outputs to `examples/outputs/<example_name>/` by default. See **[examples/README.md](examples/README.md)** for detailed usage instructions and customization options.
+By default, all examples save outputs to `examples/outputs/<example_name>/`.
 
 ---
 
@@ -306,13 +306,13 @@ All examples save outputs to `examples/outputs/<example_name>/` by default. See 
 ```python
 model = iaode.agent(
     adata,                    # AnnData object
-    layer='counts',           # Data layer to use
+    layer='counts',           # Data layer to use (key in adata.layers or 'X')
     latent_dim=10,            # Latent space dimension
     hidden_dim=128,           # Hidden layer dimension
-    i_dim=None,               # Interpretable bottleneck dim (required if use_ode=True)
+    i_dim=2,                  # Interpretable bottleneck dimension (default: 2)
     use_ode=False,            # Enable Neural ODE
     loss_mode='nb',           # Loss function: 'mse', 'nb', 'zinb'
-    encoder_type='mlp',       # Encoder: 'mlp', 'residual_mlp', 'transformer', 'linear'
+    encoder_type='mlp',       # Encoder: 'mlp', 'mlp_residual', 'transformer', 'linear'
     lr=1e-4,                  # Learning rate
     batch_size=128,           # Batch size
     beta=1.0,                 # KL divergence weight
@@ -562,15 +562,15 @@ If you use iAODE in your research, please cite:
 
 ## Contributing
 
-Contributions are welcome! Please:
+Contributions are welcome! Please follow these steps:
 
-1. Fork the repository
-2. Create a feature branch (`git checkout -b feature/AmazingFeature`)
-3. Commit changes (`git commit -m 'Add AmazingFeature'`)
-4. Push to branch (`git push origin feature/AmazingFeature`)
-5. Open a Pull Request
+1. Fork the repository.
+2. Create a feature branch (`git checkout -b feature/AmazingFeature`).
+3. Commit your changes (`git commit -m 'Add AmazingFeature'`).
+4. Push to the branch (`git push origin feature/AmazingFeature`).
+5. Open a Pull Request.
 
-For major changes, please open an issue first to discuss proposed changes.
+For major changes, please open an issue first to discuss the proposed modifications.
 
 ---
 
@@ -582,20 +582,20 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 ## Acknowledgments
 
-Built upon ideas from:
+Built upon concepts from:
 
-- **scVI-tools**: scVI, PEAKVI, POISSONVI architectures
-- **Signac** and **SnapATAC2**: scATAC-seq best practices
-- **Neural ODE** literature: Continuous latent dynamics
+- **scVI-tools:** scVI, PEAKVI, and POISSONVI architectures.
+- **Signac** and **SnapATAC2:** Best practices for scATAC-seq data processing.
+- **Neural ODE:** Literature regarding continuous latent dynamics.
 
-PyTorch, AnnData, and Scanpy ecosystems provide the foundation.
+Foundational support is provided by the PyTorch, AnnData, and Scanpy ecosystems.
 
 ---
 
 ## Contact
 
-- **GitHub Issues**: [https://github.com/PeterPonyu/iAODE/issues](https://github.com/PeterPonyu/iAODE/issues)
-- **Email**: <fuzeyu99@126.com>
+- **GitHub Issues:** [https://github.com/PeterPonyu/iAODE/issues](https://github.com/PeterPonyu/iAODE/issues)
+- **Email:** <fuzeyu99@126.com>
 
 ---
 
