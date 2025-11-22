@@ -36,8 +36,8 @@ CONFIG = {
     'epochs': 100,
     'patience': 20,
     'val_every': 5,
-    'latent_dim': 10,
-    'hidden_dim': 128,
+    'latent_dim': 32,
+    'hidden_dim': 512,
     'batch_size': 128,
     'test_size': 0.15,
     'val_size': 0.15,
@@ -143,7 +143,7 @@ model = iaode.agent(
     hidden_dim=int(CONFIG['hidden_dim']),
     use_ode=True,
     encoder_type='mlp',
-    loss_mode='mse',  # MSE for TF-IDF-normalized scATAC data
+    loss_mode='nb',  # NB for scATAC-seq counts
     batch_size=int(CONFIG['batch_size'])
 )
 
