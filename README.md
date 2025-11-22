@@ -1,6 +1,6 @@
 # iAODE: Interpretable Accessibility ODE VAE for scATAC-seq
 
-[![PyPI version](https://badge.fury.io/py/iaode.svg)](https://pypi.org/project/iaode/) [![Python 3.9+](https://img.shields.io/badge/python-3.9+-blue.svg)](https://www.python.org/downloads/) [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT) [![PyTorch >=1.10](https://img.shields.io/badge/PyTorch-%3E=1.10-EE4C2C?logo=pytorch)](https://pytorch.org/) [![CI](https://github.com/PeterPonyu/iAODE/actions/workflows/publish-to-pypi.yml/badge.svg)](https://github.com/PeterPonyu/iAODE/actions/workflows/publish-to-pypi.yml)
+[![PyPI version](https://badge.fury.io/py/iaode.svg)](https://pypi.org/project/iaode/) [![Python 3.9+](https://img.shields.io/badge/python-3.9+-blue.svg)](https://www.python.org/downloads/) [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT) [![PyTorch >=1.10](https://img.shields.io/badge/PyTorch-%3E=1.10-EE4C2C?logo=pytorch)](https://pytorch.org/) [![Tests](https://github.com/PeterPonyu/iAODE/actions/workflows/test.yml/badge.svg)](https://github.com/PeterPonyu/iAODE/actions/workflows/test.yml)
 
 **iAODE** (Interpretable Accessibility ODE VAE) is a lightweight deep learning framework purpose-built for single‑cell ATAC‑seq (scATAC‑seq) data. It integrates a Variational Autoencoder (VAE) with a Neural ODE and an interpretable bottleneck to jointly achieve:
 
