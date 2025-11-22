@@ -3,6 +3,7 @@ name: Publish to PyPI
 on:
   release:
     types: [published]
+  workflow_dispatch:  # Allow manual trigger
 
 jobs:
   build-and-publish:
@@ -23,13 +24,45 @@ jobs:
         python -m pip install --upgrade pip
         pip install build twine
         
+    - name: Verify version matches tag
+      if: github.event_name == 'release'
+      run: |
+        TAG_VERSION=${GITHUB_REF#refs/tags/v}
+        PKG_VERSION=$(python -c "import tomli; print(tomli.load(open('pyproject.toml', 'rb'))['project']['version'])")
+        if [ "$TAG_VERSION" != "$PKG_VERSION" ]; then
+          echo "Error: Tag version ($TAG_VERSION) doesn't match package version ($PKG_VERSION)"
+          exit 1
+        fi
+        echo "Version check passed: $PKG_VERSION"
+      
+    - name: Clean previous builds
+      run: |
+        rm -rf dist/ build/ *.egg-info
+        
     - name: Build package
       run: python -m build
       
     - name: Check distribution
       run: twine check dist/*
       
+    - name: List package contents
+      run: |
+        echo "=== Source distribution contents ==="
+        tar -tzf dist/*.tar.gz | head -50
+        echo ""
+        echo "=== Wheel contents ==="
+        unzip -l dist/*.whl | grep iaode/
+        
+    - name: Publish to Test PyPI (for testing)
+      if: github.event_name == 'workflow_dispatch'
+      env:
+        TWINE_USERNAME: __token__
+        TWINE_PASSWORD: ${{ secrets.TEST_PYPI_API_TOKEN }}
+      run: |
+        twine upload --repository testpypi dist/* --skip-existing || echo "Already exists on Test PyPI"
+        
     - name: Publish to PyPI
+      if: github.event_name == 'release'
       env:
         TWINE_USERNAME: __token__
         TWINE_PASSWORD: ${{ secrets.PYPI_API_TOKEN }}
