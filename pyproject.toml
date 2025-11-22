@@ -10,7 +10,7 @@ readme = "README.md"
 authors = [
     {name = "Zeyu Fu", email = "fuzeyu99@126.com"}
 ]
-license = {text = "MIT"}
+license = "MIT"
 classifiers = [
     "Development Status :: 3 - Alpha",
     "Intended Audience :: Science/Research",
