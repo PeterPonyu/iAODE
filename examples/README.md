@@ -99,6 +99,7 @@ Demonstrate trajectory inference on the hematopoietic `paul15` dataset using `ia
    - Filter cells: `min_genes = 200`
    - Store raw counts in `adata.layers['counts']`
    - Normalize and log‑transform for Scanpy visualization (not for the loss):
+
      ```python
      sc.pp.normalize_total(adata, target_sum=1e4)
      sc.pp.log1p(adata)
@@ -112,9 +113,11 @@ Demonstrate trajectory inference on the hematopoietic `paul15` dataset using `ia
      - `hidden_dim=128`
      - `loss_mode='nb'` (negative binomial on counts)
    - Fit with early stopping:
+
      ```python
      model.fit(epochs=50, patience=20, val_every=5)
      ```
+
    - Resource metrics via `model.get_resource_metrics()` (train time, epochs, peak GPU memory).
 
 3. **Extract trajectory representations**
@@ -126,6 +129,7 @@ Demonstrate trajectory inference on the hematopoietic `paul15` dataset using `ia
 
 4. **Velocity field**
    - Estimate velocity in latent and UMAP spaces:
+
      ```python
      E_grid, V_grid = model.get_vfres(
          adata,
@@ -140,6 +144,7 @@ Demonstrate trajectory inference on the hematopoietic `paul15` dataset using `ia
          run_neigh=False,
      )
      ```
+
    - Compute velocity magnitude and store in `adata.obs['velocity_magnitude']`.
 
 5. **Publication‑quality 3×3 figure**
@@ -184,10 +189,13 @@ Apply Neural ODE trajectory inference to **chromatin accessibility** data and vi
 
 1. **Load & annotate scATAC‑seq**
    - Automatic download:
+
      ```python
      h5_file, gtf_file = iaode.datasets.mouse_brain_5k_atacseq()
      ```
+
    - Annotation pipeline:
+
      ```python
      adata = iaode.annotation_pipeline(
          h5_file=str(h5_file),
@@ -199,6 +207,7 @@ Apply Neural ODE trajectory inference to **chromatin accessibility** data and vi
          n_top_peaks=20000,
      )
      ```
+
    - Subset to `adata.var['highly_variable']` if present.
    - Ensure `adata.layers['counts']` holds (TF‑IDF) normalized counts.
    - Compute per‑cell peak accessibility summary (`adata.obs['n_peaks']`).
@@ -273,6 +282,7 @@ Provide a **complete peak annotation pipeline** for scATAC‑seq:
    - Files cached in `~/.iaode/data/`.
 
 2. **Run annotation pipeline**
+
    ```python
    adata = iaode.annotation_pipeline(
        h5_file=str(h5_file),
@@ -284,6 +294,7 @@ Provide a **complete peak annotation pipeline** for scATAC‑seq:
        n_top_peaks=20000,
    )
    ```
+
    - Annotates peaks to genes and genomic features
    - Performs TF‑IDF normalization
    - Selects highly variable peaks (HVPs)
@@ -317,6 +328,7 @@ Provide a **complete peak annotation pipeline** for scATAC‑seq:
 5. **Save annotated data**
 
    - Annotated object written as:
+
      ```python
      adata.write_h5ad("annotated_peaks.h5ad")
      ```
@@ -385,6 +397,7 @@ Benchmark `iAODE` against **scVI‑family models** on the `paul15` trajectory da
 5. **Train and evaluate scVI‑family models**
 
    - Uses a convenience function:
+
      ```python
      scvi_results = iaode.train_scvi_models(
          adata, splitter,
@@ -393,6 +406,7 @@ Benchmark `iAODE` against **scVI‑family models** on the `paul15` trajectory da
          batch_size=CONFIG['batch_size'],
      )
      ```
+
    - For each available model (e.g. `scvi`, `scanvi`, `peakvi`, `poissonvi`):
      - Extract test latent representations
      - Evaluate with the same LSE function
