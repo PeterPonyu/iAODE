@@ -106,17 +106,17 @@ print_section("Training iAODE with Neural ODE")
 print_info("Configuration:")
 print("  use_ode=True   → enable Neural ODE")
 print("  i_dim=2        → ODE bottleneck dim")
-print("  latent_dim=10  → final latent dim")
-print("  loss_mode='mse' for TF-IDF-normalized data")
+print("  latent_dim=32  → final latent dim")
+print("  loss_mode='nb' for scATAC-seq counts")
 print()
 
 model = iaode.agent(
     adata, layer='counts',
-    latent_dim=10, hidden_dim=128,
+    latent_dim=32, hidden_dim=512,
     use_ode=True,
     i_dim=2,
     encoder_type='mlp',
-    loss_mode='mse',  # MSE for TF-IDF scATAC data
+    loss_mode='nb',  # NB for scATAC-seq counts
     batch_size=128
 )
 

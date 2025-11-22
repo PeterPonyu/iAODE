@@ -62,20 +62,20 @@ print()
 
 print_section("Training iAODE")
 print_info("Model configuration:")
-print("  • Latent dim: 10")
-print("  • Hidden dim: 128")
+print("  • Latent dim: 32")
+print("  • Hidden dim: 512")
 print("  • Encoder: MLP")
-print("  • Loss: MSE (for TF-IDF-normalized peaks)")
+print("  • Loss: NB (recommended for scATAC-seq)")
 print("  • Batch size: 128")
 print()
 
 model = iaode.agent(
     adata,
     layer='counts',
-    latent_dim=10,
-    hidden_dim=128,
+    latent_dim=32,
+    hidden_dim=512,
     encoder_type='mlp',
-    loss_mode='mse',  # MSE for TF-IDF-normalized data
+    loss_mode='nb',  # NB for scATAC-seq counts
     batch_size=128
 )
 
