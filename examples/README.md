@@ -546,10 +546,10 @@ Benchmark `iAODE` against **scVI‑family models** on the `paul15` trajectory da
    - Configuration (epochs, latent dimension)
    - Number of cells and test set size
    - Per‑model summary with:
-
-     \[
-     \text{Train time},\ \text{ManifoldDim},\ \text{SpectralDecay},\ \text{TrajDir}
-     \]
+     - Train time
+     - ManifoldDim
+     - SpectralDecay
+     - TrajDir
 
    - List of output files.
 
@@ -667,10 +667,10 @@ Benchmark `iAODE` against **scVI‑family models** on scATAC‑seq data using **
    - Configuration (epochs, latent dimension, HVP count)
    - Number of cells and test set size
    - Per‑model summary with:
-
-     \[
-     \text{Train time},\ \text{ManifoldDim},\ \text{SpectralDecay},\ \text{TrajDir}
-     \]
+     - Train time
+     - ManifoldDim
+     - SpectralDecay
+     - TrajDir
 
    - List of output files.
 
