@@ -87,7 +87,95 @@ These functions give a **consistent, readable CLI log** across all examples.
 
 Below is a summary of each example script based on its actual content.
 
-### 4.1 Trajectory inference with Neural ODE – scRNA‑seq (`paul15`)
+### 4.1 Basic scATAC‑seq usage – dimensionality reduction
+
+**Script:** `basic_usage.py`
+
+**Goal:**  
+Introduce basic iAODE usage with scATAC‑seq data: peak annotation, TF‑IDF normalization, model training, and UMAP visualization of the learned latent space.
+
+**Dataset:**
+
+- 10X Mouse Brain 5k scATAC‑seq
+
+**Key steps:**
+
+1. **Load and annotate scATAC‑seq data**
+   - Automatic download:
+
+     ```python
+     h5_file, gtf_file = iaode.datasets.mouse_brain_5k_atacseq()
+     ```
+
+   - Annotation pipeline:
+
+     ```python
+     adata = iaode.annotation_pipeline(
+         h5_file=str(h5_file),
+         gtf_file=str(gtf_file),
+         promoter_upstream=2000,
+         promoter_downstream=500,
+         apply_tfidf=True,
+         select_hvp=True,
+         n_top_peaks=20000,
+     )
+     ```
+
+2. **Train iAODE**
+   - Configuration:
+     - `latent_dim=32`
+     - `hidden_dim=512`
+     - `encoder_type='mlp'`
+     - `loss_mode='nb'` (negative binomial for scATAC‑seq counts)
+     - `batch_size=128`
+   - Fit with early stopping:
+
+     ```python
+     model.fit(epochs=100, patience=20, val_every=5)
+     ```
+
+   - Record resource metrics (train time, epochs, peak GPU memory).
+
+3. **Extract latent representations**
+   - `latent = model.get_latent()`
+   - Store in `adata.obsm['X_iaode']`
+   - Compute UMAP on latent space.
+
+4. **2×2 visualization figure**
+
+   Panels include:
+
+   - **A.** UMAP colored by latent dimension 1 (viridis colormap)
+   - **B.** UMAP colored by latent dimension 2 (plasma colormap)
+   - **C.** UMAP colored by total peak counts (YlOrRd colormap)
+   - **D.** UMAP colored by per‑cell latent variance (coolwarm colormap)
+
+   Saved as:
+
+   - `latent_space_analysis.png`
+   - `latent_space_analysis.pdf`
+
+5. **Latent distribution analysis**
+
+   Additional 1×3 figure showing histograms of the first three latent dimensions with mean lines.
+
+   Saved as:
+
+   - `latent_distributions.png`
+   - `latent_distributions.pdf`
+
+6. **Summary statistics**
+
+   - Dataset: cells × peaks
+   - Training: time, epochs, peak GPU memory
+   - Latent space: mean ± std, range for each dimension
+   - Peak counts per cell
+
+---
+
+### 4.2 Trajectory inference with Neural ODE – scRNA‑seq
+
+**Script:** `trajectory_inference_rna.py`
 
 **Goal:**  
 Demonstrate trajectory inference on the hematopoietic `paul15` dataset using `iaode` with a **Neural ODE**, including a computed **velocity field** and rich visualization.
@@ -176,7 +264,9 @@ Demonstrate trajectory inference on the hematopoietic `paul15` dataset using `ia
 
 ---
 
-### 4.2 Trajectory inference with Neural ODE – scATAC‑seq
+### 4.3 Trajectory inference with Neural ODE – scATAC‑seq
+
+**Script:** `trajectory_inference_atac.py`
 
 **Goal:**  
 Apply Neural ODE trajectory inference to **chromatin accessibility** data and visualize dynamics in UMAP space and an interpretable ODE bottleneck.
@@ -260,7 +350,9 @@ Apply Neural ODE trajectory inference to **chromatin accessibility** data and vi
 
 ---
 
-### 4.3 scATAC‑seq peak annotation & QC
+### 4.4 scATAC‑seq peak annotation & QC
+
+**Script:** `atacseq_annotation.py`
 
 **Goal:**  
 Provide a **complete peak annotation pipeline** for scATAC‑seq:
@@ -347,7 +439,9 @@ Provide a **complete peak annotation pipeline** for scATAC‑seq:
 
 ---
 
-### 4.4 Model evaluation & benchmarking – LSE (paul15)
+### 4.5 Model evaluation & benchmarking – scRNA‑seq (LSE on paul15)
+
+**Script:** `model_evaluation_rna.py`
 
 **Goal:**  
 Benchmark `iAODE` against **scVI‑family models** on the `paul15` trajectory dataset using **Latent Space Evaluation (LSE)** metrics:
@@ -461,12 +555,134 @@ Benchmark `iAODE` against **scVI‑family models** on the `paul15` trajectory da
 
 ---
 
+### 4.6 Model evaluation & benchmarking – scATAC‑seq
+
+**Script:** `model_evaluation_atac.py`
+
+**Goal:**  
+Benchmark `iAODE` against **scVI‑family models** on scATAC‑seq data using **Latent Space Evaluation (LSE)** metrics, with comprehensive UMAP visualizations across models.
+
+**Dataset:**
+
+- 10X Mouse Brain 5k scATAC‑seq (HVP subset)
+
+**Key steps:**
+
+1. **Load and annotate scATAC‑seq data**
+   - Download and annotate data using `iaode.annotation_pipeline()`
+   - Subset to highly variable peaks (HVPs) for computational efficiency
+   - Configuration: `n_top_peaks=20000`
+
+2. **Train/val/test split**
+
+   Uses `iaode.DataSplitter`:
+
+   - `test_size = 0.15`
+   - `val_size = 0.15`
+   - `random_state = 42`
+
+3. **Train iAODE**
+
+   - Neural ODE model with:
+     - `latent_dim=32`
+     - `hidden_dim=512`
+     - `use_ode=True`
+     - `loss_mode='nb'` (negative binomial for scATAC‑seq)
+   - Early stopping:
+     - `epochs=100`, `patience=20`, `val_every=5`
+   - Store test‑set latent representation and resource metrics.
+
+4. **Compute LSE metrics for iAODE**
+
+   On the **test latent space**:
+
+   ```python
+   ls_metrics = iaode.evaluate_single_cell_latent_space(
+       latent_space=latent_iaode_test,
+       data_type='trajectory',
+       verbose=True,
+   )
+   ```
+
+5. **Train and evaluate scVI‑family models**
+
+   - Uses a convenience function:
+
+     ```python
+     scvi_results = iaode.train_scvi_models(
+         adata, splitter,
+         n_latent=CONFIG['latent_dim'],
+         n_epochs=CONFIG['epochs'],
+         batch_size=CONFIG['batch_size'],
+     )
+     ```
+
+   - For each available model (e.g. `peakvi`, `poissonvi`, `scvi`, `scanvi`):
+     - Extract test latent representations
+     - Evaluate with the same LSE function
+     - Catch and report any failures per model
+
+6. **Comparison table**
+
+   - Build a `pandas.DataFrame` summarizing:
+
+     | Model | Train Time (s) | Epochs | Manifold Dim | Spectral Decay | Trajectory Dir |
+     |-------|----------------|--------|--------------|----------------|----------------|
+
+   - Printed to stdout and saved as:
+     - `model_comparison.csv`
+
+7. **UMAP for visualization**
+
+   - For each model:
+     - Store its latent representation in `adata_viz.obsm['X_latent']`
+     - Run neighbors + UMAP
+     - Store in `results[model_name]['adata_viz']`
+
+8. **Publication‑quality 3×n figure**
+
+   Multi‑panel layout with up to 5 models:
+
+   - **Row 1: Metrics**
+     - **A.** Manifold dimensionality (bar plot)
+     - **B.** Spectral decay rate (bar plot)
+     - **C.** Trajectory directionality (bar plot)
+     - **D.** Training time (bar plot)
+   - **Row 2: UMAP colored by peak counts**
+     - One panel per model (e.g. E–I)
+     - Shared colorbar and axis limits
+   - **Row 3: UMAP colored by latent dimension 1**
+     - One panel per model (e.g. J–N)
+     - Shared colorbar and axis limits
+   
+   Uses a colorblind‑friendly palette for models.
+
+   Saved as:
+
+   - `model_comparison.png`
+   - `model_comparison.pdf`
+
+9. **Summary printout**
+
+   - Configuration (epochs, latent dimension, HVP count)
+   - Number of cells and test set size
+   - Per‑model summary with:
+
+     \[
+     \text{Train time},\ \text{ManifoldDim},\ \text{SpectralDecay},\ \text{TrajDir}
+     \]
+
+   - List of output files.
+
+---
+
 ## 5. Tips for extending these examples
 
 - Start from the example **closest to your data type**:
-  - scRNA‑seq trajectory → Neural ODE (paul15) example
-  - scATAC‑seq workflow → Annotation + Neural ODE scATAC example
-  - Method benchmarking → LSE benchmarking example
+  - scRNA‑seq trajectory → `trajectory_inference_rna.py` (Neural ODE paul15 example)
+  - scATAC‑seq basic usage → `basic_usage.py` (dimensionality reduction)
+  - scATAC‑seq workflow → `atacseq_annotation.py` + `trajectory_inference_atac.py` (Annotation + Neural ODE)
+  - Method benchmarking → `model_evaluation_rna.py` or `model_evaluation_atac.py` (LSE benchmarking)
 - Replace the dataset loading step with your own `AnnData` object.
 - Keep the `layers['counts']` convention for raw counts.
 - Re‑use:
