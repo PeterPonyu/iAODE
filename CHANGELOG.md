@@ -4,6 +4,40 @@ All notable changes to this project will be documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/), and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.2.7] - 2025-11-23
+
+### Added
+
+- **Jupyter Notebook Examples**: Converted all 6 Python example scripts to interactive Jupyter notebooks (`.ipynb` format) in a new `/notebooks` directory
+  - 01_basic_usage.ipynb: scATAC-seq dimensionality reduction
+  - 02_atacseq_annotation.ipynb: Peak annotation pipeline
+  - 03_trajectory_inference_rna.ipynb: RNA trajectory inference with Neural ODE
+  - 04_trajectory_inference_atac.ipynb: ATAC trajectory inference with Neural ODE
+  - 05_model_evaluation_rna.ipynb: RNA model benchmarking
+  - 06_model_evaluation_atac.ipynb: ATAC model benchmarking
+- **Notebooks README**: Comprehensive guide for using the Jupyter notebook examples
+
+### Fixed
+
+- **Data loss handling**: Separate log-transformed and raw count data paths for NB/ZINB loss modes
+- **Notebook outputs**: Cleared execution outputs to remove personal file paths for better portability
+- **Code completeness**: Verified all Jupyter notebooks contain complete code from original Python files
+
+### Changed
+
+- **Example formats**: Both Python scripts and Jupyter notebooks now available for all examples
+- **Notebook outputs**: Clean notebooks ready for execution without personal directory paths
+
+### Notes
+
+- All notebooks verified to contain 100% of code from source Python files
+- Notebooks use relative paths for portability across different systems
+- Execution outputs cleared for cleaner distribution
+
+[0.2.7]: https://github.com/PeterPonyu/iAODE/releases/tag/v0.2.7
+
+---
+
 ## [0.2.4] - 2025-11-22
 
 ### Added
