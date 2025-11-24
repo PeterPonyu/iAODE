@@ -1,0 +1,1566 @@
+{
+  "linear": [
+    {
+      "simulation_id": "linear_cont0.850_n500_rep0",
+      "continuity": 0.85,
+      "n_cells": 500,
+      "replicate": 0
+    },
+    {
+      "simulation_id": "linear_cont0.857_n500_rep0",
+      "continuity": 0.8573684210526316,
+      "n_cells": 500,
+      "replicate": 0
+    },
+    {
+      "simulation_id": "linear_cont0.865_n500_rep0",
+      "continuity": 0.8647368421052631,
+      "n_cells": 500,
+      "replicate": 0
+    },
+    {
+      "simulation_id": "linear_cont0.872_n500_rep0",
+      "continuity": 0.8721052631578947,
+      "n_cells": 500,
+      "replicate": 0
+    },
+    {
+      "simulation_id": "linear_cont0.879_n500_rep0",
+      "continuity": 0.8794736842105263,
+      "n_cells": 500,
+      "replicate": 0
+    },
+    {
+      "simulation_id": "linear_cont0.887_n500_rep0",
+      "continuity": 0.8868421052631579,
+      "n_cells": 500,
+      "replicate": 0
+    },
+    {
+      "simulation_id": "linear_cont0.894_n500_rep0",
+      "continuity": 0.8942105263157895,
+      "n_cells": 500,
+      "replicate": 0
+    },
+    {
+      "simulation_id": "linear_cont0.902_n500_rep0",
+      "continuity": 0.901578947368421,
+      "n_cells": 500,
+      "replicate": 0
+    },
+    {
+      "simulation_id": "linear_cont0.909_n500_rep0",
+      "continuity": 0.9089473684210526,
+      "n_cells": 500,
+      "replicate": 0
+    },
+    {
+      "simulation_id": "linear_cont0.916_n500_rep0",
+      "continuity": 0.9163157894736842,
+      "n_cells": 500,
+      "replicate": 0
+    },
+    {
+      "simulation_id": "linear_cont0.924_n500_rep0",
+      "continuity": 0.9236842105263158,
+      "n_cells": 500,
+      "replicate": 0
+    },
+    {
+      "simulation_id": "linear_cont0.931_n500_rep0",
+      "continuity": 0.9310526315789474,
+      "n_cells": 500,
+      "replicate": 0
+    },
+    {
+      "simulation_id": "linear_cont0.938_n500_rep0",
+      "continuity": 0.9384210526315789,
+      "n_cells": 500,
+      "replicate": 0
+    },
+    {
+      "simulation_id": "linear_cont0.946_n500_rep0",
+      "continuity": 0.9457894736842105,
+      "n_cells": 500,
+      "replicate": 0
+    },
+    {
+      "simulation_id": "linear_cont0.953_n500_rep0",
+      "continuity": 0.9531578947368421,
+      "n_cells": 500,
+      "replicate": 0
+    },
+    {
+      "simulation_id": "linear_cont0.961_n500_rep0",
+      "continuity": 0.9605263157894737,
+      "n_cells": 500,
+      "replicate": 0
+    },
+    {
+      "simulation_id": "linear_cont0.968_n500_rep0",
+      "continuity": 0.9678947368421053,
+      "n_cells": 500,
+      "replicate": 0
+    },
+    {
+      "simulation_id": "linear_cont0.975_n500_rep0",
+      "continuity": 0.9752631578947368,
+      "n_cells": 500,
+      "replicate": 0
+    },
+    {
+      "simulation_id": "linear_cont0.983_n500_rep0",
+      "continuity": 0.9826315789473684,
+      "n_cells": 500,
+      "replicate": 0
+    },
+    {
+      "simulation_id": "linear_cont0.990_n500_rep0",
+      "continuity": 0.99,
+      "n_cells": 500,
+      "replicate": 0
+    }
+  ],
+  "discrete": [
+    {
+      "simulation_id": "discrete_cont0.000_n500_rep0_targetlinear_k8",
+      "continuity": 0.0,
+      "n_cells": 500,
+      "replicate": 0,
+      "n_clusters": 8,
+      "target_trajectory": "linear"
+    },
+    {
+      "simulation_id": "discrete_cont0.000_n500_rep0_targetbranching_k8",
+      "continuity": 0.0,
+      "n_cells": 500,
+      "replicate": 0,
+      "n_clusters": 8,
+      "target_trajectory": "branching"
+    },
+    {
+      "simulation_id": "discrete_cont0.000_n500_rep0_targetcyclic_k8",
+      "continuity": 0.0,
+      "n_cells": 500,
+      "replicate": 0,
+      "n_clusters": 8,
+      "target_trajectory": "cyclic"
+    },
+    {
+      "simulation_id": "discrete_cont0.000_n500_rep0_targetlinear_k10",
+      "continuity": 0.0,
+      "n_cells": 500,
+      "replicate": 0,
+      "n_clusters": 10,
+      "target_trajectory": "linear"
+    },
+    {
+      "simulation_id": "discrete_cont0.000_n500_rep0_targetbranching_k10",
+      "continuity": 0.0,
+      "n_cells": 500,
+      "replicate": 0,
+      "n_clusters": 10,
+      "target_trajectory": "branching"
+    },
+    {
+      "simulation_id": "discrete_cont0.000_n500_rep0_targetcyclic_k10",
+      "continuity": 0.0,
+      "n_cells": 500,
+      "replicate": 0,
+      "n_clusters": 10,
+      "target_trajectory": "cyclic"
+    },
+    {
+      "simulation_id": "discrete_cont0.000_n500_rep0_targetlinear_k12",
+      "continuity": 0.0,
+      "n_cells": 500,
+      "replicate": 0,
+      "n_clusters": 12,
+      "target_trajectory": "linear"
+    },
+    {
+      "simulation_id": "discrete_cont0.000_n500_rep0_targetbranching_k12",
+      "continuity": 0.0,
+      "n_cells": 500,
+      "replicate": 0,
+      "n_clusters": 12,
+      "target_trajectory": "branching"
+    },
+    {
+      "simulation_id": "discrete_cont0.000_n500_rep0_targetcyclic_k12",
+      "continuity": 0.0,
+      "n_cells": 500,
+      "replicate": 0,
+      "n_clusters": 12,
+      "target_trajectory": "cyclic"
+    },
+    {
+      "simulation_id": "discrete_cont0.053_n500_rep0_targetlinear_k8",
+      "continuity": 0.05263157894736842,
+      "n_cells": 500,
+      "replicate": 0,
+      "n_clusters": 8,
+      "target_trajectory": "linear"
+    },
+    {
+      "simulation_id": "discrete_cont0.053_n500_rep0_targetbranching_k8",
+      "continuity": 0.05263157894736842,
+      "n_cells": 500,
+      "replicate": 0,
+      "n_clusters": 8,
+      "target_trajectory": "branching"
+    },
+    {
+      "simulation_id": "discrete_cont0.053_n500_rep0_targetcyclic_k8",
+      "continuity": 0.05263157894736842,
+      "n_cells": 500,
+      "replicate": 0,
+      "n_clusters": 8,
+      "target_trajectory": "cyclic"
+    },
+    {
+      "simulation_id": "discrete_cont0.053_n500_rep0_targetlinear_k10",
+      "continuity": 0.05263157894736842,
+      "n_cells": 500,
+      "replicate": 0,
+      "n_clusters": 10,
+      "target_trajectory": "linear"
+    },
+    {
+      "simulation_id": "discrete_cont0.053_n500_rep0_targetbranching_k10",
+      "continuity": 0.05263157894736842,
+      "n_cells": 500,
+      "replicate": 0,
+      "n_clusters": 10,
+      "target_trajectory": "branching"
+    },
+    {
+      "simulation_id": "discrete_cont0.053_n500_rep0_targetcyclic_k10",
+      "continuity": 0.05263157894736842,
+      "n_cells": 500,
+      "replicate": 0,
+      "n_clusters": 10,
+      "target_trajectory": "cyclic"
+    },
+    {
+      "simulation_id": "discrete_cont0.053_n500_rep0_targetlinear_k12",
+      "continuity": 0.05263157894736842,
+      "n_cells": 500,
+      "replicate": 0,
+      "n_clusters": 12,
+      "target_trajectory": "linear"
+    },
+    {
+      "simulation_id": "discrete_cont0.053_n500_rep0_targetbranching_k12",
+      "continuity": 0.05263157894736842,
+      "n_cells": 500,
+      "replicate": 0,
+      "n_clusters": 12,
+      "target_trajectory": "branching"
+    },
+    {
+      "simulation_id": "discrete_cont0.053_n500_rep0_targetcyclic_k12",
+      "continuity": 0.05263157894736842,
+      "n_cells": 500,
+      "replicate": 0,
+      "n_clusters": 12,
+      "target_trajectory": "cyclic"
+    },
+    {
+      "simulation_id": "discrete_cont0.105_n500_rep0_targetlinear_k8",
+      "continuity": 0.10526315789473684,
+      "n_cells": 500,
+      "replicate": 0,
+      "n_clusters": 8,
+      "target_trajectory": "linear"
+    },
+    {
+      "simulation_id": "discrete_cont0.105_n500_rep0_targetbranching_k8",
+      "continuity": 0.10526315789473684,
+      "n_cells": 500,
+      "replicate": 0,
+      "n_clusters": 8,
+      "target_trajectory": "branching"
+    },
+    {
+      "simulation_id": "discrete_cont0.105_n500_rep0_targetcyclic_k8",
+      "continuity": 0.10526315789473684,
+      "n_cells": 500,
+      "replicate": 0,
+      "n_clusters": 8,
+      "target_trajectory": "cyclic"
+    },
+    {
+      "simulation_id": "discrete_cont0.105_n500_rep0_targetlinear_k10",
+      "continuity": 0.10526315789473684,
+      "n_cells": 500,
+      "replicate": 0,
+      "n_clusters": 10,
+      "target_trajectory": "linear"
+    },
+    {
+      "simulation_id": "discrete_cont0.105_n500_rep0_targetbranching_k10",
+      "continuity": 0.10526315789473684,
+      "n_cells": 500,
+      "replicate": 0,
+      "n_clusters": 10,
+      "target_trajectory": "branching"
+    },
+    {
+      "simulation_id": "discrete_cont0.105_n500_rep0_targetcyclic_k10",
+      "continuity": 0.10526315789473684,
+      "n_cells": 500,
+      "replicate": 0,
+      "n_clusters": 10,
+      "target_trajectory": "cyclic"
+    },
+    {
+      "simulation_id": "discrete_cont0.105_n500_rep0_targetlinear_k12",
+      "continuity": 0.10526315789473684,
+      "n_cells": 500,
+      "replicate": 0,
+      "n_clusters": 12,
+      "target_trajectory": "linear"
+    },
+    {
+      "simulation_id": "discrete_cont0.105_n500_rep0_targetbranching_k12",
+      "continuity": 0.10526315789473684,
+      "n_cells": 500,
+      "replicate": 0,
+      "n_clusters": 12,
+      "target_trajectory": "branching"
+    },
+    {
+      "simulation_id": "discrete_cont0.105_n500_rep0_targetcyclic_k12",
+      "continuity": 0.10526315789473684,
+      "n_cells": 500,
+      "replicate": 0,
+      "n_clusters": 12,
+      "target_trajectory": "cyclic"
+    },
+    {
+      "simulation_id": "discrete_cont0.158_n500_rep0_targetlinear_k8",
+      "continuity": 0.15789473684210525,
+      "n_cells": 500,
+      "replicate": 0,
+      "n_clusters": 8,
+      "target_trajectory": "linear"
+    },
+    {
+      "simulation_id": "discrete_cont0.158_n500_rep0_targetbranching_k8",
+      "continuity": 0.15789473684210525,
+      "n_cells": 500,
+      "replicate": 0,
+      "n_clusters": 8,
+      "target_trajectory": "branching"
+    },
+    {
+      "simulation_id": "discrete_cont0.158_n500_rep0_targetcyclic_k8",
+      "continuity": 0.15789473684210525,
+      "n_cells": 500,
+      "replicate": 0,
+      "n_clusters": 8,
+      "target_trajectory": "cyclic"
+    },
+    {
+      "simulation_id": "discrete_cont0.158_n500_rep0_targetlinear_k10",
+      "continuity": 0.15789473684210525,
+      "n_cells": 500,
+      "replicate": 0,
+      "n_clusters": 10,
+      "target_trajectory": "linear"
+    },
+    {
+      "simulation_id": "discrete_cont0.158_n500_rep0_targetbranching_k10",
+      "continuity": 0.15789473684210525,
+      "n_cells": 500,
+      "replicate": 0,
+      "n_clusters": 10,
+      "target_trajectory": "branching"
+    },
+    {
+      "simulation_id": "discrete_cont0.158_n500_rep0_targetcyclic_k10",
+      "continuity": 0.15789473684210525,
+      "n_cells": 500,
+      "replicate": 0,
+      "n_clusters": 10,
+      "target_trajectory": "cyclic"
+    },
+    {
+      "simulation_id": "discrete_cont0.158_n500_rep0_targetlinear_k12",
+      "continuity": 0.15789473684210525,
+      "n_cells": 500,
+      "replicate": 0,
+      "n_clusters": 12,
+      "target_trajectory": "linear"
+    },
+    {
+      "simulation_id": "discrete_cont0.158_n500_rep0_targetbranching_k12",
+      "continuity": 0.15789473684210525,
+      "n_cells": 500,
+      "replicate": 0,
+      "n_clusters": 12,
+      "target_trajectory": "branching"
+    },
+    {
+      "simulation_id": "discrete_cont0.158_n500_rep0_targetcyclic_k12",
+      "continuity": 0.15789473684210525,
+      "n_cells": 500,
+      "replicate": 0,
+      "n_clusters": 12,
+      "target_trajectory": "cyclic"
+    },
+    {
+      "simulation_id": "discrete_cont0.211_n500_rep0_targetlinear_k8",
+      "continuity": 0.21052631578947367,
+      "n_cells": 500,
+      "replicate": 0,
+      "n_clusters": 8,
+      "target_trajectory": "linear"
+    },
+    {
+      "simulation_id": "discrete_cont0.211_n500_rep0_targetbranching_k8",
+      "continuity": 0.21052631578947367,
+      "n_cells": 500,
+      "replicate": 0,
+      "n_clusters": 8,
+      "target_trajectory": "branching"
+    },
+    {
+      "simulation_id": "discrete_cont0.211_n500_rep0_targetcyclic_k8",
+      "continuity": 0.21052631578947367,
+      "n_cells": 500,
+      "replicate": 0,
+      "n_clusters": 8,
+      "target_trajectory": "cyclic"
+    },
+    {
+      "simulation_id": "discrete_cont0.211_n500_rep0_targetlinear_k10",
+      "continuity": 0.21052631578947367,
+      "n_cells": 500,
+      "replicate": 0,
+      "n_clusters": 10,
+      "target_trajectory": "linear"
+    },
+    {
+      "simulation_id": "discrete_cont0.211_n500_rep0_targetbranching_k10",
+      "continuity": 0.21052631578947367,
+      "n_cells": 500,
+      "replicate": 0,
+      "n_clusters": 10,
+      "target_trajectory": "branching"
+    },
+    {
+      "simulation_id": "discrete_cont0.211_n500_rep0_targetcyclic_k10",
+      "continuity": 0.21052631578947367,
+      "n_cells": 500,
+      "replicate": 0,
+      "n_clusters": 10,
+      "target_trajectory": "cyclic"
+    },
+    {
+      "simulation_id": "discrete_cont0.211_n500_rep0_targetlinear_k12",
+      "continuity": 0.21052631578947367,
+      "n_cells": 500,
+      "replicate": 0,
+      "n_clusters": 12,
+      "target_trajectory": "linear"
+    },
+    {
+      "simulation_id": "discrete_cont0.211_n500_rep0_targetbranching_k12",
+      "continuity": 0.21052631578947367,
+      "n_cells": 500,
+      "replicate": 0,
+      "n_clusters": 12,
+      "target_trajectory": "branching"
+    },
+    {
+      "simulation_id": "discrete_cont0.211_n500_rep0_targetcyclic_k12",
+      "continuity": 0.21052631578947367,
+      "n_cells": 500,
+      "replicate": 0,
+      "n_clusters": 12,
+      "target_trajectory": "cyclic"
+    },
+    {
+      "simulation_id": "discrete_cont0.263_n500_rep0_targetlinear_k8",
+      "continuity": 0.2631578947368421,
+      "n_cells": 500,
+      "replicate": 0,
+      "n_clusters": 8,
+      "target_trajectory": "linear"
+    },
+    {
+      "simulation_id": "discrete_cont0.263_n500_rep0_targetbranching_k8",
+      "continuity": 0.2631578947368421,
+      "n_cells": 500,
+      "replicate": 0,
+      "n_clusters": 8,
+      "target_trajectory": "branching"
+    },
+    {
+      "simulation_id": "discrete_cont0.263_n500_rep0_targetcyclic_k8",
+      "continuity": 0.2631578947368421,
+      "n_cells": 500,
+      "replicate": 0,
+      "n_clusters": 8,
+      "target_trajectory": "cyclic"
+    },
+    {
+      "simulation_id": "discrete_cont0.263_n500_rep0_targetlinear_k10",
+      "continuity": 0.2631578947368421,
+      "n_cells": 500,
+      "replicate": 0,
+      "n_clusters": 10,
+      "target_trajectory": "linear"
+    },
+    {
+      "simulation_id": "discrete_cont0.263_n500_rep0_targetbranching_k10",
+      "continuity": 0.2631578947368421,
+      "n_cells": 500,
+      "replicate": 0,
+      "n_clusters": 10,
+      "target_trajectory": "branching"
+    },
+    {
+      "simulation_id": "discrete_cont0.263_n500_rep0_targetcyclic_k10",
+      "continuity": 0.2631578947368421,
+      "n_cells": 500,
+      "replicate": 0,
+      "n_clusters": 10,
+      "target_trajectory": "cyclic"
+    },
+    {
+      "simulation_id": "discrete_cont0.263_n500_rep0_targetlinear_k12",
+      "continuity": 0.2631578947368421,
+      "n_cells": 500,
+      "replicate": 0,
+      "n_clusters": 12,
+      "target_trajectory": "linear"
+    },
+    {
+      "simulation_id": "discrete_cont0.263_n500_rep0_targetbranching_k12",
+      "continuity": 0.2631578947368421,
+      "n_cells": 500,
+      "replicate": 0,
+      "n_clusters": 12,
+      "target_trajectory": "branching"
+    },
+    {
+      "simulation_id": "discrete_cont0.263_n500_rep0_targetcyclic_k12",
+      "continuity": 0.2631578947368421,
+      "n_cells": 500,
+      "replicate": 0,
+      "n_clusters": 12,
+      "target_trajectory": "cyclic"
+    },
+    {
+      "simulation_id": "discrete_cont0.316_n500_rep0_targetlinear_k8",
+      "continuity": 0.3157894736842105,
+      "n_cells": 500,
+      "replicate": 0,
+      "n_clusters": 8,
+      "target_trajectory": "linear"
+    },
+    {
+      "simulation_id": "discrete_cont0.316_n500_rep0_targetbranching_k8",
+      "continuity": 0.3157894736842105,
+      "n_cells": 500,
+      "replicate": 0,
+      "n_clusters": 8,
+      "target_trajectory": "branching"
+    },
+    {
+      "simulation_id": "discrete_cont0.316_n500_rep0_targetcyclic_k8",
+      "continuity": 0.3157894736842105,
+      "n_cells": 500,
+      "replicate": 0,
+      "n_clusters": 8,
+      "target_trajectory": "cyclic"
+    },
+    {
+      "simulation_id": "discrete_cont0.316_n500_rep0_targetlinear_k10",
+      "continuity": 0.3157894736842105,
+      "n_cells": 500,
+      "replicate": 0,
+      "n_clusters": 10,
+      "target_trajectory": "linear"
+    },
+    {
+      "simulation_id": "discrete_cont0.316_n500_rep0_targetbranching_k10",
+      "continuity": 0.3157894736842105,
+      "n_cells": 500,
+      "replicate": 0,
+      "n_clusters": 10,
+      "target_trajectory": "branching"
+    },
+    {
+      "simulation_id": "discrete_cont0.316_n500_rep0_targetcyclic_k10",
+      "continuity": 0.3157894736842105,
+      "n_cells": 500,
+      "replicate": 0,
+      "n_clusters": 10,
+      "target_trajectory": "cyclic"
+    },
+    {
+      "simulation_id": "discrete_cont0.316_n500_rep0_targetlinear_k12",
+      "continuity": 0.3157894736842105,
+      "n_cells": 500,
+      "replicate": 0,
+      "n_clusters": 12,
+      "target_trajectory": "linear"
+    },
+    {
+      "simulation_id": "discrete_cont0.316_n500_rep0_targetbranching_k12",
+      "continuity": 0.3157894736842105,
+      "n_cells": 500,
+      "replicate": 0,
+      "n_clusters": 12,
+      "target_trajectory": "branching"
+    },
+    {
+      "simulation_id": "discrete_cont0.316_n500_rep0_targetcyclic_k12",
+      "continuity": 0.3157894736842105,
+      "n_cells": 500,
+      "replicate": 0,
+      "n_clusters": 12,
+      "target_trajectory": "cyclic"
+    },
+    {
+      "simulation_id": "discrete_cont0.368_n500_rep0_targetlinear_k8",
+      "continuity": 0.3684210526315789,
+      "n_cells": 500,
+      "replicate": 0,
+      "n_clusters": 8,
+      "target_trajectory": "linear"
+    },
+    {
+      "simulation_id": "discrete_cont0.368_n500_rep0_targetbranching_k8",
+      "continuity": 0.3684210526315789,
+      "n_cells": 500,
+      "replicate": 0,
+      "n_clusters": 8,
+      "target_trajectory": "branching"
+    },
+    {
+      "simulation_id": "discrete_cont0.368_n500_rep0_targetcyclic_k8",
+      "continuity": 0.3684210526315789,
+      "n_cells": 500,
+      "replicate": 0,
+      "n_clusters": 8,
+      "target_trajectory": "cyclic"
+    },
+    {
+      "simulation_id": "discrete_cont0.368_n500_rep0_targetlinear_k10",
+      "continuity": 0.3684210526315789,
+      "n_cells": 500,
+      "replicate": 0,
+      "n_clusters": 10,
+      "target_trajectory": "linear"
+    },
+    {
+      "simulation_id": "discrete_cont0.368_n500_rep0_targetbranching_k10",
+      "continuity": 0.3684210526315789,
+      "n_cells": 500,
+      "replicate": 0,
+      "n_clusters": 10,
+      "target_trajectory": "branching"
+    },
+    {
+      "simulation_id": "discrete_cont0.368_n500_rep0_targetcyclic_k10",
+      "continuity": 0.3684210526315789,
+      "n_cells": 500,
+      "replicate": 0,
+      "n_clusters": 10,
+      "target_trajectory": "cyclic"
+    },
+    {
+      "simulation_id": "discrete_cont0.368_n500_rep0_targetlinear_k12",
+      "continuity": 0.3684210526315789,
+      "n_cells": 500,
+      "replicate": 0,
+      "n_clusters": 12,
+      "target_trajectory": "linear"
+    },
+    {
+      "simulation_id": "discrete_cont0.368_n500_rep0_targetbranching_k12",
+      "continuity": 0.3684210526315789,
+      "n_cells": 500,
+      "replicate": 0,
+      "n_clusters": 12,
+      "target_trajectory": "branching"
+    },
+    {
+      "simulation_id": "discrete_cont0.368_n500_rep0_targetcyclic_k12",
+      "continuity": 0.3684210526315789,
+      "n_cells": 500,
+      "replicate": 0,
+      "n_clusters": 12,
+      "target_trajectory": "cyclic"
+    },
+    {
+      "simulation_id": "discrete_cont0.421_n500_rep0_targetlinear_k8",
+      "continuity": 0.42105263157894735,
+      "n_cells": 500,
+      "replicate": 0,
+      "n_clusters": 8,
+      "target_trajectory": "linear"
+    },
+    {
+      "simulation_id": "discrete_cont0.421_n500_rep0_targetbranching_k8",
+      "continuity": 0.42105263157894735,
+      "n_cells": 500,
+      "replicate": 0,
+      "n_clusters": 8,
+      "target_trajectory": "branching"
+    },
+    {
+      "simulation_id": "discrete_cont0.421_n500_rep0_targetcyclic_k8",
+      "continuity": 0.42105263157894735,
+      "n_cells": 500,
+      "replicate": 0,
+      "n_clusters": 8,
+      "target_trajectory": "cyclic"
+    },
+    {
+      "simulation_id": "discrete_cont0.421_n500_rep0_targetlinear_k10",
+      "continuity": 0.42105263157894735,
+      "n_cells": 500,
+      "replicate": 0,
+      "n_clusters": 10,
+      "target_trajectory": "linear"
+    },
+    {
+      "simulation_id": "discrete_cont0.421_n500_rep0_targetbranching_k10",
+      "continuity": 0.42105263157894735,
+      "n_cells": 500,
+      "replicate": 0,
+      "n_clusters": 10,
+      "target_trajectory": "branching"
+    },
+    {
+      "simulation_id": "discrete_cont0.421_n500_rep0_targetcyclic_k10",
+      "continuity": 0.42105263157894735,
+      "n_cells": 500,
+      "replicate": 0,
+      "n_clusters": 10,
+      "target_trajectory": "cyclic"
+    },
+    {
+      "simulation_id": "discrete_cont0.421_n500_rep0_targetlinear_k12",
+      "continuity": 0.42105263157894735,
+      "n_cells": 500,
+      "replicate": 0,
+      "n_clusters": 12,
+      "target_trajectory": "linear"
+    },
+    {
+      "simulation_id": "discrete_cont0.421_n500_rep0_targetbranching_k12",
+      "continuity": 0.42105263157894735,
+      "n_cells": 500,
+      "replicate": 0,
+      "n_clusters": 12,
+      "target_trajectory": "branching"
+    },
+    {
+      "simulation_id": "discrete_cont0.421_n500_rep0_targetcyclic_k12",
+      "continuity": 0.42105263157894735,
+      "n_cells": 500,
+      "replicate": 0,
+      "n_clusters": 12,
+      "target_trajectory": "cyclic"
+    },
+    {
+      "simulation_id": "discrete_cont0.474_n500_rep0_targetlinear_k8",
+      "continuity": 0.47368421052631576,
+      "n_cells": 500,
+      "replicate": 0,
+      "n_clusters": 8,
+      "target_trajectory": "linear"
+    },
+    {
+      "simulation_id": "discrete_cont0.474_n500_rep0_targetbranching_k8",
+      "continuity": 0.47368421052631576,
+      "n_cells": 500,
+      "replicate": 0,
+      "n_clusters": 8,
+      "target_trajectory": "branching"
+    },
+    {
+      "simulation_id": "discrete_cont0.474_n500_rep0_targetcyclic_k8",
+      "continuity": 0.47368421052631576,
+      "n_cells": 500,
+      "replicate": 0,
+      "n_clusters": 8,
+      "target_trajectory": "cyclic"
+    },
+    {
+      "simulation_id": "discrete_cont0.474_n500_rep0_targetlinear_k10",
+      "continuity": 0.47368421052631576,
+      "n_cells": 500,
+      "replicate": 0,
+      "n_clusters": 10,
+      "target_trajectory": "linear"
+    },
+    {
+      "simulation_id": "discrete_cont0.474_n500_rep0_targetbranching_k10",
+      "continuity": 0.47368421052631576,
+      "n_cells": 500,
+      "replicate": 0,
+      "n_clusters": 10,
+      "target_trajectory": "branching"
+    },
+    {
+      "simulation_id": "discrete_cont0.474_n500_rep0_targetcyclic_k10",
+      "continuity": 0.47368421052631576,
+      "n_cells": 500,
+      "replicate": 0,
+      "n_clusters": 10,
+      "target_trajectory": "cyclic"
+    },
+    {
+      "simulation_id": "discrete_cont0.474_n500_rep0_targetlinear_k12",
+      "continuity": 0.47368421052631576,
+      "n_cells": 500,
+      "replicate": 0,
+      "n_clusters": 12,
+      "target_trajectory": "linear"
+    },
+    {
+      "simulation_id": "discrete_cont0.474_n500_rep0_targetbranching_k12",
+      "continuity": 0.47368421052631576,
+      "n_cells": 500,
+      "replicate": 0,
+      "n_clusters": 12,
+      "target_trajectory": "branching"
+    },
+    {
+      "simulation_id": "discrete_cont0.474_n500_rep0_targetcyclic_k12",
+      "continuity": 0.47368421052631576,
+      "n_cells": 500,
+      "replicate": 0,
+      "n_clusters": 12,
+      "target_trajectory": "cyclic"
+    },
+    {
+      "simulation_id": "discrete_cont0.526_n500_rep0_targetlinear_k8",
+      "continuity": 0.5263157894736842,
+      "n_cells": 500,
+      "replicate": 0,
+      "n_clusters": 8,
+      "target_trajectory": "linear"
+    },
+    {
+      "simulation_id": "discrete_cont0.526_n500_rep0_targetbranching_k8",
+      "continuity": 0.5263157894736842,
+      "n_cells": 500,
+      "replicate": 0,
+      "n_clusters": 8,
+      "target_trajectory": "branching"
+    },
+    {
+      "simulation_id": "discrete_cont0.526_n500_rep0_targetcyclic_k8",
+      "continuity": 0.5263157894736842,
+      "n_cells": 500,
+      "replicate": 0,
+      "n_clusters": 8,
+      "target_trajectory": "cyclic"
+    },
+    {
+      "simulation_id": "discrete_cont0.526_n500_rep0_targetlinear_k10",
+      "continuity": 0.5263157894736842,
+      "n_cells": 500,
+      "replicate": 0,
+      "n_clusters": 10,
+      "target_trajectory": "linear"
+    },
+    {
+      "simulation_id": "discrete_cont0.526_n500_rep0_targetbranching_k10",
+      "continuity": 0.5263157894736842,
+      "n_cells": 500,
+      "replicate": 0,
+      "n_clusters": 10,
+      "target_trajectory": "branching"
+    },
+    {
+      "simulation_id": "discrete_cont0.526_n500_rep0_targetcyclic_k10",
+      "continuity": 0.5263157894736842,
+      "n_cells": 500,
+      "replicate": 0,
+      "n_clusters": 10,
+      "target_trajectory": "cyclic"
+    },
+    {
+      "simulation_id": "discrete_cont0.526_n500_rep0_targetlinear_k12",
+      "continuity": 0.5263157894736842,
+      "n_cells": 500,
+      "replicate": 0,
+      "n_clusters": 12,
+      "target_trajectory": "linear"
+    },
+    {
+      "simulation_id": "discrete_cont0.526_n500_rep0_targetbranching_k12",
+      "continuity": 0.5263157894736842,
+      "n_cells": 500,
+      "replicate": 0,
+      "n_clusters": 12,
+      "target_trajectory": "branching"
+    },
+    {
+      "simulation_id": "discrete_cont0.526_n500_rep0_targetcyclic_k12",
+      "continuity": 0.5263157894736842,
+      "n_cells": 500,
+      "replicate": 0,
+      "n_clusters": 12,
+      "target_trajectory": "cyclic"
+    },
+    {
+      "simulation_id": "discrete_cont0.579_n500_rep0_targetlinear_k8",
+      "continuity": 0.5789473684210527,
+      "n_cells": 500,
+      "replicate": 0,
+      "n_clusters": 8,
+      "target_trajectory": "linear"
+    },
+    {
+      "simulation_id": "discrete_cont0.579_n500_rep0_targetbranching_k8",
+      "continuity": 0.5789473684210527,
+      "n_cells": 500,
+      "replicate": 0,
+      "n_clusters": 8,
+      "target_trajectory": "branching"
+    },
+    {
+      "simulation_id": "discrete_cont0.579_n500_rep0_targetcyclic_k8",
+      "continuity": 0.5789473684210527,
+      "n_cells": 500,
+      "replicate": 0,
+      "n_clusters": 8,
+      "target_trajectory": "cyclic"
+    },
+    {
+      "simulation_id": "discrete_cont0.579_n500_rep0_targetlinear_k10",
+      "continuity": 0.5789473684210527,
+      "n_cells": 500,
+      "replicate": 0,
+      "n_clusters": 10,
+      "target_trajectory": "linear"
+    },
+    {
+      "simulation_id": "discrete_cont0.579_n500_rep0_targetbranching_k10",
+      "continuity": 0.5789473684210527,
+      "n_cells": 500,
+      "replicate": 0,
+      "n_clusters": 10,
+      "target_trajectory": "branching"
+    },
+    {
+      "simulation_id": "discrete_cont0.579_n500_rep0_targetcyclic_k10",
+      "continuity": 0.5789473684210527,
+      "n_cells": 500,
+      "replicate": 0,
+      "n_clusters": 10,
+      "target_trajectory": "cyclic"
+    },
+    {
+      "simulation_id": "discrete_cont0.579_n500_rep0_targetlinear_k12",
+      "continuity": 0.5789473684210527,
+      "n_cells": 500,
+      "replicate": 0,
+      "n_clusters": 12,
+      "target_trajectory": "linear"
+    },
+    {
+      "simulation_id": "discrete_cont0.579_n500_rep0_targetbranching_k12",
+      "continuity": 0.5789473684210527,
+      "n_cells": 500,
+      "replicate": 0,
+      "n_clusters": 12,
+      "target_trajectory": "branching"
+    },
+    {
+      "simulation_id": "discrete_cont0.579_n500_rep0_targetcyclic_k12",
+      "continuity": 0.5789473684210527,
+      "n_cells": 500,
+      "replicate": 0,
+      "n_clusters": 12,
+      "target_trajectory": "cyclic"
+    },
+    {
+      "simulation_id": "discrete_cont0.632_n500_rep0_targetlinear_k8",
+      "continuity": 0.631578947368421,
+      "n_cells": 500,
+      "replicate": 0,
+      "n_clusters": 8,
+      "target_trajectory": "linear"
+    },
+    {
+      "simulation_id": "discrete_cont0.632_n500_rep0_targetbranching_k8",
+      "continuity": 0.631578947368421,
+      "n_cells": 500,
+      "replicate": 0,
+      "n_clusters": 8,
+      "target_trajectory": "branching"
+    },
+    {
+      "simulation_id": "discrete_cont0.632_n500_rep0_targetcyclic_k8",
+      "continuity": 0.631578947368421,
+      "n_cells": 500,
+      "replicate": 0,
+      "n_clusters": 8,
+      "target_trajectory": "cyclic"
+    },
+    {
+      "simulation_id": "discrete_cont0.632_n500_rep0_targetlinear_k10",
+      "continuity": 0.631578947368421,
+      "n_cells": 500,
+      "replicate": 0,
+      "n_clusters": 10,
+      "target_trajectory": "linear"
+    },
+    {
+      "simulation_id": "discrete_cont0.632_n500_rep0_targetbranching_k10",
+      "continuity": 0.631578947368421,
+      "n_cells": 500,
+      "replicate": 0,
+      "n_clusters": 10,
+      "target_trajectory": "branching"
+    },
+    {
+      "simulation_id": "discrete_cont0.632_n500_rep0_targetcyclic_k10",
+      "continuity": 0.631578947368421,
+      "n_cells": 500,
+      "replicate": 0,
+      "n_clusters": 10,
+      "target_trajectory": "cyclic"
+    },
+    {
+      "simulation_id": "discrete_cont0.632_n500_rep0_targetlinear_k12",
+      "continuity": 0.631578947368421,
+      "n_cells": 500,
+      "replicate": 0,
+      "n_clusters": 12,
+      "target_trajectory": "linear"
+    },
+    {
+      "simulation_id": "discrete_cont0.632_n500_rep0_targetbranching_k12",
+      "continuity": 0.631578947368421,
+      "n_cells": 500,
+      "replicate": 0,
+      "n_clusters": 12,
+      "target_trajectory": "branching"
+    },
+    {
+      "simulation_id": "discrete_cont0.632_n500_rep0_targetcyclic_k12",
+      "continuity": 0.631578947368421,
+      "n_cells": 500,
+      "replicate": 0,
+      "n_clusters": 12,
+      "target_trajectory": "cyclic"
+    },
+    {
+      "simulation_id": "discrete_cont0.684_n500_rep0_targetlinear_k8",
+      "continuity": 0.6842105263157894,
+      "n_cells": 500,
+      "replicate": 0,
+      "n_clusters": 8,
+      "target_trajectory": "linear"
+    },
+    {
+      "simulation_id": "discrete_cont0.684_n500_rep0_targetbranching_k8",
+      "continuity": 0.6842105263157894,
+      "n_cells": 500,
+      "replicate": 0,
+      "n_clusters": 8,
+      "target_trajectory": "branching"
+    },
+    {
+      "simulation_id": "discrete_cont0.684_n500_rep0_targetcyclic_k8",
+      "continuity": 0.6842105263157894,
+      "n_cells": 500,
+      "replicate": 0,
+      "n_clusters": 8,
+      "target_trajectory": "cyclic"
+    },
+    {
+      "simulation_id": "discrete_cont0.684_n500_rep0_targetlinear_k10",
+      "continuity": 0.6842105263157894,
+      "n_cells": 500,
+      "replicate": 0,
+      "n_clusters": 10,
+      "target_trajectory": "linear"
+    },
+    {
+      "simulation_id": "discrete_cont0.684_n500_rep0_targetbranching_k10",
+      "continuity": 0.6842105263157894,
+      "n_cells": 500,
+      "replicate": 0,
+      "n_clusters": 10,
+      "target_trajectory": "branching"
+    },
+    {
+      "simulation_id": "discrete_cont0.684_n500_rep0_targetcyclic_k10",
+      "continuity": 0.6842105263157894,
+      "n_cells": 500,
+      "replicate": 0,
+      "n_clusters": 10,
+      "target_trajectory": "cyclic"
+    },
+    {
+      "simulation_id": "discrete_cont0.684_n500_rep0_targetlinear_k12",
+      "continuity": 0.6842105263157894,
+      "n_cells": 500,
+      "replicate": 0,
+      "n_clusters": 12,
+      "target_trajectory": "linear"
+    },
+    {
+      "simulation_id": "discrete_cont0.684_n500_rep0_targetbranching_k12",
+      "continuity": 0.6842105263157894,
+      "n_cells": 500,
+      "replicate": 0,
+      "n_clusters": 12,
+      "target_trajectory": "branching"
+    },
+    {
+      "simulation_id": "discrete_cont0.684_n500_rep0_targetcyclic_k12",
+      "continuity": 0.6842105263157894,
+      "n_cells": 500,
+      "replicate": 0,
+      "n_clusters": 12,
+      "target_trajectory": "cyclic"
+    },
+    {
+      "simulation_id": "discrete_cont0.737_n500_rep0_targetlinear_k8",
+      "continuity": 0.7368421052631579,
+      "n_cells": 500,
+      "replicate": 0,
+      "n_clusters": 8,
+      "target_trajectory": "linear"
+    },
+    {
+      "simulation_id": "discrete_cont0.737_n500_rep0_targetbranching_k8",
+      "continuity": 0.7368421052631579,
+      "n_cells": 500,
+      "replicate": 0,
+      "n_clusters": 8,
+      "target_trajectory": "branching"
+    },
+    {
+      "simulation_id": "discrete_cont0.737_n500_rep0_targetcyclic_k8",
+      "continuity": 0.7368421052631579,
+      "n_cells": 500,
+      "replicate": 0,
+      "n_clusters": 8,
+      "target_trajectory": "cyclic"
+    },
+    {
+      "simulation_id": "discrete_cont0.737_n500_rep0_targetlinear_k10",
+      "continuity": 0.7368421052631579,
+      "n_cells": 500,
+      "replicate": 0,
+      "n_clusters": 10,
+      "target_trajectory": "linear"
+    },
+    {
+      "simulation_id": "discrete_cont0.737_n500_rep0_targetbranching_k10",
+      "continuity": 0.7368421052631579,
+      "n_cells": 500,
+      "replicate": 0,
+      "n_clusters": 10,
+      "target_trajectory": "branching"
+    },
+    {
+      "simulation_id": "discrete_cont0.737_n500_rep0_targetcyclic_k10",
+      "continuity": 0.7368421052631579,
+      "n_cells": 500,
+      "replicate": 0,
+      "n_clusters": 10,
+      "target_trajectory": "cyclic"
+    },
+    {
+      "simulation_id": "discrete_cont0.737_n500_rep0_targetlinear_k12",
+      "continuity": 0.7368421052631579,
+      "n_cells": 500,
+      "replicate": 0,
+      "n_clusters": 12,
+      "target_trajectory": "linear"
+    },
+    {
+      "simulation_id": "discrete_cont0.737_n500_rep0_targetbranching_k12",
+      "continuity": 0.7368421052631579,
+      "n_cells": 500,
+      "replicate": 0,
+      "n_clusters": 12,
+      "target_trajectory": "branching"
+    },
+    {
+      "simulation_id": "discrete_cont0.737_n500_rep0_targetcyclic_k12",
+      "continuity": 0.7368421052631579,
+      "n_cells": 500,
+      "replicate": 0,
+      "n_clusters": 12,
+      "target_trajectory": "cyclic"
+    },
+    {
+      "simulation_id": "discrete_cont0.789_n500_rep0_targetlinear_k8",
+      "continuity": 0.7894736842105263,
+      "n_cells": 500,
+      "replicate": 0,
+      "n_clusters": 8,
+      "target_trajectory": "linear"
+    },
+    {
+      "simulation_id": "discrete_cont0.789_n500_rep0_targetbranching_k8",
+      "continuity": 0.7894736842105263,
+      "n_cells": 500,
+      "replicate": 0,
+      "n_clusters": 8,
+      "target_trajectory": "branching"
+    },
+    {
+      "simulation_id": "discrete_cont0.789_n500_rep0_targetcyclic_k8",
+      "continuity": 0.7894736842105263,
+      "n_cells": 500,
+      "replicate": 0,
+      "n_clusters": 8,
+      "target_trajectory": "cyclic"
+    },
+    {
+      "simulation_id": "discrete_cont0.789_n500_rep0_targetlinear_k10",
+      "continuity": 0.7894736842105263,
+      "n_cells": 500,
+      "replicate": 0,
+      "n_clusters": 10,
+      "target_trajectory": "linear"
+    },
+    {
+      "simulation_id": "discrete_cont0.789_n500_rep0_targetbranching_k10",
+      "continuity": 0.7894736842105263,
+      "n_cells": 500,
+      "replicate": 0,
+      "n_clusters": 10,
+      "target_trajectory": "branching"
+    },
+    {
+      "simulation_id": "discrete_cont0.789_n500_rep0_targetcyclic_k10",
+      "continuity": 0.7894736842105263,
+      "n_cells": 500,
+      "replicate": 0,
+      "n_clusters": 10,
+      "target_trajectory": "cyclic"
+    },
+    {
+      "simulation_id": "discrete_cont0.789_n500_rep0_targetlinear_k12",
+      "continuity": 0.7894736842105263,
+      "n_cells": 500,
+      "replicate": 0,
+      "n_clusters": 12,
+      "target_trajectory": "linear"
+    },
+    {
+      "simulation_id": "discrete_cont0.789_n500_rep0_targetbranching_k12",
+      "continuity": 0.7894736842105263,
+      "n_cells": 500,
+      "replicate": 0,
+      "n_clusters": 12,
+      "target_trajectory": "branching"
+    },
+    {
+      "simulation_id": "discrete_cont0.789_n500_rep0_targetcyclic_k12",
+      "continuity": 0.7894736842105263,
+      "n_cells": 500,
+      "replicate": 0,
+      "n_clusters": 12,
+      "target_trajectory": "cyclic"
+    },
+    {
+      "simulation_id": "discrete_cont0.842_n500_rep0_targetlinear_k8",
+      "continuity": 0.8421052631578947,
+      "n_cells": 500,
+      "replicate": 0,
+      "n_clusters": 8,
+      "target_trajectory": "linear"
+    },
+    {
+      "simulation_id": "discrete_cont0.842_n500_rep0_targetbranching_k8",
+      "continuity": 0.8421052631578947,
+      "n_cells": 500,
+      "replicate": 0,
+      "n_clusters": 8,
+      "target_trajectory": "branching"
+    },
+    {
+      "simulation_id": "discrete_cont0.842_n500_rep0_targetcyclic_k8",
+      "continuity": 0.8421052631578947,
+      "n_cells": 500,
+      "replicate": 0,
+      "n_clusters": 8,
+      "target_trajectory": "cyclic"
+    },
+    {
+      "simulation_id": "discrete_cont0.842_n500_rep0_targetlinear_k10",
+      "continuity": 0.8421052631578947,
+      "n_cells": 500,
+      "replicate": 0,
+      "n_clusters": 10,
+      "target_trajectory": "linear"
+    },
+    {
+      "simulation_id": "discrete_cont0.842_n500_rep0_targetbranching_k10",
+      "continuity": 0.8421052631578947,
+      "n_cells": 500,
+      "replicate": 0,
+      "n_clusters": 10,
+      "target_trajectory": "branching"
+    },
+    {
+      "simulation_id": "discrete_cont0.842_n500_rep0_targetcyclic_k10",
+      "continuity": 0.8421052631578947,
+      "n_cells": 500,
+      "replicate": 0,
+      "n_clusters": 10,
+      "target_trajectory": "cyclic"
+    },
+    {
+      "simulation_id": "discrete_cont0.842_n500_rep0_targetlinear_k12",
+      "continuity": 0.8421052631578947,
+      "n_cells": 500,
+      "replicate": 0,
+      "n_clusters": 12,
+      "target_trajectory": "linear"
+    },
+    {
+      "simulation_id": "discrete_cont0.842_n500_rep0_targetbranching_k12",
+      "continuity": 0.8421052631578947,
+      "n_cells": 500,
+      "replicate": 0,
+      "n_clusters": 12,
+      "target_trajectory": "branching"
+    },
+    {
+      "simulation_id": "discrete_cont0.842_n500_rep0_targetcyclic_k12",
+      "continuity": 0.8421052631578947,
+      "n_cells": 500,
+      "replicate": 0,
+      "n_clusters": 12,
+      "target_trajectory": "cyclic"
+    },
+    {
+      "simulation_id": "discrete_cont0.895_n500_rep0_targetlinear_k8",
+      "continuity": 0.894736842105263,
+      "n_cells": 500,
+      "replicate": 0,
+      "n_clusters": 8,
+      "target_trajectory": "linear"
+    },
+    {
+      "simulation_id": "discrete_cont0.895_n500_rep0_targetbranching_k8",
+      "continuity": 0.894736842105263,
+      "n_cells": 500,
+      "replicate": 0,
+      "n_clusters": 8,
+      "target_trajectory": "branching"
+    },
+    {
+      "simulation_id": "discrete_cont0.895_n500_rep0_targetcyclic_k8",
+      "continuity": 0.894736842105263,
+      "n_cells": 500,
+      "replicate": 0,
+      "n_clusters": 8,
+      "target_trajectory": "cyclic"
+    },
+    {
+      "simulation_id": "discrete_cont0.895_n500_rep0_targetlinear_k10",
+      "continuity": 0.894736842105263,
+      "n_cells": 500,
+      "replicate": 0,
+      "n_clusters": 10,
+      "target_trajectory": "linear"
+    },
+    {
+      "simulation_id": "discrete_cont0.895_n500_rep0_targetbranching_k10",
+      "continuity": 0.894736842105263,
+      "n_cells": 500,
+      "replicate": 0,
+      "n_clusters": 10,
+      "target_trajectory": "branching"
+    },
+    {
+      "simulation_id": "discrete_cont0.895_n500_rep0_targetcyclic_k10",
+      "continuity": 0.894736842105263,
+      "n_cells": 500,
+      "replicate": 0,
+      "n_clusters": 10,
+      "target_trajectory": "cyclic"
+    },
+    {
+      "simulation_id": "discrete_cont0.895_n500_rep0_targetlinear_k12",
+      "continuity": 0.894736842105263,
+      "n_cells": 500,
+      "replicate": 0,
+      "n_clusters": 12,
+      "target_trajectory": "linear"
+    },
+    {
+      "simulation_id": "discrete_cont0.895_n500_rep0_targetbranching_k12",
+      "continuity": 0.894736842105263,
+      "n_cells": 500,
+      "replicate": 0,
+      "n_clusters": 12,
+      "target_trajectory": "branching"
+    },
+    {
+      "simulation_id": "discrete_cont0.895_n500_rep0_targetcyclic_k12",
+      "continuity": 0.894736842105263,
+      "n_cells": 500,
+      "replicate": 0,
+      "n_clusters": 12,
+      "target_trajectory": "cyclic"
+    },
+    {
+      "simulation_id": "discrete_cont0.947_n500_rep0_targetlinear_k8",
+      "continuity": 0.9473684210526315,
+      "n_cells": 500,
+      "replicate": 0,
+      "n_clusters": 8,
+      "target_trajectory": "linear"
+    },
+    {
+      "simulation_id": "discrete_cont0.947_n500_rep0_targetbranching_k8",
+      "continuity": 0.9473684210526315,
+      "n_cells": 500,
+      "replicate": 0,
+      "n_clusters": 8,
+      "target_trajectory": "branching"
+    },
+    {
+      "simulation_id": "discrete_cont0.947_n500_rep0_targetcyclic_k8",
+      "continuity": 0.9473684210526315,
+      "n_cells": 500,
+      "replicate": 0,
+      "n_clusters": 8,
+      "target_trajectory": "cyclic"
+    },
+    {
+      "simulation_id": "discrete_cont0.947_n500_rep0_targetlinear_k10",
+      "continuity": 0.9473684210526315,
+      "n_cells": 500,
+      "replicate": 0,
+      "n_clusters": 10,
+      "target_trajectory": "linear"
+    },
+    {
+      "simulation_id": "discrete_cont0.947_n500_rep0_targetbranching_k10",
+      "continuity": 0.9473684210526315,
+      "n_cells": 500,
+      "replicate": 0,
+      "n_clusters": 10,
+      "target_trajectory": "branching"
+    },
+    {
+      "simulation_id": "discrete_cont0.947_n500_rep0_targetcyclic_k10",
+      "continuity": 0.9473684210526315,
+      "n_cells": 500,
+      "replicate": 0,
+      "n_clusters": 10,
+      "target_trajectory": "cyclic"
+    },
+    {
+      "simulation_id": "discrete_cont0.947_n500_rep0_targetlinear_k12",
+      "continuity": 0.9473684210526315,
+      "n_cells": 500,
+      "replicate": 0,
+      "n_clusters": 12,
+      "target_trajectory": "linear"
+    },
+    {
+      "simulation_id": "discrete_cont0.947_n500_rep0_targetbranching_k12",
+      "continuity": 0.9473684210526315,
+      "n_cells": 500,
+      "replicate": 0,
+      "n_clusters": 12,
+      "target_trajectory": "branching"
+    },
+    {
+      "simulation_id": "discrete_cont0.947_n500_rep0_targetcyclic_k12",
+      "continuity": 0.9473684210526315,
+      "n_cells": 500,
+      "replicate": 0,
+      "n_clusters": 12,
+      "target_trajectory": "cyclic"
+    },
+    {
+      "simulation_id": "discrete_cont1.000_n500_rep0_targetlinear_k8",
+      "continuity": 1.0,
+      "n_cells": 500,
+      "replicate": 0,
+      "n_clusters": 8,
+      "target_trajectory": "linear"
+    },
+    {
+      "simulation_id": "discrete_cont1.000_n500_rep0_targetbranching_k8",
+      "continuity": 1.0,
+      "n_cells": 500,
+      "replicate": 0,
+      "n_clusters": 8,
+      "target_trajectory": "branching"
+    },
+    {
+      "simulation_id": "discrete_cont1.000_n500_rep0_targetcyclic_k8",
+      "continuity": 1.0,
+      "n_cells": 500,
+      "replicate": 0,
+      "n_clusters": 8,
+      "target_trajectory": "cyclic"
+    },
+    {
+      "simulation_id": "discrete_cont1.000_n500_rep0_targetlinear_k10",
+      "continuity": 1.0,
+      "n_cells": 500,
+      "replicate": 0,
+      "n_clusters": 10,
+      "target_trajectory": "linear"
+    },
+    {
+      "simulation_id": "discrete_cont1.000_n500_rep0_targetbranching_k10",
+      "continuity": 1.0,
+      "n_cells": 500,
+      "replicate": 0,
+      "n_clusters": 10,
+      "target_trajectory": "branching"
+    },
+    {
+      "simulation_id": "discrete_cont1.000_n500_rep0_targetcyclic_k10",
+      "continuity": 1.0,
+      "n_cells": 500,
+      "replicate": 0,
+      "n_clusters": 10,
+      "target_trajectory": "cyclic"
+    },
+    {
+      "simulation_id": "discrete_cont1.000_n500_rep0_targetlinear_k12",
+      "continuity": 1.0,
+      "n_cells": 500,
+      "replicate": 0,
+      "n_clusters": 12,
+      "target_trajectory": "linear"
+    },
+    {
+      "simulation_id": "discrete_cont1.000_n500_rep0_targetbranching_k12",
+      "continuity": 1.0,
+      "n_cells": 500,
+      "replicate": 0,
+      "n_clusters": 12,
+      "target_trajectory": "branching"
+    },
+    {
+      "simulation_id": "discrete_cont1.000_n500_rep0_targetcyclic_k12",
+      "continuity": 1.0,
+      "n_cells": 500,
+      "replicate": 0,
+      "n_clusters": 12,
+      "target_trajectory": "cyclic"
+    }
+  ]
+}

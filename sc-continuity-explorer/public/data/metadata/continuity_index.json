@@ -4,236 +4,131 @@
       "simulation_id": "linear_cont0.850_n500_rep0",
       "replicate": 0,
       "n_cells": 500
-    },
+    }
+  ],
+  "linear_0.857": [
     {
-      "simulation_id": "linear_cont0.850_n500_rep1",
-      "replicate": 1,
-      "n_cells": 500
-    },
-    {
-      "simulation_id": "linear_cont0.850_n500_rep2",
-      "replicate": 2,
+      "simulation_id": "linear_cont0.857_n500_rep0",
+      "replicate": 0,
       "n_cells": 500
     }
   ],
-  "linear_0.860": [
+  "linear_0.865": [
     {
-      "simulation_id": "linear_cont0.860_n500_rep0",
+      "simulation_id": "linear_cont0.865_n500_rep0",
       "replicate": 0,
-      "n_cells": 500
-    },
-    {
-      "simulation_id": "linear_cont0.860_n500_rep1",
-      "replicate": 1,
-      "n_cells": 500
-    },
-    {
-      "simulation_id": "linear_cont0.860_n500_rep2",
-      "replicate": 2,
       "n_cells": 500
     }
   ],
-  "linear_0.870": [
+  "linear_0.872": [
     {
-      "simulation_id": "linear_cont0.870_n500_rep0",
+      "simulation_id": "linear_cont0.872_n500_rep0",
       "replicate": 0,
-      "n_cells": 500
-    },
-    {
-      "simulation_id": "linear_cont0.870_n500_rep1",
-      "replicate": 1,
-      "n_cells": 500
-    },
-    {
-      "simulation_id": "linear_cont0.870_n500_rep2",
-      "replicate": 2,
       "n_cells": 500
     }
   ],
-  "linear_0.880": [
+  "linear_0.879": [
     {
-      "simulation_id": "linear_cont0.880_n500_rep0",
+      "simulation_id": "linear_cont0.879_n500_rep0",
       "replicate": 0,
-      "n_cells": 500
-    },
-    {
-      "simulation_id": "linear_cont0.880_n500_rep1",
-      "replicate": 1,
-      "n_cells": 500
-    },
-    {
-      "simulation_id": "linear_cont0.880_n500_rep2",
-      "replicate": 2,
       "n_cells": 500
     }
   ],
-  "linear_0.890": [
+  "linear_0.887": [
     {
-      "simulation_id": "linear_cont0.890_n500_rep0",
+      "simulation_id": "linear_cont0.887_n500_rep0",
       "replicate": 0,
-      "n_cells": 500
-    },
-    {
-      "simulation_id": "linear_cont0.890_n500_rep1",
-      "replicate": 1,
-      "n_cells": 500
-    },
-    {
-      "simulation_id": "linear_cont0.890_n500_rep2",
-      "replicate": 2,
       "n_cells": 500
     }
   ],
-  "linear_0.900": [
+  "linear_0.894": [
     {
-      "simulation_id": "linear_cont0.900_n500_rep0",
+      "simulation_id": "linear_cont0.894_n500_rep0",
       "replicate": 0,
-      "n_cells": 500
-    },
-    {
-      "simulation_id": "linear_cont0.900_n500_rep1",
-      "replicate": 1,
-      "n_cells": 500
-    },
-    {
-      "simulation_id": "linear_cont0.900_n500_rep2",
-      "replicate": 2,
       "n_cells": 500
     }
   ],
-  "linear_0.910": [
+  "linear_0.902": [
     {
-      "simulation_id": "linear_cont0.910_n500_rep0",
+      "simulation_id": "linear_cont0.902_n500_rep0",
       "replicate": 0,
-      "n_cells": 500
-    },
-    {
-      "simulation_id": "linear_cont0.910_n500_rep1",
-      "replicate": 1,
-      "n_cells": 500
-    },
-    {
-      "simulation_id": "linear_cont0.910_n500_rep2",
-      "replicate": 2,
       "n_cells": 500
     }
   ],
-  "linear_0.920": [
+  "linear_0.909": [
     {
-      "simulation_id": "linear_cont0.920_n500_rep0",
+      "simulation_id": "linear_cont0.909_n500_rep0",
       "replicate": 0,
-      "n_cells": 500
-    },
-    {
-      "simulation_id": "linear_cont0.920_n500_rep1",
-      "replicate": 1,
-      "n_cells": 500
-    },
-    {
-      "simulation_id": "linear_cont0.920_n500_rep2",
-      "replicate": 2,
       "n_cells": 500
     }
   ],
-  "linear_0.930": [
+  "linear_0.916": [
     {
-      "simulation_id": "linear_cont0.930_n500_rep0",
+      "simulation_id": "linear_cont0.916_n500_rep0",
       "replicate": 0,
-      "n_cells": 500
-    },
-    {
-      "simulation_id": "linear_cont0.930_n500_rep1",
-      "replicate": 1,
-      "n_cells": 500
-    },
-    {
-      "simulation_id": "linear_cont0.930_n500_rep2",
-      "replicate": 2,
       "n_cells": 500
     }
   ],
-  "linear_0.940": [
+  "linear_0.924": [
     {
-      "simulation_id": "linear_cont0.940_n500_rep0",
+      "simulation_id": "linear_cont0.924_n500_rep0",
       "replicate": 0,
-      "n_cells": 500
-    },
-    {
-      "simulation_id": "linear_cont0.940_n500_rep1",
-      "replicate": 1,
-      "n_cells": 500
-    },
-    {
-      "simulation_id": "linear_cont0.940_n500_rep2",
-      "replicate": 2,
       "n_cells": 500
     }
   ],
-  "linear_0.950": [
+  "linear_0.931": [
     {
-      "simulation_id": "linear_cont0.950_n500_rep0",
+      "simulation_id": "linear_cont0.931_n500_rep0",
       "replicate": 0,
-      "n_cells": 500
-    },
-    {
-      "simulation_id": "linear_cont0.950_n500_rep1",
-      "replicate": 1,
-      "n_cells": 500
-    },
-    {
-      "simulation_id": "linear_cont0.950_n500_rep2",
-      "replicate": 2,
       "n_cells": 500
     }
   ],
-  "linear_0.960": [
+  "linear_0.938": [
     {
-      "simulation_id": "linear_cont0.960_n500_rep0",
+      "simulation_id": "linear_cont0.938_n500_rep0",
       "replicate": 0,
-      "n_cells": 500
-    },
-    {
-      "simulation_id": "linear_cont0.960_n500_rep1",
-      "replicate": 1,
-      "n_cells": 500
-    },
-    {
-      "simulation_id": "linear_cont0.960_n500_rep2",
-      "replicate": 2,
       "n_cells": 500
     }
   ],
-  "linear_0.970": [
+  "linear_0.946": [
     {
-      "simulation_id": "linear_cont0.970_n500_rep0",
+      "simulation_id": "linear_cont0.946_n500_rep0",
       "replicate": 0,
-      "n_cells": 500
-    },
-    {
-      "simulation_id": "linear_cont0.970_n500_rep1",
-      "replicate": 1,
-      "n_cells": 500
-    },
-    {
-      "simulation_id": "linear_cont0.970_n500_rep2",
-      "replicate": 2,
       "n_cells": 500
     }
   ],
-  "linear_0.980": [
+  "linear_0.953": [
     {
-      "simulation_id": "linear_cont0.980_n500_rep0",
+      "simulation_id": "linear_cont0.953_n500_rep0",
       "replicate": 0,
       "n_cells": 500
-    },
+    }
+  ],
+  "linear_0.961": [
     {
-      "simulation_id": "linear_cont0.980_n500_rep1",
-      "replicate": 1,
+      "simulation_id": "linear_cont0.961_n500_rep0",
+      "replicate": 0,
       "n_cells": 500
-    },
+    }
+  ],
+  "linear_0.968": [
     {
-      "simulation_id": "linear_cont0.980_n500_rep2",
-      "replicate": 2,
+      "simulation_id": "linear_cont0.968_n500_rep0",
+      "replicate": 0,
+      "n_cells": 500
+    }
+  ],
+  "linear_0.975": [
+    {
+      "simulation_id": "linear_cont0.975_n500_rep0",
+      "replicate": 0,
+      "n_cells": 500
+    }
+  ],
+  "linear_0.983": [
+    {
+      "simulation_id": "linear_cont0.983_n500_rep0",
+      "replicate": 0,
       "n_cells": 500
     }
   ],
@@ -242,525 +137,945 @@
       "simulation_id": "linear_cont0.990_n500_rep0",
       "replicate": 0,
       "n_cells": 500
-    },
-    {
-      "simulation_id": "linear_cont0.990_n500_rep1",
-      "replicate": 1,
-      "n_cells": 500
-    },
-    {
-      "simulation_id": "linear_cont0.990_n500_rep2",
-      "replicate": 2,
-      "n_cells": 500
     }
   ],
-  "branching_0.850": [
+  "discrete_0.000": [
     {
-      "simulation_id": "branching_cont0.850_n500_rep0",
+      "simulation_id": "discrete_cont0.000_n500_rep0_targetlinear_k8",
       "replicate": 0,
       "n_cells": 500
     },
     {
-      "simulation_id": "branching_cont0.850_n500_rep1",
-      "replicate": 1,
-      "n_cells": 500
-    },
-    {
-      "simulation_id": "branching_cont0.850_n500_rep2",
-      "replicate": 2,
-      "n_cells": 500
-    }
-  ],
-  "branching_0.860": [
-    {
-      "simulation_id": "branching_cont0.860_n500_rep0",
+      "simulation_id": "discrete_cont0.000_n500_rep0_targetbranching_k8",
       "replicate": 0,
       "n_cells": 500
     },
     {
-      "simulation_id": "branching_cont0.860_n500_rep1",
-      "replicate": 1,
-      "n_cells": 500
-    },
-    {
-      "simulation_id": "branching_cont0.860_n500_rep2",
-      "replicate": 2,
-      "n_cells": 500
-    }
-  ],
-  "branching_0.870": [
-    {
-      "simulation_id": "branching_cont0.870_n500_rep0",
+      "simulation_id": "discrete_cont0.000_n500_rep0_targetcyclic_k8",
       "replicate": 0,
       "n_cells": 500
     },
     {
-      "simulation_id": "branching_cont0.870_n500_rep1",
-      "replicate": 1,
-      "n_cells": 500
-    },
-    {
-      "simulation_id": "branching_cont0.870_n500_rep2",
-      "replicate": 2,
-      "n_cells": 500
-    }
-  ],
-  "branching_0.880": [
-    {
-      "simulation_id": "branching_cont0.880_n500_rep0",
+      "simulation_id": "discrete_cont0.000_n500_rep0_targetlinear_k10",
       "replicate": 0,
       "n_cells": 500
     },
     {
-      "simulation_id": "branching_cont0.880_n500_rep1",
-      "replicate": 1,
-      "n_cells": 500
-    },
-    {
-      "simulation_id": "branching_cont0.880_n500_rep2",
-      "replicate": 2,
-      "n_cells": 500
-    }
-  ],
-  "branching_0.890": [
-    {
-      "simulation_id": "branching_cont0.890_n500_rep0",
+      "simulation_id": "discrete_cont0.000_n500_rep0_targetbranching_k10",
       "replicate": 0,
       "n_cells": 500
     },
     {
-      "simulation_id": "branching_cont0.890_n500_rep1",
-      "replicate": 1,
-      "n_cells": 500
-    },
-    {
-      "simulation_id": "branching_cont0.890_n500_rep2",
-      "replicate": 2,
-      "n_cells": 500
-    }
-  ],
-  "branching_0.900": [
-    {
-      "simulation_id": "branching_cont0.900_n500_rep0",
+      "simulation_id": "discrete_cont0.000_n500_rep0_targetcyclic_k10",
       "replicate": 0,
       "n_cells": 500
     },
     {
-      "simulation_id": "branching_cont0.900_n500_rep1",
-      "replicate": 1,
-      "n_cells": 500
-    },
-    {
-      "simulation_id": "branching_cont0.900_n500_rep2",
-      "replicate": 2,
-      "n_cells": 500
-    }
-  ],
-  "branching_0.910": [
-    {
-      "simulation_id": "branching_cont0.910_n500_rep0",
+      "simulation_id": "discrete_cont0.000_n500_rep0_targetlinear_k12",
       "replicate": 0,
       "n_cells": 500
     },
     {
-      "simulation_id": "branching_cont0.910_n500_rep1",
-      "replicate": 1,
-      "n_cells": 500
-    },
-    {
-      "simulation_id": "branching_cont0.910_n500_rep2",
-      "replicate": 2,
-      "n_cells": 500
-    }
-  ],
-  "branching_0.920": [
-    {
-      "simulation_id": "branching_cont0.920_n500_rep0",
+      "simulation_id": "discrete_cont0.000_n500_rep0_targetbranching_k12",
       "replicate": 0,
       "n_cells": 500
     },
     {
-      "simulation_id": "branching_cont0.920_n500_rep1",
-      "replicate": 1,
-      "n_cells": 500
-    },
-    {
-      "simulation_id": "branching_cont0.920_n500_rep2",
-      "replicate": 2,
+      "simulation_id": "discrete_cont0.000_n500_rep0_targetcyclic_k12",
+      "replicate": 0,
       "n_cells": 500
     }
   ],
-  "branching_0.930": [
+  "discrete_0.053": [
     {
-      "simulation_id": "branching_cont0.930_n500_rep0",
+      "simulation_id": "discrete_cont0.053_n500_rep0_targetlinear_k8",
       "replicate": 0,
       "n_cells": 500
     },
     {
-      "simulation_id": "branching_cont0.930_n500_rep1",
-      "replicate": 1,
-      "n_cells": 500
-    },
-    {
-      "simulation_id": "branching_cont0.930_n500_rep2",
-      "replicate": 2,
-      "n_cells": 500
-    }
-  ],
-  "branching_0.940": [
-    {
-      "simulation_id": "branching_cont0.940_n500_rep0",
+      "simulation_id": "discrete_cont0.053_n500_rep0_targetbranching_k8",
       "replicate": 0,
       "n_cells": 500
     },
     {
-      "simulation_id": "branching_cont0.940_n500_rep1",
-      "replicate": 1,
-      "n_cells": 500
-    },
-    {
-      "simulation_id": "branching_cont0.940_n500_rep2",
-      "replicate": 2,
-      "n_cells": 500
-    }
-  ],
-  "branching_0.950": [
-    {
-      "simulation_id": "branching_cont0.950_n500_rep0",
+      "simulation_id": "discrete_cont0.053_n500_rep0_targetcyclic_k8",
       "replicate": 0,
       "n_cells": 500
     },
     {
-      "simulation_id": "branching_cont0.950_n500_rep1",
-      "replicate": 1,
-      "n_cells": 500
-    },
-    {
-      "simulation_id": "branching_cont0.950_n500_rep2",
-      "replicate": 2,
-      "n_cells": 500
-    }
-  ],
-  "branching_0.960": [
-    {
-      "simulation_id": "branching_cont0.960_n500_rep0",
+      "simulation_id": "discrete_cont0.053_n500_rep0_targetlinear_k10",
       "replicate": 0,
       "n_cells": 500
     },
     {
-      "simulation_id": "branching_cont0.960_n500_rep1",
-      "replicate": 1,
-      "n_cells": 500
-    },
-    {
-      "simulation_id": "branching_cont0.960_n500_rep2",
-      "replicate": 2,
-      "n_cells": 500
-    }
-  ],
-  "branching_0.970": [
-    {
-      "simulation_id": "branching_cont0.970_n500_rep0",
+      "simulation_id": "discrete_cont0.053_n500_rep0_targetbranching_k10",
       "replicate": 0,
       "n_cells": 500
     },
     {
-      "simulation_id": "branching_cont0.970_n500_rep1",
-      "replicate": 1,
-      "n_cells": 500
-    },
-    {
-      "simulation_id": "branching_cont0.970_n500_rep2",
-      "replicate": 2,
-      "n_cells": 500
-    }
-  ],
-  "branching_0.980": [
-    {
-      "simulation_id": "branching_cont0.980_n500_rep0",
+      "simulation_id": "discrete_cont0.053_n500_rep0_targetcyclic_k10",
       "replicate": 0,
       "n_cells": 500
     },
     {
-      "simulation_id": "branching_cont0.980_n500_rep1",
-      "replicate": 1,
-      "n_cells": 500
-    },
-    {
-      "simulation_id": "branching_cont0.980_n500_rep2",
-      "replicate": 2,
-      "n_cells": 500
-    }
-  ],
-  "branching_0.990": [
-    {
-      "simulation_id": "branching_cont0.990_n500_rep0",
+      "simulation_id": "discrete_cont0.053_n500_rep0_targetlinear_k12",
       "replicate": 0,
       "n_cells": 500
     },
     {
-      "simulation_id": "branching_cont0.990_n500_rep1",
-      "replicate": 1,
-      "n_cells": 500
-    },
-    {
-      "simulation_id": "branching_cont0.990_n500_rep2",
-      "replicate": 2,
-      "n_cells": 500
-    }
-  ],
-  "cyclic_0.850": [
-    {
-      "simulation_id": "cyclic_cont0.850_n500_rep0",
+      "simulation_id": "discrete_cont0.053_n500_rep0_targetbranching_k12",
       "replicate": 0,
       "n_cells": 500
     },
     {
-      "simulation_id": "cyclic_cont0.850_n500_rep1",
-      "replicate": 1,
-      "n_cells": 500
-    },
-    {
-      "simulation_id": "cyclic_cont0.850_n500_rep2",
-      "replicate": 2,
+      "simulation_id": "discrete_cont0.053_n500_rep0_targetcyclic_k12",
+      "replicate": 0,
       "n_cells": 500
     }
   ],
-  "cyclic_0.860": [
+  "discrete_0.105": [
     {
-      "simulation_id": "cyclic_cont0.860_n500_rep0",
+      "simulation_id": "discrete_cont0.105_n500_rep0_targetlinear_k8",
       "replicate": 0,
       "n_cells": 500
     },
     {
-      "simulation_id": "cyclic_cont0.860_n500_rep1",
-      "replicate": 1,
-      "n_cells": 500
-    },
-    {
-      "simulation_id": "cyclic_cont0.860_n500_rep2",
-      "replicate": 2,
-      "n_cells": 500
-    }
-  ],
-  "cyclic_0.870": [
-    {
-      "simulation_id": "cyclic_cont0.870_n500_rep0",
+      "simulation_id": "discrete_cont0.105_n500_rep0_targetbranching_k8",
       "replicate": 0,
       "n_cells": 500
     },
     {
-      "simulation_id": "cyclic_cont0.870_n500_rep1",
-      "replicate": 1,
-      "n_cells": 500
-    },
-    {
-      "simulation_id": "cyclic_cont0.870_n500_rep2",
-      "replicate": 2,
-      "n_cells": 500
-    }
-  ],
-  "cyclic_0.880": [
-    {
-      "simulation_id": "cyclic_cont0.880_n500_rep0",
+      "simulation_id": "discrete_cont0.105_n500_rep0_targetcyclic_k8",
       "replicate": 0,
       "n_cells": 500
     },
     {
-      "simulation_id": "cyclic_cont0.880_n500_rep1",
-      "replicate": 1,
-      "n_cells": 500
-    },
-    {
-      "simulation_id": "cyclic_cont0.880_n500_rep2",
-      "replicate": 2,
-      "n_cells": 500
-    }
-  ],
-  "cyclic_0.890": [
-    {
-      "simulation_id": "cyclic_cont0.890_n500_rep0",
+      "simulation_id": "discrete_cont0.105_n500_rep0_targetlinear_k10",
       "replicate": 0,
       "n_cells": 500
     },
     {
-      "simulation_id": "cyclic_cont0.890_n500_rep1",
-      "replicate": 1,
-      "n_cells": 500
-    },
-    {
-      "simulation_id": "cyclic_cont0.890_n500_rep2",
-      "replicate": 2,
-      "n_cells": 500
-    }
-  ],
-  "cyclic_0.900": [
-    {
-      "simulation_id": "cyclic_cont0.900_n500_rep0",
+      "simulation_id": "discrete_cont0.105_n500_rep0_targetbranching_k10",
       "replicate": 0,
       "n_cells": 500
     },
     {
-      "simulation_id": "cyclic_cont0.900_n500_rep1",
-      "replicate": 1,
-      "n_cells": 500
-    },
-    {
-      "simulation_id": "cyclic_cont0.900_n500_rep2",
-      "replicate": 2,
-      "n_cells": 500
-    }
-  ],
-  "cyclic_0.910": [
-    {
-      "simulation_id": "cyclic_cont0.910_n500_rep0",
+      "simulation_id": "discrete_cont0.105_n500_rep0_targetcyclic_k10",
       "replicate": 0,
       "n_cells": 500
     },
     {
-      "simulation_id": "cyclic_cont0.910_n500_rep1",
-      "replicate": 1,
-      "n_cells": 500
-    },
-    {
-      "simulation_id": "cyclic_cont0.910_n500_rep2",
-      "replicate": 2,
-      "n_cells": 500
-    }
-  ],
-  "cyclic_0.920": [
-    {
-      "simulation_id": "cyclic_cont0.920_n500_rep0",
+      "simulation_id": "discrete_cont0.105_n500_rep0_targetlinear_k12",
       "replicate": 0,
       "n_cells": 500
     },
     {
-      "simulation_id": "cyclic_cont0.920_n500_rep1",
-      "replicate": 1,
-      "n_cells": 500
-    },
-    {
-      "simulation_id": "cyclic_cont0.920_n500_rep2",
-      "replicate": 2,
-      "n_cells": 500
-    }
-  ],
-  "cyclic_0.930": [
-    {
-      "simulation_id": "cyclic_cont0.930_n500_rep0",
+      "simulation_id": "discrete_cont0.105_n500_rep0_targetbranching_k12",
       "replicate": 0,
       "n_cells": 500
     },
     {
-      "simulation_id": "cyclic_cont0.930_n500_rep1",
-      "replicate": 1,
-      "n_cells": 500
-    },
-    {
-      "simulation_id": "cyclic_cont0.930_n500_rep2",
-      "replicate": 2,
+      "simulation_id": "discrete_cont0.105_n500_rep0_targetcyclic_k12",
+      "replicate": 0,
       "n_cells": 500
     }
   ],
-  "cyclic_0.940": [
+  "discrete_0.158": [
     {
-      "simulation_id": "cyclic_cont0.940_n500_rep0",
+      "simulation_id": "discrete_cont0.158_n500_rep0_targetlinear_k8",
       "replicate": 0,
       "n_cells": 500
     },
     {
-      "simulation_id": "cyclic_cont0.940_n500_rep1",
-      "replicate": 1,
-      "n_cells": 500
-    },
-    {
-      "simulation_id": "cyclic_cont0.940_n500_rep2",
-      "replicate": 2,
-      "n_cells": 500
-    }
-  ],
-  "cyclic_0.950": [
-    {
-      "simulation_id": "cyclic_cont0.950_n500_rep0",
+      "simulation_id": "discrete_cont0.158_n500_rep0_targetbranching_k8",
       "replicate": 0,
       "n_cells": 500
     },
     {
-      "simulation_id": "cyclic_cont0.950_n500_rep1",
-      "replicate": 1,
-      "n_cells": 500
-    },
-    {
-      "simulation_id": "cyclic_cont0.950_n500_rep2",
-      "replicate": 2,
-      "n_cells": 500
-    }
-  ],
-  "cyclic_0.960": [
-    {
-      "simulation_id": "cyclic_cont0.960_n500_rep0",
+      "simulation_id": "discrete_cont0.158_n500_rep0_targetcyclic_k8",
       "replicate": 0,
       "n_cells": 500
     },
     {
-      "simulation_id": "cyclic_cont0.960_n500_rep1",
-      "replicate": 1,
-      "n_cells": 500
-    },
-    {
-      "simulation_id": "cyclic_cont0.960_n500_rep2",
-      "replicate": 2,
-      "n_cells": 500
-    }
-  ],
-  "cyclic_0.970": [
-    {
-      "simulation_id": "cyclic_cont0.970_n500_rep0",
+      "simulation_id": "discrete_cont0.158_n500_rep0_targetlinear_k10",
       "replicate": 0,
       "n_cells": 500
     },
     {
-      "simulation_id": "cyclic_cont0.970_n500_rep1",
-      "replicate": 1,
-      "n_cells": 500
-    },
-    {
-      "simulation_id": "cyclic_cont0.970_n500_rep2",
-      "replicate": 2,
-      "n_cells": 500
-    }
-  ],
-  "cyclic_0.980": [
-    {
-      "simulation_id": "cyclic_cont0.980_n500_rep0",
+      "simulation_id": "discrete_cont0.158_n500_rep0_targetbranching_k10",
       "replicate": 0,
       "n_cells": 500
     },
     {
-      "simulation_id": "cyclic_cont0.980_n500_rep1",
-      "replicate": 1,
-      "n_cells": 500
-    },
-    {
-      "simulation_id": "cyclic_cont0.980_n500_rep2",
-      "replicate": 2,
-      "n_cells": 500
-    }
-  ],
-  "cyclic_0.990": [
-    {
-      "simulation_id": "cyclic_cont0.990_n500_rep0",
+      "simulation_id": "discrete_cont0.158_n500_rep0_targetcyclic_k10",
       "replicate": 0,
       "n_cells": 500
     },
     {
-      "simulation_id": "cyclic_cont0.990_n500_rep1",
-      "replicate": 1,
+      "simulation_id": "discrete_cont0.158_n500_rep0_targetlinear_k12",
+      "replicate": 0,
       "n_cells": 500
     },
     {
-      "simulation_id": "cyclic_cont0.990_n500_rep2",
-      "replicate": 2,
+      "simulation_id": "discrete_cont0.158_n500_rep0_targetbranching_k12",
+      "replicate": 0,
+      "n_cells": 500
+    },
+    {
+      "simulation_id": "discrete_cont0.158_n500_rep0_targetcyclic_k12",
+      "replicate": 0,
+      "n_cells": 500
+    }
+  ],
+  "discrete_0.211": [
+    {
+      "simulation_id": "discrete_cont0.211_n500_rep0_targetlinear_k8",
+      "replicate": 0,
+      "n_cells": 500
+    },
+    {
+      "simulation_id": "discrete_cont0.211_n500_rep0_targetbranching_k8",
+      "replicate": 0,
+      "n_cells": 500
+    },
+    {
+      "simulation_id": "discrete_cont0.211_n500_rep0_targetcyclic_k8",
+      "replicate": 0,
+      "n_cells": 500
+    },
+    {
+      "simulation_id": "discrete_cont0.211_n500_rep0_targetlinear_k10",
+      "replicate": 0,
+      "n_cells": 500
+    },
+    {
+      "simulation_id": "discrete_cont0.211_n500_rep0_targetbranching_k10",
+      "replicate": 0,
+      "n_cells": 500
+    },
+    {
+      "simulation_id": "discrete_cont0.211_n500_rep0_targetcyclic_k10",
+      "replicate": 0,
+      "n_cells": 500
+    },
+    {
+      "simulation_id": "discrete_cont0.211_n500_rep0_targetlinear_k12",
+      "replicate": 0,
+      "n_cells": 500
+    },
+    {
+      "simulation_id": "discrete_cont0.211_n500_rep0_targetbranching_k12",
+      "replicate": 0,
+      "n_cells": 500
+    },
+    {
+      "simulation_id": "discrete_cont0.211_n500_rep0_targetcyclic_k12",
+      "replicate": 0,
+      "n_cells": 500
+    }
+  ],
+  "discrete_0.263": [
+    {
+      "simulation_id": "discrete_cont0.263_n500_rep0_targetlinear_k8",
+      "replicate": 0,
+      "n_cells": 500
+    },
+    {
+      "simulation_id": "discrete_cont0.263_n500_rep0_targetbranching_k8",
+      "replicate": 0,
+      "n_cells": 500
+    },
+    {
+      "simulation_id": "discrete_cont0.263_n500_rep0_targetcyclic_k8",
+      "replicate": 0,
+      "n_cells": 500
+    },
+    {
+      "simulation_id": "discrete_cont0.263_n500_rep0_targetlinear_k10",
+      "replicate": 0,
+      "n_cells": 500
+    },
+    {
+      "simulation_id": "discrete_cont0.263_n500_rep0_targetbranching_k10",
+      "replicate": 0,
+      "n_cells": 500
+    },
+    {
+      "simulation_id": "discrete_cont0.263_n500_rep0_targetcyclic_k10",
+      "replicate": 0,
+      "n_cells": 500
+    },
+    {
+      "simulation_id": "discrete_cont0.263_n500_rep0_targetlinear_k12",
+      "replicate": 0,
+      "n_cells": 500
+    },
+    {
+      "simulation_id": "discrete_cont0.263_n500_rep0_targetbranching_k12",
+      "replicate": 0,
+      "n_cells": 500
+    },
+    {
+      "simulation_id": "discrete_cont0.263_n500_rep0_targetcyclic_k12",
+      "replicate": 0,
+      "n_cells": 500
+    }
+  ],
+  "discrete_0.316": [
+    {
+      "simulation_id": "discrete_cont0.316_n500_rep0_targetlinear_k8",
+      "replicate": 0,
+      "n_cells": 500
+    },
+    {
+      "simulation_id": "discrete_cont0.316_n500_rep0_targetbranching_k8",
+      "replicate": 0,
+      "n_cells": 500
+    },
+    {
+      "simulation_id": "discrete_cont0.316_n500_rep0_targetcyclic_k8",
+      "replicate": 0,
+      "n_cells": 500
+    },
+    {
+      "simulation_id": "discrete_cont0.316_n500_rep0_targetlinear_k10",
+      "replicate": 0,
+      "n_cells": 500
+    },
+    {
+      "simulation_id": "discrete_cont0.316_n500_rep0_targetbranching_k10",
+      "replicate": 0,
+      "n_cells": 500
+    },
+    {
+      "simulation_id": "discrete_cont0.316_n500_rep0_targetcyclic_k10",
+      "replicate": 0,
+      "n_cells": 500
+    },
+    {
+      "simulation_id": "discrete_cont0.316_n500_rep0_targetlinear_k12",
+      "replicate": 0,
+      "n_cells": 500
+    },
+    {
+      "simulation_id": "discrete_cont0.316_n500_rep0_targetbranching_k12",
+      "replicate": 0,
+      "n_cells": 500
+    },
+    {
+      "simulation_id": "discrete_cont0.316_n500_rep0_targetcyclic_k12",
+      "replicate": 0,
+      "n_cells": 500
+    }
+  ],
+  "discrete_0.368": [
+    {
+      "simulation_id": "discrete_cont0.368_n500_rep0_targetlinear_k8",
+      "replicate": 0,
+      "n_cells": 500
+    },
+    {
+      "simulation_id": "discrete_cont0.368_n500_rep0_targetbranching_k8",
+      "replicate": 0,
+      "n_cells": 500
+    },
+    {
+      "simulation_id": "discrete_cont0.368_n500_rep0_targetcyclic_k8",
+      "replicate": 0,
+      "n_cells": 500
+    },
+    {
+      "simulation_id": "discrete_cont0.368_n500_rep0_targetlinear_k10",
+      "replicate": 0,
+      "n_cells": 500
+    },
+    {
+      "simulation_id": "discrete_cont0.368_n500_rep0_targetbranching_k10",
+      "replicate": 0,
+      "n_cells": 500
+    },
+    {
+      "simulation_id": "discrete_cont0.368_n500_rep0_targetcyclic_k10",
+      "replicate": 0,
+      "n_cells": 500
+    },
+    {
+      "simulation_id": "discrete_cont0.368_n500_rep0_targetlinear_k12",
+      "replicate": 0,
+      "n_cells": 500
+    },
+    {
+      "simulation_id": "discrete_cont0.368_n500_rep0_targetbranching_k12",
+      "replicate": 0,
+      "n_cells": 500
+    },
+    {
+      "simulation_id": "discrete_cont0.368_n500_rep0_targetcyclic_k12",
+      "replicate": 0,
+      "n_cells": 500
+    }
+  ],
+  "discrete_0.421": [
+    {
+      "simulation_id": "discrete_cont0.421_n500_rep0_targetlinear_k8",
+      "replicate": 0,
+      "n_cells": 500
+    },
+    {
+      "simulation_id": "discrete_cont0.421_n500_rep0_targetbranching_k8",
+      "replicate": 0,
+      "n_cells": 500
+    },
+    {
+      "simulation_id": "discrete_cont0.421_n500_rep0_targetcyclic_k8",
+      "replicate": 0,
+      "n_cells": 500
+    },
+    {
+      "simulation_id": "discrete_cont0.421_n500_rep0_targetlinear_k10",
+      "replicate": 0,
+      "n_cells": 500
+    },
+    {
+      "simulation_id": "discrete_cont0.421_n500_rep0_targetbranching_k10",
+      "replicate": 0,
+      "n_cells": 500
+    },
+    {
+      "simulation_id": "discrete_cont0.421_n500_rep0_targetcyclic_k10",
+      "replicate": 0,
+      "n_cells": 500
+    },
+    {
+      "simulation_id": "discrete_cont0.421_n500_rep0_targetlinear_k12",
+      "replicate": 0,
+      "n_cells": 500
+    },
+    {
+      "simulation_id": "discrete_cont0.421_n500_rep0_targetbranching_k12",
+      "replicate": 0,
+      "n_cells": 500
+    },
+    {
+      "simulation_id": "discrete_cont0.421_n500_rep0_targetcyclic_k12",
+      "replicate": 0,
+      "n_cells": 500
+    }
+  ],
+  "discrete_0.474": [
+    {
+      "simulation_id": "discrete_cont0.474_n500_rep0_targetlinear_k8",
+      "replicate": 0,
+      "n_cells": 500
+    },
+    {
+      "simulation_id": "discrete_cont0.474_n500_rep0_targetbranching_k8",
+      "replicate": 0,
+      "n_cells": 500
+    },
+    {
+      "simulation_id": "discrete_cont0.474_n500_rep0_targetcyclic_k8",
+      "replicate": 0,
+      "n_cells": 500
+    },
+    {
+      "simulation_id": "discrete_cont0.474_n500_rep0_targetlinear_k10",
+      "replicate": 0,
+      "n_cells": 500
+    },
+    {
+      "simulation_id": "discrete_cont0.474_n500_rep0_targetbranching_k10",
+      "replicate": 0,
+      "n_cells": 500
+    },
+    {
+      "simulation_id": "discrete_cont0.474_n500_rep0_targetcyclic_k10",
+      "replicate": 0,
+      "n_cells": 500
+    },
+    {
+      "simulation_id": "discrete_cont0.474_n500_rep0_targetlinear_k12",
+      "replicate": 0,
+      "n_cells": 500
+    },
+    {
+      "simulation_id": "discrete_cont0.474_n500_rep0_targetbranching_k12",
+      "replicate": 0,
+      "n_cells": 500
+    },
+    {
+      "simulation_id": "discrete_cont0.474_n500_rep0_targetcyclic_k12",
+      "replicate": 0,
+      "n_cells": 500
+    }
+  ],
+  "discrete_0.526": [
+    {
+      "simulation_id": "discrete_cont0.526_n500_rep0_targetlinear_k8",
+      "replicate": 0,
+      "n_cells": 500
+    },
+    {
+      "simulation_id": "discrete_cont0.526_n500_rep0_targetbranching_k8",
+      "replicate": 0,
+      "n_cells": 500
+    },
+    {
+      "simulation_id": "discrete_cont0.526_n500_rep0_targetcyclic_k8",
+      "replicate": 0,
+      "n_cells": 500
+    },
+    {
+      "simulation_id": "discrete_cont0.526_n500_rep0_targetlinear_k10",
+      "replicate": 0,
+      "n_cells": 500
+    },
+    {
+      "simulation_id": "discrete_cont0.526_n500_rep0_targetbranching_k10",
+      "replicate": 0,
+      "n_cells": 500
+    },
+    {
+      "simulation_id": "discrete_cont0.526_n500_rep0_targetcyclic_k10",
+      "replicate": 0,
+      "n_cells": 500
+    },
+    {
+      "simulation_id": "discrete_cont0.526_n500_rep0_targetlinear_k12",
+      "replicate": 0,
+      "n_cells": 500
+    },
+    {
+      "simulation_id": "discrete_cont0.526_n500_rep0_targetbranching_k12",
+      "replicate": 0,
+      "n_cells": 500
+    },
+    {
+      "simulation_id": "discrete_cont0.526_n500_rep0_targetcyclic_k12",
+      "replicate": 0,
+      "n_cells": 500
+    }
+  ],
+  "discrete_0.579": [
+    {
+      "simulation_id": "discrete_cont0.579_n500_rep0_targetlinear_k8",
+      "replicate": 0,
+      "n_cells": 500
+    },
+    {
+      "simulation_id": "discrete_cont0.579_n500_rep0_targetbranching_k8",
+      "replicate": 0,
+      "n_cells": 500
+    },
+    {
+      "simulation_id": "discrete_cont0.579_n500_rep0_targetcyclic_k8",
+      "replicate": 0,
+      "n_cells": 500
+    },
+    {
+      "simulation_id": "discrete_cont0.579_n500_rep0_targetlinear_k10",
+      "replicate": 0,
+      "n_cells": 500
+    },
+    {
+      "simulation_id": "discrete_cont0.579_n500_rep0_targetbranching_k10",
+      "replicate": 0,
+      "n_cells": 500
+    },
+    {
+      "simulation_id": "discrete_cont0.579_n500_rep0_targetcyclic_k10",
+      "replicate": 0,
+      "n_cells": 500
+    },
+    {
+      "simulation_id": "discrete_cont0.579_n500_rep0_targetlinear_k12",
+      "replicate": 0,
+      "n_cells": 500
+    },
+    {
+      "simulation_id": "discrete_cont0.579_n500_rep0_targetbranching_k12",
+      "replicate": 0,
+      "n_cells": 500
+    },
+    {
+      "simulation_id": "discrete_cont0.579_n500_rep0_targetcyclic_k12",
+      "replicate": 0,
+      "n_cells": 500
+    }
+  ],
+  "discrete_0.632": [
+    {
+      "simulation_id": "discrete_cont0.632_n500_rep0_targetlinear_k8",
+      "replicate": 0,
+      "n_cells": 500
+    },
+    {
+      "simulation_id": "discrete_cont0.632_n500_rep0_targetbranching_k8",
+      "replicate": 0,
+      "n_cells": 500
+    },
+    {
+      "simulation_id": "discrete_cont0.632_n500_rep0_targetcyclic_k8",
+      "replicate": 0,
+      "n_cells": 500
+    },
+    {
+      "simulation_id": "discrete_cont0.632_n500_rep0_targetlinear_k10",
+      "replicate": 0,
+      "n_cells": 500
+    },
+    {
+      "simulation_id": "discrete_cont0.632_n500_rep0_targetbranching_k10",
+      "replicate": 0,
+      "n_cells": 500
+    },
+    {
+      "simulation_id": "discrete_cont0.632_n500_rep0_targetcyclic_k10",
+      "replicate": 0,
+      "n_cells": 500
+    },
+    {
+      "simulation_id": "discrete_cont0.632_n500_rep0_targetlinear_k12",
+      "replicate": 0,
+      "n_cells": 500
+    },
+    {
+      "simulation_id": "discrete_cont0.632_n500_rep0_targetbranching_k12",
+      "replicate": 0,
+      "n_cells": 500
+    },
+    {
+      "simulation_id": "discrete_cont0.632_n500_rep0_targetcyclic_k12",
+      "replicate": 0,
+      "n_cells": 500
+    }
+  ],
+  "discrete_0.684": [
+    {
+      "simulation_id": "discrete_cont0.684_n500_rep0_targetlinear_k8",
+      "replicate": 0,
+      "n_cells": 500
+    },
+    {
+      "simulation_id": "discrete_cont0.684_n500_rep0_targetbranching_k8",
+      "replicate": 0,
+      "n_cells": 500
+    },
+    {
+      "simulation_id": "discrete_cont0.684_n500_rep0_targetcyclic_k8",
+      "replicate": 0,
+      "n_cells": 500
+    },
+    {
+      "simulation_id": "discrete_cont0.684_n500_rep0_targetlinear_k10",
+      "replicate": 0,
+      "n_cells": 500
+    },
+    {
+      "simulation_id": "discrete_cont0.684_n500_rep0_targetbranching_k10",
+      "replicate": 0,
+      "n_cells": 500
+    },
+    {
+      "simulation_id": "discrete_cont0.684_n500_rep0_targetcyclic_k10",
+      "replicate": 0,
+      "n_cells": 500
+    },
+    {
+      "simulation_id": "discrete_cont0.684_n500_rep0_targetlinear_k12",
+      "replicate": 0,
+      "n_cells": 500
+    },
+    {
+      "simulation_id": "discrete_cont0.684_n500_rep0_targetbranching_k12",
+      "replicate": 0,
+      "n_cells": 500
+    },
+    {
+      "simulation_id": "discrete_cont0.684_n500_rep0_targetcyclic_k12",
+      "replicate": 0,
+      "n_cells": 500
+    }
+  ],
+  "discrete_0.737": [
+    {
+      "simulation_id": "discrete_cont0.737_n500_rep0_targetlinear_k8",
+      "replicate": 0,
+      "n_cells": 500
+    },
+    {
+      "simulation_id": "discrete_cont0.737_n500_rep0_targetbranching_k8",
+      "replicate": 0,
+      "n_cells": 500
+    },
+    {
+      "simulation_id": "discrete_cont0.737_n500_rep0_targetcyclic_k8",
+      "replicate": 0,
+      "n_cells": 500
+    },
+    {
+      "simulation_id": "discrete_cont0.737_n500_rep0_targetlinear_k10",
+      "replicate": 0,
+      "n_cells": 500
+    },
+    {
+      "simulation_id": "discrete_cont0.737_n500_rep0_targetbranching_k10",
+      "replicate": 0,
+      "n_cells": 500
+    },
+    {
+      "simulation_id": "discrete_cont0.737_n500_rep0_targetcyclic_k10",
+      "replicate": 0,
+      "n_cells": 500
+    },
+    {
+      "simulation_id": "discrete_cont0.737_n500_rep0_targetlinear_k12",
+      "replicate": 0,
+      "n_cells": 500
+    },
+    {
+      "simulation_id": "discrete_cont0.737_n500_rep0_targetbranching_k12",
+      "replicate": 0,
+      "n_cells": 500
+    },
+    {
+      "simulation_id": "discrete_cont0.737_n500_rep0_targetcyclic_k12",
+      "replicate": 0,
+      "n_cells": 500
+    }
+  ],
+  "discrete_0.789": [
+    {
+      "simulation_id": "discrete_cont0.789_n500_rep0_targetlinear_k8",
+      "replicate": 0,
+      "n_cells": 500
+    },
+    {
+      "simulation_id": "discrete_cont0.789_n500_rep0_targetbranching_k8",
+      "replicate": 0,
+      "n_cells": 500
+    },
+    {
+      "simulation_id": "discrete_cont0.789_n500_rep0_targetcyclic_k8",
+      "replicate": 0,
+      "n_cells": 500
+    },
+    {
+      "simulation_id": "discrete_cont0.789_n500_rep0_targetlinear_k10",
+      "replicate": 0,
+      "n_cells": 500
+    },
+    {
+      "simulation_id": "discrete_cont0.789_n500_rep0_targetbranching_k10",
+      "replicate": 0,
+      "n_cells": 500
+    },
+    {
+      "simulation_id": "discrete_cont0.789_n500_rep0_targetcyclic_k10",
+      "replicate": 0,
+      "n_cells": 500
+    },
+    {
+      "simulation_id": "discrete_cont0.789_n500_rep0_targetlinear_k12",
+      "replicate": 0,
+      "n_cells": 500
+    },
+    {
+      "simulation_id": "discrete_cont0.789_n500_rep0_targetbranching_k12",
+      "replicate": 0,
+      "n_cells": 500
+    },
+    {
+      "simulation_id": "discrete_cont0.789_n500_rep0_targetcyclic_k12",
+      "replicate": 0,
+      "n_cells": 500
+    }
+  ],
+  "discrete_0.842": [
+    {
+      "simulation_id": "discrete_cont0.842_n500_rep0_targetlinear_k8",
+      "replicate": 0,
+      "n_cells": 500
+    },
+    {
+      "simulation_id": "discrete_cont0.842_n500_rep0_targetbranching_k8",
+      "replicate": 0,
+      "n_cells": 500
+    },
+    {
+      "simulation_id": "discrete_cont0.842_n500_rep0_targetcyclic_k8",
+      "replicate": 0,
+      "n_cells": 500
+    },
+    {
+      "simulation_id": "discrete_cont0.842_n500_rep0_targetlinear_k10",
+      "replicate": 0,
+      "n_cells": 500
+    },
+    {
+      "simulation_id": "discrete_cont0.842_n500_rep0_targetbranching_k10",
+      "replicate": 0,
+      "n_cells": 500
+    },
+    {
+      "simulation_id": "discrete_cont0.842_n500_rep0_targetcyclic_k10",
+      "replicate": 0,
+      "n_cells": 500
+    },
+    {
+      "simulation_id": "discrete_cont0.842_n500_rep0_targetlinear_k12",
+      "replicate": 0,
+      "n_cells": 500
+    },
+    {
+      "simulation_id": "discrete_cont0.842_n500_rep0_targetbranching_k12",
+      "replicate": 0,
+      "n_cells": 500
+    },
+    {
+      "simulation_id": "discrete_cont0.842_n500_rep0_targetcyclic_k12",
+      "replicate": 0,
+      "n_cells": 500
+    }
+  ],
+  "discrete_0.895": [
+    {
+      "simulation_id": "discrete_cont0.895_n500_rep0_targetlinear_k8",
+      "replicate": 0,
+      "n_cells": 500
+    },
+    {
+      "simulation_id": "discrete_cont0.895_n500_rep0_targetbranching_k8",
+      "replicate": 0,
+      "n_cells": 500
+    },
+    {
+      "simulation_id": "discrete_cont0.895_n500_rep0_targetcyclic_k8",
+      "replicate": 0,
+      "n_cells": 500
+    },
+    {
+      "simulation_id": "discrete_cont0.895_n500_rep0_targetlinear_k10",
+      "replicate": 0,
+      "n_cells": 500
+    },
+    {
+      "simulation_id": "discrete_cont0.895_n500_rep0_targetbranching_k10",
+      "replicate": 0,
+      "n_cells": 500
+    },
+    {
+      "simulation_id": "discrete_cont0.895_n500_rep0_targetcyclic_k10",
+      "replicate": 0,
+      "n_cells": 500
+    },
+    {
+      "simulation_id": "discrete_cont0.895_n500_rep0_targetlinear_k12",
+      "replicate": 0,
+      "n_cells": 500
+    },
+    {
+      "simulation_id": "discrete_cont0.895_n500_rep0_targetbranching_k12",
+      "replicate": 0,
+      "n_cells": 500
+    },
+    {
+      "simulation_id": "discrete_cont0.895_n500_rep0_targetcyclic_k12",
+      "replicate": 0,
+      "n_cells": 500
+    }
+  ],
+  "discrete_0.947": [
+    {
+      "simulation_id": "discrete_cont0.947_n500_rep0_targetlinear_k8",
+      "replicate": 0,
+      "n_cells": 500
+    },
+    {
+      "simulation_id": "discrete_cont0.947_n500_rep0_targetbranching_k8",
+      "replicate": 0,
+      "n_cells": 500
+    },
+    {
+      "simulation_id": "discrete_cont0.947_n500_rep0_targetcyclic_k8",
+      "replicate": 0,
+      "n_cells": 500
+    },
+    {
+      "simulation_id": "discrete_cont0.947_n500_rep0_targetlinear_k10",
+      "replicate": 0,
+      "n_cells": 500
+    },
+    {
+      "simulation_id": "discrete_cont0.947_n500_rep0_targetbranching_k10",
+      "replicate": 0,
+      "n_cells": 500
+    },
+    {
+      "simulation_id": "discrete_cont0.947_n500_rep0_targetcyclic_k10",
+      "replicate": 0,
+      "n_cells": 500
+    },
+    {
+      "simulation_id": "discrete_cont0.947_n500_rep0_targetlinear_k12",
+      "replicate": 0,
+      "n_cells": 500
+    },
+    {
+      "simulation_id": "discrete_cont0.947_n500_rep0_targetbranching_k12",
+      "replicate": 0,
+      "n_cells": 500
+    },
+    {
+      "simulation_id": "discrete_cont0.947_n500_rep0_targetcyclic_k12",
+      "replicate": 0,
+      "n_cells": 500
+    }
+  ],
+  "discrete_1.000": [
+    {
+      "simulation_id": "discrete_cont1.000_n500_rep0_targetlinear_k8",
+      "replicate": 0,
+      "n_cells": 500
+    },
+    {
+      "simulation_id": "discrete_cont1.000_n500_rep0_targetbranching_k8",
+      "replicate": 0,
+      "n_cells": 500
+    },
+    {
+      "simulation_id": "discrete_cont1.000_n500_rep0_targetcyclic_k8",
+      "replicate": 0,
+      "n_cells": 500
+    },
+    {
+      "simulation_id": "discrete_cont1.000_n500_rep0_targetlinear_k10",
+      "replicate": 0,
+      "n_cells": 500
+    },
+    {
+      "simulation_id": "discrete_cont1.000_n500_rep0_targetbranching_k10",
+      "replicate": 0,
+      "n_cells": 500
+    },
+    {
+      "simulation_id": "discrete_cont1.000_n500_rep0_targetcyclic_k10",
+      "replicate": 0,
+      "n_cells": 500
+    },
+    {
+      "simulation_id": "discrete_cont1.000_n500_rep0_targetlinear_k12",
+      "replicate": 0,
+      "n_cells": 500
+    },
+    {
+      "simulation_id": "discrete_cont1.000_n500_rep0_targetbranching_k12",
+      "replicate": 0,
+      "n_cells": 500
+    },
+    {
+      "simulation_id": "discrete_cont1.000_n500_rep0_targetcyclic_k12",
+      "replicate": 0,
       "n_cells": 500
     }
   ]

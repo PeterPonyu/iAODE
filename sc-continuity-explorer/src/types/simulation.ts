@@ -154,7 +154,7 @@ export type DataManifest = {
   total_simulations: number;
   chunk_size: number;
   total_chunks: number;
-  parameter_grid: {
+  parameter_grid?: {  // Make optional for backwards compatibility
     continuity: number[];
     trajectory_types: TrajectoryType[];
     n_cells: number[];
@@ -164,6 +164,22 @@ export type DataManifest = {
   random_seed: number;
   metrics_computed: string[];
   embedding_methods: string[];
+  save_ground_truth: boolean;
+  continuous_config?: {  // ADD THIS
+    trajectory_types: TrajectoryType[];
+    continuity_levels: number[];
+    n_replicates: number;
+    branching_params?: any;
+    cyclic_params?: any;
+  };
+  discrete_config?: {  // ADD THIS
+    continuity_levels: number[];
+    n_clusters_list: number[];
+    target_trajectories: TrajectoryType[];
+    n_replicates: number;
+    base_separation: number;
+    branch_point: number;
+  };
 };
 
 /**
@@ -189,6 +205,7 @@ export type ParameterLookup = Record<string, {
   chunk_id: number;
   index_in_chunk: number;
   simulation_id: string;
+  parameters: SimulationParameters; // ADD THIS LINE
 }>;
 
 /**

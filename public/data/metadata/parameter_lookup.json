@@ -1,0 +1,3002 @@
+{
+  "linear_cont0.850_n500_rep0": {
+    "chunk_id": 0,
+    "index_in_chunk": 0,
+    "parameters": {
+      "trajectory_type": "linear",
+      "continuity": 0.85,
+      "n_cells": 500,
+      "n_dims": 50,
+      "replicate": 0,
+      "global_id": 0
+    }
+  },
+  "linear_cont0.857_n500_rep0": {
+    "chunk_id": 0,
+    "index_in_chunk": 1,
+    "parameters": {
+      "trajectory_type": "linear",
+      "continuity": 0.8573684210526316,
+      "n_cells": 500,
+      "n_dims": 50,
+      "replicate": 0,
+      "global_id": 1
+    }
+  },
+  "linear_cont0.865_n500_rep0": {
+    "chunk_id": 0,
+    "index_in_chunk": 2,
+    "parameters": {
+      "trajectory_type": "linear",
+      "continuity": 0.8647368421052631,
+      "n_cells": 500,
+      "n_dims": 50,
+      "replicate": 0,
+      "global_id": 2
+    }
+  },
+  "linear_cont0.872_n500_rep0": {
+    "chunk_id": 0,
+    "index_in_chunk": 3,
+    "parameters": {
+      "trajectory_type": "linear",
+      "continuity": 0.8721052631578947,
+      "n_cells": 500,
+      "n_dims": 50,
+      "replicate": 0,
+      "global_id": 3
+    }
+  },
+  "linear_cont0.879_n500_rep0": {
+    "chunk_id": 0,
+    "index_in_chunk": 4,
+    "parameters": {
+      "trajectory_type": "linear",
+      "continuity": 0.8794736842105263,
+      "n_cells": 500,
+      "n_dims": 50,
+      "replicate": 0,
+      "global_id": 4
+    }
+  },
+  "linear_cont0.887_n500_rep0": {
+    "chunk_id": 0,
+    "index_in_chunk": 5,
+    "parameters": {
+      "trajectory_type": "linear",
+      "continuity": 0.8868421052631579,
+      "n_cells": 500,
+      "n_dims": 50,
+      "replicate": 0,
+      "global_id": 5
+    }
+  },
+  "linear_cont0.894_n500_rep0": {
+    "chunk_id": 0,
+    "index_in_chunk": 6,
+    "parameters": {
+      "trajectory_type": "linear",
+      "continuity": 0.8942105263157895,
+      "n_cells": 500,
+      "n_dims": 50,
+      "replicate": 0,
+      "global_id": 6
+    }
+  },
+  "linear_cont0.902_n500_rep0": {
+    "chunk_id": 0,
+    "index_in_chunk": 7,
+    "parameters": {
+      "trajectory_type": "linear",
+      "continuity": 0.901578947368421,
+      "n_cells": 500,
+      "n_dims": 50,
+      "replicate": 0,
+      "global_id": 7
+    }
+  },
+  "linear_cont0.909_n500_rep0": {
+    "chunk_id": 0,
+    "index_in_chunk": 8,
+    "parameters": {
+      "trajectory_type": "linear",
+      "continuity": 0.9089473684210526,
+      "n_cells": 500,
+      "n_dims": 50,
+      "replicate": 0,
+      "global_id": 8
+    }
+  },
+  "linear_cont0.916_n500_rep0": {
+    "chunk_id": 0,
+    "index_in_chunk": 9,
+    "parameters": {
+      "trajectory_type": "linear",
+      "continuity": 0.9163157894736842,
+      "n_cells": 500,
+      "n_dims": 50,
+      "replicate": 0,
+      "global_id": 9
+    }
+  },
+  "linear_cont0.924_n500_rep0": {
+    "chunk_id": 0,
+    "index_in_chunk": 10,
+    "parameters": {
+      "trajectory_type": "linear",
+      "continuity": 0.9236842105263158,
+      "n_cells": 500,
+      "n_dims": 50,
+      "replicate": 0,
+      "global_id": 10
+    }
+  },
+  "linear_cont0.931_n500_rep0": {
+    "chunk_id": 0,
+    "index_in_chunk": 11,
+    "parameters": {
+      "trajectory_type": "linear",
+      "continuity": 0.9310526315789474,
+      "n_cells": 500,
+      "n_dims": 50,
+      "replicate": 0,
+      "global_id": 11
+    }
+  },
+  "linear_cont0.938_n500_rep0": {
+    "chunk_id": 0,
+    "index_in_chunk": 12,
+    "parameters": {
+      "trajectory_type": "linear",
+      "continuity": 0.9384210526315789,
+      "n_cells": 500,
+      "n_dims": 50,
+      "replicate": 0,
+      "global_id": 12
+    }
+  },
+  "linear_cont0.946_n500_rep0": {
+    "chunk_id": 0,
+    "index_in_chunk": 13,
+    "parameters": {
+      "trajectory_type": "linear",
+      "continuity": 0.9457894736842105,
+      "n_cells": 500,
+      "n_dims": 50,
+      "replicate": 0,
+      "global_id": 13
+    }
+  },
+  "linear_cont0.953_n500_rep0": {
+    "chunk_id": 0,
+    "index_in_chunk": 14,
+    "parameters": {
+      "trajectory_type": "linear",
+      "continuity": 0.9531578947368421,
+      "n_cells": 500,
+      "n_dims": 50,
+      "replicate": 0,
+      "global_id": 14
+    }
+  },
+  "linear_cont0.961_n500_rep0": {
+    "chunk_id": 0,
+    "index_in_chunk": 15,
+    "parameters": {
+      "trajectory_type": "linear",
+      "continuity": 0.9605263157894737,
+      "n_cells": 500,
+      "n_dims": 50,
+      "replicate": 0,
+      "global_id": 15
+    }
+  },
+  "linear_cont0.968_n500_rep0": {
+    "chunk_id": 0,
+    "index_in_chunk": 16,
+    "parameters": {
+      "trajectory_type": "linear",
+      "continuity": 0.9678947368421053,
+      "n_cells": 500,
+      "n_dims": 50,
+      "replicate": 0,
+      "global_id": 16
+    }
+  },
+  "linear_cont0.975_n500_rep0": {
+    "chunk_id": 0,
+    "index_in_chunk": 17,
+    "parameters": {
+      "trajectory_type": "linear",
+      "continuity": 0.9752631578947368,
+      "n_cells": 500,
+      "n_dims": 50,
+      "replicate": 0,
+      "global_id": 17
+    }
+  },
+  "linear_cont0.983_n500_rep0": {
+    "chunk_id": 0,
+    "index_in_chunk": 18,
+    "parameters": {
+      "trajectory_type": "linear",
+      "continuity": 0.9826315789473684,
+      "n_cells": 500,
+      "n_dims": 50,
+      "replicate": 0,
+      "global_id": 18
+    }
+  },
+  "linear_cont0.990_n500_rep0": {
+    "chunk_id": 0,
+    "index_in_chunk": 19,
+    "parameters": {
+      "trajectory_type": "linear",
+      "continuity": 0.99,
+      "n_cells": 500,
+      "n_dims": 50,
+      "replicate": 0,
+      "global_id": 19
+    }
+  },
+  "discrete_cont0.000_n500_rep0_targetlinear_k8": {
+    "chunk_id": 0,
+    "index_in_chunk": 20,
+    "parameters": {
+      "trajectory_type": "discrete",
+      "continuity": 0.0,
+      "n_cells": 500,
+      "n_dims": 50,
+      "replicate": 0,
+      "n_clusters": 8,
+      "target_trajectory": "linear",
+      "base_separation": 5.0,
+      "global_id": 60
+    }
+  },
+  "discrete_cont0.000_n500_rep0_targetbranching_k8": {
+    "chunk_id": 0,
+    "index_in_chunk": 21,
+    "parameters": {
+      "trajectory_type": "discrete",
+      "continuity": 0.0,
+      "n_cells": 500,
+      "n_dims": 50,
+      "replicate": 0,
+      "n_clusters": 8,
+      "target_trajectory": "branching",
+      "base_separation": 5.0,
+      "branch_point": 0.5,
+      "global_id": 61
+    }
+  },
+  "discrete_cont0.000_n500_rep0_targetcyclic_k8": {
+    "chunk_id": 0,
+    "index_in_chunk": 22,
+    "parameters": {
+      "trajectory_type": "discrete",
+      "continuity": 0.0,
+      "n_cells": 500,
+      "n_dims": 50,
+      "replicate": 0,
+      "n_clusters": 8,
+      "target_trajectory": "cyclic",
+      "base_separation": 5.0,
+      "global_id": 62
+    }
+  },
+  "discrete_cont0.000_n500_rep0_targetlinear_k10": {
+    "chunk_id": 0,
+    "index_in_chunk": 23,
+    "parameters": {
+      "trajectory_type": "discrete",
+      "continuity": 0.0,
+      "n_cells": 500,
+      "n_dims": 50,
+      "replicate": 0,
+      "n_clusters": 10,
+      "target_trajectory": "linear",
+      "base_separation": 5.0,
+      "global_id": 63
+    }
+  },
+  "discrete_cont0.000_n500_rep0_targetbranching_k10": {
+    "chunk_id": 0,
+    "index_in_chunk": 24,
+    "parameters": {
+      "trajectory_type": "discrete",
+      "continuity": 0.0,
+      "n_cells": 500,
+      "n_dims": 50,
+      "replicate": 0,
+      "n_clusters": 10,
+      "target_trajectory": "branching",
+      "base_separation": 5.0,
+      "branch_point": 0.5,
+      "global_id": 64
+    }
+  },
+  "discrete_cont0.000_n500_rep0_targetcyclic_k10": {
+    "chunk_id": 0,
+    "index_in_chunk": 25,
+    "parameters": {
+      "trajectory_type": "discrete",
+      "continuity": 0.0,
+      "n_cells": 500,
+      "n_dims": 50,
+      "replicate": 0,
+      "n_clusters": 10,
+      "target_trajectory": "cyclic",
+      "base_separation": 5.0,
+      "global_id": 65
+    }
+  },
+  "discrete_cont0.000_n500_rep0_targetlinear_k12": {
+    "chunk_id": 0,
+    "index_in_chunk": 26,
+    "parameters": {
+      "trajectory_type": "discrete",
+      "continuity": 0.0,
+      "n_cells": 500,
+      "n_dims": 50,
+      "replicate": 0,
+      "n_clusters": 12,
+      "target_trajectory": "linear",
+      "base_separation": 5.0,
+      "global_id": 66
+    }
+  },
+  "discrete_cont0.000_n500_rep0_targetbranching_k12": {
+    "chunk_id": 0,
+    "index_in_chunk": 27,
+    "parameters": {
+      "trajectory_type": "discrete",
+      "continuity": 0.0,
+      "n_cells": 500,
+      "n_dims": 50,
+      "replicate": 0,
+      "n_clusters": 12,
+      "target_trajectory": "branching",
+      "base_separation": 5.0,
+      "branch_point": 0.5,
+      "global_id": 67
+    }
+  },
+  "discrete_cont0.000_n500_rep0_targetcyclic_k12": {
+    "chunk_id": 0,
+    "index_in_chunk": 28,
+    "parameters": {
+      "trajectory_type": "discrete",
+      "continuity": 0.0,
+      "n_cells": 500,
+      "n_dims": 50,
+      "replicate": 0,
+      "n_clusters": 12,
+      "target_trajectory": "cyclic",
+      "base_separation": 5.0,
+      "global_id": 68
+    }
+  },
+  "discrete_cont0.053_n500_rep0_targetlinear_k8": {
+    "chunk_id": 0,
+    "index_in_chunk": 29,
+    "parameters": {
+      "trajectory_type": "discrete",
+      "continuity": 0.05263157894736842,
+      "n_cells": 500,
+      "n_dims": 50,
+      "replicate": 0,
+      "n_clusters": 8,
+      "target_trajectory": "linear",
+      "base_separation": 5.0,
+      "global_id": 69
+    }
+  },
+  "discrete_cont0.053_n500_rep0_targetbranching_k8": {
+    "chunk_id": 0,
+    "index_in_chunk": 30,
+    "parameters": {
+      "trajectory_type": "discrete",
+      "continuity": 0.05263157894736842,
+      "n_cells": 500,
+      "n_dims": 50,
+      "replicate": 0,
+      "n_clusters": 8,
+      "target_trajectory": "branching",
+      "base_separation": 5.0,
+      "branch_point": 0.5,
+      "global_id": 70
+    }
+  },
+  "discrete_cont0.053_n500_rep0_targetcyclic_k8": {
+    "chunk_id": 0,
+    "index_in_chunk": 31,
+    "parameters": {
+      "trajectory_type": "discrete",
+      "continuity": 0.05263157894736842,
+      "n_cells": 500,
+      "n_dims": 50,
+      "replicate": 0,
+      "n_clusters": 8,
+      "target_trajectory": "cyclic",
+      "base_separation": 5.0,
+      "global_id": 71
+    }
+  },
+  "discrete_cont0.053_n500_rep0_targetlinear_k10": {
+    "chunk_id": 0,
+    "index_in_chunk": 32,
+    "parameters": {
+      "trajectory_type": "discrete",
+      "continuity": 0.05263157894736842,
+      "n_cells": 500,
+      "n_dims": 50,
+      "replicate": 0,
+      "n_clusters": 10,
+      "target_trajectory": "linear",
+      "base_separation": 5.0,
+      "global_id": 72
+    }
+  },
+  "discrete_cont0.053_n500_rep0_targetbranching_k10": {
+    "chunk_id": 0,
+    "index_in_chunk": 33,
+    "parameters": {
+      "trajectory_type": "discrete",
+      "continuity": 0.05263157894736842,
+      "n_cells": 500,
+      "n_dims": 50,
+      "replicate": 0,
+      "n_clusters": 10,
+      "target_trajectory": "branching",
+      "base_separation": 5.0,
+      "branch_point": 0.5,
+      "global_id": 73
+    }
+  },
+  "discrete_cont0.053_n500_rep0_targetcyclic_k10": {
+    "chunk_id": 0,
+    "index_in_chunk": 34,
+    "parameters": {
+      "trajectory_type": "discrete",
+      "continuity": 0.05263157894736842,
+      "n_cells": 500,
+      "n_dims": 50,
+      "replicate": 0,
+      "n_clusters": 10,
+      "target_trajectory": "cyclic",
+      "base_separation": 5.0,
+      "global_id": 74
+    }
+  },
+  "discrete_cont0.053_n500_rep0_targetlinear_k12": {
+    "chunk_id": 0,
+    "index_in_chunk": 35,
+    "parameters": {
+      "trajectory_type": "discrete",
+      "continuity": 0.05263157894736842,
+      "n_cells": 500,
+      "n_dims": 50,
+      "replicate": 0,
+      "n_clusters": 12,
+      "target_trajectory": "linear",
+      "base_separation": 5.0,
+      "global_id": 75
+    }
+  },
+  "discrete_cont0.053_n500_rep0_targetbranching_k12": {
+    "chunk_id": 0,
+    "index_in_chunk": 36,
+    "parameters": {
+      "trajectory_type": "discrete",
+      "continuity": 0.05263157894736842,
+      "n_cells": 500,
+      "n_dims": 50,
+      "replicate": 0,
+      "n_clusters": 12,
+      "target_trajectory": "branching",
+      "base_separation": 5.0,
+      "branch_point": 0.5,
+      "global_id": 76
+    }
+  },
+  "discrete_cont0.053_n500_rep0_targetcyclic_k12": {
+    "chunk_id": 0,
+    "index_in_chunk": 37,
+    "parameters": {
+      "trajectory_type": "discrete",
+      "continuity": 0.05263157894736842,
+      "n_cells": 500,
+      "n_dims": 50,
+      "replicate": 0,
+      "n_clusters": 12,
+      "target_trajectory": "cyclic",
+      "base_separation": 5.0,
+      "global_id": 77
+    }
+  },
+  "discrete_cont0.105_n500_rep0_targetlinear_k8": {
+    "chunk_id": 0,
+    "index_in_chunk": 38,
+    "parameters": {
+      "trajectory_type": "discrete",
+      "continuity": 0.10526315789473684,
+      "n_cells": 500,
+      "n_dims": 50,
+      "replicate": 0,
+      "n_clusters": 8,
+      "target_trajectory": "linear",
+      "base_separation": 5.0,
+      "global_id": 78
+    }
+  },
+  "discrete_cont0.105_n500_rep0_targetbranching_k8": {
+    "chunk_id": 0,
+    "index_in_chunk": 39,
+    "parameters": {
+      "trajectory_type": "discrete",
+      "continuity": 0.10526315789473684,
+      "n_cells": 500,
+      "n_dims": 50,
+      "replicate": 0,
+      "n_clusters": 8,
+      "target_trajectory": "branching",
+      "base_separation": 5.0,
+      "branch_point": 0.5,
+      "global_id": 79
+    }
+  },
+  "discrete_cont0.105_n500_rep0_targetcyclic_k8": {
+    "chunk_id": 0,
+    "index_in_chunk": 40,
+    "parameters": {
+      "trajectory_type": "discrete",
+      "continuity": 0.10526315789473684,
+      "n_cells": 500,
+      "n_dims": 50,
+      "replicate": 0,
+      "n_clusters": 8,
+      "target_trajectory": "cyclic",
+      "base_separation": 5.0,
+      "global_id": 80
+    }
+  },
+  "discrete_cont0.105_n500_rep0_targetlinear_k10": {
+    "chunk_id": 0,
+    "index_in_chunk": 41,
+    "parameters": {
+      "trajectory_type": "discrete",
+      "continuity": 0.10526315789473684,
+      "n_cells": 500,
+      "n_dims": 50,
+      "replicate": 0,
+      "n_clusters": 10,
+      "target_trajectory": "linear",
+      "base_separation": 5.0,
+      "global_id": 81
+    }
+  },
+  "discrete_cont0.105_n500_rep0_targetbranching_k10": {
+    "chunk_id": 0,
+    "index_in_chunk": 42,
+    "parameters": {
+      "trajectory_type": "discrete",
+      "continuity": 0.10526315789473684,
+      "n_cells": 500,
+      "n_dims": 50,
+      "replicate": 0,
+      "n_clusters": 10,
+      "target_trajectory": "branching",
+      "base_separation": 5.0,
+      "branch_point": 0.5,
+      "global_id": 82
+    }
+  },
+  "discrete_cont0.105_n500_rep0_targetcyclic_k10": {
+    "chunk_id": 0,
+    "index_in_chunk": 43,
+    "parameters": {
+      "trajectory_type": "discrete",
+      "continuity": 0.10526315789473684,
+      "n_cells": 500,
+      "n_dims": 50,
+      "replicate": 0,
+      "n_clusters": 10,
+      "target_trajectory": "cyclic",
+      "base_separation": 5.0,
+      "global_id": 83
+    }
+  },
+  "discrete_cont0.105_n500_rep0_targetlinear_k12": {
+    "chunk_id": 0,
+    "index_in_chunk": 44,
+    "parameters": {
+      "trajectory_type": "discrete",
+      "continuity": 0.10526315789473684,
+      "n_cells": 500,
+      "n_dims": 50,
+      "replicate": 0,
+      "n_clusters": 12,
+      "target_trajectory": "linear",
+      "base_separation": 5.0,
+      "global_id": 84
+    }
+  },
+  "discrete_cont0.105_n500_rep0_targetbranching_k12": {
+    "chunk_id": 0,
+    "index_in_chunk": 45,
+    "parameters": {
+      "trajectory_type": "discrete",
+      "continuity": 0.10526315789473684,
+      "n_cells": 500,
+      "n_dims": 50,
+      "replicate": 0,
+      "n_clusters": 12,
+      "target_trajectory": "branching",
+      "base_separation": 5.0,
+      "branch_point": 0.5,
+      "global_id": 85
+    }
+  },
+  "discrete_cont0.105_n500_rep0_targetcyclic_k12": {
+    "chunk_id": 0,
+    "index_in_chunk": 46,
+    "parameters": {
+      "trajectory_type": "discrete",
+      "continuity": 0.10526315789473684,
+      "n_cells": 500,
+      "n_dims": 50,
+      "replicate": 0,
+      "n_clusters": 12,
+      "target_trajectory": "cyclic",
+      "base_separation": 5.0,
+      "global_id": 86
+    }
+  },
+  "discrete_cont0.158_n500_rep0_targetlinear_k8": {
+    "chunk_id": 0,
+    "index_in_chunk": 47,
+    "parameters": {
+      "trajectory_type": "discrete",
+      "continuity": 0.15789473684210525,
+      "n_cells": 500,
+      "n_dims": 50,
+      "replicate": 0,
+      "n_clusters": 8,
+      "target_trajectory": "linear",
+      "base_separation": 5.0,
+      "global_id": 87
+    }
+  },
+  "discrete_cont0.158_n500_rep0_targetbranching_k8": {
+    "chunk_id": 0,
+    "index_in_chunk": 48,
+    "parameters": {
+      "trajectory_type": "discrete",
+      "continuity": 0.15789473684210525,
+      "n_cells": 500,
+      "n_dims": 50,
+      "replicate": 0,
+      "n_clusters": 8,
+      "target_trajectory": "branching",
+      "base_separation": 5.0,
+      "branch_point": 0.5,
+      "global_id": 88
+    }
+  },
+  "discrete_cont0.158_n500_rep0_targetcyclic_k8": {
+    "chunk_id": 0,
+    "index_in_chunk": 49,
+    "parameters": {
+      "trajectory_type": "discrete",
+      "continuity": 0.15789473684210525,
+      "n_cells": 500,
+      "n_dims": 50,
+      "replicate": 0,
+      "n_clusters": 8,
+      "target_trajectory": "cyclic",
+      "base_separation": 5.0,
+      "global_id": 89
+    }
+  },
+  "discrete_cont0.158_n500_rep0_targetlinear_k10": {
+    "chunk_id": 1,
+    "index_in_chunk": 0,
+    "parameters": {
+      "trajectory_type": "discrete",
+      "continuity": 0.15789473684210525,
+      "n_cells": 500,
+      "n_dims": 50,
+      "replicate": 0,
+      "n_clusters": 10,
+      "target_trajectory": "linear",
+      "base_separation": 5.0,
+      "global_id": 90
+    }
+  },
+  "discrete_cont0.158_n500_rep0_targetbranching_k10": {
+    "chunk_id": 1,
+    "index_in_chunk": 1,
+    "parameters": {
+      "trajectory_type": "discrete",
+      "continuity": 0.15789473684210525,
+      "n_cells": 500,
+      "n_dims": 50,
+      "replicate": 0,
+      "n_clusters": 10,
+      "target_trajectory": "branching",
+      "base_separation": 5.0,
+      "branch_point": 0.5,
+      "global_id": 91
+    }
+  },
+  "discrete_cont0.158_n500_rep0_targetcyclic_k10": {
+    "chunk_id": 1,
+    "index_in_chunk": 2,
+    "parameters": {
+      "trajectory_type": "discrete",
+      "continuity": 0.15789473684210525,
+      "n_cells": 500,
+      "n_dims": 50,
+      "replicate": 0,
+      "n_clusters": 10,
+      "target_trajectory": "cyclic",
+      "base_separation": 5.0,
+      "global_id": 92
+    }
+  },
+  "discrete_cont0.158_n500_rep0_targetlinear_k12": {
+    "chunk_id": 1,
+    "index_in_chunk": 3,
+    "parameters": {
+      "trajectory_type": "discrete",
+      "continuity": 0.15789473684210525,
+      "n_cells": 500,
+      "n_dims": 50,
+      "replicate": 0,
+      "n_clusters": 12,
+      "target_trajectory": "linear",
+      "base_separation": 5.0,
+      "global_id": 93
+    }
+  },
+  "discrete_cont0.158_n500_rep0_targetbranching_k12": {
+    "chunk_id": 1,
+    "index_in_chunk": 4,
+    "parameters": {
+      "trajectory_type": "discrete",
+      "continuity": 0.15789473684210525,
+      "n_cells": 500,
+      "n_dims": 50,
+      "replicate": 0,
+      "n_clusters": 12,
+      "target_trajectory": "branching",
+      "base_separation": 5.0,
+      "branch_point": 0.5,
+      "global_id": 94
+    }
+  },
+  "discrete_cont0.158_n500_rep0_targetcyclic_k12": {
+    "chunk_id": 1,
+    "index_in_chunk": 5,
+    "parameters": {
+      "trajectory_type": "discrete",
+      "continuity": 0.15789473684210525,
+      "n_cells": 500,
+      "n_dims": 50,
+      "replicate": 0,
+      "n_clusters": 12,
+      "target_trajectory": "cyclic",
+      "base_separation": 5.0,
+      "global_id": 95
+    }
+  },
+  "discrete_cont0.211_n500_rep0_targetlinear_k8": {
+    "chunk_id": 1,
+    "index_in_chunk": 6,
+    "parameters": {
+      "trajectory_type": "discrete",
+      "continuity": 0.21052631578947367,
+      "n_cells": 500,
+      "n_dims": 50,
+      "replicate": 0,
+      "n_clusters": 8,
+      "target_trajectory": "linear",
+      "base_separation": 5.0,
+      "global_id": 96
+    }
+  },
+  "discrete_cont0.211_n500_rep0_targetbranching_k8": {
+    "chunk_id": 1,
+    "index_in_chunk": 7,
+    "parameters": {
+      "trajectory_type": "discrete",
+      "continuity": 0.21052631578947367,
+      "n_cells": 500,
+      "n_dims": 50,
+      "replicate": 0,
+      "n_clusters": 8,
+      "target_trajectory": "branching",
+      "base_separation": 5.0,
+      "branch_point": 0.5,
+      "global_id": 97
+    }
+  },
+  "discrete_cont0.211_n500_rep0_targetcyclic_k8": {
+    "chunk_id": 1,
+    "index_in_chunk": 8,
+    "parameters": {
+      "trajectory_type": "discrete",
+      "continuity": 0.21052631578947367,
+      "n_cells": 500,
+      "n_dims": 50,
+      "replicate": 0,
+      "n_clusters": 8,
+      "target_trajectory": "cyclic",
+      "base_separation": 5.0,
+      "global_id": 98
+    }
+  },
+  "discrete_cont0.211_n500_rep0_targetlinear_k10": {
+    "chunk_id": 1,
+    "index_in_chunk": 9,
+    "parameters": {
+      "trajectory_type": "discrete",
+      "continuity": 0.21052631578947367,
+      "n_cells": 500,
+      "n_dims": 50,
+      "replicate": 0,
+      "n_clusters": 10,
+      "target_trajectory": "linear",
+      "base_separation": 5.0,
+      "global_id": 99
+    }
+  },
+  "discrete_cont0.211_n500_rep0_targetbranching_k10": {
+    "chunk_id": 1,
+    "index_in_chunk": 10,
+    "parameters": {
+      "trajectory_type": "discrete",
+      "continuity": 0.21052631578947367,
+      "n_cells": 500,
+      "n_dims": 50,
+      "replicate": 0,
+      "n_clusters": 10,
+      "target_trajectory": "branching",
+      "base_separation": 5.0,
+      "branch_point": 0.5,
+      "global_id": 100
+    }
+  },
+  "discrete_cont0.211_n500_rep0_targetcyclic_k10": {
+    "chunk_id": 1,
+    "index_in_chunk": 11,
+    "parameters": {
+      "trajectory_type": "discrete",
+      "continuity": 0.21052631578947367,
+      "n_cells": 500,
+      "n_dims": 50,
+      "replicate": 0,
+      "n_clusters": 10,
+      "target_trajectory": "cyclic",
+      "base_separation": 5.0,
+      "global_id": 101
+    }
+  },
+  "discrete_cont0.211_n500_rep0_targetlinear_k12": {
+    "chunk_id": 1,
+    "index_in_chunk": 12,
+    "parameters": {
+      "trajectory_type": "discrete",
+      "continuity": 0.21052631578947367,
+      "n_cells": 500,
+      "n_dims": 50,
+      "replicate": 0,
+      "n_clusters": 12,
+      "target_trajectory": "linear",
+      "base_separation": 5.0,
+      "global_id": 102
+    }
+  },
+  "discrete_cont0.211_n500_rep0_targetbranching_k12": {
+    "chunk_id": 1,
+    "index_in_chunk": 13,
+    "parameters": {
+      "trajectory_type": "discrete",
+      "continuity": 0.21052631578947367,
+      "n_cells": 500,
+      "n_dims": 50,
+      "replicate": 0,
+      "n_clusters": 12,
+      "target_trajectory": "branching",
+      "base_separation": 5.0,
+      "branch_point": 0.5,
+      "global_id": 103
+    }
+  },
+  "discrete_cont0.211_n500_rep0_targetcyclic_k12": {
+    "chunk_id": 1,
+    "index_in_chunk": 14,
+    "parameters": {
+      "trajectory_type": "discrete",
+      "continuity": 0.21052631578947367,
+      "n_cells": 500,
+      "n_dims": 50,
+      "replicate": 0,
+      "n_clusters": 12,
+      "target_trajectory": "cyclic",
+      "base_separation": 5.0,
+      "global_id": 104
+    }
+  },
+  "discrete_cont0.263_n500_rep0_targetlinear_k8": {
+    "chunk_id": 1,
+    "index_in_chunk": 15,
+    "parameters": {
+      "trajectory_type": "discrete",
+      "continuity": 0.2631578947368421,
+      "n_cells": 500,
+      "n_dims": 50,
+      "replicate": 0,
+      "n_clusters": 8,
+      "target_trajectory": "linear",
+      "base_separation": 5.0,
+      "global_id": 105
+    }
+  },
+  "discrete_cont0.263_n500_rep0_targetbranching_k8": {
+    "chunk_id": 1,
+    "index_in_chunk": 16,
+    "parameters": {
+      "trajectory_type": "discrete",
+      "continuity": 0.2631578947368421,
+      "n_cells": 500,
+      "n_dims": 50,
+      "replicate": 0,
+      "n_clusters": 8,
+      "target_trajectory": "branching",
+      "base_separation": 5.0,
+      "branch_point": 0.5,
+      "global_id": 106
+    }
+  },
+  "discrete_cont0.263_n500_rep0_targetcyclic_k8": {
+    "chunk_id": 1,
+    "index_in_chunk": 17,
+    "parameters": {
+      "trajectory_type": "discrete",
+      "continuity": 0.2631578947368421,
+      "n_cells": 500,
+      "n_dims": 50,
+      "replicate": 0,
+      "n_clusters": 8,
+      "target_trajectory": "cyclic",
+      "base_separation": 5.0,
+      "global_id": 107
+    }
+  },
+  "discrete_cont0.263_n500_rep0_targetlinear_k10": {
+    "chunk_id": 1,
+    "index_in_chunk": 18,
+    "parameters": {
+      "trajectory_type": "discrete",
+      "continuity": 0.2631578947368421,
+      "n_cells": 500,
+      "n_dims": 50,
+      "replicate": 0,
+      "n_clusters": 10,
+      "target_trajectory": "linear",
+      "base_separation": 5.0,
+      "global_id": 108
+    }
+  },
+  "discrete_cont0.263_n500_rep0_targetbranching_k10": {
+    "chunk_id": 1,
+    "index_in_chunk": 19,
+    "parameters": {
+      "trajectory_type": "discrete",
+      "continuity": 0.2631578947368421,
+      "n_cells": 500,
+      "n_dims": 50,
+      "replicate": 0,
+      "n_clusters": 10,
+      "target_trajectory": "branching",
+      "base_separation": 5.0,
+      "branch_point": 0.5,
+      "global_id": 109
+    }
+  },
+  "discrete_cont0.263_n500_rep0_targetcyclic_k10": {
+    "chunk_id": 1,
+    "index_in_chunk": 20,
+    "parameters": {
+      "trajectory_type": "discrete",
+      "continuity": 0.2631578947368421,
+      "n_cells": 500,
+      "n_dims": 50,
+      "replicate": 0,
+      "n_clusters": 10,
+      "target_trajectory": "cyclic",
+      "base_separation": 5.0,
+      "global_id": 110
+    }
+  },
+  "discrete_cont0.263_n500_rep0_targetlinear_k12": {
+    "chunk_id": 1,
+    "index_in_chunk": 21,
+    "parameters": {
+      "trajectory_type": "discrete",
+      "continuity": 0.2631578947368421,
+      "n_cells": 500,
+      "n_dims": 50,
+      "replicate": 0,
+      "n_clusters": 12,
+      "target_trajectory": "linear",
+      "base_separation": 5.0,
+      "global_id": 111
+    }
+  },
+  "discrete_cont0.263_n500_rep0_targetbranching_k12": {
+    "chunk_id": 1,
+    "index_in_chunk": 22,
+    "parameters": {
+      "trajectory_type": "discrete",
+      "continuity": 0.2631578947368421,
+      "n_cells": 500,
+      "n_dims": 50,
+      "replicate": 0,
+      "n_clusters": 12,
+      "target_trajectory": "branching",
+      "base_separation": 5.0,
+      "branch_point": 0.5,
+      "global_id": 112
+    }
+  },
+  "discrete_cont0.263_n500_rep0_targetcyclic_k12": {
+    "chunk_id": 1,
+    "index_in_chunk": 23,
+    "parameters": {
+      "trajectory_type": "discrete",
+      "continuity": 0.2631578947368421,
+      "n_cells": 500,
+      "n_dims": 50,
+      "replicate": 0,
+      "n_clusters": 12,
+      "target_trajectory": "cyclic",
+      "base_separation": 5.0,
+      "global_id": 113
+    }
+  },
+  "discrete_cont0.316_n500_rep0_targetlinear_k8": {
+    "chunk_id": 1,
+    "index_in_chunk": 24,
+    "parameters": {
+      "trajectory_type": "discrete",
+      "continuity": 0.3157894736842105,
+      "n_cells": 500,
+      "n_dims": 50,
+      "replicate": 0,
+      "n_clusters": 8,
+      "target_trajectory": "linear",
+      "base_separation": 5.0,
+      "global_id": 114
+    }
+  },
+  "discrete_cont0.316_n500_rep0_targetbranching_k8": {
+    "chunk_id": 1,
+    "index_in_chunk": 25,
+    "parameters": {
+      "trajectory_type": "discrete",
+      "continuity": 0.3157894736842105,
+      "n_cells": 500,
+      "n_dims": 50,
+      "replicate": 0,
+      "n_clusters": 8,
+      "target_trajectory": "branching",
+      "base_separation": 5.0,
+      "branch_point": 0.5,
+      "global_id": 115
+    }
+  },
+  "discrete_cont0.316_n500_rep0_targetcyclic_k8": {
+    "chunk_id": 1,
+    "index_in_chunk": 26,
+    "parameters": {
+      "trajectory_type": "discrete",
+      "continuity": 0.3157894736842105,
+      "n_cells": 500,
+      "n_dims": 50,
+      "replicate": 0,
+      "n_clusters": 8,
+      "target_trajectory": "cyclic",
+      "base_separation": 5.0,
+      "global_id": 116
+    }
+  },
+  "discrete_cont0.316_n500_rep0_targetlinear_k10": {
+    "chunk_id": 1,
+    "index_in_chunk": 27,
+    "parameters": {
+      "trajectory_type": "discrete",
+      "continuity": 0.3157894736842105,
+      "n_cells": 500,
+      "n_dims": 50,
+      "replicate": 0,
+      "n_clusters": 10,
+      "target_trajectory": "linear",
+      "base_separation": 5.0,
+      "global_id": 117
+    }
+  },
+  "discrete_cont0.316_n500_rep0_targetbranching_k10": {
+    "chunk_id": 1,
+    "index_in_chunk": 28,
+    "parameters": {
+      "trajectory_type": "discrete",
+      "continuity": 0.3157894736842105,
+      "n_cells": 500,
+      "n_dims": 50,
+      "replicate": 0,
+      "n_clusters": 10,
+      "target_trajectory": "branching",
+      "base_separation": 5.0,
+      "branch_point": 0.5,
+      "global_id": 118
+    }
+  },
+  "discrete_cont0.316_n500_rep0_targetcyclic_k10": {
+    "chunk_id": 1,
+    "index_in_chunk": 29,
+    "parameters": {
+      "trajectory_type": "discrete",
+      "continuity": 0.3157894736842105,
+      "n_cells": 500,
+      "n_dims": 50,
+      "replicate": 0,
+      "n_clusters": 10,
+      "target_trajectory": "cyclic",
+      "base_separation": 5.0,
+      "global_id": 119
+    }
+  },
+  "discrete_cont0.316_n500_rep0_targetlinear_k12": {
+    "chunk_id": 1,
+    "index_in_chunk": 30,
+    "parameters": {
+      "trajectory_type": "discrete",
+      "continuity": 0.3157894736842105,
+      "n_cells": 500,
+      "n_dims": 50,
+      "replicate": 0,
+      "n_clusters": 12,
+      "target_trajectory": "linear",
+      "base_separation": 5.0,
+      "global_id": 120
+    }
+  },
+  "discrete_cont0.316_n500_rep0_targetbranching_k12": {
+    "chunk_id": 1,
+    "index_in_chunk": 31,
+    "parameters": {
+      "trajectory_type": "discrete",
+      "continuity": 0.3157894736842105,
+      "n_cells": 500,
+      "n_dims": 50,
+      "replicate": 0,
+      "n_clusters": 12,
+      "target_trajectory": "branching",
+      "base_separation": 5.0,
+      "branch_point": 0.5,
+      "global_id": 121
+    }
+  },
+  "discrete_cont0.316_n500_rep0_targetcyclic_k12": {
+    "chunk_id": 1,
+    "index_in_chunk": 32,
+    "parameters": {
+      "trajectory_type": "discrete",
+      "continuity": 0.3157894736842105,
+      "n_cells": 500,
+      "n_dims": 50,
+      "replicate": 0,
+      "n_clusters": 12,
+      "target_trajectory": "cyclic",
+      "base_separation": 5.0,
+      "global_id": 122
+    }
+  },
+  "discrete_cont0.368_n500_rep0_targetlinear_k8": {
+    "chunk_id": 1,
+    "index_in_chunk": 33,
+    "parameters": {
+      "trajectory_type": "discrete",
+      "continuity": 0.3684210526315789,
+      "n_cells": 500,
+      "n_dims": 50,
+      "replicate": 0,
+      "n_clusters": 8,
+      "target_trajectory": "linear",
+      "base_separation": 5.0,
+      "global_id": 123
+    }
+  },
+  "discrete_cont0.368_n500_rep0_targetbranching_k8": {
+    "chunk_id": 1,
+    "index_in_chunk": 34,
+    "parameters": {
+      "trajectory_type": "discrete",
+      "continuity": 0.3684210526315789,
+      "n_cells": 500,
+      "n_dims": 50,
+      "replicate": 0,
+      "n_clusters": 8,
+      "target_trajectory": "branching",
+      "base_separation": 5.0,
+      "branch_point": 0.5,
+      "global_id": 124
+    }
+  },
+  "discrete_cont0.368_n500_rep0_targetcyclic_k8": {
+    "chunk_id": 1,
+    "index_in_chunk": 35,
+    "parameters": {
+      "trajectory_type": "discrete",
+      "continuity": 0.3684210526315789,
+      "n_cells": 500,
+      "n_dims": 50,
+      "replicate": 0,
+      "n_clusters": 8,
+      "target_trajectory": "cyclic",
+      "base_separation": 5.0,
+      "global_id": 125
+    }
+  },
+  "discrete_cont0.368_n500_rep0_targetlinear_k10": {
+    "chunk_id": 1,
+    "index_in_chunk": 36,
+    "parameters": {
+      "trajectory_type": "discrete",
+      "continuity": 0.3684210526315789,
+      "n_cells": 500,
+      "n_dims": 50,
+      "replicate": 0,
+      "n_clusters": 10,
+      "target_trajectory": "linear",
+      "base_separation": 5.0,
+      "global_id": 126
+    }
+  },
+  "discrete_cont0.368_n500_rep0_targetbranching_k10": {
+    "chunk_id": 1,
+    "index_in_chunk": 37,
+    "parameters": {
+      "trajectory_type": "discrete",
+      "continuity": 0.3684210526315789,
+      "n_cells": 500,
+      "n_dims": 50,
+      "replicate": 0,
+      "n_clusters": 10,
+      "target_trajectory": "branching",
+      "base_separation": 5.0,
+      "branch_point": 0.5,
+      "global_id": 127
+    }
+  },
+  "discrete_cont0.368_n500_rep0_targetcyclic_k10": {
+    "chunk_id": 1,
+    "index_in_chunk": 38,
+    "parameters": {
+      "trajectory_type": "discrete",
+      "continuity": 0.3684210526315789,
+      "n_cells": 500,
+      "n_dims": 50,
+      "replicate": 0,
+      "n_clusters": 10,
+      "target_trajectory": "cyclic",
+      "base_separation": 5.0,
+      "global_id": 128
+    }
+  },
+  "discrete_cont0.368_n500_rep0_targetlinear_k12": {
+    "chunk_id": 1,
+    "index_in_chunk": 39,
+    "parameters": {
+      "trajectory_type": "discrete",
+      "continuity": 0.3684210526315789,
+      "n_cells": 500,
+      "n_dims": 50,
+      "replicate": 0,
+      "n_clusters": 12,
+      "target_trajectory": "linear",
+      "base_separation": 5.0,
+      "global_id": 129
+    }
+  },
+  "discrete_cont0.368_n500_rep0_targetbranching_k12": {
+    "chunk_id": 1,
+    "index_in_chunk": 40,
+    "parameters": {
+      "trajectory_type": "discrete",
+      "continuity": 0.3684210526315789,
+      "n_cells": 500,
+      "n_dims": 50,
+      "replicate": 0,
+      "n_clusters": 12,
+      "target_trajectory": "branching",
+      "base_separation": 5.0,
+      "branch_point": 0.5,
+      "global_id": 130
+    }
+  },
+  "discrete_cont0.368_n500_rep0_targetcyclic_k12": {
+    "chunk_id": 1,
+    "index_in_chunk": 41,
+    "parameters": {
+      "trajectory_type": "discrete",
+      "continuity": 0.3684210526315789,
+      "n_cells": 500,
+      "n_dims": 50,
+      "replicate": 0,
+      "n_clusters": 12,
+      "target_trajectory": "cyclic",
+      "base_separation": 5.0,
+      "global_id": 131
+    }
+  },
+  "discrete_cont0.421_n500_rep0_targetlinear_k8": {
+    "chunk_id": 1,
+    "index_in_chunk": 42,
+    "parameters": {
+      "trajectory_type": "discrete",
+      "continuity": 0.42105263157894735,
+      "n_cells": 500,
+      "n_dims": 50,
+      "replicate": 0,
+      "n_clusters": 8,
+      "target_trajectory": "linear",
+      "base_separation": 5.0,
+      "global_id": 132
+    }
+  },
+  "discrete_cont0.421_n500_rep0_targetbranching_k8": {
+    "chunk_id": 1,
+    "index_in_chunk": 43,
+    "parameters": {
+      "trajectory_type": "discrete",
+      "continuity": 0.42105263157894735,
+      "n_cells": 500,
+      "n_dims": 50,
+      "replicate": 0,
+      "n_clusters": 8,
+      "target_trajectory": "branching",
+      "base_separation": 5.0,
+      "branch_point": 0.5,
+      "global_id": 133
+    }
+  },
+  "discrete_cont0.421_n500_rep0_targetcyclic_k8": {
+    "chunk_id": 1,
+    "index_in_chunk": 44,
+    "parameters": {
+      "trajectory_type": "discrete",
+      "continuity": 0.42105263157894735,
+      "n_cells": 500,
+      "n_dims": 50,
+      "replicate": 0,
+      "n_clusters": 8,
+      "target_trajectory": "cyclic",
+      "base_separation": 5.0,
+      "global_id": 134
+    }
+  },
+  "discrete_cont0.421_n500_rep0_targetlinear_k10": {
+    "chunk_id": 1,
+    "index_in_chunk": 45,
+    "parameters": {
+      "trajectory_type": "discrete",
+      "continuity": 0.42105263157894735,
+      "n_cells": 500,
+      "n_dims": 50,
+      "replicate": 0,
+      "n_clusters": 10,
+      "target_trajectory": "linear",
+      "base_separation": 5.0,
+      "global_id": 135
+    }
+  },
+  "discrete_cont0.421_n500_rep0_targetbranching_k10": {
+    "chunk_id": 1,
+    "index_in_chunk": 46,
+    "parameters": {
+      "trajectory_type": "discrete",
+      "continuity": 0.42105263157894735,
+      "n_cells": 500,
+      "n_dims": 50,
+      "replicate": 0,
+      "n_clusters": 10,
+      "target_trajectory": "branching",
+      "base_separation": 5.0,
+      "branch_point": 0.5,
+      "global_id": 136
+    }
+  },
+  "discrete_cont0.421_n500_rep0_targetcyclic_k10": {
+    "chunk_id": 1,
+    "index_in_chunk": 47,
+    "parameters": {
+      "trajectory_type": "discrete",
+      "continuity": 0.42105263157894735,
+      "n_cells": 500,
+      "n_dims": 50,
+      "replicate": 0,
+      "n_clusters": 10,
+      "target_trajectory": "cyclic",
+      "base_separation": 5.0,
+      "global_id": 137
+    }
+  },
+  "discrete_cont0.421_n500_rep0_targetlinear_k12": {
+    "chunk_id": 1,
+    "index_in_chunk": 48,
+    "parameters": {
+      "trajectory_type": "discrete",
+      "continuity": 0.42105263157894735,
+      "n_cells": 500,
+      "n_dims": 50,
+      "replicate": 0,
+      "n_clusters": 12,
+      "target_trajectory": "linear",
+      "base_separation": 5.0,
+      "global_id": 138
+    }
+  },
+  "discrete_cont0.421_n500_rep0_targetbranching_k12": {
+    "chunk_id": 1,
+    "index_in_chunk": 49,
+    "parameters": {
+      "trajectory_type": "discrete",
+      "continuity": 0.42105263157894735,
+      "n_cells": 500,
+      "n_dims": 50,
+      "replicate": 0,
+      "n_clusters": 12,
+      "target_trajectory": "branching",
+      "base_separation": 5.0,
+      "branch_point": 0.5,
+      "global_id": 139
+    }
+  },
+  "discrete_cont0.421_n500_rep0_targetcyclic_k12": {
+    "chunk_id": 2,
+    "index_in_chunk": 0,
+    "parameters": {
+      "trajectory_type": "discrete",
+      "continuity": 0.42105263157894735,
+      "n_cells": 500,
+      "n_dims": 50,
+      "replicate": 0,
+      "n_clusters": 12,
+      "target_trajectory": "cyclic",
+      "base_separation": 5.0,
+      "global_id": 140
+    }
+  },
+  "discrete_cont0.474_n500_rep0_targetlinear_k8": {
+    "chunk_id": 2,
+    "index_in_chunk": 1,
+    "parameters": {
+      "trajectory_type": "discrete",
+      "continuity": 0.47368421052631576,
+      "n_cells": 500,
+      "n_dims": 50,
+      "replicate": 0,
+      "n_clusters": 8,
+      "target_trajectory": "linear",
+      "base_separation": 5.0,
+      "global_id": 141
+    }
+  },
+  "discrete_cont0.474_n500_rep0_targetbranching_k8": {
+    "chunk_id": 2,
+    "index_in_chunk": 2,
+    "parameters": {
+      "trajectory_type": "discrete",
+      "continuity": 0.47368421052631576,
+      "n_cells": 500,
+      "n_dims": 50,
+      "replicate": 0,
+      "n_clusters": 8,
+      "target_trajectory": "branching",
+      "base_separation": 5.0,
+      "branch_point": 0.5,
+      "global_id": 142
+    }
+  },
+  "discrete_cont0.474_n500_rep0_targetcyclic_k8": {
+    "chunk_id": 2,
+    "index_in_chunk": 3,
+    "parameters": {
+      "trajectory_type": "discrete",
+      "continuity": 0.47368421052631576,
+      "n_cells": 500,
+      "n_dims": 50,
+      "replicate": 0,
+      "n_clusters": 8,
+      "target_trajectory": "cyclic",
+      "base_separation": 5.0,
+      "global_id": 143
+    }
+  },
+  "discrete_cont0.474_n500_rep0_targetlinear_k10": {
+    "chunk_id": 2,
+    "index_in_chunk": 4,
+    "parameters": {
+      "trajectory_type": "discrete",
+      "continuity": 0.47368421052631576,
+      "n_cells": 500,
+      "n_dims": 50,
+      "replicate": 0,
+      "n_clusters": 10,
+      "target_trajectory": "linear",
+      "base_separation": 5.0,
+      "global_id": 144
+    }
+  },
+  "discrete_cont0.474_n500_rep0_targetbranching_k10": {
+    "chunk_id": 2,
+    "index_in_chunk": 5,
+    "parameters": {
+      "trajectory_type": "discrete",
+      "continuity": 0.47368421052631576,
+      "n_cells": 500,
+      "n_dims": 50,
+      "replicate": 0,
+      "n_clusters": 10,
+      "target_trajectory": "branching",
+      "base_separation": 5.0,
+      "branch_point": 0.5,
+      "global_id": 145
+    }
+  },
+  "discrete_cont0.474_n500_rep0_targetcyclic_k10": {
+    "chunk_id": 2,
+    "index_in_chunk": 6,
+    "parameters": {
+      "trajectory_type": "discrete",
+      "continuity": 0.47368421052631576,
+      "n_cells": 500,
+      "n_dims": 50,
+      "replicate": 0,
+      "n_clusters": 10,
+      "target_trajectory": "cyclic",
+      "base_separation": 5.0,
+      "global_id": 146
+    }
+  },
+  "discrete_cont0.474_n500_rep0_targetlinear_k12": {
+    "chunk_id": 2,
+    "index_in_chunk": 7,
+    "parameters": {
+      "trajectory_type": "discrete",
+      "continuity": 0.47368421052631576,
+      "n_cells": 500,
+      "n_dims": 50,
+      "replicate": 0,
+      "n_clusters": 12,
+      "target_trajectory": "linear",
+      "base_separation": 5.0,
+      "global_id": 147
+    }
+  },
+  "discrete_cont0.474_n500_rep0_targetbranching_k12": {
+    "chunk_id": 2,
+    "index_in_chunk": 8,
+    "parameters": {
+      "trajectory_type": "discrete",
+      "continuity": 0.47368421052631576,
+      "n_cells": 500,
+      "n_dims": 50,
+      "replicate": 0,
+      "n_clusters": 12,
+      "target_trajectory": "branching",
+      "base_separation": 5.0,
+      "branch_point": 0.5,
+      "global_id": 148
+    }
+  },
+  "discrete_cont0.474_n500_rep0_targetcyclic_k12": {
+    "chunk_id": 2,
+    "index_in_chunk": 9,
+    "parameters": {
+      "trajectory_type": "discrete",
+      "continuity": 0.47368421052631576,
+      "n_cells": 500,
+      "n_dims": 50,
+      "replicate": 0,
+      "n_clusters": 12,
+      "target_trajectory": "cyclic",
+      "base_separation": 5.0,
+      "global_id": 149
+    }
+  },
+  "discrete_cont0.526_n500_rep0_targetlinear_k8": {
+    "chunk_id": 2,
+    "index_in_chunk": 10,
+    "parameters": {
+      "trajectory_type": "discrete",
+      "continuity": 0.5263157894736842,
+      "n_cells": 500,
+      "n_dims": 50,
+      "replicate": 0,
+      "n_clusters": 8,
+      "target_trajectory": "linear",
+      "base_separation": 5.0,
+      "global_id": 150
+    }
+  },
+  "discrete_cont0.526_n500_rep0_targetbranching_k8": {
+    "chunk_id": 2,
+    "index_in_chunk": 11,
+    "parameters": {
+      "trajectory_type": "discrete",
+      "continuity": 0.5263157894736842,
+      "n_cells": 500,
+      "n_dims": 50,
+      "replicate": 0,
+      "n_clusters": 8,
+      "target_trajectory": "branching",
+      "base_separation": 5.0,
+      "branch_point": 0.5,
+      "global_id": 151
+    }
+  },
+  "discrete_cont0.526_n500_rep0_targetcyclic_k8": {
+    "chunk_id": 2,
+    "index_in_chunk": 12,
+    "parameters": {
+      "trajectory_type": "discrete",
+      "continuity": 0.5263157894736842,
+      "n_cells": 500,
+      "n_dims": 50,
+      "replicate": 0,
+      "n_clusters": 8,
+      "target_trajectory": "cyclic",
+      "base_separation": 5.0,
+      "global_id": 152
+    }
+  },
+  "discrete_cont0.526_n500_rep0_targetlinear_k10": {
+    "chunk_id": 2,
+    "index_in_chunk": 13,
+    "parameters": {
+      "trajectory_type": "discrete",
+      "continuity": 0.5263157894736842,
+      "n_cells": 500,
+      "n_dims": 50,
+      "replicate": 0,
+      "n_clusters": 10,
+      "target_trajectory": "linear",
+      "base_separation": 5.0,
+      "global_id": 153
+    }
+  },
+  "discrete_cont0.526_n500_rep0_targetbranching_k10": {
+    "chunk_id": 2,
+    "index_in_chunk": 14,
+    "parameters": {
+      "trajectory_type": "discrete",
+      "continuity": 0.5263157894736842,
+      "n_cells": 500,
+      "n_dims": 50,
+      "replicate": 0,
+      "n_clusters": 10,
+      "target_trajectory": "branching",
+      "base_separation": 5.0,
+      "branch_point": 0.5,
+      "global_id": 154
+    }
+  },
+  "discrete_cont0.526_n500_rep0_targetcyclic_k10": {
+    "chunk_id": 2,
+    "index_in_chunk": 15,
+    "parameters": {
+      "trajectory_type": "discrete",
+      "continuity": 0.5263157894736842,
+      "n_cells": 500,
+      "n_dims": 50,
+      "replicate": 0,
+      "n_clusters": 10,
+      "target_trajectory": "cyclic",
+      "base_separation": 5.0,
+      "global_id": 155
+    }
+  },
+  "discrete_cont0.526_n500_rep0_targetlinear_k12": {
+    "chunk_id": 2,
+    "index_in_chunk": 16,
+    "parameters": {
+      "trajectory_type": "discrete",
+      "continuity": 0.5263157894736842,
+      "n_cells": 500,
+      "n_dims": 50,
+      "replicate": 0,
+      "n_clusters": 12,
+      "target_trajectory": "linear",
+      "base_separation": 5.0,
+      "global_id": 156
+    }
+  },
+  "discrete_cont0.526_n500_rep0_targetbranching_k12": {
+    "chunk_id": 2,
+    "index_in_chunk": 17,
+    "parameters": {
+      "trajectory_type": "discrete",
+      "continuity": 0.5263157894736842,
+      "n_cells": 500,
+      "n_dims": 50,
+      "replicate": 0,
+      "n_clusters": 12,
+      "target_trajectory": "branching",
+      "base_separation": 5.0,
+      "branch_point": 0.5,
+      "global_id": 157
+    }
+  },
+  "discrete_cont0.526_n500_rep0_targetcyclic_k12": {
+    "chunk_id": 2,
+    "index_in_chunk": 18,
+    "parameters": {
+      "trajectory_type": "discrete",
+      "continuity": 0.5263157894736842,
+      "n_cells": 500,
+      "n_dims": 50,
+      "replicate": 0,
+      "n_clusters": 12,
+      "target_trajectory": "cyclic",
+      "base_separation": 5.0,
+      "global_id": 158
+    }
+  },
+  "discrete_cont0.579_n500_rep0_targetlinear_k8": {
+    "chunk_id": 2,
+    "index_in_chunk": 19,
+    "parameters": {
+      "trajectory_type": "discrete",
+      "continuity": 0.5789473684210527,
+      "n_cells": 500,
+      "n_dims": 50,
+      "replicate": 0,
+      "n_clusters": 8,
+      "target_trajectory": "linear",
+      "base_separation": 5.0,
+      "global_id": 159
+    }
+  },
+  "discrete_cont0.579_n500_rep0_targetbranching_k8": {
+    "chunk_id": 2,
+    "index_in_chunk": 20,
+    "parameters": {
+      "trajectory_type": "discrete",
+      "continuity": 0.5789473684210527,
+      "n_cells": 500,
+      "n_dims": 50,
+      "replicate": 0,
+      "n_clusters": 8,
+      "target_trajectory": "branching",
+      "base_separation": 5.0,
+      "branch_point": 0.5,
+      "global_id": 160
+    }
+  },
+  "discrete_cont0.579_n500_rep0_targetcyclic_k8": {
+    "chunk_id": 2,
+    "index_in_chunk": 21,
+    "parameters": {
+      "trajectory_type": "discrete",
+      "continuity": 0.5789473684210527,
+      "n_cells": 500,
+      "n_dims": 50,
+      "replicate": 0,
+      "n_clusters": 8,
+      "target_trajectory": "cyclic",
+      "base_separation": 5.0,
+      "global_id": 161
+    }
+  },
+  "discrete_cont0.579_n500_rep0_targetlinear_k10": {
+    "chunk_id": 2,
+    "index_in_chunk": 22,
+    "parameters": {
+      "trajectory_type": "discrete",
+      "continuity": 0.5789473684210527,
+      "n_cells": 500,
+      "n_dims": 50,
+      "replicate": 0,
+      "n_clusters": 10,
+      "target_trajectory": "linear",
+      "base_separation": 5.0,
+      "global_id": 162
+    }
+  },
+  "discrete_cont0.579_n500_rep0_targetbranching_k10": {
+    "chunk_id": 2,
+    "index_in_chunk": 23,
+    "parameters": {
+      "trajectory_type": "discrete",
+      "continuity": 0.5789473684210527,
+      "n_cells": 500,
+      "n_dims": 50,
+      "replicate": 0,
+      "n_clusters": 10,
+      "target_trajectory": "branching",
+      "base_separation": 5.0,
+      "branch_point": 0.5,
+      "global_id": 163
+    }
+  },
+  "discrete_cont0.579_n500_rep0_targetcyclic_k10": {
+    "chunk_id": 2,
+    "index_in_chunk": 24,
+    "parameters": {
+      "trajectory_type": "discrete",
+      "continuity": 0.5789473684210527,
+      "n_cells": 500,
+      "n_dims": 50,
+      "replicate": 0,
+      "n_clusters": 10,
+      "target_trajectory": "cyclic",
+      "base_separation": 5.0,
+      "global_id": 164
+    }
+  },
+  "discrete_cont0.579_n500_rep0_targetlinear_k12": {
+    "chunk_id": 2,
+    "index_in_chunk": 25,
+    "parameters": {
+      "trajectory_type": "discrete",
+      "continuity": 0.5789473684210527,
+      "n_cells": 500,
+      "n_dims": 50,
+      "replicate": 0,
+      "n_clusters": 12,
+      "target_trajectory": "linear",
+      "base_separation": 5.0,
+      "global_id": 165
+    }
+  },
+  "discrete_cont0.579_n500_rep0_targetbranching_k12": {
+    "chunk_id": 2,
+    "index_in_chunk": 26,
+    "parameters": {
+      "trajectory_type": "discrete",
+      "continuity": 0.5789473684210527,
+      "n_cells": 500,
+      "n_dims": 50,
+      "replicate": 0,
+      "n_clusters": 12,
+      "target_trajectory": "branching",
+      "base_separation": 5.0,
+      "branch_point": 0.5,
+      "global_id": 166
+    }
+  },
+  "discrete_cont0.579_n500_rep0_targetcyclic_k12": {
+    "chunk_id": 2,
+    "index_in_chunk": 27,
+    "parameters": {
+      "trajectory_type": "discrete",
+      "continuity": 0.5789473684210527,
+      "n_cells": 500,
+      "n_dims": 50,
+      "replicate": 0,
+      "n_clusters": 12,
+      "target_trajectory": "cyclic",
+      "base_separation": 5.0,
+      "global_id": 167
+    }
+  },
+  "discrete_cont0.632_n500_rep0_targetlinear_k8": {
+    "chunk_id": 2,
+    "index_in_chunk": 28,
+    "parameters": {
+      "trajectory_type": "discrete",
+      "continuity": 0.631578947368421,
+      "n_cells": 500,
+      "n_dims": 50,
+      "replicate": 0,
+      "n_clusters": 8,
+      "target_trajectory": "linear",
+      "base_separation": 5.0,
+      "global_id": 168
+    }
+  },
+  "discrete_cont0.632_n500_rep0_targetbranching_k8": {
+    "chunk_id": 2,
+    "index_in_chunk": 29,
+    "parameters": {
+      "trajectory_type": "discrete",
+      "continuity": 0.631578947368421,
+      "n_cells": 500,
+      "n_dims": 50,
+      "replicate": 0,
+      "n_clusters": 8,
+      "target_trajectory": "branching",
+      "base_separation": 5.0,
+      "branch_point": 0.5,
+      "global_id": 169
+    }
+  },
+  "discrete_cont0.632_n500_rep0_targetcyclic_k8": {
+    "chunk_id": 2,
+    "index_in_chunk": 30,
+    "parameters": {
+      "trajectory_type": "discrete",
+      "continuity": 0.631578947368421,
+      "n_cells": 500,
+      "n_dims": 50,
+      "replicate": 0,
+      "n_clusters": 8,
+      "target_trajectory": "cyclic",
+      "base_separation": 5.0,
+      "global_id": 170
+    }
+  },
+  "discrete_cont0.632_n500_rep0_targetlinear_k10": {
+    "chunk_id": 2,
+    "index_in_chunk": 31,
+    "parameters": {
+      "trajectory_type": "discrete",
+      "continuity": 0.631578947368421,
+      "n_cells": 500,
+      "n_dims": 50,
+      "replicate": 0,
+      "n_clusters": 10,
+      "target_trajectory": "linear",
+      "base_separation": 5.0,
+      "global_id": 171
+    }
+  },
+  "discrete_cont0.632_n500_rep0_targetbranching_k10": {
+    "chunk_id": 2,
+    "index_in_chunk": 32,
+    "parameters": {
+      "trajectory_type": "discrete",
+      "continuity": 0.631578947368421,
+      "n_cells": 500,
+      "n_dims": 50,
+      "replicate": 0,
+      "n_clusters": 10,
+      "target_trajectory": "branching",
+      "base_separation": 5.0,
+      "branch_point": 0.5,
+      "global_id": 172
+    }
+  },
+  "discrete_cont0.632_n500_rep0_targetcyclic_k10": {
+    "chunk_id": 2,
+    "index_in_chunk": 33,
+    "parameters": {
+      "trajectory_type": "discrete",
+      "continuity": 0.631578947368421,
+      "n_cells": 500,
+      "n_dims": 50,
+      "replicate": 0,
+      "n_clusters": 10,
+      "target_trajectory": "cyclic",
+      "base_separation": 5.0,
+      "global_id": 173
+    }
+  },
+  "discrete_cont0.632_n500_rep0_targetlinear_k12": {
+    "chunk_id": 2,
+    "index_in_chunk": 34,
+    "parameters": {
+      "trajectory_type": "discrete",
+      "continuity": 0.631578947368421,
+      "n_cells": 500,
+      "n_dims": 50,
+      "replicate": 0,
+      "n_clusters": 12,
+      "target_trajectory": "linear",
+      "base_separation": 5.0,
+      "global_id": 174
+    }
+  },
+  "discrete_cont0.632_n500_rep0_targetbranching_k12": {
+    "chunk_id": 2,
+    "index_in_chunk": 35,
+    "parameters": {
+      "trajectory_type": "discrete",
+      "continuity": 0.631578947368421,
+      "n_cells": 500,
+      "n_dims": 50,
+      "replicate": 0,
+      "n_clusters": 12,
+      "target_trajectory": "branching",
+      "base_separation": 5.0,
+      "branch_point": 0.5,
+      "global_id": 175
+    }
+  },
+  "discrete_cont0.632_n500_rep0_targetcyclic_k12": {
+    "chunk_id": 2,
+    "index_in_chunk": 36,
+    "parameters": {
+      "trajectory_type": "discrete",
+      "continuity": 0.631578947368421,
+      "n_cells": 500,
+      "n_dims": 50,
+      "replicate": 0,
+      "n_clusters": 12,
+      "target_trajectory": "cyclic",
+      "base_separation": 5.0,
+      "global_id": 176
+    }
+  },
+  "discrete_cont0.684_n500_rep0_targetlinear_k8": {
+    "chunk_id": 2,
+    "index_in_chunk": 37,
+    "parameters": {
+      "trajectory_type": "discrete",
+      "continuity": 0.6842105263157894,
+      "n_cells": 500,
+      "n_dims": 50,
+      "replicate": 0,
+      "n_clusters": 8,
+      "target_trajectory": "linear",
+      "base_separation": 5.0,
+      "global_id": 177
+    }
+  },
+  "discrete_cont0.684_n500_rep0_targetbranching_k8": {
+    "chunk_id": 2,
+    "index_in_chunk": 38,
+    "parameters": {
+      "trajectory_type": "discrete",
+      "continuity": 0.6842105263157894,
+      "n_cells": 500,
+      "n_dims": 50,
+      "replicate": 0,
+      "n_clusters": 8,
+      "target_trajectory": "branching",
+      "base_separation": 5.0,
+      "branch_point": 0.5,
+      "global_id": 178
+    }
+  },
+  "discrete_cont0.684_n500_rep0_targetcyclic_k8": {
+    "chunk_id": 2,
+    "index_in_chunk": 39,
+    "parameters": {
+      "trajectory_type": "discrete",
+      "continuity": 0.6842105263157894,
+      "n_cells": 500,
+      "n_dims": 50,
+      "replicate": 0,
+      "n_clusters": 8,
+      "target_trajectory": "cyclic",
+      "base_separation": 5.0,
+      "global_id": 179
+    }
+  },
+  "discrete_cont0.684_n500_rep0_targetlinear_k10": {
+    "chunk_id": 2,
+    "index_in_chunk": 40,
+    "parameters": {
+      "trajectory_type": "discrete",
+      "continuity": 0.6842105263157894,
+      "n_cells": 500,
+      "n_dims": 50,
+      "replicate": 0,
+      "n_clusters": 10,
+      "target_trajectory": "linear",
+      "base_separation": 5.0,
+      "global_id": 180
+    }
+  },
+  "discrete_cont0.684_n500_rep0_targetbranching_k10": {
+    "chunk_id": 2,
+    "index_in_chunk": 41,
+    "parameters": {
+      "trajectory_type": "discrete",
+      "continuity": 0.6842105263157894,
+      "n_cells": 500,
+      "n_dims": 50,
+      "replicate": 0,
+      "n_clusters": 10,
+      "target_trajectory": "branching",
+      "base_separation": 5.0,
+      "branch_point": 0.5,
+      "global_id": 181
+    }
+  },
+  "discrete_cont0.684_n500_rep0_targetcyclic_k10": {
+    "chunk_id": 2,
+    "index_in_chunk": 42,
+    "parameters": {
+      "trajectory_type": "discrete",
+      "continuity": 0.6842105263157894,
+      "n_cells": 500,
+      "n_dims": 50,
+      "replicate": 0,
+      "n_clusters": 10,
+      "target_trajectory": "cyclic",
+      "base_separation": 5.0,
+      "global_id": 182
+    }
+  },
+  "discrete_cont0.684_n500_rep0_targetlinear_k12": {
+    "chunk_id": 2,
+    "index_in_chunk": 43,
+    "parameters": {
+      "trajectory_type": "discrete",
+      "continuity": 0.6842105263157894,
+      "n_cells": 500,
+      "n_dims": 50,
+      "replicate": 0,
+      "n_clusters": 12,
+      "target_trajectory": "linear",
+      "base_separation": 5.0,
+      "global_id": 183
+    }
+  },
+  "discrete_cont0.684_n500_rep0_targetbranching_k12": {
+    "chunk_id": 2,
+    "index_in_chunk": 44,
+    "parameters": {
+      "trajectory_type": "discrete",
+      "continuity": 0.6842105263157894,
+      "n_cells": 500,
+      "n_dims": 50,
+      "replicate": 0,
+      "n_clusters": 12,
+      "target_trajectory": "branching",
+      "base_separation": 5.0,
+      "branch_point": 0.5,
+      "global_id": 184
+    }
+  },
+  "discrete_cont0.684_n500_rep0_targetcyclic_k12": {
+    "chunk_id": 2,
+    "index_in_chunk": 45,
+    "parameters": {
+      "trajectory_type": "discrete",
+      "continuity": 0.6842105263157894,
+      "n_cells": 500,
+      "n_dims": 50,
+      "replicate": 0,
+      "n_clusters": 12,
+      "target_trajectory": "cyclic",
+      "base_separation": 5.0,
+      "global_id": 185
+    }
+  },
+  "discrete_cont0.737_n500_rep0_targetlinear_k8": {
+    "chunk_id": 2,
+    "index_in_chunk": 46,
+    "parameters": {
+      "trajectory_type": "discrete",
+      "continuity": 0.7368421052631579,
+      "n_cells": 500,
+      "n_dims": 50,
+      "replicate": 0,
+      "n_clusters": 8,
+      "target_trajectory": "linear",
+      "base_separation": 5.0,
+      "global_id": 186
+    }
+  },
+  "discrete_cont0.737_n500_rep0_targetbranching_k8": {
+    "chunk_id": 2,
+    "index_in_chunk": 47,
+    "parameters": {
+      "trajectory_type": "discrete",
+      "continuity": 0.7368421052631579,
+      "n_cells": 500,
+      "n_dims": 50,
+      "replicate": 0,
+      "n_clusters": 8,
+      "target_trajectory": "branching",
+      "base_separation": 5.0,
+      "branch_point": 0.5,
+      "global_id": 187
+    }
+  },
+  "discrete_cont0.737_n500_rep0_targetcyclic_k8": {
+    "chunk_id": 2,
+    "index_in_chunk": 48,
+    "parameters": {
+      "trajectory_type": "discrete",
+      "continuity": 0.7368421052631579,
+      "n_cells": 500,
+      "n_dims": 50,
+      "replicate": 0,
+      "n_clusters": 8,
+      "target_trajectory": "cyclic",
+      "base_separation": 5.0,
+      "global_id": 188
+    }
+  },
+  "discrete_cont0.737_n500_rep0_targetlinear_k10": {
+    "chunk_id": 2,
+    "index_in_chunk": 49,
+    "parameters": {
+      "trajectory_type": "discrete",
+      "continuity": 0.7368421052631579,
+      "n_cells": 500,
+      "n_dims": 50,
+      "replicate": 0,
+      "n_clusters": 10,
+      "target_trajectory": "linear",
+      "base_separation": 5.0,
+      "global_id": 189
+    }
+  },
+  "discrete_cont0.737_n500_rep0_targetbranching_k10": {
+    "chunk_id": 3,
+    "index_in_chunk": 0,
+    "parameters": {
+      "trajectory_type": "discrete",
+      "continuity": 0.7368421052631579,
+      "n_cells": 500,
+      "n_dims": 50,
+      "replicate": 0,
+      "n_clusters": 10,
+      "target_trajectory": "branching",
+      "base_separation": 5.0,
+      "branch_point": 0.5,
+      "global_id": 190
+    }
+  },
+  "discrete_cont0.737_n500_rep0_targetcyclic_k10": {
+    "chunk_id": 3,
+    "index_in_chunk": 1,
+    "parameters": {
+      "trajectory_type": "discrete",
+      "continuity": 0.7368421052631579,
+      "n_cells": 500,
+      "n_dims": 50,
+      "replicate": 0,
+      "n_clusters": 10,
+      "target_trajectory": "cyclic",
+      "base_separation": 5.0,
+      "global_id": 191
+    }
+  },
+  "discrete_cont0.737_n500_rep0_targetlinear_k12": {
+    "chunk_id": 3,
+    "index_in_chunk": 2,
+    "parameters": {
+      "trajectory_type": "discrete",
+      "continuity": 0.7368421052631579,
+      "n_cells": 500,
+      "n_dims": 50,
+      "replicate": 0,
+      "n_clusters": 12,
+      "target_trajectory": "linear",
+      "base_separation": 5.0,
+      "global_id": 192
+    }
+  },
+  "discrete_cont0.737_n500_rep0_targetbranching_k12": {
+    "chunk_id": 3,
+    "index_in_chunk": 3,
+    "parameters": {
+      "trajectory_type": "discrete",
+      "continuity": 0.7368421052631579,
+      "n_cells": 500,
+      "n_dims": 50,
+      "replicate": 0,
+      "n_clusters": 12,
+      "target_trajectory": "branching",
+      "base_separation": 5.0,
+      "branch_point": 0.5,
+      "global_id": 193
+    }
+  },
+  "discrete_cont0.737_n500_rep0_targetcyclic_k12": {
+    "chunk_id": 3,
+    "index_in_chunk": 4,
+    "parameters": {
+      "trajectory_type": "discrete",
+      "continuity": 0.7368421052631579,
+      "n_cells": 500,
+      "n_dims": 50,
+      "replicate": 0,
+      "n_clusters": 12,
+      "target_trajectory": "cyclic",
+      "base_separation": 5.0,
+      "global_id": 194
+    }
+  },
+  "discrete_cont0.789_n500_rep0_targetlinear_k8": {
+    "chunk_id": 3,
+    "index_in_chunk": 5,
+    "parameters": {
+      "trajectory_type": "discrete",
+      "continuity": 0.7894736842105263,
+      "n_cells": 500,
+      "n_dims": 50,
+      "replicate": 0,
+      "n_clusters": 8,
+      "target_trajectory": "linear",
+      "base_separation": 5.0,
+      "global_id": 195
+    }
+  },
+  "discrete_cont0.789_n500_rep0_targetbranching_k8": {
+    "chunk_id": 3,
+    "index_in_chunk": 6,
+    "parameters": {
+      "trajectory_type": "discrete",
+      "continuity": 0.7894736842105263,
+      "n_cells": 500,
+      "n_dims": 50,
+      "replicate": 0,
+      "n_clusters": 8,
+      "target_trajectory": "branching",
+      "base_separation": 5.0,
+      "branch_point": 0.5,
+      "global_id": 196
+    }
+  },
+  "discrete_cont0.789_n500_rep0_targetcyclic_k8": {
+    "chunk_id": 3,
+    "index_in_chunk": 7,
+    "parameters": {
+      "trajectory_type": "discrete",
+      "continuity": 0.7894736842105263,
+      "n_cells": 500,
+      "n_dims": 50,
+      "replicate": 0,
+      "n_clusters": 8,
+      "target_trajectory": "cyclic",
+      "base_separation": 5.0,
+      "global_id": 197
+    }
+  },
+  "discrete_cont0.789_n500_rep0_targetlinear_k10": {
+    "chunk_id": 3,
+    "index_in_chunk": 8,
+    "parameters": {
+      "trajectory_type": "discrete",
+      "continuity": 0.7894736842105263,
+      "n_cells": 500,
+      "n_dims": 50,
+      "replicate": 0,
+      "n_clusters": 10,
+      "target_trajectory": "linear",
+      "base_separation": 5.0,
+      "global_id": 198
+    }
+  },
+  "discrete_cont0.789_n500_rep0_targetbranching_k10": {
+    "chunk_id": 3,
+    "index_in_chunk": 9,
+    "parameters": {
+      "trajectory_type": "discrete",
+      "continuity": 0.7894736842105263,
+      "n_cells": 500,
+      "n_dims": 50,
+      "replicate": 0,
+      "n_clusters": 10,
+      "target_trajectory": "branching",
+      "base_separation": 5.0,
+      "branch_point": 0.5,
+      "global_id": 199
+    }
+  },
+  "discrete_cont0.789_n500_rep0_targetcyclic_k10": {
+    "chunk_id": 3,
+    "index_in_chunk": 10,
+    "parameters": {
+      "trajectory_type": "discrete",
+      "continuity": 0.7894736842105263,
+      "n_cells": 500,
+      "n_dims": 50,
+      "replicate": 0,
+      "n_clusters": 10,
+      "target_trajectory": "cyclic",
+      "base_separation": 5.0,
+      "global_id": 200
+    }
+  },
+  "discrete_cont0.789_n500_rep0_targetlinear_k12": {
+    "chunk_id": 3,
+    "index_in_chunk": 11,
+    "parameters": {
+      "trajectory_type": "discrete",
+      "continuity": 0.7894736842105263,
+      "n_cells": 500,
+      "n_dims": 50,
+      "replicate": 0,
+      "n_clusters": 12,
+      "target_trajectory": "linear",
+      "base_separation": 5.0,
+      "global_id": 201
+    }
+  },
+  "discrete_cont0.789_n500_rep0_targetbranching_k12": {
+    "chunk_id": 3,
+    "index_in_chunk": 12,
+    "parameters": {
+      "trajectory_type": "discrete",
+      "continuity": 0.7894736842105263,
+      "n_cells": 500,
+      "n_dims": 50,
+      "replicate": 0,
+      "n_clusters": 12,
+      "target_trajectory": "branching",
+      "base_separation": 5.0,
+      "branch_point": 0.5,
+      "global_id": 202
+    }
+  },
+  "discrete_cont0.789_n500_rep0_targetcyclic_k12": {
+    "chunk_id": 3,
+    "index_in_chunk": 13,
+    "parameters": {
+      "trajectory_type": "discrete",
+      "continuity": 0.7894736842105263,
+      "n_cells": 500,
+      "n_dims": 50,
+      "replicate": 0,
+      "n_clusters": 12,
+      "target_trajectory": "cyclic",
+      "base_separation": 5.0,
+      "global_id": 203
+    }
+  },
+  "discrete_cont0.842_n500_rep0_targetlinear_k8": {
+    "chunk_id": 3,
+    "index_in_chunk": 14,
+    "parameters": {
+      "trajectory_type": "discrete",
+      "continuity": 0.8421052631578947,
+      "n_cells": 500,
+      "n_dims": 50,
+      "replicate": 0,
+      "n_clusters": 8,
+      "target_trajectory": "linear",
+      "base_separation": 5.0,
+      "global_id": 204
+    }
+  },
+  "discrete_cont0.842_n500_rep0_targetbranching_k8": {
+    "chunk_id": 3,
+    "index_in_chunk": 15,
+    "parameters": {
+      "trajectory_type": "discrete",
+      "continuity": 0.8421052631578947,
+      "n_cells": 500,
+      "n_dims": 50,
+      "replicate": 0,
+      "n_clusters": 8,
+      "target_trajectory": "branching",
+      "base_separation": 5.0,
+      "branch_point": 0.5,
+      "global_id": 205
+    }
+  },
+  "discrete_cont0.842_n500_rep0_targetcyclic_k8": {
+    "chunk_id": 3,
+    "index_in_chunk": 16,
+    "parameters": {
+      "trajectory_type": "discrete",
+      "continuity": 0.8421052631578947,
+      "n_cells": 500,
+      "n_dims": 50,
+      "replicate": 0,
+      "n_clusters": 8,
+      "target_trajectory": "cyclic",
+      "base_separation": 5.0,
+      "global_id": 206
+    }
+  },
+  "discrete_cont0.842_n500_rep0_targetlinear_k10": {
+    "chunk_id": 3,
+    "index_in_chunk": 17,
+    "parameters": {
+      "trajectory_type": "discrete",
+      "continuity": 0.8421052631578947,
+      "n_cells": 500,
+      "n_dims": 50,
+      "replicate": 0,
+      "n_clusters": 10,
+      "target_trajectory": "linear",
+      "base_separation": 5.0,
+      "global_id": 207
+    }
+  },
+  "discrete_cont0.842_n500_rep0_targetbranching_k10": {
+    "chunk_id": 3,
+    "index_in_chunk": 18,
+    "parameters": {
+      "trajectory_type": "discrete",
+      "continuity": 0.8421052631578947,
+      "n_cells": 500,
+      "n_dims": 50,
+      "replicate": 0,
+      "n_clusters": 10,
+      "target_trajectory": "branching",
+      "base_separation": 5.0,
+      "branch_point": 0.5,
+      "global_id": 208
+    }
+  },
+  "discrete_cont0.842_n500_rep0_targetcyclic_k10": {
+    "chunk_id": 3,
+    "index_in_chunk": 19,
+    "parameters": {
+      "trajectory_type": "discrete",
+      "continuity": 0.8421052631578947,
+      "n_cells": 500,
+      "n_dims": 50,
+      "replicate": 0,
+      "n_clusters": 10,
+      "target_trajectory": "cyclic",
+      "base_separation": 5.0,
+      "global_id": 209
+    }
+  },
+  "discrete_cont0.842_n500_rep0_targetlinear_k12": {
+    "chunk_id": 3,
+    "index_in_chunk": 20,
+    "parameters": {
+      "trajectory_type": "discrete",
+      "continuity": 0.8421052631578947,
+      "n_cells": 500,
+      "n_dims": 50,
+      "replicate": 0,
+      "n_clusters": 12,
+      "target_trajectory": "linear",
+      "base_separation": 5.0,
+      "global_id": 210
+    }
+  },
+  "discrete_cont0.842_n500_rep0_targetbranching_k12": {
+    "chunk_id": 3,
+    "index_in_chunk": 21,
+    "parameters": {
+      "trajectory_type": "discrete",
+      "continuity": 0.8421052631578947,
+      "n_cells": 500,
+      "n_dims": 50,
+      "replicate": 0,
+      "n_clusters": 12,
+      "target_trajectory": "branching",
+      "base_separation": 5.0,
+      "branch_point": 0.5,
+      "global_id": 211
+    }
+  },
+  "discrete_cont0.842_n500_rep0_targetcyclic_k12": {
+    "chunk_id": 3,
+    "index_in_chunk": 22,
+    "parameters": {
+      "trajectory_type": "discrete",
+      "continuity": 0.8421052631578947,
+      "n_cells": 500,
+      "n_dims": 50,
+      "replicate": 0,
+      "n_clusters": 12,
+      "target_trajectory": "cyclic",
+      "base_separation": 5.0,
+      "global_id": 212
+    }
+  },
+  "discrete_cont0.895_n500_rep0_targetlinear_k8": {
+    "chunk_id": 3,
+    "index_in_chunk": 23,
+    "parameters": {
+      "trajectory_type": "discrete",
+      "continuity": 0.894736842105263,
+      "n_cells": 500,
+      "n_dims": 50,
+      "replicate": 0,
+      "n_clusters": 8,
+      "target_trajectory": "linear",
+      "base_separation": 5.0,
+      "global_id": 213
+    }
+  },
+  "discrete_cont0.895_n500_rep0_targetbranching_k8": {
+    "chunk_id": 3,
+    "index_in_chunk": 24,
+    "parameters": {
+      "trajectory_type": "discrete",
+      "continuity": 0.894736842105263,
+      "n_cells": 500,
+      "n_dims": 50,
+      "replicate": 0,
+      "n_clusters": 8,
+      "target_trajectory": "branching",
+      "base_separation": 5.0,
+      "branch_point": 0.5,
+      "global_id": 214
+    }
+  },
+  "discrete_cont0.895_n500_rep0_targetcyclic_k8": {
+    "chunk_id": 3,
+    "index_in_chunk": 25,
+    "parameters": {
+      "trajectory_type": "discrete",
+      "continuity": 0.894736842105263,
+      "n_cells": 500,
+      "n_dims": 50,
+      "replicate": 0,
+      "n_clusters": 8,
+      "target_trajectory": "cyclic",
+      "base_separation": 5.0,
+      "global_id": 215
+    }
+  },
+  "discrete_cont0.895_n500_rep0_targetlinear_k10": {
+    "chunk_id": 3,
+    "index_in_chunk": 26,
+    "parameters": {
+      "trajectory_type": "discrete",
+      "continuity": 0.894736842105263,
+      "n_cells": 500,
+      "n_dims": 50,
+      "replicate": 0,
+      "n_clusters": 10,
+      "target_trajectory": "linear",
+      "base_separation": 5.0,
+      "global_id": 216
+    }
+  },
+  "discrete_cont0.895_n500_rep0_targetbranching_k10": {
+    "chunk_id": 3,
+    "index_in_chunk": 27,
+    "parameters": {
+      "trajectory_type": "discrete",
+      "continuity": 0.894736842105263,
+      "n_cells": 500,
+      "n_dims": 50,
+      "replicate": 0,
+      "n_clusters": 10,
+      "target_trajectory": "branching",
+      "base_separation": 5.0,
+      "branch_point": 0.5,
+      "global_id": 217
+    }
+  },
+  "discrete_cont0.895_n500_rep0_targetcyclic_k10": {
+    "chunk_id": 3,
+    "index_in_chunk": 28,
+    "parameters": {
+      "trajectory_type": "discrete",
+      "continuity": 0.894736842105263,
+      "n_cells": 500,
+      "n_dims": 50,
+      "replicate": 0,
+      "n_clusters": 10,
+      "target_trajectory": "cyclic",
+      "base_separation": 5.0,
+      "global_id": 218
+    }
+  },
+  "discrete_cont0.895_n500_rep0_targetlinear_k12": {
+    "chunk_id": 3,
+    "index_in_chunk": 29,
+    "parameters": {
+      "trajectory_type": "discrete",
+      "continuity": 0.894736842105263,
+      "n_cells": 500,
+      "n_dims": 50,
+      "replicate": 0,
+      "n_clusters": 12,
+      "target_trajectory": "linear",
+      "base_separation": 5.0,
+      "global_id": 219
+    }
+  },
+  "discrete_cont0.895_n500_rep0_targetbranching_k12": {
+    "chunk_id": 3,
+    "index_in_chunk": 30,
+    "parameters": {
+      "trajectory_type": "discrete",
+      "continuity": 0.894736842105263,
+      "n_cells": 500,
+      "n_dims": 50,
+      "replicate": 0,
+      "n_clusters": 12,
+      "target_trajectory": "branching",
+      "base_separation": 5.0,
+      "branch_point": 0.5,
+      "global_id": 220
+    }
+  },
+  "discrete_cont0.895_n500_rep0_targetcyclic_k12": {
+    "chunk_id": 3,
+    "index_in_chunk": 31,
+    "parameters": {
+      "trajectory_type": "discrete",
+      "continuity": 0.894736842105263,
+      "n_cells": 500,
+      "n_dims": 50,
+      "replicate": 0,
+      "n_clusters": 12,
+      "target_trajectory": "cyclic",
+      "base_separation": 5.0,
+      "global_id": 221
+    }
+  },
+  "discrete_cont0.947_n500_rep0_targetlinear_k8": {
+    "chunk_id": 3,
+    "index_in_chunk": 32,
+    "parameters": {
+      "trajectory_type": "discrete",
+      "continuity": 0.9473684210526315,
+      "n_cells": 500,
+      "n_dims": 50,
+      "replicate": 0,
+      "n_clusters": 8,
+      "target_trajectory": "linear",
+      "base_separation": 5.0,
+      "global_id": 222
+    }
+  },
+  "discrete_cont0.947_n500_rep0_targetbranching_k8": {
+    "chunk_id": 3,
+    "index_in_chunk": 33,
+    "parameters": {
+      "trajectory_type": "discrete",
+      "continuity": 0.9473684210526315,
+      "n_cells": 500,
+      "n_dims": 50,
+      "replicate": 0,
+      "n_clusters": 8,
+      "target_trajectory": "branching",
+      "base_separation": 5.0,
+      "branch_point": 0.5,
+      "global_id": 223
+    }
+  },
+  "discrete_cont0.947_n500_rep0_targetcyclic_k8": {
+    "chunk_id": 3,
+    "index_in_chunk": 34,
+    "parameters": {
+      "trajectory_type": "discrete",
+      "continuity": 0.9473684210526315,
+      "n_cells": 500,
+      "n_dims": 50,
+      "replicate": 0,
+      "n_clusters": 8,
+      "target_trajectory": "cyclic",
+      "base_separation": 5.0,
+      "global_id": 224
+    }
+  },
+  "discrete_cont0.947_n500_rep0_targetlinear_k10": {
+    "chunk_id": 3,
+    "index_in_chunk": 35,
+    "parameters": {
+      "trajectory_type": "discrete",
+      "continuity": 0.9473684210526315,
+      "n_cells": 500,
+      "n_dims": 50,
+      "replicate": 0,
+      "n_clusters": 10,
+      "target_trajectory": "linear",
+      "base_separation": 5.0,
+      "global_id": 225
+    }
+  },
+  "discrete_cont0.947_n500_rep0_targetbranching_k10": {
+    "chunk_id": 3,
+    "index_in_chunk": 36,
+    "parameters": {
+      "trajectory_type": "discrete",
+      "continuity": 0.9473684210526315,
+      "n_cells": 500,
+      "n_dims": 50,
+      "replicate": 0,
+      "n_clusters": 10,
+      "target_trajectory": "branching",
+      "base_separation": 5.0,
+      "branch_point": 0.5,
+      "global_id": 226
+    }
+  },
+  "discrete_cont0.947_n500_rep0_targetcyclic_k10": {
+    "chunk_id": 3,
+    "index_in_chunk": 37,
+    "parameters": {
+      "trajectory_type": "discrete",
+      "continuity": 0.9473684210526315,
+      "n_cells": 500,
+      "n_dims": 50,
+      "replicate": 0,
+      "n_clusters": 10,
+      "target_trajectory": "cyclic",
+      "base_separation": 5.0,
+      "global_id": 227
+    }
+  },
+  "discrete_cont0.947_n500_rep0_targetlinear_k12": {
+    "chunk_id": 3,
+    "index_in_chunk": 38,
+    "parameters": {
+      "trajectory_type": "discrete",
+      "continuity": 0.9473684210526315,
+      "n_cells": 500,
+      "n_dims": 50,
+      "replicate": 0,
+      "n_clusters": 12,
+      "target_trajectory": "linear",
+      "base_separation": 5.0,
+      "global_id": 228
+    }
+  },
+  "discrete_cont0.947_n500_rep0_targetbranching_k12": {
+    "chunk_id": 3,
+    "index_in_chunk": 39,
+    "parameters": {
+      "trajectory_type": "discrete",
+      "continuity": 0.9473684210526315,
+      "n_cells": 500,
+      "n_dims": 50,
+      "replicate": 0,
+      "n_clusters": 12,
+      "target_trajectory": "branching",
+      "base_separation": 5.0,
+      "branch_point": 0.5,
+      "global_id": 229
+    }
+  },
+  "discrete_cont0.947_n500_rep0_targetcyclic_k12": {
+    "chunk_id": 3,
+    "index_in_chunk": 40,
+    "parameters": {
+      "trajectory_type": "discrete",
+      "continuity": 0.9473684210526315,
+      "n_cells": 500,
+      "n_dims": 50,
+      "replicate": 0,
+      "n_clusters": 12,
+      "target_trajectory": "cyclic",
+      "base_separation": 5.0,
+      "global_id": 230
+    }
+  },
+  "discrete_cont1.000_n500_rep0_targetlinear_k8": {
+    "chunk_id": 3,
+    "index_in_chunk": 41,
+    "parameters": {
+      "trajectory_type": "discrete",
+      "continuity": 1.0,
+      "n_cells": 500,
+      "n_dims": 50,
+      "replicate": 0,
+      "n_clusters": 8,
+      "target_trajectory": "linear",
+      "base_separation": 5.0,
+      "global_id": 231
+    }
+  },
+  "discrete_cont1.000_n500_rep0_targetbranching_k8": {
+    "chunk_id": 3,
+    "index_in_chunk": 42,
+    "parameters": {
+      "trajectory_type": "discrete",
+      "continuity": 1.0,
+      "n_cells": 500,
+      "n_dims": 50,
+      "replicate": 0,
+      "n_clusters": 8,
+      "target_trajectory": "branching",
+      "base_separation": 5.0,
+      "branch_point": 0.5,
+      "global_id": 232
+    }
+  },
+  "discrete_cont1.000_n500_rep0_targetcyclic_k8": {
+    "chunk_id": 3,
+    "index_in_chunk": 43,
+    "parameters": {
+      "trajectory_type": "discrete",
+      "continuity": 1.0,
+      "n_cells": 500,
+      "n_dims": 50,
+      "replicate": 0,
+      "n_clusters": 8,
+      "target_trajectory": "cyclic",
+      "base_separation": 5.0,
+      "global_id": 233
+    }
+  },
+  "discrete_cont1.000_n500_rep0_targetlinear_k10": {
+    "chunk_id": 3,
+    "index_in_chunk": 44,
+    "parameters": {
+      "trajectory_type": "discrete",
+      "continuity": 1.0,
+      "n_cells": 500,
+      "n_dims": 50,
+      "replicate": 0,
+      "n_clusters": 10,
+      "target_trajectory": "linear",
+      "base_separation": 5.0,
+      "global_id": 234
+    }
+  },
+  "discrete_cont1.000_n500_rep0_targetbranching_k10": {
+    "chunk_id": 3,
+    "index_in_chunk": 45,
+    "parameters": {
+      "trajectory_type": "discrete",
+      "continuity": 1.0,
+      "n_cells": 500,
+      "n_dims": 50,
+      "replicate": 0,
+      "n_clusters": 10,
+      "target_trajectory": "branching",
+      "base_separation": 5.0,
+      "branch_point": 0.5,
+      "global_id": 235
+    }
+  },
+  "discrete_cont1.000_n500_rep0_targetcyclic_k10": {
+    "chunk_id": 3,
+    "index_in_chunk": 46,
+    "parameters": {
+      "trajectory_type": "discrete",
+      "continuity": 1.0,
+      "n_cells": 500,
+      "n_dims": 50,
+      "replicate": 0,
+      "n_clusters": 10,
+      "target_trajectory": "cyclic",
+      "base_separation": 5.0,
+      "global_id": 236
+    }
+  },
+  "discrete_cont1.000_n500_rep0_targetlinear_k12": {
+    "chunk_id": 3,
+    "index_in_chunk": 47,
+    "parameters": {
+      "trajectory_type": "discrete",
+      "continuity": 1.0,
+      "n_cells": 500,
+      "n_dims": 50,
+      "replicate": 0,
+      "n_clusters": 12,
+      "target_trajectory": "linear",
+      "base_separation": 5.0,
+      "global_id": 237
+    }
+  },
+  "discrete_cont1.000_n500_rep0_targetbranching_k12": {
+    "chunk_id": 3,
+    "index_in_chunk": 48,
+    "parameters": {
+      "trajectory_type": "discrete",
+      "continuity": 1.0,
+      "n_cells": 500,
+      "n_dims": 50,
+      "replicate": 0,
+      "n_clusters": 12,
+      "target_trajectory": "branching",
+      "base_separation": 5.0,
+      "branch_point": 0.5,
+      "global_id": 238
+    }
+  },
+  "discrete_cont1.000_n500_rep0_targetcyclic_k12": {
+    "chunk_id": 3,
+    "index_in_chunk": 49,
+    "parameters": {
+      "trajectory_type": "discrete",
+      "continuity": 1.0,
+      "n_cells": 500,
+      "n_dims": 50,
+      "replicate": 0,
+      "n_clusters": 12,
+      "target_trajectory": "cyclic",
+      "base_separation": 5.0,
+      "global_id": 239
+    }
+  }
+}

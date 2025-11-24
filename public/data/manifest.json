@@ -1,0 +1,105 @@
+{
+  "version": "1.0",
+  "generation_timestamp": "2025-11-24T20:18:38.597309",
+  "computation_duration_seconds": 82.859873,
+  "total_simulations": 200,
+  "chunk_size": 50,
+  "total_chunks": 4,
+  "random_seed": 42,
+  "metrics_computed": [
+    "spectral_decay",
+    "anisotropy",
+    "participation_ratio",
+    "trajectory_directionality",
+    "manifold_dimensionality",
+    "noise_resilience"
+  ],
+  "embedding_methods": [
+    "pca",
+    "umap"
+  ],
+  "save_ground_truth": true,
+  "continuous_config": {
+    "trajectory_types": [
+      "linear",
+      "branching",
+      "cyclic"
+    ],
+    "continuity_levels": [
+      0.85,
+      0.8573684210526316,
+      0.8647368421052631,
+      0.8721052631578947,
+      0.8794736842105263,
+      0.8868421052631579,
+      0.8942105263157895,
+      0.901578947368421,
+      0.9089473684210526,
+      0.9163157894736842,
+      0.9236842105263158,
+      0.9310526315789474,
+      0.9384210526315789,
+      0.9457894736842105,
+      0.9531578947368421,
+      0.9605263157894737,
+      0.9678947368421053,
+      0.9752631578947368,
+      0.9826315789473684,
+      0.99
+    ],
+    "n_replicates": 1,
+    "branching_params": {
+      "n_branches": [
+        2,
+        3,
+        4
+      ],
+      "branch_point": 0.5,
+      "branch_angle": 60
+    },
+    "cyclic_params": {
+      "n_cycles": [
+        2,
+        3,
+        4
+      ]
+    }
+  },
+  "discrete_config": {
+    "continuity_levels": [
+      0.0,
+      0.05263157894736842,
+      0.10526315789473684,
+      0.15789473684210525,
+      0.21052631578947367,
+      0.2631578947368421,
+      0.3157894736842105,
+      0.3684210526315789,
+      0.42105263157894735,
+      0.47368421052631576,
+      0.5263157894736842,
+      0.5789473684210527,
+      0.631578947368421,
+      0.6842105263157894,
+      0.7368421052631579,
+      0.7894736842105263,
+      0.8421052631578947,
+      0.894736842105263,
+      0.9473684210526315,
+      1.0
+    ],
+    "n_clusters_list": [
+      8,
+      10,
+      12
+    ],
+    "target_trajectories": [
+      "linear",
+      "branching",
+      "cyclic"
+    ],
+    "n_replicates": 1,
+    "base_separation": 5.0,
+    "branch_point": 0.5
+  }
+}
