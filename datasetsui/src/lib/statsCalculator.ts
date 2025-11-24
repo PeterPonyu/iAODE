@@ -1,7 +1,7 @@
 import { GSEGroup, DatasetStats } from '@/types/datasets';
 import { parseNumeric } from './formatters';
 
-export function calculateStats(gseGroups: GSEGroup[]): DatasetStats {
+export function calculateStats(gseGroups: GSEGroup[], dataType: 'ATAC' | 'RNA'): DatasetStats {
   const allDatasets = gseGroups.flatMap(g => g.datasets);
   
   // Category distribution
@@ -27,7 +27,7 @@ export function calculateStats(gseGroups: GSEGroup[]): DatasetStats {
   }, {} as Record<string, number>);
   
   const totalCells = gseGroups.reduce((sum, g) => sum + g.totalCells, 0);
-  const totalPeaks = gseGroups.reduce((sum, g) => sum + g.totalPeaks, 0);
+  const totalFeatures = gseGroups.reduce((sum, g) => sum + g.totalFeatures, 0);
   const totalSize = gseGroups.reduce((sum, g) => sum + g.totalSize, 0);
   
   // Calculate medians
@@ -36,28 +36,28 @@ export function calculateStats(gseGroups: GSEGroup[]): DatasetStats {
     .filter(n => n > 0)
     .sort((a, b) => a - b);
   
-  const peakCounts = allDatasets
-    .map(d => parseNumeric(d.nPeaks))
+  const featureCounts = allDatasets
+    .map(d => parseNumeric(d.nFeatures))
     .filter(n => n > 0)
     .sort((a, b) => a - b);
   
   const medianCells = cellCounts[Math.floor(cellCounts.length / 2)] || 0;
-  const medianPeaks = peakCounts[Math.floor(peakCounts.length / 2)] || 0;
+  const medianFeatures = featureCounts[Math.floor(featureCounts.length / 2)] || 0;
   
   return {
     totalDatasets: allDatasets.length,
     totalGSE: gseGroups.length,
     totalCells,
-    totalPeaks,
+    totalFeatures,
     totalSize,
     categoryDistribution,
     organismDistribution,
     platformDistribution,
     averageCells: Math.round(totalCells / allDatasets.length),
-    averagePeaks: Math.round(totalPeaks / allDatasets.length),
+    averageFeatures: Math.round(totalFeatures / allDatasets.length),
     averageSize: totalSize / allDatasets.length,
     medianCells,
-    medianPeaks,
+    medianFeatures,
   };
 }
 

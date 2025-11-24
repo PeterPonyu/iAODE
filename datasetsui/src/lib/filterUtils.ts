@@ -17,20 +17,22 @@ export function applyFilters(
       return false;
     }
     
+    // Platform filter
+    if (filters.platforms && filters.platforms.length > 0 && 
+        !filters.platforms.includes(dataset.platform)) {
+      return false;
+    }
+    
     // Cell range filter
     if (filters.cellRange) {
-      const cells = parseInt(dataset.nCells);
-      if (isNaN(cells)) return false;
-      if (cells < filters.cellRange[0] || cells > filters.cellRange[1]) {
+      if (dataset.nCells < filters.cellRange[0] || dataset.nCells > filters.cellRange[1]) {
         return false;
       }
     }
     
-    // Peak range filter (if added to FilterState)
-    if (filters.peakRange) {
-      const peaks = parseInt(dataset.nPeaks);
-      if (isNaN(peaks)) return false;
-      if (peaks < filters.peakRange[0] || peaks > filters.peakRange[1]) {
+    // Feature range filter
+    if (filters.featureRange) {
+      if (dataset.nFeatures < filters.featureRange[0] || dataset.nFeatures > filters.featureRange[1]) {
         return false;
       }
     }
@@ -40,12 +42,9 @@ export function applyFilters(
 }
 
 export function getFilterOptions(datasets: MergedDataset[]) {
-  const validDatasets = datasets.filter(d => 
-    d.nCells !== 'N/A' && d.nPeaks !== 'N/A'
-  );
-  
-  const cellCounts = validDatasets.map(d => parseInt(d.nCells));
-  const peakCounts = validDatasets.map(d => parseInt(d.nPeaks));
+  // nCells and nFeatures are always numbers, no need to filter
+  const cellCounts = datasets.map(d => d.nCells).filter(n => n > 0);
+  const featureCounts = datasets.map(d => d.nFeatures).filter(n => n > 0);
   
   return {
     organisms: Array.from(new Set(
@@ -58,14 +57,14 @@ export function getFilterOptions(datasets: MergedDataset[]) {
     
     categories: ['tiny', 'small', 'medium', 'large'] as const,
     
-    cellRange: {
+    cellRange: cellCounts.length > 0 ? {
       min: Math.min(...cellCounts),
       max: Math.max(...cellCounts)
-    },
+    } : null,
     
-    peakRange: {
-      min: Math.min(...peakCounts),
-      max: Math.max(...peakCounts)
-    }
+    featureRange: featureCounts.length > 0 ? {
+      min: Math.min(...featureCounts),
+      max: Math.max(...featureCounts)
+    } : null
   };
 }

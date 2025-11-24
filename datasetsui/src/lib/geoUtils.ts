@@ -1,5 +1,3 @@
-// lib/geoUtils.ts
-
 /**
  * Extract GSM ID from data file name
  * Example: "GSM5124060_PDX_360_Infigratinib_peak_bc_matrix.h5" → "GSM5124060"

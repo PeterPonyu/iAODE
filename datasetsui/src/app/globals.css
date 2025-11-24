@@ -59,6 +59,36 @@
     --meta-label: 107 114 128;
 
     /* ============================================
+       CATEGORY BADGE COLORS
+       ============================================ */
+    --category-tiny-bg: 243 244 246;        /* gray-100 */
+    --category-tiny-text: 55 65 81;         /* gray-700 */
+    --category-tiny-border: 209 213 219;    /* gray-300 */
+
+    --category-small-bg: 219 234 254;       /* blue-100 */
+    --category-small-text: 29 78 216;       /* blue-700 */
+    --category-small-border: 147 197 253;   /* blue-300 */
+
+    --category-medium-bg: 254 243 199;      /* yellow-100 */
+    --category-medium-text: 161 98 7;       /* yellow-700 */
+    --category-medium-border: 253 224 71;   /* yellow-300 */
+
+    --category-large-bg: 220 252 231;       /* green-100 */
+    --category-large-text: 21 128 61;       /* green-700 */
+    --category-large-border: 134 239 172;   /* green-300 */
+
+    --category-error-bg: 254 226 226;       /* red-100 */
+    --category-error-text: 185 28 28;       /* red-700 */
+    --category-error-border: 252 165 165;   /* red-300 */
+
+    /* Stat background colors for badges */
+    --stat-bg-blue: 219 234 254;      /* blue-100 */
+    --stat-bg-indigo: 224 231 255;    /* indigo-100 */
+    --stat-bg-green: 220 252 231;     /* green-100 */
+    --stat-bg-purple: 243 232 255;    /* purple-100 */
+    --stat-bg-orange: 254 215 170;    /* orange-100 */
+
+    /* ============================================
        OMICS-SPECIFIC COLORS (scATAC - Cyan theme)
        ============================================ */
     --atac-primary: 8 145 178;        /* cyan-600 */
@@ -130,6 +160,36 @@
 
     /* Metadata label color - dark mode */
     --meta-label: 156 163 175;
+    
+    /* ============================================
+       CATEGORY BADGE COLORS - DARK MODE
+       ============================================ */
+    --category-tiny-bg: 31 41 55;           /* gray-800 */
+    --category-tiny-text: 209 213 219;      /* gray-300 */
+    --category-tiny-border: 75 85 99;       /* gray-600 */
+
+    --category-small-bg: 30 58 138 / 0.3;   /* blue-900/30 */
+    --category-small-text: 147 197 253;     /* blue-300 */
+    --category-small-border: 37 99 235;     /* blue-600 */
+
+    --category-medium-bg: 120 53 15 / 0.3;  /* yellow-900/30 */
+    --category-medium-text: 253 224 71;     /* yellow-300 */
+    --category-medium-border: 161 98 7;     /* yellow-700 */
+
+    --category-large-bg: 20 83 45 / 0.3;    /* green-900/30 */
+    --category-large-text: 134 239 172;     /* green-300 */
+    --category-large-border: 22 101 52;     /* green-700 */
+
+    --category-error-bg: 127 29 29 / 0.3;   /* red-900/30 */
+    --category-error-text: 252 165 165;     /* red-400 */
+    --category-error-border: 185 28 28;     /* red-700 */
+
+    /* Stat background colors for badges - dark mode */
+    --stat-bg-blue: 30 58 138 / 0.3;   /* blue-900/30 */
+    --stat-bg-indigo: 49 46 129 / 0.3; /* indigo-900/30 */
+    --stat-bg-green: 20 83 45 / 0.3;   /* green-900/30 */
+    --stat-bg-purple: 88 28 135 / 0.3; /* purple-900/30 */
+    --stat-bg-orange: 124 45 18 / 0.3; /* orange-900/30 */
 
     /* ============================================
        OMICS-SPECIFIC COLORS - DARK MODE

@@ -133,7 +133,7 @@ export default function StatisticsPage() {
           📊 Currently viewing <strong>{currentStats.totalGSE} studies</strong> with{' '}
           <strong>{currentStats.totalDatasets} datasets</strong>, containing{' '}
           <strong>{currentStats.totalCells.toLocaleString()} cells</strong> and{' '}
-          <strong>{currentStats.totalFeatures.toLocaleString()} {featureLabel}</strong>.
+          <strong>{currentStats.averageFeatures.toLocaleString()} avg. {featureLabel}</strong>.
         </p>
       </div>
 

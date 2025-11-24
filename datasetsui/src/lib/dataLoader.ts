@@ -1,36 +1,45 @@
-// lib/dataLoader.ts
-
 import { Dataset, DatasetBrief, MergedDataset, GSEGroup } from '@/types/datasets';
 import { extractGsmId, generateDownloadUrl } from './geoUtils';
 import { parseNumeric } from './formatters';
 
-import datasetsJson from '../data/datasets.json';
-import h5AnalysisJson from '../data/h5_analysis.json';
+// Import all data files
+import ATACdatasetsJson from '../data/ATACdatasets.json';
+import RNAdatasetsJson from '../data/RNAdatasets.json';
+import ATAC_h5_analysisJson from '../data/ATAC_h5_analysis.json';
+import RNA_h5_analysisJson from '../data/RNA_h5_analysis.json';
 
-// Add at top of file:
-let cachedMergedDatasets: MergedDataset[] | null = null;
-let cachedGSEGroups: GSEGroup[] | null = null;
+// Separate caches for each data type
+let cachedMergedDatasetsATAC: MergedDataset[] | null = null;
+let cachedMergedDatasetsRNA: MergedDataset[] | null = null;
+let cachedGSEGroupsATAC: GSEGroup[] | null = null;
+let cachedGSEGroupsRNA: GSEGroup[] | null = null;
 
 /**
- * Load datasets from JSON file
+ * Load datasets from JSON file based on data type
  */
-export function loadDatasets(): Dataset[] {
-  return datasetsJson as Dataset[];
+export function loadDatasets(dataType: 'ATAC' | 'RNA'): Dataset[] {
+  return dataType === 'ATAC' 
+    ? (ATACdatasetsJson as Dataset[])
+    : (RNAdatasetsJson as Dataset[]);
 }
 
 /**
- * Load h5 analysis data from JSON file
+ * Load h5 analysis data from JSON file based on data type
  */
-export function loadH5Analysis(): DatasetBrief[] {
-  return h5AnalysisJson as DatasetBrief[];
+export function loadH5Analysis(dataType: 'ATAC' | 'RNA'): any[] {
+  return dataType === 'ATAC'
+    ? (ATAC_h5_analysisJson as any[])
+    : (RNA_h5_analysisJson as any[]);
 }
 
 /**
  * Merge datasets with h5 analysis data
+ * Normalizes nPeaks/nGenes to nFeatures
  */
 export function mergeDatasets(
   datasets: Dataset[],
-  briefData: DatasetBrief[]
+  briefData: any[],
+  dataType: 'ATAC' | 'RNA'
 ): MergedDataset[] {
   const briefMap = new Map(
     briefData.map(b => [
@@ -45,11 +54,16 @@ export function mergeDatasets(
 
     const gsmId = extractGsmId(dataset.dataFileName);
 
+    // Normalize field names: nPeaks/nGenes → nFeatures
+    const nFeatures = dataType === 'ATAC' 
+      ? brief?.nPeaks 
+      : brief?.nGenes;
+
     return {
       ...dataset,
-      dataFileSize: brief?.dataFileSize || 'N/A',
-      nCells: brief?.nCells || 'N/A',
-      nPeaks: brief?.nPeaks || 'N/A',
+      dataFileSize: brief?.dataFileSize || 0,
+      nCells: brief?.nCells || 0,
+      nFeatures: nFeatures || 0,
       category: brief?.category || 'error',
       gsmId,
       downloadUrl: generateDownloadUrl(gsmId)
@@ -80,8 +94,8 @@ export function groupByGSE(datasets: MergedDataset[]): GSEGroup[] {
       (sum, d) => sum + parseNumeric(d.nCells),
       0
     );
-    const totalPeaks = datasets.reduce(
-      (sum, d) => sum + parseNumeric(d.nPeaks),
+    const totalFeatures = datasets.reduce(
+      (sum, d) => sum + parseNumeric(d.nFeatures),
       0
     );
     const totalSize = datasets.reduce(
@@ -100,7 +114,7 @@ export function groupByGSE(datasets: MergedDataset[]): GSEGroup[] {
       authors: firstDataset.authors,
       datasets,
       totalCells,
-      totalPeaks,
+      totalFeatures,
       totalSize,
       organism: firstDataset.organism,
       platforms
@@ -108,54 +122,76 @@ export function groupByGSE(datasets: MergedDataset[]): GSEGroup[] {
   });
 }
 
-// Update getAllMergedDatasets():
-export function getAllMergedDatasets(): MergedDataset[] {
-  if (cachedMergedDatasets) return cachedMergedDatasets;
+/**
+ * Get all merged datasets with caching
+ */
+export function getAllMergedDatasets(dataType: 'ATAC' | 'RNA'): MergedDataset[] {
+  const cache = dataType === 'ATAC' ? cachedMergedDatasetsATAC : cachedMergedDatasetsRNA;
   
-  const datasets = loadDatasets();
-  const h5Analysis = loadH5Analysis();
-  cachedMergedDatasets = mergeDatasets(datasets, h5Analysis);
-  return cachedMergedDatasets;
+  if (cache) return cache;
+  
+  const datasets = loadDatasets(dataType);
+  const h5Analysis = loadH5Analysis(dataType);
+  const merged = mergeDatasets(datasets, h5Analysis, dataType);
+  
+  if (dataType === 'ATAC') {
+    cachedMergedDatasetsATAC = merged;
+  } else {
+    cachedMergedDatasetsRNA = merged;
+  }
+  
+  return merged;
 }
 
-// Update getAllGSEGroups():
-export function getAllGSEGroups(): GSEGroup[] {
-  if (cachedGSEGroups) return cachedGSEGroups;
+/**
+ * Get all GSE groups with caching
+ */
+export function getAllGSEGroups(dataType: 'ATAC' | 'RNA'): GSEGroup[] {
+  const cache = dataType === 'ATAC' ? cachedGSEGroupsATAC : cachedGSEGroupsRNA;
   
-  const mergedDatasets = getAllMergedDatasets();
-  cachedGSEGroups = groupByGSE(mergedDatasets);
-  return cachedGSEGroups;
+  if (cache) return cache;
+  
+  const mergedDatasets = getAllMergedDatasets(dataType);
+  const groups = groupByGSE(mergedDatasets);
+  
+  if (dataType === 'ATAC') {
+    cachedGSEGroupsATAC = groups;
+  } else {
+    cachedGSEGroupsRNA = groups;
+  }
+  
+  return groups;
 }
 
 /**
  * Get unique GSE accessions
  */
-export function getUniqueGSEAccessions(): string[] {
-  const datasets = loadDatasets();
+export function getUniqueGSEAccessions(dataType: 'ATAC' | 'RNA'): string[] {
+  const datasets = loadDatasets(dataType);
   return Array.from(new Set(datasets.map(d => d.gseAccession)));
 }
 
 /**
  * Get GSE group by accession
  */
-export function getGSEGroup(gseAccession: string): GSEGroup | null {
-  const allGroups = getAllGSEGroups();
+export function getGSEGroup(gseAccession: string, dataType: 'ATAC' | 'RNA'): GSEGroup | null {
+  const allGroups = getAllGSEGroups(dataType);
   return allGroups.find(g => g.gseAccession === gseAccession) || null;
 }
 
 /**
  * Get unique organisms
  */
-export function getUniqueOrganisms(): string[] {
-  const datasets = loadDatasets();
+export function getUniqueOrganisms(dataType: 'ATAC' | 'RNA'): string[] {
+  const datasets = loadDatasets(dataType);
   return Array.from(new Set(datasets.map(d => d.organism).filter(o => o && o !== 'Unknown')));
 }
 
 /**
  * Get unique platforms
  */
-export function getUniquePlatforms(): string[] {
-  const datasets = loadDatasets();
+export function getUniquePlatforms(dataType: 'ATAC' | 'RNA'): string[] {
+  const datasets = loadDatasets(dataType);
   return Array.from(
     new Set(datasets.map(d => d.platform).filter(p => p && p !== 'Unknown Platform'))
   );

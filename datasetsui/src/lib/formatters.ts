@@ -1,10 +1,7 @@
-// lib/formatters.ts
-
 /**
- * Format number with commas
- * Example: 5748 → "5,748"
+ * Format number with commas and optional compact format
+ * Example: 5748 → "5,748" or "5.7K" (compact)
  */
-// Add compact format option for large numbers
 export function formatNumber(
   value: string | number | null | undefined,
   compact = false
@@ -30,7 +27,7 @@ export function formatNumber(
 
 /**
  * Format file size with unit
- * Example: "33.8" → "33.8 MB"
+ * Example: 33.8 → "33.8 MB"
  */
 export function formatFileSize(sizeMB: string | number | null | undefined): string {
   if (sizeMB === null || sizeMB === undefined || sizeMB === 'N/A') {
@@ -51,7 +48,7 @@ export function formatFileSize(sizeMB: string | number | null | undefined): stri
 }
 
 /**
- * Parse numeric value from string
+ * Parse numeric value from string or number
  */
 export function parseNumeric(value: string | number | null | undefined): number {
   if (value === null || value === undefined || value === 'N/A') {
@@ -64,7 +61,7 @@ export function parseNumeric(value: string | number | null | undefined): number 
 }
 
 /**
- * Get category badge color classes
+ * Get category badge color classes using CSS custom properties
  */
 export function getCategoryColor(category: string): {
   bg: string;
@@ -73,33 +70,66 @@ export function getCategoryColor(category: string): {
 } {
   const colors = {
     tiny: {
-      bg: 'bg-gray-100 dark:bg-gray-800',
-      text: 'text-gray-700 dark:text-gray-300',
-      border: 'border-gray-300 dark:border-gray-600'
+      bg: 'bg-[rgb(var(--category-tiny-bg))]',
+      text: 'text-[rgb(var(--category-tiny-text))]',
+      border: 'border-[rgb(var(--category-tiny-border))]'
     },
     small: {
-      bg: 'bg-blue-100 dark:bg-blue-900/30',
-      text: 'text-blue-700 dark:text-blue-300',
-      border: 'border-blue-300 dark:border-blue-600'
+      bg: 'bg-[rgb(var(--category-small-bg))]',
+      text: 'text-[rgb(var(--category-small-text))]',
+      border: 'border-[rgb(var(--category-small-border))]'
     },
     medium: {
-      bg: 'bg-yellow-100 dark:bg-yellow-900/30',
-      text: 'text-yellow-700 dark:text-yellow-300',
-      border: 'border-yellow-300 dark:border-yellow-600'
+      bg: 'bg-[rgb(var(--category-medium-bg))]',
+      text: 'text-[rgb(var(--category-medium-text))]',
+      border: 'border-[rgb(var(--category-medium-border))]'
     },
     large: {
-      bg: 'bg-green-100 dark:bg-green-900/30',
-      text: 'text-green-700 dark:text-green-300',
-      border: 'border-green-300 dark:border-green-600'
+      bg: 'bg-[rgb(var(--category-large-bg))]',
+      text: 'text-[rgb(var(--category-large-text))]',
+      border: 'border-[rgb(var(--category-large-border))]'
     },
     error: {
-      bg: 'bg-red-100 dark:bg-red-900/30',
-      text: 'text-red-700 dark:text-red-300',
-      border: 'border-red-300 dark:border-red-600'
+      bg: 'bg-[rgb(var(--category-error-bg))]',
+      text: 'text-[rgb(var(--category-error-text))]',
+      border: 'border-[rgb(var(--category-error-border))]'
     }
   };
   
   return colors[category as keyof typeof colors] || colors.error;
+}
+
+/**
+ * Get category information (label and description)
+ */
+export function getCategoryInfo(category: string): {
+  label: string;
+  description: string;
+} {
+  const info = {
+    tiny: {
+      label: 'Tiny',
+      description: 'Tiny (1-5k cells)'
+    },
+    small: {
+      label: 'Small',
+      description: 'Small (5-10k cells)'
+    },
+    medium: {
+      label: 'Medium',
+      description: 'Medium (10-20k cells)'
+    },
+    large: {
+      label: 'Large',
+      description: 'Large (20k+ cells)'
+    },
+    error: {
+      label: 'Error',
+      description: 'Data parsing error'
+    }
+  };
+  
+  return info[category as keyof typeof info] || info.error;
 }
 
 /**
