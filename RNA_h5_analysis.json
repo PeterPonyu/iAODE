@@ -1,0 +1,1466 @@
+[
+  {
+    "gseAccession": "GSE300862",
+    "dataFileName": "GSM9069798_SPC_KPI_filtered_feature_bc_matrix.h5",
+    "dataFileSize": 37.97,
+    "nCells": 8817,
+    "nGenes": 31055,
+    "category": "small"
+  },
+  {
+    "gseAccession": "GSE300862",
+    "dataFileName": "GSM9069797_SPC_KP_filtered_feature_bc_matrix.h5",
+    "dataFileSize": 31.45,
+    "nCells": 7893,
+    "nGenes": 31055,
+    "category": "small"
+  },
+  {
+    "gseAccession": "GSE307261",
+    "dataFileName": "GSM9220095_p196_B_7m_RNA_filtered_feature_bc_matrix.h5",
+    "dataFileSize": 13.24,
+    "nCells": 6704,
+    "nGenes": 33538,
+    "category": "small"
+  },
+  {
+    "gseAccession": "GSE307261",
+    "dataFileName": "GSM9220083_p145_B_7m_RNA_filtered_feature_bc_matrix.h5",
+    "dataFileSize": 7.46,
+    "nCells": 2920,
+    "nGenes": 33538,
+    "category": "tiny"
+  },
+  {
+    "gseAccession": "GSE307261",
+    "dataFileName": "GSM9220099_p196_T_7m_RNA_filtered_feature_bc_matrix.h5",
+    "dataFileSize": 14.26,
+    "nCells": 6791,
+    "nGenes": 33538,
+    "category": "small"
+  },
+  {
+    "gseAccession": "GSE307261",
+    "dataFileName": "GSM9220071_p134_B_7m_RNA_filtered_feature_bc_matrix.h5",
+    "dataFileSize": 15.11,
+    "nCells": 7208,
+    "nGenes": 33538,
+    "category": "small"
+  },
+  {
+    "gseAccession": "GSE307261",
+    "dataFileName": "GSM9220121_p381_T_6w_RNA_filtered_feature_bc_matrix.h5",
+    "dataFileSize": 16.45,
+    "nCells": 7065,
+    "nGenes": 33538,
+    "category": "small"
+  },
+  {
+    "gseAccession": "GSE307261",
+    "dataFileName": "GSM9220081_p145_B_6w_RNA_filtered_feature_bc_matrix.h5",
+    "dataFileSize": 7.05,
+    "nCells": 2460,
+    "nGenes": 33538,
+    "category": "tiny"
+  },
+  {
+    "gseAccession": "GSE307261",
+    "dataFileName": "GSM9220085_p145_B_d0_RNA_filtered_feature_bc_matrix.h5",
+    "dataFileSize": 6.32,
+    "nCells": 2183,
+    "nGenes": 33538,
+    "category": "tiny"
+  },
+  {
+    "gseAccession": "GSE307261",
+    "dataFileName": "GSM9220111_p326_T_7m_RNA_filtered_feature_bc_matrix.h5",
+    "dataFileSize": 16.57,
+    "nCells": 6786,
+    "nGenes": 33538,
+    "category": "small"
+  },
+  {
+    "gseAccession": "GSE307261",
+    "dataFileName": "GSM9220103_p326_B_6w_RNA_filtered_feature_bc_matrix.h5",
+    "dataFileSize": 13.44,
+    "nCells": 5635,
+    "nGenes": 33538,
+    "category": "small"
+  },
+  {
+    "gseAccession": "GSE307261",
+    "dataFileName": "GSM9220097_p196_T_6w_RNA_filtered_feature_bc_matrix.h5",
+    "dataFileSize": 15.0,
+    "nCells": 6320,
+    "nGenes": 33538,
+    "category": "small"
+  },
+  {
+    "gseAccession": "GSE307261",
+    "dataFileName": "GSM9220073_p134_B_d0_RNA_filtered_feature_bc_matrix.h5",
+    "dataFileSize": 15.01,
+    "nCells": 7282,
+    "nGenes": 33538,
+    "category": "small"
+  },
+  {
+    "gseAccession": "GSE307261",
+    "dataFileName": "GSM9220117_p381_B_7m_RNA_filtered_feature_bc_matrix.h5",
+    "dataFileSize": 12.72,
+    "nCells": 5276,
+    "nGenes": 33538,
+    "category": "small"
+  },
+  {
+    "gseAccession": "GSE307261",
+    "dataFileName": "GSM9220115_p381_B_6w_RNA_filtered_feature_bc_matrix.h5",
+    "dataFileSize": 16.29,
+    "nCells": 7324,
+    "nGenes": 33538,
+    "category": "small"
+  },
+  {
+    "gseAccession": "GSE307261",
+    "dataFileName": "GSM9220087_p145_T_6w_RNA_filtered_feature_bc_matrix.h5",
+    "dataFileSize": 18.58,
+    "nCells": 7478,
+    "nGenes": 33538,
+    "category": "small"
+  },
+  {
+    "gseAccession": "GSE307261",
+    "dataFileName": "GSM9220109_p326_T_6w_RNA_filtered_feature_bc_matrix.h5",
+    "dataFileSize": 16.06,
+    "nCells": 6894,
+    "nGenes": 33538,
+    "category": "small"
+  },
+  {
+    "gseAccession": "GSE307261",
+    "dataFileName": "GSM9220125_p381_T_d0_RNA_filtered_feature_bc_matrix.h5",
+    "dataFileSize": 18.77,
+    "nCells": 7531,
+    "nGenes": 33538,
+    "category": "small"
+  },
+  {
+    "gseAccession": "GSE307261",
+    "dataFileName": "GSM9220077_p134_T_7m_RNA_filtered_feature_bc_matrix.h5",
+    "dataFileSize": 17.33,
+    "nCells": 8145,
+    "nGenes": 33538,
+    "category": "small"
+  },
+  {
+    "gseAccession": "GSE307261",
+    "dataFileName": "GSM9220089_p145_T_7m_RNA_filtered_feature_bc_matrix.h5",
+    "dataFileSize": 20.63,
+    "nCells": 9158,
+    "nGenes": 33538,
+    "category": "small"
+  },
+  {
+    "gseAccession": "GSE307261",
+    "dataFileName": "GSM9220069_p134_B_6w_RNA_filtered_feature_bc_matrix.h5",
+    "dataFileSize": 14.43,
+    "nCells": 6436,
+    "nGenes": 33538,
+    "category": "small"
+  },
+  {
+    "gseAccession": "GSE307261",
+    "dataFileName": "GSM9220105_p326_B_7m_RNA_filtered_feature_bc_matrix.h5",
+    "dataFileSize": 17.45,
+    "nCells": 7487,
+    "nGenes": 33538,
+    "category": "small"
+  },
+  {
+    "gseAccession": "GSE307261",
+    "dataFileName": "GSM9220079_p134_T_d0_RNA_filtered_feature_bc_matrix.h5",
+    "dataFileSize": 18.13,
+    "nCells": 8415,
+    "nGenes": 33538,
+    "category": "small"
+  },
+  {
+    "gseAccession": "GSE307261",
+    "dataFileName": "GSM9220123_p381_T_7m_RNA_filtered_feature_bc_matrix.h5",
+    "dataFileSize": 16.42,
+    "nCells": 6520,
+    "nGenes": 33538,
+    "category": "small"
+  },
+  {
+    "gseAccession": "GSE307261",
+    "dataFileName": "GSM9220107_p326_B_d0_RNA_filtered_feature_bc_matrix.h5",
+    "dataFileSize": 13.41,
+    "nCells": 5627,
+    "nGenes": 33538,
+    "category": "small"
+  },
+  {
+    "gseAccession": "GSE307261",
+    "dataFileName": "GSM9220113_p326_T_d0_RNA_filtered_feature_bc_matrix.h5",
+    "dataFileSize": 24.32,
+    "nCells": 10476,
+    "nGenes": 33538,
+    "category": "medium"
+  },
+  {
+    "gseAccession": "GSE307261",
+    "dataFileName": "GSM9220075_p134_T_6w_RNA_filtered_feature_bc_matrix.h5",
+    "dataFileSize": 20.2,
+    "nCells": 8938,
+    "nGenes": 33538,
+    "category": "small"
+  },
+  {
+    "gseAccession": "GSE307261",
+    "dataFileName": "GSM9220119_p381_B_d0_RNA_filtered_feature_bc_matrix.h5",
+    "dataFileSize": 12.6,
+    "nCells": 5582,
+    "nGenes": 33538,
+    "category": "small"
+  },
+  {
+    "gseAccession": "GSE307261",
+    "dataFileName": "GSM9220101_p196_T_d0_RNA_filtered_feature_bc_matrix.h5",
+    "dataFileSize": 16.47,
+    "nCells": 7021,
+    "nGenes": 33538,
+    "category": "small"
+  },
+  {
+    "gseAccession": "GSE307261",
+    "dataFileName": "GSM9220093_p196_B_6w_RNA_filtered_feature_bc_matrix.h5",
+    "dataFileSize": 8.83,
+    "nCells": 3824,
+    "nGenes": 33538,
+    "category": "tiny"
+  },
+  {
+    "gseAccession": "GSE307261",
+    "dataFileName": "GSM9220091_p145_T_d0_RNA_filtered_feature_bc_matrix.h5",
+    "dataFileSize": 15.41,
+    "nCells": 6388,
+    "nGenes": 33538,
+    "category": "small"
+  },
+  {
+    "gseAccession": "GSE303309",
+    "dataFileName": "GSM9123180_cre_filtered_feature_bc_matrix.h5",
+    "dataFileSize": 78.34,
+    "nCells": 17879,
+    "nGenes": 32285,
+    "category": "medium"
+  },
+  {
+    "gseAccession": "GSE303309",
+    "dataFileName": "GSM9123179_wt_filtered_feature_bc_matrix.h5",
+    "dataFileSize": 75.3,
+    "nCells": 17831,
+    "nGenes": 32285,
+    "category": "medium"
+  },
+  {
+    "gseAccession": "GSE236565",
+    "dataFileName": "GSM7553365_NRIP1_KO_woRA_3_rna_filtered_feature_bc_matrix.h5",
+    "dataFileSize": 75.51,
+    "nCells": 3909,
+    "nGenes": 32285,
+    "category": "tiny"
+  },
+  {
+    "gseAccession": "GSE236565",
+    "dataFileName": "GSM7553371_NRIP1_KO_wRA_1_rna_filtered_feature_bc_matrix.h5",
+    "dataFileSize": 60.82,
+    "nCells": 3856,
+    "nGenes": 32285,
+    "category": "tiny"
+  },
+  {
+    "gseAccession": "GSE236565",
+    "dataFileName": "GSM7553359_NRIP1_WT_woRA_2_rna_filtered_feature_bc_matrix.h5",
+    "dataFileSize": 75.92,
+    "nCells": 3663,
+    "nGenes": 32285,
+    "category": "tiny"
+  },
+  {
+    "gseAccession": "GSE236565",
+    "dataFileName": "GSM7553361_NRIP1_WT_woRA_3_rna_filtered_feature_bc_matrix.h5",
+    "dataFileSize": 49.47,
+    "nCells": 2438,
+    "nGenes": 32285,
+    "category": "tiny"
+  },
+  {
+    "gseAccession": "GSE236565",
+    "dataFileName": "GSM7553366_NRIP1_WT_wRA_1_rna_filtered_feature_bc_matrix.h5",
+    "dataFileSize": 41.94,
+    "nCells": 2993,
+    "nGenes": 32285,
+    "category": "tiny"
+  },
+  {
+    "gseAccession": "GSE236565",
+    "dataFileName": "GSM7553368_NRIP1_WT_wRA_2_rna_filtered_feature_bc_matrix.h5",
+    "dataFileSize": 48.29,
+    "nCells": 3232,
+    "nGenes": 32285,
+    "category": "tiny"
+  },
+  {
+    "gseAccession": "GSE236565",
+    "dataFileName": "GSM7553364_NRIP1_KO_woRA_2_rna_filtered_feature_bc_matrix.h5",
+    "dataFileSize": 54.9,
+    "nCells": 2655,
+    "nGenes": 32285,
+    "category": "tiny"
+  },
+  {
+    "gseAccession": "GSE236565",
+    "dataFileName": "GSM7553358_NRIP1_WT_woRA_1_rna_filtered_feature_bc_matrix.h5",
+    "dataFileSize": 63.58,
+    "nCells": 3192,
+    "nGenes": 32285,
+    "category": "tiny"
+  },
+  {
+    "gseAccession": "GSE236565",
+    "dataFileName": "GSM7553374_NRIP1_KO_wRA_3_rna_filtered_feature_bc_matrix.h5",
+    "dataFileSize": 48.59,
+    "nCells": 2964,
+    "nGenes": 32285,
+    "category": "tiny"
+  },
+  {
+    "gseAccession": "GSE236565",
+    "dataFileName": "GSM7553362_NRIP1_KO_woRA_1_rna_filtered_feature_bc_matrix.h5",
+    "dataFileSize": 65.68,
+    "nCells": 3240,
+    "nGenes": 32285,
+    "category": "tiny"
+  },
+  {
+    "gseAccession": "GSE236565",
+    "dataFileName": "GSM7553372_NRIP1_KO_wRA_2_rna_filtered_feature_bc_matrix.h5",
+    "dataFileSize": 56.2,
+    "nCells": 3517,
+    "nGenes": 32285,
+    "category": "tiny"
+  },
+  {
+    "gseAccession": "GSE236565",
+    "dataFileName": "GSM7553369_NRIP1_WT_wRA_3_rna_filtered_feature_bc_matrix.h5",
+    "dataFileSize": 55.72,
+    "nCells": 4109,
+    "nGenes": 32285,
+    "category": "tiny"
+  },
+  {
+    "gseAccession": "GSE220913",
+    "dataFileName": "GSE220913_HL60_filtered_feature_bc_matrix.h5",
+    "dataFileSize": 98.45,
+    "nCells": 22415,
+    "nGenes": 36601,
+    "category": "large"
+  },
+  {
+    "gseAccession": "GSE280847",
+    "dataFileName": "GSM8606551_7KQ2_filtered_feature_bc_matrix.h5",
+    "dataFileSize": 44.24,
+    "nCells": 10952,
+    "nGenes": 27998,
+    "category": "medium"
+  },
+  {
+    "gseAccession": "GSE280847",
+    "dataFileName": "GSM8606548_WT1_filtered_feature_bc_matrix.h5",
+    "dataFileSize": 39.74,
+    "nCells": 9930,
+    "nGenes": 27998,
+    "category": "small"
+  },
+  {
+    "gseAccession": "GSE280847",
+    "dataFileName": "GSM8606549_WT2_filtered_feature_bc_matrix.h5",
+    "dataFileSize": 38.06,
+    "nCells": 11685,
+    "nGenes": 27998,
+    "category": "medium"
+  },
+  {
+    "gseAccession": "GSE280847",
+    "dataFileName": "GSM8606550_7KQ1_filtered_feature_bc_matrix.h5",
+    "dataFileSize": 40.83,
+    "nCells": 9497,
+    "nGenes": 27998,
+    "category": "small"
+  },
+  {
+    "gseAccession": "GSE277740",
+    "dataFileName": "GSM8528664_filtered_feature_bc_matrix_D5.h5",
+    "dataFileSize": 33.24,
+    "nCells": 10941,
+    "nGenes": 32285,
+    "category": "medium"
+  },
+  {
+    "gseAccession": "GSE277740",
+    "dataFileName": "GSM8528661_filtered_feature_bc_matrix_D2.h5",
+    "dataFileSize": 27.21,
+    "nCells": 7348,
+    "nGenes": 32285,
+    "category": "small"
+  },
+  {
+    "gseAccession": "GSE277740",
+    "dataFileName": "GSM8528663_filtered_feature_bc_matrix_D4.h5",
+    "dataFileSize": 33.24,
+    "nCells": 8584,
+    "nGenes": 32285,
+    "category": "small"
+  },
+  {
+    "gseAccession": "GSE277740",
+    "dataFileName": "GSM8528662_filtered_feature_bc_matrix_D3.h5",
+    "dataFileSize": 13.16,
+    "nCells": 3544,
+    "nGenes": 32285,
+    "category": "tiny"
+  },
+  {
+    "gseAccession": "GSE277740",
+    "dataFileName": "GSM8528660_filtered_feature_bc_matrix_D1.h5",
+    "dataFileSize": 31.35,
+    "nCells": 8815,
+    "nGenes": 32285,
+    "category": "small"
+  },
+  {
+    "gseAccession": "GSE277740",
+    "dataFileName": "GSM8528667_filtered_feature_bc_matrix_D8.h5",
+    "dataFileSize": 48.15,
+    "nCells": 13112,
+    "nGenes": 32285,
+    "category": "medium"
+  },
+  {
+    "gseAccession": "GSE277740",
+    "dataFileName": "GSM8528666_filtered_feature_bc_matrix_D7.h5",
+    "dataFileSize": 37.04,
+    "nCells": 9903,
+    "nGenes": 32285,
+    "category": "small"
+  },
+  {
+    "gseAccession": "GSE277740",
+    "dataFileName": "GSM8528665_filtered_feature_bc_matrix_D6.h5",
+    "dataFileSize": 26.16,
+    "nCells": 6938,
+    "nGenes": 32285,
+    "category": "small"
+  },
+  {
+    "gseAccession": "GSE212502",
+    "dataFileName": "GSM6533785_WS1.filtered_feature_bc_matrix.h5",
+    "dataFileSize": 43.76,
+    "nCells": 14727,
+    "nGenes": 37458,
+    "category": "medium"
+  },
+  {
+    "gseAccession": "GSE212502",
+    "dataFileName": "GSM6533784_CTRL1.filtered_feature_bc_matrix.h5",
+    "dataFileSize": 49.17,
+    "nCells": 18432,
+    "nGenes": 37458,
+    "category": "medium"
+  },
+  {
+    "gseAccession": "GSE227719",
+    "dataFileName": "GSM7106053_YFP_filtered_feature_bc_matrix.h5",
+    "dataFileSize": 59.47,
+    "nCells": 7423,
+    "nGenes": 32285,
+    "category": "small"
+  },
+  {
+    "gseAccession": "GSE227719",
+    "dataFileName": "GSM7106051_KPY_filtered_feature_bc_matrix.h5",
+    "dataFileSize": 117.77,
+    "nCells": 9896,
+    "nGenes": 32285,
+    "category": "small"
+  },
+  {
+    "gseAccession": "GSE306676",
+    "dataFileName": "GSM9205825_sod1_mn_nuclei_1_15_filtered_feature_bc_matrix.h5",
+    "dataFileSize": 34.28,
+    "nCells": 4836,
+    "nGenes": 31054,
+    "category": "tiny"
+  },
+  {
+    "gseAccession": "GSE306676",
+    "dataFileName": "GSM9205816_3nextseq_run_11_11_endpoint_female_filtered_feature_bc_matrix.h5",
+    "dataFileSize": 29.94,
+    "nCells": 6636,
+    "nGenes": 31057,
+    "category": "small"
+  },
+  {
+    "gseAccession": "GSE306676",
+    "dataFileName": "GSM9205828_sod1_mn_nuclei_2_9_filtered_feature_bc_matrix.h5",
+    "dataFileSize": 47.46,
+    "nCells": 9670,
+    "nGenes": 31054,
+    "category": "small"
+  },
+  {
+    "gseAccession": "GSE306676",
+    "dataFileName": "GSM9205827_sod1_mn_nuclei_2_1_filtered_feature_bc_matrix.h5",
+    "dataFileSize": 31.44,
+    "nCells": 6548,
+    "nGenes": 31054,
+    "category": "small"
+  },
+  {
+    "gseAccession": "GSE306676",
+    "dataFileName": "GSM9205814_3nextseq_run_11_4_endpoint_male_filtered_feature_bc_matrix.h5",
+    "dataFileSize": 31.36,
+    "nCells": 8897,
+    "nGenes": 31057,
+    "category": "small"
+  },
+  {
+    "gseAccession": "GSE306676",
+    "dataFileName": "GSM9205819_3nextseq_run_10_30_midpoint_male_filtered_feature_bc_matrix.h5",
+    "dataFileSize": 24.67,
+    "nCells": 4604,
+    "nGenes": 31057,
+    "category": "tiny"
+  },
+  {
+    "gseAccession": "GSE306676",
+    "dataFileName": "GSM9205826_sod1_mn_nuclei_1_16b_filtered_feature_bc_matrix.h5",
+    "dataFileSize": 31.17,
+    "nCells": 5031,
+    "nGenes": 31054,
+    "category": "small"
+  },
+  {
+    "gseAccession": "GSE306676",
+    "dataFileName": "GSM9205820_3nextseq_run_11_1_midpoint_female_sample1_filtered_feature_bc_matrix.h5",
+    "dataFileSize": 10.34,
+    "nCells": 1666,
+    "nGenes": 31057,
+    "category": "tiny"
+  },
+  {
+    "gseAccession": "GSE306676",
+    "dataFileName": "GSM9205817_SI-GA-H7_filtered_feature_bc_matrix.h5",
+    "dataFileSize": 10.52,
+    "nCells": 1700,
+    "nGenes": 31057,
+    "category": "tiny"
+  },
+  {
+    "gseAccession": "GSE306676",
+    "dataFileName": "GSM9205821_3nextseq_run_11_1_midpoint_female_sample2_filtered_feature_bc_matrix.h5",
+    "dataFileSize": 20.93,
+    "nCells": 4862,
+    "nGenes": 31057,
+    "category": "tiny"
+  },
+  {
+    "gseAccession": "GSE306676",
+    "dataFileName": "GSM9205822_3nextseq_run_11_1_midpoint_female_sample3_filtered_feature_bc_matrix.h5",
+    "dataFileSize": 17.11,
+    "nCells": 3914,
+    "nGenes": 31057,
+    "category": "tiny"
+  },
+  {
+    "gseAccession": "GSE306676",
+    "dataFileName": "GSM9205815_3nextseq_run_11_8_endpoint_female_filtered_feature_bc_matrix.h5",
+    "dataFileSize": 35.76,
+    "nCells": 9207,
+    "nGenes": 31057,
+    "category": "small"
+  },
+  {
+    "gseAccession": "GSE306676",
+    "dataFileName": "GSM9205813_3nextseq_run_10_17_endpoint_mixed_filtered_feature_bc_matrix.h5",
+    "dataFileSize": 11.03,
+    "nCells": 1776,
+    "nGenes": 31057,
+    "category": "tiny"
+  },
+  {
+    "gseAccession": "GSE306676",
+    "dataFileName": "GSM9205823_sod1_mn_nuclei_2_20_filtered_feature_bc_matrix.h5",
+    "dataFileSize": 43.16,
+    "nCells": 8497,
+    "nGenes": 31054,
+    "category": "small"
+  },
+  {
+    "gseAccession": "GSE306676",
+    "dataFileName": "GSM9205824_sod1_mn_nuclei_3_5_filtered_feature_bc_matrix.h5",
+    "dataFileSize": 52.31,
+    "nCells": 10480,
+    "nGenes": 31054,
+    "category": "medium"
+  },
+  {
+    "gseAccession": "GSE306676",
+    "dataFileName": "GSM9205812_SI-GA-F7_filtered_feature_bc_matrix.h5",
+    "dataFileSize": 18.73,
+    "nCells": 5317,
+    "nGenes": 31057,
+    "category": "small"
+  },
+  {
+    "gseAccession": "GSE306676",
+    "dataFileName": "GSM9205811_SI-GA-G7_filtered_feature_bc_matrix.h5",
+    "dataFileSize": 13.58,
+    "nCells": 4208,
+    "nGenes": 31057,
+    "category": "tiny"
+  },
+  {
+    "gseAccession": "GSE306676",
+    "dataFileName": "GSM9205818_SI-GA-G8_filtered_feature_bc_matrix.h5",
+    "dataFileSize": 7.19,
+    "nCells": 900,
+    "nGenes": 31057,
+    "category": "tiny"
+  },
+  {
+    "gseAccession": "GSE283397",
+    "dataFileName": "GSE283397_IFP-07_citemulti_feature_bc_matrix.h5",
+    "dataFileSize": 23.16,
+    "nCells": 7243,
+    "nGenes": 36601,
+    "category": "small"
+  },
+  {
+    "gseAccession": "GSE283397",
+    "dataFileName": "GSE283397_IFP-10_citemulti_feature_bc_matrix.h5",
+    "dataFileSize": 15.03,
+    "nCells": 5979,
+    "nGenes": 36601,
+    "category": "small"
+  },
+  {
+    "gseAccession": "GSE283397",
+    "dataFileName": "GSE283397_IFP-09_citemulti_feature_bc_matrix.h5",
+    "dataFileSize": 32.64,
+    "nCells": 11151,
+    "nGenes": 36601,
+    "category": "medium"
+  },
+  {
+    "gseAccession": "GSE283397",
+    "dataFileName": "GSE283397_IFP-14_citemulti_feature_bc_matrix.h5",
+    "dataFileSize": 29.65,
+    "nCells": 8066,
+    "nGenes": 36601,
+    "category": "small"
+  },
+  {
+    "gseAccession": "GSE283397",
+    "dataFileName": "GSE283397_HD_citemulti_feature_bc_matrix.h5",
+    "dataFileSize": 31.37,
+    "nCells": 9624,
+    "nGenes": 36601,
+    "category": "small"
+  },
+  {
+    "gseAccession": "GSE289611",
+    "dataFileName": "GSM8795024_OPL14T_filtered_feature_bc_matrix.h5",
+    "dataFileSize": 3.11,
+    "nCells": 2306,
+    "nGenes": 18099,
+    "category": "tiny"
+  },
+  {
+    "gseAccession": "GSE289611",
+    "dataFileName": "GSM8795024_OPL7T_filtered_feature_bc_matrix.h5",
+    "dataFileSize": 28.96,
+    "nCells": 9074,
+    "nGenes": 18099,
+    "category": "small"
+  },
+  {
+    "gseAccession": "GSE289611",
+    "dataFileName": "GSM8795024_OPL10T_filtered_feature_bc_matrix.h5",
+    "dataFileSize": 0.97,
+    "nCells": 527,
+    "nGenes": 18099,
+    "category": "tiny"
+  },
+  {
+    "gseAccession": "GSE289611",
+    "dataFileName": "GSM8795024_OPL8T_filtered_feature_bc_matrix.h5",
+    "dataFileSize": 26.35,
+    "nCells": 11259,
+    "nGenes": 18099,
+    "category": "medium"
+  },
+  {
+    "gseAccession": "GSE306567",
+    "dataFileName": "GSE306567_WT_D3_filtered_feature_bc_matrix.h5",
+    "dataFileSize": 111.37,
+    "nCells": 5588,
+    "nGenes": 32285,
+    "category": "small"
+  },
+  {
+    "gseAccession": "GSE306567",
+    "dataFileName": "GSE306567_Z2KO_D3_filtered_feature_bc_matrix.h5",
+    "dataFileSize": 79.57,
+    "nCells": 2855,
+    "nGenes": 32285,
+    "category": "tiny"
+  },
+  {
+    "gseAccession": "GSE306567",
+    "dataFileName": "GSE306567_WT_D6_filtered_feature_bc_matrix.h5",
+    "dataFileSize": 81.42,
+    "nCells": 3436,
+    "nGenes": 32285,
+    "category": "tiny"
+  },
+  {
+    "gseAccession": "GSE306567",
+    "dataFileName": "GSE306567_Z2KO_D6_filtered_feature_bc_matrix.h5",
+    "dataFileSize": 101.77,
+    "nCells": 5726,
+    "nGenes": 32285,
+    "category": "small"
+  },
+  {
+    "gseAccession": "GSE291166",
+    "dataFileName": "GSM8830298_MatAb8_filtered_feature_bc_matrix.h5",
+    "dataFileSize": 41.26,
+    "nCells": 10643,
+    "nGenes": 33696,
+    "category": "medium"
+  },
+  {
+    "gseAccession": "GSE291166",
+    "dataFileName": "GSM8830297_MatAb5_filtered_feature_bc_matrix.h5",
+    "dataFileSize": 29.43,
+    "nCells": 7513,
+    "nGenes": 33696,
+    "category": "small"
+  },
+  {
+    "gseAccession": "GSE291166",
+    "dataFileName": "GSM8830300_naive4_filtered_feature_bc_matrix.h5",
+    "dataFileSize": 34.78,
+    "nCells": 9133,
+    "nGenes": 33696,
+    "category": "small"
+  },
+  {
+    "gseAccession": "GSE291166",
+    "dataFileName": "GSM8830299_naive3_filtered_feature_bc_matrix.h5",
+    "dataFileSize": 37.34,
+    "nCells": 10226,
+    "nGenes": 33696,
+    "category": "medium"
+  },
+  {
+    "gseAccession": "GSE309368",
+    "dataFileName": "GSM9266318_HD1_LD_filtered_feature_bc_matrix.h5",
+    "dataFileSize": 13.92,
+    "nCells": 10000,
+    "nGenes": 36601,
+    "category": "medium"
+  },
+  {
+    "gseAccession": "GSE309368",
+    "dataFileName": "GSM9266344_HNSCC1_T_filtered_feature_bc_matrix.h5",
+    "dataFileSize": 4.55,
+    "nCells": 10000,
+    "nGenes": 36601,
+    "category": "medium"
+  },
+  {
+    "gseAccession": "GSE309368",
+    "dataFileName": "GSM9266338_HNSCC3_HD_filtered_feature_bc_matrix.h5",
+    "dataFileSize": 11.93,
+    "nCells": 10000,
+    "nGenes": 36601,
+    "category": "medium"
+  },
+  {
+    "gseAccession": "GSE309368",
+    "dataFileName": "GSM9266331_HNSCC4_LD_filtered_feature_bc_matrix.h5",
+    "dataFileSize": 11.59,
+    "nCells": 10000,
+    "nGenes": 36601,
+    "category": "medium"
+  },
+  {
+    "gseAccession": "GSE309368",
+    "dataFileName": "GSM9266321_HD4_LD_filtered_feature_bc_matrix.h5",
+    "dataFileSize": 29.38,
+    "nCells": 10000,
+    "nGenes": 36601,
+    "category": "medium"
+  },
+  {
+    "gseAccession": "GSE309368",
+    "dataFileName": "GSM9266339_HNSCC4_HD_filtered_feature_bc_matrix.h5",
+    "dataFileSize": 1.13,
+    "nCells": 10000,
+    "nGenes": 36601,
+    "category": "medium"
+  },
+  {
+    "gseAccession": "GSE309368",
+    "dataFileName": "GSM9266341_HNSCC6_HD_filtered_feature_bc_matrix.h5",
+    "dataFileSize": 5.06,
+    "nCells": 10000,
+    "nGenes": 36601,
+    "category": "medium"
+  },
+  {
+    "gseAccession": "GSE309368",
+    "dataFileName": "GSM9266329_HNSCC2_LD_filtered_feature_bc_matrix.h5",
+    "dataFileSize": 7.72,
+    "nCells": 10000,
+    "nGenes": 36601,
+    "category": "medium"
+  },
+  {
+    "gseAccession": "GSE309368",
+    "dataFileName": "GSM9266322_HD5_LD_filtered_feature_bc_matrix.h5",
+    "dataFileSize": 7.88,
+    "nCells": 10000,
+    "nGenes": 36601,
+    "category": "medium"
+  },
+  {
+    "gseAccession": "GSE309368",
+    "dataFileName": "GSM9266319_HD2_LD_filtered_feature_bc_matrix.h5",
+    "dataFileSize": 19.29,
+    "nCells": 10000,
+    "nGenes": 36601,
+    "category": "medium"
+  },
+  {
+    "gseAccession": "GSE309368",
+    "dataFileName": "GSM9266335_HNSCC8_LD_filtered_feature_bc_matrix.h5",
+    "dataFileSize": 44.61,
+    "nCells": 10000,
+    "nGenes": 36601,
+    "category": "medium"
+  },
+  {
+    "gseAccession": "GSE309368",
+    "dataFileName": "GSM9266334_HNSCC7_LD_filtered_feature_bc_matrix.h5",
+    "dataFileSize": 48.44,
+    "nCells": 10000,
+    "nGenes": 36601,
+    "category": "medium"
+  },
+  {
+    "gseAccession": "GSE309368",
+    "dataFileName": "GSM9266323_HD1_HD_filtered_feature_bc_matrix.h5",
+    "dataFileSize": 2.09,
+    "nCells": 10000,
+    "nGenes": 36601,
+    "category": "medium"
+  },
+  {
+    "gseAccession": "GSE309368",
+    "dataFileName": "GSM9266336_HNSCC1_HD_filtered_feature_bc_matrix.h5",
+    "dataFileSize": 2.53,
+    "nCells": 10000,
+    "nGenes": 36601,
+    "category": "medium"
+  },
+  {
+    "gseAccession": "GSE309368",
+    "dataFileName": "GSM9266332_HNSCC5_LD_filtered_feature_bc_matrix.h5",
+    "dataFileSize": 19.21,
+    "nCells": 10000,
+    "nGenes": 36601,
+    "category": "medium"
+  },
+  {
+    "gseAccession": "GSE309368",
+    "dataFileName": "GSM9266337_HNSCC2_HD_filtered_feature_bc_matrix.h5",
+    "dataFileSize": 2.05,
+    "nCells": 10000,
+    "nGenes": 36601,
+    "category": "medium"
+  },
+  {
+    "gseAccession": "GSE309368",
+    "dataFileName": "GSM9266345_HNSCC2_T_filtered_feature_bc_matrix.h5",
+    "dataFileSize": 9.14,
+    "nCells": 10000,
+    "nGenes": 36601,
+    "category": "medium"
+  },
+  {
+    "gseAccession": "GSE309368",
+    "dataFileName": "GSM9266348_HNSCC5_T_filtered_feature_bc_matrix.h5",
+    "dataFileSize": 0.92,
+    "nCells": 10000,
+    "nGenes": 36601,
+    "category": "medium"
+  },
+  {
+    "gseAccession": "GSE309368",
+    "dataFileName": "GSM9266342_HNSCC7_HD_filtered_feature_bc_matrix.h5",
+    "dataFileSize": 10.66,
+    "nCells": 10000,
+    "nGenes": 36601,
+    "category": "medium"
+  },
+  {
+    "gseAccession": "GSE309368",
+    "dataFileName": "GSM9266350_HNSCC7_T_filtered_feature_bc_matrix.h5",
+    "dataFileSize": 17.74,
+    "nCells": 10000,
+    "nGenes": 36601,
+    "category": "medium"
+  },
+  {
+    "gseAccession": "GSE309368",
+    "dataFileName": "GSM9266346_HNSCC3_T_filtered_feature_bc_matrix.h5",
+    "dataFileSize": 12.96,
+    "nCells": 10000,
+    "nGenes": 36601,
+    "category": "medium"
+  },
+  {
+    "gseAccession": "GSE309368",
+    "dataFileName": "GSM9266351_HNSCC8_T_filtered_feature_bc_matrix.h5",
+    "dataFileSize": 7.29,
+    "nCells": 10000,
+    "nGenes": 36601,
+    "category": "medium"
+  },
+  {
+    "gseAccession": "GSE309368",
+    "dataFileName": "GSM9266326_HD4_HD_filtered_feature_bc_matrix.h5",
+    "dataFileSize": 1.82,
+    "nCells": 10000,
+    "nGenes": 36601,
+    "category": "medium"
+  },
+  {
+    "gseAccession": "GSE309368",
+    "dataFileName": "GSM9266327_HD5_HD_filtered_feature_bc_matrix.h5",
+    "dataFileSize": 5.53,
+    "nCells": 10000,
+    "nGenes": 36601,
+    "category": "medium"
+  },
+  {
+    "gseAccession": "GSE309368",
+    "dataFileName": "GSM9266343_HNSCC8_HD_filtered_feature_bc_matrix.h5",
+    "dataFileSize": 10.35,
+    "nCells": 10000,
+    "nGenes": 36601,
+    "category": "medium"
+  },
+  {
+    "gseAccession": "GSE309368",
+    "dataFileName": "GSM9266333_HNSCC6_LD_filtered_feature_bc_matrix.h5",
+    "dataFileSize": 2.94,
+    "nCells": 10000,
+    "nGenes": 36601,
+    "category": "medium"
+  },
+  {
+    "gseAccession": "GSE309368",
+    "dataFileName": "GSM9266349_HNSCC6_T_filtered_feature_bc_matrix.h5",
+    "dataFileSize": 1.02,
+    "nCells": 10000,
+    "nGenes": 36601,
+    "category": "medium"
+  },
+  {
+    "gseAccession": "GSE309368",
+    "dataFileName": "GSM9266330_HNSCC3_LD_filtered_feature_bc_matrix.h5",
+    "dataFileSize": 10.04,
+    "nCells": 10000,
+    "nGenes": 36601,
+    "category": "medium"
+  },
+  {
+    "gseAccession": "GSE309368",
+    "dataFileName": "GSM9266347_HNSCC4_T_filtered_feature_bc_matrix.h5",
+    "dataFileSize": 1.96,
+    "nCells": 10000,
+    "nGenes": 36601,
+    "category": "medium"
+  },
+  {
+    "gseAccession": "GSE309368",
+    "dataFileName": "GSM9266320_HD3_LD_filtered_feature_bc_matrix.h5",
+    "dataFileSize": 11.26,
+    "nCells": 10000,
+    "nGenes": 36601,
+    "category": "medium"
+  },
+  {
+    "gseAccession": "GSE309368",
+    "dataFileName": "GSM9266328_HNSCC1_LD_filtered_feature_bc_matrix.h5",
+    "dataFileSize": 18.91,
+    "nCells": 10000,
+    "nGenes": 36601,
+    "category": "medium"
+  },
+  {
+    "gseAccession": "GSE309368",
+    "dataFileName": "GSM9266325_HD3_HD_filtered_feature_bc_matrix.h5",
+    "dataFileSize": 1.03,
+    "nCells": 10000,
+    "nGenes": 36601,
+    "category": "medium"
+  },
+  {
+    "gseAccession": "GSE309368",
+    "dataFileName": "GSM9266324_HD2_HD_filtered_feature_bc_matrix.h5",
+    "dataFileSize": 1.44,
+    "nCells": 10000,
+    "nGenes": 36601,
+    "category": "medium"
+  },
+  {
+    "gseAccession": "GSE309368",
+    "dataFileName": "GSM9266340_HNSCC5_HD_filtered_feature_bc_matrix.h5",
+    "dataFileSize": 0.99,
+    "nCells": 10000,
+    "nGenes": 36601,
+    "category": "medium"
+  },
+  {
+    "gseAccession": "GSE278924",
+    "dataFileName": "GSM8557692_sc_E5_R_filtered_feature_bc_matrix.h5",
+    "dataFileSize": 36.39,
+    "nCells": 25165,
+    "nGenes": 24167,
+    "category": "large"
+  },
+  {
+    "gseAccession": "GSE278924",
+    "dataFileName": "GSM8557691_sc_E5_L_filtered_feature_bc_matrix.h5",
+    "dataFileSize": 44.74,
+    "nCells": 23719,
+    "nGenes": 24167,
+    "category": "large"
+  },
+  {
+    "gseAccession": "GSE302433",
+    "dataFileName": "GSE302433_filtered_feature_bc_matrix.h5",
+    "dataFileSize": 137.12,
+    "nCells": 45627,
+    "nGenes": 32285,
+    "category": "large"
+  },
+  {
+    "gseAccession": "GSE308428",
+    "dataFileName": "GSM9245280_3_1_S7_filtered_feature_bc_matrix.h5",
+    "dataFileSize": 6.02,
+    "nCells": 2223,
+    "nGenes": 32285,
+    "category": "tiny"
+  },
+  {
+    "gseAccession": "GSE308428",
+    "dataFileName": "GSM9245278_2_5_S5_filtered_feature_bc_matrix.h5",
+    "dataFileSize": 7.57,
+    "nCells": 2540,
+    "nGenes": 32285,
+    "category": "tiny"
+  },
+  {
+    "gseAccession": "GSE308428",
+    "dataFileName": "GSM9245274_2_1_S1_filtered_feature_bc_matrix.h5",
+    "dataFileSize": 9.41,
+    "nCells": 4059,
+    "nGenes": 32285,
+    "category": "tiny"
+  },
+  {
+    "gseAccession": "GSE308428",
+    "dataFileName": "GSM9245279_2_6_S6_filtered_feature_bc_matrix.h5",
+    "dataFileSize": 7.67,
+    "nCells": 3138,
+    "nGenes": 32285,
+    "category": "tiny"
+  },
+  {
+    "gseAccession": "GSE308428",
+    "dataFileName": "GSM9245276_2_3_S3_filtered_feature_bc_matrix.h5",
+    "dataFileSize": 7.69,
+    "nCells": 3323,
+    "nGenes": 32285,
+    "category": "tiny"
+  },
+  {
+    "gseAccession": "GSE308428",
+    "dataFileName": "GSM9245275_2_2_S2_filtered_feature_bc_matrix.h5",
+    "dataFileSize": 7.15,
+    "nCells": 2652,
+    "nGenes": 32285,
+    "category": "tiny"
+  },
+  {
+    "gseAccession": "GSE308428",
+    "dataFileName": "GSM9245285_3_6_S12_filtered_feature_bc_matrix.h5",
+    "dataFileSize": 0.6,
+    "nCells": 91,
+    "nGenes": 32285,
+    "category": "tiny"
+  },
+  {
+    "gseAccession": "GSE308428",
+    "dataFileName": "GSM9245283_3_4_S10_filtered_feature_bc_matrix.h5",
+    "dataFileSize": 3.01,
+    "nCells": 875,
+    "nGenes": 32285,
+    "category": "tiny"
+  },
+  {
+    "gseAccession": "GSE308428",
+    "dataFileName": "GSM9245282_3_3_S9_filtered_feature_bc_matrix.h5",
+    "dataFileSize": 9.47,
+    "nCells": 3653,
+    "nGenes": 32285,
+    "category": "tiny"
+  },
+  {
+    "gseAccession": "GSE308428",
+    "dataFileName": "GSM9245284_3_5_S11_filtered_feature_bc_matrix.h5",
+    "dataFileSize": 4.12,
+    "nCells": 1430,
+    "nGenes": 32285,
+    "category": "tiny"
+  },
+  {
+    "gseAccession": "GSE308428",
+    "dataFileName": "GSM9245281_3_2_S8_filtered_feature_bc_matrix.h5",
+    "dataFileSize": 8.66,
+    "nCells": 3367,
+    "nGenes": 32285,
+    "category": "tiny"
+  },
+  {
+    "gseAccession": "GSE308428",
+    "dataFileName": "GSM9245277_2_4_S4_filtered_feature_bc_matrix.h5",
+    "dataFileSize": 6.14,
+    "nCells": 2037,
+    "nGenes": 32285,
+    "category": "tiny"
+  },
+  {
+    "gseAccession": "GSE288211",
+    "dataFileName": "GSM8761313_HFD_RIP-Cre_rep1_filtered_feature_bc_matrix.h5",
+    "dataFileSize": 55.57,
+    "nCells": 15257,
+    "nGenes": 32285,
+    "category": "medium"
+  },
+  {
+    "gseAccession": "GSE288211",
+    "dataFileName": "GSM8761311_HFD_bZKO_Rip_rep1_filtered_feature_bc_matrix.h5",
+    "dataFileSize": 61.37,
+    "nCells": 10022,
+    "nGenes": 32285,
+    "category": "medium"
+  },
+  {
+    "gseAccession": "GSE288211",
+    "dataFileName": "GSM8761317_HFD_MIP-Cre_rep1_filtered_feature_bc_matrix.h5",
+    "dataFileSize": 56.99,
+    "nCells": 10365,
+    "nGenes": 32285,
+    "category": "medium"
+  },
+  {
+    "gseAccession": "GSE288211",
+    "dataFileName": "GSM8761315_HFD_bZKO_Mip_rep1_filtered_feature_bc_matrix.h5",
+    "dataFileSize": 41.43,
+    "nCells": 6974,
+    "nGenes": 32285,
+    "category": "small"
+  },
+  {
+    "gseAccession": "GSE288211",
+    "dataFileName": "GSM8761318_HFD_MIP-Cre_rep2_filtered_feature_bc_matrix.h5",
+    "dataFileSize": 52.06,
+    "nCells": 9612,
+    "nGenes": 32285,
+    "category": "small"
+  },
+  {
+    "gseAccession": "GSE288211",
+    "dataFileName": "GSM8761316_HFD_bZKO_Mip_rep2_filtered_feature_bc_matrix.h5",
+    "dataFileSize": 46.03,
+    "nCells": 7865,
+    "nGenes": 32285,
+    "category": "small"
+  },
+  {
+    "gseAccession": "GSE288211",
+    "dataFileName": "GSM8761314_HFD_RIP-Cre_rep2_filtered_feature_bc_matrix.h5",
+    "dataFileSize": 48.86,
+    "nCells": 8073,
+    "nGenes": 32285,
+    "category": "small"
+  },
+  {
+    "gseAccession": "GSE288211",
+    "dataFileName": "GSM8761312_HFD_bZKO_Rip_rep2_filtered_feature_bc_matrix.h5",
+    "dataFileSize": 61.83,
+    "nCells": 10525,
+    "nGenes": 32285,
+    "category": "medium"
+  },
+  {
+    "gseAccession": "GSE307774",
+    "dataFileName": "GSM9231175_BVAR_RZF122_3d.filtered_feature_bc_matrix.h5",
+    "dataFileSize": 1.33,
+    "nCells": 1228,
+    "nGenes": 31053,
+    "category": "tiny"
+  },
+  {
+    "gseAccession": "GSE307774",
+    "dataFileName": "GSM9231188_VANP_RKF94_3e.filtered_feature_bc_matrix.h5",
+    "dataFileSize": 1.33,
+    "nCells": 1820,
+    "nGenes": 31053,
+    "category": "tiny"
+  },
+  {
+    "gseAccession": "GSE307774",
+    "dataFileName": "GSM9231194_VANP_RKF90_6c.filtered_feature_bc_matrix.h5",
+    "dataFileSize": 6.73,
+    "nCells": 4206,
+    "nGenes": 31053,
+    "category": "tiny"
+  },
+  {
+    "gseAccession": "GSE307774",
+    "dataFileName": "GSM9231193_VANP_RKF89_4b_S32.filtered_feature_bc_matrix.h5",
+    "dataFileSize": 4.23,
+    "nCells": 2703,
+    "nGenes": 31053,
+    "category": "tiny"
+  },
+  {
+    "gseAccession": "GSE307774",
+    "dataFileName": "GSM9231187_VANP_RKF94_2e.filtered_feature_bc_matrix.h5",
+    "dataFileSize": 1.51,
+    "nCells": 1543,
+    "nGenes": 31053,
+    "category": "tiny"
+  },
+  {
+    "gseAccession": "GSE307774",
+    "dataFileName": "GSM9231189_VANP_RKF89_4c_S33.filtered_feature_bc_matrix.h5",
+    "dataFileSize": 4.11,
+    "nCells": 3317,
+    "nGenes": 31053,
+    "category": "tiny"
+  },
+  {
+    "gseAccession": "GSE307774",
+    "dataFileName": "GSM9231184_19_66.filtered_feature_bc_matrix.h5",
+    "dataFileSize": 16.99,
+    "nCells": 11232,
+    "nGenes": 31053,
+    "category": "medium"
+  },
+  {
+    "gseAccession": "GSE307774",
+    "dataFileName": "GSM9231176_BVAR_RZF118_6c.filtered_feature_bc_matrix.h5",
+    "dataFileSize": 35.18,
+    "nCells": 14457,
+    "nGenes": 31053,
+    "category": "medium"
+  },
+  {
+    "gseAccession": "GSE307774",
+    "dataFileName": "GSM9231192_VANP_RKF93_1e.filtered_feature_bc_matrix.h5",
+    "dataFileSize": 5.57,
+    "nCells": 4144,
+    "nGenes": 31053,
+    "category": "tiny"
+  },
+  {
+    "gseAccession": "GSE307774",
+    "dataFileName": "GSM9231172_BVAR_RZF124_2a.filtered_feature_bc_matrix.h5",
+    "dataFileSize": 30.43,
+    "nCells": 15257,
+    "nGenes": 31053,
+    "category": "medium"
+  },
+  {
+    "gseAccession": "GSE307774",
+    "dataFileName": "GSM9231182_VBPNOT_RKV72_1e.filtered_feature_bc_matrix.h5",
+    "dataFileSize": 20.41,
+    "nCells": 20264,
+    "nGenes": 31053,
+    "category": "large"
+  },
+  {
+    "gseAccession": "GSE307774",
+    "dataFileName": "GSM9231174_BVAR_RZF122_1c.filtered_feature_bc_matrix.h5",
+    "dataFileSize": 14.59,
+    "nCells": 9316,
+    "nGenes": 31053,
+    "category": "small"
+  },
+  {
+    "gseAccession": "GSE307774",
+    "dataFileName": "GSM9231195_VANP_RKF90_6e.filtered_feature_bc_matrix.h5",
+    "dataFileSize": 3.68,
+    "nCells": 2729,
+    "nGenes": 31053,
+    "category": "tiny"
+  },
+  {
+    "gseAccession": "GSE307774",
+    "dataFileName": "GSM9231199_VBPRNF_RKBG37_1e.filtered_feature_bc_matrix.h5",
+    "dataFileSize": 2.03,
+    "nCells": 1356,
+    "nGenes": 31053,
+    "category": "tiny"
+  },
+  {
+    "gseAccession": "GSE307774",
+    "dataFileName": "GSM9231190_VANP_RKF89_5c_S34.filtered_feature_bc_matrix.h5",
+    "dataFileSize": 16.79,
+    "nCells": 14552,
+    "nGenes": 31053,
+    "category": "medium"
+  },
+  {
+    "gseAccession": "GSE307774",
+    "dataFileName": "GSM9231179_RZF131_2b.filtered_feature_bc_matrix.h5",
+    "dataFileSize": 9.14,
+    "nCells": 9234,
+    "nGenes": 31053,
+    "category": "small"
+  },
+  {
+    "gseAccession": "GSE307774",
+    "dataFileName": "GSM9231177_BVAR_RZF122_2a.filtered_feature_bc_matrix.h5",
+    "dataFileSize": 8.98,
+    "nCells": 3935,
+    "nGenes": 31053,
+    "category": "tiny"
+  },
+  {
+    "gseAccession": "GSE307774",
+    "dataFileName": "GSM9231185_VANP_RKF100_1b.filtered_feature_bc_matrix.h5",
+    "dataFileSize": 2.06,
+    "nCells": 2015,
+    "nGenes": 31053,
+    "category": "tiny"
+  },
+  {
+    "gseAccession": "GSE307774",
+    "dataFileName": "GSM9231183_19_65.filtered_feature_bc_matrix.h5",
+    "dataFileSize": 23.26,
+    "nCells": 12496,
+    "nGenes": 31053,
+    "category": "medium"
+  },
+  {
+    "gseAccession": "GSE307774",
+    "dataFileName": "GSM9231178_BVAR_RZF125_1c.filtered_feature_bc_matrix.h5",
+    "dataFileSize": 36.4,
+    "nCells": 17875,
+    "nGenes": 31053,
+    "category": "medium"
+  },
+  {
+    "gseAccession": "GSE307774",
+    "dataFileName": "GSM9231196_RKF106_1b.filtered_feature_bc_matrix.h5",
+    "dataFileSize": 4.97,
+    "nCells": 4774,
+    "nGenes": 31053,
+    "category": "tiny"
+  },
+  {
+    "gseAccession": "GSE307774",
+    "dataFileName": "GSM9231181_19_52.filtered_feature_bc_matrix.h5",
+    "dataFileSize": 4.95,
+    "nCells": 10372,
+    "nGenes": 31053,
+    "category": "medium"
+  },
+  {
+    "gseAccession": "GSE307774",
+    "dataFileName": "GSM9231173_BVAR_RZF124_1a.filtered_feature_bc_matrix.h5",
+    "dataFileSize": 11.47,
+    "nCells": 6808,
+    "nGenes": 31053,
+    "category": "small"
+  },
+  {
+    "gseAccession": "GSE307774",
+    "dataFileName": "GSM9231171_BVAR_RZF119_5b_S14.filtered_feature_bc_matrix.h5",
+    "dataFileSize": 30.68,
+    "nCells": 11106,
+    "nGenes": 31053,
+    "category": "medium"
+  },
+  {
+    "gseAccession": "GSE307774",
+    "dataFileName": "GSM9231197_VBPRNF_RKBG_28_1g_S25.filtered_feature_bc_matrix.h5",
+    "dataFileSize": 18.55,
+    "nCells": 12960,
+    "nGenes": 31053,
+    "category": "medium"
+  },
+  {
+    "gseAccession": "GSE307774",
+    "dataFileName": "GSM9231191_VANP_RKF93_1a.filtered_feature_bc_matrix.h5",
+    "dataFileSize": 11.05,
+    "nCells": 9956,
+    "nGenes": 31053,
+    "category": "small"
+  },
+  {
+    "gseAccession": "GSE307774",
+    "dataFileName": "GSM9231180_RZF133_2a.filtered_feature_bc_matrix.h5",
+    "dataFileSize": 8.9,
+    "nCells": 8894,
+    "nGenes": 31053,
+    "category": "small"
+  },
+  {
+    "gseAccession": "GSE307774",
+    "dataFileName": "GSM9231186_VANP_RKF100_1c.filtered_feature_bc_matrix.h5",
+    "dataFileSize": 2.47,
+    "nCells": 2462,
+    "nGenes": 31053,
+    "category": "tiny"
+  },
+  {
+    "gseAccession": "GSE307774",
+    "dataFileName": "GSM9231198_VBPRNF_RKBG32_3a.filtered_feature_bc_matrix.h5",
+    "dataFileSize": 4.55,
+    "nCells": 8570,
+    "nGenes": 31053,
+    "category": "small"
+  }
+]

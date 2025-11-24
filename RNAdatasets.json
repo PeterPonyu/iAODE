@@ -1,0 +1,1832 @@
+[
+  {
+    "id": "gse300862-gsm9069797-spc-kp-filtered-feature-bc-matrix",
+    "authors": "Nguyen DT, Prieto LI, Zhang C, Li H, Baker DJ, Fields AP",
+    "title": "Protein Kinase Cι dictates tumor trajectory, cell state plasticity and immune surveillance in lung adenocarcinoma",
+    "gseAccession": "GSE300862",
+    "dataFileName": "GSM9069797_SPC_KP_filtered_feature_bc_matrix.h5",
+    "organism": "Mouse",
+    "source": "LUAD tumor",
+    "platform": "Illumina NovaSeq 6000"
+  },
+  {
+    "id": "gse300862-gsm9069798-spc-kpi-filtered-feature-bc-matrix",
+    "authors": "Nguyen DT, Prieto LI, Zhang C, Li H, Baker DJ, Fields AP",
+    "title": "Protein Kinase Cι dictates tumor trajectory, cell state plasticity and immune surveillance in lung adenocarcinoma",
+    "gseAccession": "GSE300862",
+    "dataFileName": "GSM9069798_SPC_KPI_filtered_feature_bc_matrix.h5",
+    "organism": "Mouse",
+    "source": "LUAD tumor",
+    "platform": "Illumina NovaSeq 6000"
+  },
+  {
+    "id": "gse289611-gsm8795024-opl10t-filtered-feature-bc-matrix",
+    "authors": "Matsuoka A, Shien K, Tomida S",
+    "title": "Single-cell RNA sequencing of pulmonaly pleomorphic carcinoma",
+    "gseAccession": "GSE289611",
+    "dataFileName": "GSM8795024_OPL10T_filtered_feature_bc_matrix.h5",
+    "organism": "Human",
+    "source": "Pulmonary pleomorphic carcinoma",
+    "platform": "Illumina NovaSeq 6000"
+  },
+  {
+    "id": "gse289611-gsm8795024-opl14t-filtered-feature-bc-matrix",
+    "authors": "Matsuoka A, Shien K, Tomida S",
+    "title": "Single-cell RNA sequencing of pulmonaly pleomorphic carcinoma",
+    "gseAccession": "GSE289611",
+    "dataFileName": "GSM8795024_OPL14T_filtered_feature_bc_matrix.h5",
+    "organism": "Human",
+    "source": "Pulmonary pleomorphic carcinoma",
+    "platform": "Illumina NovaSeq 6000"
+  },
+  {
+    "id": "gse289611-gsm8795024-opl7t-filtered-feature-bc-matrix",
+    "authors": "Matsuoka A, Shien K, Tomida S",
+    "title": "Single-cell RNA sequencing of pulmonaly pleomorphic carcinoma",
+    "gseAccession": "GSE289611",
+    "dataFileName": "GSM8795024_OPL7T_filtered_feature_bc_matrix.h5",
+    "organism": "Human",
+    "source": "Pulmonary pleomorphic carcinoma",
+    "platform": "Illumina NovaSeq 6000"
+  },
+  {
+    "id": "gse289611-gsm8795024-opl8t-filtered-feature-bc-matrix",
+    "authors": "Matsuoka A, Shien K, Tomida S",
+    "title": "Single-cell RNA sequencing of pulmonaly pleomorphic carcinoma",
+    "gseAccession": "GSE289611",
+    "dataFileName": "GSM8795024_OPL8T_filtered_feature_bc_matrix.h5",
+    "organism": "Human",
+    "source": "Pulmonary pleomorphic carcinoma",
+    "platform": "Illumina NovaSeq 6000"
+  },
+  {
+    "id": "gse291166-gsm8830297-matab5-filtered-feature-bc-matrix",
+    "authors": "Chandler TL, Woodyear S, Ahmed F, Caddy SL",
+    "title": "Mechanisms of maternal antibody interference to rotavirus vaccination",
+    "gseAccession": "GSE291166",
+    "dataFileName": "GSM8830297_MatAb5_filtered_feature_bc_matrix.h5",
+    "organism": "Mouse",
+    "source": "mesenteric lymph node",
+    "platform": "Illumina NovaSeq X"
+  },
+  {
+    "id": "gse291166-gsm8830298-matab8-filtered-feature-bc-matrix",
+    "authors": "Chandler TL, Woodyear S, Ahmed F, Caddy SL",
+    "title": "Mechanisms of maternal antibody interference to rotavirus vaccination",
+    "gseAccession": "GSE291166",
+    "dataFileName": "GSM8830298_MatAb8_filtered_feature_bc_matrix.h5",
+    "organism": "Mouse",
+    "source": "mesenteric lymph node",
+    "platform": "Illumina NovaSeq X"
+  },
+  {
+    "id": "gse291166-gsm8830299-naive3-filtered-feature-bc-matrix",
+    "authors": "Chandler TL, Woodyear S, Ahmed F, Caddy SL",
+    "title": "Mechanisms of maternal antibody interference to rotavirus vaccination",
+    "gseAccession": "GSE291166",
+    "dataFileName": "GSM8830299_naive3_filtered_feature_bc_matrix.h5",
+    "organism": "Mouse",
+    "source": "mesenteric lymph node",
+    "platform": "Illumina NovaSeq X"
+  },
+  {
+    "id": "gse291166-gsm8830300-naive4-filtered-feature-bc-matrix",
+    "authors": "Chandler TL, Woodyear S, Ahmed F, Caddy SL",
+    "title": "Mechanisms of maternal antibody interference to rotavirus vaccination",
+    "gseAccession": "GSE291166",
+    "dataFileName": "GSM8830300_naive4_filtered_feature_bc_matrix.h5",
+    "organism": "Mouse",
+    "source": "mesenteric lymph node",
+    "platform": "Illumina NovaSeq X"
+  },
+  {
+    "id": "gse309368-gsm9266318-hd1-ld-filtered-feature-bc-matrix",
+    "authors": "Chang T, Allen CT",
+    "title": "Transcriptional profiling of human myeloid cells in healthy donors and oral cavity cancer (OCSCC) patients",
+    "gseAccession": "GSE309368",
+    "dataFileName": "GSM9266318_HD1_LD_filtered_feature_bc_matrix.h5",
+    "organism": "Human",
+    "source": "Peripheral blood",
+    "platform": "Illumina NovaSeq 6000"
+  },
+  {
+    "id": "gse309368-gsm9266319-hd2-ld-filtered-feature-bc-matrix",
+    "authors": "Chang T, Allen CT",
+    "title": "Transcriptional profiling of human myeloid cells in healthy donors and oral cavity cancer (OCSCC) patients",
+    "gseAccession": "GSE309368",
+    "dataFileName": "GSM9266319_HD2_LD_filtered_feature_bc_matrix.h5",
+    "organism": "Human",
+    "source": "Peripheral blood",
+    "platform": "Illumina NovaSeq 6000"
+  },
+  {
+    "id": "gse309368-gsm9266320-hd3-ld-filtered-feature-bc-matrix",
+    "authors": "Chang T, Allen CT",
+    "title": "Transcriptional profiling of human myeloid cells in healthy donors and oral cavity cancer (OCSCC) patients",
+    "gseAccession": "GSE309368",
+    "dataFileName": "GSM9266320_HD3_LD_filtered_feature_bc_matrix.h5",
+    "organism": "Human",
+    "source": "Peripheral blood",
+    "platform": "Illumina NovaSeq 6000"
+  },
+  {
+    "id": "gse309368-gsm9266321-hd4-ld-filtered-feature-bc-matrix",
+    "authors": "Chang T, Allen CT",
+    "title": "Transcriptional profiling of human myeloid cells in healthy donors and oral cavity cancer (OCSCC) patients",
+    "gseAccession": "GSE309368",
+    "dataFileName": "GSM9266321_HD4_LD_filtered_feature_bc_matrix.h5",
+    "organism": "Human",
+    "source": "Peripheral blood",
+    "platform": "Illumina NovaSeq 6000"
+  },
+  {
+    "id": "gse309368-gsm9266322-hd5-ld-filtered-feature-bc-matrix",
+    "authors": "Chang T, Allen CT",
+    "title": "Transcriptional profiling of human myeloid cells in healthy donors and oral cavity cancer (OCSCC) patients",
+    "gseAccession": "GSE309368",
+    "dataFileName": "GSM9266322_HD5_LD_filtered_feature_bc_matrix.h5",
+    "organism": "Human",
+    "source": "Peripheral blood",
+    "platform": "Illumina NovaSeq 6000"
+  },
+  {
+    "id": "gse309368-gsm9266323-hd1-hd-filtered-feature-bc-matrix",
+    "authors": "Chang T, Allen CT",
+    "title": "Transcriptional profiling of human myeloid cells in healthy donors and oral cavity cancer (OCSCC) patients",
+    "gseAccession": "GSE309368",
+    "dataFileName": "GSM9266323_HD1_HD_filtered_feature_bc_matrix.h5",
+    "organism": "Human",
+    "source": "Peripheral blood",
+    "platform": "Illumina NovaSeq 6000"
+  },
+  {
+    "id": "gse309368-gsm9266324-hd2-hd-filtered-feature-bc-matrix",
+    "authors": "Chang T, Allen CT",
+    "title": "Transcriptional profiling of human myeloid cells in healthy donors and oral cavity cancer (OCSCC) patients",
+    "gseAccession": "GSE309368",
+    "dataFileName": "GSM9266324_HD2_HD_filtered_feature_bc_matrix.h5",
+    "organism": "Human",
+    "source": "Peripheral blood",
+    "platform": "Illumina NovaSeq 6000"
+  },
+  {
+    "id": "gse309368-gsm9266325-hd3-hd-filtered-feature-bc-matrix",
+    "authors": "Chang T, Allen CT",
+    "title": "Transcriptional profiling of human myeloid cells in healthy donors and oral cavity cancer (OCSCC) patients",
+    "gseAccession": "GSE309368",
+    "dataFileName": "GSM9266325_HD3_HD_filtered_feature_bc_matrix.h5",
+    "organism": "Human",
+    "source": "Peripheral blood",
+    "platform": "Illumina NovaSeq 6000"
+  },
+  {
+    "id": "gse309368-gsm9266326-hd4-hd-filtered-feature-bc-matrix",
+    "authors": "Chang T, Allen CT",
+    "title": "Transcriptional profiling of human myeloid cells in healthy donors and oral cavity cancer (OCSCC) patients",
+    "gseAccession": "GSE309368",
+    "dataFileName": "GSM9266326_HD4_HD_filtered_feature_bc_matrix.h5",
+    "organism": "Human",
+    "source": "Peripheral blood",
+    "platform": "Illumina NovaSeq 6000"
+  },
+  {
+    "id": "gse309368-gsm9266327-hd5-hd-filtered-feature-bc-matrix",
+    "authors": "Chang T, Allen CT",
+    "title": "Transcriptional profiling of human myeloid cells in healthy donors and oral cavity cancer (OCSCC) patients",
+    "gseAccession": "GSE309368",
+    "dataFileName": "GSM9266327_HD5_HD_filtered_feature_bc_matrix.h5",
+    "organism": "Human",
+    "source": "Peripheral blood",
+    "platform": "Illumina NovaSeq 6000"
+  },
+  {
+    "id": "gse309368-gsm9266328-hnscc1-ld-filtered-feature-bc-matrix",
+    "authors": "Chang T, Allen CT",
+    "title": "Transcriptional profiling of human myeloid cells in healthy donors and oral cavity cancer (OCSCC) patients",
+    "gseAccession": "GSE309368",
+    "dataFileName": "GSM9266328_HNSCC1_LD_filtered_feature_bc_matrix.h5",
+    "organism": "Human",
+    "source": "Peripheral blood",
+    "platform": "Illumina NovaSeq 6000"
+  },
+  {
+    "id": "gse309368-gsm9266329-hnscc2-ld-filtered-feature-bc-matrix",
+    "authors": "Chang T, Allen CT",
+    "title": "Transcriptional profiling of human myeloid cells in healthy donors and oral cavity cancer (OCSCC) patients",
+    "gseAccession": "GSE309368",
+    "dataFileName": "GSM9266329_HNSCC2_LD_filtered_feature_bc_matrix.h5",
+    "organism": "Human",
+    "source": "Peripheral blood",
+    "platform": "Illumina NovaSeq 6000"
+  },
+  {
+    "id": "gse309368-gsm9266330-hnscc3-ld-filtered-feature-bc-matrix",
+    "authors": "Chang T, Allen CT",
+    "title": "Transcriptional profiling of human myeloid cells in healthy donors and oral cavity cancer (OCSCC) patients",
+    "gseAccession": "GSE309368",
+    "dataFileName": "GSM9266330_HNSCC3_LD_filtered_feature_bc_matrix.h5",
+    "organism": "Human",
+    "source": "Peripheral blood",
+    "platform": "Illumina NovaSeq 6000"
+  },
+  {
+    "id": "gse309368-gsm9266331-hnscc4-ld-filtered-feature-bc-matrix",
+    "authors": "Chang T, Allen CT",
+    "title": "Transcriptional profiling of human myeloid cells in healthy donors and oral cavity cancer (OCSCC) patients",
+    "gseAccession": "GSE309368",
+    "dataFileName": "GSM9266331_HNSCC4_LD_filtered_feature_bc_matrix.h5",
+    "organism": "Human",
+    "source": "Peripheral blood",
+    "platform": "Illumina NovaSeq 6000"
+  },
+  {
+    "id": "gse309368-gsm9266332-hnscc5-ld-filtered-feature-bc-matrix",
+    "authors": "Chang T, Allen CT",
+    "title": "Transcriptional profiling of human myeloid cells in healthy donors and oral cavity cancer (OCSCC) patients",
+    "gseAccession": "GSE309368",
+    "dataFileName": "GSM9266332_HNSCC5_LD_filtered_feature_bc_matrix.h5",
+    "organism": "Human",
+    "source": "Peripheral blood",
+    "platform": "Illumina NovaSeq 6000"
+  },
+  {
+    "id": "gse309368-gsm9266333-hnscc6-ld-filtered-feature-bc-matrix",
+    "authors": "Chang T, Allen CT",
+    "title": "Transcriptional profiling of human myeloid cells in healthy donors and oral cavity cancer (OCSCC) patients",
+    "gseAccession": "GSE309368",
+    "dataFileName": "GSM9266333_HNSCC6_LD_filtered_feature_bc_matrix.h5",
+    "organism": "Human",
+    "source": "Peripheral blood",
+    "platform": "Illumina NovaSeq 6000"
+  },
+  {
+    "id": "gse309368-gsm9266334-hnscc7-ld-filtered-feature-bc-matrix",
+    "authors": "Chang T, Allen CT",
+    "title": "Transcriptional profiling of human myeloid cells in healthy donors and oral cavity cancer (OCSCC) patients",
+    "gseAccession": "GSE309368",
+    "dataFileName": "GSM9266334_HNSCC7_LD_filtered_feature_bc_matrix.h5",
+    "organism": "Human",
+    "source": "Peripheral blood",
+    "platform": "Illumina NovaSeq 6000"
+  },
+  {
+    "id": "gse309368-gsm9266335-hnscc8-ld-filtered-feature-bc-matrix",
+    "authors": "Chang T, Allen CT",
+    "title": "Transcriptional profiling of human myeloid cells in healthy donors and oral cavity cancer (OCSCC) patients",
+    "gseAccession": "GSE309368",
+    "dataFileName": "GSM9266335_HNSCC8_LD_filtered_feature_bc_matrix.h5",
+    "organism": "Human",
+    "source": "Peripheral blood",
+    "platform": "Illumina NovaSeq 6000"
+  },
+  {
+    "id": "gse309368-gsm9266336-hnscc1-hd-filtered-feature-bc-matrix",
+    "authors": "Chang T, Allen CT",
+    "title": "Transcriptional profiling of human myeloid cells in healthy donors and oral cavity cancer (OCSCC) patients",
+    "gseAccession": "GSE309368",
+    "dataFileName": "GSM9266336_HNSCC1_HD_filtered_feature_bc_matrix.h5",
+    "organism": "Human",
+    "source": "Peripheral blood",
+    "platform": "Illumina NovaSeq 6000"
+  },
+  {
+    "id": "gse309368-gsm9266337-hnscc2-hd-filtered-feature-bc-matrix",
+    "authors": "Chang T, Allen CT",
+    "title": "Transcriptional profiling of human myeloid cells in healthy donors and oral cavity cancer (OCSCC) patients",
+    "gseAccession": "GSE309368",
+    "dataFileName": "GSM9266337_HNSCC2_HD_filtered_feature_bc_matrix.h5",
+    "organism": "Human",
+    "source": "Peripheral blood",
+    "platform": "Illumina NovaSeq 6000"
+  },
+  {
+    "id": "gse309368-gsm9266338-hnscc3-hd-filtered-feature-bc-matrix",
+    "authors": "Chang T, Allen CT",
+    "title": "Transcriptional profiling of human myeloid cells in healthy donors and oral cavity cancer (OCSCC) patients",
+    "gseAccession": "GSE309368",
+    "dataFileName": "GSM9266338_HNSCC3_HD_filtered_feature_bc_matrix.h5",
+    "organism": "Human",
+    "source": "Peripheral blood",
+    "platform": "Illumina NovaSeq 6000"
+  },
+  {
+    "id": "gse309368-gsm9266339-hnscc4-hd-filtered-feature-bc-matrix",
+    "authors": "Chang T, Allen CT",
+    "title": "Transcriptional profiling of human myeloid cells in healthy donors and oral cavity cancer (OCSCC) patients",
+    "gseAccession": "GSE309368",
+    "dataFileName": "GSM9266339_HNSCC4_HD_filtered_feature_bc_matrix.h5",
+    "organism": "Human",
+    "source": "Peripheral blood",
+    "platform": "Illumina NovaSeq 6000"
+  },
+  {
+    "id": "gse309368-gsm9266340-hnscc5-hd-filtered-feature-bc-matrix",
+    "authors": "Chang T, Allen CT",
+    "title": "Transcriptional profiling of human myeloid cells in healthy donors and oral cavity cancer (OCSCC) patients",
+    "gseAccession": "GSE309368",
+    "dataFileName": "GSM9266340_HNSCC5_HD_filtered_feature_bc_matrix.h5",
+    "organism": "Human",
+    "source": "Peripheral blood",
+    "platform": "Illumina NovaSeq 6000"
+  },
+  {
+    "id": "gse309368-gsm9266341-hnscc6-hd-filtered-feature-bc-matrix",
+    "authors": "Chang T, Allen CT",
+    "title": "Transcriptional profiling of human myeloid cells in healthy donors and oral cavity cancer (OCSCC) patients",
+    "gseAccession": "GSE309368",
+    "dataFileName": "GSM9266341_HNSCC6_HD_filtered_feature_bc_matrix.h5",
+    "organism": "Human",
+    "source": "Peripheral blood",
+    "platform": "Illumina NovaSeq 6000"
+  },
+  {
+    "id": "gse309368-gsm9266342-hnscc7-hd-filtered-feature-bc-matrix",
+    "authors": "Chang T, Allen CT",
+    "title": "Transcriptional profiling of human myeloid cells in healthy donors and oral cavity cancer (OCSCC) patients",
+    "gseAccession": "GSE309368",
+    "dataFileName": "GSM9266342_HNSCC7_HD_filtered_feature_bc_matrix.h5",
+    "organism": "Human",
+    "source": "Peripheral blood",
+    "platform": "Illumina NovaSeq 6000"
+  },
+  {
+    "id": "gse309368-gsm9266343-hnscc8-hd-filtered-feature-bc-matrix",
+    "authors": "Chang T, Allen CT",
+    "title": "Transcriptional profiling of human myeloid cells in healthy donors and oral cavity cancer (OCSCC) patients",
+    "gseAccession": "GSE309368",
+    "dataFileName": "GSM9266343_HNSCC8_HD_filtered_feature_bc_matrix.h5",
+    "organism": "Human",
+    "source": "Peripheral blood",
+    "platform": "Illumina NovaSeq 6000"
+  },
+  {
+    "id": "gse309368-gsm9266344-hnscc1-t-filtered-feature-bc-matrix",
+    "authors": "Chang T, Allen CT",
+    "title": "Transcriptional profiling of human myeloid cells in healthy donors and oral cavity cancer (OCSCC) patients",
+    "gseAccession": "GSE309368",
+    "dataFileName": "GSM9266344_HNSCC1_T_filtered_feature_bc_matrix.h5",
+    "organism": "Human",
+    "source": "Tumor",
+    "platform": "Illumina NovaSeq 6000"
+  },
+  {
+    "id": "gse309368-gsm9266345-hnscc2-t-filtered-feature-bc-matrix",
+    "authors": "Chang T, Allen CT",
+    "title": "Transcriptional profiling of human myeloid cells in healthy donors and oral cavity cancer (OCSCC) patients",
+    "gseAccession": "GSE309368",
+    "dataFileName": "GSM9266345_HNSCC2_T_filtered_feature_bc_matrix.h5",
+    "organism": "Human",
+    "source": "Tumor",
+    "platform": "Illumina NovaSeq 6000"
+  },
+  {
+    "id": "gse309368-gsm9266346-hnscc3-t-filtered-feature-bc-matrix",
+    "authors": "Chang T, Allen CT",
+    "title": "Transcriptional profiling of human myeloid cells in healthy donors and oral cavity cancer (OCSCC) patients",
+    "gseAccession": "GSE309368",
+    "dataFileName": "GSM9266346_HNSCC3_T_filtered_feature_bc_matrix.h5",
+    "organism": "Human",
+    "source": "Tumor",
+    "platform": "Illumina NovaSeq 6000"
+  },
+  {
+    "id": "gse309368-gsm9266347-hnscc4-t-filtered-feature-bc-matrix",
+    "authors": "Chang T, Allen CT",
+    "title": "Transcriptional profiling of human myeloid cells in healthy donors and oral cavity cancer (OCSCC) patients",
+    "gseAccession": "GSE309368",
+    "dataFileName": "GSM9266347_HNSCC4_T_filtered_feature_bc_matrix.h5",
+    "organism": "Human",
+    "source": "Tumor",
+    "platform": "Illumina NovaSeq 6000"
+  },
+  {
+    "id": "gse309368-gsm9266348-hnscc5-t-filtered-feature-bc-matrix",
+    "authors": "Chang T, Allen CT",
+    "title": "Transcriptional profiling of human myeloid cells in healthy donors and oral cavity cancer (OCSCC) patients",
+    "gseAccession": "GSE309368",
+    "dataFileName": "GSM9266348_HNSCC5_T_filtered_feature_bc_matrix.h5",
+    "organism": "Human",
+    "source": "Tumor",
+    "platform": "Illumina NovaSeq 6000"
+  },
+  {
+    "id": "gse309368-gsm9266349-hnscc6-t-filtered-feature-bc-matrix",
+    "authors": "Chang T, Allen CT",
+    "title": "Transcriptional profiling of human myeloid cells in healthy donors and oral cavity cancer (OCSCC) patients",
+    "gseAccession": "GSE309368",
+    "dataFileName": "GSM9266349_HNSCC6_T_filtered_feature_bc_matrix.h5",
+    "organism": "Human",
+    "source": "Tumor",
+    "platform": "Illumina NovaSeq 6000"
+  },
+  {
+    "id": "gse309368-gsm9266350-hnscc7-t-filtered-feature-bc-matrix",
+    "authors": "Chang T, Allen CT",
+    "title": "Transcriptional profiling of human myeloid cells in healthy donors and oral cavity cancer (OCSCC) patients",
+    "gseAccession": "GSE309368",
+    "dataFileName": "GSM9266350_HNSCC7_T_filtered_feature_bc_matrix.h5",
+    "organism": "Human",
+    "source": "Tumor",
+    "platform": "Illumina NovaSeq 6000"
+  },
+  {
+    "id": "gse309368-gsm9266351-hnscc8-t-filtered-feature-bc-matrix",
+    "authors": "Chang T, Allen CT",
+    "title": "Transcriptional profiling of human myeloid cells in healthy donors and oral cavity cancer (OCSCC) patients",
+    "gseAccession": "GSE309368",
+    "dataFileName": "GSM9266351_HNSCC8_T_filtered_feature_bc_matrix.h5",
+    "organism": "Human",
+    "source": "Tumor",
+    "platform": "Illumina NovaSeq 6000"
+  },
+  {
+    "id": "gse278924-gsm8557691-sc-e5-l-filtered-feature-bc-matrix",
+    "authors": "Lee H, Kim T",
+    "title": "Transcriptional landscape of asymmetric gonadal development in female chicken embryos [scRNA-seq]",
+    "gseAccession": "GSE278924",
+    "dataFileName": "GSM8557691_sc_E5_L_filtered_feature_bc_matrix.h5",
+    "organism": "Chicken",
+    "source": "Gonad",
+    "platform": "Illumina NextSeq 500"
+  },
+  {
+    "id": "gse278924-gsm8557692-sc-e5-r-filtered-feature-bc-matrix",
+    "authors": "Lee H, Kim T",
+    "title": "Transcriptional landscape of asymmetric gonadal development in female chicken embryos [scRNA-seq]",
+    "gseAccession": "GSE278924",
+    "dataFileName": "GSM8557692_sc_E5_R_filtered_feature_bc_matrix.h5",
+    "organism": "Chicken",
+    "source": "Gonad",
+    "platform": "Illumina NextSeq 500"
+  },
+  {
+    "id": "gse302433-gse302433-filtered-feature-bc-matrix",
+    "authors": "Li H, Chen S",
+    "title": "ZDHHC13 Modulates Tumor Microenvironment Interactions to Suppress Melanoma Metastasis [scRNA-Seq]",
+    "gseAccession": "GSE302433",
+    "dataFileName": "GSE302433_filtered_feature_bc_matrix.h5",
+    "organism": "Mouse",
+    "source": "tumor",
+    "platform": "Illumina NovaSeq 6000"
+  },
+  {
+    "id": "gse308428-gsm9245274-2-1-s1-filtered-feature-bc-matrix",
+    "authors": "Spielman B, Bagnall-Moreau C, Chen F, Balvuena C, Cruz C, Carrion J et al.",
+    "title": "Captopril Restores Microglial Homeostasis and Reverses ASD-like Phenotype in a model of ASD induced by exposure in utero to anti-Caspr2 IgG",
+    "gseAccession": "GSE308428",
+    "dataFileName": "GSM9245274_2_1_S1_filtered_feature_bc_matrix.h5",
+    "organism": "Mouse",
+    "source": "Hippocamous",
+    "platform": "NextSeq 2000"
+  },
+  {
+    "id": "gse308428-gsm9245275-2-2-s2-filtered-feature-bc-matrix",
+    "authors": "Spielman B, Bagnall-Moreau C, Chen F, Balvuena C, Cruz C, Carrion J et al.",
+    "title": "Captopril Restores Microglial Homeostasis and Reverses ASD-like Phenotype in a model of ASD induced by exposure in utero to anti-Caspr2 IgG",
+    "gseAccession": "GSE308428",
+    "dataFileName": "GSM9245275_2_2_S2_filtered_feature_bc_matrix.h5",
+    "organism": "Mouse",
+    "source": "Hippocamous",
+    "platform": "NextSeq 2000"
+  },
+  {
+    "id": "gse308428-gsm9245276-2-3-s3-filtered-feature-bc-matrix",
+    "authors": "Spielman B, Bagnall-Moreau C, Chen F, Balvuena C, Cruz C, Carrion J et al.",
+    "title": "Captopril Restores Microglial Homeostasis and Reverses ASD-like Phenotype in a model of ASD induced by exposure in utero to anti-Caspr2 IgG",
+    "gseAccession": "GSE308428",
+    "dataFileName": "GSM9245276_2_3_S3_filtered_feature_bc_matrix.h5",
+    "organism": "Mouse",
+    "source": "Hippocamous",
+    "platform": "NextSeq 2000"
+  },
+  {
+    "id": "gse308428-gsm9245277-2-4-s4-filtered-feature-bc-matrix",
+    "authors": "Spielman B, Bagnall-Moreau C, Chen F, Balvuena C, Cruz C, Carrion J et al.",
+    "title": "Captopril Restores Microglial Homeostasis and Reverses ASD-like Phenotype in a model of ASD induced by exposure in utero to anti-Caspr2 IgG",
+    "gseAccession": "GSE308428",
+    "dataFileName": "GSM9245277_2_4_S4_filtered_feature_bc_matrix.h5",
+    "organism": "Mouse",
+    "source": "Hippocamous",
+    "platform": "NextSeq 2000"
+  },
+  {
+    "id": "gse308428-gsm9245278-2-5-s5-filtered-feature-bc-matrix",
+    "authors": "Spielman B, Bagnall-Moreau C, Chen F, Balvuena C, Cruz C, Carrion J et al.",
+    "title": "Captopril Restores Microglial Homeostasis and Reverses ASD-like Phenotype in a model of ASD induced by exposure in utero to anti-Caspr2 IgG",
+    "gseAccession": "GSE308428",
+    "dataFileName": "GSM9245278_2_5_S5_filtered_feature_bc_matrix.h5",
+    "organism": "Mouse",
+    "source": "Hippocamous",
+    "platform": "NextSeq 2000"
+  },
+  {
+    "id": "gse308428-gsm9245279-2-6-s6-filtered-feature-bc-matrix",
+    "authors": "Spielman B, Bagnall-Moreau C, Chen F, Balvuena C, Cruz C, Carrion J et al.",
+    "title": "Captopril Restores Microglial Homeostasis and Reverses ASD-like Phenotype in a model of ASD induced by exposure in utero to anti-Caspr2 IgG",
+    "gseAccession": "GSE308428",
+    "dataFileName": "GSM9245279_2_6_S6_filtered_feature_bc_matrix.h5",
+    "organism": "Mouse",
+    "source": "Hippocamous",
+    "platform": "NextSeq 2000"
+  },
+  {
+    "id": "gse308428-gsm9245280-3-1-s7-filtered-feature-bc-matrix",
+    "authors": "Spielman B, Bagnall-Moreau C, Chen F, Balvuena C, Cruz C, Carrion J et al.",
+    "title": "Captopril Restores Microglial Homeostasis and Reverses ASD-like Phenotype in a model of ASD induced by exposure in utero to anti-Caspr2 IgG",
+    "gseAccession": "GSE308428",
+    "dataFileName": "GSM9245280_3_1_S7_filtered_feature_bc_matrix.h5",
+    "organism": "Mouse",
+    "source": "Hippocamous",
+    "platform": "NextSeq 2000"
+  },
+  {
+    "id": "gse308428-gsm9245281-3-2-s8-filtered-feature-bc-matrix",
+    "authors": "Spielman B, Bagnall-Moreau C, Chen F, Balvuena C, Cruz C, Carrion J et al.",
+    "title": "Captopril Restores Microglial Homeostasis and Reverses ASD-like Phenotype in a model of ASD induced by exposure in utero to anti-Caspr2 IgG",
+    "gseAccession": "GSE308428",
+    "dataFileName": "GSM9245281_3_2_S8_filtered_feature_bc_matrix.h5",
+    "organism": "Mouse",
+    "source": "Hippocamous",
+    "platform": "NextSeq 2000"
+  },
+  {
+    "id": "gse308428-gsm9245282-3-3-s9-filtered-feature-bc-matrix",
+    "authors": "Spielman B, Bagnall-Moreau C, Chen F, Balvuena C, Cruz C, Carrion J et al.",
+    "title": "Captopril Restores Microglial Homeostasis and Reverses ASD-like Phenotype in a model of ASD induced by exposure in utero to anti-Caspr2 IgG",
+    "gseAccession": "GSE308428",
+    "dataFileName": "GSM9245282_3_3_S9_filtered_feature_bc_matrix.h5",
+    "organism": "Mouse",
+    "source": "Hippocamous",
+    "platform": "NextSeq 2000"
+  },
+  {
+    "id": "gse308428-gsm9245283-3-4-s10-filtered-feature-bc-matrix",
+    "authors": "Spielman B, Bagnall-Moreau C, Chen F, Balvuena C, Cruz C, Carrion J et al.",
+    "title": "Captopril Restores Microglial Homeostasis and Reverses ASD-like Phenotype in a model of ASD induced by exposure in utero to anti-Caspr2 IgG",
+    "gseAccession": "GSE308428",
+    "dataFileName": "GSM9245283_3_4_S10_filtered_feature_bc_matrix.h5",
+    "organism": "Mouse",
+    "source": "Hippocamous",
+    "platform": "NextSeq 2000"
+  },
+  {
+    "id": "gse308428-gsm9245284-3-5-s11-filtered-feature-bc-matrix",
+    "authors": "Spielman B, Bagnall-Moreau C, Chen F, Balvuena C, Cruz C, Carrion J et al.",
+    "title": "Captopril Restores Microglial Homeostasis and Reverses ASD-like Phenotype in a model of ASD induced by exposure in utero to anti-Caspr2 IgG",
+    "gseAccession": "GSE308428",
+    "dataFileName": "GSM9245284_3_5_S11_filtered_feature_bc_matrix.h5",
+    "organism": "Mouse",
+    "source": "Hippocamous",
+    "platform": "NextSeq 2000"
+  },
+  {
+    "id": "gse308428-gsm9245285-3-6-s12-filtered-feature-bc-matrix",
+    "authors": "Spielman B, Bagnall-Moreau C, Chen F, Balvuena C, Cruz C, Carrion J et al.",
+    "title": "Captopril Restores Microglial Homeostasis and Reverses ASD-like Phenotype in a model of ASD induced by exposure in utero to anti-Caspr2 IgG",
+    "gseAccession": "GSE308428",
+    "dataFileName": "GSM9245285_3_6_S12_filtered_feature_bc_matrix.h5",
+    "organism": "Mouse",
+    "source": "Hippocamous",
+    "platform": "NextSeq 2000"
+  },
+  {
+    "id": "gse288211-gsm8761311-hfd-bzko-rip-rep1-filtered-feature-bc-matrix",
+    "authors": "Cao Y, Nan J",
+    "title": "Single-cell gene expression profiles of pancreatic islets from two β-cell specific knockout mouse models (βZKO-Mip and βZKO-Rip), along with RIP-Cre and MIP-Cre mice, were analyzed after being fed a high-fat diet (HFD)",
+    "gseAccession": "GSE288211",
+    "dataFileName": "GSM8761311_HFD_bZKO_Rip_rep1_filtered_feature_bc_matrix.h5",
+    "organism": "Mouse",
+    "source": "Pancreas",
+    "platform": "DNBSEQ-T7"
+  },
+  {
+    "id": "gse288211-gsm8761312-hfd-bzko-rip-rep2-filtered-feature-bc-matrix",
+    "authors": "Cao Y, Nan J",
+    "title": "Single-cell gene expression profiles of pancreatic islets from two β-cell specific knockout mouse models (βZKO-Mip and βZKO-Rip), along with RIP-Cre and MIP-Cre mice, were analyzed after being fed a high-fat diet (HFD)",
+    "gseAccession": "GSE288211",
+    "dataFileName": "GSM8761312_HFD_bZKO_Rip_rep2_filtered_feature_bc_matrix.h5",
+    "organism": "Mouse",
+    "source": "Pancreas",
+    "platform": "DNBSEQ-T7"
+  },
+  {
+    "id": "gse288211-gsm8761313-hfd-rip-cre-rep1-filtered-feature-bc-matrix",
+    "authors": "Cao Y, Nan J",
+    "title": "Single-cell gene expression profiles of pancreatic islets from two β-cell specific knockout mouse models (βZKO-Mip and βZKO-Rip), along with RIP-Cre and MIP-Cre mice, were analyzed after being fed a high-fat diet (HFD)",
+    "gseAccession": "GSE288211",
+    "dataFileName": "GSM8761313_HFD_RIP-Cre_rep1_filtered_feature_bc_matrix.h5",
+    "organism": "Mouse",
+    "source": "Pancreas",
+    "platform": "DNBSEQ-T7"
+  },
+  {
+    "id": "gse288211-gsm8761314-hfd-rip-cre-rep2-filtered-feature-bc-matrix",
+    "authors": "Cao Y, Nan J",
+    "title": "Single-cell gene expression profiles of pancreatic islets from two β-cell specific knockout mouse models (βZKO-Mip and βZKO-Rip), along with RIP-Cre and MIP-Cre mice, were analyzed after being fed a high-fat diet (HFD)",
+    "gseAccession": "GSE288211",
+    "dataFileName": "GSM8761314_HFD_RIP-Cre_rep2_filtered_feature_bc_matrix.h5",
+    "organism": "Mouse",
+    "source": "Pancreas",
+    "platform": "DNBSEQ-T7"
+  },
+  {
+    "id": "gse288211-gsm8761315-hfd-bzko-mip-rep1-filtered-feature-bc-matrix",
+    "authors": "Cao Y, Nan J",
+    "title": "Single-cell gene expression profiles of pancreatic islets from two β-cell specific knockout mouse models (βZKO-Mip and βZKO-Rip), along with RIP-Cre and MIP-Cre mice, were analyzed after being fed a high-fat diet (HFD)",
+    "gseAccession": "GSE288211",
+    "dataFileName": "GSM8761315_HFD_bZKO_Mip_rep1_filtered_feature_bc_matrix.h5",
+    "organism": "Mouse",
+    "source": "Pancreas",
+    "platform": "DNBSEQ-T7"
+  },
+  {
+    "id": "gse288211-gsm8761316-hfd-bzko-mip-rep2-filtered-feature-bc-matrix",
+    "authors": "Cao Y, Nan J",
+    "title": "Single-cell gene expression profiles of pancreatic islets from two β-cell specific knockout mouse models (βZKO-Mip and βZKO-Rip), along with RIP-Cre and MIP-Cre mice, were analyzed after being fed a high-fat diet (HFD)",
+    "gseAccession": "GSE288211",
+    "dataFileName": "GSM8761316_HFD_bZKO_Mip_rep2_filtered_feature_bc_matrix.h5",
+    "organism": "Mouse",
+    "source": "Pancreas",
+    "platform": "DNBSEQ-T7"
+  },
+  {
+    "id": "gse288211-gsm8761317-hfd-mip-cre-rep1-filtered-feature-bc-matrix",
+    "authors": "Cao Y, Nan J",
+    "title": "Single-cell gene expression profiles of pancreatic islets from two β-cell specific knockout mouse models (βZKO-Mip and βZKO-Rip), along with RIP-Cre and MIP-Cre mice, were analyzed after being fed a high-fat diet (HFD)",
+    "gseAccession": "GSE288211",
+    "dataFileName": "GSM8761317_HFD_MIP-Cre_rep1_filtered_feature_bc_matrix.h5",
+    "organism": "Mouse",
+    "source": "Pancreas",
+    "platform": "DNBSEQ-T7"
+  },
+  {
+    "id": "gse288211-gsm8761318-hfd-mip-cre-rep2-filtered-feature-bc-matrix",
+    "authors": "Cao Y, Nan J",
+    "title": "Single-cell gene expression profiles of pancreatic islets from two β-cell specific knockout mouse models (βZKO-Mip and βZKO-Rip), along with RIP-Cre and MIP-Cre mice, were analyzed after being fed a high-fat diet (HFD)",
+    "gseAccession": "GSE288211",
+    "dataFileName": "GSM8761318_HFD_MIP-Cre_rep2_filtered_feature_bc_matrix.h5",
+    "organism": "Mouse",
+    "source": "Pancreas",
+    "platform": "DNBSEQ-T7"
+  },
+  {
+    "id": "gse307774-gsm9231171-bvar-rzf119-5b-s14-filtered-feature-bc-matrix",
+    "authors": "White M, Mills ML, Millett LM, Gilroy K, Campbell AD, Sansom OJ",
+    "title": "Oncogenic MAPK signalling induces epithelial cell state change and therapeutic resistance in vivo [scRNA-Seq]",
+    "gseAccession": "GSE307774",
+    "dataFileName": "GSM9231171_BVAR_RZF119_5b_S14.filtered_feature_bc_matrix.h5",
+    "organism": "Mouse",
+    "source": "Intracolonic Transplant Colon Tumour",
+    "platform": "Illumina NovaSeq 6000"
+  },
+  {
+    "id": "gse307774-gsm9231172-bvar-rzf124-2a-filtered-feature-bc-matrix",
+    "authors": "White M, Mills ML, Millett LM, Gilroy K, Campbell AD, Sansom OJ",
+    "title": "Oncogenic MAPK signalling induces epithelial cell state change and therapeutic resistance in vivo [scRNA-Seq]",
+    "gseAccession": "GSE307774",
+    "dataFileName": "GSM9231172_BVAR_RZF124_2a.filtered_feature_bc_matrix.h5",
+    "organism": "Mouse",
+    "source": "Intracolonic Transplant Colon Tumour",
+    "platform": "Illumina NovaSeq 6000"
+  },
+  {
+    "id": "gse307774-gsm9231173-bvar-rzf124-1a-filtered-feature-bc-matrix",
+    "authors": "White M, Mills ML, Millett LM, Gilroy K, Campbell AD, Sansom OJ",
+    "title": "Oncogenic MAPK signalling induces epithelial cell state change and therapeutic resistance in vivo [scRNA-Seq]",
+    "gseAccession": "GSE307774",
+    "dataFileName": "GSM9231173_BVAR_RZF124_1a.filtered_feature_bc_matrix.h5",
+    "organism": "Mouse",
+    "source": "Intracolonic Transplant Colon Tumour",
+    "platform": "Illumina NovaSeq 6000"
+  },
+  {
+    "id": "gse307774-gsm9231174-bvar-rzf122-1c-filtered-feature-bc-matrix",
+    "authors": "White M, Mills ML, Millett LM, Gilroy K, Campbell AD, Sansom OJ",
+    "title": "Oncogenic MAPK signalling induces epithelial cell state change and therapeutic resistance in vivo [scRNA-Seq]",
+    "gseAccession": "GSE307774",
+    "dataFileName": "GSM9231174_BVAR_RZF122_1c.filtered_feature_bc_matrix.h5",
+    "organism": "Mouse",
+    "source": "Intracolonic Transplant Colon Tumour",
+    "platform": "Illumina NovaSeq 6000"
+  },
+  {
+    "id": "gse307774-gsm9231175-bvar-rzf122-3d-filtered-feature-bc-matrix",
+    "authors": "White M, Mills ML, Millett LM, Gilroy K, Campbell AD, Sansom OJ",
+    "title": "Oncogenic MAPK signalling induces epithelial cell state change and therapeutic resistance in vivo [scRNA-Seq]",
+    "gseAccession": "GSE307774",
+    "dataFileName": "GSM9231175_BVAR_RZF122_3d.filtered_feature_bc_matrix.h5",
+    "organism": "Mouse",
+    "source": "Intracolonic Transplant Colon Tumour",
+    "platform": "Illumina NovaSeq 6000"
+  },
+  {
+    "id": "gse307774-gsm9231175-bvar-rzf122-3d-filtered-feature-bc-matrix",
+    "authors": "White M, Mills ML, Millett LM, Gilroy K, Campbell AD, Sansom OJ",
+    "title": "Oncogenic MAPK signalling induces epithelial cell state change and therapeutic resistance in vivo [scRNA-Seq]",
+    "gseAccession": "GSE307774",
+    "dataFileName": "GSM9231175_BVAR_RZF122_3d.filtered_feature_bc_matrix.h5",
+    "organism": "Mouse",
+    "source": "Intracolonic Transplant Colon Tumour",
+    "platform": "Illumina NovaSeq 6000"
+  },
+  {
+    "id": "gse307774-gsm9231177-bvar-rzf122-2a-filtered-feature-bc-matrix",
+    "authors": "White M, Mills ML, Millett LM, Gilroy K, Campbell AD, Sansom OJ",
+    "title": "Oncogenic MAPK signalling induces epithelial cell state change and therapeutic resistance in vivo [scRNA-Seq]",
+    "gseAccession": "GSE307774",
+    "dataFileName": "GSM9231177_BVAR_RZF122_2a.filtered_feature_bc_matrix.h5",
+    "organism": "Mouse",
+    "source": "Intracolonic Transplant Colon Tumour",
+    "platform": "Illumina NovaSeq 6000"
+  },
+  {
+    "id": "gse307774-gsm9231178-bvar-rzf125-1c-filtered-feature-bc-matrix",
+    "authors": "White M, Mills ML, Millett LM, Gilroy K, Campbell AD, Sansom OJ",
+    "title": "Oncogenic MAPK signalling induces epithelial cell state change and therapeutic resistance in vivo [scRNA-Seq]",
+    "gseAccession": "GSE307774",
+    "dataFileName": "GSM9231178_BVAR_RZF125_1c.filtered_feature_bc_matrix.h5",
+    "organism": "Mouse",
+    "source": "Intracolonic Transplant Colon Tumour",
+    "platform": "Illumina NovaSeq 6000"
+  },
+  {
+    "id": "gse307774-gsm9231179-rzf131-2b-filtered-feature-bc-matrix",
+    "authors": "White M, Mills ML, Millett LM, Gilroy K, Campbell AD, Sansom OJ",
+    "title": "Oncogenic MAPK signalling induces epithelial cell state change and therapeutic resistance in vivo [scRNA-Seq]",
+    "gseAccession": "GSE307774",
+    "dataFileName": "GSM9231179_RZF131_2b.filtered_feature_bc_matrix.h5",
+    "organism": "Mouse",
+    "source": "Intracolonic Transplant Colon Tumour",
+    "platform": "Illumina NovaSeq 6000"
+  },
+  {
+    "id": "gse307774-gsm9231180-rzf133-2a-filtered-feature-bc-matrix",
+    "authors": "White M, Mills ML, Millett LM, Gilroy K, Campbell AD, Sansom OJ",
+    "title": "Oncogenic MAPK signalling induces epithelial cell state change and therapeutic resistance in vivo [scRNA-Seq]",
+    "gseAccession": "GSE307774",
+    "dataFileName": "GSM9231180_RZF133_2a.filtered_feature_bc_matrix.h5",
+    "organism": "Mouse",
+    "source": "Intracolonic Transplant Colon Tumour",
+    "platform": "Illumina NovaSeq 6000"
+  },
+  {
+    "id": "gse307774-gsm9231181-19-52-filtered-feature-bc-matrix",
+    "authors": "White M, Mills ML, Millett LM, Gilroy K, Campbell AD, Sansom OJ",
+    "title": "Oncogenic MAPK signalling induces epithelial cell state change and therapeutic resistance in vivo [scRNA-Seq]",
+    "gseAccession": "GSE307774",
+    "dataFileName": "GSM9231181_19_52.filtered_feature_bc_matrix.h5",
+    "organism": "Mouse",
+    "source": "Small Intestine Tumour",
+    "platform": "Illumina NovaSeq 6000"
+  },
+  {
+    "id": "gse307774-gsm9231182-vbpnot-rkv72-1e-filtered-feature-bc-matrix",
+    "authors": "White M, Mills ML, Millett LM, Gilroy K, Campbell AD, Sansom OJ",
+    "title": "Oncogenic MAPK signalling induces epithelial cell state change and therapeutic resistance in vivo [scRNA-Seq]",
+    "gseAccession": "GSE307774",
+    "dataFileName": "GSM9231182_VBPNOT_RKV72_1e.filtered_feature_bc_matrix.h5",
+    "organism": "Mouse",
+    "source": "Small Intestine Tumour",
+    "platform": "Illumina NovaSeq 6000"
+  },
+  {
+    "id": "gse307774-gsm9231183-19-65-filtered-feature-bc-matrix",
+    "authors": "White M, Mills ML, Millett LM, Gilroy K, Campbell AD, Sansom OJ",
+    "title": "Oncogenic MAPK signalling induces epithelial cell state change and therapeutic resistance in vivo [scRNA-Seq]",
+    "gseAccession": "GSE307774",
+    "dataFileName": "GSM9231183_19_65.filtered_feature_bc_matrix.h5",
+    "organism": "Mouse",
+    "source": "Colon Tumour",
+    "platform": "Illumina NovaSeq 6000"
+  },
+  {
+    "id": "gse307774-gsm9231184-19-66-filtered-feature-bc-matrix",
+    "authors": "White M, Mills ML, Millett LM, Gilroy K, Campbell AD, Sansom OJ",
+    "title": "Oncogenic MAPK signalling induces epithelial cell state change and therapeutic resistance in vivo [scRNA-Seq]",
+    "gseAccession": "GSE307774",
+    "dataFileName": "GSM9231184_19_66.filtered_feature_bc_matrix.h5",
+    "organism": "Mouse",
+    "source": "Colon Tumour",
+    "platform": "Illumina NovaSeq 6000"
+  },
+  {
+    "id": "gse307774-gsm9231185-vanp-rkf100-1b-filtered-feature-bc-matrix",
+    "authors": "White M, Mills ML, Millett LM, Gilroy K, Campbell AD, Sansom OJ",
+    "title": "Oncogenic MAPK signalling induces epithelial cell state change and therapeutic resistance in vivo [scRNA-Seq]",
+    "gseAccession": "GSE307774",
+    "dataFileName": "GSM9231185_VANP_RKF100_1b.filtered_feature_bc_matrix.h5",
+    "organism": "Mouse",
+    "source": "Colon Tumour",
+    "platform": "Illumina NovaSeq 6000"
+  },
+  {
+    "id": "gse307774-gsm9231186-vanp-rkf100-1c-filtered-feature-bc-matrix",
+    "authors": "White M, Mills ML, Millett LM, Gilroy K, Campbell AD, Sansom OJ",
+    "title": "Oncogenic MAPK signalling induces epithelial cell state change and therapeutic resistance in vivo [scRNA-Seq]",
+    "gseAccession": "GSE307774",
+    "dataFileName": "GSM9231186_VANP_RKF100_1c.filtered_feature_bc_matrix.h5",
+    "organism": "Mouse",
+    "source": "Colon Tumour",
+    "platform": "Illumina NovaSeq 6000"
+  },
+  {
+    "id": "gse307774-gsm9231187-vanp-rkf94-2e-filtered-feature-bc-matrix",
+    "authors": "White M, Mills ML, Millett LM, Gilroy K, Campbell AD, Sansom OJ",
+    "title": "Oncogenic MAPK signalling induces epithelial cell state change and therapeutic resistance in vivo [scRNA-Seq]",
+    "gseAccession": "GSE307774",
+    "dataFileName": "GSM9231187_VANP_RKF94_2e.filtered_feature_bc_matrix.h5",
+    "organism": "Mouse",
+    "source": "Colon Tumour",
+    "platform": "Illumina NovaSeq 6000"
+  },
+  {
+    "id": "gse307774-gsm9231188-vanp-rkf94-3e-filtered-feature-bc-matrix",
+    "authors": "White M, Mills ML, Millett LM, Gilroy K, Campbell AD, Sansom OJ",
+    "title": "Oncogenic MAPK signalling induces epithelial cell state change and therapeutic resistance in vivo [scRNA-Seq]",
+    "gseAccession": "GSE307774",
+    "dataFileName": "GSM9231188_VANP_RKF94_3e.filtered_feature_bc_matrix.h5",
+    "organism": "Mouse",
+    "source": "Colon Tumour",
+    "platform": "Illumina NovaSeq 6000"
+  },
+  {
+    "id": "gse307774-gsm9231189-vanp-rkf89-4c-s33-filtered-feature-bc-matrix",
+    "authors": "White M, Mills ML, Millett LM, Gilroy K, Campbell AD, Sansom OJ",
+    "title": "Oncogenic MAPK signalling induces epithelial cell state change and therapeutic resistance in vivo [scRNA-Seq]",
+    "gseAccession": "GSE307774",
+    "dataFileName": "GSM9231189_VANP_RKF89_4c_S33.filtered_feature_bc_matrix.h5",
+    "organism": "Mouse",
+    "source": "Colon Tumour",
+    "platform": "Illumina NovaSeq 6000"
+  },
+  {
+    "id": "gse307774-gsm9231190-vanp-rkf89-5c-s34-filtered-feature-bc-matrix",
+    "authors": "White M, Mills ML, Millett LM, Gilroy K, Campbell AD, Sansom OJ",
+    "title": "Oncogenic MAPK signalling induces epithelial cell state change and therapeutic resistance in vivo [scRNA-Seq]",
+    "gseAccession": "GSE307774",
+    "dataFileName": "GSM9231190_VANP_RKF89_5c_S34.filtered_feature_bc_matrix.h5",
+    "organism": "Mouse",
+    "source": "Colon Tumour",
+    "platform": "Illumina NovaSeq 6000"
+  },
+  {
+    "id": "gse307774-gsm9231191-vanp-rkf93-1a-filtered-feature-bc-matrix",
+    "authors": "White M, Mills ML, Millett LM, Gilroy K, Campbell AD, Sansom OJ",
+    "title": "Oncogenic MAPK signalling induces epithelial cell state change and therapeutic resistance in vivo [scRNA-Seq]",
+    "gseAccession": "GSE307774",
+    "dataFileName": "GSM9231191_VANP_RKF93_1a.filtered_feature_bc_matrix.h5",
+    "organism": "Mouse",
+    "source": "Colon Tumour",
+    "platform": "Illumina NovaSeq 6000"
+  },
+  {
+    "id": "gse307774-gsm9231192-vanp-rkf93-1e-filtered-feature-bc-matrix",
+    "authors": "White M, Mills ML, Millett LM, Gilroy K, Campbell AD, Sansom OJ",
+    "title": "Oncogenic MAPK signalling induces epithelial cell state change and therapeutic resistance in vivo [scRNA-Seq]",
+    "gseAccession": "GSE307774",
+    "dataFileName": "GSM9231192_VANP_RKF93_1e.filtered_feature_bc_matrix.h5",
+    "organism": "Mouse",
+    "source": "Colon Tumour",
+    "platform": "Illumina NovaSeq 6000"
+  },
+  {
+    "id": "gse307774-gsm9231193-vanp-rkf89-4b-s32-filtered-feature-bc-matrix",
+    "authors": "White M, Mills ML, Millett LM, Gilroy K, Campbell AD, Sansom OJ",
+    "title": "Oncogenic MAPK signalling induces epithelial cell state change and therapeutic resistance in vivo [scRNA-Seq]",
+    "gseAccession": "GSE307774",
+    "dataFileName": "GSM9231193_VANP_RKF89_4b_S32.filtered_feature_bc_matrix.h5",
+    "organism": "Mouse",
+    "source": "Colon Tumour",
+    "platform": "Illumina NovaSeq 6000"
+  },
+  {
+    "id": "gse307774-gsm9231194-vanp-rkf90-6c-filtered-feature-bc-matrix",
+    "authors": "White M, Mills ML, Millett LM, Gilroy K, Campbell AD, Sansom OJ",
+    "title": "Oncogenic MAPK signalling induces epithelial cell state change and therapeutic resistance in vivo [scRNA-Seq]",
+    "gseAccession": "GSE307774",
+    "dataFileName": "GSM9231194_VANP_RKF90_6c.filtered_feature_bc_matrix.h5",
+    "organism": "Mouse",
+    "source": "Colon Tumour",
+    "platform": "Illumina NovaSeq 6000"
+  },
+  {
+    "id": "gse307774-gsm9231195-vanp-rkf90-6e-filtered-feature-bc-matrix",
+    "authors": "White M, Mills ML, Millett LM, Gilroy K, Campbell AD, Sansom OJ",
+    "title": "Oncogenic MAPK signalling induces epithelial cell state change and therapeutic resistance in vivo [scRNA-Seq]",
+    "gseAccession": "GSE307774",
+    "dataFileName": "GSM9231195_VANP_RKF90_6e.filtered_feature_bc_matrix.h5",
+    "organism": "Mouse",
+    "source": "Colon Tumour",
+    "platform": "Illumina NovaSeq 6000"
+  },
+  {
+    "id": "gse307774-gsm9231196-rkf106-1b-filtered-feature-bc-matrix",
+    "authors": "White M, Mills ML, Millett LM, Gilroy K, Campbell AD, Sansom OJ",
+    "title": "Oncogenic MAPK signalling induces epithelial cell state change and therapeutic resistance in vivo [scRNA-Seq]",
+    "gseAccession": "GSE307774",
+    "dataFileName": "GSM9231196_RKF106_1b.filtered_feature_bc_matrix.h5",
+    "organism": "Mouse",
+    "source": "Colon Tumour",
+    "platform": "Illumina NovaSeq 6000"
+  },
+  {
+    "id": "gse307774-gsm9231197-vbprnf-rkbg-28-1g-s25-filtered-feature-bc-matrix",
+    "authors": "White M, Mills ML, Millett LM, Gilroy K, Campbell AD, Sansom OJ",
+    "title": "Oncogenic MAPK signalling induces epithelial cell state change and therapeutic resistance in vivo [scRNA-Seq]",
+    "gseAccession": "GSE307774",
+    "dataFileName": "GSM9231197_VBPRNF_RKBG_28_1g_S25.filtered_feature_bc_matrix.h5",
+    "organism": "Mouse",
+    "source": "Small Intestine Tumour",
+    "platform": "Illumina NovaSeq 6000"
+  },
+  {
+    "id": "gse307774-gsm9231198-vbprnf-rkbg32-3a-filtered-feature-bc-matrix",
+    "authors": "White M, Mills ML, Millett LM, Gilroy K, Campbell AD, Sansom OJ",
+    "title": "Oncogenic MAPK signalling induces epithelial cell state change and therapeutic resistance in vivo [scRNA-Seq]",
+    "gseAccession": "GSE307774",
+    "dataFileName": "GSM9231198_VBPRNF_RKBG32_3a.filtered_feature_bc_matrix.h5",
+    "organism": "Mouse",
+    "source": "Small Intestine Tumour",
+    "platform": "Illumina NovaSeq 6000"
+  },
+  {
+    "id": "gse307774-gsm9231199-vbprnf-rkbg37-1e-filtered-feature-bc-matrix",
+    "authors": "White M, Mills ML, Millett LM, Gilroy K, Campbell AD, Sansom OJ",
+    "title": "Oncogenic MAPK signalling induces epithelial cell state change and therapeutic resistance in vivo [scRNA-Seq]",
+    "gseAccession": "GSE307774",
+    "dataFileName": "GSM9231199_VBPRNF_RKBG37_1e.filtered_feature_bc_matrix.h5",
+    "organism": "Mouse",
+    "source": "Small Intestine Tumour",
+    "platform": "Illumina NovaSeq 6000"
+  },
+  {
+    "id": "gse307261-gsm9220069-p134-b-6w-rna-filtered-feature-bc-matrix",
+    "authors": "Çakan E, Wang M, Dai Y, Mirouse A, Bouis D, Boeckers JM et al.",
+    "title": "CTLA-4 Blockade Shifts the B Cell Repertoire Towards Autoimmunity",
+    "gseAccession": "GSE307261",
+    "dataFileName": "GSM9220069_p134_B_6w_RNA_filtered_feature_bc_matrix.h5",
+    "organism": "Human",
+    "source": "B cells",
+    "platform": "Illumina NextSeq 500"
+  },
+  {
+    "id": "gse307261-gsm9220071-p134-b-7m-rna-filtered-feature-bc-matrix",
+    "authors": "Çakan E, Wang M, Dai Y, Mirouse A, Bouis D, Boeckers JM et al.",
+    "title": "CTLA-4 Blockade Shifts the B Cell Repertoire Towards Autoimmunity",
+    "gseAccession": "GSE307261",
+    "dataFileName": "GSM9220071_p134_B_7m_RNA_filtered_feature_bc_matrix.h5",
+    "organism": "Human",
+    "source": "B cells",
+    "platform": "Illumina NextSeq 500"
+  },
+  {
+    "id": "gse307261-gsm9220073-p134-b-d0-rna-filtered-feature-bc-matrix",
+    "authors": "Çakan E, Wang M, Dai Y, Mirouse A, Bouis D, Boeckers JM et al.",
+    "title": "CTLA-4 Blockade Shifts the B Cell Repertoire Towards Autoimmunity",
+    "gseAccession": "GSE307261",
+    "dataFileName": "GSM9220073_p134_B_d0_RNA_filtered_feature_bc_matrix.h5",
+    "organism": "Human",
+    "source": "B cells",
+    "platform": "Illumina NextSeq 500"
+  },
+  {
+    "id": "gse307261-gsm9220075-p134-t-6w-rna-filtered-feature-bc-matrix",
+    "authors": "Çakan E, Wang M, Dai Y, Mirouse A, Bouis D, Boeckers JM et al.",
+    "title": "CTLA-4 Blockade Shifts the B Cell Repertoire Towards Autoimmunity",
+    "gseAccession": "GSE307261",
+    "dataFileName": "GSM9220075_p134_T_6w_RNA_filtered_feature_bc_matrix.h5",
+    "organism": "Human",
+    "source": "T cells",
+    "platform": "Illumina NextSeq 500"
+  },
+  {
+    "id": "gse307261-gsm9220077-p134-t-7m-rna-filtered-feature-bc-matrix",
+    "authors": "Çakan E, Wang M, Dai Y, Mirouse A, Bouis D, Boeckers JM et al.",
+    "title": "CTLA-4 Blockade Shifts the B Cell Repertoire Towards Autoimmunity",
+    "gseAccession": "GSE307261",
+    "dataFileName": "GSM9220077_p134_T_7m_RNA_filtered_feature_bc_matrix.h5",
+    "organism": "Human",
+    "source": "T cells",
+    "platform": "Illumina NextSeq 500"
+  },
+  {
+    "id": "gse307261-gsm9220079-p134-t-d0-rna-filtered-feature-bc-matrix",
+    "authors": "Çakan E, Wang M, Dai Y, Mirouse A, Bouis D, Boeckers JM et al.",
+    "title": "CTLA-4 Blockade Shifts the B Cell Repertoire Towards Autoimmunity",
+    "gseAccession": "GSE307261",
+    "dataFileName": "GSM9220079_p134_T_d0_RNA_filtered_feature_bc_matrix.h5",
+    "organism": "Human",
+    "source": "T cells",
+    "platform": "Illumina NextSeq 500"
+  },
+  {
+    "id": "gse307261-gsm9220081-p145-b-6w-rna-filtered-feature-bc-matrix",
+    "authors": "Çakan E, Wang M, Dai Y, Mirouse A, Bouis D, Boeckers JM et al.",
+    "title": "CTLA-4 Blockade Shifts the B Cell Repertoire Towards Autoimmunity",
+    "gseAccession": "GSE307261",
+    "dataFileName": "GSM9220081_p145_B_6w_RNA_filtered_feature_bc_matrix.h5",
+    "organism": "Human",
+    "source": "B cells",
+    "platform": "Illumina NextSeq 500"
+  },
+  {
+    "id": "gse307261-gsm9220083-p145-b-7m-rna-filtered-feature-bc-matrix",
+    "authors": "Çakan E, Wang M, Dai Y, Mirouse A, Bouis D, Boeckers JM et al.",
+    "title": "CTLA-4 Blockade Shifts the B Cell Repertoire Towards Autoimmunity",
+    "gseAccession": "GSE307261",
+    "dataFileName": "GSM9220083_p145_B_7m_RNA_filtered_feature_bc_matrix.h5",
+    "organism": "Human",
+    "source": "B cells",
+    "platform": "Illumina NextSeq 500"
+  },
+  {
+    "id": "gse307261-gsm9220085-p145-b-d0-rna-filtered-feature-bc-matrix",
+    "authors": "Çakan E, Wang M, Dai Y, Mirouse A, Bouis D, Boeckers JM et al.",
+    "title": "CTLA-4 Blockade Shifts the B Cell Repertoire Towards Autoimmunity",
+    "gseAccession": "GSE307261",
+    "dataFileName": "GSM9220085_p145_B_d0_RNA_filtered_feature_bc_matrix.h5",
+    "organism": "Human",
+    "source": "B cells",
+    "platform": "Illumina NextSeq 500"
+  },
+  {
+    "id": "gse307261-gsm9220087-p145-t-6w-rna-filtered-feature-bc-matrix",
+    "authors": "Çakan E, Wang M, Dai Y, Mirouse A, Bouis D, Boeckers JM et al.",
+    "title": "CTLA-4 Blockade Shifts the B Cell Repertoire Towards Autoimmunity",
+    "gseAccession": "GSE307261",
+    "dataFileName": "GSM9220087_p145_T_6w_RNA_filtered_feature_bc_matrix.h5",
+    "organism": "Human",
+    "source": "T cells",
+    "platform": "Illumina NextSeq 500"
+  },
+  {
+    "id": "gse307261-gsm9220089-p145-t-7m-rna-filtered-feature-bc-matrix",
+    "authors": "Çakan E, Wang M, Dai Y, Mirouse A, Bouis D, Boeckers JM et al.",
+    "title": "CTLA-4 Blockade Shifts the B Cell Repertoire Towards Autoimmunity",
+    "gseAccession": "GSE307261",
+    "dataFileName": "GSM9220089_p145_T_7m_RNA_filtered_feature_bc_matrix.h5",
+    "organism": "Human",
+    "source": "T cells",
+    "platform": "Illumina NextSeq 500"
+  },
+  {
+    "id": "gse307261-gsm9220091-p145-t-d0-rna-filtered-feature-bc-matrix",
+    "authors": "Çakan E, Wang M, Dai Y, Mirouse A, Bouis D, Boeckers JM et al.",
+    "title": "CTLA-4 Blockade Shifts the B Cell Repertoire Towards Autoimmunity",
+    "gseAccession": "GSE307261",
+    "dataFileName": "GSM9220091_p145_T_d0_RNA_filtered_feature_bc_matrix.h5",
+    "organism": "Human",
+    "source": "T cells",
+    "platform": "Illumina NextSeq 500"
+  },
+  {
+    "id": "gse307261-gsm9220093-p196-b-6w-rna-filtered-feature-bc-matrix",
+    "authors": "Çakan E, Wang M, Dai Y, Mirouse A, Bouis D, Boeckers JM et al.",
+    "title": "CTLA-4 Blockade Shifts the B Cell Repertoire Towards Autoimmunity",
+    "gseAccession": "GSE307261",
+    "dataFileName": "GSM9220093_p196_B_6w_RNA_filtered_feature_bc_matrix.h5",
+    "organism": "Human",
+    "source": "B cells",
+    "platform": "Illumina NextSeq 500"
+  },
+  {
+    "id": "gse307261-gsm9220095-p196-b-7m-rna-filtered-feature-bc-matrix",
+    "authors": "Çakan E, Wang M, Dai Y, Mirouse A, Bouis D, Boeckers JM et al.",
+    "title": "CTLA-4 Blockade Shifts the B Cell Repertoire Towards Autoimmunity",
+    "gseAccession": "GSE307261",
+    "dataFileName": "GSM9220095_p196_B_7m_RNA_filtered_feature_bc_matrix.h5",
+    "organism": "Human",
+    "source": "B cells",
+    "platform": "Illumina NextSeq 500"
+  },
+  {
+    "id": "gse307261-gsm9220097-p196-t-6w-rna-filtered-feature-bc-matrix",
+    "authors": "Çakan E, Wang M, Dai Y, Mirouse A, Bouis D, Boeckers JM et al.",
+    "title": "CTLA-4 Blockade Shifts the B Cell Repertoire Towards Autoimmunity",
+    "gseAccession": "GSE307261",
+    "dataFileName": "GSM9220097_p196_T_6w_RNA_filtered_feature_bc_matrix.h5",
+    "organism": "Human",
+    "source": "T cells",
+    "platform": "Illumina NextSeq 500"
+  },
+  {
+    "id": "gse307261-gsm9220099-p196-t-7m-rna-filtered-feature-bc-matrix",
+    "authors": "Çakan E, Wang M, Dai Y, Mirouse A, Bouis D, Boeckers JM et al.",
+    "title": "CTLA-4 Blockade Shifts the B Cell Repertoire Towards Autoimmunity",
+    "gseAccession": "GSE307261",
+    "dataFileName": "GSM9220099_p196_T_7m_RNA_filtered_feature_bc_matrix.h5",
+    "organism": "Human",
+    "source": "T cells",
+    "platform": "Illumina NextSeq 500"
+  },
+  {
+    "id": "gse307261-gsm9220101-p196-t-d0-rna-filtered-feature-bc-matrix",
+    "authors": "Çakan E, Wang M, Dai Y, Mirouse A, Bouis D, Boeckers JM et al.",
+    "title": "CTLA-4 Blockade Shifts the B Cell Repertoire Towards Autoimmunity",
+    "gseAccession": "GSE307261",
+    "dataFileName": "GSM9220101_p196_T_d0_RNA_filtered_feature_bc_matrix.h5",
+    "organism": "Human",
+    "source": "T cells",
+    "platform": "Illumina NextSeq 500"
+  },
+  {
+    "id": "gse307261-gsm9220103-p326-b-6w-rna-filtered-feature-bc-matrix",
+    "authors": "Çakan E, Wang M, Dai Y, Mirouse A, Bouis D, Boeckers JM et al.",
+    "title": "CTLA-4 Blockade Shifts the B Cell Repertoire Towards Autoimmunity",
+    "gseAccession": "GSE307261",
+    "dataFileName": "GSM9220103_p326_B_6w_RNA_filtered_feature_bc_matrix.h5",
+    "organism": "Human",
+    "source": "B cells",
+    "platform": "Illumina NextSeq 500"
+  },
+  {
+    "id": "gse307261-gsm9220105-p326-b-7m-rna-filtered-feature-bc-matrix",
+    "authors": "Çakan E, Wang M, Dai Y, Mirouse A, Bouis D, Boeckers JM et al.",
+    "title": "CTLA-4 Blockade Shifts the B Cell Repertoire Towards Autoimmunity",
+    "gseAccession": "GSE307261",
+    "dataFileName": "GSM9220105_p326_B_7m_RNA_filtered_feature_bc_matrix.h5",
+    "organism": "Human",
+    "source": "B cells",
+    "platform": "Illumina NextSeq 500"
+  },
+  {
+    "id": "gse307261-gsm9220107-p326-b-d0-rna-filtered-feature-bc-matrix",
+    "authors": "Çakan E, Wang M, Dai Y, Mirouse A, Bouis D, Boeckers JM et al.",
+    "title": "CTLA-4 Blockade Shifts the B Cell Repertoire Towards Autoimmunity",
+    "gseAccession": "GSE307261",
+    "dataFileName": "GSM9220107_p326_B_d0_RNA_filtered_feature_bc_matrix.h5",
+    "organism": "Human",
+    "source": "B cells",
+    "platform": "Illumina NextSeq 500"
+  },
+  {
+    "id": "gse307261-gsm9220109-p326-t-6w-rna-filtered-feature-bc-matrix",
+    "authors": "Çakan E, Wang M, Dai Y, Mirouse A, Bouis D, Boeckers JM et al.",
+    "title": "CTLA-4 Blockade Shifts the B Cell Repertoire Towards Autoimmunity",
+    "gseAccession": "GSE307261",
+    "dataFileName": "GSM9220109_p326_T_6w_RNA_filtered_feature_bc_matrix.h5",
+    "organism": "Human",
+    "source": "T cells",
+    "platform": "Illumina NextSeq 500"
+  },
+  {
+    "id": "gse307261-gsm9220111-p326-t-7m-rna-filtered-feature-bc-matrix",
+    "authors": "Çakan E, Wang M, Dai Y, Mirouse A, Bouis D, Boeckers JM et al.",
+    "title": "CTLA-4 Blockade Shifts the B Cell Repertoire Towards Autoimmunity",
+    "gseAccession": "GSE307261",
+    "dataFileName": "GSM9220111_p326_T_7m_RNA_filtered_feature_bc_matrix.h5",
+    "organism": "Human",
+    "source": "T cells",
+    "platform": "Illumina NextSeq 500"
+  },
+  {
+    "id": "gse307261-gsm9220113-p326-t-d0-rna-filtered-feature-bc-matrix",
+    "authors": "Çakan E, Wang M, Dai Y, Mirouse A, Bouis D, Boeckers JM et al.",
+    "title": "CTLA-4 Blockade Shifts the B Cell Repertoire Towards Autoimmunity",
+    "gseAccession": "GSE307261",
+    "dataFileName": "GSM9220113_p326_T_d0_RNA_filtered_feature_bc_matrix.h5",
+    "organism": "Human",
+    "source": "T cells",
+    "platform": "Illumina NextSeq 500"
+  },
+  {
+    "id": "gse307261-gsm9220115-p381-b-6w-rna-filtered-feature-bc-matrix",
+    "authors": "Çakan E, Wang M, Dai Y, Mirouse A, Bouis D, Boeckers JM et al.",
+    "title": "CTLA-4 Blockade Shifts the B Cell Repertoire Towards Autoimmunity",
+    "gseAccession": "GSE307261",
+    "dataFileName": "GSM9220115_p381_B_6w_RNA_filtered_feature_bc_matrix.h5",
+    "organism": "Human",
+    "source": "B cells",
+    "platform": "Illumina NextSeq 500"
+  },
+  {
+    "id": "gse307261-gsm9220117-p381-b-7m-rna-filtered-feature-bc-matrix",
+    "authors": "Çakan E, Wang M, Dai Y, Mirouse A, Bouis D, Boeckers JM et al.",
+    "title": "CTLA-4 Blockade Shifts the B Cell Repertoire Towards Autoimmunity",
+    "gseAccession": "GSE307261",
+    "dataFileName": "GSM9220117_p381_B_7m_RNA_filtered_feature_bc_matrix.h5",
+    "organism": "Human",
+    "source": "B cells",
+    "platform": "Illumina NextSeq 500"
+  },
+  {
+    "id": "gse307261-gsm9220119-p381-b-d0-rna-filtered-feature-bc-matrix",
+    "authors": "Çakan E, Wang M, Dai Y, Mirouse A, Bouis D, Boeckers JM et al.",
+    "title": "CTLA-4 Blockade Shifts the B Cell Repertoire Towards Autoimmunity",
+    "gseAccession": "GSE307261",
+    "dataFileName": "GSM9220119_p381_B_d0_RNA_filtered_feature_bc_matrix.h5",
+    "organism": "Human",
+    "source": "B cells",
+    "platform": "Illumina NextSeq 500"
+  },
+  {
+    "id": "gse307261-gsm9220121-p381-t-6w-rna-filtered-feature-bc-matrix",
+    "authors": "Çakan E, Wang M, Dai Y, Mirouse A, Bouis D, Boeckers JM et al.",
+    "title": "CTLA-4 Blockade Shifts the B Cell Repertoire Towards Autoimmunity",
+    "gseAccession": "GSE307261",
+    "dataFileName": "GSM9220121_p381_T_6w_RNA_filtered_feature_bc_matrix.h5",
+    "organism": "Human",
+    "source": "T cells",
+    "platform": "Illumina NextSeq 500"
+  },
+  {
+    "id": "gse307261-gsm9220123-p381-t-7m-rna-filtered-feature-bc-matrix",
+    "authors": "Çakan E, Wang M, Dai Y, Mirouse A, Bouis D, Boeckers JM et al.",
+    "title": "CTLA-4 Blockade Shifts the B Cell Repertoire Towards Autoimmunity",
+    "gseAccession": "GSE307261",
+    "dataFileName": "GSM9220123_p381_T_7m_RNA_filtered_feature_bc_matrix.h5",
+    "organism": "Human",
+    "source": "T cells",
+    "platform": "Illumina NextSeq 500"
+  },
+  {
+    "id": "gse307261-gsm9220125-p381-t-d0-rna-filtered-feature-bc-matrix",
+    "authors": "Çakan E, Wang M, Dai Y, Mirouse A, Bouis D, Boeckers JM et al.",
+    "title": "CTLA-4 Blockade Shifts the B Cell Repertoire Towards Autoimmunity",
+    "gseAccession": "GSE307261",
+    "dataFileName": "GSM9220125_p381_T_d0_RNA_filtered_feature_bc_matrix.h5",
+    "organism": "Human",
+    "source": "T cells",
+    "platform": "Illumina NextSeq 500"
+  },
+  {
+    "id": "gse303309-gsm9123179-wt-filtered-feature-bc-matrix",
+    "authors": "Ohyagi M, Ito M, Iizuka-Koga M, Mise-Omata S, Yoshimura A",
+    "title": "Single-cell Transcriptomic Profile of Brain Immune Cells From Alzheimer’s Disease Mouse Models With or Without CD8+ T Cell–Specific Nr4a Deletion",
+    "gseAccession": "GSE303309",
+    "dataFileName": "GSM9123179_wt_filtered_feature_bc_matrix.h5",
+    "organism": "Mouse",
+    "source": "Brain",
+    "platform": "Illumina NovaSeq 6000"
+  },
+  {
+    "id": "gse303309-gsm9123180-cre-filtered-feature-bc-matrix",
+    "authors": "Ohyagi M, Ito M, Iizuka-Koga M, Mise-Omata S, Yoshimura A",
+    "title": "Single-cell Transcriptomic Profile of Brain Immune Cells From Alzheimer’s Disease Mouse Models With or Without CD8+ T Cell–Specific Nr4a Deletion",
+    "gseAccession": "GSE303309",
+    "dataFileName": "GSM9123180_cre_filtered_feature_bc_matrix.h5",
+    "organism": "Mouse",
+    "source": "Brain",
+    "platform": "Illumina NovaSeq 6000"
+  },
+  {
+    "id": "gse236565-gsm7553358-nrip1-wt-wora-1-rna-filtered-feature-bc-matrix",
+    "authors": "Chen X, Hwang H, Kong L, Ashenberg O, Creasey EA, Graham DB et al.",
+    "title": "Nuclear receptor coregulator NRIP1 R448G modulates T cell gut-homing and Teff:Treg balance to control intestinal inflammation [scRNA-seq]",
+    "gseAccession": "GSE236565",
+    "dataFileName": "GSM7553358_NRIP1_WT_woRA_1_rna_filtered_feature_bc_matrix.h5",
+    "organism": "Mouse",
+    "source": "spleen",
+    "platform": "Illumina NovaSeq 6000"
+  },
+  {
+    "id": "gse236565-gsm7553359-nrip1-wt-wora-2-rna-filtered-feature-bc-matrix",
+    "authors": "Chen X, Hwang H, Kong L, Ashenberg O, Creasey EA, Graham DB et al.",
+    "title": "Nuclear receptor coregulator NRIP1 R448G modulates T cell gut-homing and Teff:Treg balance to control intestinal inflammation [scRNA-seq]",
+    "gseAccession": "GSE236565",
+    "dataFileName": "GSM7553359_NRIP1_WT_woRA_2_rna_filtered_feature_bc_matrix.h5",
+    "organism": "Mouse",
+    "source": "spleen",
+    "platform": "Illumina NovaSeq 6000"
+  },
+  {
+    "id": "gse236565-gsm7553361-nrip1-wt-wora-3-rna-filtered-feature-bc-matrix",
+    "authors": "Chen X, Hwang H, Kong L, Ashenberg O, Creasey EA, Graham DB et al.",
+    "title": "Nuclear receptor coregulator NRIP1 R448G modulates T cell gut-homing and Teff:Treg balance to control intestinal inflammation [scRNA-seq]",
+    "gseAccession": "GSE236565",
+    "dataFileName": "GSM7553361_NRIP1_WT_woRA_3_rna_filtered_feature_bc_matrix.h5",
+    "organism": "Mouse",
+    "source": "spleen",
+    "platform": "Illumina NovaSeq 6000"
+  },
+  {
+    "id": "gse236565-gsm7553362-nrip1-ko-wora-1-rna-filtered-feature-bc-matrix",
+    "authors": "Chen X, Hwang H, Kong L, Ashenberg O, Creasey EA, Graham DB et al.",
+    "title": "Nuclear receptor coregulator NRIP1 R448G modulates T cell gut-homing and Teff:Treg balance to control intestinal inflammation [scRNA-seq]",
+    "gseAccession": "GSE236565",
+    "dataFileName": "GSM7553362_NRIP1_KO_woRA_1_rna_filtered_feature_bc_matrix.h5",
+    "organism": "Mouse",
+    "source": "spleen",
+    "platform": "Illumina NovaSeq 6000"
+  },
+  {
+    "id": "gse236565-gsm7553364-nrip1-ko-wora-2-rna-filtered-feature-bc-matrix",
+    "authors": "Chen X, Hwang H, Kong L, Ashenberg O, Creasey EA, Graham DB et al.",
+    "title": "Nuclear receptor coregulator NRIP1 R448G modulates T cell gut-homing and Teff:Treg balance to control intestinal inflammation [scRNA-seq]",
+    "gseAccession": "GSE236565",
+    "dataFileName": "GSM7553364_NRIP1_KO_woRA_2_rna_filtered_feature_bc_matrix.h5",
+    "organism": "Mouse",
+    "source": "spleen",
+    "platform": "Illumina NovaSeq 6000"
+  },
+  {
+    "id": "gse236565-gsm7553365-nrip1-ko-wora-3-rna-filtered-feature-bc-matrix",
+    "authors": "Chen X, Hwang H, Kong L, Ashenberg O, Creasey EA, Graham DB et al.",
+    "title": "Nuclear receptor coregulator NRIP1 R448G modulates T cell gut-homing and Teff:Treg balance to control intestinal inflammation [scRNA-seq]",
+    "gseAccession": "GSE236565",
+    "dataFileName": "GSM7553365_NRIP1_KO_woRA_3_rna_filtered_feature_bc_matrix.h5",
+    "organism": "Mouse",
+    "source": "spleen",
+    "platform": "Illumina NovaSeq 6000"
+  },
+  {
+    "id": "gse236565-gsm7553366-nrip1-wt-wra-1-rna-filtered-feature-bc-matrix",
+    "authors": "Chen X, Hwang H, Kong L, Ashenberg O, Creasey EA, Graham DB et al.",
+    "title": "Nuclear receptor coregulator NRIP1 R448G modulates T cell gut-homing and Teff:Treg balance to control intestinal inflammation [scRNA-seq]",
+    "gseAccession": "GSE236565",
+    "dataFileName": "GSM7553366_NRIP1_WT_wRA_1_rna_filtered_feature_bc_matrix.h5",
+    "organism": "Mouse",
+    "source": "spleen",
+    "platform": "Illumina NovaSeq 6000"
+  },
+  {
+    "id": "gse236565-gsm7553368-nrip1-wt-wra-2-rna-filtered-feature-bc-matrix",
+    "authors": "Chen X, Hwang H, Kong L, Ashenberg O, Creasey EA, Graham DB et al.",
+    "title": "Nuclear receptor coregulator NRIP1 R448G modulates T cell gut-homing and Teff:Treg balance to control intestinal inflammation [scRNA-seq]",
+    "gseAccession": "GSE236565",
+    "dataFileName": "GSM7553368_NRIP1_WT_wRA_2_rna_filtered_feature_bc_matrix.h5",
+    "organism": "Mouse",
+    "source": "spleen",
+    "platform": "Illumina NovaSeq 6000"
+  },
+  {
+    "id": "gse236565-gsm7553369-nrip1-wt-wra-3-rna-filtered-feature-bc-matrix",
+    "authors": "Chen X, Hwang H, Kong L, Ashenberg O, Creasey EA, Graham DB et al.",
+    "title": "Nuclear receptor coregulator NRIP1 R448G modulates T cell gut-homing and Teff:Treg balance to control intestinal inflammation [scRNA-seq]",
+    "gseAccession": "GSE236565",
+    "dataFileName": "GSM7553369_NRIP1_WT_wRA_3_rna_filtered_feature_bc_matrix.h5",
+    "organism": "Mouse",
+    "source": "spleen",
+    "platform": "Illumina NovaSeq 6000"
+  },
+  {
+    "id": "gse236565-gsm7553371-nrip1-ko-wra-1-rna-filtered-feature-bc-matrix",
+    "authors": "Chen X, Hwang H, Kong L, Ashenberg O, Creasey EA, Graham DB et al.",
+    "title": "Nuclear receptor coregulator NRIP1 R448G modulates T cell gut-homing and Teff:Treg balance to control intestinal inflammation [scRNA-seq]",
+    "gseAccession": "GSE236565",
+    "dataFileName": "GSM7553371_NRIP1_KO_wRA_1_rna_filtered_feature_bc_matrix.h5",
+    "organism": "Mouse",
+    "source": "spleen",
+    "platform": "Illumina NovaSeq 6000"
+  },
+  {
+    "id": "gse236565-gsm7553372-nrip1-ko-wra-2-rna-filtered-feature-bc-matrix",
+    "authors": "Chen X, Hwang H, Kong L, Ashenberg O, Creasey EA, Graham DB et al.",
+    "title": "Nuclear receptor coregulator NRIP1 R448G modulates T cell gut-homing and Teff:Treg balance to control intestinal inflammation [scRNA-seq]",
+    "gseAccession": "GSE236565",
+    "dataFileName": "GSM7553372_NRIP1_KO_wRA_2_rna_filtered_feature_bc_matrix.h5",
+    "organism": "Mouse",
+    "source": "spleen",
+    "platform": "Illumina NovaSeq 6000"
+  },
+  {
+    "id": "gse236565-gsm7553374-nrip1-ko-wra-3-rna-filtered-feature-bc-matrix",
+    "authors": "Chen X, Hwang H, Kong L, Ashenberg O, Creasey EA, Graham DB et al.",
+    "title": "Nuclear receptor coregulator NRIP1 R448G modulates T cell gut-homing and Teff:Treg balance to control intestinal inflammation [scRNA-seq]",
+    "gseAccession": "GSE236565",
+    "dataFileName": "GSM7553374_NRIP1_KO_wRA_3_rna_filtered_feature_bc_matrix.h5",
+    "organism": "Mouse",
+    "source": "spleen",
+    "platform": "Illumina NovaSeq 6000"
+  },
+  {
+    "id": "gse220913-gse220913-hl60-filtered-feature-bc-matrix",
+    "authors": "Wang G, Hu Y",
+    "title": "Transcriptional Signatures of Wild-type and F508del-CF HL-60 Cell Lines and their Differentiated Neutrophils",
+    "gseAccession": "GSE220913",
+    "dataFileName": "GSE220913_HL60_filtered_feature_bc_matrix.h5",
+    "organism": "Human",
+    "source": "HL60",
+    "platform": "NextSeq 2000"
+  },
+  {
+    "id": "gse280847-gsm8606548-wt1-filtered-feature-bc-matrix",
+    "authors": "Yan X, Xu W, Yao H, Wu Z, Ning J, Zhao S et al.",
+    "title": "scRNA-seq analysis of Cd45+ cells isolated from MC38 tumors inoculated in p53+/-, Lck-Cre and p53fl7KQ/-, Lck-Cre mice",
+    "gseAccession": "GSE280847",
+    "dataFileName": "GSM8606548_WT1_filtered_feature_bc_matrix.h5",
+    "organism": "Mouse",
+    "source": "Cd45+ cells",
+    "platform": "Illumina HiSeq 2500"
+  },
+  {
+    "id": "gse280847-gsm8606549-wt2-filtered-feature-bc-matrix",
+    "authors": "Yan X, Xu W, Yao H, Wu Z, Ning J, Zhao S et al.",
+    "title": "scRNA-seq analysis of Cd45+ cells isolated from MC38 tumors inoculated in p53+/-, Lck-Cre and p53fl7KQ/-, Lck-Cre mice",
+    "gseAccession": "GSE280847",
+    "dataFileName": "GSM8606549_WT2_filtered_feature_bc_matrix.h5",
+    "organism": "Mouse",
+    "source": "Cd45+ cells",
+    "platform": "Illumina HiSeq 2500"
+  },
+  {
+    "id": "gse280847-gsm8606550-7kq1-filtered-feature-bc-matrix",
+    "authors": "Yan X, Xu W, Yao H, Wu Z, Ning J, Zhao S et al.",
+    "title": "scRNA-seq analysis of Cd45+ cells isolated from MC38 tumors inoculated in p53+/-, Lck-Cre and p53fl7KQ/-, Lck-Cre mice",
+    "gseAccession": "GSE280847",
+    "dataFileName": "GSM8606550_7KQ1_filtered_feature_bc_matrix.h5",
+    "organism": "Mouse",
+    "source": "Cd45+ cells",
+    "platform": "Illumina HiSeq 2500"
+  },
+  {
+    "id": "gse280847-gsm8606551-7kq2-filtered-feature-bc-matrix",
+    "authors": "Yan X, Xu W, Yao H, Wu Z, Ning J, Zhao S et al.",
+    "title": "scRNA-seq analysis of Cd45+ cells isolated from MC38 tumors inoculated in p53+/-, Lck-Cre and p53fl7KQ/-, Lck-Cre mice",
+    "gseAccession": "GSE280847",
+    "dataFileName": "GSM8606551_7KQ2_filtered_feature_bc_matrix.h5",
+    "organism": "Mouse",
+    "source": "Cd45+ cells",
+    "platform": "Illumina HiSeq 2500"
+  },
+  {
+    "id": "gse277740-gsm8528660-filtered-feature-bc-matrix-d1",
+    "authors": "Nadine Bestard-Cuche",
+    "title": "Illumina SBS sequencing and DNBSEQ perform similarly for single-cell transcriptomics",
+    "gseAccession": "GSE277740",
+    "dataFileName": "GSM8528660_filtered_feature_bc_matrix_D1.h5",
+    "organism": "Mouse",
+    "source": "thalamus",
+    "platform": "DNBSEQ-T7"
+  },
+  {
+    "id": "gse277740-gsm8528661-filtered-feature-bc-matrix-d2",
+    "authors": "Nadine Bestard-Cuche",
+    "title": "Illumina SBS sequencing and DNBSEQ perform similarly for single-cell transcriptomics",
+    "gseAccession": "GSE277740",
+    "dataFileName": "GSM8528661_filtered_feature_bc_matrix_D2.h5",
+    "organism": "Mouse",
+    "source": "thalamus",
+    "platform": "DNBSEQ-T7"
+  },
+  {
+    "id": "gse277740-gsm8528662-filtered-feature-bc-matrix-d3",
+    "authors": "Nadine Bestard-Cuche",
+    "title": "Illumina SBS sequencing and DNBSEQ perform similarly for single-cell transcriptomics",
+    "gseAccession": "GSE277740",
+    "dataFileName": "GSM8528662_filtered_feature_bc_matrix_D3.h5",
+    "organism": "Mouse",
+    "source": "thalamus",
+    "platform": "DNBSEQ-T7"
+  },
+  {
+    "id": "gse277740-gsm8528663-filtered-feature-bc-matrix-d4",
+    "authors": "Nadine Bestard-Cuche",
+    "title": "Illumina SBS sequencing and DNBSEQ perform similarly for single-cell transcriptomics",
+    "gseAccession": "GSE277740",
+    "dataFileName": "GSM8528663_filtered_feature_bc_matrix_D4.h5",
+    "organism": "Mouse",
+    "source": "thalamus",
+    "platform": "DNBSEQ-T7"
+  },
+  {
+    "id": "gse277740-gsm8528664-filtered-feature-bc-matrix-d5",
+    "authors": "Nadine Bestard-Cuche",
+    "title": "Illumina SBS sequencing and DNBSEQ perform similarly for single-cell transcriptomics",
+    "gseAccession": "GSE277740",
+    "dataFileName": "GSM8528664_filtered_feature_bc_matrix_D5.h5",
+    "organism": "Mouse",
+    "source": "thalamus",
+    "platform": "DNBSEQ-T7"
+  },
+  {
+    "id": "gse277740-gsm8528665-filtered-feature-bc-matrix-d6",
+    "authors": "Nadine Bestard-Cuche",
+    "title": "Illumina SBS sequencing and DNBSEQ perform similarly for single-cell transcriptomics",
+    "gseAccession": "GSE277740",
+    "dataFileName": "GSM8528665_filtered_feature_bc_matrix_D6.h5",
+    "organism": "Mouse",
+    "source": "thalamus",
+    "platform": "DNBSEQ-T7"
+  },
+  {
+    "id": "gse277740-gsm8528666-filtered-feature-bc-matrix-d7",
+    "authors": "Nadine Bestard-Cuche",
+    "title": "Illumina SBS sequencing and DNBSEQ perform similarly for single-cell transcriptomics",
+    "gseAccession": "GSE277740",
+    "dataFileName": "GSM8528666_filtered_feature_bc_matrix_D7.h5",
+    "organism": "Mouse",
+    "source": "thalamus",
+    "platform": "DNBSEQ-T7"
+  },
+  {
+    "id": "gse277740-gsm8528667-filtered-feature-bc-matrix-d8",
+    "authors": "Nadine Bestard-Cuche",
+    "title": "Illumina SBS sequencing and DNBSEQ perform similarly for single-cell transcriptomics",
+    "gseAccession": "GSE277740",
+    "dataFileName": "GSM8528667_filtered_feature_bc_matrix_D8.h5",
+    "organism": "Mouse",
+    "source": "thalamus",
+    "platform": "DNBSEQ-T7"
+  },
+  {
+    "id": "gse212502-gsm6533784-ctrl1-filtered-feature-bc-matrix",
+    "authors": "zhao X, li Xk",
+    "title": "Gene expression profile at single cell level of brain organoid at day56 of ctrl and WS [scRNA-seq]",
+    "gseAccession": "GSE212502",
+    "dataFileName": "GSM6533784_CTRL1.filtered_feature_bc_matrix.h5",
+    "organism": "Human",
+    "source": "neuron",
+    "platform": "Illumina NextSeq 500"
+  },
+  {
+    "id": "gse212502-gsm6533785-ws1-filtered-feature-bc-matrix",
+    "authors": "zhao X, li Xk",
+    "title": "Gene expression profile at single cell level of brain organoid at day56 of ctrl and WS [scRNA-seq]",
+    "gseAccession": "GSE212502",
+    "dataFileName": "GSM6533785_WS1.filtered_feature_bc_matrix.h5",
+    "organism": "Human",
+    "source": "neuron",
+    "platform": "Illumina NextSeq 500"
+  },
+  {
+    "id": "gse227719-gsm7106051-kpy-filtered-feature-bc-matrix",
+    "authors": "Li J, Kim CF",
+    "title": "Organoid modeling reveals the tumorigenic potential of the alveolar progenitor cell state",
+    "gseAccession": "GSE227719",
+    "dataFileName": "GSM7106051_KPY_filtered_feature_bc_matrix.h5",
+    "organism": "Mouse",
+    "source": "lung tumor organoids",
+    "platform": "Illumina NovaSeq 6000"
+  },
+  {
+    "id": "gse227719-gsm7106053-yfp-filtered-feature-bc-matrix",
+    "authors": "Li J, Kim CF",
+    "title": "Organoid modeling reveals the tumorigenic potential of the alveolar progenitor cell state",
+    "gseAccession": "GSE227719",
+    "dataFileName": "GSM7106053_YFP_filtered_feature_bc_matrix.h5",
+    "organism": "Mouse",
+    "source": "lung tumor organoids",
+    "platform": "Illumina NovaSeq 6000"
+  },
+  {
+    "id": "gse306676-gsm9205811-si-ga-g7-filtered-feature-bc-matrix",
+    "authors": "Gautier O, Blum JA, Nguyen TP, Klemm S, Yamakawa M, Sinnott-Armstrong N et al.",
+    "title": "An emergent disease-associated motor neuron state precedes cell death in a mouse model of ALS [scRNA-Seq]",
+    "gseAccession": "GSE306676",
+    "dataFileName": "GSM9205811_SI-GA-G7_filtered_feature_bc_matrix.h5",
+    "organism": "Mouse",
+    "source": "Spinal cord",
+    "platform": "Illumina NovaSeq 6000"
+  },
+  {
+    "id": "gse306676-gsm9205812-si-ga-f7-filtered-feature-bc-matrix",
+    "authors": "Gautier O, Blum JA, Nguyen TP, Klemm S, Yamakawa M, Sinnott-Armstrong N et al.",
+    "title": "An emergent disease-associated motor neuron state precedes cell death in a mouse model of ALS [scRNA-Seq]",
+    "gseAccession": "GSE306676",
+    "dataFileName": "GSM9205812_SI-GA-F7_filtered_feature_bc_matrix.h5",
+    "organism": "Mouse",
+    "source": "Spinal cord",
+    "platform": "Illumina NovaSeq 6000"
+  },
+  {
+    "id": "gse306676-gsm9205813-3nextseq-run-10-17-endpoint-mixed-filtered-feature-bc-matrix",
+    "authors": "Gautier O, Blum JA, Nguyen TP, Klemm S, Yamakawa M, Sinnott-Armstrong N et al.",
+    "title": "An emergent disease-associated motor neuron state precedes cell death in a mouse model of ALS [scRNA-Seq]",
+    "gseAccession": "GSE306676",
+    "dataFileName": "GSM9205813_3nextseq_run_10_17_endpoint_mixed_filtered_feature_bc_matrix.h5",
+    "organism": "Mouse",
+    "source": "Spinal cord",
+    "platform": "NextSeq 550"
+  },
+  {
+    "id": "gse306676-gsm9205814-3nextseq-run-11-4-endpoint-male-filtered-feature-bc-matrix",
+    "authors": "Gautier O, Blum JA, Nguyen TP, Klemm S, Yamakawa M, Sinnott-Armstrong N et al.",
+    "title": "An emergent disease-associated motor neuron state precedes cell death in a mouse model of ALS [scRNA-Seq]",
+    "gseAccession": "GSE306676",
+    "dataFileName": "GSM9205814_3nextseq_run_11_4_endpoint_male_filtered_feature_bc_matrix.h5",
+    "organism": "Mouse",
+    "source": "Spinal cord",
+    "platform": "NextSeq 550"
+  },
+  {
+    "id": "gse306676-gsm9205815-3nextseq-run-11-8-endpoint-female-filtered-feature-bc-matrix",
+    "authors": "Gautier O, Blum JA, Nguyen TP, Klemm S, Yamakawa M, Sinnott-Armstrong N et al.",
+    "title": "An emergent disease-associated motor neuron state precedes cell death in a mouse model of ALS [scRNA-Seq]",
+    "gseAccession": "GSE306676",
+    "dataFileName": "GSM9205815_3nextseq_run_11_8_endpoint_female_filtered_feature_bc_matrix.h5",
+    "organism": "Mouse",
+    "source": "Spinal cord",
+    "platform": "NextSeq 550"
+  },
+  {
+    "id": "gse306676-gsm9205816-3nextseq-run-11-11-endpoint-female-filtered-feature-bc-matrix",
+    "authors": "Gautier O, Blum JA, Nguyen TP, Klemm S, Yamakawa M, Sinnott-Armstrong N et al.",
+    "title": "An emergent disease-associated motor neuron state precedes cell death in a mouse model of ALS [scRNA-Seq]",
+    "gseAccession": "GSE306676",
+    "dataFileName": "GSM9205816_3nextseq_run_11_11_endpoint_female_filtered_feature_bc_matrix.h5",
+    "organism": "Mouse",
+    "source": "Spinal cord",
+    "platform": "NextSeq 550"
+  },
+  {
+    "id": "gse306676-gsm9205817-si-ga-h7-filtered-feature-bc-matrix",
+    "authors": "Gautier O, Blum JA, Nguyen TP, Klemm S, Yamakawa M, Sinnott-Armstrong N et al.",
+    "title": "An emergent disease-associated motor neuron state precedes cell death in a mouse model of ALS [scRNA-Seq]",
+    "gseAccession": "GSE306676",
+    "dataFileName": "GSM9205817_SI-GA-H7_filtered_feature_bc_matrix.h5",
+    "organism": "Mouse",
+    "source": "Spinal cord",
+    "platform": "Illumina NovaSeq 6000"
+  },
+  {
+    "id": "gse306676-gsm9205818-si-ga-g8-filtered-feature-bc-matrix",
+    "authors": "Gautier O, Blum JA, Nguyen TP, Klemm S, Yamakawa M, Sinnott-Armstrong N et al.",
+    "title": "An emergent disease-associated motor neuron state precedes cell death in a mouse model of ALS [scRNA-Seq]",
+    "gseAccession": "GSE306676",
+    "dataFileName": "GSM9205818_SI-GA-G8_filtered_feature_bc_matrix.h5",
+    "organism": "Mouse",
+    "source": "Spinal cord",
+    "platform": "Illumina NovaSeq 6000"
+  },
+  {
+    "id": "gse306676-gsm9205819-3nextseq-run-10-30-midpoint-male-filtered-feature-bc-matrix",
+    "authors": "Gautier O, Blum JA, Nguyen TP, Klemm S, Yamakawa M, Sinnott-Armstrong N et al.",
+    "title": "An emergent disease-associated motor neuron state precedes cell death in a mouse model of ALS [scRNA-Seq]",
+    "gseAccession": "GSE306676",
+    "dataFileName": "GSM9205819_3nextseq_run_10_30_midpoint_male_filtered_feature_bc_matrix.h5",
+    "organism": "Mouse",
+    "source": "Spinal cord",
+    "platform": "NextSeq 550"
+  },
+  {
+    "id": "gse306676-gsm9205820-3nextseq-run-11-1-midpoint-female-sample1-filtered-feature-bc-matrix",
+    "authors": "Gautier O, Blum JA, Nguyen TP, Klemm S, Yamakawa M, Sinnott-Armstrong N et al.",
+    "title": "An emergent disease-associated motor neuron state precedes cell death in a mouse model of ALS [scRNA-Seq]",
+    "gseAccession": "GSE306676",
+    "dataFileName": "GSM9205820_3nextseq_run_11_1_midpoint_female_sample1_filtered_feature_bc_matrix.h5",
+    "organism": "Mouse",
+    "source": "Spinal cord",
+    "platform": "NextSeq 550"
+  },
+  {
+    "id": "gse306676-gsm9205821-3nextseq-run-11-1-midpoint-female-sample2-filtered-feature-bc-matrix",
+    "authors": "Gautier O, Blum JA, Nguyen TP, Klemm S, Yamakawa M, Sinnott-Armstrong N et al.",
+    "title": "An emergent disease-associated motor neuron state precedes cell death in a mouse model of ALS [scRNA-Seq]",
+    "gseAccession": "GSE306676",
+    "dataFileName": "GSM9205821_3nextseq_run_11_1_midpoint_female_sample2_filtered_feature_bc_matrix.h5",
+    "organism": "Mouse",
+    "source": "Spinal cord",
+    "platform": "NextSeq 550"
+  },
+  {
+    "id": "gse306676-gsm9205822-3nextseq-run-11-1-midpoint-female-sample3-filtered-feature-bc-matrix",
+    "authors": "Gautier O, Blum JA, Nguyen TP, Klemm S, Yamakawa M, Sinnott-Armstrong N et al.",
+    "title": "An emergent disease-associated motor neuron state precedes cell death in a mouse model of ALS [scRNA-Seq]",
+    "gseAccession": "GSE306676",
+    "dataFileName": "GSM9205822_3nextseq_run_11_1_midpoint_female_sample3_filtered_feature_bc_matrix.h5",
+    "organism": "Mouse",
+    "source": "Spinal cord",
+    "platform": "NextSeq 550"
+  },
+  {
+    "id": "gse306676-gsm9205823-sod1-mn-nuclei-2-20-filtered-feature-bc-matrix",
+    "authors": "Gautier O, Blum JA, Nguyen TP, Klemm S, Yamakawa M, Sinnott-Armstrong N et al.",
+    "title": "An emergent disease-associated motor neuron state precedes cell death in a mouse model of ALS [scRNA-Seq]",
+    "gseAccession": "GSE306676",
+    "dataFileName": "GSM9205823_sod1_mn_nuclei_2_20_filtered_feature_bc_matrix.h5",
+    "organism": "Mouse",
+    "source": "Spinal cord",
+    "platform": "Illumina NovaSeq 6000"
+  },
+  {
+    "id": "gse306676-gsm9205824-sod1-mn-nuclei-3-5-filtered-feature-bc-matrix",
+    "authors": "Gautier O, Blum JA, Nguyen TP, Klemm S, Yamakawa M, Sinnott-Armstrong N et al.",
+    "title": "An emergent disease-associated motor neuron state precedes cell death in a mouse model of ALS [scRNA-Seq]",
+    "gseAccession": "GSE306676",
+    "dataFileName": "GSM9205824_sod1_mn_nuclei_3_5_filtered_feature_bc_matrix.h5",
+    "organism": "Mouse",
+    "source": "Spinal cord",
+    "platform": "Illumina NovaSeq 6000"
+  },
+  {
+    "id": "gse306676-gsm9205825-sod1-mn-nuclei-1-15-filtered-feature-bc-matrix",
+    "authors": "Gautier O, Blum JA, Nguyen TP, Klemm S, Yamakawa M, Sinnott-Armstrong N et al.",
+    "title": "An emergent disease-associated motor neuron state precedes cell death in a mouse model of ALS [scRNA-Seq]",
+    "gseAccession": "GSE306676",
+    "dataFileName": "GSM9205825_sod1_mn_nuclei_1_15_filtered_feature_bc_matrix.h5",
+    "organism": "Mouse",
+    "source": "Spinal cord",
+    "platform": "Illumina NovaSeq 6000"
+  },
+  {
+    "id": "gse306676-gsm9205826-sod1-mn-nuclei-1-16b-filtered-feature-bc-matrix",
+    "authors": "Gautier O, Blum JA, Nguyen TP, Klemm S, Yamakawa M, Sinnott-Armstrong N et al.",
+    "title": "An emergent disease-associated motor neuron state precedes cell death in a mouse model of ALS [scRNA-Seq]",
+    "gseAccession": "GSE306676",
+    "dataFileName": "GSM9205826_sod1_mn_nuclei_1_16b_filtered_feature_bc_matrix.h5",
+    "organism": "Mouse",
+    "source": "Spinal cord",
+    "platform": "Illumina NovaSeq 6000"
+  },
+  {
+    "id": "gse306676-gsm9205827-sod1-mn-nuclei-2-1-filtered-feature-bc-matrix",
+    "authors": "Gautier O, Blum JA, Nguyen TP, Klemm S, Yamakawa M, Sinnott-Armstrong N et al.",
+    "title": "An emergent disease-associated motor neuron state precedes cell death in a mouse model of ALS [scRNA-Seq]",
+    "gseAccession": "GSE306676",
+    "dataFileName": "GSM9205827_sod1_mn_nuclei_2_1_filtered_feature_bc_matrix.h5",
+    "organism": "Mouse",
+    "source": "Spinal cord",
+    "platform": "Illumina NovaSeq 6000"
+  },
+  {
+    "id": "gse306676-gsm9205828-sod1-mn-nuclei-2-9-filtered-feature-bc-matrix",
+    "authors": "Gautier O, Blum JA, Nguyen TP, Klemm S, Yamakawa M, Sinnott-Armstrong N et al.",
+    "title": "An emergent disease-associated motor neuron state precedes cell death in a mouse model of ALS [scRNA-Seq]",
+    "gseAccession": "GSE306676",
+    "dataFileName": "GSM9205828_sod1_mn_nuclei_2_9_filtered_feature_bc_matrix.h5",
+    "organism": "Mouse",
+    "source": "Spinal cord",
+    "platform": "Illumina NovaSeq 6000"
+  },
+  {
+    "id": "gse283397-gse283397-hd-citemulti-feature-bc-matrix",
+    "authors": "Mu R, Hornick KM, Redekar N, Wiestner A",
+    "title": "Activation and exhaustion of CD8 T cells in patients with chronic lymphocytic leukemia treated with ibrutinib and pembrolizumab [scRNA-seq, scTCR-seq and bulk RNA-seq]",
+    "gseAccession": "GSE283397",
+    "dataFileName": "GSE283397_HD_citemulti_feature_bc_matrix.h5",
+    "organism": "Human",
+    "source": "Peripheral blood",
+    "platform": "Illumina NovaSeq 6000"
+  },
+  {
+    "id": "gse283397-gse283397-ifp-07-citemulti-feature-bc-matrix",
+    "authors": "Mu R, Hornick KM, Redekar N, Wiestner A",
+    "title": "Activation and exhaustion of CD8 T cells in patients with chronic lymphocytic leukemia treated with ibrutinib and pembrolizumab [scRNA-seq, scTCR-seq and bulk RNA-seq]",
+    "gseAccession": "GSE283397",
+    "dataFileName": "GSE283397_IFP-07_citemulti_feature_bc_matrix.h5",
+    "organism": "Human",
+    "source": "Peripheral blood",
+    "platform": "Illumina NovaSeq 6000"
+  },
+  {
+    "id": "gse283397-gse283397-ifp-09-citemulti-feature-bc-matrix",
+    "authors": "Mu R, Hornick KM, Redekar N, Wiestner A",
+    "title": "Activation and exhaustion of CD8 T cells in patients with chronic lymphocytic leukemia treated with ibrutinib and pembrolizumab [scRNA-seq, scTCR-seq and bulk RNA-seq]",
+    "gseAccession": "GSE283397",
+    "dataFileName": "GSE283397_IFP-09_citemulti_feature_bc_matrix.h5",
+    "organism": "Human",
+    "source": "Peripheral blood",
+    "platform": "Illumina NovaSeq 6000"
+  },
+  {
+    "id": "gse283397-gse283397-ifp-10-citemulti-feature-bc-matrix",
+    "authors": "Mu R, Hornick KM, Redekar N, Wiestner A",
+    "title": "Activation and exhaustion of CD8 T cells in patients with chronic lymphocytic leukemia treated with ibrutinib and pembrolizumab [scRNA-seq, scTCR-seq and bulk RNA-seq]",
+    "gseAccession": "GSE283397",
+    "dataFileName": "GSE283397_IFP-10_citemulti_feature_bc_matrix.h5",
+    "organism": "Human",
+    "source": "Peripheral blood",
+    "platform": "Illumina NovaSeq 6000"
+  },
+  {
+    "id": "gse283397-gse283397-ifp-14-citemulti-feature-bc-matrix",
+    "authors": "Mu R, Hornick KM, Redekar N, Wiestner A",
+    "title": "Activation and exhaustion of CD8 T cells in patients with chronic lymphocytic leukemia treated with ibrutinib and pembrolizumab [scRNA-seq, scTCR-seq and bulk RNA-seq]",
+    "gseAccession": "GSE283397",
+    "dataFileName": "GSE283397_IFP-14_citemulti_feature_bc_matrix.h5",
+    "organism": "Human",
+    "source": "Peripheral blood",
+    "platform": "Illumina NovaSeq 6000"
+  },
+  {
+    "id": "gse306567-gse306567-wt-d3-filtered-feature-bc-matrix",
+    "authors": "Lobato-Moreno S, Prummel K, Sánchez-Gaya V, Rada-Iglesias Á",
+    "title": "Dual role of ZIC2 during neural induction: from pioneer transcription factor to enhancer activator [Multiome]",
+    "gseAccession": "GSE306567",
+    "dataFileName": "GSE306567_WT_D3_filtered_feature_bc_matrix.h5",
+    "organism": "Mouse",
+    "source": "E14Tg2a D3 cells",
+    "platform": "NextSeq 2000"
+  },
+  {
+    "id": "gse306567-gse306567-wt-d6-filtered-feature-bc-matrix",
+    "authors": "Lobato-Moreno S, Prummel K, Sánchez-Gaya V, Rada-Iglesias Á",
+    "title": "Dual role of ZIC2 during neural induction: from pioneer transcription factor to enhancer activator [Multiome]",
+    "gseAccession": "GSE306567",
+    "dataFileName": "GSE306567_WT_D6_filtered_feature_bc_matrix.h5",
+    "organism": "Mouse",
+    "source": "E14Tg2a D6 cells",
+    "platform": "NextSeq 2000"
+  },
+  {
+    "id": "gse306567-gse306567-z2ko-d3-filtered-feature-bc-matrix",
+    "authors": "Lobato-Moreno S, Prummel K, Sánchez-Gaya V, Rada-Iglesias Á",
+    "title": "Dual role of ZIC2 during neural induction: from pioneer transcription factor to enhancer activator [Multiome]",
+    "gseAccession": "GSE306567",
+    "dataFileName": "GSE306567_Z2KO_D3_filtered_feature_bc_matrix.h5",
+    "organism": "Mouse",
+    "source": "Z2KO E14Tg2a D3 cells",
+    "platform": "NextSeq 2000"
+  },
+  {
+    "id": "gse306567-gse306567-z2ko-d6-filtered-feature-bc-matrix",
+    "authors": "Lobato-Moreno S, Prummel K, Sánchez-Gaya V, Rada-Iglesias Á",
+    "title": "Dual role of ZIC2 during neural induction: from pioneer transcription factor to enhancer activator [Multiome]",
+    "gseAccession": "GSE306567",
+    "dataFileName": "GSE306567_Z2KO_D6_filtered_feature_bc_matrix.h5",
+    "organism": "Mouse",
+    "source": "Z2KO E14Tg2a D6 cells",
+    "platform": "NextSeq 2000"
+  }
+]
