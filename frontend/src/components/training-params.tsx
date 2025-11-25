@@ -14,7 +14,7 @@ type TrainingParamsProps = {
 
 export function TrainingParams({ onSubmit, disabled }: TrainingParamsProps) {
   const [agentParams, setAgentParams] = useState<AgentParams>({
-    layer: 'X',
+    layer: 'counts',
     recon: 1.0,
     irecon: 0.0,
     beta: 1.0,
@@ -34,6 +34,10 @@ export function TrainingParams({ onSubmit, disabled }: TrainingParamsProps) {
     test_size: 0.15,
     batch_size: 128,
     random_seed: 42,
+    encoder_type: 'mlp',
+    encoder_num_layers: 2,
+    encoder_n_heads: 4,
+    encoder_d_model: undefined,
   });
 
   const [trainParams, setTrainParams] = useState<TrainParams>({
@@ -107,10 +111,76 @@ export function TrainingParams({ onSubmit, disabled }: TrainingParamsProps) {
                 value={agentParams.layer}
                 onChange={(e) => setAgentParams({...agentParams, layer: e.target.value})}
                 className="w-full px-3 py-2 rounded-lg border text-sm"
-                placeholder="X or counts"
+                placeholder="counts or X"
               />
-              <p className="text-xs text-muted mt-1">AnnData layer (X for .X)</p>
+              <p className="text-xs text-muted mt-1">AnnData layer (counts or X for .X)</p>
             </div>
+          </div>
+        </div>
+
+        {/* Encoder Architecture */}
+        <div className="pb-6 border-t pt-6">
+          <h3 className="font-semibold mb-4">Encoder Architecture</h3>
+          
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <div>
+              <label className="block text-sm font-medium mb-2 text-muted">Encoder Type</label>
+              <select
+                value={agentParams.encoder_type}
+                onChange={(e) => setAgentParams({...agentParams, encoder_type: e.target.value as 'mlp' | 'mlp_residual' | 'linear' | 'transformer'})}
+                className="w-full px-3 py-2 rounded-lg border text-sm"
+              >
+                <option value="mlp">MLP (Multi-Layer Perceptron)</option>
+                <option value="mlp_residual">MLP with Residual Connections</option>
+                <option value="linear">Linear</option>
+                <option value="transformer">Transformer</option>
+              </select>
+              <p className="text-xs text-muted mt-1">Neural network architecture for encoder</p>
+            </div>
+
+            <div>
+              <label className="block text-sm font-medium mb-2 text-muted">Number of Encoder Layers</label>
+              <input
+                type="number"
+                value={agentParams.encoder_num_layers}
+                onChange={(e) => setAgentParams({...agentParams, encoder_num_layers: Number(e.target.value)})}
+                className="w-full px-3 py-2 rounded-lg border text-sm"
+                min={1}
+                max={10}
+              />
+              <p className="text-xs text-muted mt-1">Depth of encoder network</p>
+            </div>
+
+            {agentParams.encoder_type === 'transformer' && (
+              <>
+                <div>
+                  <label className="block text-sm font-medium mb-2 text-muted">Attention Heads</label>
+                  <input
+                    type="number"
+                    value={agentParams.encoder_n_heads}
+                    onChange={(e) => setAgentParams({...agentParams, encoder_n_heads: Number(e.target.value)})}
+                    className="w-full px-3 py-2 rounded-lg border text-sm"
+                    min={1}
+                    max={16}
+                  />
+                  <p className="text-xs text-muted mt-1">Number of attention heads (transformer only)</p>
+                </div>
+
+                <div>
+                  <label className="block text-sm font-medium mb-2 text-muted">Transformer Model Dimension</label>
+                  <input
+                    type="number"
+                    value={agentParams.encoder_d_model || ''}
+                    onChange={(e) => setAgentParams({...agentParams, encoder_d_model: e.target.value ? Number(e.target.value) : undefined})}
+                    className="w-full px-3 py-2 rounded-lg border text-sm"
+                    placeholder="Auto (= hidden_dim)"
+                    min={32}
+                    max={1024}
+                  />
+                  <p className="text-xs text-muted mt-1">Leave empty to use hidden_dim</p>
+                </div>
+              </>
+            )}
           </div>
         </div>
 
