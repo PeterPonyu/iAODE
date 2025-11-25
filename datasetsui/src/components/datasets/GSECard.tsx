@@ -1,7 +1,7 @@
 import Link from 'next/link';
 import { GSEGroup } from '@/types/datasets';
 import { Badge } from '@/components/ui/Badge';
-import { formatNumber, formatFileSize, getCategoryInfo } from '@/lib/formatters';
+import { formatNumber, formatFileSize } from '@/lib/formatters';
 import { Database, Microscope, Dna, FileText, Activity } from 'lucide-react';
 
 interface GSECardProps {
@@ -18,7 +18,6 @@ export default function GSECard({ gseGroup, dataType }: GSECardProps) {
     totalCells,
     totalFeatures, // or totalPeaks/totalGenes
     totalSize,
-    organism,
   } = gseGroup;
 
   // Get category distribution (sorted by category order)
@@ -57,9 +56,9 @@ export default function GSECard({ gseGroup, dataType }: GSECardProps) {
           </h3>
           <div className="flex flex-wrap gap-1.5 justify-end">
             {sortedCategories.map(([cat, count]) => (
-              <Badge key={cat} variant={cat as any} showLabel>
-                {count}
-              </Badge>
+            <Badge key={cat} variant={cat as 'tiny' | 'small' | 'medium' | 'large'} showLabel>
+              {count}
+            </Badge>
             ))}
           </div>
         </div>

@@ -21,7 +21,7 @@ export default function PlatformDistribution({ stats }: PlatformDistributionProp
     .sort((a, b) => b.count - a.count)
     .slice(0, 10);
 
-  const CustomTooltip = ({ active, payload }: any) => {
+  const CustomTooltip = ({ active, payload }: { active?: boolean; payload?: Array<{ payload: { fullPlatform: string; count: number; percentage: string } }> }) => {
     if (active && payload && payload.length) {
       const data = payload[0].payload;
       return (

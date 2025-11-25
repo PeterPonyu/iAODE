@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useMemo, useEffect } from 'react';
+import { useState, useMemo, useEffect, Suspense } from 'react';
 import { getAllGSEGroups } from '@/lib/dataLoader';
 import { calculateStats } from '@/lib/statsCalculator';
 import StatisticsOverview from '@/components/statistics/StatisticsOverview';
@@ -14,7 +14,7 @@ import { useSearchParams, useRouter } from 'next/navigation';
 import { Activity, Dna } from 'lucide-react';
 import { cn } from '@/lib/utils';
 
-export default function StatisticsPage() {
+function StatisticsContent() {
   const searchParams = useSearchParams();
   const router = useRouter();
   const initialType = (searchParams.get('type') as 'ATAC' | 'RNA') || 'ATAC';
@@ -27,14 +27,14 @@ export default function StatisticsPage() {
     if (urlType && urlType !== dataType) {
       setDataType(urlType);
     }
-  }, [searchParams]);
+  }, [searchParams, dataType]);
 
   // Load data for both types
   const gseGroupsATAC = useMemo(() => getAllGSEGroups('ATAC'), []);
   const gseGroupsRNA = useMemo(() => getAllGSEGroups('RNA'), []);
 
-  const statsATAC = useMemo(() => calculateStats(gseGroupsATAC, 'ATAC'), [gseGroupsATAC]);
-  const statsRNA = useMemo(() => calculateStats(gseGroupsRNA, 'RNA'), [gseGroupsRNA]);
+  const statsATAC = useMemo(() => calculateStats(gseGroupsATAC), [gseGroupsATAC]);
+  const statsRNA = useMemo(() => calculateStats(gseGroupsRNA), [gseGroupsRNA]);
 
   // Current data based on selected type
   const currentGSEGroups = dataType === 'ATAC' ? gseGroupsATAC : gseGroupsRNA;
@@ -158,5 +158,13 @@ export default function StatisticsPage() {
         <FeaturesDistribution gseGroups={currentGSEGroups} dataType={dataType} />
       </div>
     </div>
+  );
+}
+
+export default function StatisticsPage() {
+  return (
+    <Suspense fallback={<div className="p-8 text-center">Loading statistics...</div>}>
+      <StatisticsContent />
+    </Suspense>
   );
 }

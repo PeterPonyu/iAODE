@@ -22,7 +22,7 @@ export default function FeaturesDistribution({ gseGroups, dataType }: FeaturesDi
   const featureLabelCap = dataType === 'ATAC' ? 'Peak' : 'Gene';
   const barColor = dataType === 'ATAC' ? '#06B6D4' : '#A855F7'; // cyan-500 for ATAC, purple-500 for RNA
 
-  const CustomTooltip = ({ active, payload }: any) => {
+  const CustomTooltip = ({ active, payload }: { active?: boolean; payload?: Array<{ payload: { min: number; max: number; count: number } }> }) => {
     if (active && payload && payload.length) {
       const data = payload[0].payload;
       return (

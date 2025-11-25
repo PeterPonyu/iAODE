@@ -9,7 +9,7 @@ export default function NotFound() {
         Dataset Not Found
       </h1>
       <p className="text-[rgb(var(--muted-foreground))] mb-6 text-center max-w-md transition-colors">
-        The GSE accession you're looking for doesn't exist in our database.
+        The GSE accession you&apos;re looking for doesn&apos;t exist in our database.
       </p>
       <Link href="/datasets" className="btn-primary inline-flex items-center gap-2">
         <ArrowLeft className="h-4 w-4" />

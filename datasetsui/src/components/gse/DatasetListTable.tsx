@@ -82,9 +82,9 @@ export default function DatasetListTable({
                 </div>
               </td>
               <td className="py-4 pr-4">
-                <Badge variant={dataset.category as any}>
-                  {dataset.category}
-                </Badge>
+              <Badge variant={dataset.category as 'tiny' | 'small' | 'medium' | 'large'}>
+                {dataset.category}
+              </Badge>
               </td>
               <td className="py-4 pr-4 text-right text-sm text-[rgb(var(--foreground))] transition-colors">
                 {formatNumber(dataset.nCells)}

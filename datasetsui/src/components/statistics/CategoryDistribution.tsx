@@ -23,7 +23,7 @@ const CATEGORY_LABELS = {
 
 export default function CategoryDistribution({ stats }: CategoryDistributionProps) {
   const data = Object.entries(stats.categoryDistribution)
-    .filter(([_, count]) => count > 0)
+    .filter(([, count]) => count > 0)
     .map(([category, count]) => ({
       name: CATEGORY_LABELS[category as keyof typeof CATEGORY_LABELS] || category,
       value: count,
@@ -32,7 +32,7 @@ export default function CategoryDistribution({ stats }: CategoryDistributionProp
     }))
     .sort((a, b) => b.value - a.value);
 
-  const CustomTooltip = ({ active, payload }: any) => {
+  const CustomTooltip = ({ active, payload }: { active?: boolean; payload?: Array<{ payload: { name: string; value: number; percentage: string } }> }) => {
     if (active && payload && payload.length) {
       const data = payload[0].payload;
       return (
@@ -49,10 +49,11 @@ export default function CategoryDistribution({ stats }: CategoryDistributionProp
     return null;
   };
 
-  const CustomLegend = ({ payload }: any) => {
+  const CustomLegend = ({ payload }: { payload?: Array<{ value: string; color: string; payload: { value: number } }> }) => {
+    if (!payload) return null;
     return (
       <ul className="flex flex-wrap justify-center gap-4 mt-4">
-        {payload.map((entry: any, index: number) => (
+        {payload.map((entry, index: number) => (
           <li key={`legend-${index}`} className="flex items-center gap-2">
             <span 
               className="w-3 h-3 rounded-sm" 

@@ -1,7 +1,7 @@
 import { GSEGroup, DatasetStats } from '@/types/datasets';
 import { parseNumeric } from './formatters';
 
-export function calculateStats(gseGroups: GSEGroup[], dataType: 'ATAC' | 'RNA'): DatasetStats {
+export function calculateStats(gseGroups: GSEGroup[]): DatasetStats {
   const allDatasets = gseGroups.flatMap(g => g.datasets);
   
   // Category distribution

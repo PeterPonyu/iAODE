@@ -1,4 +1,4 @@
-import { Dataset, DatasetBrief, MergedDataset, GSEGroup } from '@/types/datasets';
+import { Dataset, MergedDataset, GSEGroup } from '@/types/datasets';
 import { extractGsmId, generateDownloadUrl } from './geoUtils';
 import { parseNumeric } from './formatters';
 
@@ -7,6 +7,16 @@ import ATACdatasetsJson from '../data/ATACdatasets.json';
 import RNAdatasetsJson from '../data/RNAdatasets.json';
 import ATAC_h5_analysisJson from '../data/ATAC_h5_analysis.json';
 import RNA_h5_analysisJson from '../data/RNA_h5_analysis.json';
+
+interface H5AnalysisData {
+  gseAccession: string;
+  dataFileName: string;
+  dataFileSize: number;
+  nCells: number;
+  nPeaks?: number;
+  nGenes?: number;
+  category: 'tiny' | 'small' | 'medium' | 'large' | 'error';
+}
 
 // Separate caches for each data type
 let cachedMergedDatasetsATAC: MergedDataset[] | null = null;
@@ -26,10 +36,10 @@ export function loadDatasets(dataType: 'ATAC' | 'RNA'): Dataset[] {
 /**
  * Load h5 analysis data from JSON file based on data type
  */
-export function loadH5Analysis(dataType: 'ATAC' | 'RNA'): any[] {
+export function loadH5Analysis(dataType: 'ATAC' | 'RNA'): H5AnalysisData[] {
   return dataType === 'ATAC'
-    ? (ATAC_h5_analysisJson as any[])
-    : (RNA_h5_analysisJson as any[]);
+    ? (ATAC_h5_analysisJson as H5AnalysisData[])
+    : (RNA_h5_analysisJson as H5AnalysisData[]);
 }
 
 /**
@@ -38,7 +48,7 @@ export function loadH5Analysis(dataType: 'ATAC' | 'RNA'): any[] {
  */
 export function mergeDatasets(
   datasets: Dataset[],
-  briefData: any[],
+  briefData: H5AnalysisData[],
   dataType: 'ATAC' | 'RNA'
 ): MergedDataset[] {
   const briefMap = new Map(

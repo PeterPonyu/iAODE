@@ -27,7 +27,7 @@ export default function OrganismDistribution({ stats }: OrganismDistributionProp
     }))
     .sort((a, b) => b.count - a.count);
 
-  const CustomTooltip = ({ active, payload }: any) => {
+  const CustomTooltip = ({ active, payload }: { active?: boolean; payload?: Array<{ payload: { organism: string; count: number; percentage: string } }> }) => {
     if (active && payload && payload.length) {
       const data = payload[0].payload;
       return (

@@ -3,6 +3,7 @@
 
 import { getAllGSEGroups } from '@/lib/dataLoader';
 import { Activity, Dna } from 'lucide-react';
+import Link from 'next/link';
 
 export default function HomePage() {
   const gseGroupsATAC = getAllGSEGroups('ATAC');
@@ -86,9 +87,9 @@ export default function HomePage() {
           </section>
 
           {/* scATAC CTA */}
-          <a href="/datasets?type=ATAC" className="btn-atac w-full block text-center">
+          <Link href="/datasets?type=ATAC" className="btn-atac w-full block text-center">
             Browse scATAC Datasets →
-          </a>
+          </Link>
         </div>
 
         {/* scRNA Section */}
@@ -147,9 +148,9 @@ export default function HomePage() {
           </section>
 
           {/* scRNA CTA */}
-          <a href="/datasets?type=RNA" className="btn-rna w-full block text-center">
+          <Link href="/datasets?type=RNA" className="btn-rna w-full block text-center">
             Browse scRNA Datasets →
-          </a>
+          </Link>
         </div>
       </div>
 

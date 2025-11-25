@@ -181,7 +181,9 @@ export type DataManifest = {
     trajectory_types: TrajectoryType[];
     continuity_levels: number[];
     n_replicates: number;
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     branching_params?: any;
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     cyclic_params?: any;
   };
   discrete_config?: {  // ADD THIS

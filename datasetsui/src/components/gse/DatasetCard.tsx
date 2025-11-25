@@ -45,7 +45,7 @@ export default function DatasetCard({ dataset, dataType }: DatasetCardProps) {
             </p>
           )}
         </div>
-        <Badge variant={category as any}>
+        <Badge variant={category as 'tiny' | 'small' | 'medium' | 'large'}>
           {category}
         </Badge>
       </div>

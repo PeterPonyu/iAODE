@@ -15,10 +15,9 @@ import { searchGSE } from '@/lib/searchUtils';
 interface DatasetBrowserProps {
   initialData: GSEGroup[];
   dataType: 'ATAC' | 'RNA';
-  totalDatasets: number;
 }
 
-export default function DatasetBrowser({ initialData, dataType, totalDatasets }: DatasetBrowserProps) {
+export default function DatasetBrowser({ initialData, dataType }: DatasetBrowserProps) {
   const [viewMode, setViewMode] = useState<'grid' | 'table'>('grid');
   const [searchQuery, setSearchQuery] = useState('');
   const [filters, setFilters] = useState<FilterState>({
@@ -49,9 +48,6 @@ export default function DatasetBrowser({ initialData, dataType, totalDatasets }:
     (sum, g) => sum + g.datasets.length, 
     0
   );
-
-  // Feature label based on type
-  const featureLabel = dataType === 'ATAC' ? 'peaks' : 'genes';
 
   return (
     <div className="space-y-6">

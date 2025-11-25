@@ -240,6 +240,7 @@ export function getCoreMetrics(result: SimulationResult) {
 /**
  * Validate simulation result structure
  */
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 export function validateSimulationResult(data: any): data is SimulationResult {
   return (
     data &&
@@ -274,9 +275,11 @@ export function compareSimulations(
   result2: SimulationResult
 ): {
   metricDifferences: Record<string, number>;
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   parameterDifferences: Record<string, [any, any]>;
 } {
   const metricDifferences: Record<string, number> = {};
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const parameterDifferences: Record<string, [any, any]> = {};
   
   // Compare metrics

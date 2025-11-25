@@ -105,27 +105,33 @@ export function getCategoryColor(category: string): {
 export function getCategoryInfo(category: string): {
   label: string;
   description: string;
+  icon: string;
 } {
   const info = {
     tiny: {
       label: 'Tiny',
-      description: 'Tiny (1-5k cells)'
+      description: 'Tiny (1-5k cells)',
+      icon: 'T'
     },
     small: {
       label: 'Small',
-      description: 'Small (5-10k cells)'
+      description: 'Small (5-10k cells)',
+      icon: 'S'
     },
     medium: {
       label: 'Medium',
-      description: 'Medium (10-20k cells)'
+      description: 'Medium (10-20k cells)',
+      icon: 'M'
     },
     large: {
       label: 'Large',
-      description: 'Large (20k+ cells)'
+      description: 'Large (20k+ cells)',
+      icon: 'L'
     },
     error: {
       label: 'Error',
-      description: 'Data parsing error'
+      description: 'Data parsing error',
+      icon: '!'
     }
   };
   

@@ -59,9 +59,12 @@ export function EmbeddingPlot({ simulation, embeddingMethod, colorBy }: Embeddin
     const { values: colorValues, isNumeric } = getColorValues();
 
     // ✅ FIX: Handle categorical (string) colors properly
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     let markerColor: any;
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     let markerColorscale: any;
     let showscale: boolean;
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     let colorbar: any;
 
     if (isNumeric) {
@@ -130,7 +133,7 @@ export function EmbeddingPlot({ simulation, embeddingMethod, colorBy }: Embeddin
       margin: { l: 60, r: 40, t: 80, b: 60 },
       transition: {
         duration: 500,
-        easing: 'cubic-in-out'
+        easing: 'cubic-in-out' as const
       },
     };
 
@@ -141,6 +144,7 @@ export function EmbeddingPlot({ simulation, embeddingMethod, colorBy }: Embeddin
     responsive: true,
     displayModeBar: true,
     displaylogo: false,
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     modeBarButtonsToRemove: ['select2d', 'lasso2d'] as any,
     // Enable smooth animations
     animation: {
