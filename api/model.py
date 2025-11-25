@@ -33,6 +33,11 @@ class AgentParams(BaseModel):
     test_size: float = Field(default=0.15, description="Test set proportion")
     batch_size: int = Field(default=128, description="Batch size for training")
     random_seed: int = Field(default=42, description="Random seed for reproducibility")
+    # Encoder architecture parameters
+    encoder_type: Literal["mlp", "mlp_residual", "linear", "transformer"] = Field(default="mlp", description="Encoder architecture type")
+    encoder_num_layers: int = Field(default=2, description="Number of encoder layers")
+    encoder_n_heads: int = Field(default=4, description="Number of attention heads (transformer only)")
+    encoder_d_model: Optional[int] = Field(default=None, description="Transformer model dimension (defaults to hidden_dim)")
 
 
 class TrainParams(BaseModel):

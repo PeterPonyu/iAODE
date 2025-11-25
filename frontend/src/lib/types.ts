@@ -38,6 +38,11 @@ export type AgentParams = {
   test_size: number;
   batch_size: number;
   random_seed: number;
+  // Encoder architecture parameters
+  encoder_type: 'mlp' | 'mlp_residual' | 'linear' | 'transformer';
+  encoder_num_layers: number;
+  encoder_n_heads: number;
+  encoder_d_model?: number;
 };
 
 export type TrainParams = {
