@@ -13,11 +13,11 @@ export default function HomePage() {
         {/* Hero Section */}
         <section className="text-center mb-16 sm:mb-20">
           <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold mb-4 sm:mb-6 tracking-tight">
-            Single-Cell Continuity Explorer
+            iAODE Continuity Explorer
           </h1>
           <p className="text-base sm:text-lg text-[var(--color-muted-foreground)] mb-8 sm:mb-10 max-w-2xl mx-auto leading-relaxed">
-            Interactive exploration of how continuity parameters affect trajectory structure
-            in dimensionality reduction methods
+            Interactive exploration of trajectory structures and continuity metrics
+            across different embedding methods
           </p>
           <Link
             href="/explorer"

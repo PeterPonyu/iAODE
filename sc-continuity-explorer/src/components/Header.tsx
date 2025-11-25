@@ -15,7 +15,7 @@ export function Header() {
           <div className="flex items-center gap-6">
             <Link href="/explorer/" className="hover:opacity-80 transition-opacity">
               <h1 className="text-lg sm:text-xl font-semibold leading-tight">
-                Single-Cell Continuity Explorer
+                iAODE Continuity Explorer
               </h1>
               <p className="text-xs sm:text-sm text-[rgb(var(--muted-foreground))] mt-0.5">
                 Explore trajectory structures across embedding methods

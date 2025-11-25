@@ -66,54 +66,189 @@ jobs:
           # Add .nojekyll to bypass Jekyll processing
           touch deploy/.nojekyll
           
-          # Create root index.html
+          # Create root index.html with proper styling matching the project theme
           cat > deploy/index.html << 'EOF'
           <!DOCTYPE html>
           <html lang="en">
           <head>
             <meta charset="utf-8">
             <meta name="viewport" content="width=device-width, initial-scale=1">
-            <title>iAODE - Single-Cell Analysis Tools</title>
+            <title>iAODE - Interpretable Accessibility ODE</title>
             <style>
+              :root {
+                --color-bg: #ffffff;
+                --color-fg: #0f172a;
+                --color-primary: #2563eb;
+                --color-primary-hover: #1d4ed8;
+                --color-border: #e2e8f0;
+                --color-muted: #f8fafc;
+                --color-muted-fg: #64748b;
+                --color-card-bg: #ffffff;
+                --color-shadow: rgba(0, 0, 0, 0.1);
+              }
+              
+              @media (prefers-color-scheme: dark) {
+                :root {
+                  --color-bg: #0f172a;
+                  --color-fg: #f1f5f9;
+                  --color-primary: #3b82f6;
+                  --color-primary-hover: #60a5fa;
+                  --color-border: #1e293b;
+                  --color-muted: #1e293b;
+                  --color-muted-fg: #94a3b8;
+                  --color-card-bg: #1e293b;
+                  --color-shadow: rgba(0, 0, 0, 0.3);
+                }
+              }
+              
+              * {
+                margin: 0;
+                padding: 0;
+                box-sizing: border-box;
+              }
+              
               body {
-                font-family: system-ui, -apple-system, sans-serif;
-                max-width: 800px;
-                margin: 60px auto;
-                padding: 20px;
+                font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+                  'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
+                background-color: var(--color-bg);
+                color: var(--color-fg);
                 line-height: 1.6;
+                min-height: 100vh;
+                display: flex;
+                flex-direction: column;
               }
-              h1 { color: #2563eb; }
+              
+              .container {
+                max-width: 1200px;
+                margin: 0 auto;
+                padding: 3rem 2rem;
+                flex: 1;
+              }
+              
+              header {
+                text-align: center;
+                margin-bottom: 4rem;
+              }
+              
+              h1 {
+                font-size: 3rem;
+                font-weight: 700;
+                margin-bottom: 1rem;
+                background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-primary-hover) 100%);
+                -webkit-background-clip: text;
+                -webkit-text-fill-color: transparent;
+                background-clip: text;
+              }
+              
+              .subtitle {
+                font-size: 1.25rem;
+                color: var(--color-muted-fg);
+                max-width: 600px;
+                margin: 0 auto;
+              }
+              
+              .cards {
+                display: grid;
+                grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+                gap: 2rem;
+                margin-bottom: 3rem;
+              }
+              
               .card {
-                border: 1px solid #e5e7eb;
-                border-radius: 8px;
-                padding: 20px;
-                margin: 20px 0;
+                background: var(--color-card-bg);
+                border: 1px solid var(--color-border);
+                border-radius: 12px;
+                padding: 2rem;
+                transition: all 0.3s ease;
+                box-shadow: 0 2px 8px var(--color-shadow);
               }
-              a {
-                color: #2563eb;
+              
+              .card:hover {
+                transform: translateY(-4px);
+                box-shadow: 0 8px 16px var(--color-shadow);
+                border-color: var(--color-primary);
+              }
+              
+              .card-icon {
+                font-size: 2.5rem;
+                margin-bottom: 1rem;
+              }
+              
+              .card h2 {
+                font-size: 1.5rem;
+                font-weight: 600;
+                margin-bottom: 1rem;
+                color: var(--color-fg);
+              }
+              
+              .card p {
+                color: var(--color-muted-fg);
+                margin-bottom: 1.5rem;
+              }
+              
+              .btn {
+                display: inline-block;
+                padding: 0.75rem 1.5rem;
+                background: var(--color-primary);
+                color: white;
                 text-decoration: none;
+                border-radius: 8px;
+                font-weight: 500;
+                transition: background 0.3s ease;
               }
-              a:hover { text-decoration: underline; }
+              
+              .btn:hover {
+                background: var(--color-primary-hover);
+              }
+              
+              footer {
+                text-align: center;
+                padding: 2rem;
+                border-top: 1px solid var(--color-border);
+                color: var(--color-muted-fg);
+                font-size: 0.875rem;
+              }
+              
+              @media (max-width: 768px) {
+                h1 {
+                  font-size: 2rem;
+                }
+                .subtitle {
+                  font-size: 1rem;
+                }
+                .cards {
+                  grid-template-columns: 1fr;
+                }
+              }
             </style>
           </head>
           <body>
-            <h1>🧬 iAODE - Single-Cell Analysis Tools</h1>
-            <p>Interactive tools for single-cell genomics analysis and benchmarking.</p>
-            
-            <div class="card">
-              <h2>📊 <a href="./datasets/">Dataset Browser</a></h2>
-              <p>Browse and explore standardized single-cell ATAC-seq and RNA-seq datasets from NCBI GEO in 10X h5 format.</p>
+            <div class="container">
+              <header>
+                <h1>🧬 iAODE</h1>
+                <p class="subtitle">Interpretable Accessibility ODE for Single-Cell Analysis</p>
+              </header>
+              
+              <div class="cards">
+                <div class="card">
+                  <div class="card-icon">📊</div>
+                  <h2>Dataset Browser</h2>
+                  <p>Browse and explore standardized single-cell ATAC-seq and RNA-seq datasets from NCBI GEO in 10X h5 format.</p>
+                  <a href="./datasets/" class="btn">Explore Datasets</a>
+                </div>
+                
+                <div class="card">
+                  <div class="card-icon">🔬</div>
+                  <h2>Continuity Explorer</h2>
+                  <p>Interactive exploration of trajectory structures and continuity metrics across different embedding methods.</p>
+                  <a href="./explorer/" class="btn">Launch Explorer</a>
+                </div>
+              </div>
             </div>
             
-            <div class="card">
-              <h2>🔬 <a href="./explorer/">Continuity Explorer</a></h2>
-              <p>Explore simulated trajectories and analyze continuity metrics across different embedding methods.</p>
-            </div>
-            
-            <div class="card">
-              <h2>🔗 <a href="https://github.com/PeterPonyu/iAODE">GitHub Repository</a></h2>
-              <p>View source code, documentation, and contribute to the project.</p>
-            </div>
+            <footer>
+              <p>© 2025 iAODE Project | <a href="https://github.com/PeterPonyu/iAODE" style="color: var(--color-primary);">GitHub Repository</a></p>
+            </footer>
           </body>
           </html>
           EOF

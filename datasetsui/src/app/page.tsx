@@ -21,10 +21,10 @@ export default function HomePage() {
       {/* Header */}
       <section className="text-center py-12">
         <h1 className="text-5xl md:text-6xl font-bold text-[rgb(var(--text-primary))] mb-4 transition-colors">
-          Single-Cell Dataset Browser
+          iAODE Dataset Browser
         </h1>
         <p className="text-xl text-[rgb(var(--text-secondary))] max-w-2xl mx-auto transition-colors">
-          Explore comprehensive ATAC-seq and RNA-seq datasets from NCBI GEO
+          Explore comprehensive single-cell ATAC-seq and RNA-seq datasets from NCBI GEO
         </p>
       </section>
 

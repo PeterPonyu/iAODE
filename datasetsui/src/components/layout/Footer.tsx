@@ -10,14 +10,13 @@ export default function Footer() {
           {/* About */}
           <div>
             <h3 className="font-semibold text-[rgb(var(--foreground))] mb-3">
-              About iAODE-VAE
+              About iAODE
             </h3>
             <p className="text-sm text-[rgb(var(--muted-foreground))] leading-relaxed">
-              A curated collection of single-cell datasets supporting benchmarking research on 
-              <strong className="text-[rgb(var(--foreground))]"> iAODE-VAE</strong> (Interpretable Accessibility ODE VAE). 
-              All datasets are provided in standardized 10X h5 filtered matrix format, including peak matrices 
-              for scATAC-seq and feature matrices for scRNA-seq, facilitating reproducible computational experiments 
-              across multiple modalities.
+              A curated collection of single-cell datasets for <strong className="text-[rgb(var(--foreground))]">iAODE</strong> 
+              (Interpretable Accessibility ODE) benchmarking and analysis. All datasets are provided in standardized 
+              10X h5 filtered matrix format, including peak matrices for scATAC-seq and feature matrices for scRNA-seq, 
+              facilitating reproducible computational experiments across multiple modalities.
             </p>
           </div>
 
@@ -42,12 +41,12 @@ export default function Footer() {
                 </Link>
               </li>
               <li>
-                <Link 
-                  href="/about" 
+                <a 
+                  href="/iAODE/explorer/" 
                   className="text-[rgb(var(--muted-foreground))] hover:text-[rgb(var(--primary-hover))] transition-colors"
                 >
-                  About This Project
-                </Link>
+                  Continuity Explorer
+                </a>
               </li>
             </ul>
           </div>
@@ -88,7 +87,7 @@ export default function Footer() {
 
         <div className="mt-8 pt-8 border-t border-[rgb(var(--border))] flex flex-col md:flex-row justify-between items-center gap-4">
           <p className="text-sm text-[rgb(var(--muted-foreground))] text-center md:text-left">
-            © {currentYear} iAODE-VAE Benchmarking Project. Datasets sourced from NCBI GEO and all in standardized 10X h5 format.
+            © {currentYear} iAODE Project. Datasets sourced from NCBI GEO in standardized 10X h5 format.
           </p>
           <p className="text-xs text-[rgb(var(--text-muted))] text-center md:text-right">
             Supporting computational experiments for deep learning models in single-cell omics.

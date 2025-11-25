@@ -9,8 +9,8 @@ import { ThemeProvider } from '@/lib/theme';
 import './globals.css';
 
 export const metadata: Metadata = {
-  title: 'Single-Cell Continuity Explorer',
-  description: 'Explore how continuity affects trajectory structure in single-cell data',
+  title: 'iAODE Continuity Explorer',
+  description: 'Explore how continuity affects trajectory structure in single-cell data with iAODE',
 };
 
 export default function RootLayout({

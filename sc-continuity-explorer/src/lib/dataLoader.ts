@@ -15,7 +15,10 @@ import {
 // CONFIGURATION
 // ============================================
 
-const DATA_BASE_PATH = '/data';
+// Use relative path that works with basePath
+const DATA_BASE_PATH = process.env.NODE_ENV === 'production' 
+  ? '/iAODE/explorer/data'
+  : '/data';
 const USE_COMPRESSION = false; // Set to true if using .gz files
 
 // ============================================
@@ -77,7 +80,6 @@ async function loadParameterLookup(): Promise<ParameterLookup> {
 /**
  * Load the continuity index
  */
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
 async function loadContinuityIndex(): Promise<ContinuityIndex> {
   if (continuityIndexCache) return continuityIndexCache;
   
