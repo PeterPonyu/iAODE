@@ -223,7 +223,7 @@ export function PreprocessingPanel({ dataType, onComplete }: PreprocessingPanelP
                 <label className="block text-sm font-medium mb-2 text-muted">Selection Method</label>
                 <select
                   value={hvpParams.method}
-                  onChange={(e) => setHvpParams({ ...hvpParams, method: e.target.value as any })}
+                  onChange={(e) => setHvpParams({ ...hvpParams, method: e.target.value as 'signac' | 'snapatac2' | 'deviance' })}
                   disabled={currentStep !== 'tfidf' || isProcessing}
                   className="w-full px-3 py-2 rounded-lg border text-sm"
                 >
