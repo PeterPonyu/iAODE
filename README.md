@@ -77,6 +77,33 @@ See `requirements.txt` for the complete list of dependencies.
 
 ## Quick Start
 
+### Training UI (Web Interface)
+
+iAODE includes an integrated web-based training interface for interactive model training:
+
+```bash
+# Start the training UI (Python - cross-platform)
+python start_training_ui.py
+
+# Or use the shell script (Linux/macOS)
+./start_training_ui.sh
+```
+
+Then open your browser to:
+- **Training UI**: http://localhost:8000/ui
+- **API Documentation**: http://localhost:8000/docs
+
+**Features:**
+- Upload scRNA-seq or scATAC-seq data (.h5ad files)
+- Configure preprocessing parameters (TF-IDF, HVP selection, subsampling)
+- Set training parameters interactively
+- Monitor training progress in real-time
+- Download trained embeddings (latent and interpretable)
+
+For more details, see [`TRAINING_UI_README.md`](TRAINING_UI_README.md).
+
+---
+
 ### Basic scATAC-seq Workflow
 
 ```python

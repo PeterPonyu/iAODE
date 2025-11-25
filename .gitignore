@@ -146,27 +146,15 @@ Thumbs.db
 *.pth
 *.ckpt
 
-# Examples data (keep raw large files out of git; use Git LFS or external hosting)
-examples/data/*.gtf*
-examples/data/*.gff*
-examples/data/*.h5
-examples/data/*.h5ad
-examples/data/*.mtx
-examples/data/*.loom
-examples/data/*.bed
-
-# Example outputs (generated files)
-examples/outputs/
-examples/results/
-examples/*.png
-examples/*.csv
-*.png
-*.csv
+# Frontend build output
+frontend/node_modules/
 
 # Duplicate data directories (keep only examples/data/)
 data/
 notebooks/data/
 notebooks/outputs/
+
+.next
 
 # Logs
 logs/
