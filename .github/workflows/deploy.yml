@@ -1,0 +1,56 @@
+name: Deploy to GitHub Pages
+
+on:
+  push:
+    branches: ["frontend"]
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+
+      # Build Main Site (datasetsui)
+      - name: Install and Build Main Site
+        working-directory: ./datasetsui
+        run: |
+          npm ci
+          npm run build
+          # The output will be in ./datasetsui/out
+
+      # Build Explorer Site (sc-continuity-explorer)
+      - name: Install and Build Explorer
+        working-directory: ./sc-continuity-explorer
+        run: |
+          npm ci
+          npm run build
+          # The output will be in ./sc-continuity-explorer/out
+
+      # Prepare Deployment Folder
+      - name: Prepare Deployment
+        run: |
+          mkdir -p deploy
+          # Copy main site to root
+          cp -r datasetsui/out/* deploy/
+          # Create explorer directory
+          mkdir -p deploy/explorer
+          # Copy explorer site to /explorer
+          cp -r sc-continuity-explorer/out/* deploy/explorer/
+          # Add .nojekyll to bypass Jekyll processing
+          touch deploy/.nojekyll
+
+      - name: Deploy to GitHub Pages
+        uses: JamesIves/github-pages-deploy-action@v4
+        with:
+          folder: deploy
+          branch: gh-pages
