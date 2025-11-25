@@ -128,6 +128,10 @@ export function EmbeddingPlot({ simulation, embeddingMethod, colorBy }: Embeddin
       paper_bgcolor: 'rgba(0,0,0,0)',
       plot_bgcolor: 'rgba(0,0,0,0)',
       margin: { l: 60, r: 40, t: 80, b: 60 },
+      transition: {
+        duration: 500,
+        easing: 'cubic-in-out'
+      },
     };
 
     return { data: [trace], layout: plotLayout };
@@ -138,6 +142,11 @@ export function EmbeddingPlot({ simulation, embeddingMethod, colorBy }: Embeddin
     displayModeBar: true,
     displaylogo: false,
     modeBarButtonsToRemove: ['select2d', 'lasso2d'] as any,
+    // Enable smooth animations
+    animation: {
+      duration: 500,
+      easing: 'cubic-in-out'
+    },
   };
 
   if (!embedding || embedding.length === 0) {

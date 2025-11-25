@@ -42,9 +42,21 @@ export type SimulationParameters = {
   n_cells: number;
   n_dims: number;
   replicate: number;
-  global_id?: number; // Added for reproducible seeding
+  global_id?: number;
+  
+  // Branching-specific parameters
+  n_branches?: number;
+  branch_point?: number;
+  branch_angle?: number;
+  
+  // Cyclic-specific parameters
+  n_cycles?: number;
+  
+  // Discrete-specific parameters
+  n_clusters?: number;
+  target_trajectory?: TrajectoryType;
+  base_separation?: number;
 };
-
 // ============================================================================
 // STEP 3: Embeddings Data
 // ============================================================================

@@ -121,6 +121,730 @@
       "replicate": 0
     }
   ],
+  "branching": [
+    {
+      "simulation_id": "branching_cont0.850_n500_rep0_br2",
+      "continuity": 0.85,
+      "n_cells": 500,
+      "replicate": 0
+    },
+    {
+      "simulation_id": "branching_cont0.850_n500_rep0_br3",
+      "continuity": 0.85,
+      "n_cells": 500,
+      "replicate": 0
+    },
+    {
+      "simulation_id": "branching_cont0.850_n500_rep0_br4",
+      "continuity": 0.85,
+      "n_cells": 500,
+      "replicate": 0
+    },
+    {
+      "simulation_id": "branching_cont0.857_n500_rep0_br2",
+      "continuity": 0.8573684210526316,
+      "n_cells": 500,
+      "replicate": 0
+    },
+    {
+      "simulation_id": "branching_cont0.857_n500_rep0_br3",
+      "continuity": 0.8573684210526316,
+      "n_cells": 500,
+      "replicate": 0
+    },
+    {
+      "simulation_id": "branching_cont0.857_n500_rep0_br4",
+      "continuity": 0.8573684210526316,
+      "n_cells": 500,
+      "replicate": 0
+    },
+    {
+      "simulation_id": "branching_cont0.865_n500_rep0_br2",
+      "continuity": 0.8647368421052631,
+      "n_cells": 500,
+      "replicate": 0
+    },
+    {
+      "simulation_id": "branching_cont0.865_n500_rep0_br3",
+      "continuity": 0.8647368421052631,
+      "n_cells": 500,
+      "replicate": 0
+    },
+    {
+      "simulation_id": "branching_cont0.865_n500_rep0_br4",
+      "continuity": 0.8647368421052631,
+      "n_cells": 500,
+      "replicate": 0
+    },
+    {
+      "simulation_id": "branching_cont0.872_n500_rep0_br2",
+      "continuity": 0.8721052631578947,
+      "n_cells": 500,
+      "replicate": 0
+    },
+    {
+      "simulation_id": "branching_cont0.872_n500_rep0_br3",
+      "continuity": 0.8721052631578947,
+      "n_cells": 500,
+      "replicate": 0
+    },
+    {
+      "simulation_id": "branching_cont0.872_n500_rep0_br4",
+      "continuity": 0.8721052631578947,
+      "n_cells": 500,
+      "replicate": 0
+    },
+    {
+      "simulation_id": "branching_cont0.879_n500_rep0_br2",
+      "continuity": 0.8794736842105263,
+      "n_cells": 500,
+      "replicate": 0
+    },
+    {
+      "simulation_id": "branching_cont0.879_n500_rep0_br3",
+      "continuity": 0.8794736842105263,
+      "n_cells": 500,
+      "replicate": 0
+    },
+    {
+      "simulation_id": "branching_cont0.879_n500_rep0_br4",
+      "continuity": 0.8794736842105263,
+      "n_cells": 500,
+      "replicate": 0
+    },
+    {
+      "simulation_id": "branching_cont0.887_n500_rep0_br2",
+      "continuity": 0.8868421052631579,
+      "n_cells": 500,
+      "replicate": 0
+    },
+    {
+      "simulation_id": "branching_cont0.887_n500_rep0_br3",
+      "continuity": 0.8868421052631579,
+      "n_cells": 500,
+      "replicate": 0
+    },
+    {
+      "simulation_id": "branching_cont0.887_n500_rep0_br4",
+      "continuity": 0.8868421052631579,
+      "n_cells": 500,
+      "replicate": 0
+    },
+    {
+      "simulation_id": "branching_cont0.894_n500_rep0_br2",
+      "continuity": 0.8942105263157895,
+      "n_cells": 500,
+      "replicate": 0
+    },
+    {
+      "simulation_id": "branching_cont0.894_n500_rep0_br3",
+      "continuity": 0.8942105263157895,
+      "n_cells": 500,
+      "replicate": 0
+    },
+    {
+      "simulation_id": "branching_cont0.894_n500_rep0_br4",
+      "continuity": 0.8942105263157895,
+      "n_cells": 500,
+      "replicate": 0
+    },
+    {
+      "simulation_id": "branching_cont0.902_n500_rep0_br2",
+      "continuity": 0.901578947368421,
+      "n_cells": 500,
+      "replicate": 0
+    },
+    {
+      "simulation_id": "branching_cont0.902_n500_rep0_br3",
+      "continuity": 0.901578947368421,
+      "n_cells": 500,
+      "replicate": 0
+    },
+    {
+      "simulation_id": "branching_cont0.902_n500_rep0_br4",
+      "continuity": 0.901578947368421,
+      "n_cells": 500,
+      "replicate": 0
+    },
+    {
+      "simulation_id": "branching_cont0.909_n500_rep0_br2",
+      "continuity": 0.9089473684210526,
+      "n_cells": 500,
+      "replicate": 0
+    },
+    {
+      "simulation_id": "branching_cont0.909_n500_rep0_br3",
+      "continuity": 0.9089473684210526,
+      "n_cells": 500,
+      "replicate": 0
+    },
+    {
+      "simulation_id": "branching_cont0.909_n500_rep0_br4",
+      "continuity": 0.9089473684210526,
+      "n_cells": 500,
+      "replicate": 0
+    },
+    {
+      "simulation_id": "branching_cont0.916_n500_rep0_br2",
+      "continuity": 0.9163157894736842,
+      "n_cells": 500,
+      "replicate": 0
+    },
+    {
+      "simulation_id": "branching_cont0.916_n500_rep0_br3",
+      "continuity": 0.9163157894736842,
+      "n_cells": 500,
+      "replicate": 0
+    },
+    {
+      "simulation_id": "branching_cont0.916_n500_rep0_br4",
+      "continuity": 0.9163157894736842,
+      "n_cells": 500,
+      "replicate": 0
+    },
+    {
+      "simulation_id": "branching_cont0.924_n500_rep0_br2",
+      "continuity": 0.9236842105263158,
+      "n_cells": 500,
+      "replicate": 0
+    },
+    {
+      "simulation_id": "branching_cont0.924_n500_rep0_br3",
+      "continuity": 0.9236842105263158,
+      "n_cells": 500,
+      "replicate": 0
+    },
+    {
+      "simulation_id": "branching_cont0.924_n500_rep0_br4",
+      "continuity": 0.9236842105263158,
+      "n_cells": 500,
+      "replicate": 0
+    },
+    {
+      "simulation_id": "branching_cont0.931_n500_rep0_br2",
+      "continuity": 0.9310526315789474,
+      "n_cells": 500,
+      "replicate": 0
+    },
+    {
+      "simulation_id": "branching_cont0.931_n500_rep0_br3",
+      "continuity": 0.9310526315789474,
+      "n_cells": 500,
+      "replicate": 0
+    },
+    {
+      "simulation_id": "branching_cont0.931_n500_rep0_br4",
+      "continuity": 0.9310526315789474,
+      "n_cells": 500,
+      "replicate": 0
+    },
+    {
+      "simulation_id": "branching_cont0.938_n500_rep0_br2",
+      "continuity": 0.9384210526315789,
+      "n_cells": 500,
+      "replicate": 0
+    },
+    {
+      "simulation_id": "branching_cont0.938_n500_rep0_br3",
+      "continuity": 0.9384210526315789,
+      "n_cells": 500,
+      "replicate": 0
+    },
+    {
+      "simulation_id": "branching_cont0.938_n500_rep0_br4",
+      "continuity": 0.9384210526315789,
+      "n_cells": 500,
+      "replicate": 0
+    },
+    {
+      "simulation_id": "branching_cont0.946_n500_rep0_br2",
+      "continuity": 0.9457894736842105,
+      "n_cells": 500,
+      "replicate": 0
+    },
+    {
+      "simulation_id": "branching_cont0.946_n500_rep0_br3",
+      "continuity": 0.9457894736842105,
+      "n_cells": 500,
+      "replicate": 0
+    },
+    {
+      "simulation_id": "branching_cont0.946_n500_rep0_br4",
+      "continuity": 0.9457894736842105,
+      "n_cells": 500,
+      "replicate": 0
+    },
+    {
+      "simulation_id": "branching_cont0.953_n500_rep0_br2",
+      "continuity": 0.9531578947368421,
+      "n_cells": 500,
+      "replicate": 0
+    },
+    {
+      "simulation_id": "branching_cont0.953_n500_rep0_br3",
+      "continuity": 0.9531578947368421,
+      "n_cells": 500,
+      "replicate": 0
+    },
+    {
+      "simulation_id": "branching_cont0.953_n500_rep0_br4",
+      "continuity": 0.9531578947368421,
+      "n_cells": 500,
+      "replicate": 0
+    },
+    {
+      "simulation_id": "branching_cont0.961_n500_rep0_br2",
+      "continuity": 0.9605263157894737,
+      "n_cells": 500,
+      "replicate": 0
+    },
+    {
+      "simulation_id": "branching_cont0.961_n500_rep0_br3",
+      "continuity": 0.9605263157894737,
+      "n_cells": 500,
+      "replicate": 0
+    },
+    {
+      "simulation_id": "branching_cont0.961_n500_rep0_br4",
+      "continuity": 0.9605263157894737,
+      "n_cells": 500,
+      "replicate": 0
+    },
+    {
+      "simulation_id": "branching_cont0.968_n500_rep0_br2",
+      "continuity": 0.9678947368421053,
+      "n_cells": 500,
+      "replicate": 0
+    },
+    {
+      "simulation_id": "branching_cont0.968_n500_rep0_br3",
+      "continuity": 0.9678947368421053,
+      "n_cells": 500,
+      "replicate": 0
+    },
+    {
+      "simulation_id": "branching_cont0.968_n500_rep0_br4",
+      "continuity": 0.9678947368421053,
+      "n_cells": 500,
+      "replicate": 0
+    },
+    {
+      "simulation_id": "branching_cont0.975_n500_rep0_br2",
+      "continuity": 0.9752631578947368,
+      "n_cells": 500,
+      "replicate": 0
+    },
+    {
+      "simulation_id": "branching_cont0.975_n500_rep0_br3",
+      "continuity": 0.9752631578947368,
+      "n_cells": 500,
+      "replicate": 0
+    },
+    {
+      "simulation_id": "branching_cont0.975_n500_rep0_br4",
+      "continuity": 0.9752631578947368,
+      "n_cells": 500,
+      "replicate": 0
+    },
+    {
+      "simulation_id": "branching_cont0.983_n500_rep0_br2",
+      "continuity": 0.9826315789473684,
+      "n_cells": 500,
+      "replicate": 0
+    },
+    {
+      "simulation_id": "branching_cont0.983_n500_rep0_br3",
+      "continuity": 0.9826315789473684,
+      "n_cells": 500,
+      "replicate": 0
+    },
+    {
+      "simulation_id": "branching_cont0.983_n500_rep0_br4",
+      "continuity": 0.9826315789473684,
+      "n_cells": 500,
+      "replicate": 0
+    },
+    {
+      "simulation_id": "branching_cont0.990_n500_rep0_br2",
+      "continuity": 0.99,
+      "n_cells": 500,
+      "replicate": 0
+    },
+    {
+      "simulation_id": "branching_cont0.990_n500_rep0_br3",
+      "continuity": 0.99,
+      "n_cells": 500,
+      "replicate": 0
+    },
+    {
+      "simulation_id": "branching_cont0.990_n500_rep0_br4",
+      "continuity": 0.99,
+      "n_cells": 500,
+      "replicate": 0
+    }
+  ],
+  "cyclic": [
+    {
+      "simulation_id": "cyclic_cont0.850_n500_rep0_cyc2.0",
+      "continuity": 0.85,
+      "n_cells": 500,
+      "replicate": 0
+    },
+    {
+      "simulation_id": "cyclic_cont0.850_n500_rep0_cyc3.0",
+      "continuity": 0.85,
+      "n_cells": 500,
+      "replicate": 0
+    },
+    {
+      "simulation_id": "cyclic_cont0.850_n500_rep0_cyc4.0",
+      "continuity": 0.85,
+      "n_cells": 500,
+      "replicate": 0
+    },
+    {
+      "simulation_id": "cyclic_cont0.857_n500_rep0_cyc2.0",
+      "continuity": 0.8573684210526316,
+      "n_cells": 500,
+      "replicate": 0
+    },
+    {
+      "simulation_id": "cyclic_cont0.857_n500_rep0_cyc3.0",
+      "continuity": 0.8573684210526316,
+      "n_cells": 500,
+      "replicate": 0
+    },
+    {
+      "simulation_id": "cyclic_cont0.857_n500_rep0_cyc4.0",
+      "continuity": 0.8573684210526316,
+      "n_cells": 500,
+      "replicate": 0
+    },
+    {
+      "simulation_id": "cyclic_cont0.865_n500_rep0_cyc2.0",
+      "continuity": 0.8647368421052631,
+      "n_cells": 500,
+      "replicate": 0
+    },
+    {
+      "simulation_id": "cyclic_cont0.865_n500_rep0_cyc3.0",
+      "continuity": 0.8647368421052631,
+      "n_cells": 500,
+      "replicate": 0
+    },
+    {
+      "simulation_id": "cyclic_cont0.865_n500_rep0_cyc4.0",
+      "continuity": 0.8647368421052631,
+      "n_cells": 500,
+      "replicate": 0
+    },
+    {
+      "simulation_id": "cyclic_cont0.872_n500_rep0_cyc2.0",
+      "continuity": 0.8721052631578947,
+      "n_cells": 500,
+      "replicate": 0
+    },
+    {
+      "simulation_id": "cyclic_cont0.872_n500_rep0_cyc3.0",
+      "continuity": 0.8721052631578947,
+      "n_cells": 500,
+      "replicate": 0
+    },
+    {
+      "simulation_id": "cyclic_cont0.872_n500_rep0_cyc4.0",
+      "continuity": 0.8721052631578947,
+      "n_cells": 500,
+      "replicate": 0
+    },
+    {
+      "simulation_id": "cyclic_cont0.879_n500_rep0_cyc2.0",
+      "continuity": 0.8794736842105263,
+      "n_cells": 500,
+      "replicate": 0
+    },
+    {
+      "simulation_id": "cyclic_cont0.879_n500_rep0_cyc3.0",
+      "continuity": 0.8794736842105263,
+      "n_cells": 500,
+      "replicate": 0
+    },
+    {
+      "simulation_id": "cyclic_cont0.879_n500_rep0_cyc4.0",
+      "continuity": 0.8794736842105263,
+      "n_cells": 500,
+      "replicate": 0
+    },
+    {
+      "simulation_id": "cyclic_cont0.887_n500_rep0_cyc2.0",
+      "continuity": 0.8868421052631579,
+      "n_cells": 500,
+      "replicate": 0
+    },
+    {
+      "simulation_id": "cyclic_cont0.887_n500_rep0_cyc3.0",
+      "continuity": 0.8868421052631579,
+      "n_cells": 500,
+      "replicate": 0
+    },
+    {
+      "simulation_id": "cyclic_cont0.887_n500_rep0_cyc4.0",
+      "continuity": 0.8868421052631579,
+      "n_cells": 500,
+      "replicate": 0
+    },
+    {
+      "simulation_id": "cyclic_cont0.894_n500_rep0_cyc2.0",
+      "continuity": 0.8942105263157895,
+      "n_cells": 500,
+      "replicate": 0
+    },
+    {
+      "simulation_id": "cyclic_cont0.894_n500_rep0_cyc3.0",
+      "continuity": 0.8942105263157895,
+      "n_cells": 500,
+      "replicate": 0
+    },
+    {
+      "simulation_id": "cyclic_cont0.894_n500_rep0_cyc4.0",
+      "continuity": 0.8942105263157895,
+      "n_cells": 500,
+      "replicate": 0
+    },
+    {
+      "simulation_id": "cyclic_cont0.902_n500_rep0_cyc2.0",
+      "continuity": 0.901578947368421,
+      "n_cells": 500,
+      "replicate": 0
+    },
+    {
+      "simulation_id": "cyclic_cont0.902_n500_rep0_cyc3.0",
+      "continuity": 0.901578947368421,
+      "n_cells": 500,
+      "replicate": 0
+    },
+    {
+      "simulation_id": "cyclic_cont0.902_n500_rep0_cyc4.0",
+      "continuity": 0.901578947368421,
+      "n_cells": 500,
+      "replicate": 0
+    },
+    {
+      "simulation_id": "cyclic_cont0.909_n500_rep0_cyc2.0",
+      "continuity": 0.9089473684210526,
+      "n_cells": 500,
+      "replicate": 0
+    },
+    {
+      "simulation_id": "cyclic_cont0.909_n500_rep0_cyc3.0",
+      "continuity": 0.9089473684210526,
+      "n_cells": 500,
+      "replicate": 0
+    },
+    {
+      "simulation_id": "cyclic_cont0.909_n500_rep0_cyc4.0",
+      "continuity": 0.9089473684210526,
+      "n_cells": 500,
+      "replicate": 0
+    },
+    {
+      "simulation_id": "cyclic_cont0.916_n500_rep0_cyc2.0",
+      "continuity": 0.9163157894736842,
+      "n_cells": 500,
+      "replicate": 0
+    },
+    {
+      "simulation_id": "cyclic_cont0.916_n500_rep0_cyc3.0",
+      "continuity": 0.9163157894736842,
+      "n_cells": 500,
+      "replicate": 0
+    },
+    {
+      "simulation_id": "cyclic_cont0.916_n500_rep0_cyc4.0",
+      "continuity": 0.9163157894736842,
+      "n_cells": 500,
+      "replicate": 0
+    },
+    {
+      "simulation_id": "cyclic_cont0.924_n500_rep0_cyc2.0",
+      "continuity": 0.9236842105263158,
+      "n_cells": 500,
+      "replicate": 0
+    },
+    {
+      "simulation_id": "cyclic_cont0.924_n500_rep0_cyc3.0",
+      "continuity": 0.9236842105263158,
+      "n_cells": 500,
+      "replicate": 0
+    },
+    {
+      "simulation_id": "cyclic_cont0.924_n500_rep0_cyc4.0",
+      "continuity": 0.9236842105263158,
+      "n_cells": 500,
+      "replicate": 0
+    },
+    {
+      "simulation_id": "cyclic_cont0.931_n500_rep0_cyc2.0",
+      "continuity": 0.9310526315789474,
+      "n_cells": 500,
+      "replicate": 0
+    },
+    {
+      "simulation_id": "cyclic_cont0.931_n500_rep0_cyc3.0",
+      "continuity": 0.9310526315789474,
+      "n_cells": 500,
+      "replicate": 0
+    },
+    {
+      "simulation_id": "cyclic_cont0.931_n500_rep0_cyc4.0",
+      "continuity": 0.9310526315789474,
+      "n_cells": 500,
+      "replicate": 0
+    },
+    {
+      "simulation_id": "cyclic_cont0.938_n500_rep0_cyc2.0",
+      "continuity": 0.9384210526315789,
+      "n_cells": 500,
+      "replicate": 0
+    },
+    {
+      "simulation_id": "cyclic_cont0.938_n500_rep0_cyc3.0",
+      "continuity": 0.9384210526315789,
+      "n_cells": 500,
+      "replicate": 0
+    },
+    {
+      "simulation_id": "cyclic_cont0.938_n500_rep0_cyc4.0",
+      "continuity": 0.9384210526315789,
+      "n_cells": 500,
+      "replicate": 0
+    },
+    {
+      "simulation_id": "cyclic_cont0.946_n500_rep0_cyc2.0",
+      "continuity": 0.9457894736842105,
+      "n_cells": 500,
+      "replicate": 0
+    },
+    {
+      "simulation_id": "cyclic_cont0.946_n500_rep0_cyc3.0",
+      "continuity": 0.9457894736842105,
+      "n_cells": 500,
+      "replicate": 0
+    },
+    {
+      "simulation_id": "cyclic_cont0.946_n500_rep0_cyc4.0",
+      "continuity": 0.9457894736842105,
+      "n_cells": 500,
+      "replicate": 0
+    },
+    {
+      "simulation_id": "cyclic_cont0.953_n500_rep0_cyc2.0",
+      "continuity": 0.9531578947368421,
+      "n_cells": 500,
+      "replicate": 0
+    },
+    {
+      "simulation_id": "cyclic_cont0.953_n500_rep0_cyc3.0",
+      "continuity": 0.9531578947368421,
+      "n_cells": 500,
+      "replicate": 0
+    },
+    {
+      "simulation_id": "cyclic_cont0.953_n500_rep0_cyc4.0",
+      "continuity": 0.9531578947368421,
+      "n_cells": 500,
+      "replicate": 0
+    },
+    {
+      "simulation_id": "cyclic_cont0.961_n500_rep0_cyc2.0",
+      "continuity": 0.9605263157894737,
+      "n_cells": 500,
+      "replicate": 0
+    },
+    {
+      "simulation_id": "cyclic_cont0.961_n500_rep0_cyc3.0",
+      "continuity": 0.9605263157894737,
+      "n_cells": 500,
+      "replicate": 0
+    },
+    {
+      "simulation_id": "cyclic_cont0.961_n500_rep0_cyc4.0",
+      "continuity": 0.9605263157894737,
+      "n_cells": 500,
+      "replicate": 0
+    },
+    {
+      "simulation_id": "cyclic_cont0.968_n500_rep0_cyc2.0",
+      "continuity": 0.9678947368421053,
+      "n_cells": 500,
+      "replicate": 0
+    },
+    {
+      "simulation_id": "cyclic_cont0.968_n500_rep0_cyc3.0",
+      "continuity": 0.9678947368421053,
+      "n_cells": 500,
+      "replicate": 0
+    },
+    {
+      "simulation_id": "cyclic_cont0.968_n500_rep0_cyc4.0",
+      "continuity": 0.9678947368421053,
+      "n_cells": 500,
+      "replicate": 0
+    },
+    {
+      "simulation_id": "cyclic_cont0.975_n500_rep0_cyc2.0",
+      "continuity": 0.9752631578947368,
+      "n_cells": 500,
+      "replicate": 0
+    },
+    {
+      "simulation_id": "cyclic_cont0.975_n500_rep0_cyc3.0",
+      "continuity": 0.9752631578947368,
+      "n_cells": 500,
+      "replicate": 0
+    },
+    {
+      "simulation_id": "cyclic_cont0.975_n500_rep0_cyc4.0",
+      "continuity": 0.9752631578947368,
+      "n_cells": 500,
+      "replicate": 0
+    },
+    {
+      "simulation_id": "cyclic_cont0.983_n500_rep0_cyc2.0",
+      "continuity": 0.9826315789473684,
+      "n_cells": 500,
+      "replicate": 0
+    },
+    {
+      "simulation_id": "cyclic_cont0.983_n500_rep0_cyc3.0",
+      "continuity": 0.9826315789473684,
+      "n_cells": 500,
+      "replicate": 0
+    },
+    {
+      "simulation_id": "cyclic_cont0.983_n500_rep0_cyc4.0",
+      "continuity": 0.9826315789473684,
+      "n_cells": 500,
+      "replicate": 0
+    },
+    {
+      "simulation_id": "cyclic_cont0.990_n500_rep0_cyc2.0",
+      "continuity": 0.99,
+      "n_cells": 500,
+      "replicate": 0
+    },
+    {
+      "simulation_id": "cyclic_cont0.990_n500_rep0_cyc3.0",
+      "continuity": 0.99,
+      "n_cells": 500,
+      "replicate": 0
+    },
+    {
+      "simulation_id": "cyclic_cont0.990_n500_rep0_cyc4.0",
+      "continuity": 0.99,
+      "n_cells": 500,
+      "replicate": 0
+    }
+  ],
   "discrete": [
     {
       "simulation_id": "discrete_cont0.000_n500_rep0_targetlinear_k8",

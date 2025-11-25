@@ -1,10 +1,10 @@
 {
   "version": "1.0",
-  "generation_timestamp": "2025-11-24T20:18:38.597309",
-  "computation_duration_seconds": 82.859873,
-  "total_simulations": 200,
+  "generation_timestamp": "2025-11-24T21:26:41.684041",
+  "computation_duration_seconds": 133.343832,
+  "total_simulations": 320,
   "chunk_size": 50,
-  "total_chunks": 4,
+  "total_chunks": 7,
   "random_seed": 42,
   "metrics_computed": [
     "spectral_decay",

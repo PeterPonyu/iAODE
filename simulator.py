@@ -431,28 +431,37 @@ class ContinuityDataPrecomputer:
         return computation_summary
     
     def _expand_continuous_parameters(self, 
-                                     config: Dict[str, Any],
-                                     n_cells: List[int],
-                                     n_dims: int) -> List[Dict[str, Any]]:
+                                    config: Dict[str, Any],
+                                    n_cells: List[int],
+                                    n_dims: int) -> List[Dict[str, Any]]:
         """Expand parameter grid for continuous trajectories"""
         combinations = []
         
         trajectory_types = config.get('trajectory_types', ['linear', 'branching', 'cyclic'])
         continuity_levels = config.get('continuity_levels', [0.9])
         n_replicates = config.get('n_replicates', 1)
-        branching_params = config.get('branching_params', {
-            'n_branches': 2, 
-            'branch_point': 0.4, 
-            'branch_angle': 60
-        })
-        cyclic_params = config.get('cyclic_params', {'n_cycles': 1.5})
+        
+        # Extract branching params
+        branching_params = config.get('branching_params', {})
+        n_branches_list = branching_params.get('n_branches', [2])
+        if not isinstance(n_branches_list, list):
+            n_branches_list = [n_branches_list]
+        branch_point = branching_params.get('branch_point', 0.4)
+        branch_angle = branching_params.get('branch_angle', 60)
+        
+        # Extract cyclic params
+        cyclic_params = config.get('cyclic_params', {})
+        n_cycles_list = cyclic_params.get('n_cycles', [1.5])
+        if not isinstance(n_cycles_list, list):
+            n_cycles_list = [n_cycles_list]
         
         for traj_type in trajectory_types:
             for continuity in continuity_levels:
                 for n_cell in n_cells:
                     for replicate in range(n_replicates):
                         
-                        params = {
+                        # Base parameters
+                        base_params = {
                             'trajectory_type': traj_type,
                             'continuity': continuity,
                             'n_cells': n_cell,
@@ -462,11 +471,28 @@ class ContinuityDataPrecomputer:
                         
                         # Add trajectory-specific parameters
                         if traj_type == 'branching':
-                            params.update(branching_params)
-                        elif traj_type == 'cyclic':
-                            params.update(cyclic_params)
+                            # Iterate over all n_branches values
+                            for n_branches in n_branches_list:
+                                params = base_params.copy()
+                                params.update({
+                                    'n_branches': n_branches,
+                                    'branch_point': branch_point,
+                                    'branch_angle': branch_angle
+                                })
+                                combinations.append(params)
                         
-                        combinations.append(params)
+                        elif traj_type == 'cyclic':
+                            # Iterate over all n_cycles values
+                            for n_cycles in n_cycles_list:
+                                params = base_params.copy()
+                                params.update({
+                                    'n_cycles': n_cycles
+                                })
+                                combinations.append(params)
+                        
+                        else:
+                            # Linear or other trajectories
+                            combinations.append(base_params)
         
         return combinations
     
