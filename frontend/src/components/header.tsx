@@ -2,18 +2,44 @@
 'use client';
 
 import Link from 'next/link';
-import { Home } from 'lucide-react';
+import { Sparkles } from 'lucide-react';
 import { ThemeToggle } from './theme-toggle';
 
 export function Header() {
   return (
-    <header style={{ borderBottomWidth: '1px', borderColor: 'var(--color-border)' }}>
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 flex justify-between items-center">
-        <Link href="/" className="flex items-center gap-2 text-2xl font-bold hover:opacity-80 transition-opacity">
-          <Home className="w-6 h-6" />
-          <span>iAODE</span>
-        </Link>
-        <ThemeToggle />
+    <header className="sticky top-0 z-50 w-full border-b border-[rgb(var(--border))] bg-[rgb(var(--background))] shadow-sm">
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="flex h-16 items-center justify-between">
+          {/* Logo */}
+          <Link 
+            href="/" 
+            className="flex items-center space-x-2 hover:opacity-80 transition-opacity"
+          >
+            <Sparkles className="w-6 h-6 text-[rgb(var(--training-primary))]" />
+            <span className="font-bold text-lg text-[rgb(var(--foreground))] whitespace-nowrap">
+              iAODE Training
+            </span>
+          </Link>
+
+          {/* Navigation Links */}
+          <nav className="hidden md:flex items-center space-x-6">
+            <Link
+              href="/"
+              className="text-sm font-medium transition-colors hover:text-[rgb(var(--primary-hover))] text-[rgb(var(--text-secondary))]"
+            >
+              Home
+            </Link>
+            <Link
+              href="/train"
+              className="text-sm font-medium transition-colors hover:text-[rgb(var(--primary-hover))] text-[rgb(var(--text-secondary))]"
+            >
+              Train Model
+            </Link>
+          </nav>
+
+          {/* Theme Toggle */}
+          <ThemeToggle />
+        </div>
       </div>
     </header>
   );
