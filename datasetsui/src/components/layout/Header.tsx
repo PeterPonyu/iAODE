@@ -12,13 +12,14 @@ export default function Header() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   const navLinks = [
-    { href: '/', label: 'Home' },
-    { href: '/datasets', label: 'Datasets' },
-    { href: '/statistics', label: 'Statistics' },
-    { href: '/about', label: 'About' }
+    { href: '/', label: 'Home', external: false },
+    { href: '/datasets', label: 'Datasets', external: false },
+    { href: '/statistics', label: 'Statistics', external: false },
+    { href: '/explorer/', label: 'Continuity Explorer', external: true }
   ];
 
-  const isActive = (href: string) => {
+  const isActive = (href: string, external: boolean) => {
+    if (external) return false;
     if (href === '/') return pathname === '/';
     return pathname.startsWith(href);
   };
@@ -50,7 +51,7 @@ export default function Header() {
                 key={link.href}
                 href={link.href}
                 className={`text-sm font-medium transition-colors hover:text-[rgb(var(--primary-hover))] ${
-                  isActive(link.href)
+                  isActive(link.href, link.external)
                     ? 'text-[rgb(var(--primary))]'
                     : 'text-[rgb(var(--text-secondary))]'
                 }`}
@@ -101,7 +102,7 @@ export default function Header() {
                   href={link.href}
                   onClick={() => setMobileMenuOpen(false)}
                   className={`text-base font-medium transition-colors hover:text-[rgb(var(--primary-hover))] px-2 py-1 ${
-                    isActive(link.href)
+                    isActive(link.href, link.external)
                       ? 'text-[rgb(var(--primary))]'
                       : 'text-[rgb(var(--text-secondary))]'
                   }`}
