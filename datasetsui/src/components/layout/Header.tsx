@@ -15,7 +15,7 @@ export default function Header() {
     { href: '/', label: 'Home', external: false },
     { href: '/datasets', label: 'Datasets', external: false },
     { href: '/statistics', label: 'Statistics', external: false },
-    { href: '/explorer/', label: 'Continuity Explorer', external: true }
+    { href: '/iAODE/explorer/', label: 'Continuity Explorer', external: true }
   ];
 
   const isActive = (href: string, external: boolean) => {
@@ -47,17 +47,28 @@ export default function Header() {
           {/* Desktop Navigation */}
           <nav className="hidden md:flex items-center space-x-6">
             {navLinks.map(link => (
-              <Link
-                key={link.href}
-                href={link.href}
-                className={`text-sm font-medium transition-colors hover:text-[rgb(var(--primary-hover))] ${
-                  isActive(link.href, link.external)
-                    ? 'text-[rgb(var(--primary))]'
-                    : 'text-[rgb(var(--text-secondary))]'
-                }`}
-              >
-                {link.label}
-              </Link>
+              link.external ? (
+                <a
+                  key={link.href}
+                  href={link.href}
+                  className={`text-sm font-medium transition-colors hover:text-[rgb(var(--primary-hover))] text-[rgb(var(--text-secondary))]
+                  `}
+                >
+                  {link.label}
+                </a>
+              ) : (
+                <Link
+                  key={link.href}
+                  href={link.href}
+                  className={`text-sm font-medium transition-colors hover:text-[rgb(var(--primary-hover))] ${
+                    isActive(link.href, link.external)
+                      ? 'text-[rgb(var(--primary))]'
+                      : 'text-[rgb(var(--text-secondary))]'
+                  }`}
+                >
+                  {link.label}
+                </Link>
+              )
             ))}
           </nav>
 
@@ -97,18 +108,30 @@ export default function Header() {
           <div className="md:hidden py-4 border-t border-[rgb(var(--border))]">
             <nav className="flex flex-col space-y-3">
               {navLinks.map(link => (
-                <Link
-                  key={link.href}
-                  href={link.href}
-                  onClick={() => setMobileMenuOpen(false)}
-                  className={`text-base font-medium transition-colors hover:text-[rgb(var(--primary-hover))] px-2 py-1 ${
-                    isActive(link.href, link.external)
-                      ? 'text-[rgb(var(--primary))]'
-                      : 'text-[rgb(var(--text-secondary))]'
-                  }`}
-                >
-                  {link.label}
-                </Link>
+                link.external ? (
+                  <a
+                    key={link.href}
+                    href={link.href}
+                    onClick={() => setMobileMenuOpen(false)}
+                    className={`text-base font-medium transition-colors hover:text-[rgb(var(--primary-hover))] px-2 py-1 text-[rgb(var(--text-secondary))]
+                    `}
+                  >
+                    {link.label}
+                  </a>
+                ) : (
+                  <Link
+                    key={link.href}
+                    href={link.href}
+                    onClick={() => setMobileMenuOpen(false)}
+                    className={`text-base font-medium transition-colors hover:text-[rgb(var(--primary-hover))] px-2 py-1 ${
+                      isActive(link.href, link.external)
+                        ? 'text-[rgb(var(--primary))]'
+                        : 'text-[rgb(var(--text-secondary))]'
+                    }`}
+                  >
+                    {link.label}
+                  </Link>
+                )
               ))}
             </nav>
           </div>

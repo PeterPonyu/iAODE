@@ -4,8 +4,7 @@
 // ============================================================================
 
 import type { Metadata } from 'next';
-import Link from 'next/link';
-import { ThemeToggle } from '@/components/ThemeToggle';
+import { Header } from '@/components/Header';
 import { ThemeProvider } from '@/lib/theme';
 import './globals.css';
 
@@ -23,36 +22,7 @@ export default function RootLayout({
     <html lang="en" suppressHydrationWarning>
       <body className="min-h-screen flex flex-col">
         <ThemeProvider defaultTheme="light" storageKey="sc-explorer-theme">
-          {/* Header */}
-          <header className="border-b border-[rgb(var(--border))] bg-[rgb(var(--background))] sticky top-0 z-50">
-            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 flex items-center justify-between gap-4">
-              <div className="flex items-center gap-6">
-                <Link href="/" className="hover:opacity-80 transition-opacity">
-                  <h1 className="text-lg sm:text-xl font-semibold leading-tight">
-                    Single-Cell Continuity Explorer
-                  </h1>
-                  <p className="text-xs sm:text-sm text-[rgb(var(--muted-foreground))] mt-0.5">
-                    Explore trajectory structures across embedding methods
-                  </p>
-                </Link>
-                <nav className="hidden md:flex items-center gap-4 ml-8">
-                  <Link 
-                    href="../../" 
-                    className="text-sm font-medium text-[rgb(var(--muted-foreground))] hover:text-[rgb(var(--foreground))] transition-colors"
-                  >
-                    ← Back to Main
-                  </Link>
-                  <Link 
-                    href="../../datasets/" 
-                    className="text-sm font-medium text-[rgb(var(--muted-foreground))] hover:text-[rgb(var(--foreground))] transition-colors"
-                  >
-                    Dataset Browser
-                  </Link>
-                </nav>
-              </div>
-              <ThemeToggle />
-            </div>
-          </header>
+          <Header />
 
           {/* Main content */}
           <main className="flex-1 w-full">
