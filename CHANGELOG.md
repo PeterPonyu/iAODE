@@ -4,6 +4,31 @@ All notable changes to this project will be documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/), and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.2.8] - 2025-11-25
+
+### Changed
+
+- **Training display**: Improved training progress output with cleaner formatting
+  - Unified progress bar with tabular metric display
+  - Better metric organization and readability
+  - Enhanced tqdm integration for notebook compatibility
+
+### Fixed
+
+- **Data organization**: Removed duplicate data directories
+  - Cleaned up `data/` and `notebooks/data/` duplicates
+  - Kept only `examples/data/` for centralized example datasets
+  - Updated `.gitignore` to prevent future data directory duplication
+
+### Documentation
+
+- **Examples README**: Fixed LaTeX notation and added missing example documentation
+- **Code documentation**: Improved inline comments and docstrings
+
+[0.2.8]: https://github.com/PeterPonyu/iAODE/releases/tag/v0.2.8
+
+---
+
 ## [0.2.7] - 2025-11-23
 
 ### Added
