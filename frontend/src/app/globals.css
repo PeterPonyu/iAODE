@@ -1,0 +1,318 @@
+
+@import "tailwindcss";
+
+@theme {
+  /* Base colors */
+  --color-background: #ffffff;
+  --color-background-dark: #111827;
+  
+  --color-foreground: #111827;
+  --color-foreground-dark: #f9fafb;
+  
+  --color-muted: #6b7280;
+  --color-muted-dark: #9ca3af;
+  
+  --color-border: #e5e7eb;
+  --color-border-dark: #374151;
+  
+  /* Surface colors */
+  --color-surface: #ffffff;
+  --color-surface-dark: #1f2937;
+  
+  --color-card: #f9fafb;
+  --color-card-dark: #111827;
+  
+  /* Interactive colors */
+  --color-primary: #2563eb;
+  --color-primary-hover: #1d4ed8;
+  --color-primary-dark: #3b82f6;
+  --color-primary-hover-dark: #2563eb;
+  
+  --color-secondary: #e5e7eb;
+  --color-secondary-hover: #d1d5db;
+  --color-secondary-dark: #374151;
+  --color-secondary-hover-dark: #4b5563;
+  
+  /* Status colors */
+  --color-success: #dcfce7;
+  --color-success-text: #166534;
+  --color-success-dark: #064e3b;
+  --color-success-text-dark: #86efac;
+  
+  --color-error: #fef2f2;
+  --color-error-text: #991b1b;
+  --color-error-dark: #7f1d1d;
+  --color-error-text-dark: #fca5a5;
+  
+  --color-info: #dbeafe;
+  --color-info-text: #1e40af;
+  --color-info-dark: #1e3a8a;
+  --color-info-text-dark: #93c5fd;
+  
+  /* Accent colors */
+  --color-blue: #dbeafe;
+  --color-blue-text: #1e40af;
+  --color-blue-dark: #1e3a8a;
+  --color-blue-text-dark: #93c5fd;
+  
+  --color-green: #dcfce7;
+  --color-green-text: #16a34a;
+  --color-green-dark: #064e3b;
+  --color-green-text-dark: #4ade80;
+  
+  --color-purple: #f3e8ff;
+  --color-purple-text: #9333ea;
+  --color-purple-dark: #581c87;
+  --color-purple-text-dark: #c084fc;
+}
+
+@layer base {
+  :root {
+    background-color: var(--color-background);
+    color: var(--color-foreground);
+    color-scheme: light;
+  }
+  
+  .dark {
+    background-color: var(--color-background-dark);
+    color: var(--color-foreground-dark);
+    color-scheme: dark;
+  }
+  
+  body {
+    background-color: var(--color-background);
+    color: var(--color-foreground);
+  }
+  
+  .dark body {
+    background-color: var(--color-background-dark);
+    color: var(--color-foreground-dark);
+  }
+  
+  /* Text utilities */
+  .text-muted {
+    color: var(--color-muted);
+  }
+  
+  .dark .text-muted {
+    color: var(--color-muted-dark);
+  }
+  
+  .text-primary {
+    color: var(--color-primary);
+  }
+  
+  .dark .text-primary {
+    color: var(--color-primary-dark);
+  }
+  
+  /* Border utilities */
+  .border-t {
+    border-top: 1px solid var(--color-border);
+  }
+  
+  .dark .border-t {
+    border-top: 1px solid var(--color-border-dark);
+  }
+  
+  .border-t-divider {
+    border-top: 1px solid var(--color-border);
+  }
+  
+  .dark .border-t-divider {
+    border-top: 1px solid var(--color-border-dark);
+  }
+  
+  /* Card */
+  .card {
+    background-color: var(--color-surface);
+    border: 1px solid var(--color-border);
+  }
+  
+  .dark .card {
+    background-color: var(--color-surface-dark);
+    border-color: var(--color-border-dark);
+  }
+  
+  .card-inner {
+    background-color: var(--color-card);
+    border: 1px solid var(--color-border);
+  }
+  
+  .dark .card-inner {
+    background-color: var(--color-card-dark);
+    border-color: var(--color-border-dark);
+  }
+  
+  /* Buttons */
+  .btn-primary {
+    background-color: var(--color-primary);
+    color: white;
+  }
+  
+  .btn-primary:hover:not(:disabled) {
+    background-color: var(--color-primary-hover);
+  }
+  
+  .dark .btn-primary {
+    background-color: var(--color-primary-dark);
+  }
+  
+  .dark .btn-primary:hover:not(:disabled) {
+    background-color: var(--color-primary-hover-dark);
+  }
+  
+  .btn-secondary {
+    background-color: var(--color-secondary);
+    color: var(--color-foreground);
+  }
+  
+  .btn-secondary:hover:not(:disabled) {
+    background-color: var(--color-secondary-hover);
+  }
+  
+  .dark .btn-secondary {
+    background-color: var(--color-secondary-dark);
+    color: var(--color-foreground-dark);
+  }
+  
+  .dark .btn-secondary:hover:not(:disabled) {
+    background-color: var(--color-secondary-hover-dark);
+  }
+  
+  .btn-purple {
+    background-color: var(--color-purple-text);
+    color: white;
+  }
+  
+  .btn-purple:hover:not(:disabled) {
+    opacity: 0.9;
+  }
+  
+  .dark .btn-purple {
+    background-color: var(--color-purple-text-dark);
+    color: var(--color-foreground-dark);
+  }
+  
+  /* Status badges */
+  .badge-success {
+    background-color: var(--color-success);
+    color: var(--color-success-text);
+  }
+  
+  .dark .badge-success {
+    background-color: var(--color-success-dark);
+    color: var(--color-success-text-dark);
+  }
+  
+  .badge-error {
+    background-color: var(--color-error);
+    color: var(--color-error-text);
+  }
+  
+  .dark .badge-error {
+    background-color: var(--color-error-dark);
+    color: var(--color-error-text-dark);
+  }
+  
+  .badge-info {
+    background-color: var(--color-info);
+    color: var(--color-info-text);
+  }
+  
+  .dark .badge-info {
+    background-color: var(--color-info-dark);
+    color: var(--color-info-text-dark);
+  }
+  
+  .badge-idle {
+    background-color: var(--color-card);
+    color: var(--color-muted);
+  }
+  
+  .dark .badge-idle {
+    background-color: var(--color-secondary-dark);
+    color: var(--color-muted-dark);
+  }
+  
+  /* Feature badges */
+  .badge-blue {
+    background-color: var(--color-blue);
+    color: var(--color-blue-text);
+  }
+  
+  .dark .badge-blue {
+    background-color: var(--color-blue-dark);
+    color: var(--color-blue-text-dark);
+  }
+  
+  .badge-green {
+    background-color: var(--color-green);
+    color: var(--color-green-text);
+  }
+  
+  .dark .badge-green {
+    background-color: var(--color-green-dark);
+    color: var(--color-green-text-dark);
+  }
+  
+  .badge-purple {
+    background-color: var(--color-purple);
+    color: var(--color-purple-text);
+  }
+  
+  .dark .badge-purple {
+    background-color: var(--color-purple-dark);
+    color: var(--color-purple-text-dark);
+  }
+  
+  /* Progress bar */
+  .progress-bar {
+    background-color: var(--color-secondary);
+  }
+  
+  .dark .progress-bar {
+    background-color: var(--color-secondary-dark);
+  }
+  
+  .progress-fill {
+    background-color: var(--color-primary);
+    width: 100%;
+  }
+  
+  .dark .progress-fill {
+    background-color: var(--color-primary-dark);
+  }
+  
+  /* Input/Select */
+  input, select, textarea {
+    background-color: var(--color-surface);
+    border: 1px solid var(--color-border);
+    color: var(--color-foreground);
+  }
+  
+  .dark input, .dark select, .dark textarea {
+    background-color: var(--color-card-dark);
+    border-color: var(--color-border-dark);
+    color: var(--color-foreground-dark);
+  }
+  
+  select option {
+    background-color: var(--color-surface);
+    color: var(--color-foreground);
+  }
+  
+  .dark select option {
+    background-color: var(--color-card-dark);
+    color: var(--color-foreground-dark);
+  }
+  
+  input:focus, select:focus, textarea:focus {
+    outline: 2px solid var(--color-primary);
+    outline-offset: 2px;
+  }
+  
+  .dark input:focus, .dark select:focus, .dark textarea:focus {
+    outline-color: var(--color-primary-dark);
+  }
+}
