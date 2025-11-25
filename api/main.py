@@ -1,7 +1,8 @@
 
 from fastapi import FastAPI, File, UploadFile, Query, BackgroundTasks
 from fastapi.middleware.cors import CORSMiddleware
-from fastapi.responses import FileResponse
+from fastapi.responses import FileResponse, HTMLResponse
+from fastapi.staticfiles import StaticFiles
 from .model import DataInfo, AgentParams, TrainParams, TrainingState, TFIDFParams, HVPParams, SubsampleParams, PreprocessInfo
 from iaode.utils import tfidf_normalization, select_highly_variable_peaks, subsample_cells_and_peaks
 from iaode.agent import agent
@@ -12,6 +13,7 @@ from typing import Literal, Optional
 from datetime import datetime
 import scanpy as sc
 import pandas as pd
+from pathlib import Path
 
 VERSION = "0.3.0"
 
@@ -20,11 +22,25 @@ app = FastAPI(title="iAODE API", version=VERSION)
 # Add CORS middleware for Next.js frontend
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["http://localhost:3000"],
+    allow_origins=["http://localhost:3000", "http://localhost:8000"],
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
 )
+
+# Mount static files from Next.js build
+frontend_path = Path(__file__).parent.parent / "frontend" / "out"
+if frontend_path.exists():
+    # Mount Next.js static assets
+    app.mount("/_next", StaticFiles(directory=str(frontend_path / "_next")), name="next-static")
+    
+    # Serve other static files
+    for static_file in ["favicon.ico", "file.svg", "globe.svg", "next.svg", "vercel.svg", "window.svg"]:
+        if (frontend_path / static_file).exists():
+            @app.get(f"/{static_file}")
+            async def serve_static(file=static_file):
+                return FileResponse(frontend_path / file)
+
 
 
 class AppState:
@@ -38,6 +54,24 @@ class AppState:
 
 
 state = AppState()
+
+
+# Serve frontend pages
+@app.get("/ui", response_class=HTMLResponse)
+@app.get("/ui/", response_class=HTMLResponse)
+async def serve_ui_root():
+    """Serve the frontend homepage"""
+    if frontend_path.exists():
+        return FileResponse(frontend_path / "index.html")
+    return {"message": "Frontend not built. Run 'cd frontend && npm run build'"}
+
+
+@app.get("/ui/train", response_class=HTMLResponse)
+async def serve_ui_train():
+    """Serve the training page"""
+    if frontend_path.exists():
+        return FileResponse(frontend_path / "train.html")
+    return {"message": "Frontend not built. Run 'cd frontend && npm run build'"}
 
 
 @app.get("/")
