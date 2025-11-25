@@ -100,8 +100,6 @@ Then open your browser to:
 - Monitor training progress in real-time
 - Download trained embeddings (latent and interpretable)
 
-For more details, see [`TRAINING_UI_README.md`](TRAINING_UI_README.md).
-
 ---
 
 ### Basic scATAC-seq Workflow
