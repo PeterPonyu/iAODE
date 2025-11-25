@@ -163,6 +163,11 @@ examples/*.csv
 *.png
 *.csv
 
+# Duplicate data directories (keep only examples/data/)
+data/
+notebooks/data/
+notebooks/outputs/
+
 # Logs
 logs/
 *.log
