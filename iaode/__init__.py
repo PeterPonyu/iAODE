@@ -37,7 +37,7 @@ Usage Example:
     >>> latent = model.get_latent()
 """
 
-__version__ = "0.2.7"
+__version__ = "0.2.8"
 __author__ = "Zeyu Fu"
 
 # Import main classes and functions
