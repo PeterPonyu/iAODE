@@ -5,7 +5,7 @@ import scanpy as sc  # type: ignore
 from anndata import AnnData  # type: ignore
 import numpy as np
 import torch
-import tqdm  # type: ignore
+from tqdm.auto import tqdm # type: ignore
 import time
 from typing import Literal, Optional
 from scipy.stats import norm  # type: ignore
@@ -183,80 +183,113 @@ class agent(Env):
         val_every: int = 5,
         early_stop: bool = True,
     ):
-        """Train model with early stopping."""
+        """Train model with early stopping and clean progress tracking."""
         
-        # Initialize resource tracking
         use_cuda = torch.cuda.is_available()
         if use_cuda:
             torch.cuda.reset_peak_memory_stats()
         start_time = time.time()
 
-        # Main progress bar (compact)
-        with tqdm.tqdm(total=epochs, desc="Training", position=0) as pbar:
-            # Secondary info bar (detailed metrics)
-            with tqdm.tqdm(total=0, position=1, bar_format='{desc}') as pbar_info:
-                
-                for epoch in range(epochs):
-                    
-                    train_loss = self.train_epoch()
+        # Prepare header & separator (but do NOT print yet)
+        header = (
+            f"{'Epoch':<6} | "
+            f"{'Train Loss':<10} | "
+            f"{'Val Loss':<10} | "
+            f"{'ARI':<6} {'NMI':<6} {'ASW':<6} | "
+            f"{'CAL':<6} {'DAV':<6} {'COR':<6} | "
+            f"{'Patience':<9}"
+        )
+        sep_line = "-" * len(header)
 
-                    if (epoch + 1) % val_every == 0 or epoch == 0:
-                        val_loss, val_score = self.validate()
-                        val_loss = float(val_loss)
-                        
-                        if early_stop:
-                            should_stop, improved = self.check_early_stopping(val_loss, patience)
+        # Single unified progress bar
+        with tqdm(total=epochs, desc="Training", unit="epoch", dynamic_ncols=True) as pbar:
+            # Print header via pbar.write so that header & rows stay together
+            pbar.write(sep_line)
+            pbar.write(header)
+            pbar.write(sep_line)
 
-                            # Main bar: key metrics only
-                            pbar.set_postfix({
-                                "trn": f"{train_loss:.2f}",
-                                "val": f"{val_loss:.2f}",
-                                "pat": f"{self.patience_counter}/{patience}",
-                                "↑" if improved else "↓": ""
-                            })
-                            
-                            # Info bar: all metrics
-                            pbar_info.set_description_str(
-                                f"Metrics | ARI:{val_score[0]:.3f} NMI:{val_score[1]:.3f} "
-                                f"ASW:{val_score[2]:.3f} CAL:{val_score[3]:.3f} "
-                                f"DAV:{val_score[4]:.3f} COR:{val_score[5]:.3f} | "
-                                f"Best:{self.best_val_loss:.3f}"
-                            )
+            for epoch in range(epochs):
 
-                            if should_stop:
-                                self.actual_epochs = epoch + 1
-                                pbar.write(f"\nEarly stopping at epoch {epoch + 1}")
-                                break
-                        else:
-                            pbar.set_postfix({
-                                "trn": f"{train_loss:.2f}",
-                                "val": f"{val_loss:.2f}",
-                            })
-                            pbar_info.set_description_str(
-                                f"Metrics | ARI:{val_score[0]:.3f} NMI:{val_score[1]:.3f} "
-                                f"ASW:{val_score[2]:.3f} CAL:{val_score[3]:.3f} "
-                                f"DAV:{val_score[4]:.3f} COR:{val_score[5]:.3f}"
-                            )
-                    
-                    pbar.update(1)
-                else:
-                    self.actual_epochs = epochs
+                # 1. Training step
+                train_loss = self.train_epoch()
+
+                # 2. Validation step
+                if (epoch + 1) % val_every == 0 or epoch == 0:
+                    val_loss, val_score = self.validate()
+                    val_loss = float(val_loss)
+
+                    # val_score indices:
+                    # 0: ARI, 1: NMI, 2: ASW, 3: CAL, 4: DAV, 5: COR
+                    ari, nmi, asw, cal, dav, cor = val_score[:6]
+
+                    if early_stop:
+                        should_stop, _ = self.check_early_stopping(val_loss, patience)
+                        pat_status = f"{self.patience_counter}/{patience}"
+                    else:
+                        should_stop = False
+                        pat_status = "N/A"
+
+                    # Log line with all 6 metrics
+                    log_msg = (
+                        f"{epoch+1:<6} | "
+                        f"{train_loss:<10.4f} | "
+                        f"{val_loss:<10.4f} | "
+                        f"{ari:<6.3f} {nmi:<6.3f} {asw:<6.3f} | "
+                        f"{cal:<6.3f} {dav:<6.3f} {cor:<6.3f} | "
+                        f"{pat_status:<9}"
+                    )
+
+                    # This will appear just above the bar, under the header
+                    pbar.write(log_msg)
+
+                    # Compact info on the moving bar itself
+                    postfix = {
+                        "trn": f"{train_loss:.3f}",
+                        "val": f"{val_loss:.3f}",
+                    }
+                    if early_stop:
+                        postfix["best"] = f"{self.best_val_loss:.3f}"
+                    pbar.set_postfix(postfix)
+
+                    if should_stop and early_stop:
+                        self.actual_epochs = epoch + 1
+                        pbar.write(f"\n>>> Early stopping triggered at epoch {epoch + 1}")
+                        break
+
+                # Update the bar each epoch
+                pbar.update(1)
+            else:
+                self.actual_epochs = epochs
 
         # Record resource usage
         self.train_time = time.time() - start_time
         self.peak_memory_gb = torch.cuda.max_memory_allocated() / 1e9 if use_cuda else 0.0
 
-        print(f"\n{'='*70}")
-        print("Training Complete")
-        print(f"{'='*70}")
-        print(f"  Epochs: {self.actual_epochs}/{epochs}")
-        print(f"  Time: {self.train_time:.2f}s ({self.train_time/self.actual_epochs:.2f}s/epoch)")
-        print(f"  Peak GPU Memory: {self.peak_memory_gb:.3f} GB")
-        if early_stop:
-            print(f"  Best Val Loss: {self.best_val_loss:.4f}")
-        print(f"{'='*70}\n")
+        # Final summary (after bar is closed, plain prints are fine)
+        self._print_training_summary(early_stop)
 
         return self
+
+
+    def _print_training_summary(self, early_stop: bool):
+        """Helper to print a clean final summary."""
+        print(f"\n{'='*60}")
+        print(f"{'Training Summary':^60}")
+        print(f"{'='*60}")
+
+        rows = [
+            ("Total Epochs", f"{self.actual_epochs}"),
+            ("Total Time", f"{self.train_time:.2f}s"),
+            ("Time per Epoch", f"{self.train_time/self.actual_epochs:.3f}s"),
+            ("Peak GPU Memory", f"{self.peak_memory_gb:.3f} GB"),
+        ]
+        if early_stop:
+            rows.append(("Best Val Loss", f"{self.best_val_loss:.4f}"))
+
+        for label, value in rows:
+            print(f"  {label:<20} : {value}")
+        print(f"{'='*60}\n")
+
     # ========================================================================
     # Representation Extraction
     # ========================================================================
