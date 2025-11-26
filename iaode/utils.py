@@ -48,11 +48,14 @@ def tfidf_normalization(adata,
     
     print(f"Applying TF-IDF normalization (scale={scale_factor:.0e})...")
     
-    # Get counts matrix
+    # Get counts matrix - ensure CSR format
     if issparse(adata.X):
-        X = adata.X.copy()
+        if adata.X.format != 'csr':
+            adata.X = adata.X.tocsr()
+        X = adata.X
     else:
-        X = csr_matrix(adata.X.copy())
+        X = csr_matrix(adata.X)
+        adata.X = X
     
     # ========================================================================
     # Term Frequency (TF)
@@ -62,12 +65,14 @@ def tfidf_normalization(adata,
     cell_sums = np.array(X.sum(axis=1)).flatten()
     cell_sums[cell_sums == 0] = 1  # Avoid division by zero
     
-    # Normalize: peak_count / total_counts_per_cell
-    tf = X.multiply(1.0 / cell_sums[:, None])
+    # In-place normalization: peak_count / total_counts_per_cell
+    # Map each data point to its row's cell_sum
+    row_indices = np.repeat(np.arange(X.shape[0]), np.diff(X.indptr))
+    X.data /= cell_sums[row_indices]
     
     # Optional: log-transform TF (log(1 + TF))
     if log_tf:
-        tf.data = np.log1p(tf.data)
+        np.log1p(X.data, out=X.data)
         print("  Using log-transformed TF: log(1 + TF)")
     
     # ========================================================================
@@ -77,7 +82,7 @@ def tfidf_normalization(adata,
     n_cells = adata.n_obs
     
     # Count cells where each peak is accessible (count > 0)
-    n_cells_per_peak = np.array((X > 0).sum(axis=0)).flatten()
+    n_cells_per_peak = np.asarray((X > 0).sum(axis=0)).ravel()
     n_cells_per_peak[n_cells_per_peak == 0] = 1  # Avoid division by zero
     
     if log_idf:
@@ -91,10 +96,11 @@ def tfidf_normalization(adata,
     # TF-IDF = TF * IDF * scale_factor
     # ========================================================================
     
-    tfidf = tf.multiply(idf)
-    tfidf = tfidf.multiply(scale_factor)
+    # In-place multiplication: use column indices to map IDF values
+    X.data *= idf[X.indices]
     
-    adata.X = tfidf.tocsr()
+    # In-place scaling
+    X.data *= scale_factor
     
     # Store normalization parameters
     adata.uns['tfidf_params'] = {
@@ -103,7 +109,7 @@ def tfidf_normalization(adata,
         'log_idf': log_idf
     }
     
-    print(f"  TF-IDF complete. Value range: [{tfidf.min():.2e}, {tfidf.max():.2e}]")
+    print(f"  TF-IDF complete. Value range: [{X.data.min():.2e}, {X.data.max():.2e}]")
     
     return adata if not inplace else None
 
