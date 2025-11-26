@@ -15,7 +15,8 @@ export function TrainingMonitor() {
         const data = await getTrainingState();
         setState(data);
       } catch {
-        // Silently handle error if backend not ready
+        // Backend may not be ready yet, set a waiting state
+        // This is expected during initial load before the backend is running
         if (!state) {
           setState({
             status: 'idle',
