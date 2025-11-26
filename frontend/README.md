@@ -1,36 +1,28 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# iAODE Training UI
+
+Web-based interface for training iAODE models on single-cell omics data.
+
+## Features
+
+- **Data Upload**: Upload scRNA-seq and scATAC-seq data in H5AD format
+- **Preprocessing Pipeline**: TF-IDF normalization, variable peak selection, and subsampling for scATAC-seq data
+- **Training Configuration**: Configure model architecture, loss functions, and training parameters
+- **Training Monitor**: Real-time monitoring of training progress with early stopping
+- **Embedding Export**: Download latent and interpretable embeddings after training
 
 ## Getting Started
 
-First, run the development server:
-
 ```bash
+npm install
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open [http://localhost:3000](http://localhost:3000) to view the training interface.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Backend
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+This frontend requires the FastAPI backend to be running. See the main [iAODE](https://github.com/PeterPonyu/iAODE) repository for backend setup instructions.
 
-## Learn More
+## Part of iAODE
 
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+This project is part of the [iAODE](https://github.com/PeterPonyu/iAODE) framework for interpretable single-cell omics analysis.
