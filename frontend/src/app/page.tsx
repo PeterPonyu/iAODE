@@ -52,33 +52,33 @@ export default function Home() {
         {/* Features */}
         <div className="mt-24 grid grid-cols-1 md:grid-cols-3 gap-8">
           <div className="card p-6 hover:shadow-lg transition-shadow">
-            <div className="w-12 h-12 rounded-lg bg-[rgb(var(--info-bg))] text-[rgb(var(--info-text))] flex items-center justify-center mb-4">
-              <Sparkles className="w-6 h-6" />
-            </div>
-            <h3 className="text-lg font-semibold mb-2 text-[rgb(var(--foreground))]">Multi-modal Support</h3>
-            <p className="text-[rgb(var(--text-secondary))]">
-              Process scRNA-seq and scATAC-seq data with specialized loss functions (MSE, NB, ZINB)
-            </p>
+              <div className="w-12 h-12 rounded-lg bg-[rgb(var(--info-bg))] text-[rgb(var(--info-text))] flex items-center justify-center mb-4">
+                <Sparkles className="w-6 h-6" />
+              </div>
+              <h3 className="text-lg font-semibold mb-2 text-[rgb(var(--foreground))]">Multi-modal Support</h3>
+              <p className="text-[rgb(var(--text-secondary))]">
+                Handle both scRNA-seq and scATAC-seq data with TF-IDF normalization and HVP selection. Choose from MSE, NB, or ZINB loss functions.
+              </p>
           </div>
 
           <div className="card p-6 hover:shadow-lg transition-shadow">
             <div className="w-12 h-12 rounded-lg bg-[rgb(var(--success-bg))] text-[rgb(var(--success-text))] flex items-center justify-center mb-4">
               <Zap className="w-6 h-6" />
             </div>
-            <h3 className="text-lg font-semibold mb-2 text-[rgb(var(--foreground))]">Fast Training</h3>
-            <p className="text-[rgb(var(--text-secondary))]">
-              GPU-accelerated training with early stopping, validation monitoring, and batch processing
-            </p>
+              <h3 className="text-lg font-semibold mb-2 text-[rgb(var(--foreground))]">Real-time Training</h3>
+              <p className="text-[rgb(var(--text-secondary))]">
+                Monitor training progress in real-time with live loss curves, epoch tracking, and automatic checkpointing with early stopping.
+              </p>
           </div>
 
           <div className="card p-6 hover:shadow-lg transition-shadow">
             <div className="w-12 h-12 rounded-lg bg-[rgb(var(--training-bg))] text-[rgb(var(--training-text-bright))] flex items-center justify-center mb-4">
               <Eye className="w-6 h-6" />
             </div>
-            <h3 className="text-lg font-semibold mb-2 text-[rgb(var(--foreground))]">Interpretable Results</h3>
-            <p className="text-[rgb(var(--text-secondary))]">
-              Extract both latent and interpretable embeddings for downstream analysis and visualization
-            </p>
+              <h3 className="text-lg font-semibold mb-2 text-[rgb(var(--foreground))]">Neural ODE Dynamics</h3>
+              <p className="text-[rgb(var(--text-secondary))]">
+                Learn continuous cell trajectories with Neural ODE integration. Extract both latent and interpretable embeddings for downstream analysis.
+              </p>
           </div>
         </div>
 

@@ -150,10 +150,10 @@ export function PreprocessingPanel({ dataType, onComplete }: PreprocessingPanelP
                   value={tfidfParams.scale_factor}
                   onChange={(e) => setTfidfParams({ ...tfidfParams, scale_factor: Number(e.target.value) })}
                   disabled={currentStep !== 'idle' || isProcessing}
-                  className="w-full px-3 py-2 rounded-lg border text-sm"
+                  className="w-full px-3 py-2 rounded-lg border bg-card text-foreground text-sm focus:outline-none focus:ring-2 focus:ring-ring"
                 >
-                  <option value={1e4}>10,000 (Standard)</option>
-                  <option value={1e6}>1,000,000 (Large datasets)</option>
+                  <option value={1e4} className="bg-card text-foreground">10,000 (Standard)</option>
+                  <option value={1e6} className="bg-card text-foreground">1,000,000 (Large datasets)</option>
                 </select>
                 <p className="text-xs text-muted mt-1">Normalization scale factor</p>
               </div>
@@ -225,11 +225,11 @@ export function PreprocessingPanel({ dataType, onComplete }: PreprocessingPanelP
                   value={hvpParams.method}
                   onChange={(e) => setHvpParams({ ...hvpParams, method: e.target.value as 'signac' | 'snapatac2' | 'deviance' })}
                   disabled={currentStep !== 'tfidf' || isProcessing}
-                  className="w-full px-3 py-2 rounded-lg border text-sm"
+                  className="w-full px-3 py-2 rounded-lg border bg-card text-foreground text-sm focus:outline-none focus:ring-2 focus:ring-ring"
                 >
-                  <option value="signac">Signac (Recommended)</option>
-                  <option value="snapatac2">SnapATAC2</option>
-                  <option value="deviance">Binomial Deviance</option>
+                  <option value="signac" className="bg-card text-foreground">Signac (Recommended)</option>
+                  <option value="snapatac2" className="bg-card text-foreground">SnapATAC2</option>
+                  <option value="deviance" className="bg-card text-foreground">Binomial Deviance</option>
                 </select>
                 <p className="text-xs text-muted mt-1">Peak selection algorithm</p>
               </div>

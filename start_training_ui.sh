@@ -21,16 +21,15 @@ if [ ! -d "api" ] || [ ! -d "frontend" ]; then
     exit 1
 fi
 
-# Check if frontend is built
-if [ ! -d "frontend/out" ]; then
-    echo -e "${YELLOW}Frontend not built. Building now...${NC}"
+# Check if frontend dependencies are installed
+if [ ! -d "frontend/node_modules" ]; then
+    echo -e "${YELLOW}Installing npm dependencies...${NC}"
     cd frontend
     npm install
-    npm run build
     cd ..
-    echo -e "${GREEN}✓ Frontend built successfully${NC}"
+    echo -e "${GREEN}✓ Frontend dependencies installed${NC}"
 else
-    echo -e "${GREEN}✓ Frontend already built${NC}"
+    echo -e "${GREEN}✓ Frontend dependencies installed${NC}"
 fi
 
 # Check Python dependencies

@@ -128,12 +128,12 @@ export function TrainingParams({ onSubmit, disabled }: TrainingParamsProps) {
               <select
                 value={agentParams.encoder_type}
                 onChange={(e) => setAgentParams({...agentParams, encoder_type: e.target.value as 'mlp' | 'mlp_residual' | 'linear' | 'transformer'})}
-                className="w-full px-3 py-2 rounded-lg border text-sm"
+                className="w-full px-3 py-2 rounded-lg border bg-card text-foreground text-sm focus:outline-none focus:ring-2 focus:ring-ring"
               >
-                <option value="mlp">MLP (Multi-Layer Perceptron)</option>
-                <option value="mlp_residual">MLP with Residual Connections</option>
-                <option value="linear">Linear</option>
-                <option value="transformer">Transformer</option>
+                <option value="mlp" className="bg-card text-foreground">MLP (Multi-Layer Perceptron)</option>
+                <option value="mlp_residual" className="bg-card text-foreground">MLP with Residual Connections</option>
+                <option value="linear" className="bg-card text-foreground">Linear</option>
+                <option value="transformer" className="bg-card text-foreground">Transformer</option>
               </select>
               <p className="text-xs text-muted mt-1">Neural network architecture for encoder</p>
             </div>
@@ -194,11 +194,11 @@ export function TrainingParams({ onSubmit, disabled }: TrainingParamsProps) {
               <select
                 value={agentParams.loss_mode}
                 onChange={(e) => setAgentParams({...agentParams, loss_mode: e.target.value as 'mse' | 'nb' | 'zinb'})}
-                className="w-full px-3 py-2 rounded-lg border text-sm"
+                className="w-full px-3 py-2 rounded-lg border bg-card text-foreground text-sm focus:outline-none focus:ring-2 focus:ring-ring"
               >
-                <option value="mse">MSE (Mean Squared Error)</option>
-                <option value="nb">NB (Negative Binomial)</option>
-                <option value="zinb">ZINB (Zero-Inflated NB)</option>
+                <option value="mse" className="bg-card text-foreground">MSE (Mean Squared Error)</option>
+                <option value="nb" className="bg-card text-foreground">NB (Negative Binomial)</option>
+                <option value="zinb" className="bg-card text-foreground">ZINB (Zero-Inflated NB)</option>
               </select>
               <p className="text-xs text-muted mt-1">Reconstruction loss function</p>
             </div>

@@ -1,5 +1,5 @@
 
-from fastapi import FastAPI, File, UploadFile, Query, BackgroundTasks
+from fastapi import FastAPI, File, UploadFile, Query, BackgroundTasks, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import FileResponse, HTMLResponse
 from fastapi.staticfiles import StaticFiles
@@ -253,7 +253,7 @@ async def reset_state():
 async def normalize_tfidf(params: TFIDFParams):
     """Apply TF-IDF normalization to scATAC-seq data"""
     if state.adata is None:
-        return {"error": "No data uploaded. Please upload data first."}
+        raise HTTPException(status_code=400, detail="No data uploaded. Please upload data first.")
     
     try:
         state.status = "processing"
@@ -277,17 +277,21 @@ async def normalize_tfidf(params: TFIDFParams):
             message=f"TF-IDF applied (scale={params.scale_factor:.0e})"
         )
     
+    except ValueError as e:
+        state.status = "error"
+        state.message = f"TF-IDF failed: {str(e)}"
+        raise HTTPException(status_code=400, detail=str(e))
     except Exception as e:
         state.status = "error"
         state.message = f"TF-IDF failed: {str(e)}"
-        raise
+        raise HTTPException(status_code=500, detail=str(e))
 
 
 @app.post("/preprocess/select-hvp", response_model=PreprocessInfo)
 async def select_hvp(params: HVPParams):
     """Select highly variable peaks from scATAC-seq data"""
     if state.adata is None:
-        return {"error": "No data uploaded. Please upload data first."}
+        raise HTTPException(status_code=400, detail="No data uploaded. Please upload data first.")
     
     try:
         state.status = "processing"
@@ -315,24 +319,28 @@ async def select_hvp(params: HVPParams):
             message=f"Selected {n_hvp}/{state.adata.n_vars} peaks using {params.method}"
         )
     
+    except ValueError as e:
+        state.status = "error"
+        state.message = f"HVP selection failed: {str(e)}"
+        raise HTTPException(status_code=400, detail=str(e))
     except Exception as e:
         state.status = "error"
         state.message = f"HVP selection failed: {str(e)}"
-        raise
+        raise HTTPException(status_code=500, detail=str(e))
 
 
 @app.post("/preprocess/subsample", response_model=PreprocessInfo)
 async def subsample_data(params: SubsampleParams):
     """Subsample cells and optionally filter to highly variable peaks"""
     if state.adata is None:
-        return {"error": "No data uploaded. Please upload data first."}
+        raise HTTPException(status_code=400, detail="No data uploaded. Please upload data first.")
     
     # Validate params
     if params.n_cells is None and params.frac_cells is None:
-        return {"error": "Must specify either n_cells or frac_cells"}
+        raise HTTPException(status_code=400, detail="Must specify either n_cells or frac_cells")
     
     if params.n_cells is not None and params.frac_cells is not None:
-        return {"error": "Specify only one of n_cells or frac_cells"}
+        raise HTTPException(status_code=400, detail="Specify only one of n_cells or frac_cells")
     
     try:
         state.status = "processing"
@@ -358,7 +366,11 @@ async def subsample_data(params: SubsampleParams):
             message=f"Subsampled to {state.adata.n_obs} cells × {state.adata.n_vars} peaks"
         )
     
+    except ValueError as e:
+        state.status = "error"
+        state.message = f"Subsampling failed: {str(e)}"
+        raise HTTPException(status_code=400, detail=str(e))
     except Exception as e:
         state.status = "error"
         state.message = f"Subsampling failed: {str(e)}"
-        raise
+        raise HTTPException(status_code=500, detail=str(e))

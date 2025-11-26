@@ -57,11 +57,11 @@ export function UploadData({ onUploadSuccess }: UploadDataProps) {
           <select
             value={dataType}
             onChange={(e) => setDataType(e.target.value as DataType)}
-            className="w-full px-3 py-2 rounded-lg border text-sm"
+            className="w-full px-3 py-2 rounded-lg border border-[rgb(var(--border))] bg-[rgb(var(--background))] text-[rgb(var(--foreground))] text-sm focus:outline-none focus:ring-2 focus:ring-[rgb(var(--primary))] disabled:opacity-50"
             disabled={uploading}
           >
-            <option value="scrna">scRNA-seq</option>
-            <option value="scatac">scATAC-seq</option>
+            <option value="scrna" className="bg-[rgb(var(--background))] text-[rgb(var(--foreground))]">scRNA-seq</option>
+            <option value="scatac" className="bg-[rgb(var(--background))] text-[rgb(var(--foreground))]">scATAC-seq</option>
           </select>
         </div>
 
