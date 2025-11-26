@@ -222,4 +222,31 @@
   .text-secondary {
     color: rgb(var(--text-secondary));
   }
+
+  /* ============================================
+     BADGE COMPONENTS
+     ============================================ */
+  .badge-success {
+    background-color: rgb(var(--success-bg));
+    color: rgb(var(--success-text));
+    font-weight: 600;
+  }
+
+  .badge-error {
+    background-color: rgb(var(--error-bg));
+    color: rgb(var(--error-text));
+    font-weight: 600;
+  }
+
+  .badge-warning {
+    background-color: rgb(var(--warning-bg));
+    color: rgb(var(--warning-text));
+    font-weight: 600;
+  }
+
+  .badge-info {
+    background-color: rgb(var(--info-bg));
+    color: rgb(var(--info-text));
+    font-weight: 600;
+  }
 }

@@ -8,15 +8,13 @@ import { TrainingState } from '@/lib/types';
 export function TrainingMonitor() {
   const [state, setState] = useState<TrainingState | null>(null);
   const [downloading, setDownloading] = useState<string | null>(null);
-  const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
     const fetchState = async () => {
       try {
         const data = await getTrainingState();
         setState(data);
-        setError(null);
-      } catch (err) {
+      } catch {
         // Silently handle error if backend not ready
         if (!state) {
           setState({
@@ -65,7 +63,6 @@ export function TrainingMonitor() {
 
   const isTraining = state.status === 'training' || state.status === 'initializing';
   const isCompleted = state.status === 'completed';
-  const isIdle = state.status === 'idle';
 
   return (
     <div className="space-y-4 p-6 rounded-lg card">
