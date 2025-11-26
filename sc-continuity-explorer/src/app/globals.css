@@ -1,41 +1,228 @@
+/* app/globals.css */
 
 @import "tailwindcss";
 
-/* Theme Variables */
-@theme {
-  /* Light mode (default) */
-  --color-background: #ffffff;
-  --color-foreground: #0a0a0a;
-  --color-muted: #f5f5f5;
-  --color-muted-foreground: #737373;
-  --color-border: #e5e5e5;
-  --color-primary: #2563eb;
-  --color-primary-foreground: #ffffff;
-  --color-error: #dc2626;
-  --color-error-foreground: #ffffff;
-  
-  --transition-base: 150ms cubic-bezier(0.4, 0, 0.2, 1);
+@layer base {
+  :root {
+    /* ============================================
+       CORE DESIGN TOKENS (RGB format: r g b)
+       ============================================ */
+    
+    /* Base colors */
+    --background: 255 255 255;
+    --foreground: 31 41 55;
+    
+    /* Primary & Secondary */
+    --primary: 37 99 235;
+    --primary-hover: 29 78 216;
+    --primary-foreground: 255 255 255;
+
+    --theme-icon-sun: 234 179 8;
+
+    --secondary: 243 244 246;
+    --secondary-foreground: 17 24 39;
+    
+    /* Muted & Borders */
+    --muted: 249 250 251;
+    --muted-foreground: 75 85 99;
+    --border: 209 213 219;
+    --border-light: 229 231 235;
+    --card-hover-border: 147 197 253;
+
+    /* Text hierarchy */
+    --text-primary: 17 24 39;
+    --text-secondary: 55 65 81;
+    --text-tertiary: 75 85 99;
+    --text-muted: 156 163 175;
+    
+    /* Card & Surface */
+    --card: 255 255 255;
+    --card-foreground: 31 41 55;
+    
+    /* Info/Legend specific */
+    --info-bg: 239 246 255;
+    --info-border: 191 219 254;
+    --info-text: 30 64 175;
+    --info-text-strong: 30 58 138;
+
+    /* Stat icon colors */
+    --stat-blue: 37 99 235;
+    --stat-green: 22 163 74;
+    --stat-purple: 147 51 234;
+    --stat-orange: 234 88 12;
+
+    /* Stat text colors */
+    --stat-value: 17 24 39;
+    --stat-label: 75 85 99;
+
+    /* Metadata label color */
+    --meta-label: 107 114 128;
+  }
+
+  /* Dark mode */
+  .dark {
+    --background: 15 23 42;
+    --foreground: 241 245 249;
+    
+    --primary: 59 130 246;
+    --primary-hover: 147 197 253;
+    --primary-foreground: 255 255 255;
+
+    --theme-icon-sun: 250 204 21;
+
+    --secondary: 30 41 59;
+    --secondary-foreground: 226 232 240;
+    
+    --muted: 30 41 59;
+    --muted-foreground: 148 163 184;
+    --border: 51 65 85;
+    --border-light: 55 65 81;
+    --card-hover-border: 37 99 235;
+
+    --text-primary: 243 244 246;
+    --text-secondary: 209 213 219;
+    --text-tertiary: 156 163 175;
+    --text-muted: 107 114 128;
+    
+    --card: 30 41 59;
+    --card-foreground: 241 245 249;
+    
+    --info-bg: 23 37 84;
+    --info-border: 30 64 175;
+    --info-text: 147 197 253;
+    --info-text-strong: 191 219 254;
+
+    /* Stat icon colors - dark mode */
+    --stat-blue: 96 165 250;
+    --stat-green: 74 222 128;
+    --stat-purple: 192 132 252;
+    --stat-orange: 251 146 60;
+
+    /* Stat text colors - dark mode */
+    --stat-value: 243 244 246;
+    --stat-label: 156 163 175;
+
+    /* Metadata label color - dark mode */
+    --meta-label: 156 163 175;
+  }
+
+  html {
+    scroll-behavior: smooth;
+    transition: background-color 0.2s ease-in-out, color 0.2s ease-in-out;
+  }
+
+  body {
+    background-color: rgb(var(--background));
+    color: rgb(var(--foreground));
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    transition: background-color 0.2s ease-in-out, color 0.2s ease-in-out;
+  }
 }
 
-/* Dark theme overrides */
-.dark {
-  --color-background: #0a0a0a;
-  --color-foreground: #fafafa;
-  --color-muted: #171717;
-  --color-muted-foreground: #a3a3a3;
-  --color-border: #262626;
-  --color-primary: #3b82f6;
-  --color-primary-foreground: #ffffff;
-  --color-error: #ef4444;
-  --color-error-foreground: #ffffff;
-}
+@layer components {
+  /* ============================================
+     BUTTON COMPONENTS
+     ============================================ */
+  .btn-primary {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    padding: 0.625rem 1.25rem;
+    font-weight: 600;
+    border-radius: 0.5rem;
+    background-color: rgb(var(--primary));
+    color: rgb(var(--primary-foreground));
+    transition: all 0.2s;
+    box-shadow: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+  }
 
-/* Base styles */
-body {
-  background-color: var(--color-background);
-  color: var(--color-foreground);
-  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-  transition: background-color var(--transition-base), color var(--transition-base);
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+  .btn-primary:hover {
+    opacity: 0.9;
+    box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1);
+  }
+
+  .btn-primary:active {
+    transform: translateY(1px);
+  }
+
+  .btn-secondary {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    padding: 0.625rem 1.25rem;
+    font-weight: 600;
+    border-radius: 0.5rem;
+    background-color: rgb(var(--secondary));
+    color: rgb(var(--secondary-foreground));
+    border: 1px solid rgb(var(--border));
+    transition: all 0.2s;
+    box-shadow: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+  }
+
+  .btn-secondary:hover {
+    background-color: rgb(var(--muted));
+    box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1);
+  }
+
+  .btn-secondary:active {
+    transform: translateY(1px);
+  }
+
+  /* ============================================
+     CARD & SURFACE COMPONENTS
+     ============================================ */
+  .card {
+    background-color: rgb(var(--card));
+    color: rgb(var(--card-foreground));
+    border: 1px solid rgb(var(--border));
+    border-radius: 0.75rem;
+    padding: 1.5rem;
+    box-shadow: 0 1px 3px 0 rgb(0 0 0 / 0.1), 0 1px 2px 0 rgb(0 0 0 / 0.06);
+    transition: box-shadow 0.2s ease-in-out;
+  }
+
+  .dark .card {
+    box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.3), 0 2px 4px -1px rgb(0 0 0 / 0.2);
+  }
+
+  /* ============================================
+     FORM COMPONENTS
+     ============================================ */
+  .input {
+    width: 100%;
+    padding: 0.625rem 1rem;
+    border: 1.5px solid rgb(var(--border));
+    border-radius: 0.5rem;
+    background-color: rgb(var(--background));
+    color: rgb(var(--foreground));
+    outline: none;
+    transition: all 0.2s;
+    font-size: 0.875rem;
+  }
+
+  .input:focus {
+    border-color: rgb(var(--primary));
+    box-shadow: 0 0 0 3px rgb(var(--primary) / 0.15);
+  }
+
+  .dark .input:focus {
+    box-shadow: 0 0 0 3px rgb(var(--primary) / 0.25);
+  }
+
+  .input::placeholder {
+    color: rgb(var(--muted-foreground));
+    opacity: 0.7;
+  }
+
+  .label {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-size: 0.875rem;
+    font-weight: 600;
+    color: rgb(var(--foreground));
+  }
 }
