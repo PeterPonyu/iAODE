@@ -1,36 +1,41 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# iAODE Training UI
+
+Interactive web interface for training single-cell RNA-seq and ATAC-seq models using the iAODE (interpretable Adversarial Ordinary Differential Equations) package.
+
+## Features
+
+- **Data Upload**: Support for both scRNA-seq and scATAC-seq data in h5ad format
+- **Preprocessing**: TF-IDF normalization, HVP selection, and cell subsampling for scATAC-seq data
+- **Model Configuration**: Adjustable hyperparameters for Neural ODE-based trajectory inference
+- **Real-time Monitoring**: Live training progress with loss curves and epoch tracking
+- **Model Management**: Automatic checkpointing with early stopping
 
 ## Getting Started
 
-First, run the development server:
+First, install dependencies:
+
+```bash
+npm install
+```
+
+Run the development server:
 
 ```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open [http://localhost:3000](http://localhost:3000) with your browser to access the training interface.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+The UI connects to the FastAPI backend running on port 8000. Use the root-level `start_training_ui.py` or `start_training_ui.sh` scripts to launch both frontend and backend together.
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## Technology Stack
 
-## Learn More
+- Next.js 15 with App Router
+- React 19
+- TypeScript
+- Tailwind CSS v4
+- Recharts for visualization
 
-To learn more about Next.js, take a look at the following resources:
+## About iAODE
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+iAODE is a Neural ODE-based framework for learning continuous cellular trajectories from single-cell data. The model extracts both latent and interpretable embeddings suitable for downstream analysis like trajectory inference and cell type annotation.

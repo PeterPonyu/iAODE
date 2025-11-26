@@ -45,25 +45,20 @@ def check_directory():
         print(Colors.red("Error: Must run from iAODE_dev root directory"))
         sys.exit(1)
 
-def build_frontend():
-    """Build frontend if not already built"""
-    frontend_out = Path("frontend/out")
-    if not frontend_out.exists():
-        print(Colors.yellow("Frontend not built. Building now..."))
+def check_frontend_deps():
+    """Check and install frontend dependencies if needed"""
+    print()
+    print(Colors.blue("Checking frontend dependencies..."))
+    
+    node_modules = Path("frontend/node_modules")
+    if not node_modules.exists():
+        print(Colors.yellow("Installing npm dependencies..."))
         os.chdir("frontend")
-        
-        # Install dependencies
-        print("Installing npm dependencies...")
         subprocess.run(["npm", "install"], check=True)
-        
-        # Build
-        print("Building frontend...")
-        subprocess.run(["npm", "run", "build"], check=True)
-        
         os.chdir("..")
-        print(Colors.green("✓ Frontend built successfully"))
+        print(Colors.green("✓ Frontend dependencies installed"))
     else:
-        print(Colors.green("✓ Frontend already built"))
+        print(Colors.green("✓ Frontend dependencies installed"))
 
 def check_python_deps():
     """Check if Python dependencies are installed"""
@@ -93,31 +88,59 @@ def start_server():
     print()
     print("━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━")
     print(Colors.green("Server Information:"))
+    print("  API Backend:        http://localhost:8000/")
     print("  API Documentation:  http://localhost:8000/docs")
-    print("  Training UI:        http://localhost:8000/ui")
-    print("  API Root:           http://localhost:8000/")
+    print("  Training UI:        http://localhost:3000/")
     print("━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━")
     print()
-    print(Colors.yellow("Press Ctrl+C to stop the server"))
+    print(Colors.yellow("Note: Frontend runs on port 3000, Backend API on port 8000"))
+    print()
+    print(Colors.yellow("Press Ctrl+C to stop all servers"))
     print()
     
-    # Start uvicorn
+    # Start backend and frontend in parallel
+    import threading
+    
+    def start_backend():
+        try:
+            subprocess.run([
+                sys.executable, "-m", "uvicorn",
+                "api.main:app",
+                "--host", "0.0.0.0",
+                "--port", "8000",
+                "--reload"
+            ])
+        except KeyboardInterrupt:
+            pass
+    
+    def start_frontend():
+        try:
+            os.chdir("frontend")
+            subprocess.run(["npm", "run", "dev"])
+        except KeyboardInterrupt:
+            pass
+        finally:
+            os.chdir("..")
+    
+    # Start backend in a separate thread
+    backend_thread = threading.Thread(target=start_backend, daemon=True)
+    backend_thread.start()
+    
+    # Give backend time to start
+    import time
+    time.sleep(2)
+    
+    # Start frontend in main thread
     try:
-        subprocess.run([
-            sys.executable, "-m", "uvicorn",
-            "api.main:app",
-            "--host", "0.0.0.0",
-            "--port", "8000",
-            "--reload"
-        ])
+        start_frontend()
     except KeyboardInterrupt:
         print()
-        print(Colors.yellow("Server stopped"))
+        print(Colors.yellow("Servers stopped"))
 
 def main():
     print_header()
     check_directory()
-    build_frontend()
+    check_frontend_deps()
     check_python_deps()
     start_server()
 
