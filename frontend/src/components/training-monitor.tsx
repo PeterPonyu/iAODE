@@ -16,11 +16,13 @@ export function TrainingMonitor() {
         setState(data);
       } catch {
         // Silently handle error if backend not ready
-        setState((prevState) => prevState || {
-          status: 'idle',
-          current_epoch: 0,
-          message: 'Waiting for backend connection...'
-        });
+        if (!state) {
+          setState({
+            status: 'idle',
+            current_epoch: 0,
+            message: 'Waiting for backend connection...'
+          });
+        }
       }
     };
 
