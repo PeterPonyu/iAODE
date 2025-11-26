@@ -8,15 +8,13 @@ import { TrainingState } from '@/lib/types';
 export function TrainingMonitor() {
   const [state, setState] = useState<TrainingState | null>(null);
   const [downloading, setDownloading] = useState<string | null>(null);
-  const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
     const fetchState = async () => {
       try {
         const data = await getTrainingState();
         setState(data);
-        setError(null);
-      } catch (err) {
+      } catch {
         // Silently handle error if backend not ready
         if (!state) {
           setState({
@@ -57,23 +55,22 @@ export function TrainingMonitor() {
 
   if (!state) {
     return (
-      <div className="space-y-4 p-6 rounded-lg card">
-        <p className="text-muted">Loading state...</p>
+      <div className="card">
+        <p className="text-[rgb(var(--muted-foreground))]">Loading state...</p>
       </div>
     );
   }
 
   const isTraining = state.status === 'training' || state.status === 'initializing';
   const isCompleted = state.status === 'completed';
-  const isIdle = state.status === 'idle';
 
   return (
-    <div className="space-y-4 p-6 rounded-lg card">
-      <h2 className="text-xl font-semibold">Training Status</h2>
+    <div className="card space-y-4">
+      <h2 className="text-xl font-semibold text-[rgb(var(--text-primary))]">Training Status</h2>
 
       <div className="space-y-3">
         <div className="flex items-center justify-between">
-          <span className="text-sm font-medium">Status:</span>
+          <span className="text-sm font-medium text-[rgb(var(--text-secondary))]">Status:</span>
           <span className={`px-3 py-1 rounded-full text-sm font-medium ${
             isCompleted ? 'badge-success' :
             isTraining ? 'badge-info' :
@@ -86,14 +83,14 @@ export function TrainingMonitor() {
 
         {state.current_epoch > 0 && (
           <div className="flex items-center justify-between">
-            <span className="text-sm font-medium">Current Epoch:</span>
-            <span className="text-sm">{state.current_epoch}</span>
+            <span className="text-sm font-medium text-[rgb(var(--text-secondary))]">Current Epoch:</span>
+            <span className="text-sm text-[rgb(var(--foreground))]">{state.current_epoch}</span>
           </div>
         )}
 
         {state.message && (
           <div className="p-3 rounded-lg card-inner">
-            <p className="text-sm">{state.message}</p>
+            <p className="text-sm text-[rgb(var(--foreground))]">{state.message}</p>
           </div>
         )}
 
@@ -105,19 +102,19 @@ export function TrainingMonitor() {
 
         {isCompleted && (
           <div className="space-y-2 pt-4 border-t-divider">
-            <h3 className="text-sm font-medium mb-2">Download Embeddings</h3>
+            <h3 className="text-sm font-medium mb-2 text-[rgb(var(--text-secondary))]">Download Embeddings</h3>
             <div className="grid grid-cols-2 gap-3">
               <button
                 onClick={() => handleDownload('latent')}
                 disabled={downloading !== null}
-                className="px-4 py-2 rounded-lg text-sm font-medium transition-colors disabled:opacity-50 btn-primary"
+                className="btn-primary px-4 py-2 rounded-lg text-sm font-medium"
               >
                 {downloading === 'latent' ? 'Downloading...' : 'Latent'}
               </button>
               <button
                 onClick={() => handleDownload('interpretable')}
                 disabled={downloading !== null}
-                className="px-4 py-2 rounded-lg text-sm font-medium transition-colors disabled:opacity-50 btn-purple"
+                className="btn-purple px-4 py-2 rounded-lg text-sm font-medium"
               >
                 {downloading === 'interpretable' ? 'Downloading...' : 'Interpretable'}
               </button>

@@ -228,7 +228,7 @@ export function ExplorerView() {
   }, [trajectoryType, replicate, nBranches, nCycles, nClusters, targetTrajectory, availableContinuities.length]);
 
   return (
-    <div className="w-full min-h-full bg-[var(--color-background)]">
+    <div className="w-full min-h-full bg-[rgb(var(--background))]">
       <div className="max-w-[1600px] mx-auto px-4 sm:px-6 py-6">
         <div className="flex flex-col lg:flex-row gap-6">
           {/* Sidebar */}
@@ -270,7 +270,7 @@ export function ExplorerView() {
           {/* Main content */}
           <main className="flex-1 min-w-0">
             {error && (
-              <div className="mb-6 p-4 rounded-xl bg-red-50 dark:bg-red-900/20 border border-red-200 dark:border-red-800 text-red-800 dark:text-red-200">
+              <div className="mb-6 p-4 rounded-xl bg-[rgb(var(--error-bg))] border border-[rgb(var(--error-border))] text-[rgb(var(--error-text))]">
                 <strong className="font-semibold">Error:</strong> {error}
                 <p className="text-sm mt-2">
                   Try adjusting parameters or check browser console for details.
@@ -279,15 +279,15 @@ export function ExplorerView() {
             )}
 
             {isLoading && !simulation && (
-              <div className="flex flex-col items-center justify-center min-h-[500px] text-[var(--color-muted-foreground)]">
-                <div className="w-16 h-16 border-4 border-[var(--color-border)] border-t-[var(--color-primary)] rounded-full animate-spin mb-4" />
+              <div className="flex flex-col items-center justify-center min-h-[500px] text-[rgb(var(--muted-foreground))]">
+                <div className="w-16 h-16 border-4 border-[rgb(var(--border))] border-t-[rgb(var(--primary))] rounded-full animate-spin mb-4" />
                 <p className="text-sm font-medium">Loading simulation data...</p>
                 <p className="text-xs mt-1">This may take a few moments</p>
               </div>
             )}
 
             {!isLoading && !error && !simulation && (
-              <div className="flex flex-col items-center justify-center min-h-[500px] text-[var(--color-muted-foreground)]">
+              <div className="flex flex-col items-center justify-center min-h-[500px] text-[rgb(var(--muted-foreground))]">
                 <p className="text-sm">Select parameters to load simulation data</p>
               </div>
             )}
@@ -296,10 +296,10 @@ export function ExplorerView() {
               <div className="relative space-y-6">
                 {/* Loading overlay - show when loading new data but keep old plot visible */}
                 {isLoading && (
-                  <div className="absolute inset-0 bg-[var(--color-background)]/70 backdrop-blur-sm z-10 flex items-center justify-center rounded-lg">
+                  <div className="absolute inset-0 bg-[rgb(var(--background))]/70 backdrop-blur-sm z-10 flex items-center justify-center rounded-lg">
                     <div className="flex flex-col items-center">
-                      <div className="w-12 h-12 border-4 border-[var(--color-border)] border-t-[var(--color-primary)] rounded-full animate-spin mb-2" />
-                      <p className="text-sm font-medium text-[var(--color-foreground)]">Updating...</p>
+                      <div className="w-12 h-12 border-4 border-[rgb(var(--border))] border-t-[rgb(var(--primary))] rounded-full animate-spin mb-2" />
+                      <p className="text-sm font-medium text-[rgb(var(--foreground))]">Updating...</p>
                     </div>
                   </div>
                 )}

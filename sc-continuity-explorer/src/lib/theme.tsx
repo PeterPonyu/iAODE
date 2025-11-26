@@ -8,6 +8,13 @@ import { createContext, useContext, useEffect, useState, ReactNode } from 'react
 
 type Theme = 'light' | 'dark';
 
+// Extend Window interface for TypeScript
+declare global {
+  interface Window {
+    __INITIAL_THEME__?: Theme;
+  }
+}
+
 type ThemeContextType = {
   theme: Theme;
   toggleTheme: () => void;
@@ -28,37 +35,66 @@ export function ThemeProvider({
   defaultTheme = 'light',
   storageKey = 'app-theme'
 }: ThemeProviderProps) {
-  const [theme, setThemeState] = useState<Theme>(defaultTheme);
+  // Initialize with the theme set by blocking script
+  const [theme, setThemeState] = useState<Theme>(() => {
+    if (typeof window !== 'undefined' && window.__INITIAL_THEME__) {
+      return window.__INITIAL_THEME__;
+    }
+    return defaultTheme;
+  });
   const [mounted, setMounted] = useState(false);
 
-  // Load theme from localStorage on mount
+  // Mark as mounted
   useEffect(() => {
-    const stored = localStorage.getItem(storageKey) as Theme | null;
-    if (stored === 'light' || stored === 'dark') {
-      setThemeState(stored);
-    } else {
-      // Check system preference
-      const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-      setThemeState(prefersDark ? 'dark' : 'light');
-    }
     setMounted(true);
-  }, [storageKey]);
+  }, []);
 
-  // Apply theme to document
+  // Apply theme changes (after initial load)
   useEffect(() => {
     if (!mounted) return;
-
+    
     const root = document.documentElement;
     
-    // Remove both classes first
-    root.classList.remove('light', 'dark');
-    
-    // Add the current theme class
-    root.classList.add(theme);
+    if (theme === 'dark') {
+      root.classList.add('dark');
+    } else {
+      root.classList.remove('dark');
+    }
     
     // Save to localStorage
-    localStorage.setItem(storageKey, theme);
+    try {
+      localStorage.setItem(storageKey, theme);
+    } catch (error) {
+      console.error('Error saving theme:', error);
+    }
   }, [theme, mounted, storageKey]);
+
+  // Listen for system preference changes
+  useEffect(() => {
+    const mediaQuery = window.matchMedia('(prefers-color-scheme: dark)');
+    
+    const handleChange = (e: MediaQueryListEvent) => {
+      const hasStoredTheme = localStorage.getItem(storageKey);
+      if (!hasStoredTheme) {
+        setThemeState(e.matches ? 'dark' : 'light');
+      }
+    };
+    
+    mediaQuery.addEventListener('change', handleChange);
+    return () => mediaQuery.removeEventListener('change', handleChange);
+  }, [storageKey]);
+
+  // Listen for changes in other tabs/windows
+  useEffect(() => {
+    const handleStorageChange = (e: StorageEvent) => {
+      if (e.key === storageKey && e.newValue) {
+        setThemeState(e.newValue as Theme);
+      }
+    };
+    
+    window.addEventListener('storage', handleStorageChange);
+    return () => window.removeEventListener('storage', handleStorageChange);
+  }, [storageKey]);
 
   const toggleTheme = () => {
     setThemeState(prev => prev === 'light' ? 'dark' : 'light');

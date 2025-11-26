@@ -41,12 +41,12 @@ export default function TrainPage() {
   };
 
   return (
-    <div className="min-h-screen">
+    <div className="min-h-screen flex flex-col">
       <Header />
 
-      <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-        <h1 className="text-3xl font-bold mb-2">Model Training</h1>
-        <p className="text-muted mb-8">
+      <main className="flex-1 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+        <h1 className="text-3xl font-bold mb-2 text-[rgb(var(--text-primary))]">Model Training</h1>
+        <p className="text-[rgb(var(--muted-foreground))] mb-8">
           Upload your data, configure preprocessing (if needed), and train the model
         </p>
 
@@ -102,6 +102,13 @@ export default function TrainPage() {
           </div>
         </div>
       </main>
+
+      {/* Footer */}
+      <footer className="border-t border-[rgb(var(--border))] mt-auto">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 text-center text-sm text-[rgb(var(--muted-foreground))]">
+          iAODE Training Interface © {new Date().getFullYear()}
+        </div>
+      </footer>
     </div>
   );
 }

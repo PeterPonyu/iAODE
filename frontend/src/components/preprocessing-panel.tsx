@@ -103,10 +103,10 @@ export function PreprocessingPanel({ dataType, onComplete }: PreprocessingPanelP
   };
 
   return (
-    <div className="card rounded-lg p-6">
+    <div className="card">
       <div className="mb-6">
-        <h2 className="text-xl font-semibold mb-2">scATAC-seq Preprocessing</h2>
-        <p className="text-sm text-muted">
+        <h2 className="text-xl font-semibold mb-2 text-[rgb(var(--text-primary))]">scATAC-seq Preprocessing</h2>
+        <p className="text-sm text-[rgb(var(--muted-foreground))]">
           Sequential preprocessing pipeline required for scATAC-seq data
         </p>
       </div>
@@ -121,11 +121,11 @@ export function PreprocessingPanel({ dataType, onComplete }: PreprocessingPanelP
         <div className="mb-6 p-4 rounded-lg card-inner">
           <div className="flex items-start justify-between">
             <div>
-              <p className="text-xs text-muted mb-1">Current Dataset</p>
-              <p className="text-lg font-semibold">
+              <p className="text-xs text-[rgb(var(--muted-foreground))] mb-1">Current Dataset</p>
+              <p className="text-lg font-semibold text-[rgb(var(--text-primary))]">
                 {preprocessInfo.n_cells.toLocaleString()} cells × {preprocessInfo.n_peaks.toLocaleString()} peaks
               </p>
-              <p className="text-sm text-muted mt-1">{preprocessInfo.message}</p>
+              <p className="text-sm text-[rgb(var(--muted-foreground))] mt-1">{preprocessInfo.message}</p>
             </div>
           </div>
         </div>
@@ -133,10 +133,10 @@ export function PreprocessingPanel({ dataType, onComplete }: PreprocessingPanelP
 
       <div className="space-y-6">
         {/* Step 1: TF-IDF Normalization */}
-        <div className="pb-6 border-t pt-6 first:border-t-0 first:pt-0">
+        <div className="pb-6 border-t border-[rgb(var(--border))] pt-6 first:border-t-0 first:pt-0">
           <div className="flex items-center gap-3 mb-4">
             <span className="text-xs font-semibold badge-blue px-2.5 py-1 rounded-full">1</span>
-            <h3 className="font-semibold">TF-IDF Normalization</h3>
+            <h3 className="font-semibold text-[rgb(var(--text-primary))]">TF-IDF Normalization</h3>
             {currentStep !== 'idle' && (
               <span className="text-xs badge-success px-2.5 py-1 rounded-full ml-auto">✓ Complete</span>
             )}
@@ -145,17 +145,17 @@ export function PreprocessingPanel({ dataType, onComplete }: PreprocessingPanelP
           <div className="space-y-4">
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
               <div>
-                <label className="block text-sm font-medium mb-2 text-muted">Scale Factor</label>
+                <label className="block text-sm font-medium mb-2 text-[rgb(var(--muted-foreground))]">Scale Factor</label>
                 <select
                   value={tfidfParams.scale_factor}
                   onChange={(e) => setTfidfParams({ ...tfidfParams, scale_factor: Number(e.target.value) })}
                   disabled={currentStep !== 'idle' || isProcessing}
-                  className="w-full px-3 py-2 rounded-lg border text-sm"
+                  className="w-full px-3 py-2 rounded-lg border border-[rgb(var(--border))] text-sm bg-[rgb(var(--background))]"
                 >
                   <option value={1e4}>10,000 (Standard)</option>
                   <option value={1e6}>1,000,000 (Large datasets)</option>
                 </select>
-                <p className="text-xs text-muted mt-1">Normalization scale factor</p>
+                <p className="text-xs text-[rgb(var(--muted-foreground))] mt-1">Normalization scale factor</p>
               </div>
 
               <div className="flex flex-col justify-end space-y-3">
@@ -165,9 +165,9 @@ export function PreprocessingPanel({ dataType, onComplete }: PreprocessingPanelP
                     checked={tfidfParams.log_tf}
                     onChange={(e) => setTfidfParams({ ...tfidfParams, log_tf: e.target.checked })}
                     disabled={currentStep !== 'idle' || isProcessing}
-                    className="rounded border"
+                    className="rounded border border-[rgb(var(--border))]"
                   />
-                  <span>Log-transform TF</span>
+                  <span className="text-[rgb(var(--text-secondary))]">Log-transform TF</span>
                 </label>
                 <label className="flex items-center gap-2 text-sm">
                   <input
@@ -175,9 +175,9 @@ export function PreprocessingPanel({ dataType, onComplete }: PreprocessingPanelP
                     checked={tfidfParams.log_idf}
                     onChange={(e) => setTfidfParams({ ...tfidfParams, log_idf: e.target.checked })}
                     disabled={currentStep !== 'idle' || isProcessing}
-                    className="rounded border"
+                    className="rounded border border-[rgb(var(--border))]"
                   />
-                  <span>Log-transform IDF (Recommended)</span>
+                  <span className="text-[rgb(var(--text-secondary))]">Log-transform IDF (Recommended)</span>
                 </label>
               </div>
             </div>
@@ -185,7 +185,7 @@ export function PreprocessingPanel({ dataType, onComplete }: PreprocessingPanelP
             <button
               onClick={handleTFIDF}
               disabled={currentStep !== 'idle' || isProcessing}
-              className="px-4 py-2 rounded-lg text-sm font-medium transition-colors btn-primary disabled:opacity-50 disabled:cursor-not-allowed"
+              className="btn-primary px-4 py-2 rounded-lg text-sm font-medium"
             >
               {isProcessing && currentStep === 'idle' ? 'Processing...' : 'Apply TF-IDF Normalization'}
             </button>
@@ -193,10 +193,10 @@ export function PreprocessingPanel({ dataType, onComplete }: PreprocessingPanelP
         </div>
 
         {/* Step 2: Select Highly Variable Peaks */}
-        <div className="pb-6 border-t pt-6">
+        <div className="pb-6 border-t border-[rgb(var(--border))] pt-6">
           <div className="flex items-center gap-3 mb-4">
             <span className="text-xs font-semibold badge-green px-2.5 py-1 rounded-full">2</span>
-            <h3 className="font-semibold">Select Highly Variable Peaks</h3>
+            <h3 className="font-semibold text-[rgb(var(--text-primary))]">Select Highly Variable Peaks</h3>
             {(currentStep === 'hvp' || currentStep === 'complete') && (
               <span className="text-xs badge-success px-2.5 py-1 rounded-full ml-auto">✓ Complete</span>
             )}
@@ -205,70 +205,70 @@ export function PreprocessingPanel({ dataType, onComplete }: PreprocessingPanelP
           <div className="space-y-4">
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
               <div>
-                <label className="block text-sm font-medium mb-2 text-muted">Number of Peaks</label>
+                <label className="block text-sm font-medium mb-2 text-[rgb(var(--muted-foreground))]">Number of Peaks</label>
                 <input
                   type="number"
                   value={hvpParams.n_top_peaks}
                   onChange={(e) => setHvpParams({ ...hvpParams, n_top_peaks: Number(e.target.value) })}
                   disabled={currentStep !== 'tfidf' || isProcessing}
-                  className="w-full px-3 py-2 rounded-lg border text-sm"
+                  className="w-full px-3 py-2 rounded-lg border border-[rgb(var(--border))] text-sm bg-[rgb(var(--background))]"
                   min={1000}
                   max={100000}
                   step={1000}
                 />
-                <p className="text-xs text-muted mt-1">Top variable peaks to select</p>
+                <p className="text-xs text-[rgb(var(--muted-foreground))] mt-1">Top variable peaks to select</p>
               </div>
 
               <div>
-                <label className="block text-sm font-medium mb-2 text-muted">Selection Method</label>
+                <label className="block text-sm font-medium mb-2 text-[rgb(var(--muted-foreground))]">Selection Method</label>
                 <select
                   value={hvpParams.method}
-                  onChange={(e) => setHvpParams({ ...hvpParams, method: e.target.value as any })}
+                  onChange={(e) => setHvpParams({ ...hvpParams, method: e.target.value as 'signac' | 'snapatac2' | 'deviance' })}
                   disabled={currentStep !== 'tfidf' || isProcessing}
-                  className="w-full px-3 py-2 rounded-lg border text-sm"
+                  className="w-full px-3 py-2 rounded-lg border border-[rgb(var(--border))] text-sm bg-[rgb(var(--background))]"
                 >
                   <option value="signac">Signac (Recommended)</option>
                   <option value="snapatac2">SnapATAC2</option>
                   <option value="deviance">Binomial Deviance</option>
                 </select>
-                <p className="text-xs text-muted mt-1">Peak selection algorithm</p>
+                <p className="text-xs text-[rgb(var(--muted-foreground))] mt-1">Peak selection algorithm</p>
               </div>
 
               <div>
-                <label className="block text-sm font-medium mb-2 text-muted">Min Accessibility</label>
+                <label className="block text-sm font-medium mb-2 text-[rgb(var(--muted-foreground))]">Min Accessibility</label>
                 <input
                   type="number"
                   value={hvpParams.min_accessibility}
                   onChange={(e) => setHvpParams({ ...hvpParams, min_accessibility: Number(e.target.value) })}
                   disabled={currentStep !== 'tfidf' || isProcessing}
-                  className="w-full px-3 py-2 rounded-lg border text-sm"
+                  className="w-full px-3 py-2 rounded-lg border border-[rgb(var(--border))] text-sm bg-[rgb(var(--background))]"
                   min={0}
                   max={1}
                   step={0.01}
                 />
-                <p className="text-xs text-muted mt-1">Filter peaks in &lt; X% cells</p>
+                <p className="text-xs text-[rgb(var(--muted-foreground))] mt-1">Filter peaks in &lt; X% cells</p>
               </div>
 
               <div>
-                <label className="block text-sm font-medium mb-2 text-muted">Max Accessibility</label>
+                <label className="block text-sm font-medium mb-2 text-[rgb(var(--muted-foreground))]">Max Accessibility</label>
                 <input
                   type="number"
                   value={hvpParams.max_accessibility}
                   onChange={(e) => setHvpParams({ ...hvpParams, max_accessibility: Number(e.target.value) })}
                   disabled={currentStep !== 'tfidf' || isProcessing}
-                  className="w-full px-3 py-2 rounded-lg border text-sm"
+                  className="w-full px-3 py-2 rounded-lg border border-[rgb(var(--border))] text-sm bg-[rgb(var(--background))]"
                   min={0}
                   max={1}
                   step={0.01}
                 />
-                <p className="text-xs text-muted mt-1">Filter ubiquitous peaks in &gt; X% cells</p>
+                <p className="text-xs text-[rgb(var(--muted-foreground))] mt-1">Filter ubiquitous peaks in &gt; X% cells</p>
               </div>
             </div>
 
             <button
               onClick={handleHVP}
               disabled={currentStep !== 'tfidf' || isProcessing}
-              className="px-4 py-2 rounded-lg text-sm font-medium transition-colors btn-primary disabled:opacity-50 disabled:cursor-not-allowed"
+              className="btn-primary px-4 py-2 rounded-lg text-sm font-medium"
             >
               {isProcessing && currentStep === 'tfidf' ? 'Processing...' : 'Select Variable Peaks'}
             </button>
@@ -276,11 +276,11 @@ export function PreprocessingPanel({ dataType, onComplete }: PreprocessingPanelP
         </div>
 
         {/* Step 3: Subsample (Optional) */}
-        <div className="pb-6 border-t pt-6">
+        <div className="pb-6 border-t border-[rgb(var(--border))] pt-6">
           <div className="flex items-center gap-3 mb-4">
             <span className="text-xs font-semibold badge-purple px-2.5 py-1 rounded-full">3</span>
-            <h3 className="font-semibold">Subsample Data</h3>
-            <span className="text-xs text-muted">(Optional)</span>
+            <h3 className="font-semibold text-[rgb(var(--text-primary))]">Subsample Data</h3>
+            <span className="text-xs text-[rgb(var(--muted-foreground))]">(Optional)</span>
             {currentStep === 'complete' && (
               <span className="text-xs badge-success px-2.5 py-1 rounded-full ml-auto">✓ Complete</span>
             )}
@@ -294,9 +294,9 @@ export function PreprocessingPanel({ dataType, onComplete }: PreprocessingPanelP
                   checked={useCellCount}
                   onChange={() => setUseCellCount(true)}
                   disabled={currentStep !== 'hvp' || isProcessing}
-                  className="text-primary"
+                  className="text-[rgb(var(--primary))]"
                 />
-                <span>Sample by cell count</span>
+                <span className="text-[rgb(var(--text-secondary))]">Sample by cell count</span>
               </label>
               <label className="flex items-center gap-2 text-sm cursor-pointer">
                 <input
@@ -304,56 +304,56 @@ export function PreprocessingPanel({ dataType, onComplete }: PreprocessingPanelP
                   checked={!useCellCount}
                   onChange={() => setUseCellCount(false)}
                   disabled={currentStep !== 'hvp' || isProcessing}
-                  className="text-primary"
+                  className="text-[rgb(var(--primary))]"
                 />
-                <span>Sample by fraction</span>
+                <span className="text-[rgb(var(--text-secondary))]">Sample by fraction</span>
               </label>
             </div>
 
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
               {useCellCount ? (
                 <div>
-                  <label className="block text-sm font-medium mb-2 text-muted">Number of Cells</label>
+                  <label className="block text-sm font-medium mb-2 text-[rgb(var(--muted-foreground))]">Number of Cells</label>
                   <input
                     type="number"
                     value={subsampleParams.n_cells || ''}
                     onChange={(e) => setSubsampleParams({ ...subsampleParams, n_cells: Number(e.target.value) })}
                     disabled={currentStep !== 'hvp' || isProcessing}
-                    className="w-full px-3 py-2 rounded-lg border text-sm"
+                    className="w-full px-3 py-2 rounded-lg border border-[rgb(var(--border))] text-sm bg-[rgb(var(--background))]"
                     min={100}
                     step={100}
                     placeholder="e.g., 10000"
                   />
-                  <p className="text-xs text-muted mt-1">Number of cells to randomly sample</p>
+                  <p className="text-xs text-[rgb(var(--muted-foreground))] mt-1">Number of cells to randomly sample</p>
                 </div>
               ) : (
                 <div>
-                  <label className="block text-sm font-medium mb-2 text-muted">Fraction (0-1)</label>
+                  <label className="block text-sm font-medium mb-2 text-[rgb(var(--muted-foreground))]">Fraction (0-1)</label>
                   <input
                     type="number"
                     value={subsampleParams.frac_cells || ''}
                     onChange={(e) => setSubsampleParams({ ...subsampleParams, frac_cells: Number(e.target.value) })}
                     disabled={currentStep !== 'hvp' || isProcessing}
-                    className="w-full px-3 py-2 rounded-lg border text-sm"
+                    className="w-full px-3 py-2 rounded-lg border border-[rgb(var(--border))] text-sm bg-[rgb(var(--background))]"
                     min={0.01}
                     max={1}
                     step={0.1}
                     placeholder="e.g., 0.5"
                   />
-                  <p className="text-xs text-muted mt-1">Fraction of total cells to sample</p>
+                  <p className="text-xs text-[rgb(var(--muted-foreground))] mt-1">Fraction of total cells to sample</p>
                 </div>
               )}
 
               <div>
-                <label className="block text-sm font-medium mb-2 text-muted">Random Seed</label>
+                <label className="block text-sm font-medium mb-2 text-[rgb(var(--muted-foreground))]">Random Seed</label>
                 <input
                   type="number"
                   value={subsampleParams.seed}
                   onChange={(e) => setSubsampleParams({ ...subsampleParams, seed: Number(e.target.value) })}
                   disabled={currentStep !== 'hvp' || isProcessing}
-                  className="w-full px-3 py-2 rounded-lg border text-sm"
+                  className="w-full px-3 py-2 rounded-lg border border-[rgb(var(--border))] text-sm bg-[rgb(var(--background))]"
                 />
-                <p className="text-xs text-muted mt-1">For reproducible sampling</p>
+                <p className="text-xs text-[rgb(var(--muted-foreground))] mt-1">For reproducible sampling</p>
               </div>
             </div>
 
@@ -363,16 +363,16 @@ export function PreprocessingPanel({ dataType, onComplete }: PreprocessingPanelP
                 checked={subsampleParams.use_hvp}
                 onChange={(e) => setSubsampleParams({ ...subsampleParams, use_hvp: e.target.checked })}
                 disabled={currentStep !== 'hvp' || isProcessing}
-                className="rounded border"
+                className="rounded border border-[rgb(var(--border))]"
               />
-              <span>Filter to highly variable peaks only</span>
+              <span className="text-[rgb(var(--text-secondary))]">Filter to highly variable peaks only</span>
             </label>
 
             <div className="flex gap-3">
               <button
                 onClick={handleSubsample}
                 disabled={currentStep !== 'hvp' || isProcessing}
-                className="px-4 py-2 rounded-lg text-sm font-medium transition-colors btn-primary disabled:opacity-50 disabled:cursor-not-allowed"
+                className="btn-primary px-4 py-2 rounded-lg text-sm font-medium"
               >
                 {isProcessing && currentStep === 'hvp' ? 'Processing...' : 'Apply Subsampling'}
               </button>
@@ -380,7 +380,7 @@ export function PreprocessingPanel({ dataType, onComplete }: PreprocessingPanelP
               <button
                 onClick={handleSkipSubsample}
                 disabled={currentStep !== 'hvp' || isProcessing}
-                className="px-4 py-2 rounded-lg text-sm font-medium transition-colors btn-secondary disabled:opacity-50 disabled:cursor-not-allowed"
+                className="btn-secondary px-4 py-2 rounded-lg text-sm font-medium"
               >
                 Skip Subsampling
               </button>

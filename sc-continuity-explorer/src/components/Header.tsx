@@ -2,43 +2,62 @@
 
 import Link from 'next/link';
 import { useState } from 'react';
-import { Menu, X } from 'lucide-react';
+import { Menu, X, Database } from 'lucide-react';
 import { ThemeToggle } from './ThemeToggle';
 
 export function Header() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
+  const navLinks = [
+    { href: '/iAODE/', label: '← Main', external: true },
+    { href: '/iAODE/datasets/', label: 'Datasets', external: true },
+    { href: '/explorer', label: 'Explorer', external: false },
+  ];
+
   return (
-    <header className="border-b border-[rgb(var(--border))] bg-[rgb(var(--background))] sticky top-0 z-50">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
-        <div className="flex items-center justify-between gap-4">
-          <div className="flex items-center gap-6">
-            <Link href="/explorer/" className="hover:opacity-80 transition-opacity">
-              <h1 className="text-lg sm:text-xl font-semibold leading-tight">
+    <header className="sticky top-0 z-50 w-full border-b border-[rgb(var(--border))] bg-[rgb(var(--background))] shadow-sm">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="flex h-16 items-center justify-between">
+          {/* Logo */}
+          <Link 
+            href="/explorer" 
+            className="flex items-center space-x-2 hover:opacity-80 transition-opacity"
+          >
+            <Database className="w-6 h-6 text-[rgb(var(--primary))]" />
+            <div>
+              <span className="font-bold text-lg text-[rgb(var(--foreground))] whitespace-nowrap">
                 iAODE Continuity Explorer
-              </h1>
-              <p className="text-xs sm:text-sm text-[rgb(var(--muted-foreground))] mt-0.5">
+              </span>
+              <p className="text-xs text-[rgb(var(--muted-foreground))] hidden sm:block">
                 Explore trajectory structures across embedding methods
               </p>
-            </Link>
-            
-            {/* Desktop Navigation */}
-            <nav className="hidden md:flex items-center gap-4 ml-8">
-              <a 
-                href="/iAODE/" 
-                className="text-sm font-medium text-[rgb(var(--muted-foreground))] hover:text-[rgb(var(--foreground))] transition-colors"
-              >
-                ← Main
-              </a>
-              <a 
-                href="/iAODE/datasets/" 
-                className="text-sm font-medium text-[rgb(var(--muted-foreground))] hover:text-[rgb(var(--foreground))] transition-colors"
-              >
-                Datasets
-              </a>
-            </nav>
-          </div>
-          
+            </div>
+          </Link>
+
+          {/* Desktop Navigation */}
+          <nav className="hidden md:flex items-center space-x-6">
+            {navLinks.map(link => (
+              link.external ? (
+                <a
+                  key={link.href}
+                  href={link.href}
+                  className="text-sm font-medium transition-colors hover:text-[rgb(var(--primary-hover))] text-[rgb(var(--text-secondary))]"
+                >
+                  {link.label}
+                </a>
+              ) : (
+                <Link
+                  key={link.href}
+                  href={link.href}
+                  className="text-sm font-medium transition-colors hover:text-[rgb(var(--primary-hover))] text-[rgb(var(--text-secondary))]"
+                >
+                  {link.label}
+                </Link>
+              )
+            ))}
+          </nav>
+
+          {/* Right side: Dark Mode Toggle + Mobile Menu */}
           <div className="flex items-center gap-2">
             <ThemeToggle />
             
@@ -60,22 +79,29 @@ export function Header() {
 
         {/* Mobile Navigation Menu */}
         {mobileMenuOpen && (
-          <div className="md:hidden pt-4 pb-2 border-t border-[rgb(var(--border))] mt-4">
+          <div className="md:hidden py-4 border-t border-[rgb(var(--border))]">
             <nav className="flex flex-col space-y-3">
-              <a 
-                href="/iAODE/" 
-                onClick={() => setMobileMenuOpen(false)}
-                className="text-base font-medium text-[rgb(var(--muted-foreground))] hover:text-[rgb(var(--foreground))] transition-colors px-2 py-1"
-              >
-                ← Back to Main
-              </a>
-              <a 
-                href="/iAODE/datasets/" 
-                onClick={() => setMobileMenuOpen(false)}
-                className="text-base font-medium text-[rgb(var(--muted-foreground))] hover:text-[rgb(var(--foreground))] transition-colors px-2 py-1"
-              >
-                Dataset Browser
-              </a>
+              {navLinks.map(link => (
+                link.external ? (
+                  <a
+                    key={link.href}
+                    href={link.href}
+                    onClick={() => setMobileMenuOpen(false)}
+                    className="text-base font-medium transition-colors hover:text-[rgb(var(--primary-hover))] px-2 py-1 text-[rgb(var(--text-secondary))]"
+                  >
+                    {link.label}
+                  </a>
+                ) : (
+                  <Link
+                    key={link.href}
+                    href={link.href}
+                    onClick={() => setMobileMenuOpen(false)}
+                    className="text-base font-medium transition-colors hover:text-[rgb(var(--primary-hover))] px-2 py-1 text-[rgb(var(--text-secondary))]"
+                  >
+                    {link.label}
+                  </Link>
+                )
+              ))}
             </nav>
           </div>
         )}

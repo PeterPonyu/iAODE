@@ -46,18 +46,18 @@ export function UploadData({ onUploadSuccess }: UploadDataProps) {
   };
 
   return (
-    <div className="card rounded-lg p-6">
-      <h2 className="text-xl font-semibold mb-4">Upload Data</h2>
+    <div className="card">
+      <h2 className="text-xl font-semibold mb-4 text-[rgb(var(--text-primary))]">Upload Data</h2>
       
       <div className="space-y-4">
         <div>
-          <label className="block text-sm font-medium mb-2 text-muted">
+          <label className="block text-sm font-medium mb-2 text-[rgb(var(--muted-foreground))]">
             Data Type
           </label>
           <select
             value={dataType}
             onChange={(e) => setDataType(e.target.value as DataType)}
-            className="w-full px-3 py-2 rounded-lg border text-sm"
+            className="w-full px-3 py-2 rounded-lg border border-[rgb(var(--border))] text-sm bg-[rgb(var(--background))]"
             disabled={uploading}
           >
             <option value="scrna">scRNA-seq</option>
@@ -66,7 +66,7 @@ export function UploadData({ onUploadSuccess }: UploadDataProps) {
         </div>
 
         <div>
-          <label className="block text-sm font-medium mb-2 text-muted">
+          <label className="block text-sm font-medium mb-2 text-[rgb(var(--muted-foreground))]">
             Select File
           </label>
           <input
@@ -74,11 +74,11 @@ export function UploadData({ onUploadSuccess }: UploadDataProps) {
             accept=".h5ad,.h5"
             onChange={handleFileChange}
             disabled={uploading}
-            className="w-full px-3 py-2 rounded-lg border text-sm file:mr-4 file:py-1 file:px-3 file:rounded file:border-0 file:text-sm file:font-medium file:btn-secondary"
+            className="w-full px-3 py-2 rounded-lg border border-[rgb(var(--border))] text-sm bg-[rgb(var(--background))] file:mr-4 file:py-1 file:px-3 file:rounded file:border-0 file:text-sm file:font-medium file:bg-[rgb(var(--secondary))] file:text-[rgb(var(--secondary-foreground))]"
           />
           {file && (
-            <p className="mt-2 text-sm text-muted">
-              Selected: <span className="font-medium">{file.name}</span>
+            <p className="mt-2 text-sm text-[rgb(var(--muted-foreground))]">
+              Selected: <span className="font-medium text-[rgb(var(--foreground))]">{file.name}</span>
             </p>
           )}
         </div>
@@ -92,7 +92,7 @@ export function UploadData({ onUploadSuccess }: UploadDataProps) {
         <button
           onClick={handleUpload}
           disabled={!file || uploading}
-          className="w-full px-4 py-2 rounded-lg font-medium transition-colors disabled:opacity-50 disabled:cursor-not-allowed btn-primary"
+          className="btn-primary w-full"
         >
           {uploading ? 'Uploading...' : 'Upload Data'}
         </button>
