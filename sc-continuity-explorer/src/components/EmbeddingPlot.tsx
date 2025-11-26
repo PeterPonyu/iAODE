@@ -155,8 +155,8 @@ export function EmbeddingPlot({ simulation, embeddingMethod, colorBy }: Embeddin
 
   if (!embedding || embedding.length === 0) {
     return (
-      <div className="bg-[var(--color-background)] border border-[var(--color-border)] rounded-lg p-8">
-        <div className="flex items-center justify-center min-h-[400px] text-[var(--color-muted-foreground)]">
+      <div className="bg-[rgb(var(--background))] border border-[rgb(var(--border))] rounded-lg p-8">
+        <div className="flex items-center justify-center min-h-[400px] text-[rgb(var(--muted-foreground))]">
           <p>No embedding data available for {embeddingMethod}</p>
         </div>
       </div>
@@ -164,7 +164,7 @@ export function EmbeddingPlot({ simulation, embeddingMethod, colorBy }: Embeddin
   }
 
   return (
-    <div className="bg-[var(--color-background)] border border-[var(--color-border)] rounded-lg overflow-hidden">
+    <div className="bg-[rgb(var(--background))] border border-[rgb(var(--border))] rounded-lg overflow-hidden">
       <Plot data={data} layout={layout} config={config} style={{ width: '100%' }} />
     </div>
   );
