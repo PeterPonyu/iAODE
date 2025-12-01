@@ -15,10 +15,10 @@ import {
 // CONFIGURATION
 // ============================================
 
-// Use relative path that works with basePath
-const DATA_BASE_PATH = process.env.NODE_ENV === 'production' 
-  ? '/iAODE/explorer/data'
-  : '/data';
+// When basePath is configured in next.config.ts, static files in public/
+// are also served under that basePath in BOTH development and production.
+// So we always use the full path with basePath.
+const DATA_BASE_PATH = '/iAODE/explorer/data';
 const USE_COMPRESSION = false; // Set to true if using .gz files
 
 // ============================================

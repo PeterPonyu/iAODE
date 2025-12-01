@@ -8,6 +8,19 @@
        CORE DESIGN TOKENS (RGB format: r g b)
        ============================================ */
     
+    /* 🆕 FONT SIZE SYSTEM */
+    --font-size-multiplier: 1;
+    --text-xs: calc(0.75rem * var(--font-size-multiplier));
+    --text-sm: calc(0.875rem * var(--font-size-multiplier));
+    --text-base: calc(1rem * var(--font-size-multiplier));
+    --text-lg: calc(1.125rem * var(--font-size-multiplier));
+    --text-xl: calc(1.25rem * var(--font-size-multiplier));
+    --text-2xl: calc(1.5rem * var(--font-size-multiplier));
+    --text-3xl: calc(1.875rem * var(--font-size-multiplier));
+    --text-4xl: calc(2.25rem * var(--font-size-multiplier));
+    --text-5xl: calc(3rem * var(--font-size-multiplier));
+    --text-6xl: calc(3.75rem * var(--font-size-multiplier));
+    
     /* Base colors */
     --background: 255 255 255;
     --foreground: 31 41 55;
@@ -59,6 +72,23 @@
     --meta-label: 107 114 128;
   }
 
+  /* 🆕 FONT SIZE PRESETS */
+  html[data-font-size="small"] {
+    --font-size-multiplier: 0.8;
+  }
+
+  html[data-font-size="medium"] {
+    --font-size-multiplier: 1;
+  }
+
+  html[data-font-size="large"] {
+    --font-size-multiplier: 1.2;
+  }
+
+  html[data-font-size="x-large"] {
+    --font-size-multiplier: 1.6;
+  }
+
   /* Dark mode */
   .dark {
     --background: 15 23 42;
@@ -108,13 +138,15 @@
 
   html {
     scroll-behavior: smooth;
-    transition: background-color 0.2s ease-in-out, color 0.2s ease-in-out;
+    transition: font-size 0.2s ease-in-out, background-color 0.2s ease-in-out, color 0.2s ease-in-out;
   }
 
   body {
     background-color: rgb(var(--background));
     color: rgb(var(--foreground));
     font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    font-size: var(--text-base); /* 🆕 Uses CSS variable */
+    line-height: 1.6; /* 🆕 Improved readability */
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     transition: background-color 0.2s ease-in-out, color 0.2s ease-in-out;

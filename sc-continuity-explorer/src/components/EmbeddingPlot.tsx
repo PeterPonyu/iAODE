@@ -101,7 +101,7 @@ export function EmbeddingPlot({ simulation, embeddingMethod, colorBy }: Embeddin
       mode: 'markers' as const,
       type: 'scatter' as const,
       marker: {
-        size: 5,
+        size: 12,
         color: markerColor,
         colorscale: markerColorscale,
         showscale: showscale,

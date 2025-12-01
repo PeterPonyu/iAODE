@@ -4,6 +4,7 @@ import Link from 'next/link';
 import { useState } from 'react';
 import { Menu, X } from 'lucide-react';
 import { ThemeToggle } from './ThemeToggle';
+import { FontSizeSelector } from './FontSizeSelector';
 
 export function Header() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -40,6 +41,11 @@ export function Header() {
           </div>
           
           <div className="flex items-center gap-2">
+            {/* Font Size Selector (Desktop only) */}
+            <div className="hidden md:block">
+              <FontSizeSelector />
+            </div>
+            
             <ThemeToggle />
             
             {/* Mobile Menu Button */}
@@ -76,6 +82,11 @@ export function Header() {
               >
                 Dataset Browser
               </a>
+              
+              {/* Font Size in Mobile Menu */}
+              <div className="px-2 py-2 border-t border-[rgb(var(--border))] mt-2">
+                <FontSizeSelector />
+              </div>
             </nav>
           </div>
         )}

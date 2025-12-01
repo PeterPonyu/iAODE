@@ -1,5 +1,5 @@
 // ============================================================================
-// lib/theme.tsx - Theme Management
+// lib/theme.tsx - Theme Management (Upgraded to prevent FOUC)
 // ============================================================================
 
 'use client';
@@ -15,6 +15,13 @@ type ThemeContextType = {
   mounted: boolean;
 };
 
+// Extend Window interface for TypeScript
+declare global {
+  interface Window {
+    __INITIAL_THEME__?: Theme;
+  }
+}
+
 const ThemeContext = createContext<ThemeContextType | undefined>(undefined);
 
 type ThemeProviderProps = {
@@ -28,26 +35,26 @@ export function ThemeProvider({
   defaultTheme = 'light',
   storageKey = 'app-theme'
 }: ThemeProviderProps) {
-  const [theme, setThemeState] = useState<Theme>(defaultTheme);
+  // 🔥 KEY FIX: Initialize with the theme set by blocking script
+  const [theme, setThemeState] = useState<Theme>(() => {
+    // This runs on client, reads the value set by blocking script
+    if (typeof window !== 'undefined' && window.__INITIAL_THEME__) {
+      return window.__INITIAL_THEME__;
+    }
+    return defaultTheme; // Fallback
+  });
+  
   const [mounted, setMounted] = useState(false);
 
-  // Load theme from localStorage on mount
+  // Mark as mounted
   useEffect(() => {
-    const stored = localStorage.getItem(storageKey) as Theme | null;
-    if (stored === 'light' || stored === 'dark') {
-      setThemeState(stored);
-    } else {
-      // Check system preference
-      const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-      setThemeState(prefersDark ? 'dark' : 'light');
-    }
     setMounted(true);
-  }, [storageKey]);
+  }, []);
 
-  // Apply theme to document
+  // Apply theme changes (after initial load)
   useEffect(() => {
-    if (!mounted) return;
-
+    if (!mounted) return; // Skip on first render (already set by blocking script)
+    
     const root = document.documentElement;
     
     // Remove both classes first
@@ -57,8 +64,40 @@ export function ThemeProvider({
     root.classList.add(theme);
     
     // Save to localStorage
-    localStorage.setItem(storageKey, theme);
+    try {
+      localStorage.setItem(storageKey, theme);
+    } catch (error) {
+      console.error('Error saving theme:', error);
+    }
   }, [theme, mounted, storageKey]);
+
+  // Listen for system preference changes
+  useEffect(() => {
+    const mediaQuery = window.matchMedia('(prefers-color-scheme: dark)');
+    
+    const handleChange = (e: MediaQueryListEvent) => {
+      // Only auto-switch if user hasn't manually set a preference
+      const hasStoredTheme = localStorage.getItem(storageKey);
+      if (!hasStoredTheme) {
+        setThemeState(e.matches ? 'dark' : 'light');
+      }
+    };
+    
+    mediaQuery.addEventListener('change', handleChange);
+    return () => mediaQuery.removeEventListener('change', handleChange);
+  }, [storageKey]);
+
+  // Listen for changes in other tabs/windows
+  useEffect(() => {
+    const handleStorageChange = (e: StorageEvent) => {
+      if (e.key === storageKey && e.newValue) {
+        setThemeState(e.newValue as Theme);
+      }
+    };
+    
+    window.addEventListener('storage', handleStorageChange);
+    return () => window.removeEventListener('storage', handleStorageChange);
+  }, [storageKey]);
 
   const toggleTheme = () => {
     setThemeState(prev => prev === 'light' ? 'dark' : 'light');

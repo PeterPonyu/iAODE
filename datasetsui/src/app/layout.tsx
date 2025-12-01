@@ -1,4 +1,3 @@
-
 // app/layout.tsx
 
 import type { Metadata } from 'next';
@@ -49,8 +48,18 @@ export default function RootLayout({
                   
                   // Store for ThemeContext to read (avoid duplicate logic)
                   window.__INITIAL_THEME__ = theme;
+
+                  // 🆕 Font size initialization
+                  const storedFontSize = localStorage.getItem('font-size');
+                  const fontSize = storedFontSize || 'medium';
+                  
+                  // Apply font size attribute immediately
+                  document.documentElement.setAttribute('data-font-size', fontSize);
+                  
+                  // Store for FontSizeContext to read
+                  window.__INITIAL_FONT_SIZE__ = fontSize;
                 } catch (e) {
-                  console.error('Theme initialization error:', e);
+                  console.error('Initialization error:', e);
                 }
               })();
             `,

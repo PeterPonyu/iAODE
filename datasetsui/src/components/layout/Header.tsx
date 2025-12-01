@@ -5,6 +5,7 @@ import { usePathname } from 'next/navigation';
 import { Database, Moon, Sun, Menu } from 'lucide-react';
 import { useState } from 'react';
 import { useTheme } from '@/contexts/ThemeContext';
+import FontSizeSelector from '@/components/layout/FontSizeSelector';
 
 export default function Header() {
   const pathname = usePathname();
@@ -72,8 +73,13 @@ export default function Header() {
             ))}
           </nav>
 
-          {/* Right side: Dark Mode Toggle + Mobile Menu */}
+          {/* Right side: Font Size + Dark Mode Toggle + Mobile Menu */}
           <div className="flex items-center gap-2">
+            {/* Font Size Selector (Desktop only) */}
+            <div className="hidden md:block">
+              <FontSizeSelector />
+            </div>
+
             {/* Dark Mode Toggle */}
             {mounted && (
               <button
@@ -133,6 +139,11 @@ export default function Header() {
                   </Link>
                 )
               ))}
+              
+              {/* Font Size in Mobile Menu */}
+              <div className="px-2 py-2 border-t border-[rgb(var(--border))] mt-2">
+                <FontSizeSelector />
+              </div>
             </nav>
           </div>
         )}
