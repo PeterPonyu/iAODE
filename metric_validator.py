@@ -415,237 +415,336 @@ class MetricValidator:
         return result_df
     
     def plot_validation_results(self, 
-                            validation_df: pd.DataFrame, 
-                            trend_stats: Optional[pd.DataFrame] = None,
-                            save_path: Optional[str] = None,
-                            figsize: Optional[Tuple[int, int]] = None,
-                            color_scheme: Union[str, Dict[str, str]] = 'default',
-                            title_fontsize: int = 12,
-                            title_fontweight: str = 'normal',
-                            label_fontsize: int = 9,
-                            label_fontweight: str = 'normal',
-                            tick_fontsize: int = 9,
-                            legend_fontsize: int = 9,
-                            stats_fontsize: int = 9,
-                            legend_loc: str = 'lower right',
-                            hspace: float = 0.3,
-                            wspace: float = 0.3,
-                            ylabel_indices: Optional[List[int]] = None,
-                            xlabel_indices: Optional[List[int]] = None,
-                            title_indices: Optional[List[int]] = None,
-                            show_xticklabels: bool = True,
-                            show_yticklabels: bool = True):
-        """
-        Visualize validation results with statistical annotations.
-        Works with flexible trajectory/cluster configurations.
-        
-        Parameters:
-            validation_df: DataFrame from validation
-            trend_stats: DataFrame from analyze_trend_significance (optional)
-            save_path: Path to save figure
-            figsize: Figure size (width, height)
-            color_scheme: Color scheme for plots. Options:
-                - 'default' or 'blue-red': Standard blue (#1f77b4) and red
-                - 'light': Light blue and light coral
-                - 'teal-orange': Teal (#20B2AA) and orange (#FF8C00)
-                - 'purple-green': Purple (#9467BD) and green (#2CA02C)
-                - 'navy-crimson': Navy (#000080) and crimson (#DC143C)
-                - 'slate-salmon': Slate blue (#6A5ACD) and salmon (#FA8072)
-                - Custom dict: {'main': 'color', 'fit': 'color', 'alpha': float}
-                    where 'main' is the mean line color, 'fit' is regression line color,
-                    and 'alpha' (optional) is the shading transparency (default: 0.2)
-            [Other parameters as before]
+                                validation_df: pd.DataFrame, 
+                                trend_stats: Optional[pd.DataFrame] = None,
+                                save_path: Optional[str] = None,
+                                figsize: Optional[Tuple[int, int]] = None,
+                                subplot_orientation: str = 'horizontal',
+                                color_scheme: Union[str, Dict[str, str]] = 'default',
+                                title_fontsize: int = 12,
+                                title_fontweight: str = 'normal',
+                                label_fontsize: int = 9,
+                                label_fontweight: str = 'normal',
+                                tick_fontsize: int = 9,
+                                legend_fontsize: int = 9,
+                                stats_fontsize: int = 9,
+                                legend_loc: str = 'lower right',
+                                hspace: float = 0.3,
+                                wspace: float = 0.3,
+                                ylabel_indices: Optional[List[int]] = None,
+                                xlabel_indices: Optional[List[int]] = None,
+                                title_indices: Optional[List[int]] = None,
+                                show_xticklabels: bool = True,
+                                show_yticklabels: bool = True,
+                                stats_lefttop_indices: Optional[List[int]] = None,
+                                stats_righttop_indices: Optional[List[int]] = None,
+                                stats_leftbottom_indices: Optional[List[int]] = None,
+                                stats_rightbottom_indices: Optional[List[int]] = None):
+            """
+            Visualize validation results with statistical annotations.
+            Works with flexible trajectory/cluster configurations.
             
-        Example:
-            # Use predefined scheme
-            validator.plot_validation_results(df, color_scheme='light')
+            Parameters:
+                validation_df: DataFrame from validation
+                trend_stats: DataFrame from analyze_trend_significance (optional)
+                save_path: Path to save figure
+                figsize: Figure size (width, height)
+                subplot_orientation: Subplot layout orientation. Options:
+                    - 'horizontal': metrics as columns, groups as rows (default)
+                    Title shows metric name, Y-label shows group info
+                    e.g., 3 metrics, 2 groups -> (2, 3) layout
+                    - 'vertical': metrics as rows, groups as columns
+                    Title shows group info, Y-label shows metric name
+                    e.g., 3 metrics, 2 groups -> (3, 2) layout
+                color_scheme: Color scheme for plots. Options:
+                    - 'default' or 'blue-red': Standard blue (#1f77b4) and red
+                    - 'light': Light blue and light coral
+                    - 'teal-orange': Teal (#20B2AA) and orange (#FF8C00)
+                    - 'purple-green': Purple (#9467BD) and green (#2CA02C)
+                    - 'navy-crimson': Navy (#000080) and crimson (#DC143C)
+                    - 'slate-salmon': Slate blue (#6A5ACD) and salmon (#FA8072)
+                    - Custom dict: {'main': 'color', 'fit': 'color', 'alpha': float}
+                        where 'main' is the mean line color, 'fit' is regression line color,
+                        and 'alpha' (optional) is the shading transparency (default: 0.2)
+                stats_lefttop_indices: List of subplot indices (flat) to place stats in left-top corner
+                stats_righttop_indices: List of subplot indices (flat) to place stats in right-top corner
+                stats_leftbottom_indices: List of subplot indices (flat) to place stats in left-bottom corner
+                stats_rightbottom_indices: List of subplot indices (flat) to place stats in right-bottom corner
+                Note: Any subplot index not explicitly specified defaults to left-top placement
+                
+            Example:
+                # Horizontal layout (default): metrics across columns
+                # Title: metric name, Y-label: group info
+                validator.plot_validation_results(df, subplot_orientation='horizontal')
+                
+                # Vertical layout: metrics down rows
+                # Title: group info, Y-label: metric name
+                validator.plot_validation_results(df, subplot_orientation='vertical')
+            """
+            # Validate orientation parameter
+            if subplot_orientation not in ['horizontal', 'vertical']:
+                raise ValueError("subplot_orientation must be 'horizontal' or 'vertical'")
             
-            # Use custom colors
-            validator.plot_validation_results(
-                df, 
-                color_scheme={'main': '#FF6B6B', 'fit': '#4ECDC4', 'alpha': 0.3}
-            )
-        """
-        # Define color scheme presets
-        color_schemes = {
-            'default': {'main': '#1f77b4', 'fit': 'red', 'alpha': 0.2},
-            'blue-red': {'main': '#1f77b4', 'fit': 'red', 'alpha': 0.2},
-            'light': {'main': 'lightblue', 'fit': 'lightcoral', 'alpha': 0.25},
-            'teal-orange': {'main': '#20B2AA', 'fit': '#FF8C00', 'alpha': 0.2},
-            'purple-green': {'main': '#9467BD', 'fit': '#2CA02C', 'alpha': 0.2},
-            'navy-crimson': {'main': '#000080', 'fit': '#DC143C', 'alpha': 0.2},
-            'slate-salmon': {'main': '#6A5ACD', 'fit': '#FA8072', 'alpha': 0.2},
-            'cyan-magenta': {'main': '#17BECF', 'fit': '#E377C2', 'alpha': 0.2},
-            'olive-pink': {'main': '#BCBD22', 'fit': '#FF69B4', 'alpha': 0.2},
-            'steel-coral': {'main': '#4682B4', 'fit': '#FF7F50', 'alpha': 0.2},
-        }
-        
-        # Get color configuration
-        if isinstance(color_scheme, str):
-            if color_scheme not in color_schemes:
-                raise ValueError(
-                    f"Unknown color scheme: '{color_scheme}'. "
-                    f"Available: {list(color_schemes.keys())}"
-                )
-            colors = color_schemes[color_scheme]
-        elif isinstance(color_scheme, dict):
-            # Custom color scheme
-            if 'main' not in color_scheme or 'fit' not in color_scheme:
-                raise ValueError("Custom color_scheme dict must contain 'main' and 'fit' keys")
-            colors = {
-                'main': color_scheme['main'],
-                'fit': color_scheme['fit'],
-                'alpha': color_scheme.get('alpha', 0.2)
+            # Define color scheme presets
+            color_schemes = {
+                'default': {'main': '#1f77b4', 'fit': 'red', 'alpha': 0.2},
+                'blue-red': {'main': '#1f77b4', 'fit': 'red', 'alpha': 0.2},
+                'light': {'main': 'lightblue', 'fit': 'lightcoral', 'alpha': 0.25},
+                'teal-orange': {'main': '#20B2AA', 'fit': '#FF8C00', 'alpha': 0.2},
+                'purple-green': {'main': '#9467BD', 'fit': '#2CA02C', 'alpha': 0.2},
+                'navy-crimson': {'main': '#000080', 'fit': '#DC143C', 'alpha': 0.2},
+                'slate-salmon': {'main': '#6A5ACD', 'fit': '#FA8072', 'alpha': 0.2},
+                'cyan-magenta': {'main': '#17BECF', 'fit': '#E377C2', 'alpha': 0.2},
+                'olive-pink': {'main': '#BCBD22', 'fit': '#FF69B4', 'alpha': 0.2},
+                'steel-coral': {'main': '#4682B4', 'fit': '#FF7F50', 'alpha': 0.2},
             }
-        else:
-            raise TypeError("color_scheme must be str or dict")
-        
-        # Compute trend stats if not provided
-        if trend_stats is None:
-            trend_stats = self.analyze_trend_significance(validation_df)
-        
-        # Determine grouping strategy based on available columns
-        if 'config_label' in validation_df.columns:
-            row_var = 'config_label'
-            row_values = validation_df[row_var].unique()
-            row_label_format = lambda x: x
-        elif 'n_clusters' in validation_df.columns:
-            row_var = 'n_clusters'
-            row_values = sorted(validation_df[row_var].unique())
-            row_label_format = lambda x: f'{x} Clusters'
-        else:
-            row_var = 'trajectory_type'
-            row_values = validation_df[row_var].unique()
-            row_label_format = lambda x: x.capitalize()
-        
-        xlabel_text = 'Continuity Setting'
-        
-        metrics = validation_df['metric_name'].unique()
-        
-        n_metrics = len(metrics)
-        n_rows = len(row_values)
-        
-        # Set default figure size
-        if figsize is None:
-            figsize = (5*n_metrics, 4.5*n_rows)
-        
-        fig, axes = plt.subplots(n_rows, n_metrics, figsize=figsize)
-        if n_rows == 1:
-            axes = axes.reshape(1, -1)
-        if n_metrics == 1:
-            axes = axes.reshape(-1, 1)
-        
-        plt.subplots_adjust(hspace=hspace, wspace=wspace)
-        
-        # Default label behavior
-        if ylabel_indices is None:
-            ylabel_indices = list(range(0, n_rows * n_metrics, n_metrics))
-        if xlabel_indices is None:
-            xlabel_indices = list(range((n_rows - 1) * n_metrics, n_rows * n_metrics))
-        if title_indices is None:
-            title_indices = list(range(n_metrics))
-        
-        for i, row_value in enumerate(row_values):
-            for j, metric_name in enumerate(metrics):
-                ax = axes[i, j]
-                flat_idx = i * n_metrics + j
-                
-                subset = validation_df[
-                    (validation_df['metric_name'] == metric_name) &
-                    (validation_df[row_var] == row_value)
-                ].copy()
-                
-                # Get statistical results
-                stat_row = trend_stats[
-                    (trend_stats['metric_name'] == metric_name) &
-                    (trend_stats[row_var] == row_value)
-                ]
-                
-                # Calculate mean and SEM per continuity level
-                grouped = subset.groupby('continuity_setting')['metric_score']
-                mean_scores = grouped.mean()
-                sem_scores = grouped.sem()
-                continuity_levels = mean_scores.index.values
-                
-                # Plot mean with error shading (using selected main color)
-                ax.plot(continuity_levels, mean_scores.values, 
-                    'o-', linewidth=2.5, color=colors['main'], 
-                    label='Mean', markersize=6, zorder=2)
-                
-                # Add error bars
-                if not sem_scores.isna().all():
-                    ax.fill_between(continuity_levels,
-                                mean_scores.values - sem_scores.values,
-                                mean_scores.values + sem_scores.values,
-                                alpha=colors['alpha'], color=colors['main'], zorder=1)
-                
-                # Add regression line if significant (using selected fit color)
-                if len(stat_row) > 0:
-                    row = stat_row.iloc[0]
-                    
-                    if row['regression_p'] < 0.05:
-                        x_fit = np.linspace(continuity_levels.min(), continuity_levels.max(), 100)
-                        y_fit = row['regression_slope'] * x_fit + (mean_scores.mean() - row['regression_slope'] * continuity_levels.mean())
-                        ax.plot(x_fit, y_fit, '--', color=colors['fit'], linewidth=1.5, 
-                            alpha=0.7, label='Linear fit', zorder=3)
-                    
-                    # Significance markers
-                    if row['spearman_p'] < 0.001:
-                        sig_marker = '***'
-                    elif row['spearman_p'] < 0.01:
-                        sig_marker = '**'
-                    elif row['spearman_p'] < 0.05:
-                        sig_marker = '*'
-                    else:
-                        sig_marker = 'n.s.'
-                    
-                    # Statistics text
-                    stats_text = (
-                        f"ρ = {row['spearman_r']:.3f} {sig_marker}\n"
-                        f"R² = {row['regression_r2']:.3f}\n"
-                        f"Slope = {row['regression_slope']:.3f}"
+            
+            # Get color configuration
+            if isinstance(color_scheme, str):
+                if color_scheme not in color_schemes:
+                    raise ValueError(
+                        f"Unknown color scheme: '{color_scheme}'. "
+                        f"Available: {list(color_schemes.keys())}"
                     )
+                colors = color_schemes[color_scheme]
+            elif isinstance(color_scheme, dict):
+                # Custom color scheme
+                if 'main' not in color_scheme or 'fit' not in color_scheme:
+                    raise ValueError("Custom color_scheme dict must contain 'main' and 'fit' keys")
+                colors = {
+                    'main': color_scheme['main'],
+                    'fit': color_scheme['fit'],
+                    'alpha': color_scheme.get('alpha', 0.2)
+                }
+            else:
+                raise TypeError("color_scheme must be str or dict")
+            
+            # Compute trend stats if not provided
+            if trend_stats is None:
+                trend_stats = self.analyze_trend_significance(validation_df)
+            
+            # Determine grouping strategy based on available columns
+            if 'config_label' in validation_df.columns:
+                group_var = 'config_label'
+                group_values = validation_df[group_var].unique()
+                group_label_format = lambda x: x
+            elif 'n_clusters' in validation_df.columns:
+                group_var = 'n_clusters'
+                group_values = sorted(validation_df[group_var].unique())
+                group_label_format = lambda x: f'{x} Clusters'
+            else:
+                group_var = 'trajectory_type'
+                group_values = validation_df[group_var].unique()
+                group_label_format = lambda x: x.capitalize()
+            
+            xlabel_text = 'Continuity Setting'
+            
+            metrics = validation_df['metric_name'].unique()
+            
+            n_metrics = len(metrics)
+            n_groups = len(group_values)
+            
+            # Determine subplot layout based on orientation
+            if subplot_orientation == 'horizontal':
+                # Metrics across columns, groups down rows
+                nrows, ncols = n_groups, n_metrics
+                subplot_width, subplot_height = 5, 4.5
+            else:  # vertical
+                # Metrics down rows, groups across columns
+                nrows, ncols = n_metrics, n_groups
+                subplot_width, subplot_height = 5, 4.5
+            
+            # Set default figure size
+            if figsize is None:
+                figsize = (subplot_width * ncols, subplot_height * nrows)
+            
+            fig, axes = plt.subplots(nrows, ncols, figsize=figsize)
+            
+            # Ensure axes is always 2D array
+            if nrows == 1 and ncols == 1:
+                axes = np.array([[axes]])
+            elif nrows == 1:
+                axes = axes.reshape(1, -1)
+            elif ncols == 1:
+                axes = axes.reshape(-1, 1)
+            
+            plt.subplots_adjust(hspace=hspace, wspace=wspace)
+            
+            # Calculate total number of subplots
+            n_total = nrows * ncols
+            
+            # Default label behavior based on orientation
+            if subplot_orientation == 'horizontal':
+                # Bottom row gets x-labels, leftmost column gets y-labels, top row gets titles
+                if ylabel_indices is None:
+                    ylabel_indices = list(range(0, n_total, ncols))  # First column
+                if xlabel_indices is None:
+                    xlabel_indices = list(range((nrows - 1) * ncols, n_total))  # Last row
+                if title_indices is None:
+                    title_indices = list(range(ncols))  # First row
+            else:  # vertical
+                # Bottom row gets x-labels, leftmost column gets y-labels, leftmost column gets titles
+                if ylabel_indices is None:
+                    ylabel_indices = list(range(0, n_total, ncols))  # First column
+                if xlabel_indices is None:
+                    xlabel_indices = list(range((nrows - 1) * ncols, n_total))  # Last row
+                if title_indices is None:
+                    title_indices = list(range(0, n_total, ncols))  # First column
+            
+            # Convert None to empty lists
+            stats_lefttop_indices = stats_lefttop_indices or []
+            stats_righttop_indices = stats_righttop_indices or []
+            stats_leftbottom_indices = stats_leftbottom_indices or []
+            stats_rightbottom_indices = stats_rightbottom_indices or []
+            
+            # Collect all explicitly specified indices
+            specified_indices = set(stats_lefttop_indices + stats_righttop_indices + 
+                                stats_leftbottom_indices + stats_rightbottom_indices)
+            
+            # Add unspecified indices to left-top (default)
+            all_indices = set(range(n_total))
+            unspecified_indices = all_indices - specified_indices
+            stats_lefttop_indices = list(set(stats_lefttop_indices) | unspecified_indices)
+            
+            # Create stats position mapping
+            stats_positions = {}
+            for idx in stats_lefttop_indices:
+                stats_positions[idx] = {'x': 0.05, 'y': 0.95, 'ha': 'left', 'va': 'top'}
+            for idx in stats_righttop_indices:
+                stats_positions[idx] = {'x': 0.95, 'y': 0.95, 'ha': 'right', 'va': 'top'}
+            for idx in stats_leftbottom_indices:
+                stats_positions[idx] = {'x': 0.05, 'y': 0.05, 'ha': 'left', 'va': 'bottom'}
+            for idx in stats_rightbottom_indices:
+                stats_positions[idx] = {'x': 0.95, 'y': 0.05, 'ha': 'right', 'va': 'bottom'}
+            
+            # Plot data
+            for metric_idx, metric_name in enumerate(metrics):
+                for group_idx, group_value in enumerate(group_values):
+                    # Determine subplot position based on orientation
+                    if subplot_orientation == 'horizontal':
+                        row_idx = group_idx
+                        col_idx = metric_idx
+                    else:  # vertical
+                        row_idx = metric_idx
+                        col_idx = group_idx
                     
-                    ax.text(0.05, 0.95, stats_text,
-                        transform=ax.transAxes,
-                        verticalalignment='top',
-                        fontsize=stats_fontsize)
-                
-                # Conditionally set labels
-                if flat_idx in xlabel_indices:
-                    ax.set_xlabel(xlabel_text, fontsize=label_fontsize, fontweight=label_fontweight)
-                else:
-                    ax.set_xlabel('')
-                
-                if flat_idx in ylabel_indices:
-                    ylabel_text = f'Metric Score\n({row_label_format(row_value)})'
-                    ax.set_ylabel(ylabel_text, fontsize=label_fontsize, fontweight=label_fontweight)
-                else:
-                    ax.set_ylabel('')
-                
-                if flat_idx in title_indices:
-                    ax.set_title(f'{metric_name}', fontsize=title_fontsize, fontweight=title_fontweight)
-                else:
-                    ax.set_title('')
-                
-                # Handle tick labels
-                if not show_xticklabels:
-                    ax.set_xticklabels([])
-                else:
-                    ax.tick_params(axis='x', labelsize=tick_fontsize)
-                
-                if not show_yticklabels:
-                    ax.set_yticklabels([])
-                else:
-                    ax.tick_params(axis='y', labelsize=tick_fontsize)
-                
-                ax.legend(loc=legend_loc, fontsize=legend_fontsize)
-                ax.grid(True, alpha=0.3, linestyle='--')
+                    ax = axes[row_idx, col_idx]
+                    flat_idx = row_idx * ncols + col_idx
+                    
+                    subset = validation_df[
+                        (validation_df['metric_name'] == metric_name) &
+                        (validation_df[group_var] == group_value)
+                    ].copy()
+                    
+                    # Get statistical results
+                    stat_row = trend_stats[
+                        (trend_stats['metric_name'] == metric_name) &
+                        (trend_stats[group_var] == group_value)
+                    ]
+                    
+                    # Calculate mean and SEM per continuity level
+                    grouped = subset.groupby('continuity_setting')['metric_score']
+                    mean_scores = grouped.mean()
+                    sem_scores = grouped.sem()
+                    continuity_levels = mean_scores.index.values
+                    
+                    # Plot mean with error shading (using selected main color)
+                    ax.plot(continuity_levels, mean_scores.values, 
+                        'o-', linewidth=2.5, color=colors['main'], 
+                        label='Mean', markersize=6, zorder=2)
+                    
+                    # Add error bars
+                    if not sem_scores.isna().all():
+                        ax.fill_between(continuity_levels,
+                                    mean_scores.values - sem_scores.values,
+                                    mean_scores.values + sem_scores.values,
+                                    alpha=colors['alpha'], color=colors['main'], zorder=1)
+                    
+                    # Add regression line if significant (using selected fit color)
+                    if len(stat_row) > 0:
+                        row = stat_row.iloc[0]
+                        
+                        if row['regression_p'] < 0.05:
+                            x_fit = np.linspace(continuity_levels.min(), continuity_levels.max(), 100)
+                            y_fit = row['regression_slope'] * x_fit + (mean_scores.mean() - row['regression_slope'] * continuity_levels.mean())
+                            ax.plot(x_fit, y_fit, '--', color=colors['fit'], linewidth=1.5, 
+                                alpha=0.7, label='Linear fit', zorder=3)
+                        
+                        # Significance markers
+                        if row['spearman_p'] < 0.001:
+                            sig_marker = '***'
+                        elif row['spearman_p'] < 0.01:
+                            sig_marker = '**'
+                        elif row['spearman_p'] < 0.05:
+                            sig_marker = '*'
+                        else:
+                            sig_marker = 'n.s.'
+                        
+                        # Statistics text
+                        stats_text = (
+                            f"ρ = {row['spearman_r']:.3f} {sig_marker}\n"
+                            f"R² = {row['regression_r2']:.3f}\n"
+                            f"Slope = {row['regression_slope']:.3f}"
+                        )
+                        
+                        # Get position for this subplot
+                        if flat_idx in stats_positions:
+                            pos = stats_positions[flat_idx]
+                            ax.text(pos['x'], pos['y'], stats_text,
+                                transform=ax.transAxes,
+                                horizontalalignment=pos['ha'],
+                                verticalalignment=pos['va'],
+                                fontsize=stats_fontsize)
+                    
+                    # Conditionally set labels based on orientation
+                    if flat_idx in xlabel_indices:
+                        ax.set_xlabel(xlabel_text, fontsize=label_fontsize, fontweight=label_fontweight)
+                    else:
+                        ax.set_xlabel('')
+                    
+                    # Y-label text swaps based on orientation
+                    if flat_idx in ylabel_indices:
+                        if subplot_orientation == 'horizontal':
+                            # Horizontal: Y-label shows group info
+                            ylabel_text = f'Metric Score\n({group_label_format(group_value)})'
+                        else:
+                            # Vertical: Y-label shows metric name
+                            ylabel_text = metric_name
+                        ax.set_ylabel(ylabel_text, fontsize=label_fontsize, fontweight=label_fontweight)
+                    else:
+                        ax.set_ylabel('')
+                    
+                    # Title text swaps based on orientation
+                    if flat_idx in title_indices:
+                        if subplot_orientation == 'horizontal':
+                            # Horizontal: Title shows metric name
+                            title_text = metric_name
+                        else:
+                            # Vertical: Title shows group info
+                            title_text = f'Metric Score\n({group_label_format(group_value)})'
+                        ax.set_title(title_text, fontsize=title_fontsize, fontweight=title_fontweight)
+                    else:
+                        ax.set_title('')
+                    
+                    # Handle tick labels
+                    if not show_xticklabels:
+                        ax.set_xticklabels([])
+                    else:
+                        ax.tick_params(axis='x', labelsize=tick_fontsize)
+                    
+                    if not show_yticklabels:
+                        ax.set_yticklabels([])
+                    else:
+                        ax.tick_params(axis='y', labelsize=tick_fontsize)
+                        
+                    if legend_loc is not None:
+                        ax.legend(loc=legend_loc, fontsize=legend_fontsize)
+                    ax.grid(True, alpha=0.3, linestyle='--')
+            
+            if save_path:
+                plt.savefig(save_path, dpi=300, bbox_inches='tight')
         
-        if save_path:
-            plt.savefig(save_path, dpi=300, bbox_inches='tight')
-    
-        return fig, axes
+            return fig, axes
 
     def visualize_two_group_comparison(self,
                                        validation_df: pd.DataFrame,
