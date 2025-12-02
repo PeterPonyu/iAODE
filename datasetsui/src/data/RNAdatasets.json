@@ -720,11 +720,11 @@
     "platform": "Illumina NovaSeq 6000"
   },
   {
-    "id": "gse307774-gsm9231175-bvar-rzf122-3d-filtered-feature-bc-matrix",
+    "id": "gse307774-gsm9231176-bvar-rzf118-6c-filtered-feature-bc-matrix",
     "authors": "White M, Mills ML, Millett LM, Gilroy K, Campbell AD, Sansom OJ",
     "title": "Oncogenic MAPK signalling induces epithelial cell state change and therapeutic resistance in vivo [scRNA-Seq]",
     "gseAccession": "GSE307774",
-    "dataFileName": "GSM9231175_BVAR_RZF122_3d.filtered_feature_bc_matrix.h5",
+    "dataFileName": "GSM9231176_BVAR_RZF118_6c.filtered_feature_bc_matrix.h5",
     "organism": "Mouse",
     "source": "Intracolonic Transplant Colon Tumour",
     "platform": "Illumina NovaSeq 6000"
