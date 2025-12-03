@@ -385,3 +385,22 @@ def subsample_cells_and_peaks(
         return None
     else:
         return result.copy()
+
+def get_dataset_category(n_cells: int) -> Tuple[str, Optional[int], Optional[int]]:
+    """
+    Categorize dataset by size and return configuration
+    
+    Args:
+        n_cells: Number of cells in dataset
+        
+    Returns:
+        Tuple of (category_name, subsample_size, n_hvp)
+    """
+    if n_cells < 5000:
+        return 'tiny', None, None  # Skip processing
+    elif n_cells < 10000:
+        return 'small', 5000, 20000
+    elif n_cells < 20000:
+        return 'medium', 10000, 20000
+    else:
+        return 'large', 20000, 20000
