@@ -11,6 +11,7 @@ import gzip
 import shutil
 from pathlib import Path
 from typing import Tuple
+import requests
 
 
 def get_data_dir() -> Path:
@@ -34,9 +35,10 @@ def get_data_dir() -> Path:
     return data_dir
 
 
+
 def _download_file(url: str, output_path: Path, desc: str = "file") -> None:
     """
-    Download a file with progress indication.
+    Download a file with progress indication using requests.
     
     Parameters
     ----------
@@ -52,16 +54,30 @@ def _download_file(url: str, output_path: Path, desc: str = "file") -> None:
     print(f"   → {output_path}")
     
     try:
-        # Create a custom progress hook
-        def reporthook(blocknum, blocksize, totalsize):
-            if totalsize > 0:
-                percent = min(blocknum * blocksize / totalsize * 100, 100)
-                mb_downloaded = blocknum * blocksize / 1024 / 1024
-                mb_total = totalsize / 1024 / 1024
-                print(f"\r   Progress: {percent:.1f}% ({mb_downloaded:.1f}/{mb_total:.1f} MB)", end='')
+        headers = {
+            'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36'
+        }
         
-        urllib.request.urlretrieve(url, output_path, reporthook=reporthook)
-        print()  # New line after progress
+        response = requests.get(url, headers=headers, stream=True)
+        response.raise_for_status()
+        
+        total_size = int(response.headers.get('content-length', 0))
+        block_size = 8192
+        downloaded = 0
+        
+        with open(output_path, 'wb') as f:
+            for chunk in response.iter_content(chunk_size=block_size):
+                if chunk:
+                    downloaded += len(chunk)
+                    f.write(chunk)
+                    
+                    if total_size > 0:
+                        percent = min(downloaded / total_size * 100, 100)
+                        mb_downloaded = downloaded / 1024 / 1024
+                        mb_total = total_size / 1024 / 1024
+                        print(f"\r   Progress: {percent:.1f}% ({mb_downloaded:.1f}/{mb_total:.1f} MB)", end='')
+        
+        print()
         print("   ✓ Downloaded successfully")
     except Exception as e:
         print(f"\n   ✗ Download failed: {e}")
