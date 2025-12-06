@@ -135,7 +135,6 @@ Thumbs.db
 
 # Data files
 *.h5ad
-*.h5
 *.csv
 *.tsv
 *.gz
@@ -148,11 +147,6 @@ Thumbs.db
 
 # Frontend build output
 frontend/node_modules/
-
-# Duplicate data directories (keep only examples/data/)
-data/
-notebooks/data/
-notebooks/outputs/
 
 .next
 
