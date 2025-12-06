@@ -1,9 +1,15 @@
 
 from fastapi import FastAPI, File, UploadFile, Query, BackgroundTasks, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
-from fastapi.responses import FileResponse, HTMLResponse
+from fastapi.responses import FileResponse
 from fastapi.staticfiles import StaticFiles
-from .model import DataInfo, AgentParams, TrainParams, TrainingState, TFIDFParams, HVPParams, SubsampleParams, PreprocessInfo
+
+# Handle both relative and absolute imports
+try:
+    from .model import DataInfo, AgentParams, TrainParams, TrainingState, TFIDFParams, HVPParams, SubsampleParams, PreprocessInfo
+except ImportError:
+    from model import DataInfo, AgentParams, TrainParams, TrainingState, TFIDFParams, HVPParams, SubsampleParams, PreprocessInfo
+
 from iaode.utils import tfidf_normalization, select_highly_variable_peaks, subsample_cells_and_peaks
 from iaode.agent import agent
 from anndata import AnnData
@@ -19,29 +25,15 @@ VERSION = "0.3.0"
 
 app = FastAPI(title="iAODE API", version=VERSION)
 
-# Add CORS middleware for Next.js frontend
+# Add CORS middleware
+# We keep this for development, but in production, same-origin requests don't need it.
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["http://localhost:3000", "http://localhost:8000"],
+    allow_origins=["*"], 
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
 )
-
-# Mount static files from Next.js build
-frontend_path = Path(__file__).parent.parent / "frontend" / "out"
-if frontend_path.exists():
-    # Mount Next.js static assets
-    app.mount("/_next", StaticFiles(directory=str(frontend_path / "_next")), name="next-static")
-    
-    # Serve other static files
-    for static_file in ["favicon.ico", "file.svg", "globe.svg", "next.svg", "vercel.svg", "window.svg"]:
-        if (frontend_path / static_file).exists():
-            @app.get(f"/{static_file}")
-            async def serve_static(file=static_file):
-                return FileResponse(frontend_path / file)
-
-
 
 class AppState:
     """Application state management with proper typing"""
@@ -55,31 +47,16 @@ class AppState:
 
 state = AppState()
 
+# =================================================================
+# API ENDPOINTS (Prefixed with /api)
+# =================================================================
 
-# Serve frontend pages
-@app.get("/ui", response_class=HTMLResponse)
-@app.get("/ui/", response_class=HTMLResponse)
-async def serve_ui_root():
-    """Serve the frontend homepage"""
-    if frontend_path.exists():
-        return FileResponse(frontend_path / "index.html")
-    return {"message": "Frontend not built. Run 'cd frontend && npm run build'"}
-
-
-@app.get("/ui/train", response_class=HTMLResponse)
-async def serve_ui_train():
-    """Serve the training page"""
-    if frontend_path.exists():
-        return FileResponse(frontend_path / "train.html")
-    return {"message": "Frontend not built. Run 'cd frontend && npm run build'"}
-
-
-@app.get("/")
+@app.get("/api")
 async def read_root():
     return {"message": "Welcome to the iAODE API", "version": VERSION}
 
 
-@app.post("/upload", response_model=DataInfo)
+@app.post("/api/upload", response_model=DataInfo)
 async def upload_data(
     file: UploadFile = File(...),
     data_type: Literal["scrna", "scatac"] = Query(default="scrna", description="Data type: scrna or scatac")
@@ -154,7 +131,7 @@ def run_training(agparams: AgentParams, trainparams: TrainParams) -> None:
         print(f"Training error: {e}")
 
 
-@app.post("/train")
+@app.post("/api/train")
 async def train_model(
     agparams: AgentParams,
     trainparams: TrainParams,
@@ -184,7 +161,7 @@ async def train_model(
     }
 
 
-@app.get("/state", response_model=TrainingState)
+@app.get("/api/state", response_model=TrainingState)
 async def get_state():
     """Get current training state"""
     return TrainingState(
@@ -194,7 +171,7 @@ async def get_state():
     )
 
 
-@app.get("/download")
+@app.get("/api/download")
 async def download_embedding(
     embedding_type: Literal["latent", "interpretable"] = Query(..., description="Type of embedding to download")
 ):
@@ -237,7 +214,7 @@ async def download_embedding(
         return {"error": f"Download failed: {str(e)}"}
 
 
-@app.delete("/reset")
+@app.delete("/api/reset")
 async def reset_state():
     """Reset application state"""
     state.agent = None
@@ -249,7 +226,7 @@ async def reset_state():
     return {"message": "State reset successfully"}
 
 
-@app.post("/preprocess/tfidf", response_model=PreprocessInfo)
+@app.post("/api/preprocess/tfidf", response_model=PreprocessInfo)
 async def normalize_tfidf(params: TFIDFParams):
     """Apply TF-IDF normalization to scATAC-seq data"""
     if state.adata is None:
@@ -269,7 +246,7 @@ async def normalize_tfidf(params: TFIDFParams):
         )
         
         state.status = "data_loaded"
-        state.message = f"TF-IDF normalization completed"
+        state.message = "TF-IDF normalization completed"
         
         return PreprocessInfo(
             n_cells=state.adata.n_obs,
@@ -287,7 +264,7 @@ async def normalize_tfidf(params: TFIDFParams):
         raise HTTPException(status_code=500, detail=str(e))
 
 
-@app.post("/preprocess/select-hvp", response_model=PreprocessInfo)
+@app.post("/api/preprocess/select-hvp", response_model=PreprocessInfo)
 async def select_hvp(params: HVPParams):
     """Select highly variable peaks from scATAC-seq data"""
     if state.adata is None:
@@ -329,7 +306,7 @@ async def select_hvp(params: HVPParams):
         raise HTTPException(status_code=500, detail=str(e))
 
 
-@app.post("/preprocess/subsample", response_model=PreprocessInfo)
+@app.post("/api/preprocess/subsample", response_model=PreprocessInfo)
 async def subsample_data(params: SubsampleParams):
     """Subsample cells and optionally filter to highly variable peaks"""
     if state.adata is None:
@@ -374,3 +351,28 @@ async def subsample_data(params: SubsampleParams):
         state.status = "error"
         state.message = f"Subsampling failed: {str(e)}"
         raise HTTPException(status_code=500, detail=str(e))
+
+# =================================================================
+# STATIC FILE MOUNTING (Must be AFTER API routes)
+# =================================================================
+
+# Try production static path first (copied by start_production.sh)
+production_path = Path(__file__).parent / "static"
+# Fall back to development path
+dev_path = Path(__file__).parent.parent / "frontend" / "out"
+
+frontend_path = production_path if production_path.exists() else dev_path
+
+if frontend_path.exists():
+    print(f"✓ Serving frontend from: {frontend_path}")
+    # 1. Mount the /_next folder (Static Assets)
+    app.mount("/_next", StaticFiles(directory=str(frontend_path / "_next")), name="next-static")
+    
+    # 2. Mount the Root (HTML and public files)
+    # 'html=True' allows serving index.html automatically for root /
+    app.mount("/", StaticFiles(directory=str(frontend_path), html=True), name="frontend")
+
+else:
+    print("⚠️  WARNING: Frontend build directory not found.")
+    print("   For development: Run 'python start_training_ui.py'")
+    print("   For production: Run './start_production.sh'")

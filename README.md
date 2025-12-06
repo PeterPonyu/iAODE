@@ -49,58 +49,39 @@ Loss = recon + i_recon + ODE_consistency + β·KL + dip·DIP + tc·TC + info·MM
 
 ## Installation
 
-### From PyPI (Recommended)
-
+### Method 1: Python Library (Standard)
+For users using iAODE in scripts or notebooks:
 ```bash
 pip install iaode
 ```
 
-### From Source
+### Method 2: Web Interface (Full)
+For users who want the **Interactive Training UI**, you must clone the repository (since the UI requires the server files):
 
 ```bash
 git clone https://github.com/PeterPonyu/iAODE.git
 cd iAODE
 pip install -e .
+pip install fastapi uvicorn  # Required for the UI server
 ```
 
-### Requirements
-
-- Python ≥ 3.9
-- PyTorch ≥ 1.10.0
-- AnnData ≥ 0.8.0
-- Scanpy ≥ 1.8.0
-- scvi-tools ≥ 0.16.0
-
-See `requirements.txt` for the complete list of dependencies.
-
 ---
-
 ## Quick Start
 
-### Training UI (Web Interface)
+### 🖥️ Interactive Web Interface
+**No Node.js required.** The interface is pre-built and served via Python.
 
-iAODE includes an integrated web-based training interface for interactive model training:
-
-```bash
-# Start the training UI (Python - cross-platform)
-python start_training_ui.py
-
-# Or use the shell script (Linux/macOS)
-./start_training_ui.sh
-```
-
-Then open your browser to:
-- **Training UI**: http://localhost:8000/ui
-- **API Documentation**: http://localhost:8000/docs
-
-**Features:**
-- Upload scRNA-seq or scATAC-seq data (.h5ad files)
-- Configure preprocessing parameters (TF-IDF, HVP selection, subsampling)
-- Set training parameters interactively
-- Monitor training progress in real-time
-- Download trained embeddings (latent and interpretable)
-
----
+1.  **Start the Server:**
+    ```bash
+    python api/run_server.py
+    ```
+2.  **Access the UI:**
+    Open **[http://localhost:8000/](http://localhost:8000/)** in your browser.
+    
+    *Features:*
+    *   Upload `.h5ad` or `.h5` files.
+    *   Configure Encoders, Loss functions, and ODE parameters visually.
+    *   Download trained embeddings directly.
 
 ### Basic scATAC-seq Workflow
 

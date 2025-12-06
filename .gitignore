@@ -156,6 +156,8 @@ notebooks/outputs/
 
 .next
 
+frontend/
+start_production.sh
 # Logs
 logs/
 *.log
