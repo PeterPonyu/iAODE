@@ -4,6 +4,23 @@ All notable changes to this project will be documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/), and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.3.0] - 2026-02-02
+
+### Added
+
+- **Manuscript release**: Official release accompanying the publication in *Scientific Reports*
+- **Zenodo DOI**: Code repository now has a citable DOI via Zenodo integration
+- **Supplementary materials**: Link to Figshare DOI for supplementary information
+
+### Documentation
+
+- **README badges**: Added Zenodo DOI badge for citation
+- **Citation information**: Updated citation guidelines for the published paper
+
+[0.3.0]: https://github.com/PeterPonyu/iAODE/releases/tag/v0.3.0
+
+---
+
 ## [0.2.8] - 2025-11-25
 
 ### Changed
