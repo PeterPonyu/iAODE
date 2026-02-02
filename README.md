@@ -1,6 +1,6 @@
 # iAODE: Interpretable Accessibility ODE VAE for scATAC-seq
 
-[![PyPI version](https://badge.fury.io/py/iaode.svg)](https://pypi.org/project/iaode/) [![Python 3.9+](https://img.shields.io/badge/python-3.9+-blue.svg)](https://www.python.org/downloads/) [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT) [![PyTorch >=1.10](https://img.shields.io/badge/PyTorch-%3E=1.10-EE4C2C?logo=pytorch)](https://pytorch.org/) [![Tests](https://github.com/PeterPonyu/iAODE/actions/workflows/test.yml/badge.svg)](https://github.com/PeterPonyu/iAODE/actions/workflows/test.yml)
+[![PyPI version](https://badge.fury.io/py/iaode.svg)](https://pypi.org/project/iaode/) [![Python 3.9+](https://img.shields.io/badge/python-3.9+-blue.svg)](https://www.python.org/downloads/) [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT) [![PyTorch >=1.10](https://img.shields.io/badge/PyTorch-%3E=1.10-EE4C2C?logo=pytorch)](https://pytorch.org/) [![Tests](https://github.com/PeterPonyu/iAODE/actions/workflows/test.yml/badge.svg)](https://github.com/PeterPonyu/iAODE/actions/workflows/test.yml) [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.18453104.svg)](https://doi.org/10.5281/zenodo.18453104)
 
 **iAODE** (Interpretable Accessibility ODE VAE) is a lightweight deep learning framework purpose-built for single‑cell ATAC‑seq (scATAC‑seq) data. It integrates a Variational Autoencoder (VAE) with a Neural ODE and an interpretable bottleneck to jointly achieve:
 
@@ -554,15 +554,32 @@ for epoch in range(100):
 
 If you use iAODE in your research, please cite:
 
+**Paper:**
 ```bibtex
-@software{iaode2025,
-    author = {Zeyu Fu},
+@article{fu2026iaode,
+    author = {Fu, Zeyu},
     title = {iAODE: Interpretable Accessibility ODE VAE for Single-Cell Chromatin Dynamics},
-    year = {2025},
-    publisher = {GitHub},
-    url = {https://github.com/PeterPonyu/iAODE}
+    journal = {Scientific Reports},
+    year = {2026},
+    note = {DOI pending}
 }
 ```
+
+**Software:**
+```bibtex
+@software{fu2026iaode_code,
+    author = {Fu, Zeyu},
+    title = {iAODE: Interpretable Accessibility ODE VAE for scATAC-seq},
+    year = {2026},
+    publisher = {Zenodo},
+    version = {v0.3.0},
+    doi = {10.5281/zenodo.18453104},
+    url = {https://doi.org/10.5281/zenodo.18453104}
+}
+```
+
+**Supplementary Materials:**
+- Figshare DOI: [10.6084/m9.figshare.31225099](https://doi.org/10.6084/m9.figshare.31225099)
 
 ---
 
