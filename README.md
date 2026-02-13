@@ -552,19 +552,6 @@ for epoch in range(100):
 
 ## Citation
 
-If you use iAODE in your research, please cite:
-
-**Paper:**
-```bibtex
-@article{fu2026iaode,
-    author = {Fu, Zeyu},
-    title = {iAODE: Interpretable Accessibility ODE VAE for Single-Cell Chromatin Dynamics},
-    journal = {Scientific Reports},
-    year = {2026},
-    note = {DOI pending}
-}
-```
-
 **Software:**
 ```bibtex
 @software{fu2026iaode_code,
@@ -579,7 +566,11 @@ If you use iAODE in your research, please cite:
 ```
 
 **Supplementary Materials:**
-- Figshare DOI: [10.6084/m9.figshare.31225099](https://doi.org/10.6084/m9.figshare.31225099)
+- Figshare DOI: [10.6084/m9.figshare.31225099
+        
+        ](https://doi.org/10.6084/m9.figshare.31225099
+        
+        )
 
 ---
 
