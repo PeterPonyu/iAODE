@@ -1,3 +1,9 @@
+<div align="center">
+  <a href="https://peterponyu.github.io/">
+    <img src="https://peterponyu.github.io/assets/badges/iAODE.svg" width="64" alt="ZF Lab · iAODE">
+  </a>
+</div>
+
 # iAODE Frontend Interfaces
 
 This branch contains the source code for the web-based user interfaces associated with the **iAODE** (Interpretable Accessibility ODE) project. It hosts two distinct applications:
