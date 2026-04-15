@@ -1,12 +1,9 @@
-name: Deploy Frontend to GitHub Pages
+name: Deploy Frontend to GitHub Pages (frozen — paper publication snapshot)
 
+# Auto-deploy disabled: iAODE Pages is frozen at the v0.3.0 manuscript release.
+# Interactive tools have moved to SCPortal: https://peterponyu.github.io/scportal/
+# Use workflow_dispatch for manual redeploy if needed.
 on:
-  push:
-    branches: [frontend]
-    paths:
-      - 'datasetsui/**'
-      - 'sc-continuity-explorer/**'
-      - '.github/workflows/deploy-frontend.yml'
   workflow_dispatch:
 
 permissions:
