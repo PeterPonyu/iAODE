@@ -1,3 +1,9 @@
+<div align="center">
+  <a href="https://peterponyu.github.io/">
+    <img src="https://peterponyu.github.io/assets/badges/iAODE.svg" width="64" alt="ZF Lab · iAODE">
+  </a>
+</div>
+
 # iAODE: Interpretable Accessibility ODE VAE for scATAC-seq
 
 [![PyPI version](https://badge.fury.io/py/iaode.svg)](https://pypi.org/project/iaode/) [![Python 3.9+](https://img.shields.io/badge/python-3.9+-blue.svg)](https://www.python.org/downloads/) [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT) [![PyTorch >=1.10](https://img.shields.io/badge/PyTorch-%3E=1.10-EE4C2C?logo=pytorch)](https://pytorch.org/) [![Tests](https://github.com/PeterPonyu/iAODE/actions/workflows/test.yml/badge.svg)](https://github.com/PeterPonyu/iAODE/actions/workflows/test.yml) [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.18453104.svg)](https://doi.org/10.5281/zenodo.18453104)
