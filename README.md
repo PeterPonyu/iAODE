@@ -2,6 +2,8 @@
 
 [![PyPI version](https://badge.fury.io/py/iaode.svg)](https://pypi.org/project/iaode/) [![Python 3.9+](https://img.shields.io/badge/python-3.9+-blue.svg)](https://www.python.org/downloads/) [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT) [![PyTorch >=1.10](https://img.shields.io/badge/PyTorch-%3E=1.10-EE4C2C?logo=pytorch)](https://pytorch.org/) [![Tests](https://github.com/PeterPonyu/iAODE/actions/workflows/test.yml/badge.svg)](https://github.com/PeterPonyu/iAODE/actions/workflows/test.yml) [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.18453104.svg)](https://doi.org/10.5281/zenodo.18453104)
 
+> **Interactive Tools:** The dataset browser and continuity explorer have moved to [**SCPortal**](https://peterponyu.github.io/scportal/) — a unified single-cell data portal with expanded datasets, LAIOR benchmarks, and more. The [original project page](https://peterponyu.github.io/iAODE/) is preserved as the manuscript publication snapshot.
+
 **iAODE** (Interpretable Accessibility ODE VAE) is a lightweight deep learning framework purpose-built for single‑cell ATAC‑seq (scATAC‑seq) data. It integrates a Variational Autoencoder (VAE) with a Neural ODE and an interpretable bottleneck to jointly achieve:
 
 1. **Robust Modeling:** Handles sparse count accessibility profiles using Negative Binomial (NB) or Zero-Inflated Negative Binomial (ZINB) likelihoods.
