@@ -17,23 +17,39 @@ export function Header() {
           >
             <Sparkles className="w-6 h-6 text-[rgb(var(--training-primary))]" />
             <span className="font-bold text-lg text-[rgb(var(--foreground))] whitespace-nowrap">
-              iAODE Training
+              iAODE Workspace
             </span>
           </Link>
 
           {/* Navigation Links */}
           <nav className="hidden md:flex items-center space-x-6">
+            <a
+              href="https://peterponyu.github.io/scportal/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-sm font-medium transition-colors hover:text-[rgb(var(--primary-hover))] text-[rgb(var(--text-secondary))]"
+            >
+              Portal
+            </a>
+            <a
+              href="https://peterponyu.github.io/iAODE/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-sm font-medium transition-colors hover:text-[rgb(var(--primary-hover))] text-[rgb(var(--text-secondary))]"
+            >
+              Public Pages
+            </a>
             <Link
               href="/"
               className="text-sm font-medium transition-colors hover:text-[rgb(var(--primary-hover))] text-[rgb(var(--text-secondary))]"
             >
-              Home
+              Overview
             </Link>
             <Link
               href="/train"
               className="text-sm font-medium transition-colors hover:text-[rgb(var(--primary-hover))] text-[rgb(var(--text-secondary))]"
             >
-              Train Model
+              Run Locally
             </Link>
           </nav>
 
