@@ -24,12 +24,20 @@ export function Header() {
           {/* Navigation Links */}
           <nav className="hidden md:flex items-center space-x-6">
             <a
+              href="https://peterponyu.github.io/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-sm font-medium transition-colors hover:text-[rgb(var(--primary-hover))] text-[rgb(var(--text-secondary))]"
+            >
+              Homepage
+            </a>
+            <a
               href="https://peterponyu.github.io/scportal/"
               target="_blank"
               rel="noopener noreferrer"
               className="text-sm font-medium transition-colors hover:text-[rgb(var(--primary-hover))] text-[rgb(var(--text-secondary))]"
             >
-              Portal
+              SCPortal
             </a>
             <a
               href="https://peterponyu.github.io/iAODE/"
@@ -37,7 +45,7 @@ export function Header() {
               rel="noopener noreferrer"
               className="text-sm font-medium transition-colors hover:text-[rgb(var(--primary-hover))] text-[rgb(var(--text-secondary))]"
             >
-              Public Pages
+              iAODE Pages
             </a>
             <Link
               href="/"

@@ -37,12 +37,20 @@ export default function Home() {
               Run Locally
             </Link>
             <a
+              href="https://peterponyu.github.io/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="btn-secondary px-8 py-3 rounded-lg font-medium"
+            >
+              Homepage
+            </a>
+            <a
               href="https://peterponyu.github.io/iAODE/"
               target="_blank"
               rel="noopener noreferrer"
               className="btn-secondary px-8 py-3 rounded-lg font-medium"
             >
-              Public Pages
+              iAODE Pages
             </a>
             <a
               href="https://peterponyu.github.io/scportal/"
@@ -111,7 +119,7 @@ export default function Home() {
       {/* Footer */}
       <footer className="mt-20 border-t border-[rgb(var(--border))]">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 text-center text-sm text-muted">
-          <p>© 2025 iAODE. Local-first training workspace with public-safe return paths to the homepage and SCPortal.</p>
+          <p>© 2025 iAODE Workspace. Local-first training surface with public-safe return paths to Homepage, SCPortal, and iAODE Pages.</p>
         </div>
       </footer>
     </div>
