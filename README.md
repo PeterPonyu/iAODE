@@ -10,14 +10,14 @@
 
 > **Interactive Tools:** The dataset browser and continuity explorer have moved to [**SCPortal**](https://peterponyu.github.io/scportal/) — a unified single-cell data portal with expanded datasets, LAIOR benchmarks, and more. The [original project page](https://peterponyu.github.io/iAODE/) is preserved as the manuscript publication snapshot.
 
-**iAODE** (Interpretable Accessibility ODE VAE) is a lightweight deep learning framework purpose-built for single‑cell ATAC‑seq (scATAC‑seq) data. It integrates a Variational Autoencoder (VAE) with a Neural ODE and an interpretable bottleneck to jointly achieve:
+**iAODE** (Interpretable Accessibility ODE VAE) is a lightweight deep learning framework centered on single-cell ATAC-seq (scATAC-seq) data. It integrates a Variational Autoencoder (VAE) with a Neural ODE and an interpretable bottleneck to support:
 
-1. **Robust Modeling:** Handles sparse count accessibility profiles using Negative Binomial (NB) or Zero-Inflated Negative Binomial (ZINB) likelihoods.
+1. **Count-based Modeling:** Handles sparse accessibility profiles with Negative Binomial (NB) or Zero-Inflated Negative Binomial (ZINB) likelihoods.
 2. **Continuous Trajectory Inference:** Infers dynamics via Neural ODE pseudotime and latent velocity fields.
 3. **Interpretable Latent Factors:** Utilizes a biologically aligned bottleneck to extract meaningful features.
 4. **Scalable Preprocessing:** Implements TF‑IDF normalization and Highly Variable Peak (HVP) selection, aligned with Signac and SnapATAC2 best practices.
 
-The design specifically targets the unique characteristics of scATAC data, including extreme sparsity, library size variability, heterogeneous peak accessibility kinetics, and dynamic regulatory trajectories.
+The core package targets scATAC-seq data, including sparse peak counts, library size variability, heterogeneous accessibility kinetics, and dynamic regulatory trajectories. Some bundled scripts and UI workflows also cover scRNA-seq comparison tasks, but scATAC-seq remains the primary scope of the repository.
 
 ---
 
@@ -102,7 +102,7 @@ Then open your browser to:
 - **API Documentation**: http://localhost:8000/docs
 
 **Features:**
-- Upload scRNA-seq or scATAC-seq data (.h5ad files)
+- Upload scATAC-seq data and related `.h5ad` workflows through the UI
 - Configure preprocessing parameters (TF-IDF, HVP selection, subsampling)
 - Set training parameters interactively
 - Monitor training progress in real-time
@@ -295,7 +295,7 @@ iaode.datasets.clear_cache()        # Clear all cached data
 
 ## Examples
 
-Comprehensive examples are provided in the `examples/` directory. See **[examples/README.md](examples/README.md)** for detailed documentation.
+Examples are provided in the `examples/` directory. See **[examples/README.md](examples/README.md)** for details.
 
 ### Example Scripts
 
