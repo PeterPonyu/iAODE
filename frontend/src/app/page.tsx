@@ -15,20 +15,18 @@ export default function Home() {
         <div className="text-center space-y-8">
           <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-[rgb(var(--training-bg))] text-[rgb(var(--training-text-bright))] text-sm font-medium mb-4">
             <Sparkles className="w-4 h-4" />
-            <span>AI-Powered Single-Cell Analysis</span>
+            <span>Local-First Training Workspace</span>
           </div>
 
           <h1 className="text-5xl md:text-6xl font-bold tracking-tight text-[rgb(var(--foreground))]">
-            Interpretable Analysis of
-            <br />
             <span className="bg-linear-to-r from-[rgb(var(--training-primary))] to-[rgb(var(--primary))] bg-clip-text text-transparent">
-              Omics Data Explorer
+              iAODE Workspace
             </span>
           </h1>
           
           <p className="text-xl max-w-2xl mx-auto text-[rgb(var(--text-secondary))]">
-            Advanced single-cell RNA-seq and ATAC-seq analysis with interpretable
-            embeddings powered by deep learning
+            This interface is designed for local training workflows backed by the iAODE FastAPI service.
+            For public datasets, explorers, and project overview pages, use the public iAODE Pages surface or SCPortal.
           </p>
 
           <div className="flex gap-4 justify-center">
@@ -36,16 +34,29 @@ export default function Home() {
               href="/train"
               className="btn-training px-8 py-3 rounded-lg font-medium"
             >
-              Start Training
+              Run Locally
             </Link>
             <a
-              href="https://github.com/PeterPonyu/iAODE"
+              href="https://peterponyu.github.io/iAODE/"
               target="_blank"
               rel="noopener noreferrer"
               className="btn-secondary px-8 py-3 rounded-lg font-medium"
             >
-              Documentation
+              Public Pages
             </a>
+            <a
+              href="https://peterponyu.github.io/scportal/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="btn-secondary px-8 py-3 rounded-lg font-medium"
+            >
+              SCPortal
+            </a>
+          </div>
+
+          <div className="mx-auto max-w-3xl rounded-xl border border-amber-300/40 bg-amber-50/80 px-5 py-4 text-sm text-amber-900 dark:border-amber-700/40 dark:bg-amber-950/30 dark:text-amber-200">
+            This site is not part of the public GitHub Pages graph as an interactive training surface.
+            It expects a local backend at <code>localhost:8000</code> and is best treated as a local workspace or demo shell.
           </div>
         </div>
 
@@ -57,7 +68,7 @@ export default function Home() {
               </div>
               <h3 className="text-lg font-semibold mb-2 text-[rgb(var(--foreground))]">Multi-modal Support</h3>
               <p className="text-[rgb(var(--text-secondary))]">
-                Handle both scRNA-seq and scATAC-seq data with TF-IDF normalization and HVP selection. Choose from MSE, NB, or ZINB loss functions.
+                Work with scRNA-seq and scATAC-seq training flows in a local environment with TF-IDF normalization and selectable loss functions.
               </p>
           </div>
 
@@ -67,7 +78,7 @@ export default function Home() {
             </div>
               <h3 className="text-lg font-semibold mb-2 text-[rgb(var(--foreground))]">Real-time Training</h3>
               <p className="text-[rgb(var(--text-secondary))]">
-                Monitor training progress in real-time with live loss curves, epoch tracking, and automatic checkpointing with early stopping.
+                Monitor training progress in a local session with live loss curves, epoch tracking, and checkpointing.
               </p>
           </div>
 
@@ -77,7 +88,7 @@ export default function Home() {
             </div>
               <h3 className="text-lg font-semibold mb-2 text-[rgb(var(--foreground))]">Neural ODE Dynamics</h3>
               <p className="text-[rgb(var(--text-secondary))]">
-                Learn continuous cell trajectories with Neural ODE integration. Extract both latent and interpretable embeddings for downstream analysis.
+                Inspect continuous cell trajectories with Neural ODE integration and extract latent plus interpretable embeddings for downstream analysis.
               </p>
           </div>
         </div>
@@ -100,7 +111,7 @@ export default function Home() {
       {/* Footer */}
       <footer className="mt-20 border-t border-[rgb(var(--border))]">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 text-center text-sm text-muted">
-          <p>© 2025 iAODE. Open source project for single-cell data analysis.</p>
+          <p>© 2025 iAODE. Local-first training workspace with public-safe return paths to the homepage and SCPortal.</p>
         </div>
       </footer>
     </div>

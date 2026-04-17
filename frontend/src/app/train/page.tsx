@@ -47,8 +47,15 @@ export default function TrainPage() {
       <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
         <h1 className="text-3xl font-bold mb-2">Model Training</h1>
         <p className="text-muted mb-8">
-          Upload your data, configure preprocessing (if needed), and train the model
+          Upload your data, configure preprocessing (if needed), and train the model in a local workspace
         </p>
+
+        <div className="mb-6 rounded-lg border border-amber-300/40 bg-amber-50/80 px-4 py-4 text-sm text-amber-900 dark:border-amber-700/40 dark:bg-amber-950/30 dark:text-amber-200">
+          This training flow expects a local backend at <code>localhost:8000</code>. For public project pages and dataset/explorer entry points, use{' '}
+          <a className="underline" href="https://peterponyu.github.io/iAODE/" target="_blank" rel="noopener noreferrer">iAODE Pages</a>{' '}
+          or{' '}
+          <a className="underline" href="https://peterponyu.github.io/scportal/" target="_blank" rel="noopener noreferrer">SCPortal</a>.
+        </div>
 
         {/* Data Status Banner */}
         {dataInfo && (
