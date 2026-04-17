@@ -4,8 +4,27 @@ import './globals.css';
 import { ThemeProvider } from '@/components/theme-provider';
 
 export const metadata: Metadata = {
-  title: 'iAODE Local Training Workspace',
+  metadataBase: new URL('https://peterponyu.github.io'),
+  title: {
+    default: 'iAODE Workspace | Local-First Training',
+    template: '%s | iAODE Workspace',
+  },
   description: 'Local-first training workspace for iAODE model runs, with public-safe links back to the iAODE Pages surface and SCPortal.',
+  alternates: {
+    canonical: '/iAODE/frontend/',
+  },
+  openGraph: {
+    title: 'iAODE Workspace | Local-First Training',
+    description: 'Local-first training workspace for iAODE model runs, with public-safe links back to the iAODE Pages surface and SCPortal.',
+    url: 'https://peterponyu.github.io/iAODE/frontend/',
+    siteName: 'iAODE Workspace',
+    type: 'website',
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'iAODE Workspace | Local-First Training',
+    description: 'Local-first training workspace for iAODE model runs, with public-safe links back to the iAODE Pages surface and SCPortal.',
+  },
   robots: {
     index: false,
     follow: false,
