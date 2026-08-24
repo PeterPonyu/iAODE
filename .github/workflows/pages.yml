@@ -1,0 +1,49 @@
+name: Deploy iAODE Pages
+
+on:
+  pull_request:
+    paths:
+      - 'site/**'
+      - 'scripts/check_pages_metadata.py'
+      - '.github/workflows/pages.yml'
+  push:
+    branches:
+      - main
+    paths:
+      - 'site/**'
+      - 'scripts/check_pages_metadata.py'
+      - '.github/workflows/pages.yml'
+
+permissions:
+  contents: read
+
+concurrency:
+  group: pages
+  cancel-in-progress: false
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.x'
+      - run: python scripts/check_pages_metadata.py site/index.html
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: site
+
+  deploy:
+    if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+    needs: build
+    runs-on: ubuntu-latest
+    permissions:
+      pages: write
+      id-token: write
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - id: deployment
+        uses: actions/deploy-pages@v4
