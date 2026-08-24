@@ -10,6 +10,16 @@
 
 > **Interactive Tools:** The dataset browser and continuity explorer have moved to [**SCPortal**](https://peterponyu.github.io/scportal/) — a unified single-cell data portal with expanded datasets, LAIOR benchmarks, and more. The [original project page](https://peterponyu.github.io/iAODE/) is preserved as the manuscript publication snapshot.
 
+## Public Pages and local application surfaces
+
+`site/` is the public GitHub Pages landing at the canonical URL
+`https://peterponyu.github.io/iAODE/`. It provides project documentation and
+reproducible entry points only. No `/iAODE/frontend/` Pages route is supported.
+
+`frontend/` and `api/static/` are local application assets for the training UI.
+They remain local so model training and data handling are performed in the
+user's environment rather than on the public Pages site.
+
 **iAODE** (Interpretable Accessibility ODE VAE) is a lightweight deep learning framework centered on single-cell ATAC-seq (scATAC-seq) data. It integrates a Variational Autoencoder (VAE) with a Neural ODE and an interpretable bottleneck to support:
 
 1. **Count-based Modeling:** Handles sparse accessibility profiles with Negative Binomial (NB) or Zero-Inflated Negative Binomial (ZINB) likelihoods.
