@@ -8,12 +8,18 @@ required = [
     'name="robots" content="index, follow"',
     'property="og:url" content="https://peterponyu.github.io/iAODE/"',
     'name="description"',
+    'Dataset Browser',
+    'https://peterponyu.github.io/scportal/datasets/',
+    'Continuity Explorer',
+    'https://peterponyu.github.io/scportal/explorer/',
 ]
 missing = [token for token in required if token not in html]
 if missing:
     raise SystemExit("missing metadata: " + ", ".join(missing))
 if '/iAODE/frontend/' in html:
     raise SystemExit("local-only workspace canonical leaked into public artifact")
+if any(token in html.lower() for token in ('localhost', '127.0.0.1', 'start_training_ui')):
+    raise SystemExit("local runtime details leaked into public artifact")
 
 root = html_path.parent
 documents = {
