@@ -598,6 +598,7 @@ If you use iAODE in your research, please cite:
   journal = {Communications Biology},
   volume  = {9},
   number  = {1},
+  pages   = {507},
   year    = {2026},
   doi     = {10.1038/s42003-026-09768-8},
   url     = {https://doi.org/10.1038/s42003-026-09768-8}

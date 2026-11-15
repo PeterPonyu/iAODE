@@ -1,0 +1,42 @@
+cff-version: 1.2.0
+message: "If you use this software, please cite the article in preferred-citation."
+title: "iAODE"
+type: software
+authors:
+  - family-names: "Fu"
+    given-names: "Zeyu"
+    orcid: "https://orcid.org/0009-0001-8329-0108"
+  - family-names: "Chen"
+    given-names: "Chunlin"
+  - family-names: "Wang"
+    given-names: "Song"
+  - family-names: "Wang"
+    given-names: "Junping"
+    orcid: "https://orcid.org/0000-0001-5905-0940"
+  - family-names: "Chen"
+    given-names: "Shilei"
+    orcid: "https://orcid.org/0000-0003-3362-2909"
+repository-code: "https://github.com/PeterPonyu/iAODE"
+license: MIT
+preferred-citation:
+  type: article
+  title: "iAODE for benchmarking and continuum modeling of single-cell chromatin accessibility"
+  authors:
+    - family-names: "Fu"
+      given-names: "Zeyu"
+      orcid: "https://orcid.org/0009-0001-8329-0108"
+    - family-names: "Chen"
+      given-names: "Chunlin"
+    - family-names: "Wang"
+      given-names: "Song"
+    - family-names: "Wang"
+      given-names: "Junping"
+      orcid: "https://orcid.org/0000-0001-5905-0940"
+    - family-names: "Chen"
+      given-names: "Shilei"
+      orcid: "https://orcid.org/0000-0003-3362-2909"
+  journal: "Communications Biology"
+  volume: "9"
+  start: "507"
+  year: 2026
+  doi: "10.1038/s42003-026-09768-8"
