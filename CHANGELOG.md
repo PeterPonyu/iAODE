@@ -10,6 +10,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 - **Dataset downloads**: Restored the downloader shipped in 0.3.0 (HTTP requests with fallback mirrors). A repository merge had reverted the module to an earlier version; the published 0.3.0 package was not affected.
 - **Dependencies**: Declared `zarr`, which scvi-tools needs through mudata; without it, importing in a clean environment failed with `ModuleNotFoundError`.
+- **Velocity projection**: `get_vf(..., self_transition=True)` failed with SciPy 1.14 and later, which removed the `.A` shortcut on sparse results; the row maxima of the transition matrix are now converted explicitly. `l2_norm` also accepts SciPy sparse arrays.
 
 ### Documentation
 
