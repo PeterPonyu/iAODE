@@ -1,5 +1,5 @@
 """
-iAODE: Interpretable Autoencoder with Ordinary Differential Equations
+iAODE: Interpretable Accessibility ODE VAE
 
 A deep learning framework for single-cell omics data analysis combining
 variational autoencoders with neural ODEs for trajectory inference and

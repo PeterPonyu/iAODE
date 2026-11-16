@@ -6,9 +6,9 @@
 
 # iAODE: Interpretable Accessibility ODE VAE for scATAC-seq
 
-[![PyPI version](https://badge.fury.io/py/iaode.svg)](https://pypi.org/project/iaode/) [![Python 3.9+](https://img.shields.io/badge/python-3.9+-blue.svg)](https://www.python.org/downloads/) [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT) [![PyTorch >=1.10](https://img.shields.io/badge/PyTorch-%3E=1.10-EE4C2C?logo=pytorch)](https://pytorch.org/) [![Tests](https://github.com/PeterPonyu/iAODE/actions/workflows/test.yml/badge.svg)](https://github.com/PeterPonyu/iAODE/actions/workflows/test.yml) [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.18453104.svg)](https://doi.org/10.5281/zenodo.18453104)
+[![PyPI](https://img.shields.io/pypi/v/iaode.svg)](https://pypi.org/project/iaode/) [![Python 3.9+](https://img.shields.io/badge/python-3.9+-blue.svg)](https://www.python.org/downloads/) [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT) [![PyTorch >=1.10](https://img.shields.io/badge/PyTorch-%3E=1.10-EE4C2C?logo=pytorch)](https://pytorch.org/) [![Tests](https://github.com/PeterPonyu/iAODE/actions/workflows/test.yml/badge.svg)](https://github.com/PeterPonyu/iAODE/actions/workflows/test.yml) [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.18453103.svg)](https://doi.org/10.5281/zenodo.18453103)
 
-> **Interactive Tools:** The dataset browser and continuity explorer have moved to [**SCPortal**](https://peterponyu.github.io/scportal/) — a unified single-cell data portal with expanded datasets, LAIOR benchmarks, and more. The [original project page](https://peterponyu.github.io/iAODE/) is preserved as the manuscript publication snapshot.
+> **Interactive Tools:** The dataset browser and continuity explorer have moved to [**SCPortal**](https://peterponyu.github.io/scportal/) — a unified single-cell data portal with expanded datasets, LAIOR benchmarks, and more. The [project page](https://peterponyu.github.io/iAODE/) provides project documentation and links to both tools.
 
 ## Public Pages and local application surfaces
 
@@ -305,7 +305,7 @@ iaode.datasets.clear_cache()        # Clear all cached data
 
 ## Examples
 
-Examples are provided in the `examples/` directory. See **[examples/README.md](examples/README.md)** for details.
+Examples are provided in the `examples/` directory. See **[examples/README.md](https://github.com/PeterPonyu/iAODE/blob/main/examples/README.md)** for details.
 
 ### Example Scripts
 
@@ -623,7 +623,7 @@ For major changes, please open an issue first to discuss the proposed modificati
 
 ## License
 
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+This project is licensed under the MIT License - see the [LICENSE](https://github.com/PeterPonyu/iAODE/blob/main/LICENSE) file for details.
 
 ---
 
@@ -648,4 +648,4 @@ Foundational support is provided by the PyTorch, AnnData, and Scanpy ecosystems.
 
 ## Changelog
 
-See [CHANGELOG.md](CHANGELOG.md) for detailed release notes and version history.
+See [CHANGELOG.md](https://github.com/PeterPonyu/iAODE/blob/main/CHANGELOG.md) for detailed release notes and version history.

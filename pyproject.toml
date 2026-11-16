@@ -5,7 +5,7 @@ build-backend = "setuptools.build_meta"
 [project]
 name = "iaode"
 version = "0.3.1"
-description = "Interpretable Autoencoder with Ordinary Differential Equations for single-cell omics analysis"
+description = "iAODE: Interpretable Accessibility ODE VAE for benchmarking and continuum modeling of single-cell chromatin accessibility (scATAC-seq)"
 readme = "README.md"
 authors = [
     {name = "Zeyu Fu", email = "fuzeyu99@126.com"}
@@ -67,9 +67,10 @@ docs = [
 
 [project.urls]
 Homepage = "https://github.com/PeterPonyu/iAODE"
-Documentation = "https://iaode.readthedocs.io"
+Documentation = "https://peterponyu.github.io/iAODE/"
 Repository = "https://github.com/PeterPonyu/iAODE"
-"Bug Tracker" = "https://github.com/PeterPonyu/iAODE/issues"
+Paper = "https://doi.org/10.1038/s42003-026-09768-8"
+Issues = "https://github.com/PeterPonyu/iAODE/issues"
 
 [tool.setuptools]
 packages = ["iaode"]

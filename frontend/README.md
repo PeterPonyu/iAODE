@@ -1,6 +1,6 @@
 # iAODE Training UI
 
-Interactive web interface for training single-cell RNA-seq and ATAC-seq models using the iAODE (interpretable Adversarial Ordinary Differential Equations) package.
+Interactive web interface for training single-cell RNA-seq and ATAC-seq models using the iAODE (Interpretable Accessibility ODE VAE) package.
 
 ## Features
 
