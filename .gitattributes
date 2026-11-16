@@ -1,0 +1,4 @@
+# Keep the Zenodo and GitHub source archives to code, docs and example scripts.
+# The public paul15 dataset and the rendered example figures stay in git only.
+examples/data/ export-ignore
+examples/outputs/ export-ignore

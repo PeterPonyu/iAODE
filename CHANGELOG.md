@@ -4,11 +4,27 @@ All notable changes to this project will be documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/), and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.3.1] - 2026-11-15
+
+### Fixed
+
+- **Dataset downloads**: Restored the downloader shipped in 0.3.0 (HTTP requests with fallback mirrors). A repository merge had reverted the module to an earlier version; the published 0.3.0 package was not affected.
+- **Dependencies**: Declared `zarr`, which scvi-tools needs through mudata; without it, importing in a clean environment failed with `ModuleNotFoundError`.
+
+### Documentation
+
+- **Citation**: The README and a new `CITATION.cff` cite the published article (*Communications Biology* 9, 507, 2026).
+- **Changelog**: Corrected the journal named in the 0.3.0 entry.
+
+[0.3.1]: https://github.com/PeterPonyu/iAODE/releases/tag/v0.3.1
+
+---
+
 ## [0.3.0] - 2026-02-02
 
 ### Added
 
-- **Manuscript release**: Official release accompanying the publication in *Scientific Reports*
+- **Manuscript release**: Official release accompanying the publication in *Communications Biology*
 - **Zenodo DOI**: Code repository now has a citable DOI via Zenodo integration
 - **Supplementary materials**: Link to Figshare DOI for supplementary information
 
