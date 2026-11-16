@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "iaode"
-version = "0.3.1"
+version = "0.3.2"
 description = "iAODE: Interpretable Accessibility ODE VAE for benchmarking and continuum modeling of single-cell chromatin accessibility (scATAC-seq)"
 readme = "README.md"
 authors = [
